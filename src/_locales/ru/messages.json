@@ -3013,6 +3013,9 @@
 	"impp.qq": {
 		"message": "Tencent QQ"
 	},
+	"impp.jami": {
+		"message": "Jami"
+	},
 	"addToAddressbook": {
 		"message": "Добавить в эту адресную книгу"
 	},
@@ -4465,6 +4468,9 @@
 	"selectAllFieldsLabel": {
 		"message": "Выделить всё"
 	},
+	"selectAllDiscoveryLabel": {
+		"message": "Выделить всё"
+	},
 	"preferenceGroupboxLabel": {
 		"message": "Поле ПРИОРитет"
 	},
@@ -4615,6 +4621,12 @@
 	"deleteIMPPAccesskey": {
 		"message": "У"
 	},
+	"resetIMPPLabel": {
+		"message": "Сбросить до значений по умолчанию"
+	},
+	"resetIMPPAccesskey": {
+		"message": "у"
+	},
 	"URLPhoneGroupboxLabel": {
 		"message": "URL для программных телефонов"
 	},
@@ -4657,13 +4669,13 @@
 	"localDataEncryptionEnabledAccesskey": {
 		"message": "Ш"
 	},
-	"customFieldRankHeader": {
+	"customFieldRankHeaderLabel": {
 		"message": "Ранг"
 	},
-	"customFieldCodeHeader": {
+	"customFieldCodeHeaderLabel": {
 		"message": "Открывать внешние ссылки"
 	},
-	"customFieldLabelHeader": {
+	"customFieldLabelHeaderLabel": {
 		"message": "Метка поля"
 	},
 	"customFieldsPersTitleLabel": {
@@ -4801,9 +4813,6 @@
 	"discoveryWarn": {
 		"message": "Для URL, отмеченных ниже, при каждом запуске будет производится проверка появления новых или удаления существующих адресных книг."
 	},
-	"discoveryAccountsGroupboxLabel": {
-		"message": "Учётные записи"
-	},
 	"advancedSyncGroupboxLabel": {
 		"message": "Расширенные настройки"
 	},
@@ -4846,7 +4855,7 @@
 	"accountsVCardsEnabledLabel": {
 		"message": "Включено"
 	},
-	"accountsVCardsMailLabel": {
+	"accountsVCardsMailNameLabel": {
 		"message": "Почтовый аккаунт"
 	},
 	"accountsVCardsABNameLabel": {

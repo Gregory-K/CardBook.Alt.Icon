@@ -3013,6 +3013,9 @@
 	"impp.qq": {
 		"message": "Tencent QQ"
 	},
+	"impp.jami": {
+		"message": "Jami"
+	},
 	"addToAddressbook": {
 		"message": "Lägg till i den här adressboken"
 	},
@@ -4465,6 +4468,9 @@
 	"selectAllFieldsLabel": {
 		"message": "Markera allt"
 	},
+	"selectAllDiscoveryLabel": {
+		"message": "Markera allt"
+	},
 	"preferenceGroupboxLabel": {
 		"message": "Fält PREF"
 	},
@@ -4615,6 +4621,12 @@
 	"deleteIMPPAccesskey": {
 		"message": "T"
 	},
+	"resetIMPPLabel": {
+		"message": "Återställ till standard"
+	},
+	"resetIMPPAccesskey": {
+		"message": "i"
+	},
 	"URLPhoneGroupboxLabel": {
 		"message": "??URL opening for soft phones??"
 	},
@@ -4657,13 +4669,13 @@
 	"localDataEncryptionEnabledAccesskey": {
 		"message": "E"
 	},
-	"customFieldRankHeader": {
+	"customFieldRankHeaderLabel": {
 		"message": "Rankning"
 	},
-	"customFieldCodeHeader": {
+	"customFieldCodeHeaderLabel": {
 		"message": "Fält namn"
 	},
-	"customFieldLabelHeader": {
+	"customFieldLabelHeaderLabel": {
 		"message": "Fält märkning"
 	},
 	"customFieldsPersTitleLabel": {
@@ -4801,9 +4813,6 @@
 	"discoveryWarn": {
 		"message": "Vid varje synkronisering körs en kontroll på webbadresserna nedan för att söka efter nya eller borttagna adressböcker."
 	},
-	"discoveryAccountsGroupboxLabel": {
-		"message": "Konton"
-	},
 	"advancedSyncGroupboxLabel": {
 		"message": "Avancerade egenskaper"
 	},
@@ -4846,7 +4855,7 @@
 	"accountsVCardsEnabledLabel": {
 		"message": "Aktiverad"
 	},
-	"accountsVCardsMailLabel": {
+	"accountsVCardsMailNameLabel": {
 		"message": "Postkonto"
 	},
 	"accountsVCardsABNameLabel": {

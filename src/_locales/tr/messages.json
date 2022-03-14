@@ -3013,6 +3013,9 @@
 	"impp.qq": {
 		"message": "Tencent QQ"
 	},
+	"impp.jami": {
+		"message": "Jami"
+	},
 	"addToAddressbook": {
 		"message": "Bu adres defterine ekle"
 	},
@@ -4465,6 +4468,9 @@
 	"selectAllFieldsLabel": {
 		"message": "Tümünü Seç"
 	},
+	"selectAllDiscoveryLabel": {
+		"message": "Tümünü Seç"
+	},
 	"preferenceGroupboxLabel": {
 		"message": "PREF Alanı"
 	},
@@ -4615,6 +4621,12 @@
 	"deleteIMPPAccesskey": {
 		"message": "S"
 	},
+	"resetIMPPLabel": {
+		"message": "Varsayılana Dön"
+	},
+	"resetIMPPAccesskey": {
+		"message": "V"
+	},
 	"URLPhoneGroupboxLabel": {
 		"message": "Link yazılımsal telefonlar için açılıyor"
 	},
@@ -4657,13 +4669,13 @@
 	"localDataEncryptionEnabledAccesskey": {
 		"message": "E"
 	},
-	"customFieldRankHeader": {
+	"customFieldRankHeaderLabel": {
 		"message": "Sınıf"
 	},
-	"customFieldCodeHeader": {
+	"customFieldCodeHeaderLabel": {
 		"message": "Alan Adı"
 	},
-	"customFieldLabelHeader": {
+	"customFieldLabelHeaderLabel": {
 		"message": "Alan Etiketi"
 	},
 	"customFieldsPersTitleLabel": {
@@ -4801,9 +4813,6 @@
 	"discoveryWarn": {
 		"message": "Her senkorinazasyonda, yeni veya silinmiş adres defterlerini aramak için aşağıdaki linklerin bir kontrolü yapılacak. "
 	},
-	"discoveryAccountsGroupboxLabel": {
-		"message": "Hesaplar"
-	},
 	"advancedSyncGroupboxLabel": {
 		"message": "Gelişmiş Seçenekler"
 	},
@@ -4846,7 +4855,7 @@
 	"accountsVCardsEnabledLabel": {
 		"message": "Etkin"
 	},
-	"accountsVCardsMailLabel": {
+	"accountsVCardsMailNameLabel": {
 		"message": "Posta Hesabı"
 	},
 	"accountsVCardsABNameLabel": {

@@ -3013,6 +3013,9 @@
 	"impp.qq": {
 		"message": "腾讯 QQ"
 	},
+	"impp.jami": {
+		"message": "Jami"
+	},
 	"addToAddressbook": {
 		"message": "添加到通讯录"
 	},
@@ -4465,6 +4468,9 @@
 	"selectAllFieldsLabel": {
 		"message": "全选"
 	},
+	"selectAllDiscoveryLabel": {
+		"message": "全选"
+	},
 	"preferenceGroupboxLabel": {
 		"message": "字段 PREF"
 	},
@@ -4615,6 +4621,12 @@
 	"deleteIMPPAccesskey": {
 		"message": "D"
 	},
+	"resetIMPPLabel": {
+		"message": "恢复默认"
+	},
+	"resetIMPPAccesskey": {
+		"message": "R"
+	},
 	"URLPhoneGroupboxLabel": {
 		"message": "打开软电话的 URL"
 	},
@@ -4657,13 +4669,13 @@
 	"localDataEncryptionEnabledAccesskey": {
 		"message": "E"
 	},
-	"customFieldRankHeader": {
+	"customFieldRankHeaderLabel": {
 		"message": "设置级别"
 	},
-	"customFieldCodeHeader": {
+	"customFieldCodeHeaderLabel": {
 		"message": "字段名称"
 	},
-	"customFieldLabelHeader": {
+	"customFieldLabelHeaderLabel": {
 		"message": "字段标签"
 	},
 	"customFieldsPersTitleLabel": {
@@ -4801,9 +4813,6 @@
 	"discoveryWarn": {
 		"message": "每次同步时，将会运行检查以下 URL 以搜索新建的或删除的通讯录"
 	},
-	"discoveryAccountsGroupboxLabel": {
-		"message": "帐户"
-	},
 	"advancedSyncGroupboxLabel": {
 		"message": "高级属性"
 	},
@@ -4846,7 +4855,7 @@
 	"accountsVCardsEnabledLabel": {
 		"message": "启用"
 	},
-	"accountsVCardsMailLabel": {
+	"accountsVCardsMailNameLabel": {
 		"message": "邮件帐户"
 	},
 	"accountsVCardsABNameLabel": {

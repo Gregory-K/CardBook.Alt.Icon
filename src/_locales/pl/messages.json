@@ -3013,6 +3013,9 @@
 	"impp.qq": {
 		"message": "Tencent QQ"
 	},
+	"impp.jami": {
+		"message": "Jami"
+	},
 	"addToAddressbook": {
 		"message": "Dodaj do tej książki adresowej"
 	},
@@ -4465,6 +4468,9 @@
 	"selectAllFieldsLabel": {
 		"message": "Zaznacz wszystko"
 	},
+	"selectAllDiscoveryLabel": {
+		"message": "Zaznacz wszystko"
+	},
 	"preferenceGroupboxLabel": {
 		"message": "Oznaczenie Podstawowy"
 	},
@@ -4615,6 +4621,12 @@
 	"deleteIMPPAccesskey": {
 		"message": "U"
 	},
+	"resetIMPPLabel": {
+		"message": "Przywróć domyślne"
+	},
+	"resetIMPPAccesskey": {
+		"message": "Z"
+	},
 	"URLPhoneGroupboxLabel": {
 		"message": "URL dla telefonów programowych"
 	},
@@ -4657,13 +4669,13 @@
 	"localDataEncryptionEnabledAccesskey": {
 		"message": "E"
 	},
-	"customFieldRankHeader": {
+	"customFieldRankHeaderLabel": {
 		"message": "Kolejność"
 	},
-	"customFieldCodeHeader": {
+	"customFieldCodeHeaderLabel": {
 		"message": "Nazwa pola"
 	},
-	"customFieldLabelHeader": {
+	"customFieldLabelHeaderLabel": {
 		"message": "Etykieta pola"
 	},
 	"customFieldsPersTitleLabel": {
@@ -4801,9 +4813,6 @@
 	"discoveryWarn": {
 		"message": "Przy każdej synchronizacji poniższe adresy będą sprawdzane w poszukiwaniu nowych lub usuniętych książek adresowych."
 	},
-	"discoveryAccountsGroupboxLabel": {
-		"message": "Konta"
-	},
 	"advancedSyncGroupboxLabel": {
 		"message": "Ustawienia zaawansowane"
 	},
@@ -4846,7 +4855,7 @@
 	"accountsVCardsEnabledLabel": {
 		"message": "Włączone"
 	},
-	"accountsVCardsMailLabel": {
+	"accountsVCardsMailNameLabel": {
 		"message": "Konto pocztowe"
 	},
 	"accountsVCardsABNameLabel": {

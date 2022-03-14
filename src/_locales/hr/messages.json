@@ -3013,6 +3013,9 @@
 	"impp.qq": {
 		"message": "Tencent QQ"
 	},
+	"impp.jami": {
+		"message": "Jami"
+	},
 	"addToAddressbook": {
 		"message": "Dodaj u ovaj adresar"
 	},
@@ -4465,6 +4468,9 @@
 	"selectAllFieldsLabel": {
 		"message": "Odaberi sve"
 	},
+	"selectAllDiscoveryLabel": {
+		"message": "Odaberi sve"
+	},
 	"preferenceGroupboxLabel": {
 		"message": "Polje PREF"
 	},
@@ -4615,6 +4621,12 @@
 	"deleteIMPPAccesskey": {
 		"message": "b"
 	},
+	"resetIMPPLabel": {
+		"message": "Vrati na uobičajeno"
+	},
+	"resetIMPPAccesskey": {
+		"message": "j"
+	},
 	"URLPhoneGroupboxLabel": {
 		"message": "??URL opening for soft phones??"
 	},
@@ -4657,13 +4669,13 @@
 	"localDataEncryptionEnabledAccesskey": {
 		"message": "E"
 	},
-	"customFieldRankHeader": {
+	"customFieldRankHeaderLabel": {
 		"message": "Rangiranje"
 	},
-	"customFieldCodeHeader": {
+	"customFieldCodeHeaderLabel": {
 		"message": "Ime polja"
 	},
-	"customFieldLabelHeader": {
+	"customFieldLabelHeaderLabel": {
 		"message": "Naziv polja"
 	},
 	"customFieldsPersTitleLabel": {
@@ -4801,9 +4813,6 @@
 	"discoveryWarn": {
 		"message": "Na svakoj sinkronizaciji, potraga za URL-ovima u nastavku bit će pokrenuta da biste tražili nove ili obrisane adresare."
 	},
-	"discoveryAccountsGroupboxLabel": {
-		"message": "Računi"
-	},
 	"advancedSyncGroupboxLabel": {
 		"message": "Napredna svojstva"
 	},
@@ -4846,7 +4855,7 @@
 	"accountsVCardsEnabledLabel": {
 		"message": "Omogućen"
 	},
-	"accountsVCardsMailLabel": {
+	"accountsVCardsMailNameLabel": {
 		"message": "Naziv računa"
 	},
 	"accountsVCardsABNameLabel": {

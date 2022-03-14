@@ -106,15 +106,10 @@ if ("undefined" == typeof(cardbookElementTools)) {
 			}
 		},
 
-		addProgressmeter: function (aParent, aId, aParameters) {
-			var aProgressmeter =  document.createElementNS("http://www.w3.org/1999/xhtml","progress");
-			aParent.appendChild(aProgressmeter);
-			aProgressmeter.setAttribute('id', aId);
+		addHTMLPROGRESS: function (aParent, aId, aParameters) {
+			let aProgressmeter = cardbookElementTools.addHTMLElement("progress", aParent, aId, aParameters)
 			aProgressmeter.setAttribute('max', "100");
-
-			for (var prop in aParameters) {
-				aProgressmeter.setAttribute(prop, aParameters[prop]);
-			}
+			return aProgressmeter;
 		},
 
 		addHBox: function (aType, aIndex, aParent, aParameters) {
@@ -141,39 +136,87 @@ if ("undefined" == typeof(cardbookElementTools)) {
 			return aVBox;
 		},
 		
-		addTable: function (aParent, aId, aParameters) {
-			var aTable = document.createElementNS("http://www.w3.org/1999/xhtml","html:table");
-			aParent.appendChild(aTable);
-			aTable.setAttribute('id', aId);
-
-			for (var prop in aParameters) {
-				aTable.setAttribute(prop, aParameters[prop]);
-			}
-			return aTable;
-		},
-
-		addTableRow: function (aParent, aId, aParameters) {
-			var aTableRow = document.createElementNS("http://www.w3.org/1999/xhtml","html:tr");
-			aParent.appendChild(aTableRow);
+		addHTMLElement: function (aElement, aParent, aId, aParameters) {
+			let element = document.createElementNS("http://www.w3.org/1999/xhtml", `html:${aElement}`);
+			aParent.appendChild(element);
 			if (aId) {
-				aTableRow.setAttribute('id', aId);
+				element.setAttribute('id', aId);
 			}
-
-			for (var prop in aParameters) {
-				aTableRow.setAttribute(prop, aParameters[prop]);
+			for (let prop in aParameters) {
+				element.setAttribute(prop, aParameters[prop]);
 			}
-			return aTableRow;
+			return element;
 		},
 
-		addTableData: function (aParent, aId, aParameters) {
-			var aTableData = document.createElementNS("http://www.w3.org/1999/xhtml","html:td");
-			aParent.appendChild(aTableData);
-			aTableData.setAttribute('id', aId);
+		addHTMLTABLE: function (aParent, aId, aParameters) {
+			let table = cardbookElementTools.addHTMLElement("table", aParent, aId, aParameters)
+			return table;
+		},
 
-			for (var prop in aParameters) {
-				aTableData.setAttribute(prop, aParameters[prop]);
+		addHTMLTR: function (aParent, aId, aParameters) {
+			let tr = cardbookElementTools.addHTMLElement("tr", aParent, aId, aParameters)
+			return tr;
+		},
+
+		addHTMLTD: function (aParent, aId, aParameters) {
+			let td = cardbookElementTools.addHTMLElement("td", aParent, aId, aParameters)
+			return td;
+		},
+
+		addHTMLTHEAD: function (aParent, aId, aParameters) {
+			let thead = cardbookElementTools.addHTMLElement("thead", aParent, aId, aParameters)
+			return thead;
+		},
+
+		addHTMLTBODY: function (aParent, aId, aParameters) {
+			let tbody = cardbookElementTools.addHTMLElement("tbody", aParent, aId, aParameters)
+			return tbody;
+		},
+
+		addHTMLTH: function (aParent, aId, aParameters) {
+			let th = cardbookElementTools.addHTMLElement("th", aParent, aId, aParameters)
+			return th;
+		},
+
+		addHTMLIMAGE: function (aParent, aId, aParameters) {
+			let image = cardbookElementTools.addHTMLElement("img", aParent, aId, aParameters)
+			return image;
+		},
+
+		addTreeTable: function (aId, aHeaders, aData, aDataParameters) {
+			let table = document.getElementById(aId);
+
+			if (aHeaders.length) {
+				let thead = cardbookElementTools.addHTMLTHEAD(table, `${aId}_thead`);
+				let tr = cardbookElementTools.addHTMLTR(thead, `${aId}_thead_tr`);
+				for (let i = 0; i < aHeaders.length; i++) {
+					let th = cardbookElementTools.addHTMLTH(tr, `${aId}_thead_th_${i}`);
+					th.textContent = cardbookRepository.extension.localeData.localizeMessage(`${aHeaders[i]}Label`);
+				}
 			}
-			return aTableData;
+			if (aData.length) {
+				let tbody = cardbookElementTools.addHTMLTBODY(table, `${aId}_tbody`);
+				for (let i = 0; i < aData.length; i++) {
+					let tr = cardbookElementTools.addHTMLTR(tbody, `${aId}_thead_tr_${i}`, {"tabindex": "0"});
+					for (let j = 0; j < aData[i].length; j++) {
+						let td = cardbookElementTools.addHTMLTD(tr, `${aId}_thead_td_${i}_${j}`);
+						let last = td;
+						if (typeof aData[i][j] === "boolean") {
+							let checkbox = cardbookElementTools.addHTMLElement("input", td, `${aId}_thead_td_${i}_${j}_checkbox`, {"type": "checkbox"})
+							checkbox.checked = aData[i][j];
+							last = checkbox;
+						} else {
+							td.textContent = aData[i][j];
+						}
+						if (aDataParameters && aDataParameters[j] && aDataParameters[j].events) {
+							for (let event of aDataParameters[j].events) {
+								last.addEventListener(event[0], event[1], false);
+							}
+						}
+					}
+				}
+			}
+			return table;
 		},
 
 		addLabel: function (aOrigBox, aId, aValue, aControl, aParameters) {
@@ -189,7 +232,7 @@ if ("undefined" == typeof(cardbookElementTools)) {
 		},
 
 		addKeyTextbox: function (aParent, aId, aValue, aParameters, aIndex) {
-			var aKeyTextBox = cardbookElementTools.addTextbox(aParent, aId, aValue, aParameters);
+			var aKeyTextBox = cardbookElementTools.addHTMLINPUT(aParent, aId, aValue, aParameters);
 
 			function checkKeyTextBox(event) {
 				let idArray = this.id.split('_');
@@ -220,15 +263,9 @@ if ("undefined" == typeof(cardbookElementTools)) {
 			return aKeyTextBox;
 		},
 
-		addTextbox: function (aParent, aId, aValue, aParameters) {
-			var aTextbox = document.createElementNS("http://www.w3.org/1999/xhtml","html:input");
-			aParent.appendChild(aTextbox);
-			aTextbox.setAttribute('id', aId);
+		addHTMLINPUT: function (aParent, aId, aValue, aParameters) {
+			let aTextbox = cardbookElementTools.addHTMLElement("input", aParent, aId, aParameters)
 			aTextbox.setAttribute('value', aValue);
-
-			for (var prop in aParameters) {
-				aTextbox.setAttribute(prop, aParameters[prop]);
-			}
 			return aTextbox;
 		},
 
@@ -245,7 +282,7 @@ if ("undefined" == typeof(cardbookElementTools)) {
 		},
 
 		addKeyTextarea: function (aParent, aId, aValue, aParameters, aIndex) {
-			var aKeyTextArea = cardbookElementTools.addTextarea(aParent, aId, aValue, aParameters);
+			var aKeyTextArea = cardbookElementTools.addHTMLTEXTAREA(aParent, aId, aValue, aParameters);
 
 			function checkKeyTextArea(event) {
 				let idArray = this.id.split('_');
@@ -276,15 +313,9 @@ if ("undefined" == typeof(cardbookElementTools)) {
 			return aKeyTextArea;
 		},
 
-		addTextarea: function (aParent, aId, aValue, aParameters) {
-			var aTextarea = document.createElementNS("http://www.w3.org/1999/xhtml","html:textarea");
-			aParent.appendChild(aTextarea);
-			aTextarea.setAttribute('id', aId);
+		addHTMLTEXTAREA: function (aParent, aId, aValue, aParameters) {
+			let aTextarea = cardbookElementTools.addHTMLElement("textarea", aParent, aId, aParameters)
 			aTextarea.value = aValue;
-
-			for (var prop in aParameters) {
-				aTextarea.setAttribute(prop, aParameters[prop]);
-			}
 			return aTextarea;
 		},
 

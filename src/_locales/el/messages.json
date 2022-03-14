@@ -3013,6 +3013,9 @@
 	"impp.qq": {
 		"message": "Δέκα σεντ"
 	},
+	"impp.jami": {
+		"message": "Jami"
+	},
 	"addToAddressbook": {
 		"message": "Προσθέστε σε αυτό το βιβλίο διευθύνσεων"
 	},
@@ -4465,6 +4468,9 @@
 	"selectAllFieldsLabel": {
 		"message": "Επιλογή όλων"
 	},
+	"selectAllDiscoveryLabel": {
+		"message": "Επιλογή όλων"
+	},
 	"preferenceGroupboxLabel": {
 		"message": "Πεδίο προτιμήσεων"
 	},
@@ -4615,6 +4621,12 @@
 	"deleteIMPPAccesskey": {
 		"message": "φ"
 	},
+	"resetIMPPLabel": {
+		"message": "Επαναφέρετε τις προεπιλογές"
+	},
+	"resetIMPPAccesskey": {
+		"message": "ρ"
+	},
 	"URLPhoneGroupboxLabel": {
 		"message": "??URL opening for soft phones??"
 	},
@@ -4657,13 +4669,13 @@
 	"localDataEncryptionEnabledAccesskey": {
 		"message": "E"
 	},
-	"customFieldRankHeader": {
+	"customFieldRankHeaderLabel": {
 		"message": "Τάξη"
 	},
-	"customFieldCodeHeader": {
+	"customFieldCodeHeaderLabel": {
 		"message": "Όνομα πεδίου"
 	},
-	"customFieldLabelHeader": {
+	"customFieldLabelHeaderLabel": {
 		"message": "Ετικέτα πεδίου"
 	},
 	"customFieldsPersTitleLabel": {
@@ -4801,9 +4813,6 @@
 	"discoveryWarn": {
 		"message": "Σε κάθε συγχρονισμό, θα γίνει έλεγχος στις παρακάτω διευθύνσεις URL για να αναζητήσετε νέα ή διαγραμμένα βιβλία διευθύνσεων."
 	},
-	"discoveryAccountsGroupboxLabel": {
-		"message": "Λογαριασμοί"
-	},
 	"advancedSyncGroupboxLabel": {
 		"message": "Προηγμένες ιδιότητες"
 	},
@@ -4846,7 +4855,7 @@
 	"accountsVCardsEnabledLabel": {
 		"message": "Ενεργοποιήθηκε"
 	},
-	"accountsVCardsMailLabel": {
+	"accountsVCardsMailNameLabel": {
 		"message": "Λογαριασμός αλληλογραφίας"
 	},
 	"accountsVCardsABNameLabel": {

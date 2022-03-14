@@ -3013,6 +3013,9 @@
 	"impp.qq": {
 		"message": "Tencent QQ"
 	},
+	"impp.jami": {
+		"message": "Jami"
+	},
 	"addToAddressbook": {
 		"message": "Thêm vào sổ địa chỉ này"
 	},
@@ -4465,6 +4468,9 @@
 	"selectAllFieldsLabel": {
 		"message": "Chọn tất cả"
 	},
+	"selectAllDiscoveryLabel": {
+		"message": "Chọn tất cả"
+	},
 	"preferenceGroupboxLabel": {
 		"message": "Sở thích trường"
 	},
@@ -4615,6 +4621,12 @@
 	"deleteIMPPAccesskey": {
 		"message": "X"
 	},
+	"resetIMPPLabel": {
+		"message": "Khôi phục về Mặc định"
+	},
+	"resetIMPPAccesskey": {
+		"message": "M"
+	},
 	"URLPhoneGroupboxLabel": {
 		"message": "??URL opening for soft phones??"
 	},
@@ -4657,13 +4669,13 @@
 	"localDataEncryptionEnabledAccesskey": {
 		"message": "E"
 	},
-	"customFieldRankHeader": {
+	"customFieldRankHeaderLabel": {
 		"message": "Cấp"
 	},
-	"customFieldCodeHeader": {
+	"customFieldCodeHeaderLabel": {
 		"message": "Tên Trường"
 	},
-	"customFieldLabelHeader": {
+	"customFieldLabelHeaderLabel": {
 		"message": "Nhãn Trường"
 	},
 	"customFieldsPersTitleLabel": {
@@ -4801,9 +4813,6 @@
 	"discoveryWarn": {
 		"message": "Tại mỗi lần đồng bộ hóa, kiểm tra các URL bên dưới sẽ được chạy để tìm kiếm bất kỳ sổ địa chỉ mới hoặc đã bị xóa nào."
 	},
-	"discoveryAccountsGroupboxLabel": {
-		"message": "Tài khoản"
-	},
 	"advancedSyncGroupboxLabel": {
 		"message": "Nâng cao Thuộc tính"
 	},
@@ -4846,7 +4855,7 @@
 	"accountsVCardsEnabledLabel": {
 		"message": "Bật"
 	},
-	"accountsVCardsMailLabel": {
+	"accountsVCardsMailNameLabel": {
 		"message": "Tài khoản Thư"
 	},
 	"accountsVCardsABNameLabel": {

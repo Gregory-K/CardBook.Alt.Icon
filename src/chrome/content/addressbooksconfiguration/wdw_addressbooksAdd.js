@@ -819,9 +819,9 @@ if ("undefined" == typeof(wdw_addressbooksAdd)) {
 		createBoxesForNames: function (aType, aURL, aName, aVersionList, aUsername, aActionType, aSourceDirPrefId, aSourceCollected) {
 			let table = document.getElementById('namesTable');
 			let aId = table.rows.length - 1;
-			let aRow = cardbookElementTools.addTableRow(table, 'namesRow' + aId);
+			let aRow = cardbookElementTools.addHTMLTR(table, 'namesRow' + aId);
 
-			let checkboxData = cardbookElementTools.addTableData(aRow, 'namesTableData.' + aId + '.1');
+			let checkboxData = cardbookElementTools.addHTMLTD(aRow, 'namesTableData.' + aId + '.1');
 			let checkbox = document.createXULElement('checkbox');
 			checkboxData.appendChild(checkbox);
 			checkbox.setAttribute('checked', true);
@@ -842,7 +842,7 @@ if ("undefined" == typeof(wdw_addressbooksAdd)) {
 					wdw_addressbooksAdd.checkNamesLinesRequired();
 				}, false);
 
-			let nameData = cardbookElementTools.addTableData(aRow, 'namesTableData.' + aId + '.2');
+			let nameData = cardbookElementTools.addHTMLTD(aRow, 'namesTableData.' + aId + '.2');
 			let nameTextbox = document.createElementNS("http://www.w3.org/1999/xhtml","html:input");
 			nameData.appendChild(nameTextbox);
 			nameTextbox.setAttribute('id', 'namesTextbox' + aId);
@@ -853,7 +853,7 @@ if ("undefined" == typeof(wdw_addressbooksAdd)) {
 					wdw_addressbooksAdd.checkNamesLinesRequired();
 				}, false);
 
-			let colorData = cardbookElementTools.addTableData(aRow, 'namesTableData.' + aId + '.3');
+			let colorData = cardbookElementTools.addHTMLTD(aRow, 'namesTableData.' + aId + '.3');
 			let colorbox =  document.createElementNS("http://www.w3.org/1999/xhtml","html:input");
 			colorData.appendChild(colorbox);
 			colorbox.setAttribute('id', 'serverColorInput' + aId);
@@ -862,7 +862,7 @@ if ("undefined" == typeof(wdw_addressbooksAdd)) {
 			colorbox.setAttribute('type', "color");
 			colorbox.value = cardbookRepository.cardbookUtils.randomColor(100);
 			
-			let menuData = cardbookElementTools.addTableData(aRow, 'namesTableData.' + aId + '.4');
+			let menuData = cardbookElementTools.addHTMLTD(aRow, 'namesTableData.' + aId + '.4');
 			let menuList = document.createXULElement('menulist');
 			menuData.appendChild(menuList);
 			menuList.setAttribute('id', 'vCardVersionPageName' + aId);
@@ -872,7 +872,7 @@ if ("undefined" == typeof(wdw_addressbooksAdd)) {
 			menuPopup.setAttribute('id', 'vCardVersionPageNameMenupopup' + aId);
 			cardbookElementTools.loadVCardVersions(menuPopup.id, menuList.id, aVersionList);
 
-			let URLData = cardbookElementTools.addTableData(aRow, 'namesTableData.' + aId + '.5');
+			let URLData = cardbookElementTools.addHTMLTD(aRow, 'namesTableData.' + aId + '.5');
 			let URLTextbox = document.createElementNS("http://www.w3.org/1999/xhtml","html:input");
 			URLData.appendChild(URLTextbox);
 			URLTextbox.setAttribute('id', 'URLTextbox' + aId);
@@ -880,7 +880,7 @@ if ("undefined" == typeof(wdw_addressbooksAdd)) {
 			URLTextbox.setAttribute('hidden', 'true');
 			URLTextbox.value = aURL;
 
-			let checkbox1Data = cardbookElementTools.addTableData(aRow, 'namesTableData.' + aId + '.6');
+			let checkbox1Data = cardbookElementTools.addHTMLTD(aRow, 'namesTableData.' + aId + '.6');
 			let checkbox1 = document.createXULElement('checkbox');
 			checkbox1Data.appendChild(checkbox1);
 			checkbox1.setAttribute('checked', true);
@@ -922,9 +922,9 @@ if ("undefined" == typeof(wdw_addressbooksAdd)) {
 		createBoxesForFinds: function (aConnectionId, aConnectionType, aUsername, aPassword, aVCardVersion, aUrl, aABName) {
 			let table = document.getElementById('findTable');
 			let aId = table.rows.length - 1;
-			let aRow = cardbookElementTools.addTableRow(table, 'findTable.' + aId);
+			let aRow = cardbookElementTools.addHTMLTR(table, 'findTable.' + aId);
 			
-			let buttonData = cardbookElementTools.addTableData(aRow, 'findTableData.' + aId + '.1');
+			let buttonData = cardbookElementTools.addHTMLTD(aRow, 'findTableData.' + aId + '.1');
 			let button = document.createXULElement('button');
 			buttonData.appendChild(button);
 			button.setAttribute('id', 'findPageValidateButton' + aId);
@@ -939,7 +939,7 @@ if ("undefined" == typeof(wdw_addressbooksAdd)) {
 					wdw_addressbooksAdd.validateFindLine(myId);
 				}, false);
 
-			let usernameData = cardbookElementTools.addTableData(aRow, 'findTableData.' + aId + '.2');
+			let usernameData = cardbookElementTools.addHTMLTD(aRow, 'findTableData.' + aId + '.2');
 			let usernameTextbox = document.createElementNS("http://www.w3.org/1999/xhtml","html:input");
 			usernameData.appendChild(usernameTextbox);
 			usernameTextbox.setAttribute('id', 'findUsernameTextbox' + aId);
@@ -950,8 +950,8 @@ if ("undefined" == typeof(wdw_addressbooksAdd)) {
 			usernameTextbox.setAttribute('class', 'cardbook-large-column');
 			usernameTextbox.value = aUsername;
 
-			let paswordData = cardbookElementTools.addTableData(aRow, 'findTableData.' + aId + '.3');
-			let checkboxData = cardbookElementTools.addTableData(aRow, 'findTableData.' + aId + '.4');
+			let paswordData = cardbookElementTools.addHTMLTD(aRow, 'findTableData.' + aId + '.3');
+			let checkboxData = cardbookElementTools.addHTMLTD(aRow, 'findTableData.' + aId + '.4');
 			if (aPassword != null) {
 				let passwordTextbox = document.createElementNS("http://www.w3.org/1999/xhtml","html:input");
 				paswordData.appendChild(passwordTextbox);
@@ -970,7 +970,7 @@ if ("undefined" == typeof(wdw_addressbooksAdd)) {
 					}, false);
 			}
 
-			let versionData = cardbookElementTools.addTableData(aRow, 'findTableData.' + aId + '.5');
+			let versionData = cardbookElementTools.addHTMLTD(aRow, 'findTableData.' + aId + '.5');
 			let versionTextbox = document.createElementNS("http://www.w3.org/1999/xhtml","html:input");
 			versionData.appendChild(versionTextbox);
 			versionTextbox.setAttribute('id', 'findPageVCardVersionsTextbox' + aId);
@@ -978,7 +978,7 @@ if ("undefined" == typeof(wdw_addressbooksAdd)) {
 			versionTextbox.setAttribute('hidden', 'true');
 			versionTextbox.value = aVCardVersion;
 
-			let URLData = cardbookElementTools.addTableData(aRow, 'findTableData.' + aId + '.6');
+			let URLData = cardbookElementTools.addHTMLTD(aRow, 'findTableData.' + aId + '.6');
 			let URLTextbox = document.createElementNS("http://www.w3.org/1999/xhtml","html:input");
 			URLData.appendChild(URLTextbox);
 			URLTextbox.setAttribute('id', 'findPageURLTextbox' + aId);
@@ -986,7 +986,7 @@ if ("undefined" == typeof(wdw_addressbooksAdd)) {
 			URLTextbox.setAttribute('hidden', 'true');
 			URLTextbox.value = aUrl;
 
-			let ABNameData = cardbookElementTools.addTableData(aRow, 'findTableData.' + aId + '.7');
+			let ABNameData = cardbookElementTools.addHTMLTD(aRow, 'findTableData.' + aId + '.7');
 			let ABNameTextbox = document.createElementNS("http://www.w3.org/1999/xhtml","html:input");
 			ABNameData.appendChild(ABNameTextbox);
 			ABNameTextbox.setAttribute('id', 'findPageABNameTextbox' + aId);

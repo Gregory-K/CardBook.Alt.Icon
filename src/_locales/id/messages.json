@@ -3013,6 +3013,9 @@
 	"impp.qq": {
 		"message": "Tencent QQ"
 	},
+	"impp.jami": {
+		"message": "Jami"
+	},
 	"addToAddressbook": {
 		"message": "Tambahkan ke buku alamat ini"
 	},
@@ -4465,6 +4468,9 @@
 	"selectAllFieldsLabel": {
 		"message": "Pilih Semua"
 	},
+	"selectAllDiscoveryLabel": {
+		"message": "Pilih Semua"
+	},
 	"preferenceGroupboxLabel": {
 		"message": "Lapangan PREFERENSI"
 	},
@@ -4615,6 +4621,12 @@
 	"deleteIMPPAccesskey": {
 		"message": "H"
 	},
+	"resetIMPPLabel": {
+		"message": "Kembalikan Nilai Default"
+	},
+	"resetIMPPAccesskey": {
+		"message": "K"
+	},
 	"URLPhoneGroupboxLabel": {
 		"message": "??URL opening for soft phones??"
 	},
@@ -4657,13 +4669,13 @@
 	"localDataEncryptionEnabledAccesskey": {
 		"message": "E"
 	},
-	"customFieldRankHeader": {
+	"customFieldRankHeaderLabel": {
 		"message": "Pangkat"
 	},
-	"customFieldCodeHeader": {
+	"customFieldCodeHeaderLabel": {
 		"message": "Nama Lapangan"
 	},
-	"customFieldLabelHeader": {
+	"customFieldLabelHeaderLabel": {
 		"message": "Label Lapangan"
 	},
 	"customFieldsPersTitleLabel": {
@@ -4801,9 +4813,6 @@
 	"discoveryWarn": {
 		"message": "Pada setiap sinkronisasi, cek pada alamat URL di bawah ini akan dijalankan untuk mencari buku alamat baru atau yang dihapus."
 	},
-	"discoveryAccountsGroupboxLabel": {
-		"message": "Akun"
-	},
 	"advancedSyncGroupboxLabel": {
 		"message": "Canggih Properti"
 	},
@@ -4846,7 +4855,7 @@
 	"accountsVCardsEnabledLabel": {
 		"message": "Diaktifkan"
 	},
-	"accountsVCardsMailLabel": {
+	"accountsVCardsMailNameLabel": {
 		"message": "Akun"
 	},
 	"accountsVCardsABNameLabel": {

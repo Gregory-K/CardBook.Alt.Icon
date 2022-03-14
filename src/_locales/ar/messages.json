@@ -3013,6 +3013,9 @@
 	"impp.qq": {
 		"message": "Tencent QQ"
 	},
+	"impp.jami": {
+		"message": "Jami"
+	},
 	"addToAddressbook": {
 		"message": "أضف إلى دفتر العناوين هذا"
 	},
@@ -4465,6 +4468,9 @@
 	"selectAllFieldsLabel": {
 		"message": "اختيار الكل"
 	},
+	"selectAllDiscoveryLabel": {
+		"message": "اختيار الكل"
+	},
 	"preferenceGroupboxLabel": {
 		"message": "حقل PREF"
 	},
@@ -4615,6 +4621,12 @@
 	"deleteIMPPAccesskey": {
 		"message": "D"
 	},
+	"resetIMPPLabel": {
+		"message": "استعادة إلى الافتراضي"
+	},
+	"resetIMPPAccesskey": {
+		"message": "R"
+	},
 	"URLPhoneGroupboxLabel": {
 		"message": "فاتح عنوان URL للهواتف البرمجية"
 	},
@@ -4657,13 +4669,13 @@
 	"localDataEncryptionEnabledAccesskey": {
 		"message": "E"
 	},
-	"customFieldRankHeader": {
+	"customFieldRankHeaderLabel": {
 		"message": "مرتبة"
 	},
-	"customFieldCodeHeader": {
+	"customFieldCodeHeaderLabel": {
 		"message": "اسم الحقل"
 	},
-	"customFieldLabelHeader": {
+	"customFieldLabelHeaderLabel": {
 		"message": "تسيمة الحقل"
 	},
 	"customFieldsPersTitleLabel": {
@@ -4801,9 +4813,6 @@
 	"discoveryWarn": {
 		"message": "في كل مزامنة، سيتم التحقق من عناوين URLs أدناه للبحث عن أي دفاتر عناوين جديدة أو محذوفة."
 	},
-	"discoveryAccountsGroupboxLabel": {
-		"message": "حسابات"
-	},
 	"advancedSyncGroupboxLabel": {
 		"message": "خصائص متقدمة"
 	},
@@ -4846,7 +4855,7 @@
 	"accountsVCardsEnabledLabel": {
 		"message": "ممكن"
 	},
-	"accountsVCardsMailLabel": {
+	"accountsVCardsMailNameLabel": {
 		"message": "حساب البريد"
 	},
 	"accountsVCardsABNameLabel": {

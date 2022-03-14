@@ -1,0 +1,181 @@
+#accountsRestrictionsTable {
+	min-width: 600px;
+	min-height: 180px;
+	max-height: 180px;
+}
+
+#accountsRestrictionsTable td,
+#accountsRestrictionsTable th {
+	max-width: 225px;
+}
+
+#fieldsTreeTable {
+	max-height: 600px;
+}
+
+#fieldsTreeTable td:not(:first-child) {
+	width: 100%;
+	min-width: 700px;
+}
+
+#typesTable {
+	max-width: 650px;
+	min-width: 650px;
+	min-height: 180px;
+	max-height: 180px;
+}
+
+#typesTable td,
+#typesTable th {
+	min-width: 650px;
+}
+
+#IMPPsTable {
+	max-width: 650px;
+	min-width: 650px;
+	min-height: 180px;
+	max-height: 180px;
+}
+
+#IMPPsTable td,
+#IMPPsTable th {
+	min-width: 200px;
+	max-width: 200px;
+}
+
+#customFieldsTable {
+	min-width: 600px;
+	min-height: 200px;
+	max-height: 200px;
+}
+
+#customFieldsTable td:first-child,
+#customFieldsTable th:first-child {
+	min-width: 100px;
+	max-width: 100px;
+}
+
+#customFieldsTable td,
+#customFieldsTable th {
+	min-width: 275px;
+	max-width: 275px;
+}
+
+#orgTreeTable {
+	min-width: 600px;
+	min-height: 200px;
+	max-height: 200px;
+}
+
+#orgTreeTable td:first-child,
+#orgTreeTable th:first-child {
+	min-width: 100px;
+	max-width: 100px;
+}
+
+#orgTreeTable td,
+#orgTreeTable th {
+	min-width: 550px;
+	max-width: 550px;
+}
+
+#discoveryAccountsTable {
+	min-height: 200px;
+	max-height: 200px;
+	min-width: 600px;
+}
+
+#discoveryAccountsTable td:not(:first-child) {
+	width: 100%;
+	min-width: 700px;
+}
+
+#accountsVCardsTable {
+	min-width: 600px;
+	min-height: 200px;
+	max-height: 200px;
+}
+
+#accountsVCardsTable td,
+#accountsVCardsTable th {
+	max-width: 225px;
+}
+
+#accountsVCardsTable th:not(:first-child),
+#accountsVCardsTable td:not(:first-child) {
+	min-width: 150px;
+}
+
+#emailsCollectionTable {
+	min-width: 600px;
+	min-height: 200px;
+	max-height: 200px;
+}
+
+#emailsCollectionTable td,
+#emailsCollectionTable th {
+	max-width: 225px;
+}
+
+#emailsCollectionTable th:not(:first-child),
+#emailsCollectionTable td:not(:first-child) {
+	min-width: 150px;
+}
+
+#addressbooksTable {
+	min-height: 200px;
+	max-height: 200px;
+	min-width: 600px;
+}
+
+#addressbooksTable td:not(:first-child) {
+	width: 100%;
+	min-width: 700px;
+}
+
+#calendarsTable {
+	min-height: 200px;
+	max-height: 200px;
+	min-width: 600px;
+}
+
+#calendarsTable td:not(:first-child) {
+	width: 100%;
+	min-width: 700px;
+}
+
+
+.tableTree {
+	width: 100%;
+	overflow-y: auto;
+	overflow-x: hidden;
+	border: 1px solid currentColor;
+	border-top-right-radius: 4px;
+	border-top-left-radius: 4px;
+	border-bottom-right-radius: 4px;
+	border-bottom-left-radius: 4px;
+}
+
+.tableTree tr {
+	height: 30px;
+}
+
+.tableTree th, td {
+	padding-left: 15px;
+	padding-right: 15px;
+}
+
+.tableTree thead th {
+	background-color: var(--in-content-button-background);
+}
+
+.tableTree td, th {
+	overflow: hidden;
+	text-overflow: ellipsis;
+	white-space: nowrap;
+}
+
+.tableTree tr[rowSelected="true"] {
+	background-color: var(--checkbox-checked-bgcolor, -moz-accent-color);
+	color: var(--checkbox-checked-color, -moz-accent-color-foreground);
+}

@@ -3013,6 +3013,9 @@
 	"impp.qq": {
 		"message": "Десятьцент"
 	},
+	"impp.jami": {
+		"message": "Jami"
+	},
 	"addToAddressbook": {
 		"message": "Додати до цієї адресної книги"
 	},
@@ -4462,6 +4465,9 @@
 	"selectAllFieldsLabel": {
 		"message": "Вибрати все"
 	},
+	"selectAllDiscoveryLabel": {
+		"message": "Вибрати все"
+	},
 	"preferDisplayNameCheckBoxLabel": {
 		"message": "Завжди вживати показувані імена, а не заголовки повідомлення"
 	},
@@ -4615,6 +4621,12 @@
 	"deleteIMPPAccesskey": {
 		"message": "В"
 	},
+	"resetIMPPLabel": {
+		"message": "Відновити типові"
+	},
+	"resetIMPPAccesskey": {
+		"message": "т"
+	},
 	"URLPhoneGroupboxLabel": {
 		"message": "??URL opening for soft phones??"
 	},
@@ -4657,13 +4669,13 @@
 	"localDataEncryptionEnabledAccesskey": {
 		"message": "E"
 	},
-	"customFieldRankHeader": {
+	"customFieldRankHeaderLabel": {
 		"message": "Ранг"
 	},
-	"customFieldCodeHeader": {
+	"customFieldCodeHeaderLabel": {
 		"message": "Назва поля"
 	},
-	"customFieldLabelHeader": {
+	"customFieldLabelHeaderLabel": {
 		"message": "Поле мітки"
 	},
 	"customFieldsPersTitleLabel": {
@@ -4801,9 +4813,6 @@
 	"discoveryWarn": {
 		"message": "При кожній синхронізації буде виконана перевірка URL-адрес нижче, щоб шукати нові або вилучені адресні книги."
 	},
-	"discoveryAccountsGroupboxLabel": {
-		"message": "Облікові записи"
-	},
 	"advancedSyncGroupboxLabel": {
 		"message": "Додаткові властивості"
 	},
@@ -4846,7 +4855,7 @@
 	"accountsVCardsEnabledLabel": {
 		"message": "Увімкнено"
 	},
-	"accountsVCardsMailLabel": {
+	"accountsVCardsMailNameLabel": {
 		"message": "Пошта рахунок"
 	},
 	"accountsVCardsABNameLabel": {

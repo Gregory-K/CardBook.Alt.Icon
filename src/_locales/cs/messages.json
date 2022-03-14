@@ -3013,6 +3013,9 @@
 	"impp.qq": {
 		"message": "Tencent QQ"
 	},
+	"impp.jami": {
+		"message": "Jami"
+	},
 	"addToAddressbook": {
 		"message": "Přidat do tohoto adresáře"
 	},
@@ -4465,6 +4468,9 @@
 	"selectAllFieldsLabel": {
 		"message": "Vybrat vše"
 	},
+	"selectAllDiscoveryLabel": {
+		"message": "Vybrat vše"
+	},
 	"preferenceGroupboxLabel": {
 		"message": "Pole PREF"
 	},
@@ -4615,6 +4621,12 @@
 	"deleteIMPPAccesskey": {
 		"message": "S"
 	},
+	"resetIMPPLabel": {
+		"message": "Obnovit na výchozí hodnotu"
+	},
+	"resetIMPPAccesskey": {
+		"message": "O"
+	},
 	"URLPhoneGroupboxLabel": {
 		"message": "URL, která se má otevřít pro softwarové telefony"
 	},
@@ -4657,13 +4669,13 @@
 	"localDataEncryptionEnabledAccesskey": {
 		"message": "i"
 	},
-	"customFieldRankHeader": {
+	"customFieldRankHeaderLabel": {
 		"message": "Pořadí"
 	},
-	"customFieldCodeHeader": {
+	"customFieldCodeHeaderLabel": {
 		"message": "Název pole"
 	},
-	"customFieldLabelHeader": {
+	"customFieldLabelHeaderLabel": {
 		"message": "Popisek pole"
 	},
 	"customFieldsPersTitleLabel": {
@@ -4801,9 +4813,6 @@
 	"discoveryWarn": {
 		"message": "Při každé synchronizaci bude na níže uvedených URL provedeno hledání nových nebo odstraněných adresářù."
 	},
-	"discoveryAccountsGroupboxLabel": {
-		"message": "Účty"
-	},
 	"advancedSyncGroupboxLabel": {
 		"message": "Pokročilé vlastnosti"
 	},
@@ -4846,7 +4855,7 @@
 	"accountsVCardsEnabledLabel": {
 		"message": "Povolen"
 	},
-	"accountsVCardsMailLabel": {
+	"accountsVCardsMailNameLabel": {
 		"message": "E-mailový účet"
 	},
 	"accountsVCardsABNameLabel": {

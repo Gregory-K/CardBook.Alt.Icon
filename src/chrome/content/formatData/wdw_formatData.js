@@ -50,23 +50,23 @@ if ("undefined" == typeof(wdw_formatData)) {
 		displayCardLineTels: function (aCardLine) {
             // [index, aCard.cbid, aCard.fn, country, tel source, tel modified, index tel line]
 			let table = document.getElementById('fieldsTable');
-            let row = wdw_formatData.addTableRow(table, aCardLine[0]+ '.row');
-            let fnData = cardbookElementTools.addTableData(row, aCardLine[0] + '.fnData');
-            wdw_formatData.createLabel(fnData, aCardLine[0] + '.fn', aCardLine[2]);
-            let valueData = cardbookElementTools.addTableData(row, aCardLine[0] + '.valueData');
-            wdw_formatData.createTextbox(valueData, aCardLine[0] + '.value', aCardLine[5], 'tel', {country: aCardLine[3]});
-            let countryData = cardbookElementTools.addTableData(row, aCardLine[0] + '.countryData');
-            wdw_formatData.createCountryList(countryData, aCardLine[0] + '.country', aCardLine[3]);
-            let formatData = cardbookElementTools.addTableData(row, aCardLine[0] + '.formatData');
-            wdw_formatData.createFormatButton(formatData, aCardLine[0] + '.format');
-            let undoData = cardbookElementTools.addTableData(row, aCardLine[0] + '.undoData');
-            wdw_formatData.createUndoButton(undoData, aCardLine[0] + '.undo');
-            let cbidData = cardbookElementTools.addTableData(row, aCardLine[0] + '.cbidData');
-            wdw_formatData.createHiddenLabel(cbidData, aCardLine[0] + '.cbid', aCardLine[1]);
-            let sourceValueData = cardbookElementTools.addTableData(row, aCardLine[0] + '.sourceValueData');
-            wdw_formatData.createHiddenLabel(sourceValueData, aCardLine[0] + '.sourceValue', aCardLine[4]);
-            let indexData = cardbookElementTools.addTableData(row, aCardLine[0] + '.indexData');
-            wdw_formatData.createHiddenLabel(indexData, aCardLine[0] + '.index', aCardLine[6]);
+			let row = cardbookElementTools.addHTMLTR(table, `${aCardLine[0]}.row`, {"align": "center", "class": "rowCount"});
+            let fnData = cardbookElementTools.addHTMLTD(row, `${aCardLine[0]}.fnData`);
+            wdw_formatData.createLabel(fnData, `${aCardLine[0]}.fn`, aCardLine[2]);
+            let valueData = cardbookElementTools.addHTMLTD(row, `${aCardLine[0]}.valueData`);
+            wdw_formatData.createTextbox(valueData, `${aCardLine[0]}.value`, aCardLine[5], 'tel', {country: aCardLine[3]});
+            let countryData = cardbookElementTools.addHTMLTD(row, `${aCardLine[0]}.countryData`);
+            wdw_formatData.createCountryList(countryData, `${aCardLine[0]}.country`, aCardLine[3]);
+            let formatData = cardbookElementTools.addHTMLTD(row, `${aCardLine[0]}.formatData`);
+            wdw_formatData.createFormatButton(formatData, `${aCardLine[0]}.format`);
+            let undoData = cardbookElementTools.addHTMLTD(row, `${aCardLine[0]}.undoData`);
+            wdw_formatData.createUndoButton(undoData, `${aCardLine[0]}.undo`);
+            let cbidData = cardbookElementTools.addHTMLTD(row, `${aCardLine[0]}.cbidData`);
+            wdw_formatData.createHiddenLabel(cbidData, `${aCardLine[0]}.cbid`, aCardLine[1]);
+            let sourceValueData = cardbookElementTools.addHTMLTD(row, `${aCardLine[0]}.sourceValueData`);
+            wdw_formatData.createHiddenLabel(sourceValueData, `${aCardLine[0]}.sourceValue`, aCardLine[4]);
+            let indexData = cardbookElementTools.addHTMLTD(row, `${aCardLine[0]}.indexData`);
+            wdw_formatData.createHiddenLabel(indexData, `${aCardLine[0]}.index`, aCardLine[6]);
         },
 
 		loadCardTels: function (aCard) {
@@ -86,21 +86,21 @@ if ("undefined" == typeof(wdw_formatData)) {
 		displayCardLineEmail: function (aCardLine) {
             // [index, aCard.cbid, aCard.fn, email source, email modified, index email line]
 			let table = document.getElementById('fieldsTable');
-            let row = wdw_formatData.addTableRow(table, aCardLine[0]+ '.row');
-            let fnData = cardbookElementTools.addTableData(row, aCardLine[0] + '.fnData');
-            wdw_formatData.createLabel(fnData, aCardLine[0] + '.fn', aCardLine[2]);
-            let valueData = cardbookElementTools.addTableData(row, aCardLine[0] + '.valueData');
-            wdw_formatData.createTextbox(valueData, aCardLine[0] + '.value', aCardLine[4], 'email');
-            let formatData = cardbookElementTools.addTableData(row, aCardLine[0] + '.formatData');
-            wdw_formatData.createFormatButton(formatData, aCardLine[0] + '.format');
-            let undoData = cardbookElementTools.addTableData(row, aCardLine[0] + '.undoData');
-            wdw_formatData.createUndoButton(undoData, aCardLine[0] + '.undo');
-            let cbidData = cardbookElementTools.addTableData(row, aCardLine[0] + '.cbidData');
-            wdw_formatData.createHiddenLabel(cbidData, aCardLine[0] + '.cbid', aCardLine[1]);
-            let sourceValueData = cardbookElementTools.addTableData(row, aCardLine[0] + '.sourceValueData');
-            wdw_formatData.createHiddenLabel(sourceValueData, aCardLine[0] + '.sourceValue', aCardLine[3]);
-            let indexData = cardbookElementTools.addTableData(row, aCardLine[0] + '.indexData');
-            wdw_formatData.createHiddenLabel(indexData, aCardLine[0] + '.index', aCardLine[5]);
+			let row = cardbookElementTools.addHTMLTR(table, `${aCardLine[0]}.row`, {"align": "center", "class": "rowCount"});
+            let fnData = cardbookElementTools.addHTMLTD(row, `${aCardLine[0]}.fnData`);
+            wdw_formatData.createLabel(fnData, `${aCardLine[0]}.fn`, aCardLine[2]);
+            let valueData = cardbookElementTools.addHTMLTD(row, `${aCardLine[0]}.valueData`);
+            wdw_formatData.createTextbox(valueData, `${aCardLine[0]}.value`, aCardLine[4], 'email');
+            let formatData = cardbookElementTools.addHTMLTD(row, `${aCardLine[0]}.formatData`);
+            wdw_formatData.createFormatButton(formatData, `${aCardLine[0]}.format`);
+            let undoData = cardbookElementTools.addHTMLTD(row, `${aCardLine[0]}.undoData`);
+            wdw_formatData.createUndoButton(undoData, `${aCardLine[0]}.undo`);
+            let cbidData = cardbookElementTools.addHTMLTD(row, `${aCardLine[0]}.cbidData`);
+            wdw_formatData.createHiddenLabel(cbidData, `${aCardLine[0]}.cbid`, aCardLine[1]);
+            let sourceValueData = cardbookElementTools.addHTMLTD(row, `${aCardLine[0]}.sourceValueData`);
+            wdw_formatData.createHiddenLabel(sourceValueData, `${aCardLine[0]}.sourceValue`, aCardLine[3]);
+            let indexData = cardbookElementTools.addHTMLTD(row, `${aCardLine[0]}.indexData`);
+            wdw_formatData.createHiddenLabel(indexData, `${aCardLine[0]}.index`, aCardLine[5]);
         },
 
 		loadCardEmails: function (aCard) {
@@ -161,15 +161,6 @@ if ("undefined" == typeof(wdw_formatData)) {
 			}}, Components.interfaces.nsIEventTarget.DISPATCH_NORMAL);
 		},
 		
-		addTableRow: function (aParent, aId) {
-			let aTableRow = document.createElementNS("http://www.w3.org/1999/xhtml","html:tr");
-			aParent.appendChild(aTableRow);
-			aTableRow.setAttribute('id', aId);
-			aTableRow.setAttribute('align', 'center');
-			aTableRow.setAttribute('class', 'rowCount');
-			return aTableRow
-		},
-
 		createTextbox: function (aTableData, aId, aValue, aType, aParam) {
 			let aTextbox = document.createElementNS("http://www.w3.org/1999/xhtml","html:input");
 			aTableData.appendChild(aTextbox);

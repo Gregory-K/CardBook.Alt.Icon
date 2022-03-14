@@ -3013,6 +3013,9 @@
 	"impp.qq": {
 		"message": "Tencent QQ"
 	},
+	"impp.jami": {
+		"message": "Jami"
+	},
 	"addToAddressbook": {
 		"message": "Toevoegen aan dit adresboek"
 	},
@@ -4465,6 +4468,9 @@
 	"selectAllFieldsLabel": {
 		"message": "Alles selecteren"
 	},
+	"selectAllDiscoveryLabel": {
+		"message": "Alles selecteren"
+	},
 	"preferenceGroupboxLabel": {
 		"message": "Rubriek „Voorkeur”"
 	},
@@ -4615,6 +4621,12 @@
 	"deleteIMPPAccesskey": {
 		"message": "V"
 	},
+	"resetIMPPLabel": {
+		"message": "Herstellen naar standaardwaarde"
+	},
+	"resetIMPPAccesskey": {
+		"message": "H"
+	},
 	"URLPhoneGroupboxLabel": {
 		"message": "URL voor telefoneren"
 	},
@@ -4657,13 +4669,13 @@
 	"localDataEncryptionEnabledAccesskey": {
 		"message": "L"
 	},
-	"customFieldRankHeader": {
+	"customFieldRankHeaderLabel": {
 		"message": "Volgorde"
 	},
-	"customFieldCodeHeader": {
+	"customFieldCodeHeaderLabel": {
 		"message": "Rubriek naam"
 	},
-	"customFieldLabelHeader": {
+	"customFieldLabelHeaderLabel": {
 		"message": "Rubriek label"
 	},
 	"customFieldsPersTitleLabel": {
@@ -4801,9 +4813,6 @@
 	"discoveryWarn": {
 		"message": "Bij elke synchronisatie wordt op onderstaande URL's gecontroleerd op nieuwe of verwijderde adresboeken."
 	},
-	"discoveryAccountsGroupboxLabel": {
-		"message": "Accounts"
-	},
 	"advancedSyncGroupboxLabel": {
 		"message": "Geavanceerde instellingen"
 	},
@@ -4846,7 +4855,7 @@
 	"accountsVCardsEnabledLabel": {
 		"message": "Ingeschakeld"
 	},
-	"accountsVCardsMailLabel": {
+	"accountsVCardsMailNameLabel": {
 		"message": "Mail account"
 	},
 	"accountsVCardsABNameLabel": {

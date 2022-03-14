@@ -19,7 +19,7 @@ GitHub (main) - https://github.com/Gregory-K/CardBook.Alt.Icon
 GitLab (alt.) - https://gitlab.com/Gregory.K/CardBook.Alt.Icon
 
 Version:  
-**73.7.1**  
+**73.8.1**  
 Compatibility:  
 91.0a1 <= Thunderbird version >= 91.*
 
@@ -125,7 +125,6 @@ stars, possibility to edit|remove|add standard and CardBook contacts)
 * [Comparison of CalDAV and CardDAV client implementations](https://en.wikipedia.org/w/index.php?title=Comparison_of_CalDAV_and_CardDAV_implementations#Client_implementations)
 * [User Forum](https://cardbook.6660.eu/)
 * [@CardBook](https://twitter.com/CardBookAddon) twitter
-* [Import Microsoft Outlook Contacts](https://gitlab.com/CardBook/CardBook/-/wikis/How-to-move-Microsoft-Outlook-Contacts-to-vCards-and-Thunderbird-Address-Book)
 * *And many more…*
 
 

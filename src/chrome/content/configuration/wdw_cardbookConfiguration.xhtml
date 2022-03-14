@@ -167,42 +167,18 @@
 									<separator class="thin"/>
 									<label><html:h2>__MSG_accountsRestrictionsLabel__</html:h2></label>
 									<hbox flex="1">
-										<vbox flex="1">
-											<hbox flex="1">
-												<tree id="accountsRestrictionsTree" class="cardbookTreeChildrenConfigClass" hidecolumnpicker="true" flex="1" seltype="single" enableColumnDrag="false" editable="true" onselect="wdw_cardbookConfiguration.selectRestriction();" sortDirection="ascending" sortResource="accountsRestrictionsMailName">
-													<treecols id="accountsRestrictionsTreeCols">
-														<treecol id="accountsRestrictionsEnabled" type="checkbox" label="__MSG_accountsRestrictionsEnabledLabel__" persist="width ordinal hidden" style="text-align:center" editable="true" minwidth="30"/>
-														<splitter class="tree-splitter"/>
-														<treecol id="accountsRestrictionsId" flex="1" hidden="true" persist="width ordinal hidden" style="text-align:left" editable="false"/>
-														<splitter class="tree-splitter"/>
-														<treecol id="accountsRestrictionsIncludeName" label="__MSG_accountsRestrictionsIncludeNameLabel__" flex="1" onclick="wdw_cardbookConfiguration.sortTreesFromCol(event, this, 'accountsRestrictionsTree');" hidden="false" persist="width ordinal hidden" style="text-align:left" editable="false"/>
-														<splitter class="tree-splitter"/>
-														<treecol id="accountsRestrictionsIncludeCode" flex="1" hidden="true" persist="width ordinal hidden" style="text-align:left" editable="false"/>
-														<splitter class="tree-splitter"/>
-														<treecol id="accountsRestrictionsMailName" label="__MSG_accountsRestrictionsMailNameLabel__" flex="1" persist="width ordinal hidden" onclick="wdw_cardbookConfiguration.sortTreesFromCol(event, this, 'accountsRestrictionsTree');" style="text-align:left" editable="false"/>
-														<splitter class="tree-splitter"/>
-														<treecol id="accountsRestrictionsMailId" flex="1" hidden="true" persist="width ordinal hidden" style="text-align:left" editable="false"/>
-														<splitter class="tree-splitter"/>
-														<treecol id="accountsRestrictionsABName" label="__MSG_accountsRestrictionsABNameLabel__" flex="1" onclick="wdw_cardbookConfiguration.sortTreesFromCol(event, this, 'accountsRestrictionsTree');" persist="width ordinal hidden" style="text-align:left" editable="false"/>
-														<splitter class="tree-splitter"/>
-														<treecol id="accountsRestrictionsDirPrefId" flex="1" hidden="true" persist="width ordinal hidden" style="text-align:left" editable="false"/>
-														<splitter class="tree-splitter"/>
-														<treecol id="accountsRestrictionsCatName" label="__MSG_accountsRestrictionsCatNameLabel__" flex="1" onclick="wdw_cardbookConfiguration.sortTreesFromCol(event, this, 'accountsRestrictionsTree');" hidden="false" persist="width ordinal hidden" style="text-align:left" editable="false"/>
-														<splitter class="tree-splitter"/>
-														<treecol id="accountsRestrictionsCatId" flex="1" hidden="true" persist="width ordinal hidden" style="text-align:left" editable="false"/>
-													</treecols>
-													<treechildren id="accountsRestrictionsTreeChildren" ondblclick="wdw_cardbookConfiguration.doubleClickTree(event, 'accountsRestrictionsTree');"/>
-												</tree>
-											</hbox>
+										<table id="accountsRestrictionsTable" class="tableTree"
+											sortDirection="ascending" sortResource="accountsRestrictionsABName"
+											onclick="wdw_cardbookConfiguration.clickTree(event);"
+											ondblclick="wdw_cardbookConfiguration.doubleClickTree(event);"
+											onkeydown="wdw_cardbookConfiguration.keyDownTree(event);"/>
+										<vbox flex="1" align="top">
+											<button id="addRestrictionLabel" label="__MSG_addRestrictionLabel__" accesskey="__MSG_addRestrictionAccesskey__" oncommand="wdw_cardbookConfiguration.addRestriction();"/>
+											<button id="renameRestrictionLabel" label="__MSG_renameRestrictionLabel__" accesskey="__MSG_renameRestrictionAccesskey__" oncommand="wdw_cardbookConfiguration.renameRestriction();" disabled="true"/>
+											<button id="deleteRestrictionLabel" label="__MSG_deleteRestrictionLabel__" accesskey="__MSG_deleteRestrictionAccesskey__" oncommand="wdw_cardbookConfiguration.deleteRestriction();" disabled="true"/>
 										</vbox>
-										<hbox align="top">
-											<vbox flex="1">
-												<button id="addRestrictionLabel" label="__MSG_addRestrictionLabel__" accesskey="__MSG_addRestrictionAccesskey__" oncommand="wdw_cardbookConfiguration.addRestriction();"/>
-												<button id="renameRestrictionLabel" label="__MSG_renameRestrictionLabel__" accesskey="__MSG_renameRestrictionAccesskey__" oncommand="wdw_cardbookConfiguration.renameRestriction();" disabled="true"/>
-												<button id="deleteRestrictionLabel" label="__MSG_deleteRestrictionLabel__" accesskey="__MSG_deleteRestrictionAccesskey__" oncommand="wdw_cardbookConfiguration.deleteRestriction();" disabled="true"/>
-											</vbox>
-										</hbox>
 									</hbox>
+
 									<separator class="thin"/>
 									<label><html:h2>__MSG_logGroupboxLabel__</html:h2></label>
 									<hbox flex="1" align="center">
@@ -240,7 +216,7 @@
 										accesskey="__MSG_keyTab.conf.accesskey__"
 										preference="extensions.cardbook.keyTabView" type="bool" instantApply="true"/>
 								</vbox>
-								<separator class="thin"/>					
+								<separator class="thin"/>
 								<label><html:h2>__MSG_localizeEditingGroupboxLabel__</html:h2></label>
 								<hbox flex="1" align="center">
 									<radiogroup id="localizeEngineRadiogroup" orient="horizontal" preference="extensions.cardbook.localizeEngine" type="string" instantApply="true">
@@ -249,7 +225,7 @@
 										<radio value="BingMaps" label="__MSG_localizeEngineBingMapsLabel__" accesskey="__MSG_localizeEngineBingMapsAccesskey__"/>
 									</radiogroup>
 								</hbox>
-								<separator class="thin"/>					
+								<separator class="thin"/>
 								<label><html:h2>__MSG_showNameAsLabel__</html:h2></label>
 								<hbox flex="1" align="center">
 									<radiogroup id="showNameAsRadiogroup" orient="horizontal" preference="extensions.cardbook.showNameAs" type="string"
@@ -260,7 +236,7 @@
 										<radio value="DSP" label="__MSG_showNameAsDSPLabel__" accesskey="__MSG_showNameAsDSPAccesskey__"/>
 									</radiogroup>
 								</hbox>
-								<separator class="thin"/>					
+								<separator class="thin"/>
 								<label><html:h2>__MSG_adrFormulaCaption__</html:h2></label>
 								<separator class="thin"/>
 								<label>__MSG_adrFormulaExplanation__</label>
@@ -351,7 +327,7 @@
 										</vbox>
 									</hbox>
 								</vbox>
-								<separator class="thin"/>					
+								<separator class="thin"/>
 								<label><html:h2>__MSG_localizeTargetLabel__</html:h2></label>
 								<hbox flex="1" align="center">
 									<radiogroup id="localizeTargetRadiogroup" orient="horizontal" preference="extensions.cardbook.localizeTarget" type="string" instantApply="true">
@@ -359,7 +335,7 @@
 										<radio value="out" label="__MSG_localizeTargetOutLabel__" accesskey="__MSG_localizeTargetOutAccesskey__"/>
 									</radiogroup>
 								</hbox>
-								<separator class="thin"/>					
+								<separator class="thin"/>
 								<label><html:h2>__MSG_miscEditingGroupboxLabel__</html:h2></label>
 								<hbox flex="1" align="center">
 									<checkbox id="preferEmailEditionCheckBox" label="__MSG_preferEmailEditionLabel__"
@@ -387,30 +363,21 @@
 								</hbox>
 							</vbox>
 
-							<vbox id="cardbook-EditionPane" class="cardbook-pane" label="__MSG_editionTabLabel__">
+							<vbox id="cardbook-EditionPane" class="cardbook-pane" label="__MSG_editionTabLabel__" flex="1">
 								<label><html:h2>__MSG_editionGroupboxLabel__</html:h2></label>
 								<label>__MSG_editionWarn__</label>
-								<vbox flex="1">
-									<checkbox id="fieldsCheckbox" oncommand="wdw_cardbookConfiguration.changedFieldsMainCheckbox();" label="__MSG_selectAllFieldsLabel__"/>
-									<hbox flex="1">
-										<tree id="fieldsTree" class="cardbookTreeChildrenConfigClass" hidecolumnpicker="true" flex="1" rows="20" seltype="single" enableColumnDrag="false" editable="true" sortDirection="ascending" sortResource="fieldsName"
-											onkeyup="wdw_cardbookConfiguration.fieldsKeyup(event);">
-											<treecols id="fieldsTreeCols">
-												<treecol id="fieldsSelect" type="checkbox" editable="true" persist="width ordinal hidden" hideheader="true" minwidth="30"/>
-												<splitter class="tree-splitter"/>
-												<treecol id="fieldsName" flex="1" persist="width ordinal hidden" style="text-align:left" hideheader="true"/>
-											</treecols>
-											<treechildren id="fieldsTreeChildren"/>
-										</tree>
-									</hbox>
-								</vbox>
+								<checkbox id="fieldsCheckbox" oncommand="wdw_cardbookConfiguration.changedFieldsMainCheckbox();" label="__MSG_selectAllFieldsLabel__"/>
+								<table id="fieldsTreeTable" class="tableTree"
+									sortDirection="ascending" sortResource="fieldsName"
+									onclick="wdw_cardbookConfiguration.clickTree(event);"
+									onkeydown="wdw_cardbookConfiguration.keyDownTree(event);"/>
 							</vbox>
 
 							<vbox id="cardbook-advancedPane" class="cardbook-pane" label="__MSG_advancedTab1Label__">
 								<label><html:h2>__MSG_typesGroupboxLabel__</html:h2></label>
 								<label><html:h2>__MSG_ABtypesGroupboxLabel__</html:h2></label>
 								<hbox align="center">
-									<radiogroup id="ABtypesCategoryRadiogroup" orient="horizontal" onselect="wdw_cardbookConfiguration.sortTrees(null, 'typesTree');">
+									<radiogroup id="ABtypesCategoryRadiogroup" orient="horizontal" onselect="wdw_cardbookConfiguration.sortTable(null, 'typesTable');">
 										<radio value="GOOGLE2" label="__MSG_typesCategoryGoogleLabel__" accesskey="__MSG_typesCategoryGoogleAccesskey__" selected="true"/>
 										<radio value="APPLE" label="__MSG_typesCategoryAppleLabel__" accesskey="__MSG_typesCategoryAppleAccesskey__"/>
 										<radio value="YAHOO" label="__MSG_typesCategoryYahooLabel__" accesskey="__MSG_typesCategoryYahooAccesskey__"/>
@@ -421,7 +388,7 @@
 								<separator class="thin"/>
 								<label><html:h2>__MSG_typesGroupboxLabel__</html:h2></label>
 								<hbox align="center">
-									<radiogroup id="typesCategoryRadiogroup" orient="horizontal" onselect="wdw_cardbookConfiguration.sortTrees(null, 'typesTree');">
+									<radiogroup id="typesCategoryRadiogroup" orient="horizontal" onselect="wdw_cardbookConfiguration.sortTable(null, 'typesTable');">
 										<radio value="email" label="__MSG_typesCategoryEmailLabel__" accesskey="__MSG_typesCategoryEmailAccesskey__" selected="true"/>
 										<radio value="tel" label="__MSG_typesCategoryTelLabel__" accesskey="__MSG_typesCategoryTelAccesskey__"/>
 										<radio value="adr" label="__MSG_typesCategoryAdrLabel__" accesskey="__MSG_typesCategoryAdrAccesskey__"/>
@@ -431,24 +398,17 @@
 								</hbox>
 								<separator class="thin"/>
 								<hbox flex="1">
-									<vbox flex="1">
-										<hbox flex="1">
-											<tree id="typesTree" hidecolumnpicker="true" flex="1" seltype="single" enableColumnDrag="false" onselect="wdw_cardbookConfiguration.selectType();" sortDirection="ascending" sortResource="typesLabel">
-												<treecols id="typesTreeCols">
-													<treecol id="typesLabel" label="__MSG_typesLabelLabel__" onclick="wdw_cardbookConfiguration.sortTreesFromCol(event, this, 'typesTree');" flex="1" persist="width ordinal hidden" style="text-align:left"/>
-												</treecols>
-												<treechildren id="typesTreeChildren" ondblclick="wdw_cardbookConfiguration.doubleClickTree(event, 'typesTree');"/>
-											</tree>
-										</hbox>
+									<table id="typesTable" class="tableTree"
+										sortDirection="ascending" sortResource="typesLabel"
+										onclick="wdw_cardbookConfiguration.clickTree(event);"
+										ondblclick="wdw_cardbookConfiguration.doubleClickTree(event);"
+										onkeydown="wdw_cardbookConfiguration.keyDownTree(event);"/>
+									<vbox flex="1" align="top">
+										<button id="addTypeLabel" label="__MSG_addTypeLabel__" accesskey="__MSG_addTypeAccesskey__" oncommand="wdw_cardbookConfiguration.addType();"/>
+										<button id="renameTypeLabel" label="__MSG_renameTypeLabel__" accesskey="__MSG_renameTypeAccesskey__" oncommand="wdw_cardbookConfiguration.renameType();" disabled="true"/>
+										<button id="deleteTypeLabel" label="__MSG_deleteTypeLabel__" accesskey="__MSG_deleteTypeAccesskey__" oncommand="wdw_cardbookConfiguration.deleteType();" disabled="true"/>
+										<button id="resetTypeLabel" label="__MSG_resetTypeLabel__" accesskey="__MSG_resetTypeAccesskey__" oncommand="wdw_cardbookConfiguration.resetType();"/>
 									</vbox>
-									<hbox align="top">
-										<vbox flex="1">
-											<button id="addTypeLabel" label="__MSG_addTypeLabel__" accesskey="__MSG_addTypeAccesskey__" oncommand="wdw_cardbookConfiguration.addType();"/>
-											<button id="renameTypeLabel" label="__MSG_renameTypeLabel__" accesskey="__MSG_renameTypeAccesskey__" oncommand="wdw_cardbookConfiguration.renameType();" disabled="true"/>
-											<button id="deleteTypeLabel" label="__MSG_deleteTypeLabel__" accesskey="__MSG_deleteTypeAccesskey__" oncommand="wdw_cardbookConfiguration.deleteType();" disabled="true"/>
-											<button id="resetTypeLabel" label="__MSG_resetTypeLabel__" accesskey="__MSG_resetTypeAccesskey__" oncommand="wdw_cardbookConfiguration.resetType();"/>
-										</vbox>
-									</hbox>
 								</hbox>
 								<separator class="thin"/>
 								<label><html:h2>__MSG_encryptionGroupboxLabel__</html:h2></label>
@@ -482,30 +442,17 @@
 								</hbox>
 								<separator class="thin"/>
 								<hbox flex="1">
-									<vbox flex="1">
-										<hbox flex="1">
-											<tree id="IMPPsTree" hidecolumnpicker="true" flex="1" seltype="single" enableColumnDrag="false" onselect="wdw_cardbookConfiguration.selectIMPPs();" sortDirection="ascending" sortResource="IMPPLabel">
-												<treecols id="IMPPsTreeCols">
-													<treecol id="IMPPId" flex="1" hidden="true" persist="width ordinal hidden" style="text-align:left" editable="false"/>
-													<splitter class="tree-splitter"/>
-													<treecol id="IMPPCode" label="__MSG_IMPPCodeHeaderLabel__" flex="1" persist="width ordinal hidden" onclick="wdw_cardbookConfiguration.sortTreesFromCol(event, this, 'IMPPsTree');" style="text-align:left" editable="false"/>
-													<splitter class="tree-splitter"/>
-													<treecol id="IMPPLabel" label="__MSG_IMPPLabelHeaderLabel__" flex="1" persist="width ordinal hidden" onclick="wdw_cardbookConfiguration.sortTreesFromCol(event, this, 'IMPPsTree');" style="text-align:left" editable="false"/>
-													<splitter class="tree-splitter"/>
-													<treecol id="IMPPProtocol" label="__MSG_IMPPProtocolHeaderLabel__" flex="1" persist="width ordinal hidden" onclick="wdw_cardbookConfiguration.sortTreesFromCol(event, this, 'IMPPsTree');" style="text-align:left" editable="false"/>
-													<splitter class="tree-splitter"/>
-												</treecols>
-												<treechildren id="IMPPsTreeChildren" ondblclick="wdw_cardbookConfiguration.doubleClickTree(event, 'IMPPsTree');"/>
-											</tree>
-										</hbox>
+									<table id="IMPPsTable" class="tableTree"
+										sortDirection="ascending" sortResource="IMPPLabel"
+										onclick="wdw_cardbookConfiguration.clickTree(event);"
+										ondblclick="wdw_cardbookConfiguration.doubleClickTree(event);"
+										onkeydown="wdw_cardbookConfiguration.keyDownTree(event);"/>
+									<vbox flex="1" align="top">
+										<button id="addIMPPLabel" label="__MSG_addIMPPLabel__" accesskey="__MSG_addIMPPAccesskey__" oncommand="wdw_cardbookConfiguration.addIMPP();"/>
+										<button id="renameIMPPLabel" label="__MSG_renameIMPPLabel__" accesskey="__MSG_renameIMPPAccesskey__" oncommand="wdw_cardbookConfiguration.renameIMPP();" disabled="true"/>
+										<button id="deleteIMPPLabel" label="__MSG_deleteIMPPLabel__" accesskey="__MSG_deleteIMPPAccesskey__" oncommand="wdw_cardbookConfiguration.deleteIMPP();" disabled="true"/>
+										<button id="resetIMPPLabel" label="__MSG_resetIMPPLabel__" accesskey="__MSG_resetIMPPAccesskey__" oncommand="wdw_cardbookConfiguration.resetIMPP();"/>
 									</vbox>
-									<hbox align="top">
-										<vbox flex="1">
-											<button id="addIMPPLabel" label="__MSG_addIMPPLabel__" accesskey="__MSG_addIMPPAccesskey__" oncommand="wdw_cardbookConfiguration.addIMPP();"/>
-											<button id="renameIMPPLabel" label="__MSG_renameIMPPLabel__" accesskey="__MSG_renameIMPPAccesskey__" oncommand="wdw_cardbookConfiguration.renameIMPP();" disabled="true"/>
-											<button id="deleteIMPPLabel" label="__MSG_deleteIMPPLabel__" accesskey="__MSG_deleteIMPPAccesskey__" oncommand="wdw_cardbookConfiguration.deleteIMPP();" disabled="true"/>
-										</vbox>
-									</hbox>
 								</hbox>
 								<separator class="thin"/>
 								<html:div id="URLPhoneGroupbox">
@@ -570,36 +517,25 @@
 							<vbox id="cardbook-customFieldsPane" class="cardbook-pane" label="__MSG_customFieldsTabLabel__">
 								<label><html:h2>__MSG_customFieldsTabLabel__</html:h2></label>
 								<hbox align="center">
-									<radiogroup id="customFieldsCategoryRadiogroup" orient="horizontal" onselect="wdw_cardbookConfiguration.sortTrees(null, 'customFieldsTree');">
+									<radiogroup id="customFieldsCategoryRadiogroup" orient="horizontal" onselect="wdw_cardbookConfiguration.sortTable(null, 'customFieldsTable');">
 										<radio value="personal" label="__MSG_customFieldsPersTitleLabel__" accesskey="__MSG_customFieldsPersTitleAccesskey__" selected="true"/>
 										<radio value="org" label="__MSG_customFieldsOrgTitleLabel__" accesskey="__MSG_customFieldsOrgTitleAccesskey__"/>
 									</radiogroup>
 								</hbox>
-					
+
 								<hbox flex="1">
-									<vbox flex="1">
-										<hbox flex="1">
-											<tree id="customFieldsTree" hidecolumnpicker="true" flex="1" seltype="single" enableColumnDrag="false" onselect="wdw_cardbookConfiguration.selectCustomFields();" sortDirection="ascending" sortResource="customFieldsRank">
-												<treecols id="customFieldsTreeCols">
-													<treecol id="customFieldsRank" label="__MSG_customFieldRankHeader__" onclick="wdw_cardbookConfiguration.sortTreesFromCol(event, this, 'customFieldsTree');" persist="width ordinal hidden" style="text-align:left"/>
-													<splitter class="tree-splitter"/>
-													<treecol id="customFieldsCode" label="__MSG_customFieldCodeHeader__" onclick="wdw_cardbookConfiguration.sortTreesFromCol(event, this, 'customFieldsTree');" persist="width ordinal hidden" style="text-align:left"/>
-													<splitter class="tree-splitter"/>
-													<treecol id="customFieldsLabel" label="__MSG_customFieldLabelHeader__" onclick="wdw_cardbookConfiguration.sortTreesFromCol(event, this, 'customFieldsTree');" flex="1" persist="width ordinal hidden" style="text-align:left"/>
-												</treecols>
-												<treechildren id="customFieldsTreeChildren" ondblclick="wdw_cardbookConfiguration.doubleClickTree(event, 'customFieldsTree');"/>
-											</tree>
-										</hbox>
+									<table id="customFieldsTable" class="tableTree"
+										sortDirection="ascending" sortResource="customFieldsRank"
+										onclick="wdw_cardbookConfiguration.clickTree(event);"
+										ondblclick="wdw_cardbookConfiguration.doubleClickTree(event);"
+										onkeydown="wdw_cardbookConfiguration.keyDownTree(event);"/>
+									<vbox flex="1" align="top">
+										<button id="addCustomFieldsLabel" label="__MSG_addCustomFieldsLabel__" accesskey="__MSG_addCustomFieldsAccesskey__" oncommand="wdw_cardbookConfiguration.addCustomFields();"/>
+										<button id="renameCustomFieldsLabel" label="__MSG_renameCustomFieldsLabel__" accesskey="__MSG_renameCustomFieldsAccesskey__" oncommand="wdw_cardbookConfiguration.renameCustomFields();" disabled="true"/>
+										<button id="deleteCustomFieldsLabel" label="__MSG_deleteCustomFieldsLabel__" accesskey="__MSG_deleteCustomFieldsAccesskey__" oncommand="wdw_cardbookConfiguration.deleteCustomFields();" disabled="true"/>
+										<button id="upCustomFieldsLabel" label="↑" oncommand="wdw_cardbookConfiguration.upCustomFields();" disabled="true"/>
+										<button id="downCustomFieldsLabel" label="↓" oncommand="wdw_cardbookConfiguration.downCustomFields();" disabled="true"/>
 									</vbox>
-									<hbox align="top">
-										<vbox flex="1">
-											<button id="addCustomFieldsLabel" label="__MSG_addCustomFieldsLabel__" accesskey="__MSG_addCustomFieldsAccesskey__" oncommand="wdw_cardbookConfiguration.addCustomFields();"/>
-											<button id="renameCustomFieldsLabel" label="__MSG_renameCustomFieldsLabel__" accesskey="__MSG_renameCustomFieldsAccesskey__" oncommand="wdw_cardbookConfiguration.renameCustomFields();" disabled="true"/>
-											<button id="deleteCustomFieldsLabel" label="__MSG_deleteCustomFieldsLabel__" accesskey="__MSG_deleteCustomFieldsAccesskey__" oncommand="wdw_cardbookConfiguration.deleteCustomFields();" disabled="true"/>
-											<button id="upCustomFieldsLabel" label="↑" oncommand="wdw_cardbookConfiguration.upCustomFields();" disabled="true"/>
-											<button id="downCustomFieldsLabel" label="↓" oncommand="wdw_cardbookConfiguration.downCustomFields();" disabled="true"/>
-										</vbox>
-									</hbox>
 								</hbox>
 								<separator class="thin"/>
 								<label><html:h2>__MSG_orgTitleLabel__</html:h2></label>
@@ -607,27 +543,18 @@
 								<label>__MSG_orgWarn__</label>
 								<separator class="thin"/>
 								<hbox flex="1">
-									<vbox flex="1">
-										<hbox flex="1">
-											<tree id="orgTree" hidecolumnpicker="true" flex="1" seltype="single" enableColumnDrag="false" editable="true" onselect="wdw_cardbookConfiguration.selectOrg();" sortDirection="ascending" sortResource="orgRank">
-												<treecols id="orgTreeCols">
-													<treecol id="orgRank" label="__MSG_orgRankLabel__" onclick="wdw_cardbookConfiguration.sortTreesFromCol(event, this, 'orgTree');" persist="width ordinal hidden" style="text-align:left"/>
-													<splitter class="tree-splitter"/>
-													<treecol id="orgLabel" label="__MSG_orgLabelLabel__" onclick="wdw_cardbookConfiguration.sortTreesFromCol(event, this, 'orgTree');" flex="1" persist="width ordinal hidden" style="text-align:left"/>
-												</treecols>
-												<treechildren id="orgTreeChildren" ondblclick="wdw_cardbookConfiguration.doubleClickTree(event, 'orgTree');"/>
-											</tree>
-										</hbox>
+									<table id="orgTreeTable" class="tableTree"
+										sortDirection="ascending" sortResource="orgRank"
+										onclick="wdw_cardbookConfiguration.clickTree(event);"
+										ondblclick="wdw_cardbookConfiguration.doubleClickTree(event);"
+										onkeydown="wdw_cardbookConfiguration.keyDownTree(event);"/>
+									<vbox flex="1" align="top">
+										<button id="addOrgLabel" label="__MSG_addTypeLabel__" accesskey="__MSG_addTypeAccesskey__" oncommand="wdw_cardbookConfiguration.addOrg();"/>
+										<button id="renameOrgLabel" label="__MSG_renameTypeLabel__" accesskey="__MSG_renameTypeAccesskey__" oncommand="wdw_cardbookConfiguration.renameOrg();" disabled="true"/>
+										<button id="deleteOrgLabel" label="__MSG_deleteTypeLabel__" accesskey="__MSG_deleteTypeAccesskey__" oncommand="wdw_cardbookConfiguration.deleteOrg();" disabled="true"/>
+										<button id="upOrgLabel" label="↑" oncommand="wdw_cardbookConfiguration.upOrg();" disabled="true"/>
+										<button id="downOrgLabel" label="↓" oncommand="wdw_cardbookConfiguration.downOrg();" disabled="true"/>
 									</vbox>
-									<hbox align="top">
-										<vbox flex="1">
-											<button id="addOrgLabel" label="__MSG_addTypeLabel__" accesskey="__MSG_addTypeAccesskey__" oncommand="wdw_cardbookConfiguration.addOrg();"/>
-											<button id="renameOrgLabel" label="__MSG_renameTypeLabel__" accesskey="__MSG_renameTypeAccesskey__" oncommand="wdw_cardbookConfiguration.renameOrg();" disabled="true"/>
-											<button id="deleteOrgLabel" label="__MSG_deleteTypeLabel__" accesskey="__MSG_deleteTypeAccesskey__" oncommand="wdw_cardbookConfiguration.deleteOrg();" disabled="true"/>
-											<button id="upOrgLabel" label="↑" oncommand="wdw_cardbookConfiguration.upOrg();" disabled="true"/>
-											<button id="downOrgLabel" label="↓" oncommand="wdw_cardbookConfiguration.downOrg();" disabled="true"/>
-										</vbox>
-									</hbox>
 								</hbox>
 							</vbox>
 
@@ -644,11 +571,11 @@
 													<label value="__MSG_kindCustomLabel__"
 														accesskey="__MSG_kindCustomAccesskey__"
 														control="kindCustomTextBox"
-														id="kindCustom"/>	
+														id="kindCustom"/>
 												</html:td>
 												<html:td class="cardbook-td-input listPane-input">
 													<html:input id="kindCustomTextBox"
-														preference="extensions.cardbook.kindCustom" type="string" 
+														preference="extensions.cardbook.kindCustom" type="string"
 														oninput="wdw_cardbookConfiguration.customFieldCheck(this);wdw_cardbookConfiguration.validateCustomListValues();"/>
 												</html:td>
 												<html:td>
@@ -739,20 +666,14 @@
 								<separator class="thin"/>
 								<label><html:h2>__MSG_discoveryGroupboxLabel__</html:h2></label>
 								<label>__MSG_discoveryWarn__</label>
-								<checkbox id="discoveryAccountsCheckbox" oncommand="wdw_cardbookConfiguration.changedDiscoveryMainCheckbox();" label="__MSG_discoveryAccountsGroupboxLabel__"/>
-								<vbox flex="1">
-									<hbox flex="1">
-										<tree id="discoveryAccountsTree" class="cardbookTreeChildrenConfigClass" hidecolumnpicker="true" flex="1" rows="4" seltype="single" enableColumnDrag="false" editable="true" sortDirection="ascending" sortResource="discoveryAccountsName"
-											onkeyup="wdw_cardbookConfiguration.discoveryAccountsKeyup(event);">
-											<treecols id="discoveryAccountsTreeCols">
-												<treecol id="discoveryAccountsSelect" type="checkbox" editable="true" persist="width ordinal hidden" hideheader="true" minwidth="30"/>
-												<splitter class="tree-splitter"/>
-												<treecol id="discoveryAccountsName" flex="1" persist="width ordinal hidden" style="text-align:left" hideheader="true"/>
-											</treecols>
-											<treechildren id="discoveryAccountsTreeChildren"/>
-										</tree>
-									</hbox>
-								</vbox>
+								<checkbox id="discoveryAccountsCheckbox" oncommand="wdw_cardbookConfiguration.changedDiscoveryMainCheckbox();" label="__MSG_selectAllDiscoveryLabel__"/>
+								<hbox flex="1">
+									<table id="discoveryAccountsTable" class="tableTree"
+										sortDirection="ascending" sortResource="discoveryAccountsName"
+										onclick="wdw_cardbookConfiguration.clickTree(event);"
+										ondblclick="wdw_cardbookConfiguration.doubleClickTree(event);"
+										onkeydown="wdw_cardbookConfiguration.keyDownTree(event);"/>
+								</hbox>
 								<separator class="thin"/>
 								<label><html:h2>__MSG_advancedSyncGroupboxLabel__</html:h2></label>
 								<hbox align="center">
@@ -783,73 +704,31 @@
 								<label><html:h2>__MSG_attachVCardGroupboxLabel__</html:h2></label>
 								<label>__MSG_attachVCardWarn__</label>
 								<hbox flex="1">
-									<vbox flex="1">
-										<hbox flex="1">
-											<tree id="accountsVCardsTree" class="cardbookTreeChildrenConfigClass" hidecolumnpicker="true" flex="1" seltype="single" enableColumnDrag="false" editable="true" onselect="wdw_cardbookConfiguration.selectVCard();" sortDirection="ascending" sortResource="accountsVCardsMailName">
-												<treecols id="accountsVCardsTreeCols">
-													<treecol id="accountsVCardsEnabled" label="__MSG_accountsVCardsEnabledLabel__" type="checkbox" persist="width ordinal hidden" style="text-align:center" editable="true" minwidth="30"/>
-													<splitter class="tree-splitter"/>
-													<treecol id="accountsVCardsId" flex="1" hidden="true" persist="width ordinal hidden" style="text-align:left" editable="false"/>
-													<splitter class="tree-splitter"/>
-													<treecol id="accountsVCardsMailName" label="__MSG_accountsVCardsMailLabel__" flex="1" persist="width ordinal hidden" onclick="wdw_cardbookConfiguration.sortTreesFromCol(event, this, 'accountsVCardsTree');" style="text-align:left" editable="false"/>
-													<splitter class="tree-splitter"/>
-													<treecol id="accountsVCardsMailId" flex="1" hidden="true" persist="width ordinal hidden" style="text-align:left" editable="false"/>
-													<splitter class="tree-splitter"/>
-													<treecol id="accountsVCardsFn" label="__MSG_accountsVCardsFnLabel__" flex="1" onclick="wdw_cardbookConfiguration.sortTreesFromCol(event, this, 'accountsVCardsTree');" hidden="false" persist="width ordinal hidden" style="text-align:left" editable="false"/>
-													<splitter class="tree-splitter"/>
-													<treecol id="accountsVCardsAddressBookId" flex="1" hidden="true" persist="width ordinal hidden" style="text-align:left" editable="false"/>
-													<splitter class="tree-splitter"/>
-													<treecol id="accountsVCardsContactId" flex="1" hidden="true" persist="width ordinal hidden" style="text-align:left" editable="false"/>
-													<splitter class="tree-splitter"/>
-													<treecol id="accountsVCardsFileName" label="__MSG_accountsVCardsFileNameLabel__" flex="1" onclick="wdw_cardbookConfiguration.sortTreesFromCol(event, this, 'accountsVCardsTree');" persist="width ordinal hidden" style="text-align:left" editable="false"/>
-												</treecols>
-												<treechildren id="accountsVCardsTreeChildren" ondblclick="wdw_cardbookConfiguration.doubleClickTree(event, 'accountsVCardsTree');"/>
-											</tree>
-										</hbox>
+									<table id="accountsVCardsTable" class="tableTree"
+										sortDirection="ascending" sortResource="accountsVCardsMailName"
+										onclick="wdw_cardbookConfiguration.clickTree(event);"
+										ondblclick="wdw_cardbookConfiguration.doubleClickTree(event);"
+										onkeydown="wdw_cardbookConfiguration.keyDownTree(event);"/>
+									<vbox flex="1" align="top">
+										<button id="addVCardLabel" label="__MSG_addVCardLabel__" accesskey="__MSG_addVCardAccesskey__" oncommand="wdw_cardbookConfiguration.addVCard();"/>
+										<button id="renameVCardLabel" label="__MSG_renameVCardLabel__" accesskey="__MSG_renameVCardAccesskey__" oncommand="wdw_cardbookConfiguration.renameVCard();" disabled="true"/>
+										<button id="deleteVCardLabel" label="__MSG_deleteVCardLabel__" accesskey="__MSG_deleteVCardAccesskey__" oncommand="wdw_cardbookConfiguration.deleteVCard();" disabled="true"/>
 									</vbox>
-									<hbox align="top">
-										<vbox flex="1">
-											<button id="addVCardLabel" label="__MSG_addVCardLabel__" accesskey="__MSG_addVCardAccesskey__" oncommand="wdw_cardbookConfiguration.addVCard();"/>
-											<button id="renameVCardLabel" label="__MSG_renameVCardLabel__" accesskey="__MSG_renameVCardAccesskey__" oncommand="wdw_cardbookConfiguration.renameVCard();" disabled="true"/>
-											<button id="deleteVCardLabel" label="__MSG_deleteVCardLabel__" accesskey="__MSG_deleteVCardAccesskey__" oncommand="wdw_cardbookConfiguration.deleteVCard();" disabled="true"/>
-										</vbox>
-									</hbox>
 								</hbox>
 								<separator class="thin"/>
 								<label><html:h2>__MSG_emailsCollectionLabel__</html:h2></label>
 								<label>__MSG_emailsCollectionTooltip__</label>
 								<hbox flex="1">
-									<vbox flex="1">
-										<hbox flex="1">
-											<tree id="emailsCollectionTree" class="cardbookTreeChildrenConfigClass" hidecolumnpicker="true" flex="1" seltype="single" enableColumnDrag="false" editable="true" onselect="wdw_cardbookConfiguration.selectEmailsCollection();" sortDirection="ascending" sortResource="emailsCollectionMailName">
-												<treecols id="emailsCollectionTreeCols">
-													<treecol id="emailsCollectionEnabled" label="__MSG_emailsCollectionEnabledLabel__" type="checkbox" persist="width ordinal hidden" style="text-align:center" editable="true" minwidth="30"/>
-													<splitter class="tree-splitter"/>
-													<treecol id="emailsCollectionId" flex="1" hidden="true" persist="width ordinal hidden" style="text-align:left" editable="false"/>
-													<splitter class="tree-splitter"/>
-													<treecol id="emailsCollectionMailName" label="__MSG_emailsCollectionMailNameLabel__" flex="1" persist="width ordinal hidden" onclick="wdw_cardbookConfiguration.sortTreesFromCol(event, this, 'emailsCollectionTree');" style="text-align:left" editable="false"/>
-													<splitter class="tree-splitter"/>
-													<treecol id="emailsCollectionMailId" flex="1" hidden="true" persist="width ordinal hidden" style="text-align:left" editable="false"/>
-													<splitter class="tree-splitter"/>
-													<treecol id="emailsCollectionABName" label="__MSG_emailsCollectionABNameLabel__" flex="1" onclick="wdw_cardbookConfiguration.sortTreesFromCol(event, this, 'emailsCollectionTree');" persist="width ordinal hidden" style="text-align:left" editable="false"/>
-													<splitter class="tree-splitter"/>
-													<treecol id="emailsCollectionDirPrefId" flex="1" hidden="true" persist="width ordinal hidden" style="text-align:left" editable="false"/>
-													<splitter class="tree-splitter"/>
-													<treecol id="emailsCollectionCatName" label="__MSG_emailsCollectionCatNameLabel__" flex="1" onclick="wdw_cardbookConfiguration.sortTreesFromCol(event, this, 'emailsCollectionTree');" hidden="false" persist="width ordinal hidden" style="text-align:left" editable="false"/>
-													<splitter class="tree-splitter"/>
-													<treecol id="emailsCollectionCatId" flex="1" hidden="true" persist="width ordinal hidden" style="text-align:left" editable="false"/>
-												</treecols>
-												<treechildren id="emailsCollectionTreeChildren" ondblclick="wdw_cardbookConfiguration.doubleClickTree(event, 'emailsCollectionTree');"/>
-											</tree>
-										</hbox>
+									<table id="emailsCollectionTable" class="tableTree"
+										sortDirection="ascending" sortResource="emailsCollectionMailName"
+										onclick="wdw_cardbookConfiguration.clickTree(event);"
+										ondblclick="wdw_cardbookConfiguration.doubleClickTree(event);"
+										onkeydown="wdw_cardbookConfiguration.keyDownTree(event);"/>
+									<vbox flex="1" align="top">
+										<button id="addEmailsCollectionLabel" label="__MSG_addEmailsCollectionLabel__" accesskey="__MSG_addEmailsCollectionAccesskey__" oncommand="wdw_cardbookConfiguration.addEmailsCollection();"/>
+										<button id="renameEmailsCollectionLabel" label="__MSG_renameEmailsCollectionLabel__" accesskey="__MSG_renameEmailsCollectionAccesskey__" oncommand="wdw_cardbookConfiguration.renameEmailsCollection();" disabled="true"/>
+										<button id="deleteEmailsCollectionLabel" label="__MSG_deleteEmailsCollectionLabel__" accesskey="__MSG_deleteEmailsCollectionAccesskey__" oncommand="wdw_cardbookConfiguration.deleteEmailsCollection();" disabled="true"/>
 									</vbox>
-									<hbox align="top">
-										<vbox flex="1">
-											<button id="addEmailsCollectionLabel" label="__MSG_addEmailsCollectionLabel__" accesskey="__MSG_addEmailsCollectionAccesskey__" oncommand="wdw_cardbookConfiguration.addEmailsCollection();"/>
-											<button id="renameEmailsCollectionLabel" label="__MSG_renameEmailsCollectionLabel__" accesskey="__MSG_renameEmailsCollectionAccesskey__" oncommand="wdw_cardbookConfiguration.renameEmailsCollection();" disabled="true"/>
-											<button id="deleteEmailsCollectionLabel" label="__MSG_deleteEmailsCollectionLabel__" accesskey="__MSG_deleteEmailsCollectionAccesskey__" oncommand="wdw_cardbookConfiguration.deleteEmailsCollection();" disabled="true"/>
-										</vbox>
-									</hbox>
 								</hbox>
 							</vbox>
 
@@ -885,40 +764,32 @@
 									<label id="eventEntryTimeDesc4" class="indent"/>
 									<label id="eventEntryTimeDesc5" class="indent"/>
 								</vbox>
-								<separator class="thin"/>             
+								<separator class="thin"/>
 								<label><html:h2>__MSG_addressbooksGroupboxLabel__</html:h2></label>
 								<label>__MSG_birthdayListWarn__</label>
 								<vbox flex="1">
 									<checkbox id="addressbooksCheckbox" oncommand="wdw_cardbookConfiguration.changedAddressbooksMainCheckbox();" label="__MSG_selectAllABsLabel__"/>
 									<hbox flex="1">
-										<tree id="addressbooksTree" class="cardbookTreeChildrenConfigClass" hidecolumnpicker="true" flex="1" rows="4" seltype="single" enableColumnDrag="false" editable="true" sortDirection="ascending" sortResource="addressbooksName"
-											onkeyup="wdw_cardbookConfiguration.addressbooksKeyup(event);">
-											<treecols id="addressbooksTreeCols">
-												<treecol id="addressbooksSelect" type="checkbox" editable="true" persist="width ordinal hidden" hideheader="true" minwidth="30"/>
-												<splitter class="tree-splitter"/>
-												<treecol id="addressbooksName" flex="1" persist="width ordinal hidden" style="text-align:left" hideheader="true"/>
-											</treecols>
-											<treechildren id="addressbooksTreeChildren"/>
-										</tree>
+										<table id="addressbooksTable" class="tableTree"
+											sortDirection="ascending" sortResource="addressbooksName"
+											onclick="wdw_cardbookConfiguration.clickTree(event);"
+											ondblclick="wdw_cardbookConfiguration.doubleClickTree(event);"
+											onkeydown="wdw_cardbookConfiguration.keyDownTree(event);"/>
 									</hbox>
 								</vbox>
-								<separator class="thin"/>             
+								<separator class="thin"/>
 								<label><html:h2>__MSG_calendarsGroupboxLabel__</html:h2></label>
 								<vbox flex="1">
 									<checkbox id="calendarsCheckbox" oncommand="wdw_cardbookConfiguration.changedCalendarsMainCheckbox();" label="__MSG_selectAllCalendarsLabel__"/>
 									<hbox flex="1">
-										<tree id="calendarsTree" class="cardbookTreeChildrenConfigClass" hidecolumnpicker="true" flex="1" rows="4" seltype="single" enableColumnDrag="false" editable="true" sortDirection="ascending" sortResource="calendarsName"
-											onkeyup="wdw_cardbookConfiguration.calendarsKeyup(event);">
-											<treecols id="calendarsTreeCols">
-												<treecol id="calendarsSelect" type="checkbox" editable="true" persist="width ordinal hidden" hideheader="true" minwidth="30"/>
-												<splitter class="tree-splitter"/>
-												<treecol id="calendarsName" flex="1" persist="width ordinal hidden" style="text-align:left" hideheader="true"/>
-											</treecols>
-											<treechildren id="calendarsTreeChildren"/>
-										</tree>
+										<table id="calendarsTable" class="tableTree"
+											sortDirection="ascending" sortResource="calendarsName"
+											onclick="wdw_cardbookConfiguration.clickTree(event);"
+											ondblclick="wdw_cardbookConfiguration.doubleClickTree(event);"
+											onkeydown="wdw_cardbookConfiguration.keyDownTree(event);"/>
 									</hbox>
 								</vbox>
-								<separator class="thin"/>             
+								<separator class="thin"/>
 								<label><html:h2>__MSG_remindViaPopupWindowGroupboxLabel__</html:h2></label>
 								<hbox flex="1" align="center">
 									<label value="__MSG_numberOfDaysForSearchingLabel__"

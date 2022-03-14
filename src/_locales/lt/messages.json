@@ -3013,6 +3013,9 @@
 	"impp.qq": {
 		"message": "Tencent QQ"
 	},
+	"impp.jami": {
+		"message": "Jami"
+	},
 	"addToAddressbook": {
 		"message": "Įtraukti į šią adresų knygą"
 	},
@@ -4465,6 +4468,9 @@
 	"selectAllFieldsLabel": {
 		"message": "Pažymėti viską"
 	},
+	"selectAllDiscoveryLabel": {
+		"message": "Pažymėti viską"
+	},
 	"preferenceGroupboxLabel": {
 		"message": "Laukas „PREF“"
 	},
@@ -4615,6 +4621,12 @@
 	"deleteIMPPAccesskey": {
 		"message": "š"
 	},
+	"resetIMPPLabel": {
+		"message": "Atstatyti numatytąjį"
+	},
+	"resetIMPPAccesskey": {
+		"message": "A"
+	},
 	"URLPhoneGroupboxLabel": {
 		"message": "??URL opening for soft phones??"
 	},
@@ -4657,13 +4669,13 @@
 	"localDataEncryptionEnabledAccesskey": {
 		"message": "E"
 	},
-	"customFieldRankHeader": {
+	"customFieldRankHeaderLabel": {
 		"message": "Reitingas"
 	},
-	"customFieldCodeHeader": {
+	"customFieldCodeHeaderLabel": {
 		"message": "Lauko pavadinimas"
 	},
-	"customFieldLabelHeader": {
+	"customFieldLabelHeaderLabel": {
 		"message": "Lauko etiketė"
 	},
 	"customFieldsPersTitleLabel": {
@@ -4801,9 +4813,6 @@
 	"discoveryWarn": {
 		"message": "Kiekvieną kartą sinchronizuojant, bus atliekamas toliau nurodytų URL patikrinimas, kad būtų galima ieškoti bet kokių naujų ar ištrintų adresų knygų."
 	},
-	"discoveryAccountsGroupboxLabel": {
-		"message": "Paskyros"
-	},
 	"advancedSyncGroupboxLabel": {
 		"message": "Išplėstinės savybės"
 	},
@@ -4846,7 +4855,7 @@
 	"accountsVCardsEnabledLabel": {
 		"message": "Įjungtas"
 	},
-	"accountsVCardsMailLabel": {
+	"accountsVCardsMailNameLabel": {
 		"message": "Pranešimų paskyros"
 	},
 	"accountsVCardsABNameLabel": {

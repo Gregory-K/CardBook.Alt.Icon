@@ -3013,6 +3013,9 @@
 	"impp.qq": {
 		"message": "Tencent QQ"
 	},
+	"impp.jami": {
+		"message": "Jami"
+	},
 	"addToAddressbook": {
 		"message": "Pridať do tohto adresára"
 	},
@@ -4465,6 +4468,9 @@
 	"selectAllFieldsLabel": {
 		"message": "Vybrať všetko"
 	},
+	"selectAllDiscoveryLabel": {
+		"message": "Vybrať všetko"
+	},
 	"preferenceGroupboxLabel": {
 		"message": "Pole PREF"
 	},
@@ -4615,6 +4621,12 @@
 	"deleteIMPPAccesskey": {
 		"message": "V"
 	},
+	"resetIMPPLabel": {
+		"message": "Obnoviť na predvolené"
+	},
+	"resetIMPPAccesskey": {
+		"message": "O"
+	},
 	"URLPhoneGroupboxLabel": {
 		"message": "Otváranie URL adries pre softwarové telefóny"
 	},
@@ -4657,13 +4669,13 @@
 	"localDataEncryptionEnabledAccesskey": {
 		"message": "š"
 	},
-	"customFieldRankHeader": {
+	"customFieldRankHeaderLabel": {
 		"message": "Poradie"
 	},
-	"customFieldCodeHeader": {
+	"customFieldCodeHeaderLabel": {
 		"message": "Názov poľa"
 	},
-	"customFieldLabelHeader": {
+	"customFieldLabelHeaderLabel": {
 		"message": "Menovka poľa"
 	},
 	"customFieldsPersTitleLabel": {
@@ -4801,9 +4813,6 @@
 	"discoveryWarn": {
 		"message": "Pri každej synchronizácii sa vykoná kontrola adries URL uvedených nižšie, aby sa vyhľadali nové alebo odstránené adresáre."
 	},
-	"discoveryAccountsGroupboxLabel": {
-		"message": "Účty"
-	},
 	"advancedSyncGroupboxLabel": {
 		"message": "Pokročilé vlastnosti"
 	},
@@ -4846,7 +4855,7 @@
 	"accountsVCardsEnabledLabel": {
 		"message": "Zapnuté"
 	},
-	"accountsVCardsMailLabel": {
+	"accountsVCardsMailNameLabel": {
 		"message": "Emailový účet"
 	},
 	"accountsVCardsABNameLabel": {

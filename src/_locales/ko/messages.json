@@ -3013,6 +3013,9 @@
 	"impp.qq": {
 		"message": "Tencent QQ"
 	},
+	"impp.jami": {
+		"message": "Jami"
+	},
 	"addToAddressbook": {
 		"message": "다음 주소록에 추가"
 	},
@@ -4465,6 +4468,9 @@
 	"selectAllFieldsLabel": {
 		"message": "모두 선택"
 	},
+	"selectAllDiscoveryLabel": {
+		"message": "모두 선택"
+	},
 	"preferenceGroupboxLabel": {
 		"message": "필드 환경 설정"
 	},
@@ -4615,6 +4621,12 @@
 	"deleteIMPPAccesskey": {
 		"message": "D"
 	},
+	"resetIMPPLabel": {
+		"message": "초기화"
+	},
+	"resetIMPPAccesskey": {
+		"message": "R"
+	},
 	"URLPhoneGroupboxLabel": {
 		"message": "VoIP 전화 실행 URL"
 	},
@@ -4657,13 +4669,13 @@
 	"localDataEncryptionEnabledAccesskey": {
 		"message": "E"
 	},
-	"customFieldRankHeader": {
+	"customFieldRankHeaderLabel": {
 		"message": "계급"
 	},
-	"customFieldCodeHeader": {
+	"customFieldCodeHeaderLabel": {
 		"message": "필드 이름"
 	},
-	"customFieldLabelHeader": {
+	"customFieldLabelHeaderLabel": {
 		"message": "필드 레이블"
 	},
 	"customFieldsPersTitleLabel": {
@@ -4801,9 +4813,6 @@
 	"discoveryWarn": {
 		"message": "매 동기화마다 아래의 URL을 확인하여 새 주소록이나 삭제 된 주소록을 검색합니다."
 	},
-	"discoveryAccountsGroupboxLabel": {
-		"message": "계정"
-	},
 	"advancedSyncGroupboxLabel": {
 		"message": "고급 속성"
 	},
@@ -4846,7 +4855,7 @@
 	"accountsVCardsEnabledLabel": {
 		"message": "활성화"
 	},
-	"accountsVCardsMailLabel": {
+	"accountsVCardsMailNameLabel": {
 		"message": "메일 계정"
 	},
 	"accountsVCardsABNameLabel": {

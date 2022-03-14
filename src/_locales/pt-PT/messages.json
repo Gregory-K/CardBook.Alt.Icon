@@ -3013,6 +3013,9 @@
 	"impp.qq": {
 		"message": "Tencent QQ"
 	},
+	"impp.jami": {
+		"message": "Jami"
+	},
 	"addToAddressbook": {
 		"message": "Adicionar a este livro de endereços"
 	},
@@ -4465,6 +4468,9 @@
 	"selectAllFieldsLabel": {
 		"message": "Selecionar tudo"
 	},
+	"selectAllDiscoveryLabel": {
+		"message": "Selecionar tudo"
+	},
 	"preferenceGroupboxLabel": {
 		"message": "Campo PREF"
 	},
@@ -4615,6 +4621,12 @@
 	"deleteIMPPAccesskey": {
 		"message": "G"
 	},
+	"resetIMPPLabel": {
+		"message": "Restaurar para Predefinição"
+	},
+	"resetIMPPAccesskey": {
+		"message": "R"
+	},
 	"URLPhoneGroupboxLabel": {
 		"message": "URL a abrir para softphones"
 	},
@@ -4657,13 +4669,13 @@
 	"localDataEncryptionEnabledAccesskey": {
 		"message": "E"
 	},
-	"customFieldRankHeader": {
+	"customFieldRankHeaderLabel": {
 		"message": "Classificação"
 	},
-	"customFieldCodeHeader": {
+	"customFieldCodeHeaderLabel": {
 		"message": "Nome do Campo"
 	},
-	"customFieldLabelHeader": {
+	"customFieldLabelHeaderLabel": {
 		"message": "Etiqueta do Campo"
 	},
 	"customFieldsPersTitleLabel": {
@@ -4801,9 +4813,6 @@
 	"discoveryWarn": {
 		"message": "Em todas as sincronizações, uma verificação nos URLs abaixo será executada para procurar novos/apagados livros de endereços."
 	},
-	"discoveryAccountsGroupboxLabel": {
-		"message": "Contas"
-	},
 	"advancedSyncGroupboxLabel": {
 		"message": "Propriedades Avançadas"
 	},
@@ -4846,7 +4855,7 @@
 	"accountsVCardsEnabledLabel": {
 		"message": "Ativado"
 	},
-	"accountsVCardsMailLabel": {
+	"accountsVCardsMailNameLabel": {
 		"message": "Conta de E-mail"
 	},
 	"accountsVCardsABNameLabel": {

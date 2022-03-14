@@ -173,7 +173,6 @@ if ("undefined" == typeof(cardbookCardParser)) {
 						var vCardDataArrayTrailer = "";
 						var vCardDataArrayTrailerArray = [];
 						var vCardDataArrayHeaderOptionArray = [];
-						var localDelimArray = null;
 						localDelim1 = vCardDataArray[vCardDataArrayIndex].indexOf(":",0);
 						vCardDataArrayHeaderKey = "";
 						vCardDataArrayHeaderOption = "";

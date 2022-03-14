@@ -8,7 +8,7 @@ if ("undefined" == typeof(wdw_mergeCards)) {
 		mode: "CONTACT",
 		
 		createCheckBox1: function (aRow, aName, aValue) {
-			let checkboxData = cardbookElementTools.addTableData(aRow, aName + '.1');
+			let checkboxData = cardbookElementTools.addHTMLTD(aRow, aName + '.1');
 			let aCheckbox = document.createXULElement('checkbox');
 			checkboxData.appendChild(aCheckbox);
 			aCheckbox.setAttribute('id', aName);
@@ -48,7 +48,7 @@ if ("undefined" == typeof(wdw_mergeCards)) {
 		},
 
 		createCheckBox2: function (aRow, aName, aValue) {
-			let checkboxData = cardbookElementTools.addTableData(aRow, aName + '.1');
+			let checkboxData = cardbookElementTools.addHTMLTD(aRow, aName + '.1');
 			let aCheckbox = document.createXULElement('checkbox');
 			checkboxData.appendChild(aCheckbox);
 			aCheckbox.setAttribute('id', aName);
@@ -76,7 +76,7 @@ if ("undefined" == typeof(wdw_mergeCards)) {
 		},
 
 		createCheckBox3: function (aRow, aName, aValue) {
-			let checkboxData = cardbookElementTools.addTableData(aRow, aName + '.1');
+			let checkboxData = cardbookElementTools.addHTMLTD(aRow, aName + '.1');
 			let aCheckbox = document.createXULElement('checkbox');
 			checkboxData.appendChild(aCheckbox);
 			aCheckbox.setAttribute('id', aName);
@@ -117,7 +117,7 @@ if ("undefined" == typeof(wdw_mergeCards)) {
 		},
 
 		createTextBox: function (aRow, aName, aValue, aSelected, aDisabled, aArrayValue) {
-			let textboxData = cardbookElementTools.addTableData(aRow, aName + '.1');
+			let textboxData = cardbookElementTools.addHTMLTD(aRow, aName + '.1');
 			let aTextbox = document.createElementNS("http://www.w3.org/1999/xhtml","html:input");
 			textboxData.appendChild(aTextbox);
 			aTextbox.setAttribute('id', aName);
@@ -140,7 +140,7 @@ if ("undefined" == typeof(wdw_mergeCards)) {
 		},
 
 		createMultilineTextBox: function (aRow, aName, aValue, aSelected, aDisabled, aLength) {
-			let textboxData = cardbookElementTools.addTableData(aRow, aName + '.1');
+			let textboxData = cardbookElementTools.addHTMLTD(aRow, aName + '.1');
 			let aTextbox = document.createElementNS("http://www.w3.org/1999/xhtml","html:textarea");
 			textboxData.appendChild(aTextbox);
 			aTextbox.setAttribute('multiline', true);
@@ -162,7 +162,7 @@ if ("undefined" == typeof(wdw_mergeCards)) {
 		},
 
 		createImageBox: function (aRow, aName, aValue, aExtension, aSelected) {
-			let imageData = cardbookElementTools.addTableData(aRow, aName + '.1');
+			let imageData = cardbookElementTools.addHTMLTD(aRow, aName + '.1');
 			let aVbox = wdw_mergeCards.createVbox(imageData, false);
 			aVbox.setAttribute("width", "170px");
 			let aHbox = wdw_mergeCards.createHbox(aVbox, false);
@@ -200,7 +200,7 @@ if ("undefined" == typeof(wdw_mergeCards)) {
 		},
 
 		createLabel: function (aRow, aName, aValue) {
-			let labelData = cardbookElementTools.addTableData(aRow, aName + '.1');
+			let labelData = cardbookElementTools.addHTMLTD(aRow, aName + '.1');
 			let aLabel = document.createXULElement('label');
 			labelData.appendChild(aLabel);
 			aLabel.setAttribute('id', aName);
@@ -208,7 +208,7 @@ if ("undefined" == typeof(wdw_mergeCards)) {
 		},
 
 		createCustomLabel: function (aRow, aName, aValue) {
-			let labelData = cardbookElementTools.addTableData(aRow, aName + '.1');
+			let labelData = cardbookElementTools.addHTMLTD(aRow, aName + '.1');
 			let aLabel = document.createXULElement('label');
 			labelData.appendChild(aLabel);
 			aLabel.setAttribute('id', aName);
@@ -226,7 +226,7 @@ if ("undefined" == typeof(wdw_mergeCards)) {
 		createHbox: function (aParent, aAddTableData) {
 			let aHbox ;
 			if (aAddTableData && aAddTableData == true) {
-				let boxData = cardbookElementTools.addTableData(aParent);
+				let boxData = cardbookElementTools.addHTMLTD(aParent);
 				aHbox = document.createXULElement('hbox');
 				boxData.appendChild(aHbox);
 			} else {
@@ -241,7 +241,7 @@ if ("undefined" == typeof(wdw_mergeCards)) {
 		createVbox: function (aParent, aAddTableData) {
 			let aVbox ;
 			if (aAddTableData && aAddTableData == true) {
-				let boxData = cardbookElementTools.addTableData(aParent);
+				let boxData = cardbookElementTools.addHTMLTD(aParent);
 				aVbox = document.createXULElement('vbox');
 				boxData.appendChild(aVbox);
 			} else {

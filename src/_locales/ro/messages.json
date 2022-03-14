@@ -156,13 +156,13 @@
 		"message": "Tastează sau lipește un URL"
 	},
 	"ValidatingURIFailedLabel": {
-		"message": "URL nevalid"
+		"message": "URL invalid"
 	},
 	"ValidatingLoginLabel": {
-		"message": "??Your login??"
+		"message": "Numele tău de utilizator"
 	},
 	"ValidatingEmailLabel": {
-		"message": "??Your existing email address??"
+		"message": "Adresa ta de email existentă"
 	},
 	"ValidatingEmailFailedLabel": {
 		"message": "Este necesară o adresă de e-mail validă"
@@ -3013,6 +3013,9 @@
 	"impp.qq": {
 		"message": "Tencent QQ"
 	},
+	"impp.jami": {
+		"message": "Jami"
+	},
 	"addToAddressbook": {
 		"message": "Adaugă în această agendă"
 	},
@@ -4465,6 +4468,9 @@
 	"selectAllFieldsLabel": {
 		"message": "Selectează tot"
 	},
+	"selectAllDiscoveryLabel": {
+		"message": "Selectează tot"
+	},
 	"preferenceGroupboxLabel": {
 		"message": "Preferința câmpului"
 	},
@@ -4615,6 +4621,12 @@
 	"deleteIMPPAccesskey": {
 		"message": "g"
 	},
+	"resetIMPPLabel": {
+		"message": "Resetează"
+	},
+	"resetIMPPAccesskey": {
+		"message": "z"
+	},
 	"URLPhoneGroupboxLabel": {
 		"message": "URL pentru telefoane soft"
 	},
@@ -4657,13 +4669,13 @@
 	"localDataEncryptionEnabledAccesskey": {
 		"message": "E"
 	},
-	"customFieldRankHeader": {
+	"customFieldRankHeaderLabel": {
 		"message": "Rang"
 	},
-	"customFieldCodeHeader": {
+	"customFieldCodeHeaderLabel": {
 		"message": "Nume câmp"
 	},
-	"customFieldLabelHeader": {
+	"customFieldLabelHeaderLabel": {
 		"message": "Etichetă câmp"
 	},
 	"customFieldsPersTitleLabel": {
@@ -4801,9 +4813,6 @@
 	"discoveryWarn": {
 		"message": "La fiecare sincronizare, se vor verifica adresele URL de mai jos pentru a căuta agende noi sau șterse"
 	},
-	"discoveryAccountsGroupboxLabel": {
-		"message": "Conturi"
-	},
 	"advancedSyncGroupboxLabel": {
 		"message": "Proprietăți avansate"
 	},
@@ -4846,7 +4855,7 @@
 	"accountsVCardsEnabledLabel": {
 		"message": "Activat"
 	},
-	"accountsVCardsMailLabel": {
+	"accountsVCardsMailNameLabel": {
 		"message": "Cont de email"
 	},
 	"accountsVCardsABNameLabel": {

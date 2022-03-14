@@ -3013,6 +3013,9 @@
 	"impp.qq": {
 		"message": "Tencent QQ"
 	},
+	"impp.jami": {
+		"message": "Jami"
+	},
 	"addToAddressbook": {
 		"message": "Adicionr a essa agenda"
 	},
@@ -4465,6 +4468,9 @@
 	"selectAllFieldsLabel": {
 		"message": "Selecionar tudo"
 	},
+	"selectAllDiscoveryLabel": {
+		"message": "Selecionar tudo"
+	},
 	"preferenceGroupboxLabel": {
 		"message": "Campo PREFerido"
 	},
@@ -4615,6 +4621,12 @@
 	"deleteIMPPAccesskey": {
 		"message": "D"
 	},
+	"resetIMPPLabel": {
+		"message": "Restaurar original"
+	},
+	"resetIMPPAccesskey": {
+		"message": "R"
+	},
 	"URLPhoneGroupboxLabel": {
 		"message": "URL de abertura para softphones"
 	},
@@ -4657,13 +4669,13 @@
 	"localDataEncryptionEnabledAccesskey": {
 		"message": "C"
 	},
-	"customFieldRankHeader": {
+	"customFieldRankHeaderLabel": {
 		"message": "Rank"
 	},
-	"customFieldCodeHeader": {
+	"customFieldCodeHeaderLabel": {
 		"message": "Nome do campo"
 	},
-	"customFieldLabelHeader": {
+	"customFieldLabelHeaderLabel": {
 		"message": "Etiqueta do campo"
 	},
 	"customFieldsPersTitleLabel": {
@@ -4801,9 +4813,6 @@
 	"discoveryWarn": {
 		"message": "A todas as sincronizações, uma pesquisa vai verificar se existem novas agendas ou agendas removidas."
 	},
-	"discoveryAccountsGroupboxLabel": {
-		"message": "Contas"
-	},
 	"advancedSyncGroupboxLabel": {
 		"message": "Propriedades avançadas"
 	},
@@ -4846,7 +4855,7 @@
 	"accountsVCardsEnabledLabel": {
 		"message": "Ativo"
 	},
-	"accountsVCardsMailLabel": {
+	"accountsVCardsMailNameLabel": {
 		"message": "Conta de email"
 	},
 	"accountsVCardsABNameLabel": {

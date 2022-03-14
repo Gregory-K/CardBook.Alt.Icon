@@ -3013,6 +3013,9 @@
 	"impp.qq": {
 		"message": "Tencent QQ"
 	},
+	"impp.jami": {
+		"message": "Jami"
+	},
 	"addToAddressbook": {
 		"message": "Tilføj til denne adressebog"
 	},
@@ -4465,6 +4468,9 @@
 	"selectAllFieldsLabel": {
 		"message": "Marker alt"
 	},
+	"selectAllDiscoveryLabel": {
+		"message": "Marker alt"
+	},
 	"preferenceGroupboxLabel": {
 		"message": "PREF-felt"
 	},
@@ -4615,6 +4621,12 @@
 	"deleteIMPPAccesskey": {
 		"message": "S"
 	},
+	"resetIMPPLabel": {
+		"message": "Gendan standardvalg"
+	},
+	"resetIMPPAccesskey": {
+		"message": "d"
+	},
 	"URLPhoneGroupboxLabel": {
 		"message": "URL-åbning til softwaretelefoner"
 	},
@@ -4657,13 +4669,13 @@
 	"localDataEncryptionEnabledAccesskey": {
 		"message": "K"
 	},
-	"customFieldRankHeader": {
+	"customFieldRankHeaderLabel": {
 		"message": "Rang"
 	},
-	"customFieldCodeHeader": {
+	"customFieldCodeHeaderLabel": {
 		"message": "Feltnavn"
 	},
-	"customFieldLabelHeader": {
+	"customFieldLabelHeaderLabel": {
 		"message": "Feltetiket"
 	},
 	"customFieldsPersTitleLabel": {
@@ -4801,9 +4813,6 @@
 	"discoveryWarn": {
 		"message": "Ved hver synkronisering køres et tjek på URLerne herunder, for at søge efter nye eller slettede adressebøger."
 	},
-	"discoveryAccountsGroupboxLabel": {
-		"message": "Konti"
-	},
 	"advancedSyncGroupboxLabel": {
 		"message": "Avancerede egenskaber"
 	},
@@ -4846,7 +4855,7 @@
 	"accountsVCardsEnabledLabel": {
 		"message": "Aktiveret"
 	},
-	"accountsVCardsMailLabel": {
+	"accountsVCardsMailNameLabel": {
 		"message": "Mailkonto"
 	},
 	"accountsVCardsABNameLabel": {

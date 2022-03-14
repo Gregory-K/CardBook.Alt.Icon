@@ -323,11 +323,7 @@ if ("undefined" == typeof(wdw_findDuplicates)) {
 		},
 
 		addTableRow: function (aParent, aName, aHidden) {
-			var aTableRow = document.createElementNS("http://www.w3.org/1999/xhtml","html:tr");
-			aParent.appendChild(aTableRow);
-			aTableRow.setAttribute('id', aName + 'Row');
-			aTableRow.setAttribute('align', 'center');
-			aTableRow.setAttribute('forget', aHidden.toString());
+			let aTableRow = cardbookElementTools.addHTMLTR(aParent, `${aName}Row`, {"align": "center", "forget": aHidden.toString()});
 			if (wdw_findDuplicates.gHideForgotten && aTableRow.getAttribute('forget') == 'true') {
 				aTableRow.hidden = true;
 			} else {
@@ -482,20 +478,21 @@ if ("undefined" == typeof(wdw_findDuplicates)) {
 					}
 				}
 				let row = wdw_findDuplicates.addTableRow(table, i, shouldBeForgotten);
-				for (let j = 0; j < wdw_findDuplicates.gResults[i].length; j++) {
-					let myCard = wdw_findDuplicates.gResults[i][j];
-					let textboxData = cardbookElementTools.addTableData(row, i + '.' + j + '.1');
-					wdw_findDuplicates.createTextbox(textboxData, i+"::"+j, myCard.fn, myCard.dirPrefId);
-				}
-				let mergeData = cardbookElementTools.addTableData(row, i + '.2');
+				let mergeData = cardbookElementTools.addHTMLTD(row, i + '.2');
 				await wdw_findDuplicates.createMergeButton(mergeData, i, buttonMergeLabel);
 				if (!shouldBeForgotten) {
-					let forgetData = cardbookElementTools.addTableData(row, i + '.3');
+					let forgetData = cardbookElementTools.addHTMLTD(row, i + '.3');
 					wdw_findDuplicates.createForgetButton(forgetData, i, buttonForgetLabel);
 					myShownCount++;
 				}
-				let deleteData = cardbookElementTools.addTableData(row, i + '.4');
+				let deleteData = cardbookElementTools.addHTMLTD(row, i + '.4');
 				wdw_findDuplicates.createDeleteButton(deleteData, i, buttonDeleteLabel);
+				// test
+				for (let j = 0; j < wdw_findDuplicates.gResults[i].length; j++) {
+					let myCard = wdw_findDuplicates.gResults[i][j];
+					let textboxData = cardbookElementTools.addHTMLTD(row, i + '.' + j + '.1');
+					wdw_findDuplicates.createTextbox(textboxData, i+"::"+j, myCard.fn, myCard.dirPrefId);
+				}
 			}
 			wdw_findDuplicates.showLabels(myShownCount);
 		},

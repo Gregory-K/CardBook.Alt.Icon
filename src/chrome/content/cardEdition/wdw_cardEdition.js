@@ -843,24 +843,24 @@ if ("undefined" == typeof(wdw_cardEdition)) {
 			let table = document.getElementById('formulaSampleTable');
 			if (allOrg.length == 0) {
 				count++;
-				let row = cardbookElementTools.addTableRow(table, 'formulaSampleTextRow' + count);
-				let labelData = cardbookElementTools.addTableData(row, 'formulaMemberLabel' + count + '.1');
+				let row = cardbookElementTools.addHTMLTR(table, 'formulaSampleTextRow' + count);
+				let labelData = cardbookElementTools.addHTMLTD(row, 'formulaMemberLabel' + count + '.1');
 				let label = cardbookElementTools.addLabel(labelData, 'formulaMemberLabel' + count, "{{" + count + "}} : " + cardbookRepository.extension.localeData.localizeMessage("orgLabel"), null, {});		
 			} else {
 				for (let org of allOrg) {
 					count++;
-					let row = cardbookElementTools.addTableRow(table, 'formulaSampleTextRow' + count);
-					let labelData = cardbookElementTools.addTableData(row, 'formulaMemberLabel' + count + '.1');
+					let row = cardbookElementTools.addHTMLTR(table, 'formulaSampleTextRow' + count);
+					let labelData = cardbookElementTools.addHTMLTD(row, 'formulaMemberLabel' + count + '.1');
 					let label = cardbookElementTools.addLabel(labelData, 'formulaMemberLabel' + count, "{{" + count + "}} : " + org, null, {});
 				}
 			}
 			count++;
-			let rowTitle = cardbookElementTools.addTableRow(table, 'formulaSampleTextRow' + count);
-			let titleData = cardbookElementTools.addTableData(rowTitle, 'formulaMemberLabel' + count + '.2');
+			let rowTitle = cardbookElementTools.addHTMLTR(table, 'formulaSampleTextRow' + count);
+			let titleData = cardbookElementTools.addHTMLTD(rowTitle, 'formulaMemberLabel' + count + '.2');
 			let labelTitle = cardbookElementTools.addLabel(titleData, 'formulaMemberLabel' + count, "{{" + count + "}} : " + cardbookRepository.extension.localeData.localizeMessage("titleLabel"), null, {});
 			count++;
-			let rowRole = cardbookElementTools.addTableRow(table, 'formulaSampleTextRow' + count);
-			let roleData = cardbookElementTools.addTableData(rowRole, 'formulaMemberLabel' + count + '.3');
+			let rowRole = cardbookElementTools.addHTMLTR(table, 'formulaSampleTextRow' + count);
+			let roleData = cardbookElementTools.addHTMLTD(rowRole, 'formulaMemberLabel' + count + '.3');
 			let labelRole = cardbookElementTools.addLabel(roleData, 'formulaMemberLabel' + count, "{{" + count + "}} : " + cardbookRepository.extension.localeData.localizeMessage("roleLabel"), null, {});
 		},
 

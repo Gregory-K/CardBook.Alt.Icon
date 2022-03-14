@@ -424,7 +424,7 @@ var cardbookRepository = {
 							{ id: "CARDDAV", type: "CARDDAV", url: ""},
 							{ id: "APPLE", type: "APPLE", url: "https://contacts.icloud.com", vCard: [ "3.0" ], pwdapp: "true"},
 							{ id: "YAHOO", type: "YAHOO", url: "https://carddav.address.yahoo.com", vCard: [ "3.0" ], pwdapp: "true"},
-							{ id: "AOL.COM", type: "CARDDAV", url: "https://carddav.aol.com", vCard: [ "3.0" ]},
+							{ id: "AOL.COM", type: "CARDDAV", url: "https://carddav.aol.com", vCard: [ "3.0" ], pwdapp: "true"},
 							{ id: "ECLIPSO", type: "CARDDAV", url: "https://www.eclipso.de", vCard: [ "3.0" ]},
 							{ id: "EWS", type: "OFFICE365", url: "", vCard: [ "3.0" ], pwdapp: "false"},
 							{ id: "FASTMAIL", type: "CARDDAV", url: "https://carddav.fastmail.com", vCard: [ "3.0" ], pwdapp: "true"},
@@ -497,9 +497,9 @@ var cardbookRepository = {
 	},
 
     setDefaultImppTypes: function () {
-		var myIMPPs = [];
-		myIMPPs = cardbookRepository.cardbookPreferences.getAllIMPPs();
-		if (myIMPPs.length == 0) {
+		let impps = [];
+		impps = cardbookRepository.cardbookPreferences.getAllIMPPs();
+		if (impps.length == 0) {
 			cardbookRepository.cardbookPreferences.insertIMPPsSeed();
 		}
 	},

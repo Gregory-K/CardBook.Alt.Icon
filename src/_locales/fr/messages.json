@@ -3013,6 +3013,9 @@
 	"impp.qq": {
 		"message": "Tencent QQ"
 	},
+	"impp.jami": {
+		"message": "Jami"
+	},
 	"addToAddressbook": {
 		"message": "Ajouter à ce carnet d'adresses"
 	},
@@ -4465,6 +4468,9 @@
 	"selectAllFieldsLabel": {
 		"message": "Tout sélectionner"
 	},
+	"selectAllDiscoveryLabel": {
+		"message": "Tout sélectionner"
+	},
 	"preferenceGroupboxLabel": {
 		"message": "Champ PREF"
 	},
@@ -4615,6 +4621,12 @@
 	"deleteIMPPAccesskey": {
 		"message": "S"
 	},
+	"resetIMPPLabel": {
+		"message": "Réinitialiser"
+	},
+	"resetIMPPAccesskey": {
+		"message": "R"
+	},
 	"URLPhoneGroupboxLabel": {
 		"message": "Ouverture d'URL pour les softphones"
 	},
@@ -4657,13 +4669,13 @@
 	"localDataEncryptionEnabledAccesskey": {
 		"message": "C"
 	},
-	"customFieldRankHeader": {
+	"customFieldRankHeaderLabel": {
 		"message": "Position"
 	},
-	"customFieldCodeHeader": {
+	"customFieldCodeHeaderLabel": {
 		"message": "Nom du champ"
 	},
-	"customFieldLabelHeader": {
+	"customFieldLabelHeaderLabel": {
 		"message": "Label du champ"
 	},
 	"customFieldsPersTitleLabel": {
@@ -4801,9 +4813,6 @@
 	"discoveryWarn": {
 		"message": "À chaque synchronisation, un contrôle sur les URLs ci-dessous va être fait pour rechercher les nouveaux carnets d'adresses ou ceux qui ont été supprimés."
 	},
-	"discoveryAccountsGroupboxLabel": {
-		"message": "Comptes"
-	},
 	"advancedSyncGroupboxLabel": {
 		"message": "Propriétés avancées"
 	},
@@ -4846,7 +4855,7 @@
 	"accountsVCardsEnabledLabel": {
 		"message": "Actif"
 	},
-	"accountsVCardsMailLabel": {
+	"accountsVCardsMailNameLabel": {
 		"message": "Compte courrier"
 	},
 	"accountsVCardsABNameLabel": {

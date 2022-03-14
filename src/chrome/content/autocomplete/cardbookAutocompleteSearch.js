@@ -109,8 +109,6 @@ cardbookAutocompleteResult.prototype = {
 	QueryInterface: ChromeUtils.generateQI([ACR])
 };
 
-var cardbookAutocompleteSearchClassID = Components.ID("0DE07280-EE68-11E4-B66F-4AD01D5D46B0");
-
 function cardbookAutocompleteSearch() {
 	Services.obs.addObserver(this, "quit-application", false);
 	this.searchTimeout = Components.classes["@mozilla.org/timer;1"].createInstance(Components.interfaces.nsITimer);

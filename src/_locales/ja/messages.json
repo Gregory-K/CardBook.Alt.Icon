@@ -3013,6 +3013,9 @@
 	"impp.qq": {
 		"message": "Tencent QQ"
 	},
+	"impp.jami": {
+		"message": "Jami"
+	},
 	"addToAddressbook": {
 		"message": "このアドレス帳に追加する"
 	},
@@ -4465,6 +4468,9 @@
 	"selectAllFieldsLabel": {
 		"message": "すべて選択"
 	},
+	"selectAllDiscoveryLabel": {
+		"message": "すべて選択"
+	},
 	"preferenceGroupboxLabel": {
 		"message": "フィールド設定"
 	},
@@ -4615,6 +4621,12 @@
 	"deleteIMPPAccesskey": {
 		"message": "D"
 	},
+	"resetIMPPLabel": {
+		"message": "デフォルトに戻す"
+	},
+	"resetIMPPAccesskey": {
+		"message": "R"
+	},
 	"URLPhoneGroupboxLabel": {
 		"message": "IP電話を開くURL"
 	},
@@ -4657,13 +4669,13 @@
 	"localDataEncryptionEnabledAccesskey": {
 		"message": "E"
 	},
-	"customFieldRankHeader": {
+	"customFieldRankHeaderLabel": {
 		"message": "ランク"
 	},
-	"customFieldCodeHeader": {
+	"customFieldCodeHeaderLabel": {
 		"message": "フィールド名"
 	},
-	"customFieldLabelHeader": {
+	"customFieldLabelHeaderLabel": {
 		"message": "フィールドラベル"
 	},
 	"customFieldsPersTitleLabel": {
@@ -4801,9 +4813,6 @@
 	"discoveryWarn": {
 		"message": "同期のたびに、新規または削除されたアドレス帳を検索するために以下のURLをチェックします。"
 	},
-	"discoveryAccountsGroupboxLabel": {
-		"message": "アカウント"
-	},
 	"advancedSyncGroupboxLabel": {
 		"message": "詳細情報"
 	},
@@ -4846,7 +4855,7 @@
 	"accountsVCardsEnabledLabel": {
 		"message": "有効"
 	},
-	"accountsVCardsMailLabel": {
+	"accountsVCardsMailNameLabel": {
 		"message": "メールアカウント"
 	},
 	"accountsVCardsABNameLabel": {

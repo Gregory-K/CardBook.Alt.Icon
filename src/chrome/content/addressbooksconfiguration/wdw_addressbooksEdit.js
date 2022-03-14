@@ -68,36 +68,36 @@ function loadFnFormula () {
 	let table = document.getElementById('formulaSampleTable');
 	if (allOrg.length == 0) {
 		count++;
-		let row = cardbookElementTools.addTableRow(table, 'formulaSampleTableRow.' + count);
-		let labelData = cardbookElementTools.addTableData(row, 'formulaSampleTableData.' + count + '.1');
+		let row = cardbookElementTools.addHTMLTR(table, 'formulaSampleTableRow.' + count);
+		let labelData = cardbookElementTools.addHTMLTD(row, 'formulaSampleTableData.' + count + '.1');
 		let label = cardbookElementTools.addLabel(labelData, 'formulaMemberLabel' + count, "{{" + count + "}} : " + cardbookRepository.extension.localeData.localizeMessage("orgLabel"), null, {});
-		let textboxData = cardbookElementTools.addTableData(row, 'formulaSampleTableData.' + count + '.2', {class: "cardbook-td-input"});
-		let textbox = cardbookElementTools.addTextbox(textboxData, 'formulaSampleTextBox' + count, cardbookRepository.extension.localeData.localizeMessage("orgLabel"), {});
+		let textboxData = cardbookElementTools.addHTMLTD(row, 'formulaSampleTableData.' + count + '.2', {class: "cardbook-td-input"});
+		let textbox = cardbookElementTools.addHTMLINPUT(textboxData, 'formulaSampleTextBox' + count, cardbookRepository.extension.localeData.localizeMessage("orgLabel"), {});
 		textbox.addEventListener("input", changeFnPreview);
 	} else {
 		for (let org of allOrg) {
 			count++;
-			let row = cardbookElementTools.addTableRow(table, 'formulaSampleTextRow' + count);
-			let labelData = cardbookElementTools.addTableData(row, 'formulaSampleTableData.' + count + '.1');
+			let row = cardbookElementTools.addHTMLTR(table, 'formulaSampleTextRow' + count);
+			let labelData = cardbookElementTools.addHTMLTD(row, 'formulaSampleTableData.' + count + '.1');
 			let label = cardbookElementTools.addLabel(labelData, 'formulaMemberLabel' + count, "{{" + count + "}} : " + org, null, {});
-			let textboxData = cardbookElementTools.addTableData(row, 'formulaSampleTableData.' + count + '.2', {class: "cardbook-td-input"});
-			let textbox = cardbookElementTools.addTextbox(textboxData, 'formulaSampleTextBox' + count, org, {});
+			let textboxData = cardbookElementTools.addHTMLTD(row, 'formulaSampleTableData.' + count + '.2', {class: "cardbook-td-input"});
+			let textbox = cardbookElementTools.addHTMLINPUT(textboxData, 'formulaSampleTextBox' + count, org, {});
 			textbox.addEventListener("input", changeFnPreview);
 		}
 	}
 	count++;
-	let rowTitle = cardbookElementTools.addTableRow(table, 'formulaSampleTextRow' + count);
-	let labelTitleData = cardbookElementTools.addTableData(rowTitle, 'formulaSampleTableData.' + count + '.1');
+	let rowTitle = cardbookElementTools.addHTMLTR(table, 'formulaSampleTextRow' + count);
+	let labelTitleData = cardbookElementTools.addHTMLTD(rowTitle, 'formulaSampleTableData.' + count + '.1');
 	let labelTitle = cardbookElementTools.addLabel(labelTitleData, 'formulaMemberLabel' + count, "{{" + count + "}} : " + cardbookRepository.extension.localeData.localizeMessage("titleLabel"), null, {});
-	let textboxTitleData = cardbookElementTools.addTableData(rowTitle, 'formulaSampleTableData.' + count + '.2', {class: "cardbook-td-input"});
-	let textboxTitle = cardbookElementTools.addTextbox(textboxTitleData, 'formulaSampleTextBox' + count, cardbookRepository.extension.localeData.localizeMessage("titleLabel"), {});
+	let textboxTitleData = cardbookElementTools.addHTMLTD(rowTitle, 'formulaSampleTableData.' + count + '.2', {class: "cardbook-td-input"});
+	let textboxTitle = cardbookElementTools.addHTMLINPUT(textboxTitleData, 'formulaSampleTextBox' + count, cardbookRepository.extension.localeData.localizeMessage("titleLabel"), {});
 	textboxTitle.addEventListener("input", changeFnPreview);
 	count++;
-	let rowRole = cardbookElementTools.addTableRow(table, 'formulaSampleTextRow' + count);
-	let labelRoleData = cardbookElementTools.addTableData(rowRole, 'formulaSampleTableData.' + count + '.1');
+	let rowRole = cardbookElementTools.addHTMLTR(table, 'formulaSampleTextRow' + count);
+	let labelRoleData = cardbookElementTools.addHTMLTD(rowRole, 'formulaSampleTableData.' + count + '.1');
 	let labelRole = cardbookElementTools.addLabel(labelRoleData, 'formulaMemberLabel' + count, "{{" + count + "}} : " + cardbookRepository.extension.localeData.localizeMessage("roleLabel"), null, {});
-	let textboxRoleData = cardbookElementTools.addTableData(rowRole, 'formulaSampleTableData.' + count + '.2', {class: "cardbook-td-input"});
-	let textboxRole = cardbookElementTools.addTextbox(textboxRoleData, 'formulaSampleTextBox' + count, cardbookRepository.extension.localeData.localizeMessage("roleLabel"), {});
+	let textboxRoleData = cardbookElementTools.addHTMLTD(rowRole, 'formulaSampleTableData.' + count + '.2', {class: "cardbook-td-input"});
+	let textboxRole = cardbookElementTools.addHTMLINPUT(textboxRoleData, 'formulaSampleTextBox' + count, cardbookRepository.extension.localeData.localizeMessage("roleLabel"), {});
 	textboxRole.addEventListener("input", changeFnPreview);
 	changeFnPreview();
 };

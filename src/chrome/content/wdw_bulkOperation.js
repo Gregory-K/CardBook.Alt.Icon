@@ -23,11 +23,11 @@ if ("undefined" == typeof(wdw_logEdition)) {
 							// console.log("test : " + message + " : " + done + " / " + total)
 							if (total != done) {
 								if (!(document.getElementById("bulkProgressmeter_" + actionId))) {
-									let currentRow = cardbookElementTools.addTableRow(document.getElementById("bulkOperationTable"), 'bulkOperationRow_' + actionId);
-									let labelData = cardbookElementTools.addTableData(currentRow, 'bulkOperationRowLabel_' + actionId + '.1');
+									let currentRow = cardbookElementTools.addHTMLTR(document.getElementById("bulkOperationTable"), 'bulkOperationRow_' + actionId);
+									let labelData = cardbookElementTools.addHTMLTD(currentRow, 'bulkOperationRowLabel_' + actionId + '.1');
 									cardbookElementTools.addLabel(labelData, 'bulkOperationRowLabel_' + actionId, message, 'bulkOperationProgressmeter_' + actionId);
-									let progressmeterData = cardbookElementTools.addTableData(currentRow, 'bulkOperationRowLabel_' + actionId + '.2');
-									cardbookElementTools.addProgressmeter(progressmeterData, "bulkProgressmeter_" + actionId);
+									let progressmeterData = cardbookElementTools.addHTMLTD(currentRow, 'bulkOperationRowLabel_' + actionId + '.2');
+									cardbookElementTools.addHTMLPROGRESS(progressmeterData, "bulkProgressmeter_" + actionId);
 								}
 								let totalEstimated = cardbookRepository.currentAction[actionId].totalEstimatedCards || total;
 								let value = Math.round(done / totalEstimated * 100);

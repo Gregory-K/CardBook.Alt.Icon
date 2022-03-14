@@ -65,6 +65,7 @@ var cardbookPreferences = {
 		this.setIMPPs(1,"jabber:" + cardbookRepository.extension.localeData.localizeMessage("impp.jabber") + ":xmpp");
 		this.setIMPPs(2,"googletalk:" + cardbookRepository.extension.localeData.localizeMessage("impp.googletalk") + ":gtalk");
 		this.setIMPPs(3,"qq:" + cardbookRepository.extension.localeData.localizeMessage("impp.qq") + ":qq");
+		this.setIMPPs(4,"jami:" + cardbookRepository.extension.localeData.localizeMessage("impp.jami") + ":jami");
 	},
 
 	sortArrayByNumber: function (aArray, aIndex, aInvert) {

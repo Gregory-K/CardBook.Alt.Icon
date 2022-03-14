@@ -2347,26 +2347,24 @@ var cardbookSynchronization = {
 	},
 
 	getAllURLsToDiscover: function (aDirPrefIdToExclude) {
-		var sortedDiscoveryAccounts = [];
-		for (let account of cardbookRepository.cardbookAccounts) {
+		let sortedDiscoveryAccounts = [];
+		let result = [];
+		result = cardbookRepository.cardbookPreferences.getAllPrefIds();
+		for (let dirPrefId of result) {
 			if (aDirPrefIdToExclude != null && aDirPrefIdToExclude !== undefined && aDirPrefIdToExclude != "") {
-				if (account[4] == aDirPrefIdToExclude) {
+				if (dirPrefId == aDirPrefIdToExclude) {
 					continue;
 				}
 			}
-			if (account[1] && account[5] && account[6] == "CARDDAV") {
-				var myUrl = cardbookRepository.cardbookPreferences.getUrl(account[4]);
-				var myShortUrl = cardbookSynchronization.getShortUrl(myUrl);
-				var myUser = cardbookRepository.cardbookPreferences.getUser(account[4]);
-				var found = false;
-				for (var j = 0; j < sortedDiscoveryAccounts.length; j++) {
-					if (sortedDiscoveryAccounts[j][1] == myUser + "::" + myShortUrl) {
-						found = true;
-						break;
-					}
-				}
-				if (!found) {
-					sortedDiscoveryAccounts.push([myUser + " - " + myShortUrl, myUser + "::" + myShortUrl]);
+			let enabled = cardbookRepository.cardbookPreferences.getEnabled(dirPrefId);
+			let type = cardbookRepository.cardbookPreferences.getType(dirPrefId)
+			if (enabled === true && type == "CARDDAV") {
+				let url = cardbookRepository.cardbookPreferences.getUrl(dirPrefId);
+				let shortUrl = cardbookSynchronization.getShortUrl(url);
+				let user = cardbookRepository.cardbookPreferences.getUser(dirPrefId);
+				let isAccountThere = sortedDiscoveryAccounts.filter(element => element[1] == user + "::" + shortUrl);
+				if (isAccountThere.length == 0) {
+					sortedDiscoveryAccounts.push([user + " - " + shortUrl, user + "::" + shortUrl]);
 				}
 			}
 		}

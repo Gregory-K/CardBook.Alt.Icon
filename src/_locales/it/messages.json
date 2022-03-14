@@ -3013,6 +3013,9 @@
 	"impp.qq": {
 		"message": "Tencent QQ"
 	},
+	"impp.jami": {
+		"message": "Jami"
+	},
 	"addToAddressbook": {
 		"message": "Aggiungi a questa rubrica"
 	},
@@ -4465,6 +4468,9 @@
 	"selectAllFieldsLabel": {
 		"message": "Seleziona tutto"
 	},
+	"selectAllDiscoveryLabel": {
+		"message": "Seleziona tutto"
+	},
 	"preferenceGroupboxLabel": {
 		"message": "Campo PREF"
 	},
@@ -4615,6 +4621,12 @@
 	"deleteIMPPAccesskey": {
 		"message": "E"
 	},
+	"resetIMPPLabel": {
+		"message": "Ripristina al Default"
+	},
+	"resetIMPPAccesskey": {
+		"message": "R"
+	},
 	"URLPhoneGroupboxLabel": {
 		"message": "Apertura URL per SoftPhone"
 	},
@@ -4657,16 +4669,16 @@
 	"localDataEncryptionEnabledAccesskey": {
 		"message": "C"
 	},
-	"customFieldRankHeader": {
+	"customFieldRankHeaderLabel": {
 		"message": "Classificazione"
 	},
-	"customFieldCodeHeader": {
+	"customFieldCodeHeaderLabel": {
 		"message": "Nome del campo"
 	},
-	"customFieldLabelHeader": {
+	"customFieldLabelHeaderLabel": {
 		"message": "Etichetta del campo"
 	},
-	"customFieldsPersTitleLabel": {
+		"customFieldsPersTitleLabel": {
 		"message": "Informazioni personali"
 	},
 	"customFieldsPersTitleAccesskey": {
@@ -4801,9 +4813,6 @@
 	"discoveryWarn": {
 		"message": "Ad ogni sincronizzazione, verrà eseguito un controllo sugli URL di seguito per cercare eventuali rubriche nuove o cancellate."
 	},
-	"discoveryAccountsGroupboxLabel": {
-		"message": "Account"
-	},
 	"advancedSyncGroupboxLabel": {
 		"message": "Proprietà avanzate"
 	},
@@ -4846,7 +4855,7 @@
 	"accountsVCardsEnabledLabel": {
 		"message": "Abilitato"
 	},
-	"accountsVCardsMailLabel": {
+	"accountsVCardsMailNameLabel": {
 		"message": "Account email"
 	},
 	"accountsVCardsABNameLabel": {
