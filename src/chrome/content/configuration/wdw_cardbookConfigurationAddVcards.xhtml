@@ -1,0 +1,74 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?xml-stylesheet type="text/css" href="chrome://messenger/skin/addressbook/abContactsPanel.css"?>
+<?xml-stylesheet type="text/css" href="chrome://cardbook/content/skin/cardbookAddressBooks.css"?>
+<!-- for MailList icon -->
+<?xml-stylesheet type="text/css" href="chrome://cardbook/content/skin/cardbookCardsIcon.css"?>
+<!-- for the textbox -->
+<?xml-stylesheet type="text/css" href="chrome://messenger/skin/input-fields.css"?>
+<!-- for the display -->
+<?xml-stylesheet type="text/css" href="chrome://messenger/skin/themeableDialog.css"?>
+
+<window xmlns="http://www.mozilla.org/keymaster/gatekeeper/there.is.only.xul"
+	xmlns:xhtml="http://www.w3.org/1999/xhtml"
+	xmlns:html="http://www.w3.org/1999/xhtml"
+	onload="onLoadDialog();" resizable="true"
+	onclose="onCancelDialog();"
+	id="wdw_cardbookConfigurationAddVcards" title="__MSG_wdw_cardbookConfigurationAddVcardTitle__"
+	persist="screenX screenY width height"
+	lightweightthemes="true"
+	style="min-width:400px;min-height:400px;">
+	
+	<script type="application/x-javascript" src="chrome://cardbook/content/cardbookElementTools.js"/>
+	<script type="application/x-javascript" src="chrome://cardbook/content/configuration/wdw_cardbookConfigurationAddVcards.js"/>
+	<script type="application/x-javascript" src="chrome://cardbook/content/scripts/i18n.js"/>
+	<!-- for the textbox -->
+	<script type="application/x-javascript" src="chrome://global/content/globalOverlay.js"/>
+	<script type="application/x-javascript" src="chrome://global/content/editMenuOverlay.js"/>
+
+	<dialog id="wdw_cardbookConfigurationAddVcardsDialog"
+		buttons="accept,cancel">
+
+		<keyset id="wdw_cardbookConfigurationAddVcards-keys">
+			<key keycode="VK_ESCAPE" oncommand="onCancelDialog();"/>
+		</keyset>
+
+		<hbox flex="1">
+			<vbox flex="1">
+				<grid align="center" flex="1">
+					<columns>
+						<column/>
+						<column flex="1"/>
+					</columns>
+					<rows>
+						<row align="center">
+							<label value="__MSG_mailAccountLabel__" control="mailAccountMenulist"/>
+							<menulist id="mailAccountMenulist">
+								<menupopup id="mailAccountMenupopup"/>
+							</menulist>
+						</row>
+						<row align="center">
+							<label value="__MSG_addressbookLabel__" control="CardBookABMenulist"/>
+							<menulist id="CardBookABMenulist" oncommand="loadContacts();">
+								<menupopup id="CardBookABMenupopup"/>
+							</menulist>
+						</row>
+						<row align="center">
+							<label value="__MSG_contactVcardLabel__" control="contactMenulist"/>
+							<menulist id="contactMenulist" oncommand="changeFileName();changeVCard();">
+								<menupopup id="contactMenupopup"/>
+							</menulist>
+						</row>
+						<row align="center">
+							<label value="__MSG_filenameLabel__" control="filenameLabel"/>
+							<html:input id="filenameTextbox"/>
+						</row>
+						<row id="VCardRow" align="center">
+							<label value="__MSG_vCardLabel__" control="filenameLabel"/>
+							<html:textarea id="VCardTextbox"/>
+						</row>
+					</rows>
+				</grid>
+			</vbox>
+		</hbox>
+	</dialog>
+</window>

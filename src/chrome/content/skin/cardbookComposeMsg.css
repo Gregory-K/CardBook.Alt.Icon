@@ -1,0 +1,7 @@
+#cardbookMenuItem {
+	list-style-image: url("chrome://cardbook/content/skin/cardbook.svg");
+}
+
+#cardbookComposeToolbarButton {
+	list-style-image: url("chrome://cardbook/content/skin/cardbook.svg");
+}

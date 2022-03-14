@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?xml-stylesheet href="chrome://messenger/skin/addressbook/abContactsPanel.css" type="text/css"?>
+<?xml-stylesheet href="chrome://cardbook/content/skin/cardbookAddressBooks.css" type="text/css"?>
+<!-- for the display -->
+<?xml-stylesheet type="text/css" href="chrome://messenger/skin/themeableDialog.css"?>
+
+<window xmlns="http://www.mozilla.org/keymaster/gatekeeper/there.is.only.xul"
+	xmlns:xhtml="http://www.w3.org/1999/xhtml"
+	xmlns:html="http://www.w3.org/1999/xhtml"
+	onload="onLoadDialog();" resizable="true"
+	onclose="onCancelDialog();"
+	id="wdw_cardbookConfigurationAddEmails"
+	persist="screenX screenY width height"
+	lightweightthemes="true"
+	style="min-width:400px;min-height:200px;">
+	
+	<script type="application/x-javascript" src="chrome://cardbook/content/cardbookElementTools.js"/>
+	<script type="application/x-javascript" src="chrome://cardbook/content/configuration/wdw_cardbookConfigurationAddEmails.js"/>
+	<script type="application/x-javascript" src="chrome://cardbook/content/scripts/i18n.js"/>
+
+	<dialog id="wdw_cardbookConfigurationAddEmailsDialog"
+		buttons="accept,cancel">
+
+		<keyset id="wdw_cardbookConfigurationAddEmails-keys">
+			<key keycode="VK_ESCAPE" oncommand="onCancelDialog();"/>
+		</keyset>
+	
+		<hbox flex="1">
+			<vbox flex="1">
+				<grid align="center" flex="1">
+					<columns>
+						<column/>
+						<column flex="1"/>
+					</columns>
+					<rows>
+						<row id="typeRow" align="center">
+							<label value="__MSG_typeLabel__" control="typeMenulist"/>
+							<menulist id="typeMenulist">
+								<menupopup id="typeMenupopup"/>
+							</menulist>
+						</row>
+						<row align="center">
+							<label value="__MSG_mailAccountLabel__" control="mailAccountMenulist"/>
+							<menulist id="mailAccountMenulist">
+								<menupopup id="mailAccountMenupopup"/>
+							</menulist>
+						</row>
+						<row align="center">
+							<label value="__MSG_addressbookLabel__" control="CardBookABMenulist"/>
+							<menulist id="CardBookABMenulist" oncommand="loadCategories();">
+								<menupopup id="CardBookABMenupopup"/>
+							</menulist>
+						</row>
+						<row align="center">
+							<label value="__MSG_categoryLabel__" control="categoryMenulist"/>
+							<menulist id="categoryMenulist">
+								<menupopup id="categoryMenupopup"/>
+							</menulist>
+						</row>
+					</rows>
+				</grid>
+			</vbox>
+		</hbox>
+	</dialog>
+</window>

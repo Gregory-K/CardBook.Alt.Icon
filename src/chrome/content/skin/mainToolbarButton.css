@@ -1,0 +1,33 @@
+.icon-holder[type="cardbookTab"],
+.tabmail-tab[type="cardbookTab"] {
+	list-style-image: url("chrome://cardbook/content/skin/cardbook.svg");
+}
+
+#cardbookMenuItem {
+	list-style-image: url("chrome://cardbook/content/skin/cardbook.svg");
+}
+
+#qfb-cardbook,
+#cardbookToolbarButton {
+	list-style-image: url("chrome://cardbook/content/skin/cardbook.svg");
+}
+
+#cardbookTabButton {
+	list-style-image: url("chrome://cardbook/content/skin/cardbook.svg");
+}
+
+
+#cardbookFolderPaneToolbar {
+	min-height: 24px;
+	border-bottom: 1px solid ThreeDShadow;
+}
+#cardbookFolderPaneToolbar > #accountsOrCatsTreeToolbaritem {
+	-moz-box-flex: 1;
+}
+#cardbookFolderPaneToolbar > .toolbarbutton-1,
+#cardbookFolderPaneToolbar > toolbaritem > menulist {
+	margin: 0;
+}
+#cardbookFolderPaneToolbar > :-moz-any(*) + :-moz-any(*) {
+	margin-inline-start: 2px;
+}

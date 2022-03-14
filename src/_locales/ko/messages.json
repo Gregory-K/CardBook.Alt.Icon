@@ -1,0 +1,5868 @@
+{
+	"extName": {
+		"message": "CardBook"
+	},
+	"extDesc": {
+		"message": "가상 카드(vCard) 주소록"
+	},
+	"browserActionTitle": {
+		"message": "CardBook",
+		"description": "연락처 탭으로 전환하십시오"
+	},
+	"cardbookTitle": {
+		"message": "CardBook"
+	},
+	"cardbookPrefTitle": {
+		"message": "CardBook 환경 설정"
+	},
+	"statusProgressInformationTooltip": {
+		"message": "로그를 보려면 여기를 클릭하십시오"
+	},
+	"imageSelectionTitle": {
+		"message": "이미지 선택"
+	},
+	"imageSaveTitle": {
+		"message": "이미지 저장"
+	},
+	"fileSaveTitle": {
+		"message": "파일 저장"
+	},
+	"dirSaveTitle": {
+		"message": "디렉토리 저장"
+	},
+	"dirChooseTitle": {
+		"message": "디렉토리 선택"
+	},
+	"fileCreationVCFTitle": {
+		"message": "새 VCF 파일 만들기 (UTF-8 인코딩)"
+	},
+	"fileSelectionVCFTitle": {
+		"message": "기존 VCF 파일 열기 (UTF-8 인코딩)"
+	},
+	"fileImportTitle": {
+		"message": "VCF 파일 가져 오기 (UTF-8 인코딩)"
+	},
+	"dirImportTitle": {
+		"message": "디렉토리에서 가져오기"
+	},
+	"fileCreationTPLTitle": {
+		"message": "새 TPL 파일 만들기"
+	},
+	"fileSelectionTPLTitle": {
+		"message": "기존 TPL 파일 열기"
+	},
+	"fileSelectionTitle": {
+		"message": "링크 주소"
+	},
+	"fileSelectionGPGTitle": {
+		"message": "파일에서 가져오기"
+	},
+	"uncategorizedCards": {
+		"message": "카테고리 없음"
+	},
+	"enableFromAccountsOrCats": {
+		"message": "주소록 활성화"
+	},
+	"disableFromAccountsOrCats": {
+		"message": "주소록 비활성화"
+	},
+	"readWriteFromAccountsOrCats": {
+		"message": "주소록을 읽기-쓰기 모드로 설정"
+	},
+	"readOnlyFromAccountsOrCats": {
+		"message": "주소록을 읽기 전용 모드로 설정"
+	},
+	"createCategoryFromAccountsOrCats": {
+		"message": "카테고리 생성"
+	},
+	"editCategoryFromAccountsOrCats": {
+		"message": "카테고리 편집"
+	},
+	"removeCategoryFromAccountsOrCats": {
+		"message": "카테고리 삭제"
+	},
+	"convertCategoryFromAccountsOrCats": {
+		"message": "카테고리를 목록으로 변환"
+	},
+	"editNodeFromAccountsOrCats": {
+		"message": "노드 수정"
+	},
+	"removeNodeFromAccountsOrCats": {
+		"message": "노드 제거"
+	},
+	"convertNodeFromAccountsOrCats": {
+		"message": "노드에서 목록 생성"
+	},
+	"viewCardButtonLabel": {
+		"message": "보기"
+	},
+	"editCardButtonLabel": {
+		"message": "수정"
+	},
+	"viewInCardBookMenuLabel": {
+		"message": "CardBook으로 보기"
+	},
+	"mergeCardsLabel": {
+		"message": "연락처 병합"
+	},
+	"forgetCardsLabel": {
+		"message": "잊기"
+	},
+	"deleteCardsLabel": {
+		"message": "삭제"
+	},
+	"showForgottenLabel": {
+		"message": "잊어버린 중복된 연락처 표시"
+	},
+	"showForgottenAccesskey": {
+		"message": "S"
+	},
+	"hideForgottenLabel": {
+		"message": "잊어버린 중복된 연락처 숨기기"
+	},
+	"hideForgottenAccesskey": {
+		"message": "H"
+	},
+	"noContactsDuplicated": {
+		"message": "중복된 연락처가 없습니다"
+	},
+	"targetCategoryLabel": {
+		"message": "결과"
+	},
+	"sourceCategoryLabel": {
+		"message": "소스"
+	},
+	"serverWarningGoogleLabel": {
+		"message": "Google은 vCard 표준을 준수하지 않기 때문에 실험 단계입니다."
+	},
+	"Validating1Label": {
+		"message": "인증 중($P1$)…",
+        "placeholders": {
+            "P1": {
+                "content": "$1"
+            }
+        }
+	},
+	"Validating2Label": {
+		"message": "인증 중…"
+	},
+	"ValidatingURLFailedLabel": {
+		"message": "URL 주소가 잘못되었습니다"
+	},
+	"ValidatingEmailFailedLabel": {
+		"message": "유효한 이메일이 필요합니다"
+	},
+	"ValidationFailedLabel": {
+		"message": "인증 실패"
+	},
+	"ValidationOKLabel": {
+		"message": "인증 성공"
+	},
+	"passwordApplicationRequiredLabel": {
+		"message": "해당 계정에 대한 앱 비밀번호가 필요합니다"
+	},
+	"customFieldsErrorUPPERCASE": {
+		"message": "사용자 정의 필드 이름은 대문자여야합니다: $P1$",
+        "placeholders": {
+            "P1": {
+                "content": "$1"
+            }
+        }
+	},
+	"customFieldsErrorX": {
+		"message": "사용자 정의 필드 이름은 X- 로 시작해야 합니다: $P1$",
+        "placeholders": {
+            "P1": {
+                "content": "$1"
+            }
+        }
+	},
+	"customFieldsErrorFIELD": {
+		"message": "$P1$는 예약어이므로 사용자 정의 필드 이름으로 사용할 수 없습니다",
+        "placeholders": {
+            "P1": {
+                "content": "$1"
+            }
+        }
+	},
+	"customFieldsErrorCHAR": {
+		"message": "사용자 정의 필드 이름에는 쉼표, 세미콜론, 콜론 또는 점과 같은 이스케이프 문자를 사용할 수 없습니다: $P1$",
+        "placeholders": {
+            "P1": {
+                "content": "$1"
+            }
+        }
+	},
+	"customFieldsErrorUNIQUE": {
+		"message": "맞춤 입력란 이름은 고유해야합니다(맞춤 입력란은 여러 탭에 정의되어 있습니다)"
+	},
+	"customFieldsErrorLABEL": {
+		"message": "맞춤 필드 레이블은 비어있을 수 없습니다."
+	},
+	"allContactsLoadedFromFile": {
+		"message": "$P1$ : 파일에서 모든 연락처 로드 됨.",
+        "placeholders": {
+            "P1": {
+                "content": "$1"
+            }
+        }
+	},
+	"notAllContactsLoadedFromFile": {
+		"message": "$P1$ : 파일에서 모든 연락처가 로드되지 않았습니다 : $P2$ 에러 발생.",
+        "placeholders": {
+            "P1": {
+                "content": "$1"
+            },
+            "P2": {
+                "content": "$2"
+            }
+        }
+	},
+	"synchroRunning": {
+		"message": "$P1$ : 동기화 실행 중",
+        "placeholders": {
+            "P1": {
+                "content": "$1"
+            }
+        }
+	},
+	"synchroNotTried": {
+		"message": "$P1$ : 동기화 시도되지 않음",
+        "placeholders": {
+            "P1": {
+                "content": "$1"
+            }
+        }
+	},
+	"synchroFinished": {
+		"message": "$P1$ : 동기화 완료 됨",
+        "placeholders": {
+            "P1": {
+                "content": "$1"
+            }
+        }
+	},
+	"synchroFinishedResult": {
+		"message": "$P1$ : 동기화 완료 됨, 연락처 결과:",
+        "placeholders": {
+            "P1": {
+                "content": "$1"
+            }
+        }
+	},
+	"synchroProcessed": {
+		"message": "처리 된 연락처: $P1$/$P2$",
+        "placeholders": {
+            "P1": {
+                "content": "$1"
+            },
+            "P2": {
+                "content": "$2"
+            }
+        }
+	},
+	"synchroCardsUpToDate": {
+		"message": "$P1$ : 최신 상태 연락처 : $P2$",
+        "placeholders": {
+            "P1": {
+                "content": "$1"
+            },
+            "P2": {
+                "content": "$2"
+            }
+        }
+	},
+	"synchroCardsNewOnServer": {
+		"message": "$P1$ : 서버에서 새로운 연락처 : $P2$",
+        "placeholders": {
+            "P1": {
+                "content": "$1"
+            },
+            "P2": {
+                "content": "$2"
+            }
+        }
+	},
+	"synchroCardsUpdatedOnServer": {
+		"message": "$P1$ : 서버에서 업데이트 된 연락처 : $P2$",
+        "placeholders": {
+            "P1": {
+                "content": "$1"
+            },
+            "P2": {
+                "content": "$2"
+            }
+        }
+	},
+	"synchroCardsDeletedOnServer": {
+		"message": "$P1$ : 서버에서 삭제된 연락처 : $P2$",
+        "placeholders": {
+            "P1": {
+                "content": "$1"
+            },
+            "P2": {
+                "content": "$2"
+            }
+        }
+	},
+	"synchroCardsDeletedOnDisk": {
+		"message": "$P1$ : 로컬에서 삭제된 연락처 : $P2$",
+        "placeholders": {
+            "P1": {
+                "content": "$1"
+            },
+            "P2": {
+                "content": "$2"
+            }
+        }
+	},
+	"synchroCardsDeletedOnDiskUpdatedOnServer": {
+		"message": "$P1$ : 로컬에서 삭제되고 서버에서 업데이트된 연락처 : $P2$",
+        "placeholders": {
+            "P1": {
+                "content": "$1"
+            },
+            "P2": {
+                "content": "$2"
+            }
+        }
+	},
+	"synchroCardsNewOnDisk": {
+		"message": "$P1$ : 새로운 로컬 연락처 : $P2$",
+        "placeholders": {
+            "P1": {
+                "content": "$1"
+            },
+            "P2": {
+                "content": "$2"
+            }
+        }
+	},
+	"synchroCardsUpdatedOnDisk": {
+		"message": "$P1$ : 로컬에서 업데이트된 연락처 : $P2$",
+        "placeholders": {
+            "P1": {
+                "content": "$1"
+            },
+            "P2": {
+                "content": "$2"
+            }
+        }
+	},
+	"synchroCardsUpdatedOnBoth": {
+		"message": "$P1$ : 로컬과 서버에서 업데이트된 연락처 : $P2$",
+        "placeholders": {
+            "P1": {
+                "content": "$1"
+            },
+            "P2": {
+                "content": "$2"
+            }
+        }
+	},
+	"synchroCardsUpdatedOnDiskDeletedOnServer": {
+		"message": "$P1$ : 로컬에서 업데이트되고 서버에서 삭제된 연락처 : $P2$",
+        "placeholders": {
+            "P1": {
+                "content": "$1"
+            },
+            "P2": {
+                "content": "$2"
+            }
+        }
+	},
+	"synchroCategoriesUpToDate": {
+		"message": "$P1$ : 최신 카테고리 : $P2$",
+        "placeholders": {
+            "P1": {
+                "content": "$1"
+            },
+            "P2": {
+                "content": "$2"
+            }
+        }
+	},
+	"synchroCategoriesNewOnServer": {
+		"message": "$P1$ : 서버에서 새로운 카테고리 : $P2$",
+        "placeholders": {
+            "P1": {
+                "content": "$1"
+            },
+            "P2": {
+                "content": "$2"
+            }
+        }
+	},
+	"synchroCategoriesUpdatedOnServer": {
+		"message": "$P1$ : 서버에서 업데이트된 카테고리 : $P2$",
+        "placeholders": {
+            "P1": {
+                "content": "$1"
+            },
+            "P2": {
+                "content": "$2"
+            }
+        }
+	},
+	"synchroCategoriesDeletedOnServer": {
+		"message": "$P1$ : 서버에서 삭제된 카테고리 : $P2$",
+        "placeholders": {
+            "P1": {
+                "content": "$1"
+            },
+            "P2": {
+                "content": "$2"
+            }
+        }
+	},
+	"synchroCategoriesDeletedOnDisk": {
+		"message": "$P1$ : 로컬에서 삭제된 카테고리 : $P2$",
+        "placeholders": {
+            "P1": {
+                "content": "$1"
+            },
+            "P2": {
+                "content": "$2"
+            }
+        }
+	},
+	"synchroCategoriesDeletedOnDiskUpdatedOnServer": {
+		"message": "$P1$ : 로컬에서 삭제되고 서버에서 업데이트된 카테고리 : $P2$",
+        "placeholders": {
+            "P1": {
+                "content": "$1"
+            },
+            "P2": {
+                "content": "$2"
+            }
+        }
+	},
+	"synchroCategoriesNewOnDisk": {
+		"message": "$P1$ : 로컬에서 새로운 카테고리 : $P2$",
+        "placeholders": {
+            "P1": {
+                "content": "$1"
+            },
+            "P2": {
+                "content": "$2"
+            }
+        }
+	},
+	"synchroCategoriesUpdatedOnDisk": {
+		"message": "$P1$ : 로컬에서 업데이트된 카테고리 : $P2$",
+        "placeholders": {
+            "P1": {
+                "content": "$1"
+            },
+            "P2": {
+                "content": "$2"
+            }
+        }
+	},
+	"synchroCategoriesUpdatedOnBoth": {
+		"message": "$P1$ : 로컬과 서버에서 업데이트된 카테고리 : $P2$",
+        "placeholders": {
+            "P1": {
+                "content": "$1"
+            },
+            "P2": {
+                "content": "$2"
+            }
+        }
+	},
+	"synchroCategoriesUpdatedOnDiskDeletedOnServer": {
+		"message": "$P1$ : 로컬에서 업데이트되고 서버에서 삭제된 카테고리 : $P2$",
+        "placeholders": {
+            "P1": {
+                "content": "$1"
+            },
+            "P2": {
+                "content": "$2"
+            }
+        }
+	},
+	"synchroModifGetOKFromServer": {
+		"message": "$P1$ : 서버에서 성공적으로 전달 받은 수정 사항 : $P2$",
+        "placeholders": {
+            "P1": {
+                "content": "$1"
+            },
+            "P2": {
+                "content": "$2"
+            }
+        }
+	},
+	"synchroModifGetKOFromServer": {
+		"message": "$P1$ : 서버에서 전달 받는데 실패한 수정 사항 : $P2$",
+        "placeholders": {
+            "P1": {
+                "content": "$1"
+            },
+            "P2": {
+                "content": "$2"
+            }
+        }
+	},
+	"synchroModifPutOKToServer": {
+		"message": "$P1$ : 성공적으로 서버에 푸시한 수정 사항 : $P2$",
+        "placeholders": {
+            "P1": {
+                "content": "$1"
+            },
+            "P2": {
+                "content": "$2"
+            }
+        }
+	},
+	"synchroModifPutKOToServer": {
+		"message": "$P1$ : 서버에 푸시하는데 실패한 수정 사항 : $P2$",
+        "placeholders": {
+            "P1": {
+                "content": "$1"
+            },
+            "P2": {
+                "content": "$2"
+            }
+        }
+	},
+	"synchroImpossible": {
+		"message": "$P1$ : 서버와의 동기화가 불가능합니다.",
+        "placeholders": {
+            "P1": {
+                "content": "$1"
+            }
+        }
+	},
+	"synchroDBFinishedResult": {
+		"message": "$P1$ : 로컬 데이터베이스 열림, 연락처 결과 :",
+        "placeholders": {
+            "P1": {
+                "content": "$1"
+            }
+        }
+	},
+	"synchroDBCardsOK": {
+		"message": "$P1$ : 연락처 열림 : $P2$",
+        "placeholders": {
+            "P1": {
+                "content": "$1"
+            },
+            "P2": {
+                "content": "$2"
+            }
+        }
+	},
+	"synchroDBCardsKO": {
+		"message": "$P1$ : 오류가 있는 연락처 : $P2$",
+        "placeholders": {
+            "P1": {
+                "content": "$1"
+            },
+            "P2": {
+                "content": "$2"
+            }
+        }
+	},
+	"synchroDirFinishedResult": {
+		"message": "$P1$ : 디렉토리 열림, 연락처 결과 :",
+        "placeholders": {
+            "P1": {
+                "content": "$1"
+            }
+        }
+	},
+	"synchroDirCardsOK": {
+		"message": "$P1$ : 연락처 열림 : $P2$",
+        "placeholders": {
+            "P1": {
+                "content": "$1"
+            },
+            "P2": {
+                "content": "$2"
+            }
+        }
+	},
+	"synchroDirCardsKO": {
+		"message": "$P1$ : 오류가 있는 연락처 : $P2$",
+        "placeholders": {
+            "P1": {
+                "content": "$1"
+            },
+            "P2": {
+                "content": "$2"
+            }
+        }
+	},
+	"synchroFileFinishedResult": {
+		"message": "$P1$ : 파일 열림, 연락처 결과 :",
+        "placeholders": {
+            "P1": {
+                "content": "$1"
+            }
+        }
+	},
+	"synchroFileCardsOK": {
+		"message": "$P1$ : 연락처 열림 : $P2$",
+        "placeholders": {
+            "P1": {
+                "content": "$1"
+            },
+            "P2": {
+                "content": "$2"
+            }
+        }
+	},
+	"synchroFileCardsKO": {
+		"message": "$P1$ : 오류가 있는 연락처 : $P2$",
+        "placeholders": {
+            "P1": {
+                "content": "$1"
+            },
+            "P2": {
+                "content": "$2"
+            }
+        }
+	},
+	"synchroForcedToResync": {
+		"message": "$P1$ : 이 계정을 다시 동기화해야 합니다",
+        "placeholders": {
+            "P1": {
+                "content": "$1"
+            }
+        }
+	},
+	"synchroAllFinished": {
+		"message": "모든 동기화 완료"
+	},
+	"discoveryRunning": {
+		"message": "$P1$ : 주소록 자동 검색 실행 중",
+        "placeholders": {
+            "P1": {
+                "content": "$1"
+            }
+        }
+	},
+	"imageGetResponse": {
+		"message": "$P1$ : 다운로드 된 이미지 : $P2$",
+        "placeholders": {
+            "P1": {
+                "content": "$1"
+            },
+            "P2": {
+                "content": "$2"
+            }
+        }
+	},
+	"imageGetError": {
+		"message": "$P1$ : 오류가 있는 이미지 : $P2$",
+        "placeholders": {
+            "P1": {
+                "content": "$1"
+            },
+            "P2": {
+                "content": "$2"
+            }
+        }
+	},
+	"importFinishedResult": {
+		"message": "$P1$ : 가져오기 완료, 연락처 결과 :",
+        "placeholders": {
+            "P1": {
+                "content": "$1"
+            }
+        }
+	},
+	"importCardsOK": {
+		"message": "$P1$ : 가져오기 한 연락처 : $P2$",
+        "placeholders": {
+            "P1": {
+                "content": "$1"
+            },
+            "P2": {
+                "content": "$2"
+            }
+        }
+	},
+	"importCardsKO": {
+		"message": "$P1$ : 오류가 있는 연락처 : $P2$",
+        "placeholders": {
+            "P1": {
+                "content": "$1"
+            },
+            "P2": {
+                "content": "$2"
+            }
+        }
+	},
+	"importAllFinished": {
+		"message": "모든 가져오기 완료"
+	},
+	"cardDeletedOnDisk": {
+		"message": "$P1$ : 연락처 $P2$이(가) 로컬에서 삭제됨",
+        "placeholders": {
+            "P1": {
+                "content": "$1"
+            },
+            "P2": {
+                "content": "$2"
+            }
+        }
+	},
+	"cardUpdatedOnDisk": {
+		"message": "$P1$ : 연락처 $P2$이(가) 로컬에서 업데이트됨",
+        "placeholders": {
+            "P1": {
+                "content": "$1"
+            },
+            "P2": {
+                "content": "$2"
+            }
+        }
+	},
+	"cardAlreadyGetFromCache": {
+		"message": "$P1$ : 연락처 $P2$을(를) 이미 캐시에서 받아 옴",
+        "placeholders": {
+            "P1": {
+                "content": "$1"
+            },
+            "P2": {
+                "content": "$2"
+            }
+        }
+	},
+	"cardDeletedOnDiskUpdatedOnServer": {
+		"message": "$P1$ : 연락처 $P2$이(가) 로컬에서 삭제되고 서버에서 업데이트됨",
+        "placeholders": {
+            "P1": {
+                "content": "$1"
+            },
+            "P2": {
+                "content": "$2"
+            }
+        }
+	},
+	"cardUpdatedOnBoth": {
+		"message": "$P1$ : 연락처 $P2$이(가) 로컬과 서버에서 업데이트됨",
+        "placeholders": {
+            "P1": {
+                "content": "$1"
+            },
+            "P2": {
+                "content": "$2"
+            }
+        }
+	},
+	"cardUpdatedOnServer": {
+		"message": "$P1$ : 연락처 $P2$이(가) 서버에서 업데이트 됨 (발견된 전자 태그: $P3$, 캐시된 전자 태그: $P4$)",
+        "placeholders": {
+            "P1": {
+                "content": "$1"
+            },
+            "P2": {
+                "content": "$2"
+            },
+            "P3": {
+                "content": "$3"
+            },
+            "P4": {
+                "content": "$4"
+            }
+        }
+	},
+	"cardNewOnServer": {
+		"message": "$P1$ : 서버에서 새 연락처를 찾았습니다",
+        "placeholders": {
+            "P1": {
+                "content": "$1"
+            }
+        }
+	},
+	"cardLoadedFromCacheDB": {
+		"message": "$P1$ : 연락처 $P2$이(가) 캐시에서 로드 됨 (IndexedDB)",
+        "placeholders": {
+            "P1": {
+                "content": "$1"
+            },
+            "P2": {
+                "content": "$2"
+            }
+        }
+	},
+	"cardNewOnDisk": {
+		"message": "$P1$ : 로컬에서 새로운 연락처 $P2$",
+        "placeholders": {
+            "P1": {
+                "content": "$1"
+            },
+            "P2": {
+                "content": "$2"
+            }
+        }
+	},
+	"cardUpdatedOnDiskDeletedOnServer": {
+		"message": "$P1$ : 연락처 $P2$이(가) 로컬에서 업데이트되고 서버에서 삭제됨",
+        "placeholders": {
+            "P1": {
+                "content": "$1"
+            },
+            "P2": {
+                "content": "$2"
+            }
+        }
+	},
+	"cardDeletedOnServer": {
+		"message": "$P1$ : 연락처 $P2$이(가) 서버에서 삭제됨",
+        "placeholders": {
+            "P1": {
+                "content": "$1"
+            },
+            "P2": {
+                "content": "$2"
+            }
+        }
+	},
+	"cardAlreadyExists": {
+		"message": "$P1$ : 연락처 $P2$이(가) 이미 존재 함",
+        "placeholders": {
+            "P1": {
+                "content": "$1"
+            },
+            "P2": {
+                "content": "$2"
+            }
+        }
+	},
+	"cardAskUserTitle": {
+		"message": "연락처 수정 충돌"
+	},
+	"askUserPersistMessage": {
+		"message": "다른 기존 연락처에이 선택 사항 적용"
+	},
+	"cardkeepAskUserLabel": {
+		"message": "연락처 유지"
+	},
+	"cardupdateAskUserLabel": {
+		"message": "연락처 덮어 쓰기"
+	},
+	"cardduplicateAskUserLabel": {
+		"message": "연락처 복제"
+	},
+	"carddeleteAskUserLabel": {
+		"message": "연락처 삭제"
+	},
+	"cardlocalAskUserLabel": {
+		"message": "로컬 변경 사항 우선"
+	},
+	"cardremoteAskUserLabel": {
+		"message": "원격 변경 사항 우선"
+	},
+	"cardmergeAskUserLabel": {
+		"message": "차이점 병합"
+	},
+	"serverCardDeletedFromServer": {
+		"message": "$P1$ : 연락처 $P2$이(가) 서버에서 삭제 됨",
+        "placeholders": {
+            "P1": {
+                "content": "$1"
+            },
+            "P2": {
+                "content": "$2"
+            }
+        }
+	},
+	"serverCardNotExistServer": {
+		"message": "$P1$ : 연락처 $P2$가 서버에 존재하지 않음",
+        "placeholders": {
+            "P1": {
+                "content": "$1"
+            },
+            "P2": {
+                "content": "$2"
+            }
+        }
+	},
+	"serverCardDeleteFailed": {
+		"message": "$P1$ : 연락처 $P2$을(를) 서버에서 삭제하지 못했습니다 (URL 주소: $P3$, 상태: $P4$)",
+        "placeholders": {
+            "P1": {
+                "content": "$1"
+            },
+            "P2": {
+                "content": "$2"
+            },
+            "P3": {
+                "content": "$3"
+            },
+            "P4": {
+                "content": "$4"
+            }
+        }
+	},
+	"serverCardSendingDeletion": {
+		"message": "$P1$ : 연락처 $P2$ : 삭제 요청을 보내는 중 …",
+        "placeholders": {
+            "P1": {
+                "content": "$1"
+            },
+            "P2": {
+                "content": "$2"
+            }
+        }
+	},
+	"serverCardUpdatedOnServerWithEtag": {
+		"message": "$P1$ : 연락처 $P2$가 서버에서 업데이트 됨 (전자 태그: $P3$)",
+        "placeholders": {
+            "P1": {
+                "content": "$1"
+            },
+            "P2": {
+                "content": "$2"
+            },
+            "P3": {
+                "content": "$3"
+            }
+        }
+	},
+	"serverCardUpdatedOnServerWithoutEtag": {
+		"message": "$P1$ : 연락처 $P2$가 서버에서 업데이트 됨 (전자 태그 응답 없음)",
+        "placeholders": {
+            "P1": {
+                "content": "$1"
+            },
+            "P2": {
+                "content": "$2"
+            }
+        }
+	},
+	"serverCardUpdateFailed": {
+		"message": "$P1$ : 연락처 $P2$가 서버에서 업데이트하지 못했습니다 (URL 주소: $P3$, 상태: $P4$)",
+        "placeholders": {
+            "P1": {
+                "content": "$1"
+            },
+            "P2": {
+                "content": "$2"
+            },
+            "P3": {
+                "content": "$3"
+            },
+            "P4": {
+                "content": "$4"
+            }
+        }
+	},
+	"serverCardSendingUpdate": {
+		"message": "$P1$ : 연락처 $P2$: 업데이트 요청 보내기 중 …",
+        "placeholders": {
+            "P1": {
+                "content": "$1"
+            },
+            "P2": {
+                "content": "$2"
+            }
+        }
+	},
+	"serverCardCreatedOnServerWithEtag": {
+		"message": "$P1$ : 연락처 $P2$가 서버에 생성 (전자 태그: $P3$)",
+        "placeholders": {
+            "P1": {
+                "content": "$1"
+            },
+            "P2": {
+                "content": "$2"
+            },
+            "P3": {
+                "content": "$3"
+            }
+        }
+	},
+	"serverCardCreatedOnServerWithoutEtag": {
+		"message": "$P1$ : 연락처 $P2$가 서버에 생성 (전자 태그 응답없음)",
+        "placeholders": {
+            "P1": {
+                "content": "$1"
+            },
+            "P2": {
+                "content": "$2"
+            }
+        }
+	},
+	"serverCardCreateFailed": {
+		"message": "$P1$ : 서버에서 연락처 $P2$ 생성 실패 (URL 주소: $P3$, 상태: $P4$)",
+        "placeholders": {
+            "P1": {
+                "content": "$1"
+            },
+            "P2": {
+                "content": "$2"
+            },
+            "P3": {
+                "content": "$3"
+            },
+            "P4": {
+                "content": "$4"
+            }
+        }
+	},
+	"serverCardSendingCreate": {
+		"message": "$P1$ : 연락처 $P2$: 생성 요청 보내기 중 …",
+        "placeholders": {
+            "P1": {
+                "content": "$1"
+            },
+            "P2": {
+                "content": "$2"
+            }
+        }
+	},
+	"serverCardGetImageFailed": {
+		"message": "$P1$ : $P2$ 연락처에서 이미지를 다운로드하지 못했습니다 (주소: $P3$, 상태: $P4$)",
+        "placeholders": {
+            "P1": {
+                "content": "$1"
+            },
+            "P2": {
+                "content": "$2"
+            },
+            "P3": {
+                "content": "$3"
+            },
+            "P4": {
+                "content": "$4"
+            }
+        }
+	},
+	"serverCardGetImageOK": {
+		"message": "$P1$ : 연락처 $P2$를 위한 이미지 다운로드 완료",
+        "placeholders": {
+            "P1": {
+                "content": "$1"
+            },
+            "P2": {
+                "content": "$2"
+            }
+        }
+	},
+	"serverCardGettingImage": {
+		"message": "$P1$ : 연락처 $P2$를 위한 이미지 다운로드 중 …",
+        "placeholders": {
+            "P1": {
+                "content": "$1"
+            },
+            "P2": {
+                "content": "$2"
+            }
+        }
+	},
+	"serverCardGetKeyFailed": {
+		"message": "$P1$ : 연락처 $P2$에 대한 키 다운로드 실패 (URL 주소 : $P3$, 상태 : $P4$)",
+        "placeholders": {
+            "P1": {
+                "content": "$1"
+            },
+            "P2": {
+                "content": "$2"
+            },
+            "P3": {
+                "content": "$3"
+            },
+            "P4": {
+                "content": "$4"
+            }
+        }
+	},
+	"serverCardGetKeyOK": {
+		"message": "$P1$ : 연락처 $P2$를 위한 키 다운로드 완료",
+        "placeholders": {
+            "P1": {
+                "content": "$1"
+            },
+            "P2": {
+                "content": "$2"
+            }
+        }
+	},
+	"serverCardGettingKey": {
+		"message": "$P1$ : 연락처 $P2$를 위한 키 다운로드 중…",
+        "placeholders": {
+            "P1": {
+                "content": "$1"
+            },
+            "P2": {
+                "content": "$2"
+            }
+        }
+	},
+	"serverCardGetOK": {
+		"message": "$P1$ : 서버에서 다운로드 된 연락처 $P2$",
+        "placeholders": {
+            "P1": {
+                "content": "$1"
+            },
+            "P2": {
+                "content": "$2"
+            }
+        }
+	},
+	"serverCardGetFailed": {
+		"message": "$P1$ : 서버에서 다운로드하지 못했습니다 (URL 주소: $P2$, 상태: $P3$)",
+        "placeholders": {
+            "P1": {
+                "content": "$1"
+            },
+            "P2": {
+                "content": "$2"
+            },
+            "P3": {
+                "content": "$3"
+            }
+        }
+	},
+	"serverSendingGetLabels": {
+		"message": "$P1$ : 연락처 레이블 획득 요청 보내는 중 …",
+        "placeholders": {
+            "P1": {
+                "content": "$1"
+            }
+        }
+	},
+	"serverGetLabelsOK": {
+		"message": "$P1$ : 레이블 획득",
+        "placeholders": {
+            "P1": {
+                "content": "$1"
+            }
+        }
+	},
+	"serverGetLabelsFailed": {
+		"message": "$P1$ : 서버에서 레이블 획득 실패 (URL 주소 : $P2$, 상태 : $P3$)",
+        "placeholders": {
+            "P1": {
+                "content": "$1"
+            },
+            "P2": {
+                "content": "$2"
+            },
+            "P3": {
+                "content": "$3"
+            }
+        }
+	},
+	"serverSendingGetCardLabels": {
+		"message": "$P1$ : 연락처 $P2$ : 연락처 레이블 획득 요청 보내는 중 …",
+        "placeholders": {
+            "P1": {
+                "content": "$1"
+            },
+            "P2": {
+                "content": "$2"
+            }
+        }
+	},
+	"serverGetCardLabelsOK": {
+		"message": "$P1$ : 연락처 $P2$ : 레이블 획득",
+        "placeholders": {
+            "P1": {
+                "content": "$1"
+            },
+            "P2": {
+                "content": "$2"
+            }
+        }
+	},
+	"serverGetCardLabelsFailed": {
+		"message": "$P1$ : 연락처 $P2$ : 서버에서 레이블 획득 실패 (URL 주소 : $P3$, 상태 : $P4$)",
+        "placeholders": {
+            "P1": {
+                "content": "$1"
+            },
+            "P2": {
+                "content": "$2"
+            },
+            "P3": {
+                "content": "$3"
+            },
+            "P4": {
+                "content": "$4"
+            }
+        }
+	},
+	"serverSendingPutLabels": {
+		"message": "$P1$ : 연락처 레이블 업데이트 요청 보내는 중 …",
+        "placeholders": {
+            "P1": {
+                "content": "$1"
+            }
+        }
+	},
+	"serverPutLabelsOK": {
+		"message": "$P1$ : 레이블 업데이트됨",
+        "placeholders": {
+            "P1": {
+                "content": "$1"
+            }
+        }
+	},
+	"serverPutLabelsFailed": {
+		"message": "$P1$ : 서버에서 레이블 업데이트 실패 (URL 주소 : $P2$, 상태 : $P3$)",
+        "placeholders": {
+            "P1": {
+                "content": "$1"
+            },
+            "P2": {
+                "content": "$2"
+            },
+            "P3": {
+                "content": "$3"
+            }
+        }
+	},
+	"serverSendingPutCardLabels": {
+		"message": "$P1$ : 연락처 $P2$ : 연락처 레이블 업데이트 요청 보내는 중 …",
+        "placeholders": {
+            "P1": {
+                "content": "$1"
+            },
+            "P2": {
+                "content": "$2"
+            }
+        }
+	},
+	"serverPutCardLabelsOK": {
+		"message": "$P1$ : 연락처 $P2$ : 레이블 업데이트됨",
+        "placeholders": {
+            "P1": {
+                "content": "$1"
+            },
+            "P2": {
+                "content": "$2"
+            }
+        }
+	},
+	"serverPutCardLabelsFailed": {
+		"message": "$P1$ : 연락처 $P2$ : 서버에서 레이블 업데이트 실패 (URL 주소 : $P3$, 상태 : $P4$)",
+        "placeholders": {
+            "P1": {
+                "content": "$1"
+            },
+            "P2": {
+                "content": "$2"
+            },
+            "P3": {
+                "content": "$3"
+            },
+            "P4": {
+                "content": "$4"
+            }
+        }
+	},
+	"categoryDeletedOnDisk": {
+		"message": "$P1$ : 로컬에서 카테고리 $P2$ 삭제됨",
+        "placeholders": {
+            "P1": {
+                "content": "$1"
+            },
+            "P2": {
+                "content": "$2"
+            }
+        }
+	},
+	"categoryUpdatedOnDisk": {
+		"message": "$P1$ : 로컬에서 카테고리 $P2$ 업데이트됨",
+        "placeholders": {
+            "P1": {
+                "content": "$1"
+            },
+            "P2": {
+                "content": "$2"
+            }
+        }
+	},
+	"categoryAlreadyGetFromCache": {
+		"message": "$P1$ : 카테고리 $P2$이(가) 이미 캐시에서 검색됨",
+        "placeholders": {
+            "P1": {
+                "content": "$1"
+            },
+            "P2": {
+                "content": "$2"
+            }
+        }
+	},
+	"categoryDeletedOnDiskUpdatedOnServer": {
+		"message": "$P1$ : 카테고리 $P2$이(가) 로컬에서 삭제되고 서버에서 업데이트됨",
+        "placeholders": {
+            "P1": {
+                "content": "$1"
+            },
+            "P2": {
+                "content": "$2"
+            }
+        }
+	},
+	"categoryUpdatedOnBoth": {
+		"message": "$P1$ : 카테고리 $P2$이(가) 로컬과 서버에서 업데이트 됨",
+        "placeholders": {
+            "P1": {
+                "content": "$1"
+            },
+            "P2": {
+                "content": "$2"
+            }
+        }
+	},
+	"categoryUpdatedOnServer": {
+		"message": "$P1$ : 카테고리 $P2$이(가) 서버에서 업데이트됨 (발견된 etag : $P3$, 캐시된 etag : $P4$)",
+        "placeholders": {
+            "P1": {
+                "content": "$1"
+            },
+            "P2": {
+                "content": "$2"
+            },
+            "P3": {
+                "content": "$3"
+            },
+            "P4": {
+                "content": "$4"
+            }
+        }
+	},
+	"categoryNewOnServer": {
+		"message": "$P1$ : 서버에서 새로운 카테고리 발견됨",
+        "placeholders": {
+            "P1": {
+                "content": "$1"
+            }
+        }
+	},
+	"categoryLoadedFromCacheDB": {
+		"message": "$P1$ : 카테고리 $P2$이(가) 캐시에서 로드됨 (IndexedDB)",
+        "placeholders": {
+            "P1": {
+                "content": "$1"
+            },
+            "P2": {
+                "content": "$2"
+            }
+        }
+	},
+	"categoryNewOnDisk": {
+		"message": "$P1$ : 로컬에서 새로운 카테고리 $P2$",
+        "placeholders": {
+            "P1": {
+                "content": "$1"
+            },
+            "P2": {
+                "content": "$2"
+            }
+        }
+	},
+	"categoryUpdatedOnDiskDeletedOnServer": {
+		"message": "$P1$ : 카테고리 $P2$이(가) 로컬에서 업데이트되고 서버에서 삭제됨",
+        "placeholders": {
+            "P1": {
+                "content": "$1"
+            },
+            "P2": {
+                "content": "$2"
+            }
+        }
+	},
+	"categoryDeletedOnServer": {
+		"message": "$P1$ : 카테고리 $P2$이(가) 서버에서 삭제됨",
+        "placeholders": {
+            "P1": {
+                "content": "$1"
+            },
+            "P2": {
+                "content": "$2"
+            }
+        }
+	},
+	"categoryAskUserTitle": {
+		"message": "카테고리 변경 내역 충돌"
+	},
+	"categorykeepAskUserLabel": {
+		"message": "카테고리 유지"
+	},
+	"categorydeleteAskUserLabel": {
+		"message": "카테고리 삭제"
+	},
+	"categorylocalAskUserLabel": {
+		"message": "로컬 변경 사항 우선"
+	},
+	"categoryremoteAskUserLabel": {
+		"message": "원격 변경 사항 우선"
+	},
+	"serverCategoryDeletedFromServer": {
+		"message": "$P1$ : 카테고리 $P2$이(가) 서버에서 삭제됨",
+        "placeholders": {
+            "P1": {
+                "content": "$1"
+            },
+            "P2": {
+                "content": "$2"
+            }
+        }
+	},
+	"serverCategoryNotExistServer": {
+		"message": "$P1$ : 카테고리 $P2$이(가) 서버에 존재하지 않음",
+        "placeholders": {
+            "P1": {
+                "content": "$1"
+            },
+            "P2": {
+                "content": "$2"
+            }
+        }
+	},
+	"serverCategoryDeleteFailed": {
+		"message": "$P1$ : 서버에서 카테고리 $P2$ 삭제 실패 (URL 주소: $P3$, 상태: $P4$)",
+        "placeholders": {
+            "P1": {
+                "content": "$1"
+            },
+            "P2": {
+                "content": "$2"
+            },
+            "P3": {
+                "content": "$3"
+            },
+            "P4": {
+                "content": "$4"
+            }
+        }
+	},
+	"serverCategorySendingDeletion": {
+		"message": "$P1$ : 카테고리 $P2$ : 삭제 요청을 보내는 중 …",
+        "placeholders": {
+            "P1": {
+                "content": "$1"
+            },
+            "P2": {
+                "content": "$2"
+            }
+        }
+	},
+	"serverCategoryUpdatedOnServerWithEtag": {
+		"message": "$P1$ : 카테고리 $P2$이(가) 서버에서 업데이트됨 (etag: $P3$)",
+        "placeholders": {
+            "P1": {
+                "content": "$1"
+            },
+            "P2": {
+                "content": "$2"
+            },
+            "P3": {
+                "content": "$3"
+            }
+        }
+	},
+	"serverCategoryUpdatedOnServerWithoutEtag": {
+		"message": "$P1$ : 카테고리 $P2$이(가) 서버에서 업데이트 됨 (etag 응답 없음)",
+        "placeholders": {
+            "P1": {
+                "content": "$1"
+            },
+            "P2": {
+                "content": "$2"
+            }
+        }
+	},
+	"serverCategoryUpdateFailed": {
+		"message": "$P1$ : 서버에서 카테고리 $P2$ 업데이트 실패 (URL 주소: $P3$, 상태: $P4$)",
+        "placeholders": {
+            "P1": {
+                "content": "$1"
+            },
+            "P2": {
+                "content": "$2"
+            },
+            "P3": {
+                "content": "$3"
+            },
+            "P4": {
+                "content": "$4"
+            }
+        }
+	},
+	"serverCategorySendingUpdate": {
+		"message": "$P1$ : 카테고리 $P2$ : 업데이트 요청을 보내는 중 …",
+        "placeholders": {
+            "P1": {
+                "content": "$1"
+            },
+            "P2": {
+                "content": "$2"
+            }
+        }
+	},
+	"serverCategoryCreatedOnServerWithEtag": {
+		"message": "$P1$ : 카테고리 $P2$이(가) 서버에서 생성됨 (etag: $P3$)",
+        "placeholders": {
+            "P1": {
+                "content": "$1"
+            },
+            "P2": {
+                "content": "$2"
+            },
+            "P3": {
+                "content": "$3"
+            }
+        }
+	},
+	"serverCategoryCreatedOnServerWithoutEtag": {
+		"message": "$P1$ : 카테고리 $P2$이(가) 서버에서 생성됨 (etag 응답 없음)",
+        "placeholders": {
+            "P1": {
+                "content": "$1"
+            },
+            "P2": {
+                "content": "$2"
+            }
+        }
+	},
+	"serverCategoryCreateFailed": {
+		"message": "$P1$ : 서버에서 카테고리 $P2$ 생성 실패 (URL 주소: $P3$, 상태: $P4$)",
+        "placeholders": {
+            "P1": {
+                "content": "$1"
+            },
+            "P2": {
+                "content": "$2"
+            },
+            "P3": {
+                "content": "$3"
+            },
+            "P4": {
+                "content": "$4"
+            }
+        }
+	},
+	"serverCategorySendingCreate": {
+		"message": "$P1$ : 카테고리 $P2$ : 생성 요청을 보내는 중 …",
+        "placeholders": {
+            "P1": {
+                "content": "$1"
+            },
+            "P2": {
+                "content": "$2"
+            }
+        }
+	},
+	"synchronizationSearchingCategories": {
+		"message": "$P1$ : 카테고리 검색 중 …",
+        "placeholders": {
+            "P1": {
+                "content": "$1"
+            }
+        }
+	},
+	"synchronizationFailed": {
+		"message": "$P1$ : 동기화 실패 (단계: $P2$, URL 주소: $P3$, 상태: $P4$)",
+        "placeholders": {
+            "P1": {
+                "content": "$1"
+            },
+            "P2": {
+                "content": "$2"
+            },
+            "P3": {
+                "content": "$3"
+            },
+            "P4": {
+                "content": "$4"
+            }
+        }
+	},
+	"synchronizationUnauthorized": {
+		"message": "$P1$ : 서버에 로그인 할 수 없습니다. 잘못된 구성, 사용자 이름 또는 암호 일 것입니다.",
+        "placeholders": {
+            "P1": {
+                "content": "$1"
+            }
+        }
+	},
+	"synchronizationSearchingCards": {
+		"message": "$P1$ : 연락처 검색 중 …",
+        "placeholders": {
+            "P1": {
+                "content": "$1"
+            }
+        }
+	},
+	"synchronizationRequestDiscovery": {
+		"message": "$P1$ : $P2$에서 검색 요청없이 유효성 확인 중 …",
+        "placeholders": {
+            "P1": {
+                "content": "$1"
+            },
+            "P2": {
+                "content": "$2"
+            }
+        }
+	},
+	"synchronizationRequestDiscovery4": {
+		"message": "$P1$ : $P2$에서 4 단계 요청 검색 중 …",
+        "placeholders": {
+            "P1": {
+                "content": "$1"
+            },
+            "P2": {
+                "content": "$2"
+            }
+        }
+	},
+	"synchronizationRequestDiscovery3": {
+		"message": "$P1$ : $P2$에서 3 단계 요청 검색 중 …",
+        "placeholders": {
+            "P1": {
+                "content": "$1"
+            },
+            "P2": {
+                "content": "$2"
+            }
+        }
+	},
+	"synchronizationRequestDiscovery2": {
+		"message": "$P1$ : $P2$에서 2 단계 요청 검색 중 …",
+        "placeholders": {
+            "P1": {
+                "content": "$1"
+            },
+            "P2": {
+                "content": "$2"
+            }
+        }
+	},
+	"synchronizationRequestDiscovery1": {
+		"message": "$P1$ : $P2$에서 1 단계 요청 검색 중 …",
+        "placeholders": {
+            "P1": {
+                "content": "$1"
+            },
+            "P2": {
+                "content": "$2"
+            }
+        }
+	},
+	"googleAccessTokenOK": {
+		"message": "$P1$ : 구글 액세스 토큰 요청 확인, 액세스 토큰 : $P2$",
+        "placeholders": {
+            "P1": {
+                "content": "$1"
+            },
+            "P2": {
+                "content": "$2"
+            }
+        }
+	},
+	"googleRefreshTokenOK": {
+		"message": "$P1$ : 구글 새로 고침 토큰 요청 확인, 토큰 새로 고침 : $P2$",
+        "placeholders": {
+            "P1": {
+                "content": "$1"
+            },
+            "P2": {
+                "content": "$2"
+            }
+        }
+	},
+	"googleGetNewRefreshToken": {
+		"message": "$P1$ : $P2$에서 새로운 Google 새로 고침 토큰 발급 시도 중 …",
+        "placeholders": {
+            "P1": {
+                "content": "$1"
+            },
+            "P2": {
+                "content": "$2"
+            }
+        }
+	},
+	"googleNewRefreshTokenOK": {
+		"message": "$P1$ : 승인 코드 수신 : $P2$ …",
+        "placeholders": {
+            "P1": {
+                "content": "$1"
+            },
+            "P2": {
+                "content": "$2"
+            }
+        }
+	},
+	"googleRequestAccessToken": {
+		"message": "$P1$ : $P2$에 대한 구글 액세스 토큰 요청 …",
+        "placeholders": {
+            "P1": {
+                "content": "$1"
+            },
+            "P2": {
+                "content": "$2"
+            }
+        }
+	},
+	"googleRequestRefreshToken": {
+		"message": "$P1$ : $P2$에 대한 Google 새로 고침 토큰 요청 …",
+        "placeholders": {
+            "P1": {
+                "content": "$1"
+            },
+            "P2": {
+                "content": "$2"
+            }
+        }
+	},
+	"yahooAccessTokenOK": {
+		"message": "$P1$ : Yahoo! 액세스 토큰 요청 확인, 액세스 토큰 : $P2$",
+        "placeholders": {
+            "P1": {
+                "content": "$1"
+            },
+            "P2": {
+                "content": "$2"
+            }
+        }
+	},
+	"yahooRefreshTokenOK": {
+		"message": "$P1$ : Yahoo! 새로 고침 토큰 요청 확인, 토큰 새로 고침 : $P2$",
+        "placeholders": {
+            "P1": {
+                "content": "$1"
+            },
+            "P2": {
+                "content": "$2"
+            }
+        }
+	},
+	"yahooGetNewRefreshToken": {
+		"message": "$P1$ : $P2$에서 새로운 Yahoo! 새로 고침 토큰 발급 시도 중 …",
+        "placeholders": {
+            "P1": {
+                "content": "$1"
+            },
+            "P2": {
+                "content": "$2"
+            }
+        }
+	},
+	"yahooNewRefreshTokenOK": {
+		"message": "$P1$ : 승인 코드 수신 : $P2$ …",
+        "placeholders": {
+            "P1": {
+                "content": "$1"
+            },
+            "P2": {
+                "content": "$2"
+            }
+        }
+	},
+	"yahooRequestAccessToken": {
+		"message": "$P1$ : $P2$에 대한 Yahoo! 액세스 토큰 요청 …",
+        "placeholders": {
+            "P1": {
+                "content": "$1"
+            },
+            "P2": {
+                "content": "$2"
+            }
+        }
+	},
+	"yahooRequestRefreshToken": {
+		"message": "$P1$ : $P2$에 대한 Yahoo! 새로 고침 토큰 요청 …",
+        "placeholders": {
+            "P1": {
+                "content": "$1"
+            },
+            "P2": {
+                "content": "$2"
+            }
+        }
+	},
+	"periodicSyncDeleting": {
+		"message": "$P1$ : 정기적인 동기화 프로세스 삭제 (id: $P2$)",
+        "placeholders": {
+            "P1": {
+                "content": "$1"
+            },
+            "P2": {
+                "content": "$2"
+            }
+        }
+	},
+	"periodicSyncSetting": {
+		"message": "$P1$ : 주기적 동기화 프로세스 설정 (간격: $P2$ 밀리초, id: $P3$)",
+        "placeholders": {
+            "P1": {
+                "content": "$1"
+            },
+            "P2": {
+                "content": "$2"
+            },
+            "P3": {
+                "content": "$3"
+            }
+        }
+	},
+	"periodicSyncSyncing": {
+		"message": "$P1$ : 주기적 동기화 설정에 따른 동기화 중 …",
+        "placeholders": {
+            "P1": {
+                "content": "$1"
+            }
+        }
+	},
+	"fileNotFound": {
+		"message": "파일 $P1$이(가) 존재하지 않습니다.",
+        "placeholders": {
+            "P1": {
+                "content": "$1"
+            }
+        }
+	},
+	"fileEmpty": {
+		"message": "파일 $P1$이(가) 비어 있습니다",
+        "placeholders": {
+            "P1": {
+                "content": "$1"
+            }
+        }
+	},
+	"fileAlreadyOpen": {
+		"message": "파일 $P1$이 이미 CardBook에서 열려 있습니다",
+        "placeholders": {
+            "P1": {
+                "content": "$1"
+            }
+        }
+	},
+	"directoryAlreadyOpen": {
+		"message": "디렉토리 $P1$는 이미 CardBook에서 열려 있습니다",
+        "placeholders": {
+            "P1": {
+                "content": "$1"
+            }
+        }
+	},
+	"parsingCardError": {
+		"message": "$P1$ : 연락처를 파싱하는 중 오류가 발생했습니다: \n$P2$ \n$P3$",
+        "placeholders": {
+            "P1": {
+                "content": "$1"
+            },
+            "P2": {
+                "content": "$2"
+            },
+            "P3": {
+                "content": "$3"
+            }
+        }
+	},
+	"addressbookOpened": {
+		"message": "$P1$ : 주소록 열림",
+        "placeholders": {
+            "P1": {
+                "content": "$1"
+            }
+        }
+	},
+	"addressbookModified": {
+		"message": "$P1$ : 주소록 수정 됨",
+        "placeholders": {
+            "P1": {
+                "content": "$1"
+            }
+        }
+	},
+	"addressbookDeleted": {
+		"message": "$P1$ : 주소록 닫힘",
+        "placeholders": {
+            "P1": {
+                "content": "$1"
+            }
+        }
+	},
+	"addressbookCreated": {
+		"message": "$P1$ : 주소록이 생성되었습니다",
+        "placeholders": {
+            "P1": {
+                "content": "$1"
+            }
+        }
+	},
+	"addressbookDisabled": {
+		"message": "$P1$ : 주소록 사용 중지됨",
+        "placeholders": {
+            "P1": {
+                "content": "$1"
+            }
+        }
+	},
+	"addressbookReadOnly": {
+		"message": "$P1$ : 주소록 읽기 전용 모드의 주소록",
+        "placeholders": {
+            "P1": {
+                "content": "$1"
+            }
+        }
+	},
+	"addressbookReadWrite": {
+		"message": "$P1$ : 읽기 - 쓰기 모드의 주소록",
+        "placeholders": {
+            "P1": {
+                "content": "$1"
+            }
+        }
+	},
+	"addressbookEnabled": {
+		"message": "$P1$ : 주소록 활성화",
+        "placeholders": {
+            "P1": {
+                "content": "$1"
+            }
+        }
+	},
+	"cardCreated": {
+		"message": "$P1$ : 연락처 $P2$이(가) 생성됨",
+        "placeholders": {
+            "P1": {
+                "content": "$1"
+            },
+            "P2": {
+                "content": "$2"
+            }
+        }
+	},
+	"cardUpdated": {
+		"message": "$P1$ : 연락처 $P2$이(가) 업데이트 됨",
+        "placeholders": {
+            "P1": {
+                "content": "$1"
+            },
+            "P2": {
+                "content": "$2"
+            }
+        }
+	},
+	"cardDeleted": {
+		"message": "$P1$ : 연락처 $P2$이(가) 삭제되었습니다",
+        "placeholders": {
+            "P1": {
+                "content": "$1"
+            },
+            "P2": {
+                "content": "$2"
+            }
+        }
+	},
+	"cardAddedToCategory": {
+		"message": "$P1$ : 연락처 $P2$이(가) 카테고리 $P3$에 성공적으로 추가됨",
+        "placeholders": {
+            "P1": {
+                "content": "$1"
+            },
+            "P2": {
+                "content": "$2"
+            },
+            "P3": {
+                "content": "$3"
+            }
+        }
+	},
+	"cardDeletedFromAllCategory": {
+		"message": "$P1$ : 연락처 $P2$이(가) 성공적으로 모든 카테고리에서 삭제됨",
+        "placeholders": {
+            "P1": {
+                "content": "$1"
+            },
+            "P2": {
+                "content": "$2"
+            }
+        }
+	},
+	"cardsConverted": {
+		"message": "$P1$ : $P2$로 연락처 변환 : $P3$",
+        "placeholders": {
+            "P1": {
+                "content": "$1"
+            },
+            "P2": {
+                "content": "$2"
+            },
+            "P3": {
+                "content": "$3"
+            }
+        }
+	},
+	"cardsConvertedUndo": {
+		"message": "변환된 vCard"
+	},
+	"cardsImportedFromFileUndo": {
+		"message": "파일 $P1$ 가져오기",
+        "placeholders": {
+            "P1": {
+                "content": "$1"
+            }
+        }
+	},
+	"cardsImportedFromDirUndo": {
+		"message": "디렉토리 $P1$ 가져오기",
+        "placeholders": {
+            "P1": {
+                "content": "$1"
+            }
+        }
+	},
+	"cardsExportedToFileUndo": {
+		"message": "파일 $P1$ 로 연락처를 내보냈습니다",
+        "placeholders": {
+            "P1": {
+                "content": "$1"
+            }
+        }
+	},
+	"cardsExportedToDirUndo": {
+		"message": "디렉토리 $P1$ 로 연락처를 내보냈습니다",
+        "placeholders": {
+            "P1": {
+                "content": "$1"
+            }
+        }
+	},
+	"undoActionDoneUndo": {
+		"message": "실행 취소 완료 ($P1$)",
+        "placeholders": {
+            "P1": {
+                "content": "$1"
+            }
+        }
+	},
+	"redoActionDoneUndo": {
+		"message": "다시 실행 완료 ($P1$)",
+        "placeholders": {
+            "P1": {
+                "content": "$1"
+            }
+        }
+	},
+	"cardCreatedUndo": {
+		"message": "연락처 $P1$이(가) 생성 됨",
+        "placeholders": {
+            "P1": {
+                "content": "$1"
+            }
+        }
+	},
+	"cardUpdatedUndo": {
+		"message": "연락처 $P1$이(가) 업데이트 됨",
+        "placeholders": {
+            "P1": {
+                "content": "$1"
+            }
+        }
+	},
+	"outgoingEmailCollectedUndo": {
+		"message": "수집된 발송 이메일"
+	},
+	"emailCollectedByFilterUndo": {
+		"message": "필터가 수집한 이메일"
+	},
+	"emailDeletedByFilterUndo": {
+		"message": "필터가 삭제한 이메일"
+	},
+	"cardsMergedUndo": {
+		"message": "병합된 연락처"
+	},
+	"cardsDuplicatedUndo": {
+		"message": "중복된 연락처"
+	},
+	"displayNameGenerated": {
+		"message": "$P1$ : 연락처 표시 이름 재생성 중 : $P2$",
+        "placeholders": {
+            "P1": {
+                "content": "$1"
+            },
+            "P2": {
+                "content": "$2"
+            }
+        }
+	},
+	"displayNameGeneratedUndo": {
+		"message": "재생성된 표시 이름"
+	},
+	"cardModifiedUndo": {
+		"message": "연락처 $P1$이(가) 업데이트 됨",
+        "placeholders": {
+            "P1": {
+                "content": "$1"
+            }
+        }
+	},
+	"cardsDeleted1Undo": {
+		"message": "연락처 $P1$이(가) 삭제 됨",
+        "placeholders": {
+            "P1": {
+                "content": "$1"
+            }
+        }
+	},
+	"cardsDeleted2Undo": {
+		"message": "삭제된 연락처"
+	},
+	"cardsPastedUndo": {
+		"message": "붙여넣기된 연락처"
+	},
+	"cardsDraggedUndo": {
+		"message": "이동된 연락처"
+	},
+	"categoryCreated": {
+		"message": "$P1$ : 카테고리 $P2$이(가) 생성 됨",
+        "placeholders": {
+            "P1": {
+                "content": "$1"
+            },
+            "P2": {
+                "content": "$2"
+            }
+        }
+	},
+	"categoryCreatedUndo": {
+		"message": "카테고리 $P1$이(가) 생성 됨",
+        "placeholders": {
+            "P1": {
+                "content": "$1"
+            }
+        }
+	},
+	"categorySelectedUndo": {
+		"message": "카테고리 $P1$ 선택",
+        "placeholders": {
+            "P1": {
+                "content": "$1"
+            }
+        }
+	},
+	"categoryUnselectedUndo": {
+		"message": "카테고리 $P1$ 선택 취소",
+        "placeholders": {
+            "P1": {
+                "content": "$1"
+            }
+        }
+	},
+	"categoryRenamed": {
+		"message": "$P1$ : 카테고리 $P2$ 이름 바꾸기",
+        "placeholders": {
+            "P1": {
+                "content": "$1"
+            },
+            "P2": {
+                "content": "$2"
+            }
+        }
+	},
+	"categoryRenamedUndo": {
+		"message": "카테고리 $P1$ 이름 바꾸기",
+        "placeholders": {
+            "P1": {
+                "content": "$1"
+            }
+        }
+	},
+	"categoryDeleted": {
+		"message": "$P1$ : 카테고리 $P2$가 삭제 됨",
+        "placeholders": {
+            "P1": {
+                "content": "$1"
+            },
+            "P2": {
+                "content": "$2"
+            }
+        }
+	},
+	"categoryDeletedUndo": {
+		"message": "카테고리 $P1$이(가) 삭제 됨",
+        "placeholders": {
+            "P1": {
+                "content": "$1"
+            }
+        }
+	},
+	"categoryConvertedToListUndo": {
+		"message": "카테고리 $P1$이(가) 목록으로 변환 됨",
+        "placeholders": {
+            "P1": {
+                "content": "$1"
+            }
+        }
+	},
+	"listConvertedToCategoryUndo": {
+		"message": "목록 $P1$이(가) 카테고리로 변환 됨",
+        "placeholders": {
+            "P1": {
+                "content": "$1"
+            }
+        }
+	},
+	"linePastedUndo": {
+		"message": "라인 붙여넣기 됨"
+	},
+	"nodeRenamedUndo": {
+		"message": "노드 $P1$ 이름 바꿈",
+        "placeholders": {
+            "P1": {
+                "content": "$1"
+            }
+        }
+	},
+	"nodeDeleted": {
+		"message": "$P1$ : 노드 $P2$ 삭제 됨",
+        "placeholders": {
+            "P1": {
+                "content": "$1"
+            },
+            "P2": {
+                "content": "$2"
+            }
+        }
+	},
+	"nodeDeletedUndo": {
+		"message": "노드 $P1$ 삭제 됨",
+        "placeholders": {
+            "P1": {
+                "content": "$1"
+            }
+        }
+	},
+	"listCreatedFromNodeUndo": {
+		"message": "목록 $P1$이(가) 노드에서 생성 됨",
+        "placeholders": {
+            "P1": {
+                "content": "$1"
+            }
+        }
+	},
+	"exportCardToDirMessagePF": {
+		"message": "$P1$개의 연락처를 디렉토리 $P2$ 로 내보냈습니다",
+        "placeholders": {
+            "P1": {
+                "content": "$1"
+            },
+            "P2": {
+                "content": "$2"
+            }
+        }
+	},
+	"exportCardToFileMessagePF": {
+		"message": "$P1$ 개의 연락처를 파일 $P2$ 로 내보냈습니다",
+        "placeholders": {
+            "P1": {
+                "content": "$1"
+            },
+            "P2": {
+                "content": "$2"
+            }
+        }
+	},
+	"importCardFromDirMessagePF": {
+		"message": "$P1$ 개의 연락처를 디렉토리 $P2$ 에서 가져왔습니다",
+        "placeholders": {
+            "P1": {
+                "content": "$1"
+            },
+            "P2": {
+                "content": "$2"
+            }
+        }
+	},
+	"importCardFromFileMessagePF": {
+		"message": "$P1$ 개의 연락처를 파일 $P2$ 에서 가져왔습니다",
+        "placeholders": {
+            "P1": {
+                "content": "$1"
+            },
+            "P2": {
+                "content": "$2"
+            }
+        }
+	},
+	"importNotIntoSameFile": {
+		"message": "동일한 파일로 가져 오는 것은 금지되어 있습니다"
+	},
+	"importNotIntoSameDir": {
+		"message": "동일한 디렉토리로 가져 오는 것은 금지되어 있습니다"
+	},
+	"clipboardWrong": {
+		"message": "클립 보드 데이터를 가져올 수 없습니다"
+	},
+	"clipboardEmpty": {
+		"message": "빈 클립 보드"
+	},
+	"imageError": {
+		"message": "오류로 인해 이미지가 추가되지 않았습니다"
+	},
+	"imageErrorWithMessage": {
+		"message": "이미지가 추가되지 않았습니다: $P1$",
+        "placeholders": {
+            "P1": {
+                "content": "$1"
+            }
+        }
+	},
+	"imageSavedToFile": {
+		"message": "파일에 저장된 이미지: $P1$",
+        "placeholders": {
+            "P1": {
+                "content": "$1"
+            }
+        }
+	},
+	"contactsCopied": {
+		"message": "연락처가 클립 보드에 복사되었습니다"
+	},
+	"contactCopied": {
+		"message": "연락처가 클립 보드에 복사되었습니다"
+	},
+	"lineCopied": {
+		"message": "클립 보드에 복사 된 줄"
+	},
+	"linePastedToCard": {
+		"message": "연락처에 붙여진 라인: $P1$",
+        "placeholders": {
+            "P1": {
+                "content": "$1"
+            }
+        }
+	},
+	"numberContactsFound": {
+		"message": "발견 된 연락처 수: $P1$",
+        "placeholders": {
+            "P1": {
+                "content": "$1"
+            }
+        }
+	},
+	"numberContacts": {
+		"message": "연락처 수: $P1$",
+        "placeholders": {
+            "P1": {
+                "content": "$1"
+            }
+        }
+	},
+	"numberContactsFoundModified": {
+		"message": "발견 된 연락처 수 : $P1$ (로컬에서 수정 됨: $P2$)",
+        "placeholders": {
+            "P1": {
+                "content": "$1"
+            },
+            "P2": {
+                "content": "$2"
+            }
+        }
+	},
+	"numberContactsModified": {
+		"message": "연락처 수 : $P1$ (로컬에서 수정 됨: $P2$)",
+        "placeholders": {
+            "P1": {
+                "content": "$1"
+            },
+            "P2": {
+                "content": "$2"
+            }
+        }
+	},
+	"numberContactsSelected": {
+		"message": "선택 항목: $P1$",
+        "placeholders": {
+            "P1": {
+                "content": "$1"
+            }
+        }
+	},
+	"numberLines": {
+		"message": "라인 수: $P1$",
+        "placeholders": {
+            "P1": {
+                "content": "$1"
+            }
+        }
+	},
+	"cardbook.searchFrom.name": {
+		"message": "CardBook 보낸 사람"
+	},
+	"cardbook.searchTo.name": {
+		"message": "CardBook 받는 사람"
+	},
+	"cardbook.searchCc.name": {
+		"message": "CardBook 참조"
+	},
+	"cardbook.searchBcc.name": {
+		"message": "CardBook 숨은 참조"
+	},
+	"cardbook.searchToOrCc.name": {
+		"message": "CardBook 받는 사람 또는 참조"
+	},
+	"cardbook.searchAll.name": {
+		"message": "CardBook 보낸 사람, 받는 사람, 참조 또는 숨은 참조"
+	},
+	"cardbook.searchCorrespondents.name": {
+		"message": "CardBook 글 쓴 사람"
+	},
+	"cardbook.addFrom.name": {
+		"message": "CardBook에 보낸 사람 추가"
+	},
+	"cardbook.addTo.name": {
+		"message": "CardBook에 받는 사람 추가"
+	},
+	"cardbook.addCc.name": {
+		"message": "CardBook에 참조 추가"
+	},
+	"cardbook.addBcc.name": {
+		"message": "CardBook에 숨은 참조 추가"
+	},
+	"cardbook.addAll.name": {
+		"message": "CardBook에 보낸 사람, 받는 사람, 참조, 숨은 참조 추가"
+	},
+	"cardbook.removeFrom.name": {
+		"message": "CardBook에서 보낸 사람 제거"
+	},
+	"cardbook.removeTo.name": {
+		"message": "CardBook에서 받는 사람 제거"
+	},
+	"cardbook.removeCc.name": {
+		"message": "CardBook에서 참조 제거"
+	},
+	"cardbook.removeBcc.name": {
+		"message": "CardBook에서 숨은 참조 제거"
+	},
+	"cardbook.removeAll.name": {
+		"message": "CardBook에서 보내는 사람,받는 사람,참조 또는 숨은 참조 제거"
+	},
+	"cardbook.filterForNotJunk": {
+		"message": "CardBook 연락처로부터 수신한 이메일을 스팸이 아닌 것으로 표시"
+	},
+	"urlDownloaded": {
+		"message": "다운로드 된 URL: $P1$",
+        "placeholders": {
+            "P1": {
+                "content": "$1"
+            }
+        }
+	},
+	"addressbookHeader": {
+		"message": "주소록"
+	},
+	"photoLabel": {
+		"message": "사진"
+	},
+	"versionLabel": {
+		"message": "버전"
+	},
+	"revLabel": {
+		"message": "마지막 업데이트"
+	},
+	"lastnameLabel": {
+		"message": "성"
+	},
+	"firstnameLabel": {
+		"message": "이름"
+	},
+	"othernameLabel": {
+		"message": "다른 이름"
+	},
+	"prefixnameLabel": {
+		"message": "접두사"
+	},
+	"suffixnameLabel": {
+		"message": "접미사"
+	},
+	"fnLabel": {
+		"message": "표시 이름"
+	},
+	"nicknameLabel": {
+		"message": "애칭"
+	},
+	"genderLabel": {
+		"message": "성별"
+	},
+	"bdayLabel": {
+		"message": "생일"
+	},
+	"birthplaceLabel": {
+		"message": "출생지"
+	},
+	"anniversaryLabel": {
+		"message": "기념일"
+	},
+	"deathdateLabel": {
+		"message": "사망일"
+	},
+	"deathplaceLabel": {
+		"message": "사망 장소"
+	},
+	"titleLabel": {
+		"message": "직위"
+	},
+	"roleLabel": {
+		"message": "역할"
+	},
+	"orgLabel": {
+		"message": "직장 정보"
+	},
+	"categoriesLabel": {
+		"message": "카테고리"
+	},
+	"adrLabel": {
+		"message": "주소"
+	},
+	"telLabel": {
+		"message": "전화"
+	},
+	"emailLabel": {
+		"message": "이메일"
+	},
+	"imppLabel": {
+		"message": "메신저"
+	},
+	"urlLabel": {
+		"message": "URL 주소"
+	},
+	"eventLabel": {
+		"message": "이벤트"
+	},
+	"noteLabel": {
+		"message": "메모"
+	},
+	"postOfficeLabel": {
+		"message": "사서함"
+	},
+	"extendedAddrLabel": {
+		"message": "아파트/동 호수"
+	},
+	"streetLabel": {
+		"message": "도로명"
+	},
+	"localityLabel": {
+		"message": "시/구"
+	},
+	"regionLabel": {
+		"message": "시/도"
+	},
+	"postalCodeLabel": {
+		"message": "우편 번호"
+	},
+	"countryLabel": {
+		"message": "국가"
+	},
+	"ageLabel": {
+		"message": "나이"
+	},
+	"yearLabel": {
+		"message": "년"
+	},
+	"ABNameLabel": {
+		"message": "주소록"
+	},
+	"cardIconLabel": {
+		"message": "아이콘"
+	},
+	"nameLabel": {
+		"message": "이름"
+	},
+	"mailerLabel": {
+		"message": "우편 발신인"
+	},
+	"tzLabel": {
+		"message": "시간대"
+	},
+	"geoLabel": {
+		"message": "지역"
+	},
+	"prodidLabel": {
+		"message": "Prodid"
+	},
+	"sortstringLabel": {
+		"message": "문자열 정렬"
+	},
+	"uidLabel": {
+		"message": "연락처 id"
+	},
+	"cbidLabel": {
+		"message": "CardBook id"
+	},
+	"class1Label": {
+		"message": "분류"
+	},
+	"dirPrefIdLabel": {
+		"message": "주소록 id"
+	},
+	"kindLabel": {
+		"message": "종류"
+	},
+	"etagLabel": {
+		"message": "전자 태그"
+	},
+	"phoneticfirstnameLabel": {
+		"message": "이름 (이름)"
+	},
+	"phoneticlastnameLabel": {
+		"message": "성 (이름)"
+	},
+	"custom1Label": {
+		"message": "사용자정의1"
+	},
+	"custom2Label": {
+		"message": "사용자정의2"
+	},
+	"custom3Label": {
+		"message": "사용자정의3"
+	},
+	"custom4Label": {
+		"message": "사용자정의4"
+	},
+	"warningTitle": {
+		"message": "경고"
+	},
+	"errorTitle": {
+		"message": "오류"
+	},
+	"confirmTitle": {
+		"message": "확인"
+	},
+	"birthdaysListWindowLabel": {
+		"message": "기념일 목록 (합계: $P1$)",
+        "placeholders": {
+            "P1": {
+                "content": "$1"
+            }
+        }
+	},
+	"syncListWindowLabelRunning": {
+		"message": "실행 중인 기념일 동기화 ($P1$/$P2$)",
+        "placeholders": {
+            "P1": {
+                "content": "$1"
+            },
+            "P2": {
+                "content": "$2"
+            }
+        }
+	},
+	"syncListWindowLabelEnded": {
+		"message": "완료된 기념일 동기화 ($P1$/$P2$)",
+        "placeholders": {
+            "P1": {
+                "content": "$1"
+            },
+            "P2": {
+                "content": "$2"
+            }
+        }
+	},
+	"syncListWindowLabelFailed": {
+		"message": "기념일 동기화 실패"
+	},
+	"syncListExistingEntry": {
+		"message": "$P1$ : Lightning의 기존 이벤트 : $P2$",
+        "placeholders": {
+            "P1": {
+                "content": "$1"
+            },
+            "P2": {
+                "content": "$2"
+            }
+        }
+	},
+	"syncListCreatedEntry": {
+		"message": "$P1$ : Lightning에서 생성된 이벤트 : $P2$",
+        "placeholders": {
+            "P1": {
+                "content": "$1"
+            },
+            "P2": {
+                "content": "$2"
+            }
+        }
+	},
+	"syncListErrorEntry": {
+		"message": "$P1$ : Lightning에서 오류가 발생한 이벤트 : $P2$",
+        "placeholders": {
+            "P1": {
+                "content": "$1"
+            },
+            "P2": {
+                "content": "$2"
+            }
+        }
+	},
+	"noBirthdaysFoundMessage": {
+		"message": "$P1$까지 기념일을 찾지 못했습니다",
+        "placeholders": {
+            "P1": {
+                "content": "$1"
+            }
+        }
+	},
+	"noEmailFoundMessage": {
+		"message": "$P1$에 대한 이메일이 없습니다",
+        "placeholders": {
+            "P1": {
+                "content": "$1"
+            }
+        }
+	},
+	"eventEntryTitleMessage": {
+		"message": "%1$S 기념일"
+	},
+	"anniversaryCategory": {
+		"message": "기념일"
+	},
+	"calendarNotFoundTitle": {
+		"message": "기념일 알림 - Lightning과의 동기화가 중단 됨"
+	},
+	"calendarNotFoundMessage": {
+		"message": "캘린더 『$P1$』을 (를) 찾을 수 없습니다. Lightning과의 동기화가 중단되었습니다",
+        "placeholders": {
+            "P1": {
+                "content": "$1"
+            }
+        }
+	},
+	"calendarNotWritableTitle": {
+		"message": "기념일 알림 - Lightning과의 동기화가 중단 됨"
+	},
+	"calendarNotWritableMessage": {
+		"message": "『$P1』캘린더에 쓸 수 없습니다 (읽기 전용 또는 오프라인인가요?). Lightning과의 동기화가 중단되었습니다.",
+        "placeholders": {
+            "P1": {
+                "content": "$1"
+            }
+        }
+	},
+	"errorAttachingFile": {
+		"message": "가상 카드 연결: 메일에 vCard를 첨부 할 파일을 생성 할 수 없습니다: $P1$ ($P2$)",
+        "placeholders": {
+            "P1": {
+                "content": "$1"
+            },
+            "P2": {
+                "content": "$2"
+            }
+        }
+	},
+	"errorInfiniteLoopRecursion": {
+		"message": "목록: 목록에 대한 무한 루프 반복: $P1$",
+        "placeholders": {
+            "P1": {
+                "content": "$1"
+            }
+        }
+	},
+	"WRONG_VERSION": {
+		"message": "vCard 버전 3.0 혹은 4.0만 지원 됨"
+	},
+	"unableToParseResponse": {
+		"message": "$P1$ : 이 목록으로 인해 서버 응답을 분석 할 수 없습니다 : $P2$",
+        "placeholders": {
+            "P1": {
+                "content": "$1"
+            },
+            "P2": {
+                "content": "$2"
+            }
+        }
+	},
+	"dateEntry1Wrong": {
+		"message": "$P1$ : 연락처 $P2$이(가) 주소록 ($P4$)의 날짜 포맷과 일치하지 않는 날짜 필드 값 ($P3$)을 가지고 있습니다",
+        "placeholders": {
+            "P1": {
+                "content": "$1"
+            },
+            "P2": {
+                "content": "$2"
+            },
+            "P3": {
+                "content": "$3"
+            },
+            "P4": {
+                "content": "$4"
+            }
+        }
+	},
+	"dateEntry2Wrong": {
+		"message": "날짜 필드 값 ($P1$)이 주소록 ($P2$)의 날짜 포맷과 일치하지 않습니다",
+        "placeholders": {
+            "P1": {
+                "content": "$1"
+            },
+            "P2": {
+                "content": "$2"
+            }
+        }
+	},
+	"validateIntegerMsg": {
+		"message": "필드 $P1$는 비어있거나 1과 $P2$ 사이의 정수여야합니다 (값: $P3$)",
+        "placeholders": {
+            "P1": {
+                "content": "$1"
+            },
+            "P2": {
+                "content": "$2"
+            },
+            "P3": {
+                "content": "$3"
+            }
+        }
+	},
+	"eventNameNull": {
+		"message": "최소 하나의 이벤트의 설명이 비어있습니다."
+	},
+	"eventDateNull": {
+		"message": "최소 하나의 이벤트의 날짜가 비어있습니다."
+	},
+	"invalidURL": {
+		"message": "잘못된 URL: $P1$",
+        "placeholders": {
+            "P1": {
+                "content": "$1"
+            }
+        }
+	},
+	"cardbookSearchInputDefault": {
+		"message": "검색…"
+	},
+	"blogtype": {
+		"message": "블로그"
+	},
+	"celltype": {
+		"message": "휴대전화"
+	},
+	"faxtype": {
+		"message": "팩스"
+	},
+	"homefaxtype": {
+		"message": "집 팩스"
+	},
+	"homepagetype": {
+		"message": "홈페이지"
+	},
+	"hometype": {
+		"message": "집"
+	},
+	"iphonetype": {
+		"message": "iPhone"
+	},
+	"maintype": {
+		"message": "대표전화"
+	},
+	"othertype": {
+		"message": "기타"
+	},
+	"pagertype": {
+		"message": "호출기"
+	},
+	"profiletype": {
+		"message": "프로필"
+	},
+	"workfaxtype": {
+		"message": "직장 팩스"
+	},
+	"worktype": {
+		"message": "직장"
+	},
+	"types.gender.f": {
+		"message": "여성"
+	},
+	"types.gender.m": {
+		"message": "남성"
+	},
+	"types.gender.n": {
+		"message": "없음"
+	},
+	"types.gender.o": {
+		"message": "기타"
+	},
+	"types.gender.u": {
+		"message": "알 수 없음"
+	},
+	"typesTooltip": {
+		"message": "사용 가능한 유형을 변경하려면, CardBook 환경 설정을 사용하십시오."
+	},
+	"prefLabel": {
+		"message": "환경 설정"
+	},
+	"prefValueLabel": {
+		"message": "환경 설정 값"
+	},
+	"prefWeightTooltip": {
+		"message": "환경 설정은 1~100 사이의 다른 값을 가질 수 있습니다. 일반적인 경우 빈 상태로 두십시오."
+	},
+	"impp.skype": {
+		"message": "Skype"
+	},
+	"impp.jabber": {
+		"message": "Jabber"
+	},
+	"impp.googletalk": {
+		"message": "Google Talk"
+	},
+	"impp.qq": {
+		"message": "Tencent QQ"
+	},
+	"addToAddressbook": {
+		"message": "다음 주소록에 추가"
+	},
+	"wdw_cardEditionViewResultTitle": {
+		"message": "결과 연락처 수정"
+	},
+	"wdw_cardEditionViewResultHideCreateTitle": {
+		"message": "결과 연락처 수정"
+	},
+	"wdw_cardEditionAddEmailTitle": {
+		"message": "새 이메일 주소 등록"
+	},
+	"wdw_cardEditionCreateContactTitle": {
+		"message": "새 연락처"
+	},
+	"wdw_cardEditionCreateListTitle": {
+		"message": "새 메일링 목록"
+	},
+	"wdw_cardEditionEditContactTitle": {
+		"message": "연락처 편집"
+	},
+	"wdw_cardEditionEditListTitle": {
+		"message": "목록 수정"
+	},
+	"wdw_cardEditionAddLineTitle": {
+		"message": "연락처 편집"
+	},
+	"wdw_cardEditionViewContactTitle": {
+		"message": "연락처보기"
+	},
+	"wdw_cardEditionViewListTitle": {
+		"message": "목록보기"
+	},
+	"wdw_cardEditionEditTemplateTitle": {
+		"message": "템플릿 편집"
+	},
+	"wdw_cardbookPrintTitleLong": {
+		"message": "$P1$ - 인쇄 미리보기 – CardBook - Thunderbird",
+        "placeholders": {
+            "P1": {
+                "content": "$1"
+            }
+        }
+	},
+	"wdw_cardbookPrintTitle": {
+		"message": "인쇄 미리보기"
+	},
+	"displayGroupboxLabel": {
+		"message": "표시 이름"
+	},
+	"personalGroupboxLabel": {
+		"message": "개인 정보"
+	},
+	"orgGroupboxLabel": {
+		"message": "직장 정보"
+	},
+	"categoriesHeader": {
+		"message": "카테고리"
+	},
+	"adrGroupboxLabel": {
+		"message": "주소"
+	},
+	"telGroupboxLabel": {
+		"message": "전화 번호"
+	},
+	"emailGroupboxLabel": {
+		"message": "이메일 주소"
+	},
+	"urlGroupboxLabel": {
+		"message": "URL 주소"
+	},
+	"eventGroupboxLabel": {
+		"message": "이벤트"
+	},
+	"noteGroupboxLabel": {
+		"message": "메모"
+	},
+	"searchTermsGroupboxLabel": {
+		"message": "검색어"
+	},
+	"addedCardsGroupboxLabel": {
+		"message": "선택된 항목"
+	},
+	"addEntryTooltip": {
+		"message": "항목 추가"
+	},
+	"removeEntryTooltip": {
+		"message": "항목 삭제"
+	},
+	"upEntryTooltip": {
+		"message": "위로 이동"
+	},
+	"downEntryTooltip": {
+		"message": "아래로 이동"
+	},
+	"validatedEntryTooltip": {
+		"message": "유효"
+	},
+	"noValidatedEntryTooltip": {
+		"message": "유효성 확인"
+	},
+	"notValidatedEntryTooltip": {
+		"message": "잘못된 형식"
+	},
+	"linkEntryTooltip": {
+		"message": "링크 생성…"
+	},
+	"selectedCardsDeletionConfirmMessagePF": {
+		"message": "선택한 연락처를 삭제하시겠습니까?",
+        "placeholders": {
+            "P1": {
+                "content": "$1"
+            }
+        }
+	},
+	"catDeletionsConfirmMessagePF": {
+		"message": "연락처가 포함되어 있는 카테고리 $P2$를 삭제하시겠습니까?",
+        "placeholders": {
+            "P1": {
+                "content": "$1"
+            },
+            "P2": {
+                "content": "$2"
+            }
+        }
+	},
+	"nodeDeletionsConfirmMessagePF": {
+		"message": "연락처가 포함되어 있는 노드 $P2$를 삭제하시겠습니까?",
+        "placeholders": {
+            "P1": {
+                "content": "$1"
+            },
+            "P2": {
+                "content": "$2"
+            }
+        }
+	},
+	"accountDeletionConfirmMessage": {
+		"message": "CardBook 저장소에서 $P1$ 주소록을 삭제 하시겠습니까?",
+        "placeholders": {
+            "P1": {
+                "content": "$1"
+            }
+        }
+	},
+	"accountDeletionDiscoveryConfirmMessage": {
+		"message": "주소록 $P1$이 (가) 서버에서 제거 된 것 같습니다, CardBook 저장소에서 제거 하시겠습니까?",
+        "placeholders": {
+            "P1": {
+                "content": "$1"
+            }
+        }
+	},
+	"accountDeletiondeleteContentFileMessage": {
+		"message": "파일 $P1$ 삭제",
+        "placeholders": {
+            "P1": {
+                "content": "$1"
+            }
+        }
+	},
+	"accountDeletiondeleteContentDirMessage": {
+		"message": "디렉토리 $P1$ 삭제",
+        "placeholders": {
+            "P1": {
+                "content": "$1"
+            }
+        }
+	},
+	"directoryDeletionConfirmMessage": {
+		"message": "$P1$ 디렉토리가 비어 있지 않습니다. 이 디렉토리에서 모든 개체를 삭제 하시겠습니까?",
+        "placeholders": {
+            "P1": {
+                "content": "$1"
+            }
+        }
+	},
+	"choiceMappingTitle": {
+		"message": "필드 선택"
+	},
+	"choiceavailableColumnsGroupboxLabel": {
+		"message": "사용 가능한 필드"
+	},
+	"choiceaddedColumnsGroupboxLabel": {
+		"message": "선택한 필드"
+	},
+	"exportMappingTitle": {
+		"message": "필드 매핑 선택"
+	},
+	"exportavailableColumnsGroupboxLabel": {
+		"message": "사용 가능한 열"
+	},
+	"exportaddedColumnsGroupboxLabel": {
+		"message": "선택된 열"
+	},
+	"importMappingTitle": {
+		"message": "필드 매핑 선택"
+	},
+	"importavailableColumnsGroupboxLabel": {
+		"message": "사용 가능한 열"
+	},
+	"importaddedColumnsGroupboxLabel": {
+		"message": "선택된 열"
+	},
+	"importfoundColumnsGroupboxLabel": {
+		"message": "헤더 열"
+	},
+	"importblankColumn": {
+		"message": "빈 열"
+	},
+	"importNoTypeLabel": {
+		"message": "유형 없음"
+	},
+	"fieldDelimiterLabel": {
+		"message": "필드 구분 기호"
+	},
+	"includePrefLabel": {
+		"message": "환경 설정 포함"
+	},
+	"lineHeaderLabel": {
+		"message": "첫 행을 헤더로 지정"
+	},
+	"missingColumnsConfirmMessage": {
+		"message": "선택한 열의 수가 파일의 열 수와 다릅니다. 선택 취소되거나 불필요한 열은 무시됩니다. 계속합니까?"
+	},
+	"toUpperCase": {
+		"message": "대문자로 변환"
+	},
+	"toLowerCase": {
+		"message": "소문자로 변환"
+	},
+	"copyFieldValue": {
+		"message": "복사하기 ($P1$)",
+        "placeholders": {
+            "P1": {
+                "content": "$1"
+            }
+        }
+	},
+	"pasteFieldValue": {
+		"message": "붙여넣기 ($P1$)",
+        "placeholders": {
+            "P1": {
+                "content": "$1"
+            }
+        }
+	},
+	"wdw_cardbookRenameFieldEditTypeTitle": {
+		"message": "유형 이름 바꾸기"
+	},
+	"wdw_cardbookRenameFieldAddTypeTitle": {
+		"message": "새 유형"
+	},
+	"wdw_cardbookRenameFieldOrgTitle": {
+		"message": "소속 편집기"
+	},
+	"wdw_cardbookRenameFieldCreateCatTitle": {
+		"message": "카테고리 생성"
+	},
+	"wdw_cardbookRenameFieldEditCatTitle": {
+		"message": "카테고리 편집기"
+	},
+	"wdw_cardbookRenameFieldEditNodeTitle": {
+		"message": "노드 수정"
+	},
+	"wdw_cardbookRenameFieldEditTypeLabel": {
+		"message": "유형:"
+	},
+	"wdw_cardbookRenameFieldAddTypeLabel": {
+		"message": "유형:"
+	},
+	"wdw_cardbookRenameFieldOrgLabel": {
+		"message": "유형:"
+	},
+	"wdw_cardbookRenameFieldCreateCatLabel": {
+		"message": "카테고리:"
+	},
+	"wdw_cardbookRenameFieldEditCatLabel": {
+		"message": "카테고리:"
+	},
+	"wdw_cardbookRenameFieldEditNodeLabel": {
+		"message": "$P1$:",
+        "placeholders": {
+            "P1": {
+                "content": "$1"
+            }
+        }
+	},
+	"wdw_cardbookConfigurationAddEmailsRestrictionTitle": {
+		"message": "메일 계정 제한 정의"
+	},
+	"wdw_cardbookConfigurationAddEmailsCollectionTitle": {
+		"message": "메일 계정 보내는 전자 메일 컬렉션 정의"
+	},
+	"ignoreCaseIgnoreDiacriticLabel": {
+		"message": "대/소문자 및 분음 기호 무시"
+	},
+	"ignoreCaseMatchDiacriticLabel": {
+		"message": "대/소문자 무시, 분음 기호 일치"
+	},
+	"matchCaseIgnoreDiacriticLabel": {
+		"message": "대/소문자 일치 및 분음 기호 무시"
+	},
+	"matchCaseMatchDiacriticLabel": {
+		"message": "대/소문자 및 분음 기호 일치"
+	},
+	"allCategories": {
+		"message": "모두 보이기"
+	},
+	"onlyCategories": {
+		"message": "카테고리만"
+	},
+	"noCategory": {
+		"message": "연락처만"
+	},
+	"multipleCategories": {
+		"message": "여러 카테고리"
+	},
+	"none": {
+		"message": "없음"
+	},
+	"multipleTypes": {
+		"message": "다수 유형"
+	},
+	"noType": {
+		"message": "유형 없음"
+	},
+	"eventContactsWindowLabel": {
+		"message": "다음 이벤트: $P1$",
+        "placeholders": {
+            "P1": {
+                "content": "$1"
+            }
+        }
+	},
+	"fnDuplicatedMessage": {
+		"message": "(사본)"
+	},
+	"allMailAccounts": {
+		"message": "모든 메일 계정"
+	},
+	"includeLabel": {
+		"message": "포함"
+	},
+	"excludeLabel": {
+		"message": "제외"
+	},
+	"sendButtonLabel": {
+		"message": "새 메시지 만들기"
+	},
+	"doNotShowAnymore": {
+		"message": "전자 메일 주소없이 전자 메일로 전자 메일을 보내려고 할 때 경고하지 마십시오."
+	},
+	"emptyEmailsCardConfirmMessage": {
+		"message": "이 연락처에는 이메일 주소가 없습니다: $P1$",
+        "placeholders": {
+            "P1": {
+                "content": "$1"
+            }
+        }
+	},
+	"emptyEmailsCardsConfirmMessage": {
+		"message": "이 연락처에는 이메일 주소가 없습니다: $P1$",
+        "placeholders": {
+            "P1": {
+                "content": "$1"
+            }
+        }
+	},
+	"eventInNoteEventPrefix": {
+		"message": "이벤트"
+	},
+	"deathSuffix": {
+		"message": "(사망)"
+	},
+	"dateFormatsDLabel": {
+		"message": "D"
+	},
+	"dateFormatsMLabel": {
+		"message": "M"
+	},
+	"dateFormatsYLabel": {
+		"message": "Y"
+	},
+	"autoComputeFn": {
+		"message": "표시 이름 생성 활성화"
+	},
+	"dontAutoComputeFn": {
+		"message": "표시 이름 생성 비활성화"
+	},
+	"customLabel": {
+		"message": "사용자 정의"
+	},
+	"valueAlreadyExists": {
+		"message": "$P1$ 값이 이미 있습니다",
+        "placeholders": {
+            "P1": {
+                "content": "$1"
+            }
+        }
+	},
+	"allAccountsLabel": {
+		"message": "모든 주소록"
+	},
+	"enabledAccountsLabel": {
+		"message": "주소록 활성화"
+	},
+	"disabledAccountsLabel": {
+		"message": "주소록 비활성화"
+	},
+	"localAccountsLabel": {
+		"message": "로컬 주소록"
+	},
+	"remoteAccountsLabel": {
+		"message": "원격 주소록"
+	},
+	"searchAccountsLabel": {
+		"message": "저장된 검색"
+	},
+	"wdw_passwordMissingTitle": {
+		"message": "누락된 암호"
+	},
+	"wdw_passwordWrongTitle": {
+		"message": "유효하지 않은 비밀번호"
+	},
+	"dateDisplayedFormatLong": {
+		"message": "긴 형식: %P1%"
+	},
+	"dateDisplayedFormatShort": {
+		"message": "짧은 형식: %P1%"
+	},
+	"addressFormatFormula": {
+		"message": "({{3}}\n|)({{1}}\n|)({{4}} |)({{6}}|)(\n)({{5}}\n|)({{7}}|)"
+	},
+	"newTokenTitle": {
+		"message": "$P1$ 계정으로 로그인",
+        "placeholders": {
+            "P1": {
+                "content": "$1"
+            }
+        }
+	},
+	"warnDescription": {
+		"message": "CardBook이 연락처를 받아오기 위해 귀하의 $P1$ 계정에 접근하고자 합니다. 로그인 정보와 연락처 데이터는 귀하의 컴퓨터와 Google 사이에만 전송되며 제 3 사이트는 연결되지 않습니다.",
+        "placeholders": {
+            "P1": {
+                "content": "$1"
+            }
+        }
+	},
+	"applicationName": {
+		"message": "애플리케이션: $P1$",
+        "placeholders": {
+            "P1": {
+                "content": "$1"
+            }
+        }
+	},
+	"clientID": {
+		"message": "클라이언트 인증: $P1$",
+        "placeholders": {
+            "P1": {
+                "content": "$1"
+            }
+        }
+	},
+	"scopeURL": {
+		"message": "영역: $P1$",
+        "placeholders": {
+            "P1": {
+                "content": "$1"
+            }
+        }
+	},
+	"invalidEmail": {
+		"message": "$P1$은(는) 올바르지 않은 메일 주소 형식 입니다. 메일 주소는 user@host의 형식을 가져야 합니다.",
+        "placeholders": {
+            "P1": {
+                "content": "$1"
+            }
+        }
+	},
+	"appendEmailLabel": {
+		"message": "목록에 추가: $P1$",
+        "placeholders": {
+            "P1": {
+                "content": "$1"
+            }
+        }
+	},
+	"categoryAddNew": {
+		"message": "새 카테고리 추가"
+	},
+	"typeAddNew": {
+		"message": "새 유형 추가"
+	},
+	"allContacts": {
+		"message": "모든 연락처"
+	},
+	"keyDescription": {
+		"message": "암호화 키"
+	},
+	"encryptionStarted": {
+		"message": "암호화 시작"
+	},
+	"encryptionProcessed": {
+		"message": "암호화된 항목: $P1$/$P2$",
+        "placeholders": {
+            "P1": {
+                "content": "$1"
+            },
+            "P2": {
+                "content": "$2"
+            }
+        }
+	},
+	"encryptionFinished": {
+		"message": "암호화 완료"
+	},
+	"decryptionStarted": {
+		"message": "암호화 시작"
+	},
+	"decryptionProcessed": {
+		"message": "복호화된 항목: $P1$/$P2$",
+        "placeholders": {
+            "P1": {
+                "content": "$1"
+            },
+            "P2": {
+                "content": "$2"
+            }
+        }
+	},
+	"decryptionFinished": {
+		"message": "복호화 완료"
+	},
+	"menu_undo.long.label": {
+		"message": "실행 취소 - $P1$",
+        "placeholders": {
+            "P1": {
+                "content": "$1"
+            }
+        }
+	},
+	"menu_undo.short.label": {
+		"message": "실행 취소"
+	},
+	"menu_redo.long.label": {
+		"message": "실행 반복 - $P1$",
+        "placeholders": {
+            "P1": {
+                "content": "$1"
+            }
+        }
+	},
+	"menu_redo.short.label": {
+		"message": "실행 반복"
+	},
+	"cardbookMenuItemLabel": {
+		"message": "CardBook"
+	},
+	"cardbookMenuItemAccesskey": {
+		"message": "b"
+	},
+	"cardbookMenuItemKey": {
+		"message": "b"
+	},
+	"cardbookMenuItemTooltip": {
+		"message": "CardBook 탭으로 전환"
+	},
+	"cardbookToolbarButtonLabel": {
+		"message": "CardBook"
+	},
+	"cardbookToolbarButtonTooltip": {
+		"message": "CardBook 탭으로 전환"
+	},
+	"cardbookTabButtonLabel": {
+		"message": "CardBook"
+	},
+	"cardbookTabButtonTooltip": {
+		"message": "CardBook 탭으로 전환"
+	},
+	"cardbookQFBButtonLabel": {
+		"message": "CardBook"
+	},
+	"cardbookQFBButtonTooltip": {
+		"message": "연락처에 있는 사람들 메시지만 보기"
+	},
+	"quickFilterBar.booleanMode.tooltip": {
+		"message": "태그 필터링 모드"
+	},
+	"quickFilterBar.booleanModeAny.label": {
+		"message": "일부"
+	},
+	"quickFilterBar.booleanModeAny.tooltip": {
+		"message": "선택한 태그 제한조건 중 최소 한 개는 맞음"
+	},
+	"quickFilterBar.booleanModeAll.label": {
+		"message": "모두"
+	},
+	"quickFilterBar.booleanModeAll.tooltip": {
+		"message": "선택한 태그 제한조건이 모두 맞음"
+	},
+	"newCardBookCardMenuLabel": {
+		"message": "CardBook 연락처…"
+	},
+	"newCardBookCardMenuAccesskey": {
+		"message": "C"
+	},
+	"newCardBookCardMenuKey": {
+		"message": "N"
+	},
+	"newCardBookSearchMenuLabel": {
+		"message": "CardBook 검색…"
+	},
+	"newCardBookSearchMenuAccesskey": {
+		"message": "C"
+	},
+	"addToCardBookMenuLabel": {
+		"message": "CardBook 연락처에 추가"
+	},
+	"addToCardBookMenuAccesskey": {
+		"message": "d"
+	},
+	"editInCardBookMenuLabel": {
+		"message": "CardBook으로 수정"
+	},
+	"editInCardBookMenuAccesskey": {
+		"message": "E"
+	},
+	"deleteInCardBookMenuLabel": {
+		"message": "CardBook 연락처 삭제"
+	},
+	"deleteInCardBookMenuAccesskey": {
+		"message": "D"
+	},
+	"IMPPMenuLabel": {
+		"message": "다음에 연결"
+	},
+	"IMPPMenuAccesskey": {
+		"message": "o"
+	},
+	"findAllEmailsFromContactMessengerLabel": {
+		"message": "이 연락처와 관련된 이메일 찾기"
+	},
+	"findAllEmailsFromContactMessengerAccesskey": {
+		"message": "c"
+	},
+	"findEmailsFromEmailMessengerLabel": {
+		"message": "이 이메일 주소와 관련된 이메일 찾기"
+	},
+	"findEmailsFromEmailMessengerAccesskey": {
+		"message": "e"
+	},
+	"findAllEventsFromContactMessengerLabel": {
+		"message": "이 연락처와 관련된 캘린더 이벤트 찾기"
+	},
+	"findAllEventsFromContactMessengerAccesskey": {
+		"message": "c"
+	},
+	"findEventsFromEmailMessengerLabel": {
+		"message": "이 이메일 주소와 관련된 캘린더 일정 찾기"
+	},
+	"findEventsFromEmailMessengerAccesskey": {
+		"message": "e"
+	},
+	"mailContext-addToCardBookMenuLabel": {
+		"message": "CardBook 주소록에 추가…"
+	},
+	"mailContext-addToCardBookMenuAccesskey": {
+		"message": "d"
+	},
+	"addAllAttachementsToCardBookMenuLabel": {
+		"message": "모두 CardBook으로…"
+	},
+	"addAttachementToCardBookMenuLabel": {
+		"message": "CardBook으로…"
+	},
+	"cardbookABPaneItemLabel": {
+		"message": "주소록 창"
+	},
+	"cardbookABPaneItemAccesskey": {
+		"message": "A"
+	},
+	"cardbookContactPaneItemLabel": {
+		"message": "연락처 창"
+	},
+	"cardbookContactPaneItemAccesskey": {
+		"message": "O"
+	},
+	"wizard.title": {
+		"message": "새 주소록 추가"
+	},
+	"wizard.label": {
+		"message": "새 주소록 추가"
+	},
+	"welcomePage.wizard.description": {
+		"message": "환영합니다"
+	},
+	"welcomePage.description": {
+		"message": "CardBook이 최초로 실행된 것 같습니다. CardBook은 Thunderbird의 기본 주소록과 원격 주소록에서 연락처 수집을 시도할 것입니다."
+	},
+	"initialPage.wizard.description": {
+		"message": "새 주소록 위치."
+	},
+	"initialPage.description": {
+		"message": "주소록 위치:"
+	},
+	"initialPage.computer.label": {
+		"message": "로컬"
+	},
+	"initialPage.network.label": {
+		"message": "원격"
+	},
+	"initialPage.standard.label": {
+		"message": "Thunderbird의 표준 주소록 가져 오기"
+	},
+	"initialPage.search.label": {
+		"message": "기존 주소록 검색"
+	},
+	"initialPage.find.label": {
+		"message": "원격 주소록 검색"
+	},
+	"localPage.wizard.description": {
+		"message": "새 로컬 주소록의 유형 및 위치."
+	},
+	"localPage.type.description": {
+		"message": "로컬 주소록 유형:"
+	},
+	"localPage.type.label": {
+		"message": "유형"
+	},
+	"localPage.createDB.label": {
+		"message": "새 주소록 만들기"
+	},
+	"localPage.createDirectory.label": {
+		"message": "새 주소록 만들기 (디렉토리)"
+	},
+	"localPage.createFile.label": {
+		"message": "새 주소록 만들기 (파일)"
+	},
+	"localPage.openDirectory.label": {
+		"message": "기존 주소록 열기 (디렉토리)"
+	},
+	"localPage.openFile.label": {
+		"message": "기존 주소록 열기 (파일)"
+	},
+	"localPage.uri.groupbox": {
+		"message": "위치"
+	},
+	"localPage.uri.label": {
+		"message": "디렉토리 또는 파일:"
+	},
+	"localPage.uri.description": {
+		"message": "브라우저를 사용하여 새 로컬 주소록의 위치를 선택하십시오. 새 파일을 작성하는 경우 .vcf를 파일 확장자로 지정하십시오."
+	},
+	"localPage.uributton.label": {
+		"message": "찾아보기"
+	},
+	"remotePage.wizard.description": {
+		"message": "새 원격 주소록의 유형과 위치."
+	},
+	"remotePage.description": {
+		"message": "원격 주소록의 유형은 무엇입니까? (주의 : Google은 vCard 표준을 준수하지 않습니다.)"
+	},
+	"remotePage.type.label": {
+		"message": "유형"
+	},
+	"remotePageType.carddav.label": {
+		"message": "CardDAV"
+	},
+	"remotePageType.google2.label": {
+		"message": "Google"
+	},
+	"remotePageType.google3.label": {
+		"message": "Google Workspace"
+	},
+	"remotePageType.apple.label": {
+		"message": "Apple"
+	},
+	"remotePageType.yahoo.label": {
+		"message": "Yahoo!"
+	},
+	"remotePageType.aol.com.label": {
+		"message": "AOL"
+	},
+	"remotePageType.gmx.label": {
+		"message": "GMX"
+	},
+	"remotePageType.mykolab.com.label": {
+		"message": "myKolab"
+	},
+	"remotePage.connection.label": {
+		"message": "연결"
+	},
+	"remotePage.url.description": {
+		"message": "카드 암호 및 버전 관리 (CardDAV) 유형의 경우 원격 주소록의 URL을 입력하십시오. 부분 URL (예: http(s)://carddav.example.or.kr)을 사용해보십시오. 구글 주소록의 경우 이 입력란을 지정하지 마십시오."
+	},
+	"remotePage.url.label": {
+		"message": "URL 주소:"
+	},
+	"remotePage.credentials.description": {
+		"message": "주소록에 액세스하기 위한 자격 증명을 입력하십시오. Google 주소록의 경우, 사용자 이름은 이메일 주소 형식이어야 합니다."
+	},
+	"remotePage.user.label": {
+		"message": "사용자 이름:"
+	},
+	"remotePage.password.label": {
+		"message": "암호:"
+	},
+	"showHidePassword.tooltip": {
+		"message": "비밀번호 표시/숨기기"
+	},
+	"remotePage.validatebutton.label": {
+		"message": "유효성 검사"
+	},
+	"locationSearchPage.wizard.description": {
+		"message": "저장된 검색의 정의."
+	},
+	"locationSearchPage.label": {
+		"message": "이전 검색"
+	},
+	"abSearchHeading.label": {
+		"message": "검색:"
+	},
+	"abSearchHeading.accesskey": {
+		"message": "h"
+	},
+	"matchAll.label": {
+		"message": "모든 조건 검색"
+	},
+	"matchAll.accesskey": {
+		"message": "A"
+	},
+	"matchAny.label": {
+		"message": "모든 조건 중 하나라도 일치"
+	},
+	"matchAny.accesskey": {
+		"message": "o"
+	},
+	"googleOauthPage.wizard.description": {
+		"message": "구글 인증"
+	},
+	"namePage.wizard.description": {
+		"message": "주소록 속성"
+	},
+	"namePage.selected.label": {
+		"message": "선택됨"
+	},
+	"namePage.name.label": {
+		"message": "이름"
+	},
+	"namePage.color.label": {
+		"message": "색깔"
+	},
+	"namePage.urnuuid.label": {
+		"message": "urn:uuid 사용"
+	},
+	"namePage.DBCached.label": {
+		"message": "오프라인으로 작업"
+	},
+	"namePage.vCardVersion.label": {
+		"message": "vCard"
+	},
+	"namesPage.wizard.description": {
+		"message": "주소록 속성"
+	},
+	"namesPage.name.label": {
+		"message": "이름"
+	},
+	"namesPage.name.description": {
+		"message": "여러 주소록이 발견되었습니다. 열려는 주소록과 이름을 선택하십시오:"
+	},
+	"findPage.wizard.description": {
+		"message": "원격 주소록 검색"
+	},
+	"findPage.name1.description": {
+		"message": "검색된 원격 주소록이 없습니다."
+	},
+	"findPage.name2.description": {
+		"message": "1개의 원격 주소록이 검색되었습니다. 추가하기 위해 유효성을 확인하십시오:"
+	},
+	"findPage.name3.description": {
+		"message": "다수의 원격 주소록이 검색되었습니다. 추가하기 위해 유효성을 확인하십시오:"
+	},
+	"finishPage.wizard.description": {
+		"message": "주소록 설정"
+	},
+	"finishPage.description": {
+		"message": "새 주소록이 성공적으로 구성되었습니다."
+	},
+	"finishsPage.description": {
+		"message": "새 주소록이 성공적으로 구성되었습니다."
+	},
+	"wdw_addressbooksEditTitle": {
+		"message": "주소록 속성"
+	},
+	"colorLabel": {
+		"message": "색상:"
+	},
+	"name.ABedit.label": {
+		"message": "이름:"
+	},
+	"name.ABedit.accesskey": {
+		"message": "N"
+	},
+	"nodesLabel": {
+		"message": "노드:"
+	},
+	"categoriesNodeLabel": {
+		"message": "카테고리"
+	},
+	"orgNodeLabel": {
+		"message": "소속"
+	},
+	"typeLabel": {
+		"message": "유형:"
+	},
+	"username.ABedit.label": {
+		"message": "사용자 이름:"
+	},
+	"vCardVersionLabel": {
+		"message": "vCard:"
+	},
+	"readonlyLabel": {
+		"message": "읽기 전용 모드"
+	},
+	"readonlyAccesskey": {
+		"message": "R"
+	},
+	"urnuuidLabel": {
+		"message": "urn:uuid 사용"
+	},
+	"DBCachedLabel": {
+		"message": "오프라인으로 작업"
+	},
+	"autoSyncGroupboxLabel": {
+		"message": "주기적 동기화"
+	},
+	"autoSyncLabel": {
+		"message": "주기적 동기화 사용"
+	},
+	"autoSyncAccesskey": {
+		"message": "E"
+	},
+	"autoSyncIntervalLabel": {
+		"message": "주기적 동기화 간격 (분):"
+	},
+	"autoSyncIntervalAccesskey": {
+		"message": "I"
+	},
+	"miscTabLabel": {
+		"message": "기타"
+	},
+	"fnFormulaCaption": {
+		"message": "표시 이름"
+	},
+	"fnFormulaLabel": {
+		"message": "표시 이름 공식:"
+	},
+	"fnFormulaAccesskey": {
+		"message": "y"
+	},
+	"resetFnFormulaLabel": {
+		"message": "초기화"
+	},
+	"resetFnFormulaAccesskey": {
+		"message": "R"
+	},
+	"applyToABButtonLabel": {
+		"message": "다음에 적용…"
+	},
+	"applyToABButtonAccesskey": {
+		"message": "A"
+	},
+	"wdw_adrEditionTitle": {
+		"message": "주소 편집기"
+	},
+	"adrPostOfficeLabel": {
+		"message": "사서함"
+	},
+	"adrExtendedAddrLabel": {
+		"message": "아파트 및 동 호수"
+	},
+	"adrStreetLabel": {
+		"message": "도로명"
+	},
+	"adrLocalityLabel": {
+		"message": "시/구"
+	},
+	"adrRegionLabel": {
+		"message": "시/도"
+	},
+	"adrPostalCodeLabel": {
+		"message": "우편 번호"
+	},
+	"adrCountryLabel": {
+		"message": "국가"
+	},
+	"deprecatedLabel": {
+		"message": "더 이상 사용되지 않습니다"
+	},
+	"daysLeftColumnLabel": {
+		"message": "남은 일 수"
+	},
+	"nameColumnLabel": {
+		"message": "이름"
+	},
+	"ageColumnLabel": {
+		"message": "나이"
+	},
+	"dateOfBirthColumnLabel": {
+		"message": "이벤트 날짜"
+	},
+	"dateOfBirthFoundColumnLabel": {
+		"message": "발견된 날짜"
+	},
+	"emailColumnLabel": {
+		"message": "이메일"
+	},
+	"sendEmailLabel": {
+		"message": "새 메시지 쓰기"
+	},
+	"sendEmailAccesskey": {
+		"message": "E"
+	},
+	"syncLightningMenuItemLabel": {
+		"message": "Lightning과 동기화"
+	},
+	"syncLightningMenuAccesskey": {
+		"message": "S"
+	},
+	"calendarNameLabel": {
+		"message": "캘린더"
+	},
+	"calendarIdLabel": {
+		"message": "캘린더 id"
+	},
+	"existingLabel": {
+		"message": "기존"
+	},
+	"failedLabel": {
+		"message": "실패"
+	},
+	"succeededLabel": {
+		"message": "성공"
+	},
+	"wdw_bulkOperationTitle": {
+		"message": "실행 중…"
+	},
+	"wdw_cardbookConfigurationAddCustomFieldTitle": {
+		"message": "사용자 정의 필드 편집기"
+	},
+	"customFieldCodeLabel": {
+		"message": "필드 이름:"
+	},
+	"customFieldLabelLabel": {
+		"message": "필드 레이블:"
+	},
+	"mailAccountLabel": {
+		"message": "메일 계정:"
+	},
+	"addressbookLabel": {
+		"message": "주소록:"
+	},
+	"categoryLabel": {
+		"message": "카테고리:"
+	},
+	"contactLabel": {
+		"message": "연락처"
+	},
+	"wdw_cardbookConfigurationAddIMPPTitle": {
+		"message": "프로토콜 편집기"
+	},
+	"IMPPCodeLabel": {
+		"message": "코드:"
+	},
+	"IMPPLabelLabel": {
+		"message": "레이블:"
+	},
+	"IMPPProtocolLabel": {
+		"message": "프로토콜:"
+	},
+	"wdw_cardbookConfigurationAddVcardTitle": {
+		"message": "vCard 선택"
+	},
+	"contactVcardLabel": {
+		"message": "연락처:"
+	},
+	"filenameLabel": {
+		"message": "첨부 파일:"
+	},
+	"vCardLabel": {
+		"message": "vCard"
+	},
+	"CardBookTabLabel": {
+		"message": "탭"
+	},
+	"editionTabLabel": {
+		"message": "편집"
+	},
+	"IMPPsTabLabel": {
+		"message": "인터넷 통신"
+	},
+	"customFieldsTabLabel": {
+		"message": "사용자 정의 필드"
+	},
+	"listsTabLabel": {
+		"message": "목록"
+	},
+	"syncTabLabel": {
+		"message": "동기화"
+	},
+	"emailTabLabel": {
+		"message": "이메일"
+	},
+	"birthdaylistTabLabel": {
+		"message": "기념일"
+	},
+	"helpTabLabel": {
+		"message": "도움말"
+	},
+	"integrationGroupboxLabel": {
+		"message": "Thunderbird 통합 기능"
+	},
+	"autocompletionLabel": {
+		"message": "이메일 주소 자동 완성"
+	},
+	"autocompletionAccesskey": {
+		"message": "o"
+	},
+	"autocompletionTooltip": {
+		"message": "CardBook 주소록에 자동 완성 기능을 추가하여 Thunderbird 주소록의 연락처 자동 완성 기능을 확장합니다."
+	},
+	"autocompleteSortByPopularityLabel": {
+		"message": "인기도에 따라 전자 메일 주소 정렬"
+	},
+	"autocompleteSortByPopularityAccesskey": {
+		"message": "p"
+	},
+	"autocompleteProposeConcatEmailsLabel": {
+		"message": "연락처에 맞는 전자 메일 제안"
+	},
+	"autocompleteProposeConcatEmailsAccesskey": {
+		"message": "c"
+	},
+	"autocompleteShowAddressbookLabel": {
+		"message": "주소록 이름 표시"
+	},
+	"autocompleteShowAddressbookAccesskey": {
+		"message": "a"
+	},
+	"autocompleteShowEmailTypeLabel": {
+		"message": "이메일 유형 표시"
+	},
+	"autocompleteShowEmailTypeAccesskey": {
+		"message": "e"
+	},
+	"autocompleteShowPopularityLabel": {
+		"message": "인기도 표시"
+	},
+	"autocompleteShowPopularityAccesskey": {
+		"message": "y"
+	},
+	"autocompleteWithColorLabel": {
+		"message": "주소록 색상 사용"
+	},
+	"autocompleteWithColorAccesskey": {
+		"message": "c"
+	},
+	"autocompleteRestrictSearchLabel": {
+		"message": "검색 필드 제한"
+	},
+	"autocompleteRestrictSearchAccesskey": {
+		"message": "R"
+	},
+	"chooseAutocompleteRestrictSearchFieldsButtonLabel": {
+		"message": "편집"
+	},
+	"chooseAutocompleteRestrictSearchFieldsButtonAccesskey": {
+		"message": "E"
+	},
+	"resetAutocompleteRestrictSearchFieldsButtonLabel": {
+		"message": "초기화"
+	},
+	"resetAutocompleteRestrictSearchFieldsButtonAccesskey": {
+		"message": "D"
+	},
+	"useColorLabel": {
+		"message": "주소록 색상을 다음으로 지정:"
+	},
+	"useColorBackgroundLabel": {
+		"message": "배경색"
+	},
+	"useColorBackgroundAccesskey": {
+		"message": "B"
+	},
+	"useColorTextLabel": {
+		"message": "텍스트 색상"
+	},
+	"useColorTextAccesskey": {
+		"message": "T"
+	},
+	"useColorNothingLabel": {
+		"message": "색상 없음"
+	},
+	"useColorNothingAccesskey": {
+		"message": "N"
+	},
+	"exclusiveLabel": {
+		"message": "연락처 고유 소스"
+	},
+	"exclusiveAccesskey": {
+		"message": "U"
+	},
+	"exclusiveTooltip": {
+		"message": "이 옵션을 비활성화하면 노란색 별표, 전자 메일 표시 이름 및 전자 메일 자동 완성을 위해 Thunderbird 표준 주소록의 연락처를 검색 할 수 있습니다."
+	},
+	"accountsRestrictionsLabel": {
+		"message": "메일 계정 제한 사항"
+	},
+	"accountsRestrictionsEnabledLabel": {
+		"message": "활성화"
+	},
+	"accountsRestrictionsMailNameLabel": {
+		"message": "메일 계정"
+	},
+	"accountsRestrictionsABNameLabel": {
+		"message": "주소록"
+	},
+	"accountsRestrictionsCatNameLabel": {
+		"message": "카테고리"
+	},
+	"accountsRestrictionsIncludeNameLabel": {
+		"message": "유형"
+	},
+	"addRestrictionLabel": {
+		"message": "추가"
+	},
+	"addRestrictionAccesskey": {
+		"message": "A"
+	},
+	"renameRestrictionLabel": {
+		"message": "편집"
+	},
+	"renameRestrictionAccesskey": {
+		"message": "E"
+	},
+	"deleteRestrictionLabel": {
+		"message": "삭제"
+	},
+	"deleteRestrictionAccesskey": {
+		"message": "D"
+	},
+	"emailsCollectionLabel": {
+		"message": "보내는 전자 메일 수집"
+	},
+	"emailsCollectionTooltip": {
+		"message": "Thunderbird의 표준 발송 이메일 주소 컬렉션을 확장합니다. 이 옵션을 사용하면 CardBook 주소록에 없는 이메일 주소가 선택한 주소록에 추가됩니다."
+	},
+	"emailsCollectionEnabledLabel": {
+		"message": "활성화"
+	},
+	"emailsCollectionMailNameLabel": {
+		"message": "메일 계정"
+	},
+	"emailsCollectionABNameLabel": {
+		"message": "주소록"
+	},
+	"emailsCollectionCatNameLabel": {
+		"message": "카테고리"
+	},
+	"addEmailsCollectionLabel": {
+		"message": "추가"
+	},
+	"addEmailsCollectionAccesskey": {
+		"message": "A"
+	},
+	"renameEmailsCollectionLabel": {
+		"message": "편집"
+	},
+	"renameEmailsCollectionAccesskey": {
+		"message": "E"
+	},
+	"deleteEmailsCollectionLabel": {
+		"message": "삭제"
+	},
+	"deleteEmailsCollectionAccesskey": {
+		"message": "D"
+	},
+	"logGroupboxLabel": {
+		"message": "로그"
+	},
+	"debugModeLabel": {
+		"message": "디버그 모드"
+	},
+	"debugModeAccesskey": {
+		"message": "m"
+	},
+	"debugModeTooltip": {
+		"message": "확장 로깅을위한 디버그 모드를 사용"
+	},
+	"statusInformationLineNumberLabel": {
+		"message": "로그 파일에 보관 된 라인 수:"
+	},
+	"statusInformationLineNumberAccesskey": {
+		"message": "k"
+	},
+	"tabsEditingGroupboxLabel": {
+		"message": "탭 표시"
+	},
+	"listTabLabel": {
+		"message": "리스트"
+	},
+	"listTabAccesskey": {
+		"message": "L"
+	},
+	"listTab.conf.label": {
+		"message": "목록"
+	},
+	"listTab.conf.accesskey": {
+		"message": "L"
+	},
+	"technicalTab.conf.label": {
+		"message": "전문적"
+	},
+	"technicalTab.conf.accesskey": {
+		"message": "T"
+	},
+	"vCardTab.conf.label": {
+		"message": "v카드(가상카드)"
+	},
+	"vCardTab.conf.accesskey": {
+		"message": "V"
+	},
+	"keyTab.conf.label": {
+		"message": "공개키"
+	},
+	"keyTab.conf.accesskey": {
+		"message": "K"
+	},
+	"advancedTab1Label": {
+		"message": "고급"
+	},
+	"popularityLabel": {
+		"message": "인기:"
+	},
+	"memberOfLabel": {
+		"message": "의 멤버이다:"
+	},
+	"localizeEditingGroupboxLabel": {
+		"message": "지도에 표시"
+	},
+	"localizeEngineOpenStreetMapLabel": {
+		"message": "OpenStreetMap"
+	},
+	"localizeEngineOpenStreetMapAccesskey": {
+		"message": "O"
+	},
+	"localizeEngineGoogleMapsLabel": {
+		"message": "Google Maps"
+	},
+	"localizeEngineGoogleMapsAccesskey": {
+		"message": "G"
+	},
+	"localizeEngineBingMapsLabel": {
+		"message": "Bing Maps"
+	},
+	"localizeEngineBingMapsAccesskey": {
+		"message": "B"
+	},
+	"previewLabel": {
+		"message": "미리보기"
+	},
+	"localizeTargetLabel": {
+		"message": "외부 링크 열기"
+	},
+	"localizeTargetInLabel": {
+		"message": "Thunderbird 내부"
+	},
+	"localizeTargetInAccesskey": {
+		"message": "I"
+	},
+	"localizeTargetOutLabel": {
+		"message": "Thunderbird 외부"
+	},
+	"localizeTargetOutAccesskey": {
+		"message": "U"
+	},
+	"showNameAsLabel": {
+		"message": "이름으로 표시"
+	},
+	"showNameAsLFLabel": {
+		"message": "성 이름"
+	},
+	"showNameAsLFAccesskey": {
+		"message": "F"
+	},
+	"showNameAsLFCommaLabel": {
+		"message": "성, 이름"
+	},
+	"showNameAsLFCommaAccesskey": {
+		"message": "i"
+	},
+	"showNameAsFLLabel": {
+		"message": "이름 성"
+	},
+	"showNameAsFLAccesskey": {
+		"message": "e"
+	},
+	"showNameAsDSPLabel": {
+		"message": "표시 이름"
+	},
+	"showNameAsDSPAccesskey": {
+		"message": "D"
+	},
+	"adrFormulaCaption": {
+		"message": "주소"
+	},
+	"adrFormulaLabel": {
+		"message": "주소 형식 공식:"
+	},
+	"adrFormulaAccesskey": {
+		"message": "R"
+	},
+	"resetAdrFormulaLabel": {
+		"message": "초기화"
+	},
+	"resetAdrFormulaAccesskey": {
+		"message": "R"
+	},
+	"miscEditingGroupboxLabel": {
+		"message": "기타"
+	},
+	"preferEmailEditionLabel": {
+		"message": "연락처를 더블클릭하여 이메일 작성 대신 편집하기"
+	},
+	"preferEmailEditionAccesskey": {
+		"message": "k"
+	},
+	"dateDisplayedFormatLabel": {
+		"message": "날짜 텍스트 형식:"
+	},
+	"dateDisplayedFormatAccesskey": {
+		"message": "x"
+	},
+	"defaultRegionLabel": {
+		"message": "기본 지역:"
+	},
+	"defaultRegionAccesskey": {
+		"message": "D"
+	},
+	"defaultRegionTooltip": {
+		"message": "주소 및 전화번호 포맷에 사용할 기본 지역"
+	},
+	"editionGroupboxLabel": {
+		"message": "필드 선택기"
+	},
+	"editionWarn": {
+		"message": "연락처 편집 시 CardBook은 기본적으로 선택된 필드만 표시합니다."
+	},
+	"fieldsButtonLabel": {
+		"message": "기본값으로 설정"
+	},
+	"preferDisplayNameCheckBoxLabel": {
+		"message": "메시지 헤더에는 항상 표시 이름을 우선"
+	},
+	"selectAllFieldsLabel": {
+		"message": "모두 선택"
+	},
+	"preferenceGroupboxLabel": {
+		"message": "필드 환경 설정"
+	},
+	"usePreferenceValueLabel": {
+		"message": "기본 설정 값 사용 (vCard 4.0 전용)"
+	},
+	"usePreferenceValueAccesskey": {
+		"message": "p"
+	},
+	"preferenceValueLabel": {
+		"message": "환경 설정 값 필드의 레이블"
+	},
+	"preferenceValueAccesskey": {
+		"message": "V"
+	},
+	"ABtypesGroupboxLabel": {
+		"message": "주소록"
+	},
+	"typesCategoryGoogleLabel": {
+		"message": "Google"
+	},
+	"typesCategoryGoogleAccesskey": {
+		"message": "G"
+	},
+	"typesCategoryAppleLabel": {
+		"message": "Apple"
+	},
+	"typesCategoryAppleAccesskey": {
+		"message": "A"
+	},
+	"typesCategoryYahooLabel": {
+		"message": "Yahoo!"
+	},
+	"typesCategoryYahooAccesskey": {
+		"message": "Y"
+	},
+	"typesCategoryOthersLabel": {
+		"message": "기타"
+	},
+	"typesCategoryOthersAccesskey": {
+		"message": "O"
+	},
+	"typesGroupboxLabel": {
+		"message": "유형"
+	},
+	"typesCategoryAdrLabel": {
+		"message": "주소"
+	},
+	"typesCategoryAdrAccesskey": {
+		"message": "S"
+	},
+	"typesCategoryEmailLabel": {
+		"message": "이메일"
+	},
+	"typesCategoryEmailAccesskey": {
+		"message": "m"
+	},
+	"typesCategoryImppLabel": {
+		"message": "인스턴트 메시징 및 프리젠스 프로토콜(IMPP)"
+	},
+	"typesCategoryImppAccesskey": {
+		"message": "I"
+	},
+	"typesCategoryTelLabel": {
+		"message": "전화"
+	},
+	"typesCategoryTelAccesskey": {
+		"message": "H"
+	},
+	"typesCategoryUrlLabel": {
+		"message": "URL 주소"
+	},
+	"typesCategoryUrlAccesskey": {
+		"message": "U"
+	},
+	"typesLabelLabel": {
+		"message": "태그"
+	},
+	"addTypeLabel": {
+		"message": "추가"
+	},
+	"addTypeAccesskey": {
+		"message": "A"
+	},
+	"renameTypeLabel": {
+		"message": "편집"
+	},
+	"renameTypeAccesskey": {
+		"message": "E"
+	},
+	"deleteTypeLabel": {
+		"message": "삭제"
+	},
+	"deleteTypeAccesskey": {
+		"message": "D"
+	},
+	"resetTypeLabel": {
+		"message": "초기화"
+	},
+	"resetTypeAccesskey": {
+		"message": "R"
+	},
+	"IMPPGroupboxWarn": {
+		"message": "이 설정은 지정한 프로토콜을 통해 인터넷 메시징을 허용합니다."
+	},
+	"IMPPGroupboxLabel": {
+		"message": "인터넷 메신저"
+	},
+	"preferIMPPPrefLabel": {
+		"message": "표시된 인터넷 메신저 우선"
+	},
+	"preferIMPPPrefAccesskey": {
+		"message": "P"
+	},
+	"preferIMPPPrefWarn": {
+		"message": "주소가 표시되지 않으면 모든 연락처의 주소에 대한 연결이 제안됩니다."
+	},
+	"IMPPCodeHeaderLabel": {
+		"message": "코드"
+	},
+	"IMPPLabelHeaderLabel": {
+		"message": "태그"
+	},
+	"IMPPProtocolHeaderLabel": {
+		"message": "프로토콜"
+	},
+	"addIMPPLabel": {
+		"message": "추가"
+	},
+	"addIMPPAccesskey": {
+		"message": "A"
+	},
+	"renameIMPPLabel": {
+		"message": "편집"
+	},
+	"renameIMPPAccesskey": {
+		"message": "E"
+	},
+	"deleteIMPPLabel": {
+		"message": "삭제"
+	},
+	"deleteIMPPAccesskey": {
+		"message": "D"
+	},
+	"URLPhoneGroupboxLabel": {
+		"message": "VoIP 전화 실행 URL"
+	},
+	"URLPhoneGroupboxWarn": {
+		"message": "이 설정은 전화 연결을 위한 URL 프로토콜을 선택했을 경우에 적용됩니다. URL은 전화 번호를 나타내기 위해 {{1}}을(를) 포함해야 합니다."
+	},
+	"URLPhoneURLLabel": {
+		"message": "URL 주소:"
+	},
+	"URLPhoneURLAccesskey": {
+		"message": "U"
+	},
+	"URLPhoneUserLabel": {
+		"message": "사용자 이름:"
+	},
+	"URLPhoneUserAccesskey": {
+		"message": "t"
+	},
+	"URLPhonePasswordLabel": {
+		"message": "암호:"
+	},
+	"URLPhonePasswordAccesskey": {
+		"message": "P"
+	},
+	"URLPhoneBackgroundLabel": {
+		"message": "백그라운드에서 실행"
+	},
+	"URLPhoneBackgroundAccesskey": {
+		"message": "S"
+	},
+	"encryptionGroupboxLabel": {
+		"message": "암호화"
+	},
+	"encryptionExplanation": {
+		"message": "CardBook은 로컬 데이터를 암호화 할 수도 있습니다. 이를 위해 암호 관리자에 저장된 비밀 키를 사용합니다. 만약 이 키를 분실하면 로컬 데이터를 복구하는 것은 불가능합니다. 완벽한 보호를 위해 Thunderbird 마스터 암호 기능을 활성화하는 것을 추천합니다."
+	},
+	"localDataEncryptionEnabledLabel": {
+		"message": "로컬에 캐시된 연락처 암호화"
+	},
+	"localDataEncryptionEnabledAccesskey": {
+		"message": "E"
+	},
+	"customFieldRankHeader": {
+		"message": "계급"
+	},
+	"customFieldCodeHeader": {
+		"message": "필드 이름"
+	},
+	"customFieldLabelHeader": {
+		"message": "필드 레이블"
+	},
+	"customFieldsPersTitleLabel": {
+		"message": "개인 정보"
+	},
+	"customFieldsPersTitleAccesskey": {
+		"message": "P"
+	},
+	"customFieldsOrgTitleLabel": {
+		"message": "직장 정보"
+	},
+	"customFieldsOrgTitleAccesskey": {
+		"message": "r"
+	},
+	"addCustomFieldsLabel": {
+		"message": "추가"
+	},
+	"addCustomFieldsAccesskey": {
+		"message": "A"
+	},
+	"renameCustomFieldsLabel": {
+		"message": "편집"
+	},
+	"renameCustomFieldsAccesskey": {
+		"message": "E"
+	},
+	"deleteCustomFieldsLabel": {
+		"message": "삭제"
+	},
+	"deleteCustomFieldsAccesskey": {
+		"message": "D"
+	},
+	"orgWarn": {
+		"message": "필드조직(ORG)은 세미콜론으로 분리된 구조화된 텍스트값을 포함할 수 있습니다. (예: 회사;서비스;부서). 아래 필드는 이 구조의 구성 요소 레이블을 설명합니다."
+	},
+	"orgRankLabel": {
+		"message": "계급"
+	},
+	"orgLabelLabel": {
+		"message": "필드 레이블"
+	},
+	"listPanelLabel": {
+		"message": "서버가 카테고리를 지원하지 않는 경우 (Google, Apple, Zimbra 등), 그룹에 이메일을 보내는 좋은 방법은 목록입니다. vCard 3.0은 기본적으로 목록을 지원하지 않습니다만, 사용자 정의 필드를 사용하면 목록을 사용할 수 있습니다. 따라서 만약 vCard 3.0에서 목록을 사용하고 싶다면 이러한 필드를 정의해야 합니다."
+	},
+	"listGroupboxLabel": {
+		"message": "목록의 사용자 정의 필드"
+	},
+	"kindCustomLabel": {
+		"message": "유형:"
+	},
+	"kindCustomAccesskey": {
+		"message": "K"
+	},
+	"memberCustomLabel": {
+		"message": "구성원:"
+	},
+	"memberCustomAccesskey": {
+		"message": "M"
+	},
+	"resetListLabel": {
+		"message": "초기화"
+	},
+	"resetListAccesskey": {
+		"message": "R"
+	},
+	"syncGroupboxLabel": {
+		"message": "동기화"
+	},
+	"syncWarn": {
+		"message": "동기화는 수정 내용을 원격 서버에, 서버가 수정 한 내용을 사용자에게 전달합니다."
+	},
+	"syncAfterChangeLabel": {
+		"message": "변경 후 동기화"
+	},
+	"syncAfterChangeAccesskey": {
+		"message": "c"
+	},
+	"initialSyncLabel": {
+		"message": "Thunderbird 시작시 동기화 실행"
+	},
+	"initialSyncAccesskey": {
+		"message": "R"
+	},
+	"initialSyncDelayLabel": {
+		"message": "초기 동기화 소요 시간 (초):"
+	},
+	"initialSyncDelayAccesskey": {
+		"message": "y"
+	},
+	"solveConflictsLabel": {
+		"message": "연락처가 서버와 로컬에서 모두 업데이트 된 경우:"
+	},
+	"solveConflictsLocalLabel": {
+		"message": "로컬 변경 사항 우선"
+	},
+	"solveConflictsLocalAccesskey": {
+		"message": "L"
+	},
+	"solveConflictsRemoteLabel": {
+		"message": "서버 변경 사항 우선"
+	},
+	"solveConflictsRemoteAccesskey": {
+		"message": "S"
+	},
+	"solveConflictsUserLabel": {
+		"message": "사용자에게 묻기"
+	},
+	"solveConflictsUserAccesskey": {
+		"message": "A"
+	},
+	"maxModifsPushedLabel": {
+		"message": "동기화 당 푸시 된 최대 수정 수:"
+	},
+	"maxModifsPushedAccesskey": {
+		"message": "M"
+	},
+	"requestsGroupboxLabel": {
+		"message": "요청"
+	},
+	"requestsTimeoutLabel": {
+		"message": "제한 시간 (초):"
+	},
+	"requestsTimeoutAccesskey": {
+		"message": "T"
+	},
+	"multigetLabel": {
+		"message": "GET 요청에 대해 다음 연락처 수 마다 그룹화 :"
+	},
+	"multigetAccesskey": {
+		"message": "G"
+	},
+	"discoveryGroupboxLabel": {
+		"message": "주소록 발견"
+	},
+	"discoveryWarn": {
+		"message": "매 동기화마다 아래의 URL을 확인하여 새 주소록이나 삭제 된 주소록을 검색합니다."
+	},
+	"discoveryAccountsGroupboxLabel": {
+		"message": "계정"
+	},
+	"advancedSyncGroupboxLabel": {
+		"message": "고급 속성"
+	},
+	"decodeReportLabel": {
+		"message": "보고서 요청을 위한 URL 디코딩"
+	},
+	"decodeReportAccesskey": {
+		"message": "D"
+	},
+	"miscEmailGroupboxLabel": {
+		"message": "이메일 발송"
+	},
+	"preferEmailPrefLabel": {
+		"message": "표시된 이메일 주소 우선"
+	},
+	"preferEmailPrefAccesskey": {
+		"message": "P"
+	},
+	"preferEmailPrefWarn": {
+		"message": "주소가 표시되지 않으면 메시지가 모든 연락처의 주소로 전송됩니다."
+	},
+	"warnEmptyEmailsLabel": {
+		"message": "이메일 주소없이 연락처에 이메일을 보내려고 할 때 경고하기"
+	},
+	"warnEmptyEmailsAccesskey": {
+		"message": "W"
+	},
+	"useOnlyEmailLabel": {
+		"message": "표시 이름 없이 이메일 주소만 사용하기"
+	},
+	"useOnlyEmailAccesskey": {
+		"message": "O"
+	},
+	"attachVCardWarn": {
+		"message": "이메일에 vCard를 자동으로 추가하려면 각 이메일 계정에 대한 vCard를 선택하십시오. 활성화되면, CardBook은 이 계정의 모든 발신 이메일에 이 vCard를 첨부합니다."
+	},
+	"attachVCardGroupboxLabel": {
+		"message": "vCard 첨부"
+	},
+	"accountsVCardsEnabledLabel": {
+		"message": "활성화"
+	},
+	"accountsVCardsMailLabel": {
+		"message": "메일 계정"
+	},
+	"accountsVCardsABNameLabel": {
+		"message": "주소록"
+	},
+	"accountsVCardsFileNameLabel": {
+		"message": "첨부 파일"
+	},
+	"accountsVCardsFnLabel": {
+		"message": "연락처"
+	},
+	"addVCardLabel": {
+		"message": "추가"
+	},
+	"addVCardAccesskey": {
+		"message": "A"
+	},
+	"renameVCardLabel": {
+		"message": "편집"
+	},
+	"renameVCardAccesskey": {
+		"message": "E"
+	},
+	"deleteVCardLabel": {
+		"message": "삭제"
+	},
+	"deleteVCardAccesskey": {
+		"message": "D"
+	},
+	"birthdayListWarn": {
+		"message": "기념일은 CardBook 주소록에서만 검색됩니다."
+	},
+	"addressbooksGroupboxLabel": {
+		"message": "주소록"
+	},
+	"selectAllABsLabel": {
+		"message": "모두 선택"
+	},
+	"searchForLabel": {
+		"message": "검색:"
+	},
+	"bday.conf.label": {
+		"message": "생일"
+	},
+	"bday.conf.accesskey": {
+		"message": "B"
+	},
+	"anniversary.conf.label": {
+		"message": "기념일 (vCard 4.0 전용)"
+	},
+	"anniversary.conf.accesskey": {
+		"message": "A"
+	},
+	"deathdate.conf.label": {
+		"message": "사망일 (vCard 4.0 전용)"
+	},
+	"deathdate.conf.accesskey": {
+		"message": "D"
+	},
+	"eventsLabel": {
+		"message": "이벤트"
+	},
+	"eventsAccesskey": {
+		"message": "E"
+	},
+	"gender.conf.label": {
+		"message": "성별 (vCard 4.0 전용)"
+	},
+	"birthplace.conf.label": {
+		"message": "출생지 (vCard 4.0 전용)"
+	},
+	"deathplace.conf.label": {
+		"message": "사망 장소 (vCard 4.0 전용)"
+	},
+	"calendarsGroupboxLabel": {
+		"message": "캘린더"
+	},
+	"selectAllCalendarsLabel": {
+		"message": "모두 선택"
+	},
+	"remindersTabLabel": {
+		"message": "알림"
+	},
+	"remindViaPopupWindowGroupboxLabel": {
+		"message": "팝업 창을 통해 알림"
+	},
+	"numberOfDaysForSearchingLabel": {
+		"message": "기념일 확인 일 수:"
+	},
+	"numberOfDaysForSearchingAccesskey": {
+		"message": "N"
+	},
+	"showPopupOnStartupLabel": {
+		"message": "시작시 팝업 창 표시"
+	},
+	"showPopupOnStartupAccesskey": {
+		"message": "S"
+	},
+	"showPeriodicPopupLabel": {
+		"message": "일일 팝업 표시"
+	},
+	"showPeriodicPopupAccesskey": {
+		"message": "d"
+	},
+	"periodicPopupTimeLabel": {
+		"message": "시간 표시 (시간:분):"
+	},
+	"periodicPopupTimeAccesskey": {
+		"message": "i"
+	},
+	"showPopupEvenIfNoBirthdayLabel": {
+		"message": "기념일 목록이 비어 있으면 팝업 창 표시"
+	},
+	"showPopupEvenIfNoBirthdayAccesskey": {
+		"message": "h"
+	},
+	"remindViaLightningGroupboxLabel": {
+		"message": "Thunderbird Lightning Calendar로 알림"
+	},
+	"numberOfDaysForWritingLabel": {
+		"message": "기념일 작성 일수:"
+	},
+	"numberOfDaysForWritingAccesskey": {
+		"message": "w"
+	},
+	"syncWithLightningOnStartupLabel": {
+		"message": "시작시 Lightning과 동기화"
+	},
+	"syncWithLightningOnStartupAccesskey": {
+		"message": "L"
+	},
+	"calendarEntryTitleLabel": {
+		"message": "캘린더 일정 제목:"
+	},
+	"calendarEntryTitleTooltip": {
+		"message": "캘린더 이벤트의 템플릿 제목. &#37;S라는 두 개의 플레이스홀더를 포함해야하며 이름과 나이로 각각 바꿉니다. 필드가 비어 있으면 표준 메시지가 사용됩니다."
+	},
+	"calendarEntryTitleAccesskey": {
+		"message": "T"
+	},
+	"resetCalendarEntryTitleButtonLabel": {
+		"message": "초기화"
+	},
+	"resetCalendarEntryTitleButtonAccesskey": {
+		"message": "R"
+	},
+	"calendarRepeatingEventLabel": {
+		"message": "반복 일정"
+	},
+	"calendarRepeatingEventAccesskey": {
+		"message": "R"
+	},
+	"calendarEntryTimeLabel": {
+		"message": "일정 이벤트 시간 (시간:분):"
+	},
+	"calendarEntryTimeAccesskey": {
+		"message": "m"
+	},
+	"calendarEntryWholeDayLabel": {
+		"message": "종일 일정 이벤트"
+	},
+	"calendarEntryWholeDayAccesskey": {
+		"message": "y"
+	},
+	"calendarEntryAlarmLabel": {
+		"message": "캘린더 이벤트의 시간 수를 나타내는 알람 (예: 4,+1):"
+	},
+	"calendarEntryAlarmTooltip": {
+		"message": "Lightning이 몇 시간 전에 알람시켜야 하는지 입력하십시오. 필드가 비어 있으면 경보가 발생하지 않습니다. 여러 개의 알람을 원할 경우 쉼표로 구분 된 목록에 알람을 입력하십시오."
+	},
+	"calendarEntryAlarmAccesskey": {
+		"message": "n"
+	},
+	"calendarEntryCategoriesLabel": {
+		"message": "캘린더 일정 카테고리:"
+	},
+	"calendarEntryCategoriesTooltip": {
+		"message": "하나 이상의 카테고리 (쉼표로 구분). 필드가 비어 있으면 카테고리도 없습니다."
+	},
+	"calendarEntryCategoriesAccesskey": {
+		"message": "g"
+	},
+	"translateLabel": {
+		"message": "번역"
+	},
+	"websiteLabel": {
+		"message": "웹 사이트:"
+	},
+	"documentationLabel": {
+		"message": "문서"
+	},
+	"sourceCodeLabel": {
+		"message": "소스 코드"
+	},
+	"supportLabel": {
+		"message": "디버깅 지원"
+	},
+	"contributeLabel": {
+		"message": "기여하기"
+	},
+	"categoriesPicker.label": {
+		"message": "카테고리 필터:"
+	},
+	"categoriesPicker.accesskey": {
+		"message": "t"
+	},
+	"deleteAddrBookCard.label": {
+		"message": "삭제"
+	},
+	"deleteAddrBookCard.accesskey": {
+		"message": "D"
+	},
+	"editAddrBookCard.label": {
+		"message": "수정"
+	},
+	"editAddrBookCard.accesskey": {
+		"message": "E"
+	},
+	"addressbookPicker.label": {
+		"message": "주소록 목록:"
+	},
+	"addressbookPicker.accesskey": {
+		"message": "k"
+	},
+	"searchContacts.label": {
+		"message": "검색:"
+	},
+	"searchContacts.accesskey": {
+		"message": "o"
+	},
+	"SearchNameOrEmail.label": {
+		"message": "이름 또는 메일"
+	},
+	"addtoToFieldMenu.label": {
+		"message": "받는 사람에 추가"
+	},
+	"addtoToFieldMenu.accesskey": {
+		"message": "A"
+	},
+	"addtoCcFieldMenu.label": {
+		"message": "참조에 추가"
+	},
+	"addtoCcFieldMenu.accesskey": {
+		"message": "C"
+	},
+	"addtoBccFieldMenu.label": {
+		"message": "숨은 참조에 추가"
+	},
+	"addtoBccFieldMenu.accesskey": {
+		"message": "B"
+	},
+	"addtoReplytoFieldMenu.label": {
+		"message": "회신 주소 필드에 추가"
+	},
+	"addtoReplytoFieldMenu.accesskey": {
+		"message": "l"
+	},
+	"toButton.label": {
+		"message": "받는 사람에 추가"
+	},
+	"toButton.accesskey": {
+		"message": "A"
+	},
+	"ccButton.label": {
+		"message": "참조에 추가"
+	},
+	"ccButton.accesskey": {
+		"message": "C"
+	},
+	"bccButton.label": {
+		"message": "Bcc 추가:"
+	},
+	"bccButton.accesskey": {
+		"message": "B"
+	},
+	"replytoButton.label": {
+		"message": "회신 주소에 추가"
+	},
+	"replytoButton.accesskey": {
+		"message": "l"
+	},
+	"newContactAbContext.label": {
+		"message": "새 연락처"
+	},
+	"newContactAbContext.accesskey": {
+		"message": "C"
+	},
+	"newListAbContext.label": {
+		"message": "새 목록"
+	},
+	"newListAbContext.accesskey": {
+		"message": "L"
+	},
+	"wdw_cardbookWindowLabel": {
+		"message": "CardBook"
+	},
+	"enableAccountsTooltip": {
+		"message": "주소록 검색 및 동기화 사용 또는 사용 안 함."
+	},
+	"colorAccountsTooltip": {
+		"message": "주소록 검색 결과에 색상 적용 (검색이 여러 주소록에 걸쳐있을 때 사용)."
+	},
+	"readonlyAccountsTooltip": {
+		"message": "주소록은 읽기 전용 또는 읽기-쓰기 모드로 설정하십시오."
+	},
+	"searchRemoteLabel": {
+		"message": "이 주소록은 검색된 연락처만 보여줍니다"
+	},
+	"columnChooser2.tooltip": {
+		"message": "표시할 항목 선택"
+	},
+	"cardbookAccountMenuLabel": {
+		"message": "주소록"
+	},
+	"cardbookAccountMenuAddServerLabel": {
+		"message": "새 주소록"
+	},
+	"cardbookAccountMenuEditServerLabel": {
+		"message": "주소록 편집"
+	},
+	"cardbookAccountMenuCloseServerLabel": {
+		"message": "주소록 삭제"
+	},
+	"cardbookAccountMenuSyncLabel": {
+		"message": "주소록 동기화"
+	},
+	"cardbookAccountMenuSyncsLabel": {
+		"message": "모든 주소록 동기화"
+	},
+	"cardbookContactsMenuLabel": {
+		"message": "연락처"
+	},
+	"cardbookToolsMenuLabel": {
+		"message": "도구"
+	},
+	"cardbookToolsMenuBirthdayListLabel": {
+		"message": "기념일 목록보기"
+	},
+	"cardbookToolsMenuSyncLightningLabel": {
+		"message": "캘린더에 기념일 추가"
+	},
+	"cardbookToolsMenuFindAllDuplicatesLabel": {
+		"message": "모든 주소록에서 중복된 연락처 찾기"
+	},
+	"cardbookToolsMenuFindSingleDuplicatesLabel": {
+		"message": "현재 주소록에서 중복된 연락처 찾기"
+	},
+	"cardbookToolsMenuPrefsLabel": {
+		"message": "CardBook 환경 설정"
+	},
+	"cardbookToolbarLabel": {
+		"message": "CardBook 도구 모음"
+	},
+	"cardbookToolbarAccesskey": {
+		"message": "a"
+	},
+	"cardbookABPaneToolbarLabel": {
+		"message": "CardBook 주소록 창 도구 모음"
+	},
+	"cardbookABPaneToolbarAccesskey": {
+		"message": "d"
+	},
+	"CustomizeCardBookToolbarLabel": {
+		"message": "사용자 정의…"
+	},
+	"CustomizeCardBookToolbarAccesskey": {
+		"message": "C"
+	},
+	"cardbookToolbarAddServerButtonLabel": {
+		"message": "새 주소록"
+	},
+	"cardbookToolbarAddServerButtonTooltip": {
+		"message": "원격 또는 로컬 주소록 추가"
+	},
+	"cardbookToolbarSyncButtonLabel": {
+		"message": "동기화"
+	},
+	"cardbookToolbarSyncButtonTooltip": {
+		"message": "모든 원격 주소록 동기화"
+	},
+	"cardbookToolbarWriteButtonLabel": {
+		"message": "쓰기"
+	},
+	"cardbookToolbarWriteButtonTooltip": {
+		"message": "새 메시지 만들기"
+	},
+	"cardbookToolbarChatButtonLabel": {
+		"message": "~에 연결하다"
+	},
+	"cardbookToolbarChatButtonTooltip": {
+		"message": "인스턴트 메시지 또는 채팅 보내기"
+	},
+	"cardbookToolbarConfigurationButtonLabel": {
+		"message": "환경 설정"
+	},
+	"cardbookToolbarConfigurationButtonTooltip": {
+		"message": "CardBook 환경 설정"
+	},
+	"cardbookToolbarAddContactButtonLabel": {
+		"message": "새 연락처"
+	},
+	"cardbookToolbarAddContactButtonTooltip": {
+		"message": "새 주소록 연락처 만들기"
+	},
+	"cardbookToolbarAddListButtonLabel": {
+		"message": "새 목록"
+	},
+	"cardbookToolbarAddListButtonTooltip": {
+		"message": "새 메일링 목록"
+	},
+	"cardbookToolbarAddTemplateButtonLabel": {
+		"message": "새 템플릿"
+	},
+	"cardbookToolbarAddTemplateButtonTooltip": {
+		"message": "새 템플릿 만들기"
+	},
+	"cardbookToolbarEditButtonLabel": {
+		"message": "수정"
+	},
+	"cardbookToolbarEditButtonTooltip": {
+		"message": "선택한 연락처 수정"
+	},
+	"cardbookToolbarRemoveButtonLabel": {
+		"message": "삭제"
+	},
+	"cardbookToolbarRemoveButtonTooltip": {
+		"message": "선택한 연락처 삭제"
+	},
+	"cardbookToolbarPrintButtonLabel": {
+		"message": "인쇄 미리보기"
+	},
+	"cardbookToolbarPrintButtonTooltip": {
+		"message": "선택한 항목의 인쇄 미리보기"
+	},
+	"cardbookToolbarBackButtonLabel": {
+		"message": "실행 취소"
+	},
+	"cardbookToolbarBackButtonTooltip": {
+		"message": "한 단계 이전으로"
+	},
+	"cardbookToolbarForwardButtonLabel": {
+		"message": "다시 실행"
+	},
+	"cardbookToolbarForwardButtonTooltip": {
+		"message": "한 단계 다시 실행"
+	},
+	"cardbookToolbarAppMenuButtonLabel": {
+		"message": "CardBook 메뉴"
+	},
+	"cardbookToolbarAppMenuButtonTooltip": {
+		"message": "CardBook 메뉴"
+	},
+	"cardbookToolbarSearchBoxLabel": {
+		"message": "연락처 검색"
+	},
+	"cardbookToolbarSearchBoxTooltip": {
+		"message": "연락처 검색"
+	},
+	"cardbookToolbarComplexSearchLabel": {
+		"message": "저장된 검색"
+	},
+	"cardbookToolbarComplexSearchTooltip": {
+		"message": "새 저장된 검색 폴더 만들기"
+	},
+	"cardbookToolbarNewEventLabel": {
+		"message": "이벤트"
+	},
+	"cardbookToolbarNewEventTooltip": {
+		"message": "새 이벤트 만들기"
+	},
+	"cardbookToolbarNewTodoLabel": {
+		"message": "태스크"
+	},
+	"cardbookToolbarNewTodoTooltip": {
+		"message": "새 태스크 만들기"
+	},
+	"cardbookToolbarThMenuButtonLabel": {
+		"message": "응용 메뉴"
+	},
+	"cardbookToolbarThMenuButtonTooltip": {
+		"message": "Thunderbird 메뉴 표시"
+	},
+	"cardbookToolbarABMenuLabel": {
+		"message": "주소록 보기"
+	},
+	"cardbookToolbarABMenuTooltip": {
+		"message": "주소록 표시 필터"
+	},
+	"generalTabLabel": {
+		"message": "일반"
+	},
+	"technicalTabLabel": {
+		"message": "세부 정보"
+	},
+	"vCardTabLabel": {
+		"message": "vCard"
+	},
+	"keyTabLabel": {
+		"message": "공개키"
+	},
+	"noteTabLabel": {
+		"message": "메모"
+	},
+	"miscGroupboxLabel": {
+		"message": "기타"
+	},
+	"othersGroupboxLabel": {
+		"message": "기타"
+	},
+	"techGroupboxLabel": {
+		"message": "세부 정보"
+	},
+	"labelGroupboxLabel": {
+		"message": "레이블"
+	},
+	"agentLabel": {
+		"message": "에이전트"
+	},
+	"keyLabel": {
+		"message": "키"
+	},
+	"photoURILabel": {
+		"message": "사진"
+	},
+	"logoURILabel": {
+		"message": "로고"
+	},
+	"soundURILabel": {
+		"message": "소리"
+	},
+	"cardurlLabel": {
+		"message": "카드 URL"
+	},
+	"cacheuriLabel": {
+		"message": "캐시 URI"
+	},
+	"localizeadrTreeLabel": {
+		"message": "지도에 표시"
+	},
+	"toEmailEmailTreeLabel": {
+		"message": "새 메시지 쓰기"
+	},
+	"ccEmailEmailTreeLabel": {
+		"message": "새 메시지 쓰기(참조)"
+	},
+	"bccemailemailTreeLabel": {
+		"message": "새 메시지 쓰기(숨은 참조)"
+	},
+	"findemailemailTreeLabel": {
+		"message": "이 이메일 주소와 관련된 이메일 찾기"
+	},
+	"findeventemailTreeLabel": {
+		"message": "이 이메일 주소와 관련된 캘린더 일정 찾기"
+	},
+	"openURLTreeLabel": {
+		"message": "URL 열기"
+	},
+	"toEmailCardFromAccountsOrCatsLabel": {
+		"message": "새 메시지 쓰기"
+	},
+	"toEmailCardFromCardsLabel": {
+		"message": "새 메시지 쓰기"
+	},
+	"ccEmailCardFromAccountsOrCatsLabel": {
+		"message": "새 메시지 쓰기(참조)"
+	},
+	"ccEmailCardFromCardsLabel": {
+		"message": "새 메시지 쓰기(참조)"
+	},
+	"bccEmailCardFromAccountsOrCatsLabel": {
+		"message": "새 메시지 쓰기(숨은 참조)"
+	},
+	"bccEmailCardFromCardsLabel": {
+		"message": "새 메시지 쓰기(숨은 참조)"
+	},
+	"PreferMailFormatGroupbox.label": {
+		"message": "전달 서식"
+	},
+	"PreferMailFormat.label": {
+		"message": "메일 받기 형식:"
+	},
+	"PreferMailFormat.accesskey": {
+		"message": "v"
+	},
+	"Unknown.label": {
+		"message": "알 수 없음"
+	},
+	"PlainText.label": {
+		"message": "일반 텍스트"
+	},
+	"HTML.label": {
+		"message": "HTML"
+	},
+	"publicKeysFromCards.label": {
+		"message": "공개키"
+	},
+	"searchForOnlineKeyFromCards.label": {
+		"message": "온라인에서 키 찾기"
+	},
+	"importKeyFromCards.label": {
+		"message": "OpenPGP 키 관리자로 가져오기"
+	},
+	"searchForOnlineKeyTreeLabel": {
+		"message": "온라인에서 키 찾기"
+	},
+	"searchForOnlineKeyEditButton.tooltip": {
+		"message": "온라인에서 키 찾기"
+	},
+	"searchForThKeyEditButton.tooltip": {
+		"message": "OpenPGP 키 관리자에서 키 검색하기"
+	},
+	"searchForLocalKeyEditButton.tooltip": {
+		"message": "파일에서 가져오기"
+	},
+	"definitionLabel": {
+		"message": "정의"
+	},
+	"fieldsLabel": {
+		"message": "필드"
+	},
+	"formulasLabel": {
+		"message": "공식"
+	},
+	"shareCardByEmailFromAccountsOrCatsLabel": {
+		"message": "이메일로 공유"
+	},
+	"shareCardByEmailFromCardsLabel": {
+		"message": "이메일로 공유"
+	},
+	"categoryHeader": {
+		"message": "카테고리"
+	},
+	"findEmailsFromCardsLabel": {
+		"message": "이 연락처와 관련된 이메일을 찾기"
+	},
+	"eventsAndTasksLabel": {
+		"message": "이벤트와 할일"
+	},
+	"addEventFromCardsLabel": {
+		"message": "새 이벤트"
+	},
+	"addTodoFromCardsLabel": {
+		"message": "새 태스크"
+	},
+	"findEventsFromCardsLabel": {
+		"message": "이 연락처와 관련된 캘린더 이벤트 찾기"
+	},
+	"localizeCardFromCardsLabel": {
+		"message": "지도에 표시"
+	},
+	"openURLCardFromCardsLabel": {
+		"message": "URL 열기"
+	},
+	"cutCardFromAccountsOrCatsLabel": {
+		"message": "잘라내기"
+	},
+	"cutCardFromCardsLabel": {
+		"message": "잘라내기"
+	},
+	"copyCardFromAccountsOrCatsLabel": {
+		"message": "복사"
+	},
+	"copyCardFromCardsLabel": {
+		"message": "복사"
+	},
+	"pasteCardFromAccountsOrCatsLabel": {
+		"message": "붙여넣기"
+	},
+	"pasteCardFromCardsLabel": {
+		"message": "붙여넣기"
+	},
+	"pasteEntryLabel": {
+		"message": "항목 붙여넣기"
+	},
+	"exportCardToFileLabel": {
+		"message": "파일로 내보내기"
+	},
+	"exportCardToDirLabel": {
+		"message": "디렉토리로 내보내기"
+	},
+	"importCardFromFileLabel": {
+		"message": "파일에서 연락처 가져 오기"
+	},
+	"importCardFromDirLabel": {
+		"message": "디렉토리에서 연락처 가져 오기"
+	},
+	"findDuplicatesFromAccountsOrCatsLabel": {
+		"message": "현재 주소록에서 중복된 연락처 찾기"
+	},
+	"generateFnFromAccountsOrCatsLabel": {
+		"message": "표시 이름 생성"
+	},
+	"mergeCardsFromCardsLabel": {
+		"message": "연락처 병합"
+	},
+	"duplicateCardFromCardsLabel": {
+		"message": "연락처 복제"
+	},
+	"convertListToCategoryFromCardsLabel": {
+		"message": "목록을 카테고리로 변환"
+	},
+	"editAccountFromAccountsOrCatsLabel": {
+		"message": "주소록 편집"
+	},
+	"syncAccountFromAccountsOrCatsLabel": {
+		"message": "주소록 동기화"
+	},
+	"removeAccountFromAccountsOrCatsLabel": {
+		"message": "주소록 삭제"
+	},
+	"editEventLabel": {
+		"message": "이벤트 수정"
+	},
+	"editEventAccesskey": {
+		"message": "E"
+	},
+	"eventsTree.title.label": {
+		"message": "제목"
+	},
+	"eventsTree.title.tooltip2": {
+		"message": "클릭하면 제목으로 정렬하기"
+	},
+	"eventsTree.startdate.label": {
+		"message": "개시 일자"
+	},
+	"eventsTree.startdate.tooltip2": {
+		"message": "클릭하면 개시 일자로 정렬하기"
+	},
+	"eventsTree.enddate.label": {
+		"message": "종료 일자"
+	},
+	"eventsTree.enddate.tooltip2": {
+		"message": "클릭하면 종료 일자로 정렬하기"
+	},
+	"eventsTree.categories.label": {
+		"message": "분류"
+	},
+	"eventsTree.categories.tooltip2": {
+		"message": "클릭하면 분류명으로 정렬하기"
+	},
+	"eventsTree.location.label": {
+		"message": "위치"
+	},
+	"eventsTree.location.tooltip2": {
+		"message": "클릭하면 위치로 정렬하기"
+	},
+	"eventsTree.status.label": {
+		"message": "상태"
+	},
+	"eventsTree.status.tooltip2": {
+		"message": "클릭하면 상태로 정렬하기"
+	},
+	"eventsTree.calendarname.label": {
+		"message": "캘린더 이름"
+	},
+	"eventsTree.calendarname.tooltip2": {
+		"message": "클릭하면 캘린더 이름으로 정렬하기"
+	},
+	"createEventLabel": {
+		"message": "새로운 이벤트"
+	},
+	"createEventAccesskey": {
+		"message": "N"
+	},
+	"adrFormulaExplanation": {
+		"message": "CardBook 주소 포맷을 사용자화 할 수 있습니다. 이 공식은 «()»으로 닫힌 블록들로 구성됩니다. 이 블록 안에는 구분자 «|»로 나뉜 다수 집합이 있을 수 있습니다."
+	},
+	"fnFormulaExplanation": {
+		"message": "CardBook 에서 생성하는 표시 이름을 사용자화 할 수 있습니다. 이 공식은 «()»으로 닫힌 블록들로 구성됩니다. 이 블록 안에는 구분자 «|»로 나뉜 다수 집합이 있을 수 있습니다."
+	},
+	"templateFormulaExplanation": {
+		"message": "사전 정의된 필드로 템플릿을 정의할 수 있습니다. 예를 들어, 이메일 주소 «({{2}}).({{4}})@mycompany.org» 라는 템플릿을 정의한 후 이를 «John» 이라는 이름과 «Doe» 라는 성을 가진 연락처에 적용하면 «john.doe@mycompany.org» 라는 이메일 주소가 연락처에 추가됩니다."
+	},
+	"formulaExplanation1": {
+		"message": "({{1}}|{{2}}) : 만약 {{1}}이 비어 있다면, 해당 블록은 {{2}}로 대체됩니다."
+	},
+	"formulaExplanation2": {
+		"message": "({{1}}|{{2}}|{{3}}) : 만약 {{1}}이 {{2}}와 동일하다면, 해당 블록은 {{3}}으로 대체됩니다."
+	},
+	"formulaExplanation3": {
+		"message": "({{1}}|{{2}}|{{3}}|{{4}}) : 만약 {{1}}이 {{2}}와 동일하다면, 해당 블록은 {{3}}으로 교체되고, 그렇지 않다면 {{4}}로 교체됩니다."
+	},
+	"formulaExplanation4": {
+		"message": "({{1}}|*|{{2}}|{{3}}|{{4}}) : 만약 {{1}}이 {{2}}를 포함한다면, 해당 블록은 {{3}}으로 대체되고, 그렇지 않다면 {{4}}로 대체됩니다."
+	},
+	"formulaExplanation5": {
+		"message": "({{1}}|^|{{2}}|{{3}}|{{4}}) : 만약 {{1}}이 {{2}}로 시작한다면, 해당 블록은 {{3}}으로 대체되고, 그렇지 않다면 {{4}}로 대체됩니다."
+	},
+	"formulaExplanation6": {
+		"message": "({{1}}|$|{{2}}|{{3}}|{{4}}) : 만약 {{1}}가 {{2}}로 끝난다면, 해당 블록은 {{3}}으로 대체되고, 그렇지 않다면 {{4}}로 대체됩니다."
+	},
+	"settingsTitlelabel": {
+		"message": "인쇄 설정"
+	},
+	"title.print.label": {
+		"message": "제목"
+	},
+	"title.print.accesskey": {
+		"message": "T"
+	},
+	"displayHeadersLabel": {
+		"message": "단락 머리글 표시"
+	},
+	"displayHeadersAccesskey": {
+		"message": "H"
+	},
+	"displayFieldNamesLabel": {
+		"message": "필드 이름"
+	},
+	"displayFieldNamesAccesskey": {
+		"message": "F"
+	},
+	"displayTypesLabel": {
+		"message": "유형 및 환경 설정"
+	},
+	"displayTypesAccesskey": {
+		"message": "y"
+	},
+	"fieldsToPrintGroupboxLabel": {
+		"message": "인쇄할 필드"
+	},
+	"displayLabel": {
+		"message": "표시 이름"
+	},
+	"displayAccesskey": {
+		"message": "D"
+	},
+	"personalLabel": {
+		"message": "개인 정보"
+	},
+	"personalAccesskey": {
+		"message": "P"
+	},
+	"org.print.label": {
+		"message": "직장 정보"
+	},
+	"org.print.accesskey": {
+		"message": "o"
+	},
+	"custom.print.label": {
+		"message": "사용자 정의 필드"
+	},
+	"custom.print.accesskey": {
+		"message": "C"
+	},
+	"categories.print.label": {
+		"message": "카테고리"
+	},
+	"categories.print.accesskey": {
+		"message": "C"
+	},
+	"adr.print.label": {
+		"message": "주소"
+	},
+	"adr.print.accesskey": {
+		"message": "A"
+	},
+	"tel.print.label": {
+		"message": "전화 번호"
+	},
+	"tel.print.accesskey": {
+		"message": "T"
+	},
+	"email.print.label": {
+		"message": "이메일 주소"
+	},
+	"email.print.accesskey": {
+		"message": "E"
+	},
+	"impp.print.label": {
+		"message": "인터넷 메신저"
+	},
+	"impp.print.accesskey": {
+		"message": "I"
+	},
+	"url.print.label": {
+		"message": "URL 주소"
+	},
+	"url.print.accesskey": {
+		"message": "U"
+	},
+	"event.print.label": {
+		"message": "이벤트"
+	},
+	"event.print.accesskey": {
+		"message": "E"
+	},
+	"note.print.label": {
+		"message": "메모"
+	},
+	"note.print.accesskey": {
+		"message": "N"
+	},
+	"useColorCheckLabel": {
+		"message": "색상 사용"
+	},
+	"useColorCheckAccesskey": {
+		"message": "U"
+	},
+	"existingDataGroupboxLabel": {
+		"message": "이 연락처에 추가"
+	},
+	"cardbookSwitchButtonTooltip": {
+		"message": "성과 이름 전환"
+	},
+	"descriptionTextbox": {
+		"message": "설명"
+	},
+	"categoriesTextboxLabel": {
+		"message": "새 카테고리 추가"
+	},
+	"typesTextboxLabel": {
+		"message": "새 종류 추가"
+	},
+	"categoriesListboxLabel": {
+		"message": "기존 카테고리"
+	},
+	"categoryMenuLabel": {
+		"message": "새 카테고리…"
+	},
+	"viewResultEditionLabel": {
+		"message": "결과보기"
+	},
+	"viewResultEditionAccesskey": {
+		"message": "V"
+	},
+	"previousEditButton.tooltip": {
+		"message": "이전"
+	},
+	"nextEditButton.tooltip": {
+		"message": "다음"
+	},
+	"createEditionLabel": {
+		"message": "생성"
+	},
+	"createEditionAccesskey": {
+		"message": "T"
+	},
+	"createAndReplaceEditionLabel": {
+		"message": "생성 및 교체"
+	},
+	"createAndReplaceEditionAccesskey": {
+		"message": "R"
+	},
+	"saveEditionLabel": {
+		"message": "저장"
+	},
+	"saveEditionAccesskey": {
+		"message": "S"
+	},
+	"validateEditionLabel": {
+		"message": "유효성 확인"
+	},
+	"validateEditionAccesskey": {
+		"message": "V"
+	},
+	"cancelEditionLabel": {
+		"message": "취소"
+	},
+	"cancelEditionAccesskey": {
+		"message": "C"
+	},
+	"closeEditionLabel": {
+		"message": "닫기"
+	},
+	"closeEditionAccesskey": {
+		"message": "C"
+	},
+	"moreEditionLabel": {
+		"message": "더 보기"
+	},
+	"moreEditionAccesskey": {
+		"message": "m"
+	},
+	"lessEditionLabel": {
+		"message": "줄이기"
+	},
+	"lessEditionAccesskey": {
+		"message": "l"
+	},
+	"mergeAllEditionLabel": {
+		"message": "모두 병합하기"
+	},
+	"mergeAllEditionAccesskey": {
+		"message": "M"
+	},
+	"buttonAppendToListLabel": {
+		"message": "추가"
+	},
+	"buttonAppendToListAccesskey": {
+		"message": "A"
+	},
+	"buttonRemoveFromListLabel": {
+		"message": "삭제"
+	},
+	"buttonRemoveFromListAccesskey": {
+		"message": "O"
+	},
+	"buttonGuessFromListLabel": {
+		"message": "추측"
+	},
+	"buttonGuessFromListAccesskey": {
+		"message": "G"
+	},
+	"loadTemplateLabel": {
+		"message": "템플릿 선택"
+	},
+	"saveTemplateLabel": {
+		"message": "템플릿 저장"
+	},
+	"applyTemplateLabel": {
+		"message": "템플릿 적용"
+	},
+	"createTemplateLabel": {
+		"message": "템플릿 만들기"
+	},
+	"convertVCardsLabel": {
+		"message": "vCard 변환"
+	},
+	"convertVCardsTooltip": {
+		"message": "일부 연락처의 vCard 버전이 연락처의 vCard 버전과 다릅니다. 이 버튼은 그러한 vCard를 변환시킬 수 있습니다."
+	},
+	"convertVCardsAccesskey": {
+		"message": "C"
+	},
+	"wdw_findDuplicatesTitle": {
+		"message": "중복된 연락처"
+	},
+	"addImageCardFromFileLabel": {
+		"message": "파일에서 이미지 추가"
+	},
+	"pasteImageCardLabel": {
+		"message": "이미지 붙여넣기"
+	},
+	"saveImageCardLabel": {
+		"message": "다른 이름으로 이미지 저장…"
+	},
+	"copyImageCardLabel": {
+		"message": "이미지 복사"
+	},
+	"deleteImageCardLabel": {
+		"message": "이미지 삭제"
+	},
+	"kind.edit.label": {
+		"message": "종류"
+	},
+	"kind.edit.accesskey": {
+		"message": "K"
+	},
+	"addEmailGroupboxLabel": {
+		"message": "이메일 주소"
+	},
+	"availableCardsGroupboxLabel": {
+		"message": "사용 가능한 연락처"
+	},
+	"nameOrEmailLabel": {
+		"message": "이름 및 이메일"
+	},
+	"appendContactLabel": {
+		"message": "목록에 추가"
+	},
+	"deletelistTreeLabel": {
+		"message": "목록에서 제거"
+	},
+	"editCardFromListLabel": {
+		"message": "이 연락처 수정"
+	},
+	"wdw_logEditionTitle": {
+		"message": "로그 뷰어"
+	},
+	"logEditionValueLabel": {
+		"message": "타임 스탬프 이벤트"
+	},
+	"refreshLogEditionLabel": {
+		"message": "새로고침"
+	},
+	"refreshLogEditionAccesskey": {
+		"message": "R"
+	},
+	"flushLogEditionLabel": {
+		"message": "목록 지우기"
+	},
+	"flushLogEditionAccesskey": {
+		"message": "C"
+	},
+	"clipboardLogEditionLabel": {
+		"message": "클립 보드에 복사"
+	},
+	"clipboardLogEditionAccesskey": {
+		"message": "o"
+	},
+	"cancelLogEditionLabel": {
+		"message": "확인"
+	},
+	"cancelLogEditionAccesskey": {
+		"message": "O"
+	},
+	"wdw_mergeCardsTitle": {
+		"message": "연락처 병합"
+	},
+	"mergeInstructionsLabel": {
+		"message": "새 연락처에 가져갈 필드를 선택하십시오"
+	},
+	"persTitleLabel": {
+		"message": "개인 정보"
+	},
+	"orgTitleLabel": {
+		"message": "직장 정보"
+	}
+}

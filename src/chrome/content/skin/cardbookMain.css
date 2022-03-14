@@ -1,0 +1,172 @@
+.cardbookBackgroundColorClass groupbox {
+	background-color: transparent !important;
+	border: 0px !important;
+	padding-bottom:7px !important;
+}
+
+/* for Linux Mint otherwise gmail is not entirely seen in mail edition */
+.cardbookBackgroundColorClass input {
+	min-height:16px !important;
+}
+.cardbookBackgroundColorClass input[readonly="true"] {
+	min-height:20px !important;
+	background-color: transparent !important;
+	border: 0px !important;
+	padding-left: 0px !important;
+}
+.cardbookBackgroundColorClass input[link="true"] {
+	min-height:20px !important;
+	background-color: transparent !important;
+	border: 0px !important;
+	cursor: pointer !important;
+	color: -moz-hyperlinktext;
+}
+.cardbookBackgroundColorClass input[link="true"]:hover {
+	color: -moz-activehyperlinktext;
+}
+.cardbookBackgroundColorClass label[link="true"] {
+	min-height:20px !important;
+	background-color: transparent !important;
+	border: 0px !important;
+	cursor: pointer !important;
+	color: -moz-hyperlinktext;
+}
+.cardbookBackgroundColorClass label[link="true"]:hover {
+	color: -moz-activehyperlinktext;
+}
+
+.cardbookVerticalSplitterClass {
+	-moz-appearance: none !important;
+	border-top: 0px;
+	border-left: 0px;
+	border-right: 5px solid ThreeDShadow;
+	border-bottom: 0px;
+	margin-right: -4px;
+	overflow: hidden;
+	background-color: window;
+}
+.cardbookHorizontalSplitterClass {
+	-moz-appearance: none !important;
+	border-top: 5px solid ThreeDShadow;
+	border-left: 0px;
+	border-right: 0px;
+	border-bottom: 0px;
+	margin: 0;
+	margin-top: -4px;
+	overflow: hidden;
+	background-color: window;
+}
+
+/* for the dark theme */
+:root[lwt-tree] #accountsOrCatsTree,
+:root[lwt-tree] #cardsTree {
+	-moz-appearance: none;
+}
+#rightPaneDownHbox1,
+#cardbookFolderPaneToolbox {
+	-moz-appearance: none !important;
+	color: -moz-DialogText;
+	background-color: -moz-Dialog;
+}
+
+#rightPaneDownHbox1 {
+  overflow: auto;
+}
+
+treecol#cardIcon.cardIconHeader[hidden="true"] .treecol-text {
+}
+treecol#cardIcon.cardIconHeader .treecol-text {
+	display: none;
+}
+treecol#cardIcon.cardIconHeader .treecol-sortdirection {
+	list-style-image: url("chrome://cardbook/content/skin/abcard.svg");
+}
+
+/* categories */
+#categoriesclassicalHbox,
+#categoriesmodernHbox {
+	display: block;
+}
+
+#categoriesclassicalRow box,
+#categoriesmodernRow box {
+	display: inline;
+}
+
+#categoriesclassicalRow label,
+#categoriesmodernRow label {
+	display: inline-block;
+}
+
+/* textarea */
+#notemodernGroupbox,
+#noteclassicalGroupbox,
+#noteTabpanel,
+#othersGroupboxWrapper,
+#vcardTabGroupbox {
+    display: flex;
+}
+
+#notemodernTextBox,
+#noteclassicalTextBox,
+#noteTextBox,
+#othersGroupboxWrapper > #othersTextBox,
+#vcardTextBox {
+    width: 100%;
+    box-sizing: border-box;
+}
+    
+.cardbookBackgroundColorClass textarea[readonly="true"] {
+	background-color: transparent !important;
+	border: 0px !important;
+}
+.cardbookBackgroundColorClass textarea[link="true"] {
+	background-color: transparent !important;
+	border: 0px !important;
+	cursor: pointer !important;
+	color: -moz-hyperlinktext;
+}
+.cardbookBackgroundColorClass textarea[link="true"]:hover {
+	color: -moz-activehyperlinktext;
+}
+
+/* cute tabs */
+:root {
+	--box-border-color: ThreeDShadow;
+	--highlight-color: Highlight;
+	--tab-hover-background: hsla(0, 0%, 50%, 0.15);
+	--tab-selected-background: hsla(0, 0%, 50%, 0.25);
+}
+
+:root:-moz-lwtheme {
+	--box-border-color: #adadae;
+}
+
+:root:-moz-lwtheme-brighttext {
+	--box-border-color: rgba(249, 249, 250, 0.2);
+	--highlight-color: #0a84ff;
+	--tab-hover-background: hsla(0, 0%, 50%, 0.3);
+	--tab-selected-background: hsla(0, 0%, 50%, 0.5);
+}
+
+#cardbookContactButtonsBox {
+	border-bottom: 1px solid var(--box-border-color);
+	padding: 6px 10px !important;
+	margin-top: 0;
+	margin-block: 8px 10px;
+	margin-inline: 4px;
+}
+
+.cardbookContactButtons {
+	background-color: transparent;
+	color: inherit !important;
+	border: 0;
+}
+.cardbookContactButtons:hover {
+	background-color: var(--tab-hover-background);
+}
+.cardbookContactButtons[visuallyselected="true"] {
+	margin-block: 0;
+	background-color: var(--tab-selected-background);
+	border-bottom: 2px solid var(--tab-line-color, var(--highlight-color));
+}
