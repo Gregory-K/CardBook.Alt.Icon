@@ -584,8 +584,7 @@ var WindowListener = class extends ExtensionCommon.ExtensionAPI {
                     window.location.href ==
                       "chrome://messenger/content/messenger.xhtml"
                   ) {
-                    // custom && false
-                    if (self.pathToOptionsPage && false) {
+                    if (self.pathToOptionsPage) {
                       if (self.getThunderbirdVersion().major < 78) {
                         let element_addonPrefs = window.document.getElementById(
                           self.menu_addonPrefs_id
@@ -1053,10 +1052,8 @@ var WindowListener = class extends ExtensionCommon.ExtensionAPI {
     let urls = Object.keys(this.registeredWindows);
     if (urls.length > 0) {
       for (let window of Services.wm.getEnumerator(null)) {
-        //remove our entry in the add-on options menu
-        // add custom && false &&
         if (
-          this.pathToOptionsPage && false &&
+          this.pathToOptionsPage &&
           (window.location.href == "chrome://messenger/content/messenger.xul" ||
             window.location.href ==
               "chrome://messenger/content/messenger.xhtml")

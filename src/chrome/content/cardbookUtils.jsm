@@ -53,10 +53,6 @@ var cardbookUtils = {
 		return cardbookRepository.arrayUnique(aCategoryList.filter(filterCategories));
 	},
 
-	formatCategories: function (aCategoryList) {
-		return cardbookUtils.sortArrayByString(aCategoryList,1).join("\n");
-	},
-
 	formatCategoryForCss: function (aCategory) {
 		return aCategory.replace(/[!\"#$%&'\(\)\*\+,\.\/:;<=>\?\@\[\\\]\^`\{\|\}~ ]/g, '_');
 	},
@@ -168,14 +164,22 @@ var cardbookUtils = {
 		}
 	},
 
-	getCardFromEmail: function(aEmail) {
+	getCardFromEmail: function(aEmail, aDirPrefId) {
 		var myTestString = aEmail.toLowerCase();
-		for (let account of cardbookRepository.cardbookAccounts) {
-			if (account[1] && account[5] && (account[6] != "SEARCH")) {
-				var myDirPrefId = account[4];
-				if (cardbookRepository.cardbookCardEmails[myDirPrefId]) {
-					if (cardbookRepository.cardbookCardEmails[myDirPrefId][myTestString]) {
-						return cardbookRepository.cardbookCardEmails[myDirPrefId][myTestString][0];
+		if (aDirPrefId) {
+			if (cardbookRepository.cardbookCardEmails[aDirPrefId]) {
+				if (cardbookRepository.cardbookCardEmails[aDirPrefId][myTestString]) {
+					return cardbookRepository.cardbookCardEmails[aDirPrefId][myTestString][0];
+				}
+			}
+		} else {
+			for (let account of cardbookRepository.cardbookAccounts) {
+				if (account[1] && account[5] && (account[6] != "SEARCH")) {
+					var myDirPrefId = account[4];
+					if (cardbookRepository.cardbookCardEmails[myDirPrefId]) {
+						if (cardbookRepository.cardbookCardEmails[myDirPrefId][myTestString]) {
+							return cardbookRepository.cardbookCardEmails[myDirPrefId][myTestString][0];
+						}
 					}
 				}
 			}
@@ -245,22 +249,6 @@ var cardbookUtils = {
 		} else {
 			return aArray.sort(compare2);
 		}
-	},
-
-	arrayUnique2D: function (aArray) {
-		for (var i=0; i<aArray.length; i++) {
-			var listI = aArray[i];
-			loopJ: for (var j=0; j<aArray.length; j++) {
-				var listJ = aArray[j];
-				if (listI === listJ) continue; //Ignore itself
-				for (var k=listJ.length; k>=0; k--) {
-					if (listJ[k] !== listI[k]) continue loopJ;
-				}
-				// At this point, their values are equal.
-				aArray.splice(j, 1);
-			}
-		}
-		return aArray;
 	},
 
 	compareArray: function (aArray1, aArray2) {
@@ -694,26 +682,6 @@ var cardbookUtils = {
 			xhr.open("GET", aImageURI, true);
 			xhr.send();
 		});
-	},
-
-	getFileBinary: function (aFileURISpec) {
-		var content = "";
-		var data = "";
-		var myFileURI = Services.io.newURI(aFileURISpec, null, null);
-		var file = myFileURI.QueryInterface(Components.interfaces.nsIFileURL).file;
-
-		if (file.exists() && file.isReadable()) {
-			var fstream = Components.classes["@mozilla.org/network/file-input-stream;1"].createInstance(Components.interfaces.nsIFileInputStream);
-			fstream.init(file, 0x01, parseInt("0444", 8), {});
-			var bStream = Components.classes["@mozilla.org/binaryinputstream;1"].createInstance(Components.interfaces.nsIBinaryInputStream);
-			bStream.setInputStream(fstream);
-			data = bStream.readBytes(bStream.available());
-			bStream.close();
-			fstream.close();
-		} else {
-			cardbookRepository.cardbookLog.updateStatusProgressInformation(cardbookRepository.extension.localeData.localizeMessage("fileNotFound", [aFileURISpec]), "Error");
-		}
-		return data;
 	},
 
 	getKeyContentForCard: function(aCard) {
@@ -1426,6 +1394,62 @@ var cardbookUtils = {
 		return {result: myResult, remainingNote: myRemainingNote, remainingOthers: myRemainingOthers};
 	},
 
+	getTemplate: function (aFieldList) {
+		var myFieldArray = aFieldList.split('|');
+		var result = [];
+		for (var i = 0; i < myFieldArray.length; i++) {
+			result.push([myFieldArray[i], cardbookRepository.cardbookUtils.getTranslatedField(myFieldArray[i])]);
+		}
+		return result;
+	},
+
+	getTranslatedField: function (aField, aLocale) {
+		for (var i in cardbookRepository.allColumns) {
+			for (var j = 0; j < cardbookRepository.allColumns[i].length; j++) {
+				if (i != "arrayColumns" && i != "categories") {
+					if (cardbookRepository.allColumns[i][j] == aField) {
+						return cardbookRepository.extension.localeData.localizeMessage(cardbookRepository.allColumns[i][j] + "Label");
+					}
+				} else if (i == "categories") {
+					if (cardbookRepository.allColumns[i][j] + ".0.array" == aField) {
+						return cardbookRepository.extension.localeData.localizeMessage(cardbookRepository.allColumns[i][j] + "Label");
+					}
+				}
+			}
+		}
+		for (var i in cardbookRepository.customFields) {
+			for (var j = 0; j < cardbookRepository.customFields[i].length; j++) {
+				if (cardbookRepository.customFields[i][j][0] == aField) {
+					return cardbookRepository.customFields[i][j][1];
+				}
+			}
+		}
+		for (var i = 0; i < cardbookRepository.allColumns.arrayColumns.length; i++) {
+			for (var k = 0; k < cardbookRepository.allColumns.arrayColumns[i][1].length; k++) {
+				if (cardbookRepository.allColumns.arrayColumns[i][0] + "." + k + ".all" == aField) {
+					return cardbookRepository.extension.localeData.localizeMessage(cardbookRepository.allColumns.arrayColumns[i][1][k] + "Label");
+				} else if (cardbookRepository.allColumns.arrayColumns[i][0] + "." + k + ".notype" == aField) {
+					return cardbookRepository.extension.localeData.localizeMessage(cardbookRepository.allColumns.arrayColumns[i][1][k] + "Label") + " (" + cardbookRepository.extension.localeData.localizeMessage("importNoTypeLabel") + ")";
+				}
+			}
+		}
+		for (var i = 0; i < cardbookRepository.allColumns.arrayColumns.length; i++) {
+			var myPrefTypes = cardbookRepository.cardbookTypes.getTypesFromDirPrefId(cardbookRepository.allColumns.arrayColumns[i][0]);
+			cardbookRepository.cardbookUtils.sortMultipleArrayByString(myPrefTypes,0,1)
+			for (var j = 0; j < myPrefTypes.length; j++) {
+				for (var k = 0; k < cardbookRepository.allColumns.arrayColumns[i][1].length; k++) {
+					if (cardbookRepository.allColumns.arrayColumns[i][0] + "." + k + "." + myPrefTypes[j][1] == aField) {
+						return cardbookRepository.extension.localeData.localizeMessage(cardbookRepository.allColumns.arrayColumns[i][1][k] + "Label") + " (" + myPrefTypes[j][0] + ")";
+					}
+				}
+			}
+		}
+		if ("blank" == aField) {
+			return cardbookRepository.extension.localeData.localizeMessage(window.arguments[0].mode + "blankColumn");
+		}
+		return "";
+	},
+
 	getEditionFields: function() {
 		let tmpArray = [];
 		tmpArray.push([cardbookRepository.extension.localeData.localizeMessage("addressbookHeader"), "addressbook"]);
@@ -1624,14 +1648,6 @@ var cardbookUtils = {
 		}
 	},
 
-	getTempFile: function (aFileName) {
-		var myFile = Services.dirsvc.get("TmpD", Components.interfaces.nsIFile);
-		if (aFileName) {
-			myFile.append(aFileName);
-		}
-		return myFile;
-	},
-
 	getFileExtension: function (aFile) {
 		var myFileArray = aFile.split("/");
 		var myFileArray1 = myFileArray[myFileArray.length-1].split("\\");
@@ -1689,6 +1705,16 @@ var cardbookUtils = {
 		return cardbookUtils.getFreeFileName(aDirName, aName, aId.replace(/^urn:uuid:/i, ""), ".vcf");
 	},
 
+	getFileNameForCard2: function(aCard, aListOfName, aExtension) {
+		let i = 1;
+		let name = aCard.fn.replace(/([\\\/\:\*\?\"\<\>\|]+)/g, '-') + "." + aExtension;
+		while (aListOfName.includes(name) && i < 100) {
+			name = aCard.fn.replace(/([\\\/\:\*\?\"\<\>\|]+)/g, '-') + i + "." + aExtension;
+			i++;
+		}
+		return name;
+	},
+
 	getFileNameFromUrl: function(aUrl) {
 		let cleanUrl = cardbookRepository.cardbookSynchronization.getSlashedUrl(aUrl).slice(0, -1);
 		let keyArray = cleanUrl.split("/");
@@ -1704,10 +1730,16 @@ var cardbookUtils = {
 			aCard.cacheuri = cardbookUtils.getFileNameForCard(myDirPrefIdUrl, aCard.fn, aCard.uid);
 		} else {
 			if (aCard.cardurl) {
-				aCard.cacheuri = cardbookUtils.getFileNameFromUrl(aCard.cardurl);
+				if (aPrefIdType == "OFFICE365") {
+					aCard.cacheuri = aCard.uid;
+				} else {
+					aCard.cacheuri = cardbookUtils.getFileNameFromUrl(aCard.cardurl);
+				}
 			} else {
 				if (aPrefIdType == "GOOGLE" || aPrefIdType == "GOOGLE2" || aPrefIdType == "GOOGLE3") {
 					aCard.cacheuri = cardbookUtils.getFileNameFromUrl(aCard.uid);
+				} else if (aPrefIdType == "OFFICE365") {
+					aCard.cacheuri = aCard.uid;
 				} else {
 					aCard.cacheuri = cardbookUtils.getFileNameFromUrl(aCard.uid) + ".vcf";
 				}
@@ -2247,12 +2279,18 @@ var cardbookUtils = {
 				version = JSON.parse(JSON.stringify(cardbookRepository.supportedVersion));
 			}
 			let type = connection[0].type;
+			let id = "";
+			let serverUrl = url;
+			if (cardbookRepository.cardbookServerValidation[aDirPrefId][url].id) {
+				id = cardbookRepository.cardbookServerValidation[aDirPrefId][url].id;
+				serverUrl = cardbookRepository.cardbookServerValidation[aDirPrefId][url].url;
+			}
 			if (cardbookRepository.cardbookServerValidation[aDirPrefId][url].displayName) {
-				aTargetArray.push([type, url, cardbookRepository.cardbookServerValidation[aDirPrefId].user, cardbookRepository.cardbookServerValidation[aDirPrefId][url].displayName,
-								version, "", "", false]);
+					aTargetArray.push([type, serverUrl, cardbookRepository.cardbookServerValidation[aDirPrefId].user, cardbookRepository.cardbookServerValidation[aDirPrefId][url].displayName,
+								version, "", id, false]);
 			} else {
-				aTargetArray.push([type, url, cardbookRepository.cardbookServerValidation[aDirPrefId].user, cardbookRepository.cardbookServerValidation[aDirPrefId].user,
-								version, "", "", false]);
+				aTargetArray.push([type, serverUrl, cardbookRepository.cardbookServerValidation[aDirPrefId].user, cardbookRepository.cardbookServerValidation[aDirPrefId].user,
+								version, "", id, false]);
 			}
 		}
 		return aTargetArray;
@@ -2377,28 +2415,19 @@ var cardbookUtils = {
 		}
 	},
 
-	writeContentToFile: function (aFileName, aContent, aConvertion, aActionId, aCount) {
+	writeContentToFile: async function (aFileName, aContent, aConvertion, aActionId, aCount) {
 		try {
-			var myFile = Components.classes["@mozilla.org/file/local;1"].createInstance(Components.interfaces.nsIFile);
-			myFile.initWithPath(aFileName);
-
-			if (myFile.exists() == false){
-				myFile.create(Components.interfaces.nsIFile.NORMAL_FILE_TYPE, 420);
-			}
-			
-			var outputStream = Components.classes["@mozilla.org/network/file-output-stream;1"].createInstance(Components.interfaces.nsIFileOutputStream);
-			outputStream.init(myFile, 0x2A, parseInt("0600", 8), 0);
-
-			if (aConvertion === "UTF8") {
-				var converter = Components.classes["@mozilla.org/intl/converter-output-stream;1"].createInstance(Components.interfaces.nsIConverterOutputStream);
-				converter.init(outputStream, "UTF-8", aContent.length, Components.interfaces.nsIConverterInputStream.DEFAULT_REPLACEMENT_CHARACTER);
-				converter.writeString(aContent);
-				converter.close();
+			let win = Services.wm.getMostRecentWindow("mail:3pane", true);
+			if (aConvertion == "UTF8") {
+				await win.IOUtils.writeUTF8(aFileName, aContent);
 			} else {
-				var result = outputStream.write(aContent, aContent.length);
+				let len = aContent.length;
+				let bytes = new Uint8Array(len);
+				for (let i = 0; i < len; i++) {
+					bytes[i] = aContent.charCodeAt(i);
+				}
+				await win.IOUtils.write(aFileName, new Uint8Array(bytes.buffer));
 			}
-			
-			outputStream.close();
 			if (aActionId && aCount && cardbookRepository.currentAction[aActionId]) {
 				cardbookRepository.currentAction[aActionId].doneCards += aCount;
 			}
@@ -2407,6 +2436,20 @@ var cardbookUtils = {
 		catch (e) {
 			cardbookRepository.cardbookLog.updateStatusProgressInformation("cardbookUtils.writeContentToFile error : filename : " + aFileName + ", error : " + e, "Error");
 		}
+	},
+
+	readContentFromFile: function (aFilePath, aCallback, aParams) {
+		let win = Services.wm.getMostRecentWindow("mail:3pane", true);
+		let result = win.IOUtils.readUTF8(aFilePath);
+
+		result.then(data => {
+			aCallback(data, aParams);
+		}).catch( () => {
+			if (aParams.showError) {
+				cardbookRepository.cardbookLog.updateStatusProgressInformation("cardbookUtils.readContentFromFile error : filename : " + aFilePath, "Error");
+			}
+			aCallback("", aParams);
+		});
 	},
 
 	notifyObservers: function (aTopic, aParam) {

@@ -5,71 +5,6 @@ var cardbookeditlists = {};
 var blankColumn = "";
 var nIntervId = "";
 
-function getTemplate (aFieldList) {
-	var myFieldArray = aFieldList.split('|');
-	var result = [];
-	for (var i = 0; i < myFieldArray.length; i++) {
-		result.push([myFieldArray[i], getTranslatedField(myFieldArray[i])]);
-	}
-	return result;
-};
-
-function translateFields (aFieldList) {
-	var myFieldArray = aFieldList.split('|');
-	var result = [];
-	for (var i = 0; i < myFieldArray.length; i++) {
-		result.push(getTranslatedField(myFieldArray[i]));
-	}
-	return cardbookRepository.cardbookUtils.cleanArray(result).join('|');
-};
-
-function getTranslatedField (aField, aLocale) {
-	for (var i in cardbookRepository.allColumns) {
-		for (var j = 0; j < cardbookRepository.allColumns[i].length; j++) {
-			if (i != "arrayColumns" && i != "categories") {
-				if (cardbookRepository.allColumns[i][j] == aField) {
-					return cardbookRepository.extension.localeData.localizeMessage(cardbookRepository.allColumns[i][j] + "Label");
-				}
-			} else if (i == "categories") {
-				if (cardbookRepository.allColumns[i][j] + ".0.array" == aField) {
-					return cardbookRepository.extension.localeData.localizeMessage(cardbookRepository.allColumns[i][j] + "Label");
-				}
-			}
-		}
-	}
-	for (var i in cardbookRepository.customFields) {
-		for (var j = 0; j < cardbookRepository.customFields[i].length; j++) {
-			if (cardbookRepository.customFields[i][j][0] == aField) {
-				return cardbookRepository.customFields[i][j][1];
-			}
-		}
-	}
-	for (var i = 0; i < cardbookRepository.allColumns.arrayColumns.length; i++) {
-		for (var k = 0; k < cardbookRepository.allColumns.arrayColumns[i][1].length; k++) {
-			if (cardbookRepository.allColumns.arrayColumns[i][0] + "." + k + ".all" == aField) {
-				return cardbookRepository.extension.localeData.localizeMessage(cardbookRepository.allColumns.arrayColumns[i][1][k] + "Label");
-			} else if (cardbookRepository.allColumns.arrayColumns[i][0] + "." + k + ".notype" == aField) {
-				return cardbookRepository.extension.localeData.localizeMessage(cardbookRepository.allColumns.arrayColumns[i][1][k] + "Label") + " (" + cardbookRepository.extension.localeData.localizeMessage("importNoTypeLabel") + ")";
-			}
-		}
-	}
-	for (var i = 0; i < cardbookRepository.allColumns.arrayColumns.length; i++) {
-		var myPrefTypes = cardbookRepository.cardbookTypes.getTypesFromDirPrefId(cardbookRepository.allColumns.arrayColumns[i][0]);
-		cardbookRepository.cardbookUtils.sortMultipleArrayByString(myPrefTypes,0,1)
-		for (var j = 0; j < myPrefTypes.length; j++) {
-			for (var k = 0; k < cardbookRepository.allColumns.arrayColumns[i][1].length; k++) {
-				if (cardbookRepository.allColumns.arrayColumns[i][0] + "." + k + "." + myPrefTypes[j][1] == aField) {
-					return cardbookRepository.extension.localeData.localizeMessage(cardbookRepository.allColumns.arrayColumns[i][1][k] + "Label") + " (" + myPrefTypes[j][0] + ")";
-				}
-			}
-		}
-	}
-	if ("blank" == aField) {
-		return cardbookRepository.extension.localeData.localizeMessage(window.arguments[0].mode + "blankColumn");
-	}
-	return "";
-};
-
 function getSelectedLines (aTreeName) {
 	var myTree = document.getElementById(aTreeName + 'Tree');
 	var listOfSelected = {};
@@ -296,9 +231,9 @@ function dragCards (aEvent, aTreeName) {
 			var myTempArray = myColumns[i].split("::");
 			var myValue = myTempArray[1];
 			if (myTarget == -1) {
-				cardbookeditlists.addedColumns.push([myValue, getTranslatedField(myValue)]);
+				cardbookeditlists.addedColumns.push([myValue, cardbookRepository.cardbookUtils.getTranslatedField(myValue)]);
 			} else {
-				cardbookeditlists.addedColumns.splice(myTarget, 0, [myValue, getTranslatedField(myValue)]);
+				cardbookeditlists.addedColumns.splice(myTarget, 0, [myValue, cardbookRepository.cardbookUtils.getTranslatedField(myValue)]);
 				myTarget++;
 			}
 		}
@@ -353,7 +288,7 @@ function guess () {
 			var myFoundColumn = cardbookeditlists.foundColumns[i][1].replace(/^\"|\"$/g, "").replace(/^\'|\'$/g, "");
 			var found = false;
 			for (var j = 0; j < cardbookeditlists.availableColumns.length; j++) {
-				var myTranslatedColumn = getTranslatedField(cardbookeditlists.availableColumns[j][0], "locale-US");
+				var myTranslatedColumn = cardbookRepository.cardbookUtils.getTranslatedField(cardbookeditlists.availableColumns[j][0], "locale-US");
 				if (myTranslatedColumn.toLowerCase() == myFoundColumn.toLowerCase()) {
 					result.push([cardbookeditlists.availableColumns[j][0], cardbookeditlists.availableColumns[j][1]]);
 					found = true;
@@ -376,6 +311,7 @@ function onLoadDialog () {
 	i18n.updateDocument({ extension: cardbookRepository.extension });
 	setSyncControl();
 
+	window.arguments[0].action = "CANCEL";
 	document.title = cardbookRepository.extension.localeData.localizeMessage(window.arguments[0].mode + "MappingTitle");
 	document.querySelector("dialog").getButton("extra1").label = cardbookRepository.extension.localeData.localizeMessage("saveTemplateLabel");
 	document.querySelector("dialog").getButton("extra2").label = cardbookRepository.extension.localeData.localizeMessage("loadTemplateLabel");
@@ -465,7 +401,7 @@ function loadTemplate () {
 function loadTemplateNext (aFile) {
 	try {
 		if (aFile) {
-			cardbookRepository.cardbookSynchronization.getFileDataAsync(aFile.path, loadTemplateNext2, {});
+			cardbookRepository.cardbookUtils.readContentFromFile(aFile.path, loadTemplateNext2, {});
 		}
 	}
 	catch (e) {
@@ -476,7 +412,7 @@ function loadTemplateNext (aFile) {
 function loadTemplateNext2 (aContent, aParams) {
 	try {
 		if (aContent) {
-			cardbookeditlists.addedColumns = getTemplate(aContent);
+			cardbookeditlists.addedColumns = cardbookRepository.cardbookUtils.getTemplate(aContent);
 			displayListTrees("addedColumns");
 		}
 	}
@@ -489,7 +425,7 @@ function saveTemplate () {
 	cardbookWindowUtils.callFilePicker("fileCreationTPLTitle", "SAVE", "TPL", getDefaultTemplateName(), "", saveTemplateNext);
 };
 
-function saveTemplateNext (aFile) {
+async function saveTemplateNext (aFile) {
 	try {
 		if (!(aFile.exists())) {
 			aFile.create(Components.interfaces.nsIFile.NORMAL_FILE_TYPE, 420);
@@ -500,7 +436,7 @@ function saveTemplateNext (aFile) {
 			result.push(cardbookeditlists.addedColumns[i][0]);
 		}
 
-		cardbookRepository.cardbookUtils.writeContentToFile(aFile.path, result.join('|'), "UTF8");
+		await cardbookRepository.cardbookUtils.writeContentToFile(aFile.path, result.join('|'), "UTF8");
 	}
 	catch (e) {
 		cardbookRepository.cardbookLog.updateStatusProgressInformation("saveTemplateNext error : " + e, "Error");
@@ -508,7 +444,6 @@ function saveTemplateNext (aFile) {
 };
 
 function onCancelDialog () {
-	window.arguments[0].action = "CANCEL";
 	clearSyncControl();
 	close();
 };

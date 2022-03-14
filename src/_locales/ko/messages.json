@@ -124,7 +124,10 @@
 		"message": "H"
 	},
 	"noContactsDuplicated": {
-		"message": "중복된 연락처가 없습니다"
+		"message": "중복된 연락처가 없습니다."
+	},
+	"noDataAvailable": {
+		"message": "사용 가능한 데이터가 없음."
 	},
 	"targetCategoryLabel": {
 		"message": "결과"
@@ -149,11 +152,26 @@
 	"ValidatingURLFailedLabel": {
 		"message": "URL 주소가 잘못되었습니다"
 	},
+	"ValidatingURILabel": {
+		"message": "URL 입력 또는 붙여넣기"
+	},
+	"ValidatingURIFailedLabel": {
+		"message": "잘못된 URL"
+	},
+	"ValidatingLoginLabel": {
+		"message": "로그인 계정"
+	},
+	"ValidatingEmailLabel": {
+		"message": "기존 이메일 주소"
+	},
 	"ValidatingEmailFailedLabel": {
 		"message": "유효한 이메일이 필요합니다"
 	},
 	"ValidationFailedLabel": {
 		"message": "인증 실패"
+	},
+	"ValidationFailedOffLine": {
+		"message": "현재 오프라인 상태입니다."
 	},
 	"ValidationOKLabel": {
 		"message": "인증 성공"
@@ -836,7 +854,7 @@
 		"message": "연락처 수정 충돌"
 	},
 	"askUserPersistMessage": {
-		"message": "다른 기존 연락처에이 선택 사항 적용"
+		"message": "다른 기존 연락처에 이 선택 사항 적용"
 	},
 	"cardkeepAskUserLabel": {
 		"message": "연락처 유지"
@@ -2242,6 +2260,17 @@
             }
         }
 	},
+	"cardsFormattedUndo": {
+		"message": "$P1$ : 연락처 포맷 됨 ($P2$)",
+        "placeholders": {
+            "P1": {
+                "content": "$1"
+            },
+            "P2": {
+                "content": "$2"
+            }
+        }
+	},
 	"exportCardToDirMessagePF": {
 		"message": "$P1$개의 연락처를 디렉토리 $P2$ 로 내보냈습니다",
         "placeholders": {
@@ -2801,6 +2830,59 @@
             }
         }
 	},
+	"invalidOffice365Field": {
+		"message": "$P1$은(는) 동기화 될 수 없습니다 (값: $P2$)",
+        "placeholders": {
+            "P1": {
+                "content": "$1"
+            },
+            "P2": {
+                "content": "$2"
+            }
+       }
+	},
+	"invalidOffice365Email": {
+		"message": "3개 이상의 이메일 주소는 동기화 될 수 없습니다"
+	},
+	"invalidOffice365Impp": {
+		"message": "하나의 인스턴스 메시지 주소만 동기화 될 수 있습니다"
+	},
+	"invalidOffice365Adr": {
+		"message": "3개 이상의 주소는 동기화 될 수 없습니다"
+	},
+	"invalidOffice365Tel": {
+		"message": "17개 이상의 전화번호는 동기화 될 수 없습니다"
+	},
+	"invalidOffice365EmptyType": {
+		"message": "$P1$ : 유형은 비어있을 수 없습니다",
+        "placeholders": {
+            "P1": {
+                "content": "$1"
+            }
+        }
+	},
+	"invalidOffice365Type": {
+		"message": "$P1$ : 유형 $P2$이(가) 너무 많습니다 (최대치: $P3$)",
+		"placeholders": {
+			"P1": {
+				"content": "$1"
+			},
+			"P2": {
+				"content": "$2"
+			},
+			"P3": {
+				"content": "$3"
+			}
+		}
+	},
+	"invalidOffice365Member": {
+		"message": "주소록에 있는 연락처에 포함되지 않은 이메일은 추가할 수 없습니다 ($P1$)",
+		"placeholders": {
+			"P1": {
+				"content": "$1"
+			}
+		}
+	},
 	"validateIntegerMsg": {
 		"message": "필드 $P1$는 비어있거나 1과 $P2$ 사이의 정수여야합니다 (값: $P3$)",
         "placeholders": {
@@ -2870,6 +2952,27 @@
 	},
 	"worktype": {
 		"message": "직장"
+	},
+	"otherfaxtype": {
+		"message": "기타 팩스"
+	},
+	"assistanttype": {
+		"message": "비서"
+	},
+	"callbacktype": {
+		"message": "콜백"
+	},
+	"carphonetype": {
+		"message": "차량"
+	},
+	"radiotype": {
+		"message": "라디오"
+	},
+	"telextype": {
+		"message": "텔렉스"
+	},
+	"ttytype": {
+		"message": "TTY"
 	},
 	"types.gender.f": {
 		"message": "여성"
@@ -3282,9 +3385,6 @@
 	"eventInNoteEventPrefix": {
 		"message": "이벤트"
 	},
-	"deathSuffix": {
-		"message": "(사망)"
-	},
 	"dateFormatsDLabel": {
 		"message": "D"
 	},
@@ -3600,20 +3700,20 @@
 	"cardbookContactPaneItemAccesskey": {
 		"message": "O"
 	},
+	"wizard.next.label": {
+		"message": "다음"
+	},	
+	"wizard.back.label": {
+		"message": "뒤로"
+	},	
+	"wizard.create.label": {
+		"message": "생성"
+	},
 	"wizard.title": {
 		"message": "새 주소록 추가"
 	},
-	"wizard.label": {
-		"message": "새 주소록 추가"
-	},
-	"welcomePage.wizard.description": {
-		"message": "환영합니다"
-	},
 	"welcomePage.description": {
 		"message": "CardBook이 최초로 실행된 것 같습니다. CardBook은 Thunderbird의 기본 주소록과 원격 주소록에서 연락처 수집을 시도할 것입니다."
-	},
-	"initialPage.wizard.description": {
-		"message": "새 주소록 위치."
 	},
 	"initialPage.description": {
 		"message": "주소록 위치:"
@@ -3632,9 +3732,6 @@
 	},
 	"initialPage.find.label": {
 		"message": "원격 주소록 검색"
-	},
-	"localPage.wizard.description": {
-		"message": "새 로컬 주소록의 유형 및 위치."
 	},
 	"localPage.type.description": {
 		"message": "로컬 주소록 유형:"
@@ -3669,9 +3766,6 @@
 	"localPage.uributton.label": {
 		"message": "찾아보기"
 	},
-	"remotePage.wizard.description": {
-		"message": "새 원격 주소록의 유형과 위치."
-	},
 	"remotePage.description": {
 		"message": "원격 주소록의 유형은 무엇입니까? (주의 : Google은 vCard 표준을 준수하지 않습니다.)"
 	},
@@ -3679,7 +3773,10 @@
 		"message": "유형"
 	},
 	"remotePageType.carddav.label": {
-		"message": "CardDAV"
+		"message": "CardDAV (URL 입력 또는 붙여넣기)"
+	},
+	"remotePageType.ews.label": {
+		"message": "EWS (URL 입력 또는 붙여넣기)"
 	},
 	"remotePageType.google2.label": {
 		"message": "Google"
@@ -3720,14 +3817,14 @@
 	"remotePage.password.label": {
 		"message": "암호:"
 	},
+	"rememberPassword": {
+		"message": "이 비밀번호를 기억하는데 비밀번호 관리자를 사용합니다"
+	},
 	"showHidePassword.tooltip": {
 		"message": "비밀번호 표시/숨기기"
 	},
 	"remotePage.validatebutton.label": {
 		"message": "유효성 검사"
-	},
-	"locationSearchPage.wizard.description": {
-		"message": "저장된 검색의 정의."
 	},
 	"locationSearchPage.label": {
 		"message": "이전 검색"
@@ -3753,9 +3850,6 @@
 	"googleOauthPage.wizard.description": {
 		"message": "구글 인증"
 	},
-	"namePage.wizard.description": {
-		"message": "주소록 속성"
-	},
 	"namePage.selected.label": {
 		"message": "선택됨"
 	},
@@ -3774,17 +3868,11 @@
 	"namePage.vCardVersion.label": {
 		"message": "vCard"
 	},
-	"namesPage.wizard.description": {
-		"message": "주소록 속성"
-	},
 	"namesPage.name.label": {
 		"message": "이름"
 	},
 	"namesPage.name.description": {
 		"message": "여러 주소록이 발견되었습니다. 열려는 주소록과 이름을 선택하십시오:"
-	},
-	"findPage.wizard.description": {
-		"message": "원격 주소록 검색"
 	},
 	"findPage.name1.description": {
 		"message": "검색된 원격 주소록이 없습니다."
@@ -3794,9 +3882,6 @@
 	},
 	"findPage.name3.description": {
 		"message": "다수의 원격 주소록이 검색되었습니다. 추가하기 위해 유효성을 확인하십시오:"
-	},
-	"finishPage.wizard.description": {
-		"message": "주소록 설정"
 	},
 	"finishPage.description": {
 		"message": "새 주소록이 성공적으로 구성되었습니다."
@@ -4410,6 +4495,12 @@
 	"typesCategoryAppleAccesskey": {
 		"message": "A"
 	},
+	"typesCategoryOffice365Label": {
+		"message": "Office365"
+	},
+	"typesCategoryOffice365Accesskey": {
+		"message": "O"
+	},
 	"typesCategoryYahooLabel": {
 		"message": "Yahoo!"
 	},
@@ -4787,6 +4878,9 @@
 	},
 	"birthdayListWarn": {
 		"message": "기념일은 CardBook 주소록에서만 검색됩니다."
+	},
+	"generalGroupboxLabel": {
+		"message": "일반"
 	},
 	"addressbooksGroupboxLabel": {
 		"message": "주소록"
@@ -5442,8 +5536,11 @@
 	"importCardFromDirLabel": {
 		"message": "디렉토리에서 연락처 가져 오기"
 	},
+	"formatDataFromAccountsOrCatsLabel": {
+		"message": "연락처 데이터 포맷"
+	},
 	"findDuplicatesFromAccountsOrCatsLabel": {
-		"message": "현재 주소록에서 중복된 연락처 찾기"
+		"message": "중복된 연락처 찾기"
 	},
 	"generateFnFromAccountsOrCatsLabel": {
 		"message": "표시 이름 생성"
@@ -5567,12 +5664,6 @@
 	},
 	"displayFieldNamesAccesskey": {
 		"message": "F"
-	},
-	"displayTypesLabel": {
-		"message": "유형 및 환경 설정"
-	},
-	"displayTypesAccesskey": {
-		"message": "y"
 	},
 	"fieldsToPrintGroupboxLabel": {
 		"message": "인쇄할 필드"
@@ -5742,6 +5833,21 @@
 	"mergeAllEditionAccesskey": {
 		"message": "M"
 	},
+	"formatAllEditionLabel": {
+		"message": "모두 포맷하기"
+	},
+	"formatAllEditionAccesskey": {
+		"message": "F"
+	},
+	"undoAllEditionLabel": {
+		"message": "모두 되돌리기"
+	},
+	"undoAllEditionAccesskey": {
+		"message": "U"
+	},
+	"formatEditionLabel": {
+		"message": "포맷"
+	},
 	"buttonAppendToListLabel": {
 		"message": "추가"
 	},
@@ -5782,7 +5888,20 @@
 		"message": "C"
 	},
 	"wdw_findDuplicatesTitle": {
-		"message": "중복된 연락처"
+		"message": "중복된 연락처 ($P1$)",
+        "placeholders": {
+            "P1": {
+                "content": "$1"
+            }
+        }
+	},
+	"wdw_formatDataTitle": {
+		"message": "연락처 데이터 포맷 ($P1$)",
+        "placeholders": {
+            "P1": {
+                "content": "$1"
+            }
+        }
 	},
 	"addImageCardFromFileLabel": {
 		"message": "파일에서 이미지 추가"
@@ -5864,5 +5983,8 @@
 	},
 	"orgTitleLabel": {
 		"message": "직장 정보"
+	},
+	"allAddressBooks": {
+		"message": "모든 주소록"
 	}
 }

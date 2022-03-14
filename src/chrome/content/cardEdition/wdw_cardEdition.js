@@ -14,6 +14,11 @@ if ("undefined" == typeof(wdw_cardEdition)) {
 		});
 	});
 
+	if ("undefined" == typeof(notifyTools)) {
+		var loader = Services.scriptloader;
+		loader.loadSubScript("chrome://cardbook/content/scripts/notifyTools.js", this);
+	}
+
 	var wdw_cardEdition = {
 
 		contactNotLoaded: true,
@@ -56,7 +61,7 @@ if ("undefined" == typeof(wdw_cardEdition)) {
 				if (aFile) {
 					var params = {};
 					params["showError"] = true;
-					cardbookRepository.cardbookSynchronization.getFileDataAsync(aFile.path, wdw_cardEdition.searchForLocalKeyEditNext2, params);
+					cardbookRepository.cardbookUtils.readContentFromFile(aFile.path, wdw_cardEdition.searchForLocalKeyEditNext2, params);
 				}
 			}
 			catch (e) {
@@ -389,7 +394,7 @@ if ("undefined" == typeof(wdw_cardEdition)) {
 		},
 
 		availableCardsTreeContextShowing: function (aEvent) {
-			if (cardbookWindowUtils.displayColumnsPicker()) {
+			if (cardbookWindowUtils.displayColumnsPicker(aEvent)) {
 				var myTree = document.getElementById('availableCardsTree');
 				var myAvailableCards = wdw_cardEdition.getSelectedCardsForList(myTree);
 				if (myAvailableCards.length > 1) {
@@ -475,7 +480,7 @@ if ("undefined" == typeof(wdw_cardEdition)) {
 				document.getElementById('addressbookMenulistReadOnlyGroupbox').setAttribute('hidden', 'true');
 				document.getElementById('existingDataGroupbox').setAttribute('hidden', 'true');
 				document.getElementById('contactMenulist').setAttribute('hidden', 'true');
-				document.getElementById('categoriesReadOnlyGroupbox').setAttribute('hidden', 'true');
+				document.getElementById('categoriesmodernGroupbox').setAttribute('hidden', 'true');
 				document.getElementById('categoriesReadWriteGroupbox').removeAttribute('hidden');
 				document.getElementById('listReadOnlyGroupbox').setAttribute('hidden', 'true');
 				document.getElementById('listReadWriteGroupbox').removeAttribute('hidden');
@@ -495,7 +500,7 @@ if ("undefined" == typeof(wdw_cardEdition)) {
 				document.getElementById('addressbookMenulistReadOnlyGroupbox').setAttribute('hidden', 'true');
 				document.getElementById('existingDataGroupbox').setAttribute('hidden', 'true');
 				document.getElementById('contactMenulist').setAttribute('hidden', 'true');
-				document.getElementById('categoriesReadOnlyGroupbox').setAttribute('hidden', 'true');
+				document.getElementById('categoriesmodernGroupbox').setAttribute('hidden', 'true');
 				document.getElementById('categoriesReadWriteGroupbox').removeAttribute('hidden');
 				document.getElementById('listReadOnlyGroupbox').setAttribute('hidden', 'true');
 				document.getElementById('listReadWriteGroupbox').removeAttribute('hidden');
@@ -519,7 +524,7 @@ if ("undefined" == typeof(wdw_cardEdition)) {
 				document.getElementById('existingDataGroupbox').setAttribute('hidden', 'true');
 				document.getElementById('contactMenulist').setAttribute('hidden', 'true');
 				document.getElementById('fnTextBox').setAttribute('class', 'indent');
-				document.getElementById('categoriesReadOnlyGroupbox').removeAttribute('hidden');
+				document.getElementById('categoriesmodernGroupbox').removeAttribute('hidden');
 				document.getElementById('categoriesReadWriteGroupbox').setAttribute('hidden', 'true');
 				document.getElementById('listReadOnlyGroupbox').removeAttribute('hidden');
 				document.getElementById('listReadWriteGroupbox').setAttribute('hidden', 'true');
@@ -550,7 +555,7 @@ if ("undefined" == typeof(wdw_cardEdition)) {
 				document.getElementById('addressbookMenulistReadOnlyGroupbox').setAttribute('hidden', 'true');
 				document.getElementById('existingDataGroupbox').setAttribute('hidden', 'true');
 				document.getElementById('contactMenulist').setAttribute('hidden', 'true');
-				document.getElementById('categoriesReadOnlyGroupbox').setAttribute('hidden', 'true');
+				document.getElementById('categoriesmodernGroupbox').setAttribute('hidden', 'true');
 				document.getElementById('categoriesReadWriteGroupbox').removeAttribute('hidden');
 				document.getElementById('listReadOnlyGroupbox').setAttribute('hidden', 'true');
 				document.getElementById('listReadWriteGroupbox').removeAttribute('hidden');
@@ -571,7 +576,7 @@ if ("undefined" == typeof(wdw_cardEdition)) {
 				document.getElementById('addressbookMenulistReadOnlyGroupbox').setAttribute('hidden', 'true');
 				document.getElementById('existingDataGroupbox').setAttribute('hidden', 'true');
 				document.getElementById('contactMenulist').setAttribute('hidden', 'true');
-				document.getElementById('categoriesReadOnlyGroupbox').setAttribute('hidden', 'true');
+				document.getElementById('categoriesmodernGroupbox').setAttribute('hidden', 'true');
 				document.getElementById('categoriesReadWriteGroupbox').removeAttribute('hidden');
 				document.getElementById('listReadOnlyGroupbox').setAttribute('hidden', 'true');
 				document.getElementById('listReadWriteGroupbox').removeAttribute('hidden');
@@ -593,7 +598,7 @@ if ("undefined" == typeof(wdw_cardEdition)) {
 				document.getElementById('addressbookMenulistReadOnlyGroupbox').setAttribute('hidden', 'true');
 				document.getElementById('existingDataGroupbox').removeAttribute('hidden');
 				document.getElementById('contactMenulist').removeAttribute('hidden');
-				document.getElementById('categoriesReadOnlyGroupbox').setAttribute('hidden', 'true');
+				document.getElementById('categoriesmodernGroupbox').setAttribute('hidden', 'true');
 				document.getElementById('categoriesReadWriteGroupbox').removeAttribute('hidden');
 				document.getElementById('listReadOnlyGroupbox').setAttribute('hidden', 'true');
 				document.getElementById('listReadWriteGroupbox').removeAttribute('hidden');
@@ -614,7 +619,7 @@ if ("undefined" == typeof(wdw_cardEdition)) {
 				document.getElementById('addressbookMenulistReadOnlyGroupbox').setAttribute('hidden', 'true');
 				document.getElementById('existingDataGroupbox').setAttribute('hidden', 'true');
 				document.getElementById('contactMenulist').setAttribute('hidden', 'true');
-				document.getElementById('categoriesReadOnlyGroupbox').setAttribute('hidden', 'true');
+				document.getElementById('categoriesmodernGroupbox').setAttribute('hidden', 'true');
 				document.getElementById('categoriesReadWriteGroupbox').removeAttribute('hidden');
 				document.getElementById('listReadOnlyGroupbox').setAttribute('hidden', 'true');
 				document.getElementById('listReadWriteGroupbox').removeAttribute('hidden');
@@ -632,15 +637,13 @@ if ("undefined" == typeof(wdw_cardEdition)) {
 			}
 			if (window.arguments[0].cardIn.isAList) {
 				document.getElementById('contactGroupbox').setAttribute('hidden', 'true');
-				document.getElementById('listGroupbox').removeAttribute('hidden');
-				wdw_cardEdition.expandButton(document.getElementById('expandPersImage'), false);
+				wdw_cardEdition.expandButton(document.getElementById('expandPersonalImage'), false);
 				wdw_cardEdition.expandButton(document.getElementById('expandOrgImage'), false);
 				document.getElementById('firstTabSpacer').setAttribute('hidden', 'true');
 				document.getElementById('preferDisplayNameCheckBox').setAttribute('hidden', 'true');
 			} else {
 				document.getElementById('contactGroupbox').removeAttribute('hidden');
-				document.getElementById('listGroupbox').setAttribute('hidden', 'true');
-				wdw_cardEdition.expandButton(document.getElementById('expandPersImage'), true);
+				wdw_cardEdition.expandButton(document.getElementById('expandPersonalImage'), true);
 				wdw_cardEdition.expandButton(document.getElementById('expandOrgImage'), true);
 				document.getElementById('firstTabSpacer').removeAttribute('hidden');
 				document.getElementById('preferDisplayNameCheckBox').removeAttribute('hidden');
@@ -709,6 +712,7 @@ if ("undefined" == typeof(wdw_cardEdition)) {
 				case "ViewResultHideCreate":
 				case "ViewContact":
 				case "ViewList":
+					wdw_cardEdition.showPane('generalTabPanel');
 					return;
 			}
 
@@ -726,19 +730,19 @@ if ("undefined" == typeof(wdw_cardEdition)) {
 				document.getElementById('categoriesReadWriteGroupbox').setAttribute('hidden', 'true');
 			}
 			if (isElementInPref("note") || wdw_cardEdition.workingCard.note) {
-				document.getElementById('noteTab').setAttribute("collapsed", false);
+				document.getElementById('noteTab').removeAttribute('hidden');
 			} else {
-				document.getElementById('noteTab').setAttribute("collapsed", true);
+				document.getElementById('noteTab').setAttribute('hidden', 'true');
 			}
 			if (isElementInPref("list") && window.arguments[0].editionMode != "EditTemplate") {
-				document.getElementById('listTab').setAttribute("collapsed", false);
+				document.getElementById('listTab').removeAttribute('hidden');
 			} else {
-				document.getElementById('listTab').setAttribute("collapsed", true);
+				document.getElementById('listTab').setAttribute('hidden', 'true');
 			}
 			if (isElementInPref("key") && window.arguments[0].editionMode != "EditTemplate") {
-				document.getElementById('keyTab').setAttribute("collapsed", false);
+				document.getElementById('keyTab').removeAttribute('hidden');
 			} else {
-				document.getElementById('keyTab').setAttribute("collapsed", true);
+				document.getElementById('keyTab').setAttribute('hidden', 'true');
 			}
 			if (isElementInPref("fn") || wdw_cardEdition.workingCard.fn) {
 				document.getElementById('fnGroupbox').removeAttribute('hidden');
@@ -818,6 +822,7 @@ if ("undefined" == typeof(wdw_cardEdition)) {
 			}
 			
 			cardbookWindowUtils.updateComplexMenulist('fields', 'fieldsMenupopup');
+			wdw_cardEdition.showPane('generalTabPanel');
 		},
 
 		loadHelpTab: function () {
@@ -833,26 +838,30 @@ if ("undefined" == typeof(wdw_cardEdition)) {
 			document.getElementById('formulaMemberLabel4').value = "{{4}} : " + cardbookRepository.extension.localeData.localizeMessage("lastnameLabel");
 			document.getElementById('formulaMemberLabel5').value = "{{5}} : " + cardbookRepository.extension.localeData.localizeMessage("suffixnameLabel");
 			document.getElementById('formulaMemberLabel6').value = "{{6}} : " + cardbookRepository.extension.localeData.localizeMessage("nicknameLabel");
-		
+
 			let count = 6;
-			let rows = document.getElementById('formulaSampleRows');
+			let table = document.getElementById('formulaSampleTable');
 			if (allOrg.length == 0) {
 				count++;
-				let row = cardbookElementTools.addGridRow(rows, 'formulaSampleTextRow' + count, {align: 'center'});
-				let label = cardbookElementTools.addLabel(row, 'formulaMemberLabel' + count, "{{" + count + "}} : " + cardbookRepository.extension.localeData.localizeMessage("orgLabel"), null, {});		
+				let row = cardbookElementTools.addTableRow(table, 'formulaSampleTextRow' + count);
+				let labelData = cardbookElementTools.addTableData(row, 'formulaMemberLabel' + count + '.1');
+				let label = cardbookElementTools.addLabel(labelData, 'formulaMemberLabel' + count, "{{" + count + "}} : " + cardbookRepository.extension.localeData.localizeMessage("orgLabel"), null, {});		
 			} else {
 				for (let org of allOrg) {
 					count++;
-					let row = cardbookElementTools.addGridRow(rows, 'formulaSampleTextRow' + count, {align: 'center'});
-					let label = cardbookElementTools.addLabel(row, 'formulaMemberLabel' + count, "{{" + count + "}} : " + org, null, {});
+					let row = cardbookElementTools.addTableRow(table, 'formulaSampleTextRow' + count);
+					let labelData = cardbookElementTools.addTableData(row, 'formulaMemberLabel' + count + '.1');
+					let label = cardbookElementTools.addLabel(labelData, 'formulaMemberLabel' + count, "{{" + count + "}} : " + org, null, {});
 				}
 			}
 			count++;
-			let rowTitle = cardbookElementTools.addGridRow(rows, 'formulaSampleTextRow' + count, {align: 'center'});
-			let labelTitle = cardbookElementTools.addLabel(rowTitle, 'formulaMemberLabel' + count, "{{" + count + "}} : " + cardbookRepository.extension.localeData.localizeMessage("titleLabel"), null, {});
+			let rowTitle = cardbookElementTools.addTableRow(table, 'formulaSampleTextRow' + count);
+			let titleData = cardbookElementTools.addTableData(rowTitle, 'formulaMemberLabel' + count + '.2');
+			let labelTitle = cardbookElementTools.addLabel(titleData, 'formulaMemberLabel' + count, "{{" + count + "}} : " + cardbookRepository.extension.localeData.localizeMessage("titleLabel"), null, {});
 			count++;
-			let rowRole = cardbookElementTools.addGridRow(rows, 'formulaSampleTextRow' + count, {align: 'center'});
-			let labelRole = cardbookElementTools.addLabel(rowRole, 'formulaMemberLabel' + count, "{{" + count + "}} : " + cardbookRepository.extension.localeData.localizeMessage("roleLabel"), null, {});
+			let rowRole = cardbookElementTools.addTableRow(table, 'formulaSampleTextRow' + count);
+			let roleData = cardbookElementTools.addTableData(rowRole, 'formulaMemberLabel' + count + '.3');
+			let labelRole = cardbookElementTools.addLabel(roleData, 'formulaMemberLabel' + count, "{{" + count + "}} : " + cardbookRepository.extension.localeData.localizeMessage("roleLabel"), null, {});
 		},
 
 		setEditionFields: function () {
@@ -988,138 +997,28 @@ if ("undefined" == typeof(wdw_cardEdition)) {
 		},
 
 		expandButton: function (aButton, aForce) {
-			var myGrid = document.getElementById(aButton.id.replace(/^expand/, "").replace(/Image$/, "").toLowerCase() + "Grid");
+			let table = document.getElementById(aButton.id.replace(/^expand/, "").replace(/Image$/, "").toLowerCase() + "Table");
 			if ("undefined" == typeof(aForce)) {
 				if (!aButton.getAttribute('expanded')) {
-					myGrid.removeAttribute('hidden');
+					table.removeAttribute('hidden');
 					aButton.setAttribute('expanded', 'true');
 				} else {
-					myGrid.setAttribute('hidden', 'true');
+					table.setAttribute('hidden', 'true');
 					aButton.removeAttribute('expanded');
 				}
 			} else {
 				if (aForce == true) {
-					myGrid.removeAttribute('hidden');
+					table.removeAttribute('hidden');
 					aButton.setAttribute('expanded', 'true');
 				} else {
-					myGrid.setAttribute('hidden', 'true');
+					table.setAttribute('hidden', 'true');
 					aButton.removeAttribute('expanded');
 				}
 			}				
 		},
 
-		copyAdr: function () {
-			var myTempArray = document.popupNode.parentNode.parentNode.id.split('_');
-			var myIndex = myTempArray[1];
-			var myAdr = cardbookWindowUtils.getTypeForLine("adr", myIndex);
-			
-			var myResult = cardbookRepository.cardbookUtils.formatAddress(myAdr[0]);
-			myResult = document.getElementById('fnTextBox').value + "\n" + myResult;
-			cardbookRepository.currentCopiedEntry = [];
-			cardbookRepository.currentCopiedEntry.push(["adr", myAdr]);
-			var myMessage = cardbookRepository.extension.localeData.localizeMessage("lineCopied");
-			cardbookClipboard.clipboardSetText('text/unicode', myResult, myMessage);
-		},
-
-		pasteAdr: function () {
-			if (cardbookRepository.currentCopiedEntry.length == 0) {
-				cardbookRepository.cardbookUtils.formatStringForOutput("clipboardEmpty");
-				return;
-			}
-			var myId = document.popupNode.parentNode.parentNode.id;
-			document.getElementById(myId + '_' + '0').value = cardbookRepository.currentCopiedEntry[0][1][0][0].trim();
-			document.getElementById(myId + '_' + '1').value = cardbookRepository.currentCopiedEntry[0][1][0][1].trim();
-			document.getElementById(myId + '_' + '2').value = cardbookRepository.currentCopiedEntry[0][1][0][2].replace(/\n/g, "\\n").trim();
-			document.getElementById(myId + '_' + '3').value = cardbookRepository.currentCopiedEntry[0][1][0][3].trim();
-			document.getElementById(myId + '_' + '4').value = cardbookRepository.currentCopiedEntry[0][1][0][4].trim();
-			document.getElementById(myId + '_' + '5').value = cardbookRepository.currentCopiedEntry[0][1][0][5].trim();
-			document.getElementById(myId + '_' + '6').value = cardbookRepository.currentCopiedEntry[0][1][0][6].trim();
-			var myTempArray = document.popupNode.parentNode.parentNode.id.split('_');
-			var myIndex = myTempArray[1];
-			var myAdr = cardbookWindowUtils.getTypeForLine("adr", myIndex);
-			cardbookWindowUtils.openAdrPanel(myAdr, myTempArray);
-		},
-
 		unsetWrongValidation: function () {
 			cardbookNotifications.setNotification(cardEditionNotification.errorNotifications, "OK");
-		},
-
-		validateMailPopularity: function () {
-			var limit = 100000;
-			var i = 0;
-			while (true) {
-				if (document.getElementById('mailPopularity_' + i + '_row')) {
-					var field = cardbookRepository.extension.localeData.localizeMessage("popularityLabel");
-					var data = document.getElementById('popularity_' + i + '_Textbox').value.trim() * 1;
-					if (data && (data > limit)) {
-						cardbookNotifications.setNotification(cardEditionNotification.errorNotifications, "validateIntegerMsg", [field, limit, data]);
-						return false;
-					}
-					i++;
-				} else {
-					break;
-				}
-			}
-			return true;
-		},
-
-		validateDateFields: function () {
-			var dateFormat = cardbookRepository.getDateFormat(wdw_cardEdition.workingCard.dirPrefId, wdw_cardEdition.workingCard.version);
-			for (var field of cardbookRepository.dateFields) {
-				if (document.getElementById(field + 'Datepicker')) {
-					var myValue = document.getElementById(field + 'Datepicker').value.trim();
-					if (myValue.length > 0) {
-						var isDate = cardbookRepository.cardbookDates.convertDateStringToDateUTC(myValue, dateFormat);
-						if (isDate == "WRONGDATE") {
-							cardbookNotifications.setNotification(cardEditionNotification.errorNotifications, "dateEntry2Wrong", [myValue, dateFormat]);
-							return false;
-						}
-					}
-				}
-			}
-			var i = 0;
-			while (true) {
-				if (document.getElementById('event_' + i + '_hbox')) {
-					var myEventDate = document.getElementById('event_' + i + '_valueDateBox').value.trim();
-					if (myEventDate != "") {
-						var isDate = cardbookRepository.cardbookDates.convertDateStringToDateUTC(myEventDate, dateFormat);
-						if (isDate == "WRONGDATE") {
-							cardbookNotifications.setNotification(cardEditionNotification.errorNotifications, "dateEntry2Wrong", [myEventDate, dateFormat]);
-							return false;
-						}
-					}
-					i++;
-				} else {
-					break;
-				}
-			}
-			return true;
-		},
-
-		validateEvents: function () {
-			var i = 0;
-			while (true) {
-				if (document.getElementById('event_' + i + '_hbox')) {
-					var myEventDate = document.getElementById('event_' + i + '_valueDateBox').value.trim();
-					var myEventName = document.getElementById('event_' + i + '_valueBox').value.trim();
-					if (myEventDate != "" && myEventName != "") {
-						i++;
-						continue;
-					} else if (myEventDate == "" && myEventName == "") {
-						i++;
-						continue;
-					} else if (myEventDate == "") {
-						cardbookNotifications.setNotification(cardEditionNotification.errorNotifications, "eventDateNull", []);
-						return false;
-					} else if (myEventName == "") {
-						cardbookNotifications.setNotification(cardEditionNotification.errorNotifications, "eventNameNull", []);
-						return false;
-					}
-				} else {
-					break;
-				}
-			}
-			return true;
 		},
 
 		displayCard: function (aCard) {
@@ -1129,6 +1028,7 @@ if ("undefined" == typeof(wdw_cardEdition)) {
 			
 			// specific
 			document.getElementById('addressbookTextBox').value = cardbookRepository.cardbookPreferences.getName(aCard.dirPrefId);
+
 			if (!aReadOnly) {
 				wdw_cardEdition.loadCategories(aCard.categories);
 				cardbookElementTools.loadGender("genderMenupopup", "genderMenulist", wdw_cardEdition.workingCard.gender);
@@ -1150,7 +1050,7 @@ if ("undefined" == typeof(wdw_cardEdition)) {
 			}
 			for (let email of wdw_cardEdition.workingCard.emails) {
 				if (cardbookRepository.cardbookPreferDisplayNameIndex[email]) {
-					document.getElementById('preferDisplayNameCheckBox').setAttribute('checked', 'false');
+					document.getElementById('preferDisplayNameCheckBox').checked = false;
 					break;
 				}
 			}
@@ -1167,10 +1067,9 @@ if ("undefined" == typeof(wdw_cardEdition)) {
 		},
 
 		getOrg: function (aTrimArray) {
-			var myOrg = [];
-			var result = "";
-			var aListRows = document.getElementById('orgRows');
-			var i = 0;
+			let myOrg = [];
+			let result = "";
+			let i = 0;
 			while (true) {
 				if (document.getElementById('orgRow_' + i)) {
 					myOrg.push(cardbookRepository.cardbookUtils.escapeStringSemiColon(document.getElementById('orgTextBox_' + i).value.trim()));
@@ -1181,7 +1080,7 @@ if ("undefined" == typeof(wdw_cardEdition)) {
 			}
 			if (aTrimArray) {
 				// trim the array
-				for (var i = myOrg.length-1; i >= 0; i--) {
+				for (let i = myOrg.length-1; i >= 0; i--) {
 					if (myOrg[i] == "") {
 						myOrg.pop();
 					} else {
@@ -1307,6 +1206,28 @@ if ("undefined" == typeof(wdw_cardEdition)) {
 			}
 		},
 
+		showPane: function (paneID) {
+			if (!paneID) {
+				return;
+			}
+			
+			let pane = document.getElementById(paneID);
+			if (!pane) {
+				return;
+			}
+			
+			let tabnodes = document.getElementById("rightPaneDownHbox1").querySelectorAll(".cardbookTab");
+			for (let node of tabnodes) {
+				if (node.id != paneID) {
+					node.setAttribute("hidden", "true");
+					document.getElementById(node.id.replace("Panel", "")).removeAttribute("visuallyselected");
+				} else {
+					document.getElementById(node.id.replace("Panel", "")).setAttribute("visuallyselected", "true");
+					node.removeAttribute("hidden");
+				}
+			}
+		},
+		
 		load: function () {
 			i18n.updateDocument({ extension: cardbookRepository.extension });
 			cardBookEditionObserver.register();
@@ -1361,11 +1282,11 @@ if ("undefined" == typeof(wdw_cardEdition)) {
 		},
 
 		saveMailPopularity: function () {
-			var i = 0;
+			let i = 0;
 			while (true) {
-				if (document.getElementById('mailPopularity_' + i + '_row')) {
-					var email = document.getElementById('email_' + i + '_Textbox').value.toLowerCase();
-					var emailValue = parseInt(document.getElementById('popularity_' + i + '_Textbox').value) || "0";
+				if (document.getElementById('emailproperty_' + i + '_Row')) {
+					let email = document.getElementById('email_' + i + '_Textbox').value.toLowerCase();
+					let emailValue = parseInt(document.getElementById('popularity_' + i + '_Textbox').value) || "0";
 					cardbookIDBMailPop.updateMailPop(email, emailValue);
 					i++;
 				} else {
@@ -1375,10 +1296,10 @@ if ("undefined" == typeof(wdw_cardEdition)) {
 		},
 
 		savePreferDisplayName: function () {
-			var i = 0;
+			let i = 0;
 			while (true) {
-				if (document.getElementById('mailPopularity_' + i + '_row')) {
-					var email = document.getElementById('email_' + i + '_Textbox').value;
+				if (document.getElementById('emailproperty_' + i + '_Row')) {
+					let email = document.getElementById('email_' + i + '_Textbox').value;
 					if (document.getElementById("preferDisplayNameCheckBox").getAttribute("checked") == "true") {
 						cardbookIDBPrefDispName.removePrefDispName(email);
 					} else {
@@ -1392,27 +1313,29 @@ if ("undefined" == typeof(wdw_cardEdition)) {
 		},
 
 		updateFormHistory: function (aField) {
-			var myValue = document.getElementById(aField).value;
+			let myValue = document.getElementById(aField).value;
 			if (myValue == "") {
 				return;
 			}
-			if (FormHistory.enabled) {
-				FormHistory.update({
-					op: "bump",
-					fieldname: aField,
-					value: myValue
-				}, {handleError(aError) {
-						Components.utils.reportError("Saving find to form history failed: " + aError.message);
+			let data = {op: "add", fieldname: aField, value: myValue};
+			return new Promise((resolve, reject) => {
+				let handlers = {
+					handleError(error) {
+						console.log(error);
+					},
+					handleCompletion(reason) {
+						resolve();
 					}
-				});
-			}
+				};
+				FormHistory.update(data, handlers);
+			});
 		},
 
 		updateFormFields: function () {
 			// first static fields
 			var fieldHistorized = [ 'adrLocality', 'adrRegion', 'adrPostalCode', 'title', 'role' ];
-			for (var i in fieldHistorized) {
-				wdw_cardEdition.updateFormHistory(fieldHistorized[i] + 'TextBox');
+			for (let field of fieldHistorized) {
+				wdw_cardEdition.updateFormHistory(field + 'TextBox');
 			}
 			// then dynamic fields
 			var i = 0;
@@ -1429,6 +1352,7 @@ if ("undefined" == typeof(wdw_cardEdition)) {
 		calculateResult: function (aCard) {
 			wdw_cardEdition.cloneCard(wdw_cardEdition.workingCard, aCard);
 			aCard.dirPrefId = document.getElementById('addressbookMenulist').value;
+			let ABType = cardbookRepository.cardbookPreferences.getType(aCard.dirPrefId);
 
 			aCard.version = document.getElementById("versionTextBox").value;
 			aCard.categories = wdw_cardEdition.getCategories();
@@ -1458,9 +1382,18 @@ if ("undefined" == typeof(wdw_cardEdition)) {
 			aCard.note = document.getElementById('noteTextBox').value.trim();
 
 			for (let media of cardbookRepository.allColumns.media) {
-				aCard[media] = {types: [], value: "", URI: "", extension: ""};
-				aCard[media].value = document.getElementById(media + 'URITextBox').value;
-				aCard[media].extension = document.getElementById(media + 'ExtensionTextBox').value;
+				if (media == "photo") {
+					aCard[media] = {types: [], value: "", URI: "", extension: "", attachmentId: ""};
+					aCard[media].value = document.getElementById(media + 'URITextBox').value;
+					aCard[media].extension = document.getElementById(media + 'ExtensionTextBox').value;
+					if (document.getElementById(media + 'AttachmentIdTextBox')) {
+						aCard[media].attachmentId = document.getElementById(media + 'AttachmentIdTextBox').value;
+					}
+				} else {
+					aCard[media] = {types: [], value: "", URI: "", extension: ""};
+					aCard[media].value = document.getElementById(media + 'URITextBox').value;
+					aCard[media].extension = document.getElementById(media + 'ExtensionTextBox').value;
+				}
 			}
 
 			for (let field of cardbookRepository.multilineFields) {
@@ -1519,15 +1452,24 @@ if ("undefined" == typeof(wdw_cardEdition)) {
 			}
 					
 			if (aCard.isAList) {
-				var myMembers = [];
-				for (var i = 0; i < wdw_cardEdition.cardbookeditlists.addedCards.length; i++) {
-					if (wdw_cardEdition.cardbookeditlists.addedCards[i][5] == "EMAIL") {
-						myMembers.push("mailto:" + wdw_cardEdition.cardbookeditlists.addedCards[i][1]);
+				let members = [];
+				for (let addedCardLine of wdw_cardEdition.cardbookeditlists.addedCards) {
+					if (addedCardLine[5] == "EMAIL") {
+						members.push("mailto:" + addedCardLine[1]);
 					} else {
-						myMembers.push("urn:uuid:" + wdw_cardEdition.cardbookeditlists.addedCards[i][0]);
+						if (ABType == "OFFICE365") {
+							if (cardbookRepository.cardbookCards[aCard.dirPrefId+"::"+addedCardLine[0]]) {
+								let card = cardbookRepository.cardbookCards[aCard.dirPrefId+"::"+addedCardLine[0]];
+								for (let email of card.emails) {
+									members.push("mailto:" + email);
+								}
+							}
+						} else {
+							members.push("urn:uuid:" + addedCardLine[0]);
+						}
 					}
 				}
-				cardbookRepository.cardbookUtils.addMemberstoCard(aCard, myMembers, document.getElementById('kindTextBox').value.trim());
+				cardbookRepository.cardbookUtils.addMemberstoCard(aCard, members, document.getElementById('kindTextBox').value.trim());
 			}
 		},
 
@@ -1607,9 +1549,10 @@ if ("undefined" == typeof(wdw_cardEdition)) {
 		},
 
 		validate: function () {
-			if (wdw_cardEdition.validateMailPopularity() &&
-				wdw_cardEdition.validateDateFields() &&
-				wdw_cardEdition.validateEvents() &&
+			if (wdw_cardEditionValidations.validateOffice365() &&
+				wdw_cardEditionValidations.validateMailPopularity() &&
+				wdw_cardEditionValidations.validateDateFields() &&
+				wdw_cardEditionValidations.validateEvents() &&
 				window.arguments[0].editionMode != "ViewContact" && 
 				window.arguments[0].editionMode != "ViewList") {
 				wdw_cardEdition.unsetWrongValidation();
@@ -1639,6 +1582,7 @@ if ("undefined" == typeof(wdw_cardEdition)) {
 						if (aClose) {
 							wdw_cardEdition.cancel();
 						}
+						cardbookRepository.cardbookUtils.notifyObservers("cardEdited");
 						return;
 					}
 				}

@@ -97,6 +97,8 @@ var wdw_cardbookConfiguration = {
 	allCalendars: [],
 	preferEmailPrefOld: false,
 	encryptionPrefOld: false,
+	URLPhoneURLOld: "",
+	URLPhoneUserOld: "",
 	autocompleteRestrictSearchFields: "",
 	customListsFields: ['kindCustom', 'memberCustom'],
 	
@@ -334,11 +336,11 @@ var wdw_cardbookConfiguration = {
 		document.getElementById('resetAutocompleteRestrictSearchFieldsButton').disabled=!document.getElementById('autocompleteRestrictSearchCheckBox').checked;
 	},
 
-	translateSearchFields: function (aFieldList) {
+	translateFields: function (aFieldList) {
 		var myFieldArray = aFieldList.split('|');
 		var result = [];
 		for (var i = 0; i < myFieldArray.length; i++) {
-			result.push(getTranslatedField(myFieldArray[i]));
+			result.push(cardbookRepository.cardbookUtils.getTranslatedField(myFieldArray[i]));
 		}
 		return cardbookRepository.cardbookUtils.cleanArray(result).join('|');
 	},
@@ -348,11 +350,11 @@ var wdw_cardbookConfiguration = {
 		if (wdw_cardbookConfiguration.autocompleteRestrictSearchFields == "") {
 			wdw_cardbookConfiguration.autocompleteRestrictSearchFields = cardbookRepository.defaultAutocompleteRestrictSearchFields;
 		}
-		document.getElementById('autocompleteRestrictSearchFieldsTextBox').value = translateFields(wdw_cardbookConfiguration.autocompleteRestrictSearchFields);
+		document.getElementById('autocompleteRestrictSearchFieldsTextBox').value = wdw_cardbookConfiguration.translateFields(wdw_cardbookConfiguration.autocompleteRestrictSearchFields);
 	},
 
 	chooseAutocompleteRestrictSearchFieldsButton: function () {
-		var myTemplate = getTemplate(wdw_cardbookConfiguration.autocompleteRestrictSearchFields);
+		var myTemplate = cardbookRepository.cardbookUtils.getTemplate(wdw_cardbookConfiguration.autocompleteRestrictSearchFields);
 		var myArgs = {template: myTemplate, mode: "choice", includePref: false, lineHeader: true, columnSeparator: "", action: ""};
 		var myWindow = Services.wm.getMostRecentWindow("mail:3pane").openDialog("chrome://cardbook/content/csvTranslator/wdw_csvTranslator.xhtml", "", cardbookRepository.modalWindowParams, myArgs);
 		if (myArgs.action == "SAVE") {
@@ -361,14 +363,14 @@ var wdw_cardbookConfiguration = {
 				result.push(myArgs.template[i][0]);
 			}
 			wdw_cardbookConfiguration.autocompleteRestrictSearchFields = result.join('|');
-			document.getElementById('autocompleteRestrictSearchFieldsTextBox').value = translateFields(wdw_cardbookConfiguration.autocompleteRestrictSearchFields);
+			document.getElementById('autocompleteRestrictSearchFieldsTextBox').value = wdw_cardbookConfiguration.translateFields(wdw_cardbookConfiguration.autocompleteRestrictSearchFields);
 			wdw_cardbookConfiguration.preferenceChanged('autocompleteRestrictSearch');
 		}
 	},
 
 	resetAutocompleteRestrictSearchFieldsButton: function () {
 		wdw_cardbookConfiguration.autocompleteRestrictSearchFields = cardbookRepository.defaultAutocompleteRestrictSearchFields;
-		document.getElementById('autocompleteRestrictSearchFieldsTextBox').value = translateFields(wdw_cardbookConfiguration.autocompleteRestrictSearchFields);
+		document.getElementById('autocompleteRestrictSearchFieldsTextBox').value = wdw_cardbookConfiguration.translateFields(wdw_cardbookConfiguration.autocompleteRestrictSearchFields);
 		wdw_cardbookConfiguration.preferenceChanged('autocompleteRestrictSearch');
 	},
 
@@ -482,16 +484,22 @@ var wdw_cardbookConfiguration = {
 	},
 
 	loadEventEntryTitle: function () {
-		var eventEntryTitle = cardbookRepository.cardbookPreferences.getStringPref("extensions.cardbook.eventEntryTitle");
+		let eventEntryTitle = cardbookRepository.cardbookPreferences.getStringPref("extensions.cardbook.eventEntryTitle");
 		if (eventEntryTitle == "") {
 			document.getElementById('calendarEntryTitleTextBox').value=cardbookRepository.extension.localeData.localizeMessage("eventEntryTitleMessage");
 		}
-		var myLabel = [];
-		myLabel.push("%1$S : " + cardbookRepository.extension.localeData.localizeMessage("fnLabel"));
-		myLabel.push("%2$S : " + cardbookRepository.extension.localeData.localizeMessage("ageLabel"));
-		myLabel.push("%3$S : " + cardbookRepository.extension.localeData.localizeMessage("yearLabel"));
-		myLabel.push("%4$S : " + cardbookRepository.extension.localeData.localizeMessage("nameLabel"));
-		document.getElementById('eventEntryTimeDesc').value = myLabel.join("    ");
+		document.getElementById('eventEntryTimeDesc1').value = "%1$S : " + cardbookRepository.extension.localeData.localizeMessage("fnLabel");
+		document.getElementById('eventEntryTimeDesc2').value = "%2$S : " + cardbookRepository.extension.localeData.localizeMessage("ageLabel");
+		document.getElementById('eventEntryTimeDesc3').value = "%3$S : " + cardbookRepository.extension.localeData.localizeMessage("yearLabel");
+		document.getElementById('eventEntryTimeDesc4').value = "%4$S : " + cardbookRepository.extension.localeData.localizeMessage("nameLabel");
+		let type = cardbookRepository.extension.localeData.localizeMessage("localPage.type.label");
+		let fieldType = [];
+		for (let field of cardbookRepository.dateFields) {
+			fieldType.push(cardbookRepository.extension.localeData.localizeMessage(`${field}Label`));
+		}
+		fieldType.push(cardbookRepository.extension.localeData.localizeMessage("eventInNoteEventPrefix"));
+		detail = fieldType.join(" - ");
+		document.getElementById('eventEntryTimeDesc5').value = "%5$S : " + `${type} [ ${detail} ]`;
 	},
 
 	showTab: function () {
@@ -554,32 +562,14 @@ var wdw_cardbookConfiguration = {
 		cardbookRepository.cardbookPreferences.setBoolPref("extensions.cardbook.eventEntryWholeDay", document.getElementById('calendarEntryWholeDayCheckBox').checked);
 	},
 
-	LightningInstallation: function (aValue) {
-		document.getElementById('calendarsGoupbox').disabled = aValue;
-		document.getElementById('calendarsCheckbox').disabled = aValue;
-		document.getElementById('calendarsTree').disabled = aValue;
-		document.getElementById('numberOfDaysForWritingLabel').disabled = aValue;
-		document.getElementById('numberOfDaysForWritingTextBox').disabled = aValue;
-		document.getElementById('syncWithLightningOnStartupCheckBox').disabled = aValue;
-		document.getElementById('calendarEntryTitleLabel').disabled = aValue;
-		document.getElementById('calendarEntryTitleTextBox').disabled = aValue;
-		if (!aValue) {
-			if (document.getElementById('calendarEntryWholeDayCheckBox').checked) {
-				document.getElementById('calendarEntryTimeTextBox').disabled=true;
-				document.getElementById('calendarEntryTimeLabel').disabled=true;
-			} else {
-				document.getElementById('calendarEntryTimeTextBox').disabled=false;
-				document.getElementById('calendarEntryTimeLabel').disabled=false;
-			}
+	LightningInstallation: function () {
+		if (document.getElementById('calendarEntryWholeDayCheckBox').checked) {
+			document.getElementById('calendarEntryTimeTextBox').disabled=true;
+			document.getElementById('calendarEntryTimeLabel').disabled=true;
 		} else {
-			document.getElementById('calendarEntryWholeDayCheckBox').disabled = aValue;
-			document.getElementById('calendarEntryTimeLabel').disabled = aValue;
-			document.getElementById('calendarEntryTimeTextBox').disabled = aValue;
+			document.getElementById('calendarEntryTimeTextBox').disabled=false;
+			document.getElementById('calendarEntryTimeLabel').disabled=false;
 		}
-		document.getElementById('calendarEntryAlarmLabel').disabled = aValue;
-		document.getElementById('calendarEntryAlarmTextBox').disabled = aValue;
-		document.getElementById('calendarEntryCategoriesLabel').disabled = aValue;
-		document.getElementById('calendarEntryCategoriesTextBox').disabled = aValue;
 	},
 
 	loadFields: function () {
@@ -992,7 +982,7 @@ var wdw_cardbookConfiguration = {
 		}
 
 		wdw_cardbookConfiguration.changeCalendarsMainCheckbox(totalChecked);
-		wdw_cardbookConfiguration.LightningInstallation(false);
+		wdw_cardbookConfiguration.LightningInstallation();
 		wdw_cardbookConfiguration.sortTrees(null, "calendarsTree");
 	},
 	
@@ -1120,12 +1110,9 @@ var wdw_cardbookConfiguration = {
 
 	getABName: function(dirPrefId) {
 		if (!cardbookRepository.cardbookPreferences.getBoolPref("extensions.cardbook.exclusive")) {
-			var contactManager = MailServices.ab;
-			var contacts = contactManager.directories;
-			while ( contacts.hasMoreElements() ) {
-				var contact = contacts.getNext().QueryInterface(Components.interfaces.nsIAbDirectory);
-				if (contact.dirPrefId == dirPrefId) {
-					return contact.dirName;
+			for (let addrbook of MailServices.ab.directories) {
+				if (addrbook.dirPrefId == dirPrefId) {
+					return addrbook.dirName;
 				}
 			}
 		}
@@ -1409,18 +1396,25 @@ var wdw_cardbookConfiguration = {
 	},
 
 	selectType: function() {
-		var btnEdit = document.getElementById("renameTypeLabel");
-		var myTree = document.getElementById("typesTree");
+		let btnEdit = document.getElementById("renameTypeLabel");
+		let myTree = document.getElementById("typesTree");
 		if (myTree.view && myTree.view.selection.getRangeCount() > 0) {
 			btnEdit.disabled = false;
 		} else {
 			btnEdit.disabled = true;
 		}
 		document.getElementById("deleteTypeLabel").disabled = btnEdit.disabled;
+		let btnAdd = document.getElementById("addTypeLabel");
+		let value = document.getElementById('ABtypesCategoryRadiogroup').selectedItem.value;
+		if (cardbookRepository.cardbookCoreTypes[value].addnew == true) {
+			btnAdd.disabled = false;
+		} else {
+			btnAdd.disabled = true;
+		}
 	},
 
 	loadTypes: function () {
-		var ABTypes = [ 'CARDDAV', 'GOOGLE2', 'APPLE', 'YAHOO' ];
+		var ABTypes = [ 'CARDDAV', 'GOOGLE2', 'APPLE', 'OFFICE365', 'YAHOO' ];
 		for (var i in ABTypes) {
 			var myABType = ABTypes[i];
 			wdw_cardbookConfiguration.allTypes[myABType] = {};
@@ -1525,15 +1519,15 @@ var wdw_cardbookConfiguration = {
 	resetType: function () {
 		var myABTypeField = document.getElementById('ABtypesCategoryRadiogroup').selectedItem.value;
 		var myTypeField = document.getElementById('typesCategoryRadiogroup').selectedItem.value;
-		Services.prefs.deleteBranch("extensions.cardbook.customTypes." + myABTypeField + "." + myTypeField);
+		cardbookRepository.cardbookPreferences.delBranch("extensions.cardbook.customTypes." + myABTypeField + "." + myTypeField);
 		wdw_cardbookConfiguration.allTypes[myABTypeField][myTypeField] = cardbookRepository.cardbookTypes.getTypes(myABTypeField, myTypeField, true);
 		wdw_cardbookConfiguration.sortTrees(null, "typesTree");
 		wdw_cardbookConfiguration.preferenceChanged('customTypes');
 	},
 
 	validateTypes: function () {
-		Services.prefs.deleteBranch(cardbookRepository.cardbookPreferences.prefCardBookCustomTypes);
-		var ABTypes = [ 'CARDDAV', 'GOOGLE2', 'APPLE', 'YAHOO' ];
+		cardbookRepository.cardbookPreferences.delBranch(cardbookRepository.cardbookPreferences.prefCardBookCustomTypes);
+		var ABTypes = [ 'CARDDAV', 'GOOGLE2', 'APPLE', 'OFFICE365', 'YAHOO' ];
 		for (var i in ABTypes) {
 			var myABType = ABTypes[i];
 			for (var j in cardbookRepository.multilineFields) {
@@ -1713,9 +1707,13 @@ var wdw_cardbookConfiguration = {
 	},
 	
 	loadURLPhonesPassword: function () {
-		var myUser = cardbookRepository.cardbookPreferences.getStringPref("extensions.cardbook.URLPhoneUser");
-		var myUrl = cardbookRepository.cardbookPreferences.getStringPref("extensions.cardbook.URLPhoneURL");
-		document.getElementById('URLPhonePasswordTextBox').value = cardbookRepository.cardbookPasswordManager.getPassword(myUser, myUrl);
+		let URL = cardbookRepository.cardbookPreferences.getStringPref("extensions.cardbook.URLPhoneURL");
+		document.getElementById('URLPhoneURLTextBox').value = URL;
+		let user = cardbookRepository.cardbookPreferences.getStringPref("extensions.cardbook.URLPhoneUser");
+		document.getElementById('URLPhoneUserTextBox').value = user;
+		document.getElementById('URLPhonePasswordTextBox').value = cardbookRepository.cardbookPasswordManager.getPassword(user, URL);
+		wdw_cardbookConfiguration.URLPhoneURLOld = URL;
+		wdw_cardbookConfiguration.URLPhoneUserOld = user;
 	},
 
 	showPassword: function () {
@@ -1727,10 +1725,10 @@ var wdw_cardbookConfiguration = {
 		let myPasswordTextboxInfo = document.getElementById("URLPhonePasswordTextBoxInfo");
 		if (myPasswordTextbox.type == "password") {
 			myPasswordTextbox.type = "text";
-			myPasswordTextboxInfo.classList.add("icon-visible");
+			myPasswordTextboxInfo.src = "chrome://messenger/skin/icons/visible.svg";
 		} else {
 			myPasswordTextbox.type = "password";
-			myPasswordTextboxInfo.classList.remove("icon-visible");
+			myPasswordTextboxInfo.src = "chrome://messenger/skin/icons/hidden.svg";
 		}
 	},
 
@@ -1761,12 +1759,19 @@ var wdw_cardbookConfiguration = {
 	},
 	
 	validateURLPhonesPassword: function () {
-		var myURL = document.getElementById('URLPhoneURLTextBox').value;
-		var myUser = document.getElementById('URLPhoneUserTextBox').value;
-		var myPassword = document.getElementById('URLPhonePasswordTextBox').value;
-		if (myPassword) {
-			cardbookRepository.cardbookPasswordManager.rememberPassword(myUser, myURL, myPassword, true);
+		let URL = document.getElementById('URLPhoneURLTextBox').value;
+		cardbookRepository.cardbookPreferences.setStringPref("extensions.cardbook.URLPhoneURL", URL);
+		let user = document.getElementById('URLPhoneUserTextBox').value;
+		cardbookRepository.cardbookPreferences.setStringPref("extensions.cardbook.URLPhoneUser", user);
+		let password = document.getElementById('URLPhonePasswordTextBox').value;
+		if (password) {
+			cardbookRepository.cardbookPasswordManager.removePassword(wdw_cardbookConfiguration.URLPhoneUserOld, wdw_cardbookConfiguration.URLPhoneURLOld);
+			cardbookRepository.cardbookPasswordManager.rememberPassword(user, URL, password, true);
+		} else {
+			cardbookRepository.cardbookPasswordManager.removePassword(user, URL);
 		}
+		wdw_cardbookConfiguration.URLPhoneURLOld = URL;
+		wdw_cardbookConfiguration.URLPhoneUserOld = user;
 	},
 
 	selectIMPPsCategory: function () {
@@ -2129,13 +2134,13 @@ var wdw_cardbookConfiguration = {
 
 	loadCustomListFields: function () {
 		for (var i in wdw_cardbookConfiguration.customListsFields) {
-			document.getElementById(wdw_cardbookConfiguration.customListsFields[i] + 'TextBox').value = cardbookRepository.cardbookPreferences.getStringPref("extensions.cardbook." + wdw_cardbookConfiguration.customListsFields[i]);
+			document.getElementById(wdw_cardbookConfiguration.customListsFields[i] + 'TextBox').value = cardbookRepository.cardbookPreferences.getStringPref(cardbookRepository.cardbookPreferences.prefCardBookRoot + wdw_cardbookConfiguration.customListsFields[i]);
 		}
 	},
 
 	validateCustomListFields: function () {
 		for (var i in wdw_cardbookConfiguration.customListsFields) {
-			cardbookRepository.cardbookPreferences.setStringPref("extensions.cardbook." + wdw_cardbookConfiguration.customListsFields[i], document.getElementById(wdw_cardbookConfiguration.customListsFields[i] + 'TextBox').value);
+			cardbookRepository.cardbookPreferences.setStringPref(cardbookRepository.cardbookPreferences.prefCardBookRoot + wdw_cardbookConfiguration.customListsFields[i], document.getElementById(wdw_cardbookConfiguration.customListsFields[i] + 'TextBox').value);
 		}
 	},
 
@@ -2399,21 +2404,23 @@ var wdw_cardbookConfiguration = {
 		if (!pane) {
 			return;
 		}
-		document.getElementById("cardbook-selector").value = paneID;
-		
-		let currentlySelected = document.getElementById("cardbook-paneDeck").querySelector("#cardbook-paneDeck > prefpane[selected]");
-		if (currentlySelected) {
-			if (currentlySelected == pane) {
-				return;
+
+		let categories = document.getElementById('categories');
+		let item = categories.querySelector(".category[value=" + paneID + "]");
+		categories.selectedItem = item;
+
+		let window = document.getElementById('wdw_cardbookConfigurationWindow');
+		window.setAttribute("lastSelected", paneID);
+		Services.xulStore.persist(window, "lastSelected");
+
+		let nodes = document.getElementById("paneDeck").querySelectorAll(".cardbook-pane");
+		for (var node of nodes) {
+			if (node.id == paneID) {
+				node.hidden = false;
+			} else {
+				node.hidden = true;
 			}
-			currentlySelected.removeAttribute("selected");
 		}
-
-		pane.setAttribute("selected", "true");
-		pane.dispatchEvent(new CustomEvent("paneSelected", { bubbles: true }));
-
-		document.documentElement.setAttribute("lastSelected", paneID);
-		Services.xulStore.persist(document.documentElement, "lastSelected");
 	},
 
 	loadPreferenceFields: function () {
@@ -2434,6 +2441,7 @@ var wdw_cardbookConfiguration = {
 					prefValue = cardbookRepository.cardbookPreferences.getBoolPref(prefName, false);
 					break;
 				case "string":
+				case "text":
 				case "number":
 					prefValue = cardbookRepository.cardbookPreferences.getStringPref(prefName, "");
 					break;
@@ -2479,8 +2487,9 @@ var wdw_cardbookConfiguration = {
 	},
 
 	loadInitialPane: function () {
-		if (document.documentElement.hasAttribute("lastSelected")) {
-			wdw_cardbookConfiguration.showPane(document.documentElement.getAttribute("lastSelected"));
+		let window = document.getElementById('wdw_cardbookConfigurationWindow');
+		if (window.hasAttribute("lastSelected")) {
+			wdw_cardbookConfiguration.showPane(window.getAttribute("lastSelected"));
 		} else {
 			wdw_cardbookConfiguration.showPane("cardbook-generalPane");
 		}
@@ -2526,6 +2535,9 @@ var wdw_cardbookConfiguration = {
 		wdw_cardbookConfiguration.loadAutocompleteRestrictSearchFields();
 		wdw_cardbookConfiguration.loadEventEntryTitle();
 		wdw_cardbookConfiguration.showTab();
+
+		let categories = document.getElementById("categories");
+		categories.addEventListener("select", event => wdw_cardbookConfiguration.showPane(event.target.value));
 	},
 	
 	saveInstantApply: function (aNode) {
@@ -2546,8 +2558,7 @@ var wdw_cardbookConfiguration = {
 				cardbookRepository.cardbookPreferences.setBoolPref(prefName, aNode.checked);
 				break;
 			case "string":
-				cardbookRepository.cardbookPreferences.setStringPref(prefName, aNode.value);
-				break;
+			case "text":
 			case "number":
 				cardbookRepository.cardbookPreferences.setStringPref(prefName, aNode.value);
 				break;
@@ -2650,3 +2661,5 @@ var wdw_cardbookConfiguration = {
 		cardbookRepository.cardbookUtils.notifyObservers("preferencesChanged");
 	}
 };
+
+document.addEventListener("DOMContentLoaded", wdw_cardbookConfiguration.load);

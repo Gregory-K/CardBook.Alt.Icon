@@ -126,6 +126,9 @@
 	"noContactsDuplicated": {
 		"message": "未找到重复联系人。"
 	},
+	"noDataAvailable": {
+		"message": "无可用数据。"
+	},
 	"targetCategoryLabel": {
 		"message": "结果"
 	},
@@ -149,8 +152,23 @@
 	"ValidatingURLFailedLabel": {
 		"message": "URL 异常"
 	},
+	"ValidatingURILabel": {
+		"message": "输入或粘贴网址"
+	},
+	"ValidatingURIFailedLabel": {
+		"message": "无效网址"
+	},
+	"ValidatingLoginLabel": {
+		"message": "您的登录信息"
+	},
+	"ValidatingEmailLabel": {
+		"message": "您现有的电子邮件地址"
+	},
 	"ValidatingEmailFailedLabel": {
 		"message": "需要有效的电子邮件地址"
+	},
+	"ValidationFailedOffLine": {
+		"message": "您当前处于脱机状态。"
 	},
 	"ValidationFailedLabel": {
 		"message": "验证失败"
@@ -2242,6 +2260,17 @@
             }
         }
 	},
+	"cardsFormattedUndo": {
+		"message": "$P1$ : 已格式化联系人 ($P2$)",
+        "placeholders": {
+            "P1": {
+                "content": "$1"
+            },
+            "P2": {
+                "content": "$2"
+            }
+        }
+	},
 	"exportCardToDirMessagePF": {
 		"message": "$P1$ 联系人导出到目录 $P2$;$P1$ 联系人导出到目录 $P2$",
         "placeholders": {
@@ -2801,6 +2830,59 @@
             }
         }
 	},
+	"invalidOffice365Field": {
+		"message": "无法同步 $P1$ (值: $P2$)",
+        "placeholders": {
+            "P1": {
+                "content": "$1"
+            },
+            "P2": {
+                "content": "$2"
+            }
+       }
+	},
+	"invalidOffice365Email": {
+		"message": "同步的电子邮件地址不能超过 3 个"
+	},
+	"invalidOffice365Impp": {
+		"message": "只能同步一个即时通讯地址"
+	},
+	"invalidOffice365Adr": {
+		"message": "同步的物理地址不能超过 3 个"
+	},
+	"invalidOffice365Tel": {
+		"message": "同步的电话号码不能超过 17 个"
+	},
+	"invalidOffice365EmptyType": {
+		"message": "$P1$ : 不允许空类型",
+        "placeholders": {
+            "P1": {
+                "content": "$1"
+            }
+        }
+	},
+	"invalidOffice365Type": {
+		"message": "$P1$ : 太多类型 $P2$ (最大允许: $P3$)",
+		"placeholders": {
+			"P1": {
+				"content": "$1"
+			},
+			"P2": {
+				"content": "$2"
+			},
+			"P3": {
+				"content": "$3"
+			}
+		}
+	},
+	"invalidOffice365Member": {
+		"message": "您不能添加一个不属于您地址簿中的联系人的电子邮件($P1$)",
+		"placeholders": {
+			"P1": {
+				"content": "$1"
+			}
+		}
+	},
 	"validateIntegerMsg": {
 		"message": "字段 $P1$ 应为空或介于 1 和 $P2$ 的整数 (值 : $P3$)",
         "placeholders": {
@@ -2870,6 +2952,27 @@
 	},
 	"worktype": {
 		"message": "工作"
+	},
+	"otherfaxtype": {
+		"message": "其他传真"
+	},
+	"assistanttype": {
+		"message": "助理"
+	},
+	"callbacktype": {
+		"message": "回拨"
+	},
+	"carphonetype": {
+		"message": "车载电话"
+	},
+	"radiotype": {
+		"message": "无线电广播"
+	},
+	"telextype": {
+		"message": "电报"
+	},
+	"ttytype": {
+		"message": "TTY"
 	},
 	"types.gender.f": {
 		"message": "女性"
@@ -3282,9 +3385,6 @@
 	"eventInNoteEventPrefix": {
 		"message": "事件"
 	},
-	"deathSuffix": {
-		"message": "(去世)"
-	},
 	"dateFormatsDLabel": {
 		"message": "D"
 	},
@@ -3600,20 +3700,20 @@
 	"cardbookContactPaneItemAccesskey": {
 		"message": "O"
 	},
+	"wizard.next.label": {
+		"message": "下一页"
+	},	
+	"wizard.back.label": {
+		"message": "返回"
+	},	
+	"wizard.create.label": {
+		"message": "创建"
+	},
 	"wizard.title": {
 		"message": "添加通讯录"
 	},
-	"wizard.label": {
-		"message": "添加通讯录"
-	},
-	"welcomePage.wizard.description": {
-		"message": "欢迎"
-	},
 	"welcomePage.description": {
 		"message": "这貌似是你第一次使用 CardBook, 所以我们将试着收集联系人。首先我们将试着导入 Thunderbird 的标准通讯录到 CardBook，在寻找可能的远程通讯录。"
-	},
-	"initialPage.wizard.description": {
-		"message": "新通讯录的路径"
 	},
 	"initialPage.description": {
 		"message": "通讯录路径:"
@@ -3632,9 +3732,6 @@
 	},
 	"initialPage.find.label": {
 		"message": "查找远程通讯录"
-	},
-	"localPage.wizard.description": {
-		"message": "类型和新本地通讯录的路径"
 	},
 	"localPage.type.description": {
 		"message": "本地通讯录的类型"
@@ -3669,9 +3766,6 @@
 	"localPage.uributton.label": {
 		"message": "浏览"
 	},
-	"remotePage.wizard.description": {
-		"message": "类型和新远程通讯录的路径"
-	},
 	"remotePage.description": {
 		"message": "你的远程通讯录的类型是什么(注意:Google 不遵守 vCard 标准)？"
 	},
@@ -3679,7 +3773,10 @@
 		"message": "类型"
 	},
 	"remotePageType.carddav.label": {
-		"message": "CardDAV"
+		"message": "CardDAV (输入或粘贴网址)"
+	},
+	"remotePageType.ews.label": {
+		"message": "EWS (输入或粘贴网址)"
 	},
 	"remotePageType.google2.label": {
 		"message": "Google"
@@ -3720,14 +3817,14 @@
 	"remotePage.password.label": {
 		"message": "密码:"
 	},
+	"rememberPassword": {
+		"message": "使用密码管理器来记住这个密码"
+	},
 	"showHidePassword.tooltip": {
 		"message": "显示/隐藏密码"
 	},
 	"remotePage.validatebutton.label": {
 		"message": "验证"
-	},
-	"locationSearchPage.wizard.description": {
-		"message": "保存的搜索结果的定义"
 	},
 	"locationSearchPage.label": {
 		"message": "保存的搜索结果"
@@ -3753,9 +3850,6 @@
 	"googleOauthPage.wizard.description": {
 		"message": "Google 身份验证"
 	},
-	"namePage.wizard.description": {
-		"message": "通讯录属性"
-	},
 	"namePage.selected.label": {
 		"message": "已选"
 	},
@@ -3774,17 +3868,11 @@
 	"namePage.vCardVersion.label": {
 		"message": "vCard"
 	},
-	"namesPage.wizard.description": {
-		"message": "通讯录属性"
-	},
 	"namesPage.name.label": {
 		"message": "姓名"
 	},
 	"namesPage.name.description": {
 		"message": "已发现多个通讯录选择要打开的通讯录的名称"
-	},
-	"findPage.wizard.description": {
-		"message": "查找远程通讯录"
 	},
 	"findPage.name1.description": {
 		"message": "不会添加通讯录"
@@ -3794,9 +3882,6 @@
 	},
 	"findPage.name3.description": {
 		"message": "将添加多个通讯录。选择你要添加的通讯录:"
-	},
-	"finishPage.wizard.description": {
-		"message": "通讯录配置"
 	},
 	"finishPage.description": {
 		"message": "已成功配置你的新通讯录"
@@ -4410,6 +4495,12 @@
 	"typesCategoryAppleAccesskey": {
 		"message": "p"
 	},
+	"typesCategoryOffice365Label": {
+		"message": "Office365"
+	},
+	"typesCategoryOffice365Accesskey": {
+		"message": "O"
+	},
 	"typesCategoryYahooLabel": {
 		"message": "Yahoo!"
 	},
@@ -4787,6 +4878,9 @@
 	},
 	"birthdayListWarn": {
 		"message": "周年纪念日仅在 CardBook 通讯录中"
+	},
+	"generalGroupboxLabel": {
+		"message": "常规"
 	},
 	"addressbooksGroupboxLabel": {
 		"message": "通讯录"
@@ -5442,6 +5536,9 @@
 	"importCardFromDirLabel": {
 		"message": "从目录导入联系人"
 	},
+	"formatDataFromAccountsOrCatsLabel": {
+		"message": "格式化联系人数据"
+	},
 	"findDuplicatesFromAccountsOrCatsLabel": {
 		"message": "搜索重复的联系人"
 	},
@@ -5567,12 +5664,6 @@
 	},
 	"displayFieldNamesAccesskey": {
 		"message": "F"
-	},
-	"displayTypesLabel": {
-		"message": "类型和偏好设置"
-	},
-	"displayTypesAccesskey": {
-		"message": "y"
 	},
 	"fieldsToPrintGroupboxLabel": {
 		"message": "要打印的字段"
@@ -5742,6 +5833,21 @@
 	"mergeAllEditionAccesskey": {
 		"message": "M"
 	},
+	"formatAllEditionLabel": {
+		"message": "格式化所有"
+	},
+	"formatAllEditionAccesskey": {
+		"message": "F"
+	},
+	"undoAllEditionLabel": {
+		"message": "全部撤销"
+	},
+	"undoAllEditionAccesskey": {
+		"message": "U"
+	},
+	"formatEditionLabel": {
+		"message": "格式化"
+	},
 	"buttonAppendToListLabel": {
 		"message": "添加"
 	},
@@ -5782,7 +5888,20 @@
 		"message": "o"
 	},
 	"wdw_findDuplicatesTitle": {
-		"message": "复制联系人"
+		"message": "复制联系人 ($P1$)",
+        "placeholders": {
+            "P1": {
+                "content": "$1"
+            }
+        }
+	},
+	"wdw_formatDataTitle": {
+		"message": "格式化联系人数据 ($P1$)",
+        "placeholders": {
+            "P1": {
+                "content": "$1"
+            }
+        }
 	},
 	"addImageCardFromFileLabel": {
 		"message": "从文件添加图像"
@@ -5864,5 +5983,8 @@
 	},
 	"orgTitleLabel": {
 		"message": "专业信息"
+	},
+	"allAddressBooks": {
+		"message": "所有通讯录"
 	}
 }

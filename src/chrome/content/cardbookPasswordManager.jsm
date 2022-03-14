@@ -17,6 +17,15 @@ var cardbookPasswordManager = {
 		}
 	},
 
+	getDomainPassword: function (aDomain) {
+		let password = "";
+		let foundLogins = Services.logins.findLogins("smtp://smtp." + aDomain, "", "");
+		if (foundLogins.length > 0) {
+			password = foundLogins[0].password;
+		}
+		return password;
+	},
+
 	getNotNullPassword: function (aUsername, aPrefId, aUrl) {
 		var myUrl = cardbookRepository.cardbookPreferences.getUrl(aPrefId);
 		if (myUrl == "") {
@@ -28,8 +37,7 @@ var cardbookPasswordManager = {
 			var commonStrBundle = Services.strings.createBundle("chrome://global/locale/commonDialogs.properties");
 			var myText = commonStrBundle.formatStringFromName("EnterPasswordFor", [aUsername, myUrl], 2);
 			var myPassword = {value: ""};
-			var pwdMgrBundle = Services.strings.createBundle("chrome://passwordmgr/locale/passwordmgr.properties");
-			var myRememberText = pwdMgrBundle.GetStringFromName("rememberPassword");
+			var myRememberText = cardbookRepository.extension.localeData.localizeMessage("rememberPassword");
 			var check = {value: false};
 			var prompter = Services.ww.getNewPrompter(null);
 			if (prompter.promptPassword(myTitle, myText, myPassword, myRememberText, check)) {
@@ -46,8 +54,7 @@ var cardbookPasswordManager = {
 		var commonStrBundle = Services.strings.createBundle("chrome://global/locale/commonDialogs.properties");
 		var myText = commonStrBundle.formatStringFromName("EnterPasswordFor", [aUsername, myUrl], 2);
 		var myPassword = {value: ""};
-		var pwdMgrBundle = Services.strings.createBundle("chrome://passwordmgr/locale/passwordmgr.properties");
-		var myRememberText = pwdMgrBundle.GetStringFromName("rememberPassword");
+		var myRememberText = cardbookRepository.extension.localeData.localizeMessage("rememberPassword");
 		var check = {value: false};
 		var prompter = Services.ww.getNewPrompter(null);
 		if (prompter.promptPassword(myTitle, myText, myPassword, myRememberText, check)) {

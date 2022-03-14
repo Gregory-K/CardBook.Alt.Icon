@@ -126,6 +126,9 @@
 	"noContactsDuplicated": {
 		"message": "Nie znaleziono powielonych wizytówek."
 	},
+	"noDataAvailable": {
+		"message": "Brak dostępnych danych."
+	},
 	"targetCategoryLabel": {
 		"message": "wyników"
 	},
@@ -149,8 +152,23 @@
 	"ValidatingURLFailedLabel": {
 		"message": "Adres URL jest nieprawidłowy"
 	},
+	"ValidatingURILabel": {
+		"message": "Wpisz lub wklej adres"
+	},
+	"ValidatingURIFailedLabel": {
+		"message": "Nieprawidłowy URL"
+	},
+	"ValidatingLoginLabel": {
+		"message": "Nazwa użytkownika"
+	},
+	"ValidatingEmailLabel": {
+		"message": "Twój istniejący adres e-mail"
+	},
 	"ValidatingEmailFailedLabel": {
 		"message": "Wymagany jest prawidłowy adres e-mail"
+	},
+	"ValidationFailedOffLine": {
+		"message": "Pracujesz teraz w trybie offline."
 	},
 	"ValidationFailedLabel": {
 		"message": "Weryfikacja zakończyła się niepowodzeniem"
@@ -2242,6 +2260,17 @@
             }
         }
 	},
+	"cardsFormattedUndo": {
+		"message": "??$P1$ : Contacts formatted ($P2$)??",
+        "placeholders": {
+            "P1": {
+                "content": "$1"
+            },
+            "P2": {
+                "content": "$2"
+            }
+        }
+	},
 	"exportCardToDirMessagePF": {
 		"message": "??$P1$ contact exported into the directory $P2$;$P1$ contacts exported into the directory $P2$??",
         "placeholders": {
@@ -2801,6 +2830,59 @@
             }
         }
 	},
+	"invalidOffice365Field": {
+		"message": "??$P1$ can't be synced (value: $P2$)??",
+        "placeholders": {
+            "P1": {
+                "content": "$1"
+            },
+            "P2": {
+                "content": "$2"
+            }
+       }
+	},
+	"invalidOffice365Email": {
+		"message": "??No more than 3 email addresses can be synced??"
+	},
+	"invalidOffice365Impp": {
+		"message": "??Only one IM address can be synced??"
+	},
+	"invalidOffice365Adr": {
+		"message": "??No more than 3 physical addresses can be synced??"
+	},
+	"invalidOffice365Tel": {
+		"message": "??No more than 17 phone numbers can be synced??"
+	},
+	"invalidOffice365EmptyType": {
+		"message": "??Empty types are not allowed in the element $P1$??",
+        "placeholders": {
+            "P1": {
+                "content": "$1"
+            }
+        }
+	},
+	"invalidOffice365Type": {
+		"message": "??Too many $P2$ types in the element $P1$ (max allowed: $P3$)??",
+		"placeholders": {
+			"P1": {
+				"content": "$1"
+			},
+			"P2": {
+				"content": "$2"
+			},
+			"P3": {
+				"content": "$3"
+			}
+		}
+	},
+	"invalidOffice365Member": {
+		"message": "??You cannot add an email that does not belong to one contact of your address book ($P1$)??",
+		"placeholders": {
+			"P1": {
+				"content": "$1"
+			}
+		}
+	},
 	"validateIntegerMsg": {
 		"message": "Pole $P1$ powinno być puste lub zawierać liczbę całkowitą od 1 do $P2$ (wartość: $P3$)",
         "placeholders": {
@@ -2870,6 +2952,27 @@
 	},
 	"worktype": {
 		"message": "Służbowy"
+	},
+	"otherfaxtype": {
+		"message": "??Other fax??"
+	},
+	"assistanttype": {
+		"message": "??Assistant??"
+	},
+	"callbacktype": {
+		"message": "??Callback??"
+	},
+	"carphonetype": {
+		"message": "??Car??"
+	},
+	"radiotype": {
+		"message": "??Radio??"
+	},
+	"telextype": {
+		"message": "??Telex??"
+	},
+	"ttytype": {
+		"message": "TTY"
 	},
 	"types.gender.f": {
 		"message": "Żeńska"
@@ -3282,9 +3385,6 @@
 	"eventInNoteEventPrefix": {
 		"message": "Wydarzenie"
 	},
-	"deathSuffix": {
-		"message": "(śmierć)"
-	},
 	"dateFormatsDLabel": {
 		"message": "D"
 	},
@@ -3600,20 +3700,20 @@
 	"cardbookContactPaneItemAccesskey": {
 		"message": "w"
 	},
+	"wizard.next.label": {
+		"message": "Następna"
+	},	
+	"wizard.back.label": {
+		"message": "Wstecz"
+	},	
+	"wizard.create.label": {
+		"message": "Utwórz"
+	},
 	"wizard.title": {
 		"message": "Dodaj nową książkę adresową"
 	},
-	"wizard.label": {
-		"message": "Dodaj nową książkę adresową"
-	},
-	"welcomePage.wizard.description": {
-		"message": "Witaj"
-	},
 	"welcomePage.description": {
 		"message": "Wygląda to na pierwsze uruchomienie CardBook. CardBook będzie próbował dodać kontakty ze standardowych książek Thunderbird oraz książek zdalnych."
-	},
-	"initialPage.wizard.description": {
-		"message": "Położenie nowej książki adresowej."
 	},
 	"initialPage.description": {
 		"message": "Czy książka adresowa jest lokalna czy zdalna?"
@@ -3632,9 +3732,6 @@
 	},
 	"initialPage.find.label": {
 		"message": "Wyszukaj zdalne książki adresowe"
-	},
-	"localPage.wizard.description": {
-		"message": "Rodzaj i położenie nowej lokalnej książki adresowej."
 	},
 	"localPage.type.description": {
 		"message": "Jakiego rodzaju jest lokalna książka adresowa?"
@@ -3669,9 +3766,6 @@
 	"localPage.uributton.label": {
 		"message": "Przeglądaj"
 	},
-	"remotePage.wizard.description": {
-		"message": "Rodzaj i położenie nowej zdalnej książki adresowej."
-	},
 	"remotePage.description": {
 		"message": "Jakiego rodzaju jest książka adresowa? (Uwaga: Google NIE przestrzega standardów vCard)"
 	},
@@ -3679,7 +3773,10 @@
 		"message": "Typ"
 	},
 	"remotePageType.carddav.label": {
-		"message": "CardDAV"
+		"message": "CardDAV (Wpisz lub wklej adres)"
+	},
+	"remotePageType.ews.label": {
+		"message": "EWS (Wpisz lub wklej adres)"
 	},
 	"remotePageType.google2.label": {
 		"message": "Google"
@@ -3720,14 +3817,14 @@
 	"remotePage.password.label": {
 		"message": "Hasło:"
 	},
+	"rememberPassword": {
+		"message": "Użyj Menedżera haseł, aby zachować to hasło"
+	},
 	"showHidePassword.tooltip": {
 		"message": "Widoczne hasło"
 	},
 	"remotePage.validatebutton.label": {
 		"message": "Sprawdź"
-	},
-	"locationSearchPage.wizard.description": {
-		"message": "Definicja wyszukiwania zaawansowanego."
 	},
 	"locationSearchPage.label": {
 		"message": "Wyszukiwanie zaawansowane"
@@ -3753,9 +3850,6 @@
 	"googleOauthPage.wizard.description": {
 		"message": "Uwierzytelnie Google"
 	},
-	"namePage.wizard.description": {
-		"message": "Właściwości książki adresowej"
-	},
 	"namePage.selected.label": {
 		"message": "Wybrana"
 	},
@@ -3774,17 +3868,11 @@
 	"namePage.vCardVersion.label": {
 		"message": "vCard"
 	},
-	"namesPage.wizard.description": {
-		"message": "Właściwości książek adresowych"
-	},
 	"namesPage.name.label": {
 		"message": "Nazwy"
 	},
 	"namesPage.name.description": {
 		"message": "Wykryto wiele książek adresowych. Wybierz, które z nich chcesz otworzyć i ich nazwy:"
-	},
-	"findPage.wizard.description": {
-		"message": "Wyszukiwanie w zdalnej książce adresowej"
 	},
 	"findPage.name1.description": {
 		"message": "Nie znaleziono zdalnych książek adresowych."
@@ -3794,9 +3882,6 @@
 	},
 	"findPage.name3.description": {
 		"message": "Znaleziono wiele zdalnych książek adresowych. Sprawdź ich poprawność przed dodaniem:"
-	},
-	"finishPage.wizard.description": {
-		"message": "Konfiguracja książek adresowych"
 	},
 	"finishPage.description": {
 		"message": "Nowa książka adresowa została skonfigurowana."
@@ -4410,6 +4495,12 @@
 	"typesCategoryAppleAccesskey": {
 		"message": "A"
 	},
+	"typesCategoryOffice365Label": {
+		"message": "Office365"
+	},
+	"typesCategoryOffice365Accesskey": {
+		"message": "O"
+	},
 	"typesCategoryYahooLabel": {
 		"message": "Yahoo!"
 	},
@@ -4787,6 +4878,9 @@
 	},
 	"birthdayListWarn": {
 		"message": "Format dat urodzin jest ustawiany we właściwościach książki adresowej"
+	},
+	"generalGroupboxLabel": {
+		"message": "Podsumowanie"
 	},
 	"addressbooksGroupboxLabel": {
 		"message": "Książki adresowe"
@@ -5442,8 +5536,11 @@
 	"importCardFromDirLabel": {
 		"message": "Importuj wizytówkę z katalogu"
 	},
+	"formatDataFromAccountsOrCatsLabel": {
+		"message": "??Format contacts data??"
+	},
 	"findDuplicatesFromAccountsOrCatsLabel": {
-		"message": "Znajdź powielone wizytówki w bieżącej książce adresowej"
+		"message": "Znajdź powielone wizytówki"
 	},
 	"generateFnFromAccountsOrCatsLabel": {
 		"message": "Stwórz Wyświetlane nazwy"
@@ -5567,12 +5664,6 @@
 	},
 	"displayFieldNamesAccesskey": {
 		"message": "N"
-	},
-	"displayTypesLabel": {
-		"message": "Typy i ustawienia"
-	},
-	"displayTypesAccesskey": {
-		"message": "y"
 	},
 	"fieldsToPrintGroupboxLabel": {
 		"message": "Co drukować"
@@ -5742,6 +5833,21 @@
 	"mergeAllEditionAccesskey": {
 		"message": "M"
 	},
+	"formatAllEditionLabel": {
+		"message": "??Format all??"
+	},
+	"formatAllEditionAccesskey": {
+		"message": "F"
+	},
+	"undoAllEditionLabel": {
+		"message": "??Undo all??"
+	},
+	"undoAllEditionAccesskey": {
+		"message": "U"
+	},
+	"formatEditionLabel": {
+		"message": "??Format??"
+	},
 	"buttonAppendToListLabel": {
 		"message": "Dodaj"
 	},
@@ -5782,7 +5888,20 @@
 		"message": "C"
 	},
 	"wdw_findDuplicatesTitle": {
-		"message": "Powielone wizytówki"
+		"message": "Powielone wizytówki ($P1$)",
+        "placeholders": {
+            "P1": {
+                "content": "$1"
+            }
+        }
+	},
+	"wdw_formatDataTitle": {
+		"message": "??Format contacts data ($P1$)??",
+        "placeholders": {
+            "P1": {
+                "content": "$1"
+            }
+        }
 	},
 	"addImageCardFromFileLabel": {
 		"message": "Dodaj obraz z pliku"
@@ -5864,5 +5983,8 @@
 	},
 	"orgTitleLabel": {
 		"message": "Informacje służbowe"
+	},
+	"allAddressBooks": {
+		"message": "Wszystkie książki adresowe"
 	}
 }

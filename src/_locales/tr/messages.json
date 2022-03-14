@@ -124,7 +124,10 @@
 		"message": "H"
 	},
 	"noContactsDuplicated": {
-		"message": "Tekrarlı kişi bulunamadı"
+		"message": "Tekrarlı kişi bulunamadı."
+	},
+	"noDataAvailable": {
+		"message": "Veri bulunamadı."
 	},
 	"targetCategoryLabel": {
 		"message": "sonuçlar"
@@ -149,8 +152,23 @@
 	"ValidatingURLFailedLabel": {
 		"message": "Link bozuk"
 	},
+	"ValidatingURILabel": {
+		"message": "Bir link yazın ya da yapıştırın"
+	},
+	"ValidatingURIFailedLabel": {
+		"message": "Geçersiz URL"
+	},
+	"ValidatingLoginLabel": {
+		"message": "Kullanıcı adınız"
+	},
+	"ValidatingEmailLabel": {
+		"message": "Mevcut e-posta adresiniz"
+	},
 	"ValidatingEmailFailedLabel": {
 		"message": "Geçerli bir e-posta adresi gerekiyor"
+	},
+	"ValidationFailedOffLine": {
+		"message": "Şu an çevrimdışısınız."
 	},
 	"ValidationFailedLabel": {
 		"message": "Doğrulanamadı"
@@ -2242,6 +2260,17 @@
 			}
 		}
 	},
+	"cardsFormattedUndo": {
+		"message": "$P1$ : Kişi biçimlendirildi ($P2$)",
+        "placeholders": {
+            "P1": {
+                "content": "$1"
+            },
+            "P2": {
+                "content": "$2"
+            }
+        }
+	},
 	"exportCardToDirMessagePF": {
 		"message": "$P1$ kişi şu klasöre aktarıldı $P2$",
         "placeholders": {
@@ -2801,6 +2830,59 @@
 			}
 		}
 	},
+	"invalidOffice365Field": {
+		"message": "$P1$ senkronize edilemez (sonuç: $P2$)",
+        "placeholders": {
+            "P1": {
+                "content": "$1"
+            },
+            "P2": {
+                "content": "$2"
+            }
+       }
+	},
+	"invalidOffice365Email": {
+		"message": "3 e-posta adresinden fazla senkronize edilemez"
+	},
+	"invalidOffice365Impp": {
+		"message": "Sadece bir IM adresi senkronize edilebilir"
+	},
+	"invalidOffice365Adr": {
+		"message": "3 fiziksel adresten fazlası senkronize edilemez"
+	},
+	"invalidOffice365Tel": {
+		"message": "17 telefon numarasından fazla senkronize edilemez"
+	},
+	"invalidOffice365EmptyType": {
+		"message": "$P1$ : tür alanı boş bırakılamaz",
+        "placeholders": {
+            "P1": {
+                "content": "$1"
+            }
+        }
+	},
+	"invalidOffice365Type": {
+		"message": "$P1$ : çok fazla tür $P2$ (maksimum kabul edilen: $P3$)",
+		"placeholders": {
+			"P1": {
+				"content": "$1"
+			},
+			"P2": {
+				"content": "$2"
+			},
+			"P3": {
+				"content": "$3"
+			}
+		}
+	},
+	"invalidOffice365Member": {
+		"message": "($P1$) Adres defterinizden bir kişiye ait olmayan bir e-posta adresini ekleyemezsiniz",
+		"placeholders": {
+			"P1": {
+				"content": "$1"
+			}
+		}
+	},
 	"validateIntegerMsg": {
 		"message": "Alan $P1$ boş olmalı ya da tam sayı olmalı 1 ve $P2$ (değer : $P3$)",
 		"placeholders": {
@@ -2870,6 +2952,27 @@
 	},
 	"worktype": {
 		"message": "İş"
+	},
+	"otherfaxtype": {
+		"message": "Diğer Faks"
+	},
+	"assistanttype": {
+		"message": "Asistan"
+	},
+	"callbacktype": {
+		"message": "Geri Arama"
+	},
+	"carphonetype": {
+		"message": "Araba"
+	},
+	"radiotype": {
+		"message": "Radyo"
+	},
+	"telextype": {
+		"message": "Teleks"
+	},
+	"ttytype": {
+		"message": "TTY"
 	},
 	"types.gender.f": {
 		"message": "Kadın"
@@ -3282,9 +3385,6 @@
 	"eventInNoteEventPrefix": {
 		"message": "Etkinlik"
 	},
-	"deathSuffix": {
-		"message": "(ölü)"
-	},
 	"dateFormatsDLabel": {
 		"message": "D"
 	},
@@ -3600,20 +3700,20 @@
 	"cardbookContactPaneItemAccesskey": {
 		"message": "O"
 	},
+	"wizard.next.label": {
+		"message": "Sonraki"
+	},	
+	"wizard.back.label": {
+		"message": "Geri"
+	},	
+	"wizard.create.label": {
+		"message": "Oluştur"
+	},
 	"wizard.title": {
 		"message": "Yeni adres defteri ekle"
 	},
-	"wizard.label": {
-		"message": "Yeni adres defteri ekle"
-	},
-	"welcomePage.wizard.description": {
-		"message": "Hoş Geldiniz"
-	},
 	"welcomePage.description": {
 		"message": "Cardbook ilk defa çalışıyormuş gibi görünüyor. Cardbook Thunderbird'ün standart adres defterlerinden ve uzak adres defterlerinden kişileri toplamaya çalışacak. "
-	},
-	"initialPage.wizard.description": {
-		"message": "Yeni adres defterinin yeri"
 	},
 	"initialPage.description": {
 		"message": "Adres defteri yeri"
@@ -3632,9 +3732,6 @@
 	},
 	"initialPage.find.label": {
 		"message": "Uzak adres defteri ara"
-	},
-	"localPage.wizard.description": {
-		"message": "Yeni yerel adres defteri için tür ve yer"
 	},
 	"localPage.type.description": {
 		"message": "Yerel adres defterinin türü:"
@@ -3669,9 +3766,6 @@
 	"localPage.uributton.label": {
 		"message": "Göz at"
 	},
-	"remotePage.wizard.description": {
-		"message": "Yeni uzak adres defteri için tür ve yer."
-	},
 	"remotePage.description": {
 		"message": "Uzak adres defterinin türü nedir? (Dikkat: Google vCard standartlarını uymuyor)"
 	},
@@ -3679,7 +3773,10 @@
 		"message": "Tür"
 	},
 	"remotePageType.carddav.label": {
-		"message": "CardDAV"
+		"message": "CardDAV (Adres yazın ve yapıştırın)"
+	},
+	"remotePageType.ews.label": {
+		"message": "EWS (Adres yazın ve yapıştırın)"
 	},
 	"remotePageType.google2.label": {
 		"message": "Google"
@@ -3720,14 +3817,14 @@
 	"remotePage.password.label": {
 		"message": "Şifre:"
 	},
+	"rememberPassword": {
+		"message": "Bu parolayı hatırlamak için Parola Yöneticisini kullan"
+	},
 	"showHidePassword.tooltip": {
 		"message": "Parolayı göster/gizle"
 	},
 	"remotePage.validatebutton.label": {
 		"message": "Doğrula"
-	},
-	"locationSearchPage.wizard.description": {
-		"message": "Kayıtlı arama tanımı"
 	},
 	"locationSearchPage.label": {
 		"message": "Kaydedilmiş Arama"
@@ -3753,9 +3850,6 @@
 	"googleOauthPage.wizard.description": {
 		"message": "Google Kimlik Doğrulama"
 	},
-	"namePage.wizard.description": {
-		"message": "Adres Defteri Seçenekleri"
-	},
 	"namePage.selected.label": {
 		"message": "Seçili"
 	},
@@ -3774,17 +3868,11 @@
 	"namePage.vCardVersion.label": {
 		"message": "vCard"
 	},
-	"namesPage.wizard.description": {
-		"message": "Adres Defterleri Seçenekleri"
-	},
 	"namesPage.name.label": {
 		"message": "İsimler"
 	},
 	"namesPage.name.description": {
 		"message": "Birden fazla adress defteri bulundu. Açılmasını istediğiniz adres defterlerini seçin ve isimleri :"
-	},
-	"findPage.wizard.description": {
-		"message": "Uzak adres defteri araması"
 	},
 	"findPage.name1.description": {
 		"message": "Uzak adref defteri bulunamadı"
@@ -3794,9 +3882,6 @@
 	},
 	"findPage.name3.description": {
 		"message": "Birden fazla uzak adres defteri bulundu. Uzak adres defterlerini şuna eklemek için doğrula:"
-	},
-	"finishPage.wizard.description": {
-		"message": "Adres defterleri yapılandırması"
 	},
 	"finishPage.description": {
 		"message": "Yeni adres defteriniz başarıyla yapılandırıldı"
@@ -4410,6 +4495,12 @@
 	"typesCategoryAppleAccesskey": {
 		"message": "p"
 	},
+	"typesCategoryOffice365Label": {
+		"message": "Office365"
+	},
+	"typesCategoryOffice365Accesskey": {
+		"message": "O"
+	},
 	"typesCategoryYahooLabel": {
 		"message": "Yahoo!"
 	},
@@ -4787,6 +4878,9 @@
 	},
 	"birthdayListWarn": {
 		"message": "Yıl dönümleri sadece CardBook adres defterlerinde aranır"
+	},
+	"generalGroupboxLabel": {
+		"message": "Genel"
 	},
 	"addressbooksGroupboxLabel": {
 		"message": "Adres Defterleri"
@@ -5442,8 +5536,11 @@
 	"importCardFromDirLabel": {
 		"message": "Kişileri Klasörden İçe Aktar"
 	},
+	"formatDataFromAccountsOrCatsLabel": {
+		"message": "Kişi Verisini Biçimlendir"
+	},
 	"findDuplicatesFromAccountsOrCatsLabel": {
-		"message": "Bu Adres Defterindeki Tekrarlı Kişileri Bul"
+		"message": "Tekrarlı Kişileri Bul"
 	},
 	"generateFnFromAccountsOrCatsLabel": {
 		"message": "Görünen İsimleri Oluştur"
@@ -5567,12 +5664,6 @@
 	},
 	"displayFieldNamesAccesskey": {
 		"message": "F"
-	},
-	"displayTypesLabel": {
-		"message": "Türler ve Seçenekler"
-	},
-	"displayTypesAccesskey": {
-		"message": "y"
 	},
 	"fieldsToPrintGroupboxLabel": {
 		"message": "Yazdırılacak Alanlar"
@@ -5742,6 +5833,21 @@
 	"mergeAllEditionAccesskey": {
 		"message": "M"
 	},
+	"formatAllEditionLabel": {
+		"message": "Hepsini biçimlendir"
+	},
+	"formatAllEditionAccesskey": {
+		"message": "H"
+	},
+	"undoAllEditionLabel": {
+		"message": "Tümünü Geri Al"
+	},
+	"undoAllEditionAccesskey": {
+		"message": "T"
+	},
+	"formatEditionLabel": {
+		"message": "Biçimlendir"
+	},
 	"buttonAppendToListLabel": {
 		"message": "Ekle"
 	},
@@ -5782,7 +5888,20 @@
 		"message": "o"
 	},
 	"wdw_findDuplicatesTitle": {
-		"message": "Kişileri Tekrarla"
+		"message": "Kişileri Tekrarla ($P1$)",
+        "placeholders": {
+            "P1": {
+                "content": "$1"
+            }
+        }
+	},
+	"wdw_formatDataTitle": {
+		"message": "Kişi Verisini Biçimlendir ($P1$)",
+        "placeholders": {
+            "P1": {
+                "content": "$1"
+            }
+        }
 	},
 	"addImageCardFromFileLabel": {
 		"message": "Dosyadan resim ekle"
@@ -5864,5 +5983,8 @@
 	},
 	"orgTitleLabel": {
 		"message": "Çalışma Bilgisi"
+	},
+	"allAddressBooks": {
+		"message": "Tüm Adres Defterleri"
 	}
 }

@@ -65,7 +65,7 @@ if ("undefined" == typeof(cardbookCardParser)) {
 			this.others = [];
 			this.cbid = "";
 
-			this.photo = {types: [], value: "", URI: "", extension: ""};
+			this.photo = {types: [], value: "", URI: "", extension: "", attachmentId: ""};
 			this.logo = {types: [], value: "", URI: "", extension: ""};
 			this.sound = {types: [], value: "", URI: "", extension: ""};
 

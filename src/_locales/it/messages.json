@@ -126,6 +126,9 @@
 	"noContactsDuplicated": {
 		"message": "Nessun contatto duplicato trovato."
 	},
+	"noDataAvailable": {
+		"message": "Dati non disponibili."
+	},
 	"targetCategoryLabel": {
 		"message": "risultati"
 	},
@@ -149,11 +152,26 @@
 	"ValidatingURLFailedLabel": {
 		"message": "URL malformato"
 	},
+	"ValidatingURILabel": {
+		"message": "Digitare o incollare un URL"
+	},
+	"ValidatingURIFailedLabel": {
+		"message": "URL non valido"
+	},
+	"ValidatingLoginLabel": {
+		"message": "Le tue credenziali"
+	},
+	"ValidatingEmailLabel": {
+		"message": "Il tuo indirizzo email esistente"
+	},
 	"ValidatingEmailFailedLabel": {
 		"message": "Inserisci un indirizzo email valido"
 	},
 	"ValidationFailedLabel": {
 		"message": "Validazione non riuscita"
+	},
+	"ValidationFailedOffLine": {
+		"message": "Attualmente sei offline."
 	},
 	"ValidationOKLabel": {
 		"message": "Validazione riuscita"
@@ -2242,6 +2260,17 @@
             }
         }
 	},
+	"cardsFormattedUndo": {
+		"message": "$P1$ : Contatti formattati ($P2$)",
+        "placeholders": {
+            "P1": {
+                "content": "$1"
+            },
+            "P2": {
+                "content": "$2"
+            }
+        }
+	},
 	"exportCardToDirMessagePF": {
 		"message": "$P1$ contatto esportato nella directory $P2$;$P1$ contatti esportati nella directory $P2$",
         "placeholders": {
@@ -2801,6 +2830,59 @@
             }
         }
 	},
+	"invalidOffice365Field": {
+		"message": "$P1$ non può essere sincronizzato (valore: $P2$)",
+        "placeholders": {
+            "P1": {
+                "content": "$1"
+            },
+            "P2": {
+                "content": "$2"
+            }
+       }
+	},
+	"invalidOffice365Email": {
+		"message": "Non è possibile sincronizzare più di 3 indirizzi email"
+	},
+	"invalidOffice365Impp": {
+		"message": "Può essere sincronizzato un solo indirizzo IM"
+	},
+	"invalidOffice365Adr": {
+		"message": "Non è possibile sincronizzare più di 3 indirizzi fisici"
+	},
+	"invalidOffice365Tel": {
+		"message": "Non è possibile sincronizzare più di 17 numeri di telefono"
+	},
+	"invalidOffice365EmptyType": {
+		"message": "$P1$ : i tipi vuoti non sono ammessi",
+        "placeholders": {
+            "P1": {
+                "content": "$1"
+            }
+        }
+	},
+	"invalidOffice365Type": {
+		"message": "$P1$ : troppi tipi $P2$ (massimo consentito: $P3$)",
+		"placeholders": {
+			"P1": {
+				"content": "$1"
+			},
+			"P2": {
+				"content": "$2"
+			},
+			"P3": {
+				"content": "$3"
+			}
+		}
+	},
+	"invalidOffice365Member": {
+		"message": "Non puoi aggiungere un'email che non appartiene a un contatto della tua rubrica ($P1$)",
+		"placeholders": {
+			"P1": {
+				"content": "$1"
+			}
+		}
+	},
 	"validateIntegerMsg": {
 		"message": "Il campo $P1$ dovrebbe essere vuoto oppure contenere un numero tra 1 e $P2$ (Valore: $P3$)",
         "placeholders": {
@@ -2870,6 +2952,27 @@
 	},
 	"worktype": {
 		"message": "Lavoro"
+	},
+	"otherfaxtype": {
+		"message": "Altro fax"
+	},
+	"assistanttype": {
+		"message": "Assistente"
+	},
+	"callbacktype": {
+		"message": "Richiamata"
+	},
+	"carphonetype": {
+		"message": "Auto"
+	},
+	"radiotype": {
+		"message": "Radio"
+	},
+	"telextype": {
+		"message": "Telex"
+	},
+	"ttytype": {
+		"message": "TTY"
 	},
 	"types.gender.f": {
 		"message": "Femmina"
@@ -3282,9 +3385,6 @@
 	"eventInNoteEventPrefix": {
 		"message": "Evento"
 	},
-	"deathSuffix": {
-		"message": "(morto)"
-	},
 	"dateFormatsDLabel": {
 		"message": "D"
 	},
@@ -3600,20 +3700,20 @@
 	"cardbookContactPaneItemAccesskey": {
 		"message": "O"
 	},
+	"wizard.next.label": {
+		"message": "Successiva"
+	},	
+	"wizard.back.label": {
+		"message": "Indietro"
+	},	
+	"wizard.create.label": {
+		"message": "Crea"
+	},
 	"wizard.title": {
 		"message": "Aggiungi una nuova rubrica"
 	},
-	"wizard.label": {
-		"message": "Aggiungi una nuova rubrica"
-	},
-	"welcomePage.wizard.description": {
-		"message": "Benvenuto"
-	},
 	"welcomePage.description": {
 		"message": "Sembra che sia la prima volta che CardBook viene eseguito. CardBook tenterà di recuperare i contatti dalle rubriche standard di Thunderbird e dalle rubriche remote."
-	},
-	"initialPage.wizard.description": {
-		"message": "Percorso per la nuova rubrica."
 	},
 	"initialPage.description": {
 		"message": "La tua rubrica è locale (situata nel tuo computer) o remota?"
@@ -3632,9 +3732,6 @@
 	},
 	"initialPage.find.label": {
 		"message": "Cerca rubriche remote"
-	},
-	"localPage.wizard.description": {
-		"message": "Tipo e percorso della nuova rubrica locale."
 	},
 	"localPage.type.description": {
 		"message": "Di che tipo è la tua rubrica locale?"
@@ -3669,9 +3766,6 @@
 	"localPage.uributton.label": {
 		"message": "Sfoglia"
 	},
-	"remotePage.wizard.description": {
-		"message": "Tipo e percorso della nuova rubrica remota."
-	},
 	"remotePage.description": {
 		"message": "Di che tipo è la tua rubrica remota? (Attenzione: Google NON utilizza lo standard vCard)"
 	},
@@ -3679,7 +3773,10 @@
 		"message": "Tipo"
 	},
 	"remotePageType.carddav.label": {
-		"message": "CardDAV"
+		"message": "CardDAV (Digitare o incollare un URL)"
+	},
+	"remotePageType.ews.label": {
+		"message": "EWS (Digitare o incollare un URL)"
 	},
 	"remotePageType.google2.label": {
 		"message": "Google"
@@ -3720,14 +3817,14 @@
 	"remotePage.password.label": {
 		"message": "Password:"
 	},
+	"rememberPassword": {
+		"message": "Utilizzare Gestione password per memorizzare questa password"
+	},
 	"showHidePassword.tooltip": {
 		"message": "Mostra/Nascondi password"
 	},
 	"remotePage.validatebutton.label": {
 		"message": "Conferma"
-	},
-	"locationSearchPage.wizard.description": {
-		"message": "Definizione della ricerca avanzata."
 	},
 	"locationSearchPage.label": {
 		"message": "Ricerca avanzata"
@@ -3753,9 +3850,6 @@
 	"googleOauthPage.wizard.description": {
 		"message": "Autenticazione Google"
 	},
-	"namePage.wizard.description": {
-		"message": "Proprietà della rubrica"
-	},
 	"namePage.selected.label": {
 		"message": "Selezionato"
 	},
@@ -3774,17 +3868,11 @@
 	"namePage.vCardVersion.label": {
 		"message": "vCard"
 	},
-	"namesPage.wizard.description": {
-		"message": "Proprietà delle rubriche"
-	},
 	"namesPage.name.label": {
 		"message": "Nomi"
 	},
 	"namesPage.name.description": {
 		"message": "Sono state trovate rubriche multiple. Scegli quali rubriche vuoi aprire e il loro nome:"
-	},
-	"findPage.wizard.description": {
-		"message": "Ricerca rubriche remote"
 	},
 	"findPage.name1.description": {
 		"message": "Nessuna rubrica remota trovata."
@@ -3794,9 +3882,6 @@
 	},
 	"findPage.name3.description": {
 		"message": "Trovate diverse rubriche remote. Validare le rubriche remote da aggiungere:"
-	},
-	"finishPage.wizard.description": {
-		"message": "Configurazione rubriche"
 	},
 	"finishPage.description": {
 		"message": "La tua nuova rubrica è stata configurata correttamente."
@@ -4410,6 +4495,12 @@
 	"typesCategoryAppleAccesskey": {
 		"message": "A"
 	},
+	"typesCategoryOffice365Label": {
+		"message": "Office365"
+	},
+	"typesCategoryOffice365Accesskey": {
+		"message": "O"
+	},
 	"typesCategoryYahooLabel": {
 		"message": "Yahoo!"
 	},
@@ -4787,6 +4878,9 @@
 	},
 	"birthdayListWarn": {
 		"message": "È possibile effettuare una ricerca per compleanno solo nelle rubriche di CardBook."
+	},
+	"generalGroupboxLabel": {
+		"message": "Generale"
 	},
 	"addressbooksGroupboxLabel": {
 		"message": "Rubriche"
@@ -5442,8 +5536,11 @@
 	"importCardFromDirLabel": {
 		"message": "Importa contatti da cartella"
 	},
+	"formatDataFromAccountsOrCatsLabel": {
+		"message": "Formatta dati contatti"
+	},
 	"findDuplicatesFromAccountsOrCatsLabel": {
-		"message": "Trova i contatti duplicati nella rubrica corrente"
+		"message": "Trova i contatti duplicati"
 	},
 	"generateFnFromAccountsOrCatsLabel": {
 		"message": "Genera Nomi Visualizzati"
@@ -5567,12 +5664,6 @@
 	},
 	"displayFieldNamesAccesskey": {
 		"message": "c"
-	},
-	"displayTypesLabel": {
-		"message": "Modalità e preferenze"
-	},
-	"displayTypesAccesskey": {
-		"message": "y"
 	},
 	"fieldsToPrintGroupboxLabel": {
 		"message": "Cosa stampare"
@@ -5742,6 +5833,21 @@
 	"mergeAllEditionAccesskey": {
 		"message": "U"
 	},
+	"formatAllEditionLabel": {
+		"message": "Formatta tutto"
+	},
+	"formatAllEditionAccesskey": {
+		"message": "F"
+	},
+	"undoAllEditionLabel": {
+		"message": "Annulla tutto"
+	},
+	"undoAllEditionAccesskey": {
+		"message": "A"
+	},
+	"formatEditionLabel": {
+		"message": "Formatta"
+	},
 	"buttonAppendToListLabel": {
 		"message": "Aggiungi"
 	},
@@ -5782,7 +5888,20 @@
 		"message": "C"
 	},
 	"wdw_findDuplicatesTitle": {
-		"message": "Contatti duplicati"
+		"message": "Contatti duplicati ($P1$)",
+        "placeholders": {
+            "P1": {
+                "content": "$1"
+            }
+        }
+	},
+	"wdw_formatDataTitle": {
+		"message": "Formatta dati contatti ($P1$)",
+        "placeholders": {
+            "P1": {
+                "content": "$1"
+            }
+        }
 	},
 	"addImageCardFromFileLabel": {
 		"message": "Aggiungi immagine da file"
@@ -5864,5 +5983,8 @@
 	},
 	"orgTitleLabel": {
 		"message": "Informazioni professionali"
+	},
+	"allAddressBooks": {
+		"message": "Tutte le rubriche"
 	}
 }

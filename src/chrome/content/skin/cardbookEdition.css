@@ -10,13 +10,13 @@
 	background-color: transparent;
 	color: inherit;
 	-moz-user-focus: normal;
-	list-style-image: url("chrome://global/skin/icons/twisty-collapsed.svg");
+	list-style-image: url("chrome://global/skin/icons/arrow-right-12.svg");
 	-moz-context-properties: fill, fill-opacity;
 	fill: currentColor;
 	fill-opacity: 1;
 }
 .cardbookExpandedClass[expanded="true"] {
-	list-style-image: url("chrome://global/skin/icons/twisty-expanded.svg");
+	list-style-image: url("chrome://global/skin/icons/arrow-down-12.svg");
 }
 
 .cardbookAutoComputeFnClass {
@@ -102,4 +102,8 @@
 	list-style-image: url("chrome://cardbook/content/skin/icons/applytemplate.svg");
 	-moz-context-properties: fill;
 	fill: currentColor;
+}
+
+.cardbook-large-column {
+    width: 60%;
 }

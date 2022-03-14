@@ -126,6 +126,9 @@
 	"noContactsDuplicated": {
 		"message": "Nėra pasikartojančių kontaktų."
 	},
+	"noDataAvailable": {
+		"message": "Duomenų nėra."
+	},
 	"targetCategoryLabel": {
 		"message": "rezultatų"
 	},
@@ -149,11 +152,26 @@
 	"ValidatingURLFailedLabel": {
 		"message": "URL yra netinkamai suformatuotas"
 	},
+	"ValidatingURILabel": {
+		"message": "Įveskite arba įklijuokite URL"
+	},
+	"ValidatingURIFailedLabel": {
+		"message": "Neteisingas URL"
+	},
+	"ValidatingLoginLabel": {
+		"message": "Jūsų prisijungimo vardas"
+	},
+	"ValidatingEmailLabel": {
+		"message": "Jūsų turimas el. pašto adresas"
+	},
 	"ValidatingEmailFailedLabel": {
 		"message": "Reikalingas teisingas el. paštas"
 	},
 	"ValidationFailedLabel": {
 		"message": "Patvirtinimas nepavyko"
+	},
+	"ValidationFailedOffLine": {
+		"message": "Esate neprisijungę prie tinklo."
 	},
 	"ValidationOKLabel": {
 		"message": "Patvirtinimas gerai"
@@ -2242,6 +2260,17 @@
             }
         }
 	},
+	"cardsFormattedUndo": {
+		"message": "??$P1$ : Contacts formatted ($P2$)??",
+        "placeholders": {
+            "P1": {
+                "content": "$1"
+            },
+            "P2": {
+                "content": "$2"
+            }
+        }
+	},
 	"exportCardToDirMessagePF": {
 		"message": "??$P1$ contact exported into the directory $P2$;$P1$ contacts exported into the directory $P2$??",
         "placeholders": {
@@ -2801,6 +2830,59 @@
             }
         }
 	},
+	"invalidOffice365Field": {
+		"message": "??$P1$ can't be synced (value: $P2$)??",
+        "placeholders": {
+            "P1": {
+                "content": "$1"
+            },
+            "P2": {
+                "content": "$2"
+            }
+       }
+	},
+	"invalidOffice365Email": {
+		"message": "??No more than 3 email addresses can be synced??"
+	},
+	"invalidOffice365Impp": {
+		"message": "??Only one IM address can be synced??"
+	},
+	"invalidOffice365Adr": {
+		"message": "??No more than 3 physical addresses can be synced??"
+	},
+	"invalidOffice365Tel": {
+		"message": "??No more than 17 phone numbers can be synced??"
+	},
+	"invalidOffice365EmptyType": {
+		"message": "??Empty types are not allowed in the element $P1$??",
+        "placeholders": {
+            "P1": {
+                "content": "$1"
+            }
+        }
+	},
+	"invalidOffice365Type": {
+		"message": "??Too many $P2$ types in the element $P1$ (max allowed: $P3$)??",
+		"placeholders": {
+			"P1": {
+				"content": "$1"
+			},
+			"P2": {
+				"content": "$2"
+			},
+			"P3": {
+				"content": "$3"
+			}
+		}
+	},
+	"invalidOffice365Member": {
+		"message": "??You cannot add an email that does not belong to one contact of your address book ($P1$)??",
+		"placeholders": {
+			"P1": {
+				"content": "$1"
+			}
+		}
+	},
 	"validateIntegerMsg": {
 		"message": "Laukas $P1$ turėtų būti nulinė arba sveikas skaičius nuo 1 iki $P2$ (vertė:$P3$)",
         "placeholders": {
@@ -2870,6 +2952,27 @@
 	},
 	"worktype": {
 		"message": "Darbo"
+	},
+	"otherfaxtype": {
+		"message": "??Other fax??"
+	},
+	"assistanttype": {
+		"message": "??Assistant??"
+	},
+	"callbacktype": {
+		"message": "??Callback??"
+	},
+	"carphonetype": {
+		"message": "??Car??"
+	},
+	"radiotype": {
+		"message": "??Radio??"
+	},
+	"telextype": {
+		"message": "??Telex??"
+	},
+	"ttytype": {
+		"message": "TTY"
 	},
 	"types.gender.f": {
 		"message": "Moteris"
@@ -3282,9 +3385,6 @@
 	"eventInNoteEventPrefix": {
 		"message": "Įvykis"
 	},
-	"deathSuffix": {
-		"message": "(mirė)"
-	},
 	"dateFormatsDLabel": {
 		"message": "D"
 	},
@@ -3600,20 +3700,20 @@
 	"cardbookContactPaneItemAccesskey": {
 		"message": "K"
 	},
+	"wizard.next.label": {
+		"message": "Kitas"
+	},	
+	"wizard.back.label": {
+		"message": "Atgal"
+	},	
+	"wizard.create.label": {
+		"message": "Kartotis"
+	},
 	"wizard.title": {
 		"message": "Pridėti naują adresų knygą"
 	},
-	"wizard.label": {
-		"message": "Pridėti naują adresų knygą"
-	},
-	"welcomePage.wizard.description": {
-		"message": "Sveiki!"
-	},
 	"welcomePage.description": {
 		"message": "??It seems that this is the first time CardBook has been run. CardBook will attempt to collect contacts from Thunderbird’s standard address books and remote address books.??"
-	},
-	"initialPage.wizard.description": {
-		"message": "Nauja adresų knygos vieta."
 	},
 	"initialPage.description": {
 		"message": "Ar jūsų adresų knyga yra vietinė arba nuotolinė? :"
@@ -3632,9 +3732,6 @@
 	},
 	"initialPage.find.label": {
 		"message": "??Search for remote address books??"
-	},
-	"localPage.wizard.description": {
-		"message": "Naujos vietinės adresų knygos rūšis ir vieta."
 	},
 	"localPage.type.description": {
 		"message": "Koks yra jūsų vietinės adresų knygos tipas? :"
@@ -3669,9 +3766,6 @@
 	"localPage.uributton.label": {
 		"message": "Naršyti"
 	},
-	"remotePage.wizard.description": {
-		"message": "Naujos nuotolinės adresų knygos rūšis ir vieta."
-	},
 	"remotePage.description": {
 		"message": "Koks jūsų nuotolinės adresų knygos tipas? (Atsargiai! Google“ neatitinka vCard“ standartų)"
 	},
@@ -3679,7 +3773,10 @@
 		"message": "Tipo"
 	},
 	"remotePageType.carddav.label": {
-		"message": "CardDAV"
+		"message": "CardDAV (Įveskite arba įklijuokite URL)"
+	},
+	"remotePageType.ews.label": {
+		"message": "EWS (Įveskite arba įklijuokite URL)"
 	},
 	"remotePageType.google2.label": {
 		"message": "Google"
@@ -3720,14 +3817,14 @@
 	"remotePage.password.label": {
 		"message": "Slaptažodis:"
 	},
+	"rememberPassword": {
+		"message": "Naudoti slaptažodžių tvarkytuvę šiam slaptažodžiui įsiminti"
+	},
 	"showHidePassword.tooltip": {
 		"message": "Rodyti / slėpti slaptažodį*-9"
 	},
 	"remotePage.validatebutton.label": {
 		"message": "Patvirtinti"
-	},
-	"locationSearchPage.wizard.description": {
-		"message": "Išsaugotas paieškos apibrėžimas"
 	},
 	"locationSearchPage.label": {
 		"message": "Įrašyti Paieškos radinius"
@@ -3753,9 +3850,6 @@
 	"googleOauthPage.wizard.description": {
 		"message": "„Google“ autentifikavimas"
 	},
-	"namePage.wizard.description": {
-		"message": "Adreso knygos savybės"
-	},
 	"namePage.selected.label": {
 		"message": "Pasirinkta"
 	},
@@ -3774,17 +3868,11 @@
 	"namePage.vCardVersion.label": {
 		"message": "vCard"
 	},
-	"namesPage.wizard.description": {
-		"message": "Adresų knygų savybės"
-	},
 	"namesPage.name.label": {
 		"message": "Vardai"
 	},
 	"namesPage.name.description": {
 		"message": "Pasirodė kelios adresų knygos. Pasirinkite adresų knygas, kurias norite atidaryti, ir jų pavadinimus :"
-	},
-	"findPage.wizard.description": {
-		"message": "??Remote address book search??"
 	},
 	"findPage.name1.description": {
 		"message": "??No remote address books found.??"
@@ -3794,9 +3882,6 @@
 	},
 	"findPage.name3.description": {
 		"message": "??Multiple remote address books found. Validate remote address books to add:??"
-	},
-	"finishPage.wizard.description": {
-		"message": "??Address books configuration??"
 	},
 	"finishPage.description": {
 		"message": "Jūsų nauja adresų knyga buvo sėkmingai sukonfigūruota."
@@ -4410,6 +4495,12 @@
 	"typesCategoryAppleAccesskey": {
 		"message": "A"
 	},
+	"typesCategoryOffice365Label": {
+		"message": "Office365"
+	},
+	"typesCategoryOffice365Accesskey": {
+		"message": "O"
+	},
 	"typesCategoryYahooLabel": {
 		"message": "Yahoo!"
 	},
@@ -4788,6 +4879,9 @@
 	"birthdayListWarn": {
 		"message": "Jubiliejai ieškom tik „Kontaktų“ adresų knygose."
 	},
+	"generalGroupboxLabel": {
+		"message": "Bendrasis"
+	},
 	"addressbooksGroupboxLabel": {
 		"message": "Adresų knygos"
 	},
@@ -5098,10 +5192,10 @@
 		"message": "Pridėti jubiliejus į kalendorių"
 	},
 	"cardbookToolsMenuFindAllDuplicatesLabel": {
-		"message": "Raskite pasikartojančius kontaktus visose adresų knygose"
+		"message": "Raski pasikartojančius kontaktus visose adresų knygose"
 	},
 	"cardbookToolsMenuFindSingleDuplicatesLabel": {
-		"message": "Rasti pasikartojančius kontaktus dabartinėje adresų knygoje"
+		"message": "Rasti pasikartojančius kontaktus"
 	},
 	"cardbookToolsMenuPrefsLabel": {
 		"message": "Kontaktų parinkčių nuostatos"
@@ -5442,6 +5536,9 @@
 	"importCardFromDirLabel": {
 		"message": "Importuoti kontaktus iš katalogo"
 	},
+	"formatDataFromAccountsOrCatsLabel": {
+		"message": "??Format contacts data??"
+	},
 	"findDuplicatesFromAccountsOrCatsLabel": {
 		"message": "Rasti pasikartojančius kontaktus dabartinėje adresų knygoje"
 	},
@@ -5567,12 +5664,6 @@
 	},
 	"displayFieldNamesAccesskey": {
 		"message": "F"
-	},
-	"displayTypesLabel": {
-		"message": "Tipai ir pageidavimai"
-	},
-	"displayTypesAccesskey": {
-		"message": "y"
 	},
 	"fieldsToPrintGroupboxLabel": {
 		"message": "Ką spausdinti"
@@ -5742,6 +5833,21 @@
 	"mergeAllEditionAccesskey": {
 		"message": "M"
 	},
+	"formatAllEditionLabel": {
+		"message": "??Format all??"
+	},
+	"formatAllEditionAccesskey": {
+		"message": "F"
+	},
+	"undoAllEditionLabel": {
+		"message": "??Undo all??"
+	},
+	"undoAllEditionAccesskey": {
+		"message": "U"
+	},
+	"formatEditionLabel": {
+		"message": "??Format??"
+	},
 	"buttonAppendToListLabel": {
 		"message": "Pridėti"
 	},
@@ -5782,7 +5888,20 @@
 		"message": "C"
 	},
 	"wdw_findDuplicatesTitle": {
-		"message": "Pasikartojantys kontaktai"
+		"message": "Pasikartojantys kontaktai ($P1$)",
+        "placeholders": {
+            "P1": {
+                "content": "$1"
+            }
+        }
+	},
+	"wdw_formatDataTitle": {
+		"message": "??Format contacts data ($P1$)??",
+        "placeholders": {
+            "P1": {
+                "content": "$1"
+            }
+        }
 	},
 	"addImageCardFromFileLabel": {
 		"message": "Pridėti nuotrauką iš failo"
@@ -5864,5 +5983,8 @@
 	},
 	"orgTitleLabel": {
 		"message": "Profesinė informacija"
+	},
+	"allAddressBooks": {
+		"message": "Visos adresų knygos"
 	}
 }

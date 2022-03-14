@@ -1,4 +1,5 @@
 var { Services } = ChromeUtils.import("resource://gre/modules/Services.jsm");
+var { MailE10SUtils } = ChromeUtils.import("resource:///modules/MailE10SUtils.jsm");
 
 var loader = Services.scriptloader;
 loader.loadSubScript("chrome://cardbook/content/cardbookWebDAV.js", this);
@@ -23,7 +24,7 @@ var cardbookSynchronizationGoogle = {
 		wizard.addEventListener("load", function onloadListener() {
 			var browser = wizard.document.getElementById("browser");
 			var url = cardbookSynchronizationGoogle.getGoogleOAuthURLForGoogleCarddav(aConnection.connUser);
-			browser.setAttribute("src", url);
+			MailE10SUtils.loadURI(browser, url);
 			cardbookRepository.lTimerNewRefreshTokenAll[aConnection.connPrefId] = Components.classes["@mozilla.org/timer;1"].createInstance(Components.interfaces.nsITimer);
 			var lTimerCheckTitle = cardbookRepository.lTimerNewRefreshTokenAll[aConnection.connPrefId];
 			lTimerCheckTitle.initWithCallback({ notify: function(lTimerCheckTitle) {
@@ -137,7 +138,7 @@ var cardbookSynchronizationGoogle = {
 		wizard.addEventListener("load", function onloadListener() {
 			var browser = wizard.document.getElementById("browser");
 			var url = cardbookSynchronizationGoogle.getGoogleOAuthURLForGoogleClassic(aConnection.connUser);
-			browser.setAttribute("src", url);
+			MailE10SUtils.loadURI(browser, url);
 			cardbookRepository.lTimerNewRefreshTokenAll[aConnection.connPrefId] = Components.classes["@mozilla.org/timer;1"].createInstance(Components.interfaces.nsITimer);
 			var lTimerCheckTitle = cardbookRepository.lTimerNewRefreshTokenAll[aConnection.connPrefId];
 			lTimerCheckTitle.initWithCallback({ notify: function(lTimerCheckTitle) {

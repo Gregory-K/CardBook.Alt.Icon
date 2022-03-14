@@ -126,6 +126,9 @@
 	"noContactsDuplicated": {
 		"message": "No duplicate contacts have been found."
 	},
+	"noDataAvailable": {
+		"message": "No data available."
+	},
 	"targetCategoryLabel": {
 		"message": "results"
 	},
@@ -149,11 +152,26 @@
 	"ValidatingURLFailedLabel": {
 		"message": "URL is malformed"
 	},
+	"ValidatingURILabel": {
+		"message": "Type or paste a URL"
+	},
+	"ValidatingURIFailedLabel": {
+		"message": "Invalid URL"
+	},
+	"ValidatingLoginLabel": {
+		"message": "Your login"
+	},
+	"ValidatingEmailLabel": {
+		"message": "Your existing email address"
+	},
 	"ValidatingEmailFailedLabel": {
 		"message": "Valid email required"
 	},
 	"ValidationFailedLabel": {
 		"message": "Validation failed"
+	},
+	"ValidationFailedOffLine": {
+		"message": "You are currently offline."
 	},
 	"ValidationOKLabel": {
 		"message": "Validation OK"
@@ -2242,6 +2260,17 @@
             }
         }
 	},
+	"cardsFormattedUndo": {
+		"message": "$P1$ : Contacts formatted ($P2$)",
+        "placeholders": {
+            "P1": {
+                "content": "$1"
+            },
+            "P2": {
+                "content": "$2"
+            }
+        }
+	},
 	"exportCardToDirMessagePF": {
 		"message": "$P1$ contact exported into the directory $P2$;$P1$ contacts exported into the directory $P2$",
         "placeholders": {
@@ -2801,6 +2830,59 @@
             }
         }
 	},
+	"invalidOffice365Field": {
+		"message": "$P1$ can't be synced (value: $P2$)",
+        "placeholders": {
+            "P1": {
+                "content": "$1"
+            },
+            "P2": {
+                "content": "$2"
+            }
+       }
+	},
+	"invalidOffice365Email": {
+		"message": "No more than 3 email addresses can be synced"
+	},
+	"invalidOffice365Impp": {
+		"message": "Only one IM address can be synced"
+	},
+	"invalidOffice365Adr": {
+		"message": "No more than 3 physical addresses can be synced"
+	},
+	"invalidOffice365Tel": {
+		"message": "No more than 17 phone numbers can be synced"
+	},
+	"invalidOffice365EmptyType": {
+		"message": "Empty types are not allowed in the element $P1$",
+        "placeholders": {
+            "P1": {
+                "content": "$1"
+            }
+        }
+	},
+	"invalidOffice365Type": {
+		"message": "Too many $P2$ types in the element $P1$ (max allowed: $P3$)",
+		"placeholders": {
+			"P1": {
+				"content": "$1"
+			},
+			"P2": {
+				"content": "$2"
+			},
+			"P3": {
+				"content": "$3"
+			}
+		}
+	},
+	"invalidOffice365Member": {
+		"message": "You cannot add an email that does not belong to one contact of your address book ($P1$)",
+		"placeholders": {
+			"P1": {
+				"content": "$1"
+			}
+		}
+	},
 	"validateIntegerMsg": {
 		"message": "The field $P1$ should be null or an integer between 1 and $P2$ (value : $P3$)",
         "placeholders": {
@@ -2870,6 +2952,27 @@
 	},
 	"worktype": {
 		"message": "Work"
+	},
+	"otherfaxtype": {
+		"message": "Other fax"
+	},
+	"assistanttype": {
+		"message": "Assistant"
+	},
+	"callbacktype": {
+		"message": "Callback"
+	},
+	"carphonetype": {
+		"message": "Car"
+	},
+	"radiotype": {
+		"message": "Radio"
+	},
+	"telextype": {
+		"message": "Telex"
+	},
+	"ttytype": {
+		"message": "TTY"
 	},
 	"types.gender.f": {
 		"message": "Female"
@@ -3282,9 +3385,6 @@
 	"eventInNoteEventPrefix": {
 		"message": "Event"
 	},
-	"deathSuffix": {
-		"message": "(passed away)"
-	},
 	"dateFormatsDLabel": {
 		"message": "D"
 	},
@@ -3600,20 +3700,20 @@
 	"cardbookContactPaneItemAccesskey": {
 		"message": "O"
 	},
+	"wizard.next.label": {
+		"message": "Next"
+	},	
+	"wizard.back.label": {
+		"message": "Back"
+	},	
+	"wizard.create.label": {
+		"message": "Create"
+	},
 	"wizard.title": {
 		"message": "Add a new address book"
 	},
-	"wizard.label": {
-		"message": "Add a new address book"
-	},
-	"welcomePage.wizard.description": {
-		"message": "Welcome"
-	},
 	"welcomePage.description": {
 		"message": "It seems that this is the first time CardBook has been run. CardBook will attempt to collect contacts from Thunderbird’s standard address books and remote address books."
-	},
-	"initialPage.wizard.description": {
-		"message": "Location for the new address book."
 	},
 	"initialPage.description": {
 		"message": "Address book location:"
@@ -3632,9 +3732,6 @@
 	},
 	"initialPage.find.label": {
 		"message": "Search for remote address books"
-	},
-	"localPage.wizard.description": {
-		"message": "Type and location of the new local address book."
 	},
 	"localPage.type.description": {
 		"message": "Type of local address book:"
@@ -3669,9 +3766,6 @@
 	"localPage.uributton.label": {
 		"message": "Browse"
 	},
-	"remotePage.wizard.description": {
-		"message": "Type and location of the new remote address book."
-	},
 	"remotePage.description": {
 		"message": "What is the type of your remote address book (Caution: Google does NOT conform to vCard standards)?"
 	},
@@ -3679,7 +3773,10 @@
 		"message": "Type"
 	},
 	"remotePageType.carddav.label": {
-		"message": "CardDAV"
+		"message": "CardDAV (Type or paste a URL)"
+	},
+	"remotePageType.ews.label": {
+		"message": "EWS (Type or paste a URL)"
 	},
 	"remotePageType.google2.label": {
 		"message": "Google"
@@ -3720,14 +3817,14 @@
 	"remotePage.password.label": {
 		"message": "Password:"
 	},
+	"rememberPassword": {
+		"message": "Use Password Manager to remember this password"
+	},
 	"showHidePassword.tooltip": {
 		"message": "Show/Hide password"
 	},
 	"remotePage.validatebutton.label": {
 		"message": "Validate"
-	},
-	"locationSearchPage.wizard.description": {
-		"message": "Definition of the saved search."
 	},
 	"locationSearchPage.label": {
 		"message": "Saved Search"
@@ -3753,9 +3850,6 @@
 	"googleOauthPage.wizard.description": {
 		"message": "Google Authentication"
 	},
-	"namePage.wizard.description": {
-		"message": "Address Book Properties"
-	},
 	"namePage.selected.label": {
 		"message": "Selected"
 	},
@@ -3774,17 +3868,11 @@
 	"namePage.vCardVersion.label": {
 		"message": "vCard"
 	},
-	"namesPage.wizard.description": {
-		"message": "Address Books Properties"
-	},
 	"namesPage.name.label": {
 		"message": "Names"
 	},
 	"namesPage.name.description": {
 		"message": "Multiple address books have been discovered. Choose which address books you want to open and their names :"
-	},
-	"findPage.wizard.description": {
-		"message": "Remote address book search"
 	},
 	"findPage.name1.description": {
 		"message": "No remote address books found."
@@ -3794,9 +3882,6 @@
 	},
 	"findPage.name3.description": {
 		"message": "Multiple remote address books found. Validate remote address books to add:"
-	},
-	"finishPage.wizard.description": {
-		"message": "Address books configuration"
 	},
 	"finishPage.description": {
 		"message": "Your new address book has been successfully configured."
@@ -4410,6 +4495,12 @@
 	"typesCategoryAppleAccesskey": {
 		"message": "p"
 	},
+	"typesCategoryOffice365Label": {
+		"message": "Office365"
+	},
+	"typesCategoryOffice365Accesskey": {
+		"message": "O"
+	},
 	"typesCategoryYahooLabel": {
 		"message": "Yahoo!"
 	},
@@ -4787,6 +4878,9 @@
 	},
 	"birthdayListWarn": {
 		"message": "Anniversaries are only searched within CardBook address books."
+	},
+	"generalGroupboxLabel": {
+		"message": "General"
 	},
 	"addressbooksGroupboxLabel": {
 		"message": "Address Books"
@@ -5442,8 +5536,11 @@
 	"importCardFromDirLabel": {
 		"message": "Import Contacts from a Directory"
 	},
+	"formatDataFromAccountsOrCatsLabel": {
+		"message": "Format Contacts Data"
+	},
 	"findDuplicatesFromAccountsOrCatsLabel": {
-		"message": "Find Duplicate Contacts in Current Address Book"
+		"message": "Find Duplicate Contacts"
 	},
 	"generateFnFromAccountsOrCatsLabel": {
 		"message": "Generate Display Names"
@@ -5567,12 +5664,6 @@
 	},
 	"displayFieldNamesAccesskey": {
 		"message": "F"
-	},
-	"displayTypesLabel": {
-		"message": "Types and Preferences"
-	},
-	"displayTypesAccesskey": {
-		"message": "y"
 	},
 	"fieldsToPrintGroupboxLabel": {
 		"message": "Fields to Print"
@@ -5742,6 +5833,21 @@
 	"mergeAllEditionAccesskey": {
 		"message": "M"
 	},
+	"formatAllEditionLabel": {
+		"message": "Format all"
+	},
+	"formatAllEditionAccesskey": {
+		"message": "F"
+	},
+	"undoAllEditionLabel": {
+		"message": "Undo all"
+	},
+	"undoAllEditionAccesskey": {
+		"message": "U"
+	},
+	"formatEditionLabel": {
+		"message": "Format"
+	},
 	"buttonAppendToListLabel": {
 		"message": "Add"
 	},
@@ -5782,7 +5888,20 @@
 		"message": "o"
 	},
 	"wdw_findDuplicatesTitle": {
-		"message": "Duplicate Contacts"
+		"message": "Duplicate Contacts ($P1$)",
+        "placeholders": {
+            "P1": {
+                "content": "$1"
+            }
+        }
+	},
+	"wdw_formatDataTitle": {
+		"message": "Format Contacts Data($P1$)",
+        "placeholders": {
+            "P1": {
+                "content": "$1"
+            }
+        }
 	},
 	"addImageCardFromFileLabel": {
 		"message": "Add image from a file"
@@ -5864,5 +5983,8 @@
 	},
 	"orgTitleLabel": {
 		"message": "Professional Information"
+	},
+	"allAddressBooks": {
+		"message": "All Address Books"
 	}
 }

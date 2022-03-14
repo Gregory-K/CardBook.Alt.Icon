@@ -2,13 +2,13 @@ if ("undefined" == typeof(XMLToJSONParser)) {
 	function XMLToJSONParser(doc) {
 		this._buildTree(doc);
 	}
-	
+
 	XMLToJSONParser.prototype = {
 		_buildTree: function XMLToJSONParser_buildTree(doc) {
 			let nodeName = doc.documentElement.localName;
 			this[nodeName] = [this._translateNode(doc.documentElement)];
 		},
-		
+
 		_translateNode: function XMLToJSONParser_translateNode(node) {
 			let value = null;
 			if (node.childNodes.length) {
@@ -62,7 +62,7 @@ if ("undefined" == typeof(cardbookWebDAV)) {
 			this.requestJSONResponse = asJSON;
 			this.requestXMLResponse = !asJSON;
 		}
-		
+
 		this.username = connection.connUser;
 		this.password = "";
 		this.accessToken = connection.accessToken;
@@ -72,7 +72,7 @@ if ("undefined" == typeof(cardbookWebDAV)) {
 		
 		this.nc = 1;
 	}
-	
+
 	cardbookWebDAV.prototype = {
 		// btoa does not encode €
 		b64EncodeUnicode: function (aString) {
@@ -186,7 +186,7 @@ if ("undefined" == typeof(cardbookWebDAV)) {
 				', nc=' + tokens.nc +
 				', cnonce="' + tokens.cnonce + '"';
 		},
-	
+
 		setCredentials: function (aHeader) {
 			if (this.accessToken) {
 				if (this.accessToken !== "NOACCESSTOKEN") {
@@ -209,16 +209,16 @@ if ("undefined" == typeof(cardbookWebDAV)) {
 				aHeader["Authorization"] = "Basic " + this.b64EncodeUnicode(this.username + ':' + this.password);
 			}
 		},
-	
+
 		createTCPErrorFromFailedChannel: function (aChannel) {
 			let status = aChannel.channel.QueryInterface(Components.interfaces.nsIRequest).status;
 			let errType;
-			
+
 			if ((status & 0xff0000) === 0x5a0000) { // Security module
 				const nsINSSErrorsService = Components.interfaces.nsINSSErrorsService;
 				let nssErrorsService = Components.classes['@mozilla.org/nss_errors_service;1'].getService(nsINSSErrorsService);
 				let errorClass;
-				
+
 				// getErrorClass will throw a generic NS_ERROR_FAILURE if the error code is
 				// somehow not in the set of covered errors.
 				try {
@@ -227,13 +227,13 @@ if ("undefined" == typeof(cardbookWebDAV)) {
 					//catching security protocol exception
 					errorClass = 'SecurityProtocol';
 				}
-				
+
 				if (errorClass == nsINSSErrorsService.ERROR_CLASS_BAD_CERT) {
 					errType = 'SecurityCertificate';
 				} else {
 					errType = 'SecurityProtocol';
 				}
-				
+
 				// NSS_SEC errors (happen below the base value because of negative vals)
 				if ((status & 0xffff) < Math.abs(nsINSSErrorsService.NSS_SEC_ERROR_BASE)) {
 					this.askCertificate = true;
@@ -313,17 +313,17 @@ if ("undefined" == typeof(cardbookWebDAV)) {
 						break;
 				}
 			}
-			
+
 			cardbookRepository.cardbookLog.updateStatusProgressInformationWithDebug2(this.logDescription + " : debug mode : Connection status : Failed : " + errName);
 			this.dumpSecurityInfo(aChannel);
 			// XXX: errType goes unused
 		},
-	
+
 		dumpSecurityInfo: function (aChannel) {
 			let channel = aChannel.channel;
 			try {
 				let secInfo = channel.securityInfo;
-				
+
 				// Print general connection security state
 				cardbookRepository.cardbookLog.updateStatusProgressInformationWithDebug2(this.logDescription + " : debug mode : Security Information :");
 				if (secInfo instanceof Components.interfaces.nsITransportSecurityInfo) {
@@ -352,7 +352,7 @@ if ("undefined" == typeof(cardbookWebDAV)) {
 	
 		makeHTTPRequest: function(method, body, headers, aCleanBody, aXhrOrig) {
 			headers["User-Agent"] = cardbookRepository.userAgent;
-			
+
 			if (aXhrOrig) {
 				this.setDigestCredentials(headers, aXhrOrig, method, body);
 			} else {
@@ -365,7 +365,7 @@ if ("undefined" == typeof(cardbookWebDAV)) {
 			if (this.timeout) {
 				httpChannel.timeout = this.timeout;
 			}
-			
+
 			cardbookRepository.cardbookLog.updateStatusProgressInformationWithDebug1(this.logDescription + " : debug mode : method : ", method);
 			if (headers) {
 				cardbookRepository.cardbookLog.updateStatusProgressInformationWithDebug1(this.logDescription + " : debug mode : headers : ", cardbookRepository.cardbookUtils.cleanWebObject(headers));
@@ -380,7 +380,7 @@ if ("undefined" == typeof(cardbookWebDAV)) {
 
 			// httpChannel.open(method, this.url, true, this.username, this.password);
 			httpChannel.open(method, this.url, true);
-			
+
 			if (headers) {
 				for (let header in headers) {
 					httpChannel.setRequestHeader(header, headers[header]);
@@ -388,7 +388,7 @@ if ("undefined" == typeof(cardbookWebDAV)) {
 			}
 			return httpChannel;
 		},
-	
+
 		sendHTTPRequest: function(method, body, headers, aCleanBody, aXhrOrig, aOverrideMime) {
 			try {
 				if (body) {
@@ -426,7 +426,6 @@ if ("undefined" == typeof(cardbookWebDAV)) {
 				} else {
 					xhr.send();
 				}
-	
 			}
 			catch(e) {
 				// var errorTitle = "sendHTTPRequest error";
@@ -437,7 +436,7 @@ if ("undefined" == typeof(cardbookWebDAV)) {
 				}
 			}
 		},
-	
+
 		handleHTTPResponse: function(aChannel, aStatus, aResultLength, aResult) {
 			var status = aStatus;
 			var headers = {};
@@ -469,7 +468,7 @@ if ("undefined" == typeof(cardbookWebDAV)) {
 				this.target.onDAVQueryComplete(status, response, this.askCertificate, aChannel.getResponseHeader("ETag"), this.reportLength);
 			}
 		},
-	
+
 		load: function(operation, parameters) {
 			if (operation == "GET") {
 				let headers = {};
@@ -503,6 +502,11 @@ if ("undefined" == typeof(cardbookWebDAV)) {
 			} else if (operation == "POSTCONTACT2") {
 				let headers = {"Content-Type": "application/json"};
 				this.sendHTTPRequest("POST", parameters.data, headers, null, null, false);
+			} else if (operation == "GETOFFICE365CONTACTS" || operation == "DELETEOFFICE365CONTACTS" || operation == "CREATEOFFICE365CONTACTS"
+						|| operation == "UPDATEOFFICE365CONTACTS" || operation == "GETOFFICE365CONTACTPHOTO" || operation == "DELETEOFFICE365CONTACTPHOTO"
+						|| operation == "CREATEOFFICE365CONTACTPHOTO"|| operation == "GETOFFICE365CONTACT") {
+				let headers = {"Content-Type": "application/json"};
+				this.sendHTTPRequest("POST", parameters.data, headers, null, null, false);
 			} else if (operation == "PUT") {
 				if (this.etag && this.etag != "0") {
 					this.sendHTTPRequest(operation, parameters.data, { "Content-Type": parameters.contentType,
@@ -533,99 +537,136 @@ if ("undefined" == typeof(cardbookWebDAV)) {
 				this.sendHTTPRequest(operation, null, { "If-Match": this.etag });
 			}
 		},
-	
+
 		get: function(accept) {
 			this.load("GET", {accept: accept});
 		},
-	
+
 		getimage: function() {
 			this.load("GETIMAGE");
 		},
-	
+
 		getlabels: function(accept) {
 			this.load("GETLABELS", {accept: accept});
 		},
-	
+
 		getLabels2: function() {
 			this.load("GETLABELS2");
 		},
-	
+
 		getContacts: function(props) {
 			this.load("GETCONTACTS", {props: props});
 		},
-	
+
 		getContacts2: function() {
 			this.load("GETCONTACTS2");
 		},
-	
+
 		patchContact2: function(data) {
 			this.load("PATCHCONTACT2", {data: data});
 		},
-	
+
 		patchContactPhoto2: function(data) {
 			this.load("PATCHCONTACTPHOTO2", {data: data});
 		},
-	
+
 		multiget2: function(length) {
 			this.reportLength = length;
 			this.load("GET", {});
 		},
-	
+
 		postContact2: function(data) {
 			this.load("POSTCONTACT2", {data: data});
 		},
-	
+
 		putContacts: function(props) {
 			this.load("PUTCONTACTS", {props: props});
 		},
-	
+
 		getContact: function(accept) {
 			this.load("GETCONTACT", {accept: accept});
 		},
-	
+
+		getOffice365Contact: function(data) {
+			this.load("GETOFFICE365CONTACT", {data: data});
+		},
+
+		getOffice365Contacts: function(data) {
+			this.load("GETOFFICE365CONTACTS", {data: data});
+		},
+
+		multigetOffice365Contacts: function(data, length) {
+			this.reportLength = length;
+			this.load("GETOFFICE365CONTACTS", {data: data});
+		},
+
+		deleteOffice365Contacts: function(data) {
+			this.load("DELETEOFFICE365CONTACTS", {data: data});
+		},
+
+		createOffice365Contacts: function(data) {
+			this.load("CREATEOFFICE365CONTACTS", {data: data});
+		},
+
+		updateOffice365Contacts: function(data) {
+			this.load("UPDATEOFFICE365CONTACTS", {data: data});
+		},
+
+		getOffice365ContactPhoto: function(data) {
+			this.load("GETOFFICE365CONTACTPHOTO", {data: data});
+		},
+
+		deleteOffice365ContactPhoto: function(data) {
+			this.load("DELETEOFFICE365CONTACTPHOTO", {data: data});
+		},
+
+		createOffice365ContactPhoto: function(data) {
+			this.load("CREATEOFFICE365CONTACTPHOTO", {data: data});
+		},
+
 		getkey: function() {
 			this.load("GETKEY");
 		},
-	
+
 		put: function(data, contentType) {
 			this.load("PUT", {data: data, contentType: contentType});
 		},
-	
+
 		post: function(data) {
 			this.load("POST", {data: data});
 		},
-	
+
 		propfind: function(props, deep) {
 			if (typeof deep == "undefined") {
 				deep = true;
 			}
 			this.load("PROPFIND", {props: props, deep: deep});
 		},
-	
+
 		reportMultiget: function(props, deep) {
 			if (typeof deep == "undefined") {
 				deep = true;
 			}
 			this.load("REPORTMULTIGET", {props: props, deep: deep});
 		},
-	
+
 		reportQuery: function(aProps, aValue, deep) {
 			if (typeof deep == "undefined") {
 				deep = true;
 			}
 			this.load("REPORTQUERY", {props: {value: aValue, props: aProps}, deep: deep});
 		},
-	
+
 		googleToken: function(aType, aParams, aHeaders) {
 			this.hideResponse = true;
 			let encodedParams = cardbookRepository.cardbookSynchronization.encodeParams(aParams);
 			this.sendHTTPRequest(aType, encodedParams, aHeaders, cardbookRepository.cardbookUtils.cleanRefreshToken(encodedParams));
 		},
-		
+
 		delete: function() {
 			this.load("DELETE");
 		},
-	
+
 		_buildAllContactsGetRequest: function(props) {
 			var query = "<?xml version=\"1.0\" encoding=\"utf-8\"?>";
 			query += "<feed xmlns='http://www.w3.org/2005/Atom' xmlns:gContact='http://schemas.google.com/contact/2008' xmlns:gd='http://schemas.google.com/g/2005' xmlns:batch='http://schemas.google.com/gdata/batch'>";
@@ -639,7 +680,7 @@ if ("undefined" == typeof(cardbookWebDAV)) {
 			query += "</feed>";
 			return query;
 		},
-	
+
 		_buildAllContactsPutRequest: function(props) {
 			var query = "<?xml version=\"1.0\" encoding=\"utf-8\"?>";
 			query += "<feed xmlns='http://www.w3.org/2005/Atom' xmlns:gContact='http://schemas.google.com/contact/2008' xmlns:gd='http://schemas.google.com/g/2005' xmlns:batch='http://schemas.google.com/gdata/batch'>";
@@ -650,7 +691,7 @@ if ("undefined" == typeof(cardbookWebDAV)) {
 			query += "</feed>";
 			return query;
 		},
-	
+
 		_buildMultigetRequest: function(props) {
 			var query = "<?xml version=\"1.0\" encoding=\"utf-8\"?>";
 			query += "<C:addressbook-multiget xmlns:D=\"DAV:\" xmlns:C=\"urn:ietf:params:xml:ns:carddav\">";
@@ -663,7 +704,7 @@ if ("undefined" == typeof(cardbookWebDAV)) {
 			query += "</C:addressbook-multiget>";
 			return query;
 		},
-	
+
 		_buildPropfindRequest: function(props) {
 			var query = "<?xml version=\"1.0\" encoding=\"utf-8\"?>";
 			query += "<D:propfind xmlns:D=\"DAV:\" xmlns:C=\"urn:ietf:params:xml:ns:carddav\">";
@@ -674,7 +715,7 @@ if ("undefined" == typeof(cardbookWebDAV)) {
 			query += "</D:prop></D:propfind>";
 			return query;
 		},
-	
+
 		_buildQueryRequest: function(props) {
 			var query = "<?xml version=\"1.0\" encoding=\"utf-8\"?>";
 			query += "<C:addressbook-query xmlns:D=\"DAV:\" xmlns:C=\"urn:ietf:params:xml:ns:carddav\">";
@@ -690,7 +731,7 @@ if ("undefined" == typeof(cardbookWebDAV)) {
 			query += "</C:addressbook-query>";
 			return query;
 		},
-	
+
 		_formatRelativeHref: function(aString) {
 			var decodeReport = true;
 			try {

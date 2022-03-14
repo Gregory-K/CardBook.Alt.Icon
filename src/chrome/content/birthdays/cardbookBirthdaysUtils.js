@@ -100,9 +100,9 @@ if ("undefined" == typeof(cardbookBirthdaysUtils)) {
 			var date_of_today = new Date();
 			for (var i = 0; i < cardbookBirthdaysUtils.lBirthdayList.length; i++) {
 				var ldaysUntilNextBirthday = cardbookBirthdaysUtils.lBirthdayList[i][0];
-				var lBirthdayDisplayName  = cardbookBirthdaysUtils.lBirthdayList[i][1];
+				var lBirthdayTitle = cardbookBirthdaysUtils.lBirthdayList[i][1];
 				var lBirthdayAge = cardbookBirthdaysUtils.lBirthdayList[i][2];
-				var lBirthdayName  = cardbookBirthdaysUtils.lBirthdayList[i][8];
+				var lBirthdayName = cardbookBirthdaysUtils.lBirthdayList[i][8];
 
 				var lBirthdayDate = new Date();
 				lBirthdayDate.setDate(date_of_today.getUTCDate()+parseInt(ldaysUntilNextBirthday));
@@ -135,13 +135,6 @@ if ("undefined" == typeof(cardbookBirthdaysUtils)) {
 				}
 				var lBirthdayDateNextString = lYear + "" + lMonth + "" + lDay;
 
-				var leventEntryTitle = cardbookRepository.cardbookPreferences.getStringPref("extensions.cardbook.eventEntryTitle");
-				if (cardbookBirthdaysUtils.lBirthdayList[i][3] != "?") {
-					var lEventDate = cardbookRepository.cardbookDates.convertDateStringToDateUTC(cardbookBirthdaysUtils.lBirthdayList[i][3], cardbookBirthdaysUtils.lBirthdayList[i][7]);
-					var lBirthdayTitle = leventEntryTitle.replace("%1$S", lBirthdayDisplayName).replace("%2$S", lBirthdayAge).replace("%3$S", lEventDate.getUTCFullYear()).replace("%4$S", lBirthdayName).replace("%S", lBirthdayDisplayName).replace("%S", lBirthdayAge);
-				} else {
-					var lBirthdayTitle = leventEntryTitle.replace("%1$S", lBirthdayDisplayName).replace("%2$S", lBirthdayAge).replace("%3$S", "?").replace("%4$S", lBirthdayName).replace("%S", lBirthdayDisplayName).replace("%S", lBirthdayAge);
-				}
 				var found = false;
 				for (let item of aItems) {
 					var summary = item.getProperty("SUMMARY");
@@ -257,6 +250,15 @@ if ("undefined" == typeof(cardbookBirthdaysUtils)) {
 			aCalendar2.addItem(event, addListener);
 		},
 
+		getEventName: function (aEventTitle, aDisplayName, aAge, aYear, aEventName, aEventType) {
+			let deathLabel = cardbookRepository.extension.localeData.localizeMessage("deathdateLabel");
+			if (aEventType == deathLabel && ! aEventTitle.includes("%5$S")) {
+				return aEventTitle.replace("%1$S", aDisplayName).replace("%2$S", aAge).replace("%3$S", aYear).replace("%4$S", aEventName) + " (" + deathLabel + ")";
+			} else {
+				return aEventTitle.replace("%1$S", aDisplayName).replace("%2$S", aAge).replace("%3$S", aYear).replace("%4$S", aEventName).replace("%5$S", aEventType);
+			}
+		},
+
 		daysBetween: function (date1, date2) {
 			// The number of milliseconds in one day
 			var oneDay = 1000 * 60 * 60 * 24;
@@ -280,7 +282,7 @@ if ("undefined" == typeof(cardbookBirthdaysUtils)) {
 			}
 		},
 
-		getAllBirthdaysByName: function (aDateFormat, aDateOfBirth, aDisplayName, aNumberOfDays, aDateOfBirthFound, aEmail, aDirPrefId, aName) {
+		getAllBirthdaysByName: function (aDateFormat, aDateOfBirth, aDisplayName, aNumberOfDays, aDateOfBirthFound, aEmail, aDirPrefId, aName, aType) {
 			var date_of_today = new Date();
 			var endDate = new Date();
 			var dateRef = new Date();
@@ -290,21 +292,26 @@ if ("undefined" == typeof(cardbookBirthdaysUtils)) {
 			var lDateOfBirthOld = aDateOfBirth;
 			var lDateOfBirth = cardbookRepository.cardbookDates.convertDateStringToDateUTC(aDateOfBirth, aDateFormat);
 
+			var leventEntryTitle = cardbookRepository.cardbookPreferences.getStringPref("extensions.cardbook.eventEntryTitle");
 			endDate.setUTCDate(date_of_today.getUTCDate()+parseInt(aNumberOfDays));
 			while (dateRef < endDate) {
 				lnextBirthday = this.calcDateOfNextBirthday(dateRef,lDateOfBirth);
+
 				if (lDateOfBirth.getUTCFullYear() == cardbookRepository.cardbookDates.defaultYear) {
 					lAge = "?";
 					lDateOfBirthOld = "?";
+					var lBirthdayTitle =  cardbookBirthdaysUtils.getEventName(leventEntryTitle, aDisplayName, "0", "?", aName, aType);
 				} else {
 					lAge = lnextBirthday.getFullYear()-lDateOfBirth.getUTCFullYear();
+					var lEventDate = cardbookRepository.cardbookDates.convertDateStringToDateUTC(lDateOfBirthOld, aDateFormat);
+					var lBirthdayTitle = cardbookBirthdaysUtils.getEventName(leventEntryTitle, aDisplayName, lAge, lEventDate.getUTCFullYear(), aName, aType);
 				}
 				ldaysUntilNextBirthday = this.daysBetween(lnextBirthday, date_of_today);
 				if (parseInt(ldaysUntilNextBirthday) <= parseInt(aNumberOfDays)) {
 					if (ldaysUntilNextBirthday === parseInt(ldaysUntilNextBirthday)) {
-						cardbookBirthdaysUtils.lBirthdayList.push([ldaysUntilNextBirthday, aDisplayName, lAge, lDateOfBirthOld, aDateOfBirthFound, aEmail, aDirPrefId, aDateFormat, aName]);
+						cardbookBirthdaysUtils.lBirthdayList.push([ldaysUntilNextBirthday, lBirthdayTitle, lAge, lDateOfBirthOld, aDateOfBirthFound, aEmail, aDirPrefId, aDateFormat, aName, aType]);
 					} else {
-						cardbookBirthdaysUtils.lBirthdayList.push(["0", aDisplayName + " : Error", "0", "0", aDateOfBirthFound, aEmail, aDirPrefId, aDateFormat, aName]);
+						cardbookBirthdaysUtils.lBirthdayList.push(["0", lBirthdayTitle + " : Error", "0", "0", aDateOfBirthFound, aEmail, aDirPrefId, aDateFormat, aName, aType]);
 					}
 					if (!(cardbookBirthdaysUtils.lBirthdayAccountList[aDirPrefId])) {
 						cardbookBirthdaysUtils.lBirthdayAccountList[aDirPrefId] = "";
@@ -326,10 +333,14 @@ if ("undefined" == typeof(cardbookBirthdaysUtils)) {
 				search[field] = cardbookRepository.cardbookPreferences.getBoolPref("extensions.cardbook.birthday." + field, true);
 			}
 			search.events = cardbookRepository.cardbookPreferences.getBoolPref("extensions.cardbook.birthday.events", true);
-			var eventInNoteEventPrefix = cardbookRepository.extension.localeData.localizeMessage("eventInNoteEventPrefix");
-			var deathSuffix = cardbookRepository.extension.localeData.localizeMessage("deathSuffix");
 			cardbookBirthdaysUtils.lBirthdayList = [];
-			
+
+			let fieldType = {};
+			for (let field of cardbookRepository.dateFields) {
+				fieldType[field] = cardbookRepository.extension.localeData.localizeMessage(`${field}Label`);
+			}
+			fieldType["event"] = cardbookRepository.extension.localeData.localizeMessage("eventInNoteEventPrefix");
+
 			for (let i in cardbookRepository.cardbookCards) {
 				var myCard = cardbookRepository.cardbookCards[i];
 				var myDirPrefId = myCard.dirPrefId;
@@ -342,11 +353,7 @@ if ("undefined" == typeof(cardbookBirthdaysUtils)) {
 							var isDate = cardbookRepository.cardbookDates.convertDateStringToDateUTC(myFieldValue, dateFormat);
 							if (isDate != "WRONGDATE") {
 								listOfEmail = cardbookRepository.cardbookUtils.getMimeEmailsFromCards([myCard], useOnlyEmail);
-								if (field == "deathdate") {
-									cardbookBirthdaysUtils.getAllBirthdaysByName(dateFormat, myFieldValue, myCard.fn + ' ' + deathSuffix, lnumberOfDays, myFieldValue, listOfEmail, myDirPrefId, cardbookRepository.cardbookUtils.getName(myCard) + ' ' + deathSuffix);
-								} else {
-									cardbookBirthdaysUtils.getAllBirthdaysByName(dateFormat, myFieldValue, myCard.fn, lnumberOfDays, myFieldValue, listOfEmail, myDirPrefId, cardbookRepository.cardbookUtils.getName(myCard));
-								}
+								cardbookBirthdaysUtils.getAllBirthdaysByName(dateFormat, myFieldValue, myCard.fn, lnumberOfDays, myFieldValue, listOfEmail, myDirPrefId, cardbookRepository.cardbookUtils.getName(myCard), fieldType[field]);
 							} else {
 								cardbookRepository.cardbookUtils.formatStringForOutput("dateEntry1Wrong", [myDirPrefName, myCard.fn, myFieldValue, dateFormat], "Warning");
 							}
@@ -358,7 +365,7 @@ if ("undefined" == typeof(cardbookBirthdaysUtils)) {
 							var isDate = cardbookRepository.cardbookDates.convertDateStringToDateUTC(myEvents.result[j][0], dateFormat);
 							if (isDate != "WRONGDATE") {
 								listOfEmail = cardbookRepository.cardbookUtils.getMimeEmailsFromCards([myCard], useOnlyEmail);
-								cardbookBirthdaysUtils.getAllBirthdaysByName(dateFormat, myEvents.result[j][0], myEvents.result[j][1], lnumberOfDays, myEvents.result[j][0], listOfEmail, myDirPrefId, myEvents.result[j][1]);
+								cardbookBirthdaysUtils.getAllBirthdaysByName(dateFormat, myEvents.result[j][0], myEvents.result[j][1], lnumberOfDays, myEvents.result[j][0], listOfEmail, myDirPrefId, myEvents.result[j][1], fieldType.event);
 							} else {
 								cardbookRepository.cardbookUtils.formatStringForOutput("dateEntry1Wrong", [myDirPrefName, myCard.fn, myEvents.result[j][0], dateFormat], "Warning");
 							}

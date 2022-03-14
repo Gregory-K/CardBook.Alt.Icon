@@ -52,17 +52,13 @@ if ("undefined" == typeof(wdw_cardbookAskUser)) {
 			} else {
 				document.getElementById('confirmCheckBox').hidden = true;
 			}
+			window.arguments[0].result = "cancel";
 		},
 
 		fireButton: function (aButton) {
 			var myButton = aButton.id.replace("askUser", "").toLowerCase();
 			window.arguments[0].resultConfirm = document.getElementById('confirmCheckBox').checked;
 			window.arguments[0].result = window.arguments[0][myButton];
-			wdw_cardbookAskUser.close();
-		},
-
-		cancel: function () {
-			window.arguments[0].result = "cancel";
 			wdw_cardbookAskUser.close();
 		},
 
@@ -81,7 +77,7 @@ if ("undefined" == typeof(wdw_cardbookAskUser)) {
 			myAskUserObserver.unregister();
 			close();
 		}
-
 	};
-
 };
+
+document.addEventListener("DOMContentLoaded", wdw_cardbookAskUser.load);

@@ -108,6 +108,15 @@ var cardbookRepository = {
 									"url" : [ ["hometype", "HOME"], ["worktype", "WORK"] ],
 									"impp" : [ ["hometype", "HOME"], ["worktype", "WORK"] ],
 									"addnew" : false },
+						"OFFICE365": { "adr" : [ ["hometype", "HOME"], ["worktype", "WORK"], ["othertype", "OTHER"] ],
+									"email" : [ ],
+									"tel" : [ ["hometype", "HOME"], ["worktype", "WORK"], ["faxtype", "FAX"], ["celltype", "CELL"], ["workfaxtype", "FAX,WORK"],
+												["homefaxtype", "FAX,HOME"], ["otherfaxtype", "FAX,OTHER"], ["othertype", "OTHER"], ["assistanttype", "ASSISTANT"],
+												["callbacktype", "CALLBACK"], ["carphonetype", "CARPHONE"], ["pagertype", "PAGER"], ["radiotype", "RADIO"],
+												["telextype", "TELEX"], ["ttytype", "TTY"], ],
+									"url" : [ ],
+									"impp" : [ ],
+									"addnew" : false },
 						"CARDDAV": { "adr" : [ ["hometype", "HOME"], ["worktype", "WORK"] ],
 									"email" : [ ["hometype", "HOME"], ["worktype", "WORK"], ["othertype", "OTHER"] ],
 									"tel" : [ ["hometype", "HOME;HOME,VOICE"], ["worktype", "WORK;WORK,VOICE"], ["celltype", "CELL;CELL,IPHONE;CELL,VOICE"], ["faxtype", "FAX;FAX,VOICE"], ["pagertype", "PAGER"], ["workfaxtype", "FAX,WORK;FAX,WORK,VOICE"], ["homefaxtype", "FAX,HOME;FAX,HOME,VOICE"],
@@ -234,6 +243,9 @@ var cardbookRepository = {
 	cardbookServerUpdatedCardRequest: {},
 	cardbookServerUpdatedCardResponse: {},
 	cardbookServerUpdatedCardError: {},
+	cardbookServerGetCardPhotoRequest: {},
+	cardbookServerGetCardPhotoResponse: {},
+	cardbookServerGetCardPhotoError: {},
 	cardbookServerUpdatedCardPhotoRequest: {},
 	cardbookServerUpdatedCardPhotoResponse: {},
 	cardbookServerUpdatedCardPhotoError: {},
@@ -295,9 +307,6 @@ var cardbookRepository = {
 	// used to ensure that the initial load is done only once
 	firstLoad: false,
 
-	// used to store the msgIdentityKey by window
-	composeMsgIdentity: {},
-	
 	// used to remember the choice of name and dates format
 	showNameAs: "",
 	dateDisplayedFormat: "0",
@@ -410,31 +419,35 @@ var cardbookRepository = {
 							},
 
 	supportedConnections:[
-		{ id: "GOOGLE2", type: "GOOGLE2", url: "", vCard: [ "3.0" ]},
-		{ id: "GOOGLE3", type: "GOOGLE3", url: "", vCard: [ "3.0" ]},
-		{ id: "CARDDAV", type: "CARDDAV", url: ""},
-		{ id: "APPLE", type: "APPLE", url: "https://contacts.icloud.com", vCard: [ "3.0" ], pwdapp: "true"},
-		{ id: "YAHOO", type: "YAHOO", url: "https://carddav.address.yahoo.com", vCard: [ "3.0" ], pwdapp: "true"},
-		{ id: "AOL.COM", type: "CARDDAV", url: "https://carddav.aol.com", vCard: [ "3.0" ]},
-		{ id: "ECLIPSO", type: "CARDDAV", url: "https://www.eclipso.de", vCard: [ "3.0" ]},
-		{ id: "FASTMAIL", type: "CARDDAV", url: "https://carddav.fastmail.com", vCard: [ "3.0" ], pwdapp: "true"},
-		{ id: "FRUUX", type: "CARDDAV", url: "https://dav.fruux.com", vCard: [ "3.0" ], pwdapp: "false"},
-		{ id: "GMX", type: "CARDDAV", url: "https://carddav.gmx.net", vCard: [ "3.0" ]},
-		{ id: "LAPOSTE.NET", type: "CARDDAV", url: "https://webmail.laposte.net/dav/%EMAILADDRESS%/contacts", vCard: [ "3.0" ]},
-		{ id: "LIBERTA.VIP", type: "CARDDAV", url: "https://cloud.liberta.vip/", vCard: [ "3.0" ], pwdapp: "false"},
-		{ id: "MAIL.DE", type: "CARDDAV", url: "https://adressbuch.mail.de", vCard: [ "3.0" ]},
-		{ id: "MAILBOX.ORG", type: "CARDDAV", url: "https://dav.mailbox.org", vCard: [ "3.0" ]},
-		{ id: "MAILFENCE.COM", type: "CARDDAV", url: "https://mailfence.com", vCard: [ "3.0" ]},
-		{ id: "MYKOLAB.COM", type: "CARDDAV", url: "https://carddav.mykolab.com", vCard: [ "3.0" ]},
-		{ id: "ORANGE.FR", type: "CARDDAV", url: "https://carddav.orange.fr/addressbooks/%EMAILADDRESS%", vCard: [ "3.0" ]},
-		{ id: "POSTEO", type: "CARDDAV", url: "https://posteo.de:8843", vCard: [ "3.0" ]},
-		{ id: "WEB.DE", type: "CARDDAV", url: "https://carddav.web.de", vCard: [ "3.0" ]},
-		{ id: "YANDEX.RU", type: "CARDDAV", url: "https://carddav.yandex.ru/addressbook/%EMAILADDRESS%/addressbook", vCard: [ "3.0" ]},
-		{ id: "ZACLYS", type: "CARDDAV", url: "https://ncloud.zaclys.com", vCard: [ "3.0" ], pwdapp: "false"},
-		{ id: "ZOHO.COM", type: "CARDDAV", url: "https://contacts.zoho.com", vCard: [ "3.0" ]},
-		{ id: "ZIGGO.NL", type: "CARDDAV", url: "https://sync.ziggo.nl", vCard: [ "3.0" ], pwdapp: "false"}
-	],
-		
+							{ id: "GOOGLE2", type: "GOOGLE2", url: "", vCard: [ "3.0" ]},
+							{ id: "GOOGLE3", type: "GOOGLE3", url: "", vCard: [ "3.0" ]},
+							{ id: "CARDDAV", type: "CARDDAV", url: ""},
+							{ id: "APPLE", type: "APPLE", url: "https://contacts.icloud.com", vCard: [ "3.0" ], pwdapp: "true"},
+							{ id: "YAHOO", type: "YAHOO", url: "https://carddav.address.yahoo.com", vCard: [ "3.0" ], pwdapp: "true"},
+							{ id: "AOL.COM", type: "CARDDAV", url: "https://carddav.aol.com", vCard: [ "3.0" ]},
+							{ id: "ECLIPSO", type: "CARDDAV", url: "https://www.eclipso.de", vCard: [ "3.0" ]},
+							{ id: "EWS", type: "OFFICE365", url: "", vCard: [ "3.0" ], pwdapp: "false"},
+							{ id: "FASTMAIL", type: "CARDDAV", url: "https://carddav.fastmail.com", vCard: [ "3.0" ], pwdapp: "true"},
+							{ id: "FRUUX", type: "CARDDAV", url: "https://dav.fruux.com", vCard: [ "3.0" ], pwdapp: "false"},
+							{ id: "GMX", type: "CARDDAV", url: "https://carddav.gmx.net", vCard: [ "3.0" ]},
+							{ id: "HOTMAIL", type: "OFFICE365", url: "https://outlook.office365.com/EWS/Exchange.asmx", vCard: [ "3.0" ], pwdapp: "false"},
+							{ id: "LAPOSTE.NET", type: "CARDDAV", url: "https://webmail.laposte.net/dav/%EMAILADDRESS%/contacts", vCard: [ "3.0" ]},
+							{ id: "LIBERTA.VIP", type: "CARDDAV", url: "https://cloud.liberta.vip/", vCard: [ "3.0" ], pwdapp: "false"},
+							{ id: "MAIL.DE", type: "CARDDAV", url: "https://adressbuch.mail.de", vCard: [ "3.0" ]},
+							{ id: "MAILBOX.ORG", type: "CARDDAV", url: "https://dav.mailbox.org", vCard: [ "3.0" ]},
+							{ id: "MAILFENCE.COM", type: "CARDDAV", url: "https://mailfence.com", vCard: [ "3.0" ]},
+							{ id: "MYKOLAB.COM", type: "CARDDAV", url: "https://carddav.mykolab.com", vCard: [ "3.0" ]},
+							{ id: "OFFICE365", type: "OFFICE365", url: "https://outlook.office365.com/EWS/Exchange.asmx", vCard: [ "3.0" ], pwdapp: "false"},
+							{ id: "OUTLOOK", type: "OFFICE365", url: "https://outlook.office365.com/EWS/Exchange.asmx", vCard: [ "3.0" ], pwdapp: "false"},
+							{ id: "ORANGE.FR", type: "CARDDAV", url: "https://carddav.orange.fr/addressbooks/%EMAILADDRESS%", vCard: [ "3.0" ]},
+							{ id: "POSTEO", type: "CARDDAV", url: "https://posteo.de:8843", vCard: [ "3.0" ]},
+							{ id: "WEB.DE", type: "CARDDAV", url: "https://carddav.web.de", vCard: [ "3.0" ]},
+							{ id: "YANDEX.RU", type: "CARDDAV", url: "https://carddav.yandex.ru/addressbook/%EMAILADDRESS%/addressbook", vCard: [ "3.0" ]},
+							{ id: "ZACLYS", type: "CARDDAV", url: "https://ncloud.zaclys.com", vCard: [ "3.0" ], pwdapp: "false"},
+							{ id: "ZOHO.COM", type: "CARDDAV", url: "https://contacts.zoho.com", vCard: [ "3.0" ]},
+							{ id: "ZIGGO.NL", type: "CARDDAV", url: "https://sync.ziggo.nl", vCard: [ "3.0" ], pwdapp: "false"}
+						],
+	
 	cardbookBirthdayPopup: 0,
 
 	// actions
@@ -567,6 +580,22 @@ var cardbookRepository = {
 		return a;
 	},
 
+	arrayUnique2D: function (aArray) {
+		for (var i=0; i<aArray.length; i++) {
+			var listI = aArray[i];
+			loopJ: for (var j=0; j<aArray.length; j++) {
+				var listJ = aArray[j];
+				if (listI === listJ) continue; //Ignore itself
+				for (var k=listJ.length; k>=0; k--) {
+					if (listJ[k] !== listI[k]) continue loopJ;
+				}
+				// At this point, their values are equal.
+				aArray.splice(j, 1);
+			}
+		}
+		return aArray;
+	},
+
 	normalizeString: function (aString) {
 		return aString.normalize('NFD').replace(/[\u0300-\u036f]/g, "");
 	},
@@ -651,7 +680,7 @@ var cardbookRepository = {
 	},
 	
 	addAccountToRepository: function(aAccountId, aAccountName, aAccountType, aAccountUrl, aAccountUser, aColor, aEnabled, aExpanded, aVCard, aReadOnly, aUrnuuid,
-										aDBcached, aAutoSyncEnabled, aAutoSyncInterval, aPrefInsertion) {
+										aSourceId, aDBcached, aAutoSyncEnabled, aAutoSyncInterval, aPrefInsertion) {
 		var cacheDir = cardbookRepository.getLocalDirectory();
 		cacheDir.append(aAccountId);
 		if (!cacheDir.exists() || !cacheDir.isDirectory()) {
@@ -671,6 +700,7 @@ var cardbookRepository = {
 			cardbookRepository.cardbookPreferences.setVCardVersion(aAccountId, aVCard);
 			cardbookRepository.cardbookPreferences.setReadOnly(aAccountId, aReadOnly);
 			cardbookRepository.cardbookPreferences.setUrnuuid(aAccountId, aUrnuuid);
+			cardbookRepository.cardbookPreferences.setSourceId(aAccountId, aSourceId);
 			cardbookRepository.cardbookPreferences.setDBCached(aAccountId, aDBcached);
 			cardbookRepository.cardbookPreferences.setAutoSyncEnabled(aAccountId, aAutoSyncEnabled);
 			cardbookRepository.cardbookPreferences.setAutoSyncInterval(aAccountId, aAutoSyncInterval);
@@ -1012,7 +1042,7 @@ var cardbookRepository = {
 	addCardToRepository: async function (aCard, aMode) {
 		try {
 			// needed only once when using > 55.2
-			if ((cardbookRepository.cardbookPreferences.getType(aCard.dirPrefId) == "GOOGLE" || cardbookRepository.cardbookPreferences.getType(aCard.dirPrefId) == "GOOGLE2")
+			if ((cardbookRepository.cardbookPreferences.getType(aCard.dirPrefId) == "GOOGLE")
 					&& !aCard.created && !aCard.updated) {
 				for (let category of aCard.categories) {
 					if (!cardbookRepository.cardbookCategories[aCard.dirPrefId+"::"+category]) {
@@ -1092,7 +1122,7 @@ var cardbookRepository = {
 					var myFile = Components.classes["@mozilla.org/file/local;1"].createInstance(Components.interfaces.nsIFile);
 					myFile.initWithPath(myDirPrefIdUrl);
 					myFile.append(aCard.cacheuri);
-					cardbookRepository.cardbookSynchronization.writeCardsToFile(myFile.path, [aCard], true);
+					await cardbookRepository.cardbookSynchronization.writeCardsToFile(myFile.path, [aCard], true);
 					cardbookRepository.cardbookLog.updateStatusProgressInformationWithDebug2(myDirPrefIdName + " : debug mode : Contact " + aCard.fn + " written to directory");
 				}
 			} else if (myDirPrefIdType != "FILE") {
@@ -2153,14 +2183,21 @@ var cardbookRepository = {
 		return false;
 	},
 
-	reWriteFiles: function (aListOfFiles) {
+	reWriteFiles: async function (aListOfFiles) {
 		let listOfFilesToRewrite = cardbookRepository.arrayUnique(aListOfFiles);
 		for (var i = 0; i < listOfFilesToRewrite.length; i++) {
 			if (cardbookRepository.cardbookPreferences.getType(listOfFilesToRewrite[i]) === "FILE" && !cardbookRepository.cardbookPreferences.getReadOnly(listOfFilesToRewrite[i])) {
 				let myArray = JSON.parse(JSON.stringify(cardbookRepository.cardbookDisplayCards[listOfFilesToRewrite[i]].cards));
 				cardbookRepository.cardbookUtils.sortCardsTreeArrayByString(myArray, "uid", 1);
-				cardbookRepository.cardbookSynchronization.writeCardsToFile(cardbookRepository.cardbookPreferences.getUrl(listOfFilesToRewrite[i]), myArray, true);
+				await cardbookRepository.cardbookSynchronization.writeCardsToFile(cardbookRepository.cardbookPreferences.getUrl(listOfFilesToRewrite[i]), myArray, true);
 			}
+		}
+	},
+
+	updateMailPop: function (aAddresses) {
+		let addresses = MailServices.headerParser.parseEncodedHeaderW(aAddresses);
+		for (let address of addresses) {
+			cardbookIDBMailPop.updateMailPop(address.email);
 		}
 	},
 
@@ -2294,7 +2331,7 @@ var cardbookRepository = {
 			case "CARDDAV":
 			case "GOOGLE":
 			case "GOOGLE2":
-			case "GOOGLE3":
+			case "OFFICE365":
 			case "YAHOO":
 				return "remote";
 				break;
@@ -2339,12 +2376,15 @@ loader.loadSubScript("chrome://cardbook/content/cardbookUtils.jsm", cardbookRepo
 loader.loadSubScript("chrome://cardbook/content/cardbookSynchronization.jsm", cardbookRepository);
 loader.loadSubScript("chrome://cardbook/content/cardbookSynchronizationGoogle.jsm", cardbookRepository);
 loader.loadSubScript("chrome://cardbook/content/cardbookSynchronizationGoogle2.jsm", cardbookRepository);
+loader.loadSubScript("chrome://cardbook/content/cardbookSynchronizationOffice365.jsm", cardbookRepository);
 loader.loadSubScript("chrome://cardbook/content/cardbookLog.jsm", cardbookRepository);
 loader.loadSubScript("chrome://cardbook/content/cardbookPasswordManager.jsm", cardbookRepository);
 loader.loadSubScript("chrome://cardbook/content/cardbookTypes.jsm", cardbookRepository);
 loader.loadSubScript("chrome://cardbook/content/cardbookDiscovery.jsm", cardbookRepository);
 loader.loadSubScript("chrome://cardbook/content/cardbookDates.jsm", cardbookRepository);
 loader.loadSubScript("chrome://cardbook/content/migrate/cardbookMigrate.jsm", cardbookRepository);
+loader.loadSubScript("chrome://cardbook/content/collected/cardbookCollection.jsm", cardbookRepository);
+loader.loadSubScript("chrome://cardbook/content/attachvCard/cardbookAttachvCard.jsm", cardbookRepository);
 loader.loadSubScript("chrome://cardbook/content/indexedDB/cardbookIndexedDB.js", this); //doesn't work with cardbookRepository instead of this
 loader.loadSubScript("chrome://cardbook/content/indexedDB/cardbookIDBCard.js", this);
 loader.loadSubScript("chrome://cardbook/content/indexedDB/cardbookIDBCat.js", this);
@@ -2358,4 +2398,5 @@ loader.loadSubScript("chrome://cardbook/content/cardbookCategoryParser.js", this
 loader.loadSubScript("chrome://cardbook/content/cardbookCardParser.js", this);
 loader.loadSubScript("chrome://cardbook/content/lists/cardbookListConversion.js", this);
 loader.loadSubScript("chrome://cardbook/content/scripts/notifyTools.js", this);
-loader.loadSubScript("chrome://cardbook/content/simpleMailRedirection/api_exp.js", this);
+loader.loadSubScript("chrome://cardbook/content/simpleMailRedirection/simpleMailRedirection.js", this);
+loader.loadSubScript("chrome://cardbook/content/CardBookNotifyListener.js", cardbookRepository);

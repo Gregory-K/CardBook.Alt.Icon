@@ -202,6 +202,14 @@ var cardbookTypes = {
 		return result;
 	},
 
+	getCodeType: function (aType, aDirPrefId, aLine) {
+		let myInputTypes = [];
+		myInputTypes = cardbookRepository.cardbookUtils.getOnlyTypesFromTypes(aLine);
+		let sourceList = cardbookTypes.getTypesFromDirPrefId(aType, aDirPrefId);
+		cardbookRepository.cardbookUtils.sortMultipleArrayByString(sourceList,0,1);
+		return cardbookTypes.whichCodeTypeShouldBeChecked(aType, aDirPrefId, myInputTypes, sourceList);
+	},
+
 	getIMPPLineForCode: function (aCode) {
 		var serviceLine = [];
 		var myPrefResults = [];

@@ -126,6 +126,9 @@
 	"noContactsDuplicated": {
 		"message": "Neboli nájdené žiadne zdvojené kontakty."
 	},
+	"noDataAvailable": {
+		"message": "Nie sú dostupné žiadne údaje."
+	},
 	"targetCategoryLabel": {
 		"message": "výsledkov"
 	},
@@ -149,8 +152,23 @@
 	"ValidatingURLFailedLabel": {
 		"message": "URL má nesprávny tvar"
 	},
+	"ValidatingURILabel": {
+		"message": "Zadajte alebo prilepte adresu URL"
+	},
+	"ValidatingURIFailedLabel": {
+		"message": "Neplatná URL adresa"
+	},
+	"ValidatingLoginLabel": {
+		"message": "Vaše prihlasovacie údaje"
+	},
+	"ValidatingEmailLabel": {
+		"message": "Vaša existujúca e-mailová adresa"
+	},
 	"ValidatingEmailFailedLabel": {
 		"message": "Vyžaduje sa platná e-mailová adresa"
+	},
+	"ValidationFailedOffLine": {
+		"message": "Momentálne ste v režime offline."
 	},
 	"ValidationFailedLabel": {
 		"message": "Overenie zlyhalo"
@@ -2242,6 +2260,17 @@
             }
         }
 	},
+	"cardsFormattedUndo": {
+		"message": "$P1$ : Kontakty sformátované ($P2$)",
+        "placeholders": {
+            "P1": {
+                "content": "$1"
+            },
+            "P2": {
+                "content": "$2"
+            }
+        }
+	},
 	"exportCardToDirMessagePF": {
 		"message": "$P1$ kontakt exportovaný do priečinka $P2$;$P1$ kontakty exportované do priečinka $P2$;$P1$ kontaktov exportovaných do priečinka $P2$",
         "placeholders": {
@@ -2801,6 +2830,59 @@
             }
         }
 	},
+	"invalidOffice365Field": {
+		"message": "$P1$ nemožno synchronizovať (hodnota: $P2$)",
+        "placeholders": {
+            "P1": {
+                "content": "$1"
+            },
+            "P2": {
+                "content": "$2"
+            }
+       }
+	},
+	"invalidOffice365Email": {
+		"message": "Nie je možné synchronizovať viac ako 3 e-mailové adresy"
+	},
+	"invalidOffice365Impp": {
+		"message": "Synchronizovať možno len jednu adresu IM"
+	},
+	"invalidOffice365Adr": {
+		"message": "Nie je možné synchronizovať viac ako 3 fyzické adresy"
+	},
+	"invalidOffice365Tel": {
+		"message": "Nie je možné synchronizovať viac ako 17 telefónnych čísel"
+	},
+	"invalidOffice365EmptyType": {
+		"message": "$P1$ : prázdne typy nie sú povolené",
+        "placeholders": {
+            "P1": {
+                "content": "$1"
+            }
+        }
+	},
+	"invalidOffice365Type": {
+		"message": "$P1$ : príliš veľa typu $P2$ (maximálne povolené: $P3$)",
+		"placeholders": {
+			"P1": {
+				"content": "$1"
+			},
+			"P2": {
+				"content": "$2"
+			},
+			"P3": {
+				"content": "$3"
+			}
+		}
+	},
+	"invalidOffice365Member": {
+		"message": "Nemôžete pridať e-mail, ktorý nepatrí ani k jednému kontaktu vo vašom adresári ($P1$)",
+		"placeholders": {
+			"P1": {
+				"content": "$1"
+			}
+		}
+	},
 	"validateIntegerMsg": {
 		"message": "Pole $P1$ by malo mať nulovú hodnotu alebo celé číslo od 1 do $P2$ (hodnota : $P3$)",
         "placeholders": {
@@ -2870,6 +2952,27 @@
 	},
 	"worktype": {
 		"message": "Práca"
+	},
+	"otherfaxtype": {
+		"message": "Iný fax"
+	},
+	"assistanttype": {
+		"message": "Asistent"
+	},
+	"callbacktype": {
+		"message": "Spätné volanie"
+	},
+	"carphonetype": {
+		"message": "Auto"
+	},
+	"radiotype": {
+		"message": "Rádio"
+	},
+	"telextype": {
+		"message": "Telex"
+	},
+	"ttytype": {
+		"message": "TTY"
 	},
 	"types.gender.f": {
 		"message": "Žena"
@@ -3282,9 +3385,6 @@
 	"eventInNoteEventPrefix": {
 		"message": "Udalosť"
 	},
-	"deathSuffix": {
-		"message": "(zosnulý)"
-	},
 	"dateFormatsDLabel": {
 		"message": "D"
 	},
@@ -3600,20 +3700,20 @@
 	"cardbookContactPaneItemAccesskey": {
 		"message": "O"
 	},
+	"wizard.next.label": {
+		"message": "Nasledujúca"
+	},	
+	"wizard.back.label": {
+		"message": "Naspäť"
+	},	
+	"wizard.create.label": {
+		"message": "Vytvoriť"
+	},
 	"wizard.title": {
 		"message": "Pridať nový adresár"
 	},
-	"wizard.label": {
-		"message": "Pridať nový adresár"
-	},
-	"welcomePage.wizard.description": {
-		"message": "Vitajte"
-	},
 	"welcomePage.description": {
 		"message": "Vyzerá to tak, že je to prvýkrát, čo bol CardBook spustený. CardBook sa pokúsi zhromaždiť kontakty zo štandardných adresárov Thunderbirdu a vzdialených adresárov."
-	},
-	"initialPage.wizard.description": {
-		"message": "Umiestnenie pre nový adresár."
 	},
 	"initialPage.description": {
 		"message": "Umiestnenie adresára:"
@@ -3632,9 +3732,6 @@
 	},
 	"initialPage.find.label": {
 		"message": "Hľadať vzdialené adresáre"
-	},
-	"localPage.wizard.description": {
-		"message": "Typ a umiestnenie nového lokálneho adresára."
 	},
 	"localPage.type.description": {
 		"message": "Typ lokálneho adresára."
@@ -3669,9 +3766,6 @@
 	"localPage.uributton.label": {
 		"message": "Prehliadať"
 	},
-	"remotePage.wizard.description": {
-		"message": "Typ a umiestnenie nového vzdialeného adresára."
-	},
 	"remotePage.description": {
 		"message": "Aký je typ vášho vzdialeného adresára? (Pozor: Google NIE JE v súlade so štandardmi vCard)"
 	},
@@ -3679,7 +3773,10 @@
 		"message": "Typ"
 	},
 	"remotePageType.carddav.label": {
-		"message": "CardDAV"
+		"message": "CardDAV (Zadajte alebo prilepte adresu URL)"
+	},
+	"remotePageType.ews.label": {
+		"message": "EWS (Zadajte alebo prilepte adresu URL)"
 	},
 	"remotePageType.google3.label": {
 		"message": "Google Workspace"
@@ -3720,14 +3817,14 @@
 	"remotePage.password.label": {
 		"message": "Heslo:"
 	},
+	"rememberPassword": {
+		"message": "Použiť Správcu hesiel na zapamätanie tohto hesla"
+	},
 	"showHidePassword.tooltip": {
 		"message": "Zobraziť/skryť heslo"
 	},
 	"remotePage.validatebutton.label": {
 		"message": "Overiť"
-	},
-	"locationSearchPage.wizard.description": {
-		"message": "Definícia uloženého hľadania"
 	},
 	"locationSearchPage.label": {
 		"message": "Uložené hľadania"
@@ -3753,9 +3850,6 @@
 	"googleOauthPage.wizard.description": {
 		"message": "Google overenie"
 	},
-	"namePage.wizard.description": {
-		"message": "Vlastnosti adresára"
-	},
 	"namePage.selected.label": {
 		"message": "Vybrané"
 	},
@@ -3774,17 +3868,11 @@
 	"namePage.vCardVersion.label": {
 		"message": "vCard"
 	},
-	"namesPage.wizard.description": {
-		"message": "Vlastnosti adresára"
-	},
 	"namesPage.name.label": {
 		"message": "Mená"
 	},
 	"namesPage.name.description": {
 		"message": "Bolo objavených viac adresárov. Vyberte, ktoré adresáre chcete otvoriť, a ich názvy:"
-	},
-	"findPage.wizard.description": {
-		"message": "Vyhľadávanie vo vzdialenom adresári"
 	},
 	"findPage.name1.description": {
 		"message": "Nenašli sa žiadne vzdialené adresáre."
@@ -3794,9 +3882,6 @@
 	},
 	"findPage.name3.description": {
 		"message": "Našlo sa viac vzdialených adresárov. Pre pridanie overte vzdialené adresáre:"
-	},
-	"finishPage.wizard.description": {
-		"message": "Konfigurácia adresárov"
 	},
 	"finishPage.description": {
 		"message": "Váš nový adresár bol úspešne nakonfigurovaný."
@@ -4410,6 +4495,12 @@
 	"typesCategoryAppleAccesskey": {
 		"message": "A"
 	},
+	"typesCategoryOffice365Label": {
+		"message": "Office365"
+	},
+	"typesCategoryOffice365Accesskey": {
+		"message": "O"
+	},
 	"typesCategoryYahooLabel": {
 		"message": "Yahoo!"
 	},
@@ -4787,6 +4878,9 @@
 	},
 	"birthdayListWarn": {
 		"message": "Výročia sa vyhľadávajú iba v adresároch CardBook."
+	},
+	"generalGroupboxLabel": {
+		"message": "Všeobecné"
 	},
 	"addressbooksGroupboxLabel": {
 		"message": "Adresáre"
@@ -5442,8 +5536,11 @@
 	"importCardFromDirLabel": {
 		"message": "Importovať kontakty z priečinka"
 	},
+	"formatDataFromAccountsOrCatsLabel": {
+		"message": "Formátovať údaje kontaktov"
+	},
 	"findDuplicatesFromAccountsOrCatsLabel": {
-		"message": "Nájsť zdvojené kontakty v aktuálnom adresári"
+		"message": "Nájsť zdvojené kontakty"
 	},
 	"generateFnFromAccountsOrCatsLabel": {
 		"message": "Vygenerovať zobrazované mená"
@@ -5567,12 +5664,6 @@
 	},
 	"displayFieldNamesAccesskey": {
 		"message": "P"
-	},
-	"displayTypesLabel": {
-		"message": "Typy a predvoľby"
-	},
-	"displayTypesAccesskey": {
-		"message": "y"
 	},
 	"fieldsToPrintGroupboxLabel": {
 		"message": "Polia na tlač"
@@ -5742,6 +5833,21 @@
 	"mergeAllEditionAccesskey": {
 		"message": "Z"
 	},
+	"formatAllEditionLabel": {
+		"message": "Formátovať všetko"
+	},
+	"formatAllEditionAccesskey": {
+		"message": "F"
+	},
+	"undoAllEditionLabel": {
+		"message": "Vrátiť späť všetko"
+	},
+	"undoAllEditionAccesskey": {
+		"message": "V"
+	},
+	"formatEditionLabel": {
+		"message": "Formátovať"
+	},
 	"buttonAppendToListLabel": {
 		"message": "Pridať"
 	},
@@ -5782,7 +5888,20 @@
 		"message": "o"
 	},
 	"wdw_findDuplicatesTitle": {
-		"message": "Duplikovať kontakty"
+		"message": "Duplikovať kontakty ($P1$)",
+        "placeholders": {
+            "P1": {
+                "content": "$1"
+            }
+        }
+	},
+	"wdw_formatDataTitle": {
+		"message": "Formátovať údaje kontaktov ($P1$)",
+        "placeholders": {
+            "P1": {
+                "content": "$1"
+            }
+        }
 	},
 	"addImageCardFromFileLabel": {
 		"message": "Pridať obrázok zo súboru"
@@ -5864,5 +5983,8 @@
 	},
 	"orgTitleLabel": {
 		"message": "Informácie o zamestnaní"
+	},
+	"allAddressBooks": {
+		"message": "Všetky adresáre kontaktov"
 	}
 }

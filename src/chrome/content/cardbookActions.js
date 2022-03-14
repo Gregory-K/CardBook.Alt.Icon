@@ -21,9 +21,9 @@ if ("undefined" == typeof(cardbookActions)) {
 			cardbookRepository.cardbookPreferences.setStringPref("extensions.cardbook.currentUndoId", cardbookRepository.currentUndoId);
 		},
 
-		addUndoCardsAction: function (aActionCode, aActionMessage, aOldCards, aNewCards, aOldCats, aNewCats) {
+		addUndoCardsAction: async function (aActionCode, aActionMessage, aOldCards, aNewCards, aOldCats, aNewCats) {
 			let myNextUndoId = cardbookRepository.currentUndoId + 1;
-			cardbookIDBUndo.addUndoItem(myNextUndoId, aActionCode, aActionMessage, aOldCards, aNewCards, aOldCats, aNewCats, false);
+			await cardbookIDBUndo.addUndoItem(myNextUndoId, aActionCode, aActionMessage, aOldCards, aNewCards, aOldCats, aNewCats, false);
 		},
 
 		undo: function () {
@@ -164,6 +164,7 @@ if ("undefined" == typeof(cardbookActions)) {
 					case "listConvertedToCategory":
 					case "nodeRenamed":
 					case "listCreatedFromNode":
+					case "cardsFormatted":
 						iconClass = "editItem";
 						break;
 					case "outgoingEmailCollected":
@@ -232,7 +233,8 @@ if ("undefined" == typeof(cardbookActions)) {
 					case "nodeRenamed":
 					case "nodeDeleted":
 					case "listCreatedFromNode":
-						cardbookRepository.currentAction[aActionId].message = cardbookRepository.extension.localeData.localizeMessage(myActionCode + 'Undo', aArray);
+					case "cardsFormatted":
+							cardbookRepository.currentAction[aActionId].message = cardbookRepository.extension.localeData.localizeMessage(myActionCode + 'Undo', aArray);
 						break;
 					case "cardsDeleted":
 						if (aArray && aArray.length == 1) {
@@ -311,7 +313,7 @@ if ("undefined" == typeof(cardbookActions)) {
 					} else {
 						cardbookRepository.cardbookUtils.notifyObservers(myAction.actionCode);
 					}
-					cardbookRepository.reWriteFiles(myAction.files);
+					await cardbookRepository.reWriteFiles(myAction.files);
 					if (cardbookRepository.cardbookPreferences.getBoolPref("extensions.cardbook.syncAfterChange")) {
 						cardbookRepository.cardbookSynchronization.syncAccounts(myAction.files);
 					}

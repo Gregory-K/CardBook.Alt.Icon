@@ -26,6 +26,9 @@ var cardBookObserver = {
 	
 	observe: function(aSubject, aTopic, aData) {
 		switch (aTopic) {
+			case "cardbook.openTab":
+				ovl_cardbook.open();
+				break;
 			case "cardbook.preferencesChanged":
 				if (!("undefined" == typeof(ovl_cardbook))) {
 					ovl_cardbook.reloadCardBookQFB();
@@ -73,6 +76,7 @@ var cardBookObserver = {
 					ovl_cardbookMailContacts.refreshBlueStars();
 				}
 				break;
+			case "cardbook.cardEdited":
 			case "cardbook.cardCreated":
 			case "cardbook.cardModified":
 			case "cardbook.cardsDeleted":

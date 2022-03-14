@@ -126,6 +126,9 @@
 	"noContactsDuplicated": {
 		"message": "Não existem contactos duplicados."
 	},
+	"noDataAvailable": {
+		"message": "Sem dados disponíveis."
+	},
 	"targetCategoryLabel": {
 		"message": "resultados"
 	},
@@ -149,8 +152,23 @@
 	"ValidatingURLFailedLabel": {
 		"message": "URL mal formado"
 	},
+	"ValidatingURILabel": {
+		"message": "URL inválido"
+	},
+	"ValidatingURIFailedLabel": {
+		"message": "Digite ou cole um URL"
+	},
+	"ValidatingLoginLabel": {
+		"message": "O teu login"
+	},
+	"ValidatingEmailLabel": {
+		"message": "O teu endereço de e-mail existente"
+	},
 	"ValidatingEmailFailedLabel": {
 		"message": "É necessário um e-mail válido"
+	},
+	"ValidationFailedOffLine": {
+		"message": "Estás correntemente offline."
 	},
 	"ValidationFailedLabel": {
 		"message": "Validação falhou"
@@ -2242,6 +2260,17 @@
             }
         }
 	},
+	"cardsFormattedUndo": {
+		"message": "$P1$ : Contactos formatados ($P2$)",
+        "placeholders": {
+            "P1": {
+                "content": "$1"
+            },
+            "P2": {
+                "content": "$2"
+            }
+        }
+	},
 	"exportCardToDirMessagePF": {
 		"message": "$P1$ contacto exportado para a diretoria $P2$;$P1$ contactos exportados para a diretoria $P2$",
         "placeholders": {
@@ -2801,6 +2830,59 @@
             }
         }
 	},
+	"invalidOffice365Field": {
+		"message": "$P1$ não pode ser sincronizado (valor: $P2$)",
+        "placeholders": {
+            "P1": {
+                "content": "$1"
+            },
+            "P2": {
+                "content": "$2"
+            }
+       }
+	},
+	"invalidOffice365Email": {
+		"message": "Não mais de 3 endereços de e-mail podem ser sincronizados"
+	},
+	"invalidOffice365Impp": {
+		"message": "Apenas um endereço IM pode ser sincronizado"
+	},
+	"invalidOffice365Adr": {
+		"message": "Não mais de 3 endereços físicos podem ser sincronizados"
+	},
+	"invalidOffice365Tel": {
+		"message": "Não mais de 17 números de telefone podem ser sincronizados"
+	},
+	"invalidOffice365EmptyType": {
+		"message": "$P1$ : tipos vazios não são permitidos",
+        "placeholders": {
+            "P1": {
+                "content": "$1"
+            }
+        }
+	},
+	"invalidOffice365Type": {
+		"message": "$P1$ : demasiado tipo $P2$ (máx. permitido: $P3$)",
+		"placeholders": {
+			"P1": {
+				"content": "$1"
+			},
+			"P2": {
+				"content": "$2"
+			},
+			"P3": {
+				"content": "$3"
+			}
+		}
+	},
+	"invalidOffice365Member": {
+		"message": "Não podes adicionar um e-mail que não pertença a um contacto do teu livro de endereços ($P1$)",
+		"placeholders": {
+			"P1": {
+				"content": "$1"
+			}
+		}
+	},
 	"validateIntegerMsg": {
 		"message": "O campo $P1$ deve ser nulo ou com um inteiro entre 1 e $P2$ (valor: $P3$)",
         "placeholders": {
@@ -2870,6 +2952,27 @@
 	},
 	"worktype": {
 		"message": "Emprego"
+	},
+	"otherfaxtype": {
+		"message": "Outro fax"
+	},
+	"assistanttype": {
+		"message": "Assistente"
+	},
+	"callbacktype": {
+		"message": "Ligar de volta"
+	},
+	"carphonetype": {
+		"message": "Carro"
+	},
+	"radiotype": {
+		"message": "Rádio"
+	},
+	"telextype": {
+		"message": "Telex"
+	},
+	"ttytype": {
+		"message": "TTY"
 	},
 	"types.gender.f": {
 		"message": "Mulher"
@@ -3282,9 +3385,6 @@
 	"eventInNoteEventPrefix": {
 		"message": "Evento"
 	},
-	"deathSuffix": {
-		"message": "(faleceu)"
-	},
 	"dateFormatsDLabel": {
 		"message": "D"
 	},
@@ -3600,20 +3700,20 @@
 	"cardbookContactPaneItemAccesskey": {
 		"message": "O"
 	},
+	"wizard.next.label": {
+		"message": "Seguinte"
+	},	
+	"wizard.back.label": {
+		"message": "Retroceder"
+	},	
+	"wizard.create.label": {
+		"message": "Criar"
+	},
 	"wizard.title": {
 		"message": "Adicionar novo livro de endereços"
 	},
-	"wizard.label": {
-		"message": "Adicionar novo livro de endereços"
-	},
-	"welcomePage.wizard.description": {
-		"message": "Bem-vindo"
-	},
 	"welcomePage.description": {
 		"message": "Parece ser a primeira vez que o CardBook é executado. O CardBook vai tentar coletar os contactos dos livros de endereços padrão do Thunderbird e livros de endereços remotos."
-	},
-	"initialPage.wizard.description": {
-		"message": "Localização para o novo livro de endereços."
 	},
 	"initialPage.description": {
 		"message": "Localização do livro de endereços:"
@@ -3632,9 +3732,6 @@
 	},
 	"initialPage.find.label": {
 		"message": "Procurar por livros de endereços remotos"
-	},
-	"localPage.wizard.description": {
-		"message": "Tipo e localização do novo livro de endereços local."
 	},
 	"localPage.type.description": {
 		"message": "Tipo de livro de endereços local:"
@@ -3669,9 +3766,6 @@
 	"localPage.uributton.label": {
 		"message": "Navegar"
 	},
-	"remotePage.wizard.description": {
-		"message": "Tipo e localização do novo livro de endereços remoto."
-	},
 	"remotePage.description": {
 		"message": "Qual o tipo do teu livro de endereços remoto (Atenção: o Google NÃO utiliza standards de vCard)?"
 	},
@@ -3679,7 +3773,10 @@
 		"message": "Tipo"
 	},
 	"remotePageType.carddav.label": {
-		"message": "CardDAV"
+		"message": "CardDAV (Digite ou cole um URL)"
+	},
+	"remotePageType.ews.label": {
+		"message": "EWS (Digite ou cole um URL)"
 	},
 	"remotePageType.google2.label": {
 		"message": "Google"
@@ -3720,14 +3817,14 @@
 	"remotePage.password.label": {
 		"message": "Senha:"
 	},
+	"rememberPassword": {
+		"message": "Utilizar o gestor de palavras-passe para memorizar esta palavra-passe"
+	},
 	"showHidePassword.tooltip": {
 		"message": "Mostrar/Esconder palavra-passe"
 	},
 	"remotePage.validatebutton.label": {
 		"message": "Validar"
-	},
-	"locationSearchPage.wizard.description": {
-		"message": "Definição da pesquisa guardada."
 	},
 	"locationSearchPage.label": {
 		"message": "Procura Guardada"
@@ -3753,9 +3850,6 @@
 	"googleOauthPage.wizard.description": {
 		"message": "Autenticação Google"
 	},
-	"namePage.wizard.description": {
-		"message": "Propriedades do Livro de Endereços"
-	},
 	"namePage.selected.label": {
 		"message": "Selecionado"
 	},
@@ -3774,17 +3868,11 @@
 	"namePage.vCardVersion.label": {
 		"message": "vCard"
 	},
-	"namesPage.wizard.description": {
-		"message": "Propriedades dos Livros de Endereços"
-	},
 	"namesPage.name.label": {
 		"message": "Nomes"
 	},
 	"namesPage.name.description": {
 		"message": "Foram descobertos vários livros de endereços. Escolhe quais queres abrir e os seus nomes:"
-	},
-	"findPage.wizard.description": {
-		"message": "Procura remota de livro de endereços"
 	},
 	"findPage.name1.description": {
 		"message": "Não foram encontrados livros de endereços remotos."
@@ -3794,9 +3882,6 @@
 	},
 	"findPage.name3.description": {
 		"message": "Vários livros de endereços remotos encontrados. Valida os livros de endereços remotos a adicionar:"
-	},
-	"finishPage.wizard.description": {
-		"message": "Configuração dos livros de endereços"
 	},
 	"finishPage.description": {
 		"message": "O teu novo livro de endereços foi configurado com sucesso."
@@ -4410,6 +4495,12 @@
 	"typesCategoryAppleAccesskey": {
 		"message": "A"
 	},
+	"typesCategoryOffice365Label": {
+		"message": "Office365"
+	},
+	"typesCategoryOffice365Accesskey": {
+		"message": "O"
+	},
 	"typesCategoryYahooLabel": {
 		"message": "Yahoo!"
 	},
@@ -4787,6 +4878,9 @@
 	},
 	"birthdayListWarn": {
 		"message": "Os aniversários são procurados apenas dentro dos livros de endereços do CardBook."
+	},
+	"generalGroupboxLabel": {
+		"message": "Geral"
 	},
 	"addressbooksGroupboxLabel": {
 		"message": "Livros de Endereços"
@@ -5442,8 +5536,11 @@
 	"importCardFromDirLabel": {
 		"message": "Importar Contactos de uma Diretoria"
 	},
+	"formatDataFromAccountsOrCatsLabel": {
+		"message": "Formatar Dados dos Contactos"
+	},
 	"findDuplicatesFromAccountsOrCatsLabel": {
-		"message": "Encontrar Contactos Duplicados no Livro de Endereços Atual"
+		"message": "Encontrar Contactos Duplicados"
 	},
 	"generateFnFromAccountsOrCatsLabel": {
 		"message": "Gerar Nomes a Mostrar"
@@ -5567,12 +5664,6 @@
 	},
 	"displayFieldNamesAccesskey": {
 		"message": "F"
-	},
-	"displayTypesLabel": {
-		"message": "Tipos e Preferências"
-	},
-	"displayTypesAccesskey": {
-		"message": "y"
 	},
 	"fieldsToPrintGroupboxLabel": {
 		"message": "Campos a Imprimir"
@@ -5742,6 +5833,21 @@
 	"mergeAllEditionAccesskey": {
 		"message": "F"
 	},
+	"formatAllEditionLabel": {
+		"message": "Formatar todos"
+	},
+	"formatAllEditionAccesskey": {
+		"message": "F"
+	},
+	"undoAllEditionLabel": {
+		"message": "Desfazer tudo"
+	},
+	"undoAllEditionAccesskey": {
+		"message": "D"
+	},
+	"formatEditionLabel": {
+		"message": "Formatar"
+	},
 	"buttonAppendToListLabel": {
 		"message": "Adicionar"
 	},
@@ -5782,7 +5888,20 @@
 		"message": "o"
 	},
 	"wdw_findDuplicatesTitle": {
-		"message": "Contactos Duplicados"
+		"message": "Contactos Duplicados ($P1$)",
+        "placeholders": {
+            "P1": {
+                "content": "$1"
+            }
+        }
+	},
+	"wdw_formatDataTitle": {
+		"message": "Formatar Dados dos Contactos ($P1$)",
+        "placeholders": {
+            "P1": {
+                "content": "$1"
+            }
+        }
 	},
 	"addImageCardFromFileLabel": {
 		"message": "Adicionar imagem de ficheiro"
@@ -5864,5 +5983,8 @@
 	},
 	"orgTitleLabel": {
 		"message": "Informação Profissional"
+	},
+	"allAddressBooks": {
+		"message": "Todos os livros de endereços"
 	}
 }

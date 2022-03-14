@@ -126,6 +126,9 @@
 	"noContactsDuplicated": {
 		"message": "Ingen duplikerede kontakter er blevet fundet"
 	},
+	"noDataAvailable": {
+		"message": "Ingen tilgængelige data."
+	},
 	"targetCategoryLabel": {
 		"message": "resultater"
 	},
@@ -149,11 +152,26 @@
 	"ValidatingURLFailedLabel": {
 		"message": "URL er misdannet"
 	},
+	"ValidatingURILabel": {
+		"message": "Indtast eller indsæt en URL"
+	},
+	"ValidatingURIFailedLabel": {
+		"message": "Udgyldig URL"
+	},
+	"ValidatingLoginLabel": {
+		"message": "Dit login"
+	},
+	"ValidatingEmailLabel": {
+		"message": "Din eksisterende mailadresse"
+	},
 	"ValidatingEmailFailedLabel": {
 		"message": "Gyldig e-mail påkrævet"
 	},
 	"ValidationFailedLabel": {
 		"message": "Validering mislykkedes"
+	},
+	"ValidationFailedOffLine": {
+		"message": "Du er i øjeblikket offline."
 	},
 	"ValidationOKLabel": {
 		"message": "Validering O.k."
@@ -2242,6 +2260,17 @@
             }
         }
 	},
+	"cardsFormattedUndo": {
+		"message": "$P1$ : Kontakter formateret ($P2$)",
+        "placeholders": {
+            "P1": {
+                "content": "$1"
+            },
+            "P2": {
+                "content": "$2"
+            }
+        }
+	},
 	"exportCardToDirMessagePF": {
 		"message": "$P1$ kontakt eksporteret ind i kataloget $P2$;$P1$ kontakter eksporteret ind i kataloget $P2$",
         "placeholders": {
@@ -2801,6 +2830,59 @@
             }
         }
 	},
+	"invalidOffice365Field": {
+		"message": "$P1$ kan ikke synkroniseres (værdi: $P2$)",
+        "placeholders": {
+            "P1": {
+                "content": "$1"
+            },
+            "P2": {
+                "content": "$2"
+            }
+       }
+	},
+	"invalidOffice365Email": {
+		"message": "Der kan ikke synkroniseres mere end 3 e-mail-adresser"
+	},
+	"invalidOffice365Impp": {
+		"message": "Der kan kun synkroniseres en IM-adresse"
+	},
+	"invalidOffice365Adr": {
+		"message": "Der kan ikke synkroniseres mere end 3 fysiske adresser"
+	},
+	"invalidOffice365Tel": {
+		"message": "Der kan ikke synkroniseres mere end 17 telefonnumre"
+	},
+	"invalidOffice365EmptyType": {
+		"message": "$P1$ : tomme typer er ikke tilladt",
+        "placeholders": {
+            "P1": {
+                "content": "$1"
+            }
+        }
+	},
+	"invalidOffice365Type": {
+		"message": "$P1$ : for meget type $P2$ (max. tilladt: $P3$)",
+		"placeholders": {
+			"P1": {
+				"content": "$1"
+			},
+			"P2": {
+				"content": "$2"
+			},
+			"P3": {
+				"content": "$3"
+			}
+		}
+	},
+	"invalidOffice365Member": {
+		"message": "Du kan ikke tilføje en e-mail som ikke tilhører en kontakt i din adressebog ($P1$)",
+		"placeholders": {
+			"P1": {
+				"content": "$1"
+			}
+		}
+	},
 	"validateIntegerMsg": {
 		"message": "Feltet $P1$ bør være nul eller et heltal mellem 1 og $P2$ (værdi : $P3$)",
         "placeholders": {
@@ -2870,6 +2952,27 @@
 	},
 	"worktype": {
 		"message": "Arbejde"
+	},
+	"otherfaxtype": {
+		"message": "Anden fax"
+	},
+	"assistanttype": {
+		"message": "Assistent"
+	},
+	"callbacktype": {
+		"message": "Tilbagekald"
+	},
+	"carphonetype": {
+		"message": "Bil"
+	},
+	"radiotype": {
+		"message": "Radio"
+	},
+	"telextype": {
+		"message": "Telex"
+	},
+	"ttytype": {
+		"message": "TTY"
 	},
 	"types.gender.f": {
 		"message": "Kvinde"
@@ -3282,9 +3385,6 @@
 	"eventInNoteEventPrefix": {
 		"message": "Begivenhed"
 	},
-	"deathSuffix": {
-		"message": "(død)"
-	},
 	"dateFormatsDLabel": {
 		"message": "D"
 	},
@@ -3600,20 +3700,20 @@
 	"cardbookContactPaneItemAccesskey": {
 		"message": "O"
 	},
+	"wizard.next.label": {
+		"message": "Næste"
+	},
+	"wizard.back.label": {
+		"message": "Tilbage"
+	},
+	"wizard.create.label": {
+		"message": "Opret"
+	},
 	"wizard.title": {
 		"message": "Tilføj en ny adressebog"
 	},
-	"wizard.label": {
-		"message": "Tilføj en ny adressebog"
-	},
-	"welcomePage.wizard.description": {
-		"message": "Velkommen"
-	},
 	"welcomePage.description": {
 		"message": "Det ser ud til at det er første gang du bruger CardBook, så vi vil prøve at indsamle kontakter. Først vil vi prøve at importere kontakter til CardBook fra Thunderbirds standardadressebøger, dernæst vil vi prøve at se efter mulige fjerne adressebøger."
-	},
-	"initialPage.wizard.description": {
-		"message": "Den nye adressebogs sted."
 	},
 	"initialPage.description": {
 		"message": "Adressebogens lokation:"
@@ -3632,9 +3732,6 @@
 	},
 	"initialPage.find.label": {
 		"message": "Søg efter fjerne adressebøger"
-	},
-	"localPage.wizard.description": {
-		"message": "Type og sted for den nye lokale adressebog."
 	},
 	"localPage.type.description": {
 		"message": "Lokal adressebogs type:"
@@ -3669,9 +3766,6 @@
 	"localPage.uributton.label": {
 		"message": "Søg"
 	},
-	"remotePage.wizard.description": {
-		"message": "Type og sted for den nye fjerne adressebog."
-	},
 	"remotePage.description": {
 		"message": "Hvilken type er din fjerne adressebog : (Forsigtig: Google overholder IKKE vCard-standarderne) ?"
 	},
@@ -3679,7 +3773,10 @@
 		"message": "Type"
 	},
 	"remotePageType.carddav.label": {
-		"message": "CardDAV"
+		"message": "CardDAV (Indtast eller indsæt en URL)"
+	},
+	"remotePageType.ews.label": {
+		"message": "EWS (Indtast eller indsæt en URL)"
 	},
 	"remotePageType.google2.label": {
 		"message": "Google"
@@ -3695,6 +3792,12 @@
 	},
 	"remotePageType.aol.com.label": {
 		"message": "AOL"
+	},
+	"remotePageType.gmx.label": {
+		"message": "GMX"
+	},
+	"remotePageType.mykolab.com.label": {
+		"message": "myKolab"
 	},
 	"remotePage.connection.label": {
 		"message": "Forbindelse"
@@ -3714,14 +3817,14 @@
 	"remotePage.password.label": {
 		"message": "Adgangskode:"
 	},
+	"rememberPassword": {
+		"message": "Brug Adgangskode-håndteringen til at huske denne adgangskode"
+	},
 	"showHidePassword.tooltip": {
 		"message": "Vis/skjul adgangskode"
 	},
 	"remotePage.validatebutton.label": {
 		"message": "Valider"
-	},
-	"locationSearchPage.wizard.description": {
-		"message": "Definition af den gemte søgning."
 	},
 	"locationSearchPage.label": {
 		"message": "Gemt søgning"
@@ -3747,9 +3850,6 @@
 	"googleOauthPage.wizard.description": {
 		"message": "Google-godkendelse"
 	},
-	"namePage.wizard.description": {
-		"message": "Adressebogsegenskaber"
-	},
 	"namePage.selected.label": {
 		"message": "Valgt"
 	},
@@ -3768,17 +3868,11 @@
 	"namePage.vCardVersion.label": {
 		"message": "vCard"
 	},
-	"namesPage.wizard.description": {
-		"message": "Adressebogsegenskaber"
-	},
 	"namesPage.name.label": {
 		"message": "Navne"
 	},
 	"namesPage.name.description": {
 		"message": "Flere adressebøger er fundet. Vælg hvilke adressebøger du vil åbne, og deres navne :"
-	},
-	"findPage.wizard.description": {
-		"message": "Søgning efter fjerne adressebøger"
 	},
 	"findPage.name1.description": {
 		"message": "Ingen adressebøger kan tilføjes."
@@ -3788,9 +3882,6 @@
 	},
 	"findPage.name3.description": {
 		"message": "Flere adressebøger kan tilføjes. Vælg hvilke adressebøger du vil tilføje :"
-	},
-	"finishPage.wizard.description": {
-		"message": "Adressebogsindstillinger"
 	},
 	"finishPage.description": {
 		"message": "Din nye adressebog er indstillet med success."
@@ -4404,6 +4495,12 @@
 	"typesCategoryAppleAccesskey": {
 		"message": "A"
 	},
+	"typesCategoryOffice365Label": {
+		"message": "Office365"
+	},
+	"typesCategoryOffice365Accesskey": {
+		"message": "O"
+	},
 	"typesCategoryYahooLabel": {
 		"message": "Yahoo!"
 	},
@@ -4781,6 +4878,9 @@
 	},
 	"birthdayListWarn": {
 		"message": "Mærkedage bliver kun søgt i CardBook-adressebøger."
+	},
+	"generalGroupboxLabel": {
+		"message": "Generelt"
 	},
 	"addressbooksGroupboxLabel": {
 		"message": "Adressebøger"
@@ -5436,8 +5536,11 @@
 	"importCardFromDirLabel": {
 		"message": "Importer kontakter fra et katalog"
 	},
+	"formatDataFromAccountsOrCatsLabel": {
+		"message": "Formater kontakters data"
+	},
 	"findDuplicatesFromAccountsOrCatsLabel": {
-		"message": "Find duplikerede kontakter i nuværende adressebog"
+		"message": "Find duplikerede kontakter"
 	},
 	"generateFnFromAccountsOrCatsLabel": {
 		"message": "Generer viste navne"
@@ -5561,12 +5664,6 @@
 	},
 	"displayFieldNamesAccesskey": {
 		"message": "F"
-	},
-	"displayTypesLabel": {
-		"message": "Typer og foretrukne"
-	},
-	"displayTypesAccesskey": {
-		"message": "y"
 	},
 	"fieldsToPrintGroupboxLabel": {
 		"message": "Hvad der skal udskrives"
@@ -5736,6 +5833,21 @@
 	"mergeAllEditionAccesskey": {
 		"message": "F"
 	},
+	"formatAllEditionLabel": {
+		"message": "Formater alle"
+	},
+	"formatAllEditionAccesskey": {
+		"message": "F"
+	},
+	"undoAllEditionLabel": {
+		"message": "Fortryd alle"
+	},
+	"undoAllEditionAccesskey": {
+		"message": "o"
+	},
+	"formatEditionLabel": {
+		"message": "Formater"
+	},
 	"buttonAppendToListLabel": {
 		"message": "Tilføj"
 	},
@@ -5776,7 +5888,20 @@
 		"message": "K"
 	},
 	"wdw_findDuplicatesTitle": {
-		"message": "Duplikerede kontakter"
+		"message": "Duplikerede kontakter ($P1$)",
+        "placeholders": {
+            "P1": {
+                "content": "$1"
+            }
+        }
+	},
+	"wdw_formatDataTitle": {
+		"message": "Formater kontakters data ($P1$)",
+        "placeholders": {
+            "P1": {
+                "content": "$1"
+            }
+        }
 	},
 	"addImageCardFromFileLabel": {
 		"message": "Tilføj billede fra en fil"
@@ -5858,5 +5983,8 @@
 	},
 	"orgTitleLabel": {
 		"message": "Professionel information"
+	},
+	"allAddressBooks": {
+		"message": "Alle adressebøger"
 	}
 }

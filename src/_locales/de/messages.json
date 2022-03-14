@@ -34,13 +34,13 @@
 		"message": "Verzeichnis wählen"
 	},
 	"fileCreationVCFTitle": {
-		"message": "Neue VCF-Datei erstellen (UTF-8 codiert)"
+		"message": "Neue VCF-Datei erstellen (UTF-8-codiert)"
 	},
 	"fileSelectionVCFTitle": {
-		"message": "Bestehende VCF-Datei öffnen (UTF-8 codiert)"
+		"message": "Bestehende VCF-Datei öffnen (UTF-8-codiert)"
 	},
 	"fileImportTitle": {
-		"message": "VCF-Datei importieren (UTF-8 codiert)"
+		"message": "VCF-Datei importieren (UTF-8-codiert)"
 	},
 	"dirImportTitle": {
 		"message": "Aus Verzeichnis importieren"
@@ -126,22 +126,25 @@
 	"noContactsDuplicated": {
 		"message": "Keine doppelten Kontakte gefunden."
 	},
+	"noDataAvailable": {
+		"message": "Keine Daten vorhanden."
+	},
 	"targetCategoryLabel": {
-		"message": "ergebnisse anzeigen"
+		"message": "Ergebnisse anzeigen"
 	},
 	"sourceCategoryLabel": {
-		"message": "quelle"
+		"message": "Quelle"
 	},
 	"serverWarningGoogleLabel": {
 		"message": "Die Benutzung mit Google ist experimentell, da Google die vCard-Spezifikationen nicht einhält."
 	},
 	"Validating1Label": {
 		"message": "Überprüfen ($P1$)…",
-        "placeholders": {
-            "P1": {
-                "content": "$1"
-            }
-        }
+		"placeholders": {
+			"P1": {
+				"content": "$1"
+			}
+		}
 	},
 	"Validating2Label": {
 		"message": "Überprüfen…"
@@ -149,11 +152,26 @@
 	"ValidatingURLFailedLabel": {
 		"message": "Ungültige URL"
 	},
+	"ValidatingURILabel": {
+		"message": "Eine URL eingeben oder einfügen"
+	},
+	"ValidatingURIFailedLabel": {
+		"message": "Ungültige URL"
+	},
+	"ValidatingLoginLabel": {
+		"message": "Ihr Benutzername"
+	},
+	"ValidatingEmailLabel": {
+		"message": "Bestehende E-Mail-Adresse"
+	},
 	"ValidatingEmailFailedLabel": {
 		"message": "Gültige E-Mail-Adresse erforderlich"
 	},
 	"ValidationFailedLabel": {
 		"message": "Überprüfung fehlgeschlagen"
+	},
+	"ValidationFailedOffLine": {
+		"message": "Sie sind derzeit offline."
 	},
 	"ValidationOKLabel": {
 		"message": "Überprüfung erfolgreich"
@@ -163,35 +181,35 @@
 	},
 	"customFieldsErrorUPPERCASE": {
 		"message": "Benutzerdefinierte Felder sollten in Großbuchstaben sein: $P1$",
-        "placeholders": {
-            "P1": {
-                "content": "$1"
-            }
-        }
+		"placeholders": {
+			"P1": {
+				"content": "$1"
+			}
+		}
 	},
 	"customFieldsErrorX": {
 		"message": "Benutzerdefinierte Felder sollten mit X- beginnen: $P1$",
-        "placeholders": {
-            "P1": {
-                "content": "$1"
-            }
-        }
+		"placeholders": {
+			"P1": {
+				"content": "$1"
+			}
+		}
 	},
 	"customFieldsErrorFIELD": {
 		"message": "$P1$ ist ein Schlüsselwort und kann nicht Name eines benutzerdefinierten Feldes sein",
-        "placeholders": {
-            "P1": {
-                "content": "$1"
-            }
-        }
+		"placeholders": {
+			"P1": {
+				"content": "$1"
+			}
+		}
 	},
 	"customFieldsErrorCHAR": {
 		"message": "Namen benutzerdefinierter Felder dürfen keine Zeichen wie Komma, Strichpunkt, Doppelpunkt oder Punkt enthalten: $P1$",
-        "placeholders": {
-            "P1": {
-                "content": "$1"
-            }
-        }
+		"placeholders": {
+			"P1": {
+				"content": "$1"
+			}
+		}
 	},
 	"customFieldsErrorUNIQUE": {
 		"message": "Namen benutzerdefinierter Felder müssen eindeutig sein (Benutzerdefinierte Felder werden in mehreren Tabs definiert)."
@@ -201,636 +219,636 @@
 	},
 	"allContactsLoadedFromFile": {
 		"message": "$P1$: Alle Kontakte aus der Datei geladen.",
-        "placeholders": {
-            "P1": {
-                "content": "$1"
-            }
-        }
+		"placeholders": {
+			"P1": {
+				"content": "$1"
+			}
+		}
 	},
 	"notAllContactsLoadedFromFile": {
 		"message": "$P1$: Nicht alle Kontakte aus der Datei geladen. Fehler: $P2$",
-        "placeholders": {
-            "P1": {
-                "content": "$1"
-            },
-            "P2": {
-                "content": "$2"
-            }
-        }
+		"placeholders": {
+			"P1": {
+				"content": "$1"
+			},
+			"P2": {
+				"content": "$2"
+			}
+		}
 	},
 	"synchroRunning": {
 		"message": "$P1$: Synchronisation läuft",
-        "placeholders": {
-            "P1": {
-                "content": "$1"
-            }
-        }
+		"placeholders": {
+			"P1": {
+				"content": "$1"
+			}
+		}
 	},
 	"synchroNotTried": {
 		"message": "$P1$: Synchronisation noch nicht durchgeführt.",
-        "placeholders": {
-            "P1": {
-                "content": "$1"
-            }
-        }
+		"placeholders": {
+			"P1": {
+				"content": "$1"
+			}
+		}
 	},
 	"synchroFinished": {
 		"message": "$P1$: Synchronisation beendet",
-        "placeholders": {
-            "P1": {
-                "content": "$1"
-            }
-        }
+		"placeholders": {
+			"P1": {
+				"content": "$1"
+			}
+		}
 	},
 	"synchroFinishedResult": {
 		"message": "$P1$: Synchronisation beendet. Ergebnisse:",
-        "placeholders": {
-            "P1": {
-                "content": "$1"
-            }
-        }
+		"placeholders": {
+			"P1": {
+				"content": "$1"
+			}
+		}
 	},
 	"synchroProcessed": {
 		"message": "Kontakte bearbeitet: $P1$/$P2$",
-        "placeholders": {
-            "P1": {
-                "content": "$1"
-            },
-            "P2": {
-                "content": "$2"
-            }
-        }
+		"placeholders": {
+			"P1": {
+				"content": "$1"
+			},
+			"P2": {
+				"content": "$2"
+			}
+		}
 	},
 	"synchroCardsUpToDate": {
 		"message": "$P1$: Nicht veränderte Kontakte: $P2$",
-        "placeholders": {
-            "P1": {
-                "content": "$1"
-            },
-            "P2": {
-                "content": "$2"
-            }
-        }
+		"placeholders": {
+			"P1": {
+				"content": "$1"
+			},
+			"P2": {
+				"content": "$2"
+			}
+		}
 	},
 	"synchroCardsNewOnServer": {
 		"message": "$P1$: Neue Kontakte auf dem Server: $P2$",
-        "placeholders": {
-            "P1": {
-                "content": "$1"
-            },
-            "P2": {
-                "content": "$2"
-            }
-        }
+		"placeholders": {
+			"P1": {
+				"content": "$1"
+			},
+			"P2": {
+				"content": "$2"
+			}
+		}
 	},
 	"synchroCardsUpdatedOnServer": {
 		"message": "$P1$: Auf dem Server aktualisierte Kontakte: $P2$",
-        "placeholders": {
-            "P1": {
-                "content": "$1"
-            },
-            "P2": {
-                "content": "$2"
-            }
-        }
+		"placeholders": {
+			"P1": {
+				"content": "$1"
+			},
+			"P2": {
+				"content": "$2"
+			}
+		}
 	},
 	"synchroCardsDeletedOnServer": {
 		"message": "$P1$: Auf dem Server gelöschte Kontakte: $P2$",
-        "placeholders": {
-            "P1": {
-                "content": "$1"
-            },
-            "P2": {
-                "content": "$2"
-            }
-        }
+		"placeholders": {
+			"P1": {
+				"content": "$1"
+			},
+			"P2": {
+				"content": "$2"
+			}
+		}
 	},
 	"synchroCardsDeletedOnDisk": {
 		"message": "$P1$: Kontakte lokal gelöscht: $P2$",
-        "placeholders": {
-            "P1": {
-                "content": "$1"
-            },
-            "P2": {
-                "content": "$2"
-            }
-        }
+		"placeholders": {
+			"P1": {
+				"content": "$1"
+			},
+			"P2": {
+				"content": "$2"
+			}
+		}
 	},
 	"synchroCardsDeletedOnDiskUpdatedOnServer": {
 		"message": "$P1$: Lokal gelöschte aber auf dem Server aktualisierte Kontakte: $P2$",
-        "placeholders": {
-            "P1": {
-                "content": "$1"
-            },
-            "P2": {
-                "content": "$2"
-            }
-        }
+		"placeholders": {
+			"P1": {
+				"content": "$1"
+			},
+			"P2": {
+				"content": "$2"
+			}
+		}
 	},
 	"synchroCardsNewOnDisk": {
 		"message": "$P1$: Neue lokale Kontakte: $P2$",
-        "placeholders": {
-            "P1": {
-                "content": "$1"
-            },
-            "P2": {
-                "content": "$2"
-            }
-        }
+		"placeholders": {
+			"P1": {
+				"content": "$1"
+			},
+			"P2": {
+				"content": "$2"
+			}
+		}
 	},
 	"synchroCardsUpdatedOnDisk": {
 		"message": "$P1$: Kontakte lokal aktualisiert: $P2$",
-        "placeholders": {
-            "P1": {
-                "content": "$1"
-            },
-            "P2": {
-                "content": "$2"
-            }
-        }
+		"placeholders": {
+			"P1": {
+				"content": "$1"
+			},
+			"P2": {
+				"content": "$2"
+			}
+		}
 	},
 	"synchroCardsUpdatedOnBoth": {
 		"message": "$P1$: Kontakte lokal und auf dem Server aktualisiert: $P2$",
-        "placeholders": {
-            "P1": {
-                "content": "$1"
-            },
-            "P2": {
-                "content": "$2"
-            }
-        }
+		"placeholders": {
+			"P1": {
+				"content": "$1"
+			},
+			"P2": {
+				"content": "$2"
+			}
+		}
 	},
 	"synchroCardsUpdatedOnDiskDeletedOnServer": {
 		"message": "$P1$: Kontakte lokal aktualisiert und vom Server gelöscht: $P2$",
-        "placeholders": {
-            "P1": {
-                "content": "$1"
-            },
-            "P2": {
-                "content": "$2"
-            }
-        }
+		"placeholders": {
+			"P1": {
+				"content": "$1"
+			},
+			"P2": {
+				"content": "$2"
+			}
+		}
 	},
 	"synchroCategoriesUpToDate": {
 		"message": "$P1$: Nicht veränderte Kategorien: $P2$",
-        "placeholders": {
-            "P1": {
-                "content": "$1"
-            },
-            "P2": {
-                "content": "$2"
-            }
-        }
+		"placeholders": {
+			"P1": {
+				"content": "$1"
+			},
+			"P2": {
+				"content": "$2"
+			}
+		}
 	},
 	"synchroCategoriesNewOnServer": {
 		"message": "$P1$: Neue Kategorien auf dem Server: $P2$",
-        "placeholders": {
-            "P1": {
-                "content": "$1"
-            },
-            "P2": {
-                "content": "$2"
-            }
-        }
+		"placeholders": {
+			"P1": {
+				"content": "$1"
+			},
+			"P2": {
+				"content": "$2"
+			}
+		}
 	},
 	"synchroCategoriesUpdatedOnServer": {
 		"message": "$P1$: Kategorien auf dem Server aktualisiert: $P2$",
-        "placeholders": {
-            "P1": {
-                "content": "$1"
-            },
-            "P2": {
-                "content": "$2"
-            }
-        }
+		"placeholders": {
+			"P1": {
+				"content": "$1"
+			},
+			"P2": {
+				"content": "$2"
+			}
+		}
 	},
 	"synchroCategoriesDeletedOnServer": {
 		"message": "$P1$: Kategorien vom Server gelöscht: $P2$",
-        "placeholders": {
-            "P1": {
-                "content": "$1"
-            },
-            "P2": {
-                "content": "$2"
-            }
-        }
+		"placeholders": {
+			"P1": {
+				"content": "$1"
+			},
+			"P2": {
+				"content": "$2"
+			}
+		}
 	},
 	"synchroCategoriesDeletedOnDisk": {
 		"message": "$P1$: Kategorien lokal gelöscht: $P2$",
-        "placeholders": {
-            "P1": {
-                "content": "$1"
-            },
-            "P2": {
-                "content": "$2"
-            }
-        }
+		"placeholders": {
+			"P1": {
+				"content": "$1"
+			},
+			"P2": {
+				"content": "$2"
+			}
+		}
 	},
 	"synchroCategoriesDeletedOnDiskUpdatedOnServer": {
 		"message": "$P1$: Kategorien lokal gelöscht und auf dem Server aktualisiert: $P2$",
-        "placeholders": {
-            "P1": {
-                "content": "$1"
-            },
-            "P2": {
-                "content": "$2"
-            }
-        }
+		"placeholders": {
+			"P1": {
+				"content": "$1"
+			},
+			"P2": {
+				"content": "$2"
+			}
+		}
 	},
 	"synchroCategoriesNewOnDisk": {
 		"message": "$P1$: Neue lokale Kategorien: $P2$",
-        "placeholders": {
-            "P1": {
-                "content": "$1"
-            },
-            "P2": {
-                "content": "$2"
-            }
-        }
+		"placeholders": {
+			"P1": {
+				"content": "$1"
+			},
+			"P2": {
+				"content": "$2"
+			}
+		}
 	},
 	"synchroCategoriesUpdatedOnDisk": {
 		"message": "$P1$: Kategorien lokal aktualisiert: $P2$",
-        "placeholders": {
-            "P1": {
-                "content": "$1"
-            },
-            "P2": {
-                "content": "$2"
-            }
-        }
+		"placeholders": {
+			"P1": {
+				"content": "$1"
+			},
+			"P2": {
+				"content": "$2"
+			}
+		}
 	},
 	"synchroCategoriesUpdatedOnBoth": {
 		"message": "$P1$: Kategorien lokal und auf dem Server aktualisiert: $P2$",
-        "placeholders": {
-            "P1": {
-                "content": "$1"
-            },
-            "P2": {
-                "content": "$2"
-            }
-        }
+		"placeholders": {
+			"P1": {
+				"content": "$1"
+			},
+			"P2": {
+				"content": "$2"
+			}
+		}
 	},
 	"synchroCategoriesUpdatedOnDiskDeletedOnServer": {
 		"message": "$P1$: Kategorien lokal aktualisiert und vom Server gelöscht: $P2$",
-        "placeholders": {
-            "P1": {
-                "content": "$1"
-            },
-            "P2": {
-                "content": "$2"
-            }
-        }
+		"placeholders": {
+			"P1": {
+				"content": "$1"
+			},
+			"P2": {
+				"content": "$2"
+			}
+		}
 	},
 	"synchroModifGetOKFromServer": {
 		"message": "$P1$: Erfolgreich vom Server empfangene Änderungen: $P2$",
-        "placeholders": {
-            "P1": {
-                "content": "$1"
-            },
-            "P2": {
-                "content": "$2"
-            }
-        }
+		"placeholders": {
+			"P1": {
+				"content": "$1"
+			},
+			"P2": {
+				"content": "$2"
+			}
+		}
 	},
 	"synchroModifGetKOFromServer": {
 		"message": "$P1$: Erfolglos vom Server empfangene Änderungen: $P2$",
-        "placeholders": {
-            "P1": {
-                "content": "$1"
-            },
-            "P2": {
-                "content": "$2"
-            }
-        }
+		"placeholders": {
+			"P1": {
+				"content": "$1"
+			},
+			"P2": {
+				"content": "$2"
+			}
+		}
 	},
 	"synchroModifPutOKToServer": {
 		"message": "$P1$: Erfolgreich an den Server gesendete Änderungen: $P2$",
-        "placeholders": {
-            "P1": {
-                "content": "$1"
-            },
-            "P2": {
-                "content": "$2"
-            }
-        }
+		"placeholders": {
+			"P1": {
+				"content": "$1"
+			},
+			"P2": {
+				"content": "$2"
+			}
+		}
 	},
 	"synchroModifPutKOToServer": {
 		"message": "$P1$: Erfolglos an den Server gesendete Änderungen: $P2$",
-        "placeholders": {
-            "P1": {
-                "content": "$1"
-            },
-            "P2": {
-                "content": "$2"
-            }
-        }
+		"placeholders": {
+			"P1": {
+				"content": "$1"
+			},
+			"P2": {
+				"content": "$2"
+			}
+		}
 	},
 	"synchroImpossible": {
 		"message": "$P1$: Synchronisation mit dem Server nicht möglich.",
-        "placeholders": {
-            "P1": {
-                "content": "$1"
-            }
-        }
+		"placeholders": {
+			"P1": {
+				"content": "$1"
+			}
+		}
 	},
 	"synchroDBFinishedResult": {
 		"message": "$P1$: Lokale Datenbank geöffnet, Ergebnisse:",
-        "placeholders": {
-            "P1": {
-                "content": "$1"
-            }
-        }
+		"placeholders": {
+			"P1": {
+				"content": "$1"
+			}
+		}
 	},
 	"synchroDBCardsOK": {
 		"message": "$P1$: Geöffnete Kontakte: $P2$",
-        "placeholders": {
-            "P1": {
-                "content": "$1"
-            },
-            "P2": {
-                "content": "$2"
-            }
-        }
+		"placeholders": {
+			"P1": {
+				"content": "$1"
+			},
+			"P2": {
+				"content": "$2"
+			}
+		}
 	},
 	"synchroDBCardsKO": {
 		"message": "$P1$: Fehlerhafte Kontakte: $P2$",
-        "placeholders": {
-            "P1": {
-                "content": "$1"
-            },
-            "P2": {
-                "content": "$2"
-            }
-        }
+		"placeholders": {
+			"P1": {
+				"content": "$1"
+			},
+			"P2": {
+				"content": "$2"
+			}
+		}
 	},
 	"synchroDirFinishedResult": {
 		"message": "$P1$: Verzeichnis geöffnet, Ergebnisse:",
-        "placeholders": {
-            "P1": {
-                "content": "$1"
-            }
-        }
+		"placeholders": {
+			"P1": {
+				"content": "$1"
+			}
+		}
 	},
 	"synchroDirCardsOK": {
 		"message": "$P1$: Geöffnete Kontakte: $P2$",
-        "placeholders": {
-            "P1": {
-                "content": "$1"
-            },
-            "P2": {
-                "content": "$2"
-            }
-        }
+		"placeholders": {
+			"P1": {
+				"content": "$1"
+			},
+			"P2": {
+				"content": "$2"
+			}
+		}
 	},
 	"synchroDirCardsKO": {
 		"message": "$P1$: Fehlerhafte Kontakte: $P2$",
-        "placeholders": {
-            "P1": {
-                "content": "$1"
-            },
-            "P2": {
-                "content": "$2"
-            }
-        }
+		"placeholders": {
+			"P1": {
+				"content": "$1"
+			},
+			"P2": {
+				"content": "$2"
+			}
+		}
 	},
 	"synchroFileFinishedResult": {
 		"message": "$P1$: Datei geöffnet. Ergebnisse:",
-        "placeholders": {
-            "P1": {
-                "content": "$1"
-            }
-        }
+		"placeholders": {
+			"P1": {
+				"content": "$1"
+			}
+		}
 	},
 	"synchroFileCardsOK": {
 		"message": "$P1$: Geöffnete Kontakte: $P2$",
-        "placeholders": {
-            "P1": {
-                "content": "$1"
-            },
-            "P2": {
-                "content": "$2"
-            }
-        }
+		"placeholders": {
+			"P1": {
+				"content": "$1"
+			},
+			"P2": {
+				"content": "$2"
+			}
+		}
 	},
 	"synchroFileCardsKO": {
 		"message": "$P1$: Fehlerhafte Kontakte: $P2$",
-        "placeholders": {
-            "P1": {
-                "content": "$1"
-            },
-            "P2": {
-                "content": "$2"
-            }
-        }
+		"placeholders": {
+			"P1": {
+				"content": "$1"
+			},
+			"P2": {
+				"content": "$2"
+			}
+		}
 	},
 	"synchroForcedToResync": {
 		"message": "$P1$: Dieses Konto muss resynchronisiert werden.",
-        "placeholders": {
-            "P1": {
-                "content": "$1"
-            }
-        }
+		"placeholders": {
+			"P1": {
+				"content": "$1"
+			}
+		}
 	},
 	"synchroAllFinished": {
 		"message": "Alle Synchronisationen beendet."
 	},
 	"discoveryRunning": {
 		"message": "$P1$: Auto-Discovery für Adressbücher läuft",
-        "placeholders": {
-            "P1": {
-                "content": "$1"
-            }
-        }
+		"placeholders": {
+			"P1": {
+				"content": "$1"
+			}
+		}
 	},
 	"imageGetResponse": {
 		"message": "$P1$: Bilder heruntergeladen: $P2$",
-        "placeholders": {
-            "P1": {
-                "content": "$1"
-            },
-            "P2": {
-                "content": "$2"
-            }
-        }
+		"placeholders": {
+			"P1": {
+				"content": "$1"
+			},
+			"P2": {
+				"content": "$2"
+			}
+		}
 	},
 	"imageGetError": {
 		"message": "$P1$: Bilder mit Fehlern: $P2$",
-        "placeholders": {
-            "P1": {
-                "content": "$1"
-            },
-            "P2": {
-                "content": "$2"
-            }
-        }
+		"placeholders": {
+			"P1": {
+				"content": "$1"
+			},
+			"P2": {
+				"content": "$2"
+			}
+		}
 	},
 	"importFinishedResult": {
 		"message": "$P1$: Import beendet, Ergebnisse:",
-        "placeholders": {
-            "P1": {
-                "content": "$1"
-            }
-        }
+		"placeholders": {
+			"P1": {
+				"content": "$1"
+			}
+		}
 	},
 	"importCardsOK": {
 		"message": "$P1$: Kontakte importiert: $P2$",
-        "placeholders": {
-            "P1": {
-                "content": "$1"
-            },
-            "P2": {
-                "content": "$2"
-            }
-        }
+		"placeholders": {
+			"P1": {
+				"content": "$1"
+			},
+			"P2": {
+				"content": "$2"
+			}
+		}
 	},
 	"importCardsKO": {
 		"message": "$P1$: Kontakte fehlerhaft: $P2$",
-        "placeholders": {
-            "P1": {
-                "content": "$1"
-            },
-            "P2": {
-                "content": "$2"
-            }
-        }
+		"placeholders": {
+			"P1": {
+				"content": "$1"
+			},
+			"P2": {
+				"content": "$2"
+			}
+		}
 	},
 	"importAllFinished": {
 		"message": "Alle Importe beendet."
 	},
 	"cardDeletedOnDisk": {
 		"message": "$P1$: Kontakt $P2$ lokal gelöscht",
-        "placeholders": {
-            "P1": {
-                "content": "$1"
-            },
-            "P2": {
-                "content": "$2"
-            }
-        }
+		"placeholders": {
+			"P1": {
+				"content": "$1"
+			},
+			"P2": {
+				"content": "$2"
+			}
+		}
 	},
 	"cardUpdatedOnDisk": {
 		"message": "$P1$: Kontakt $P2$ lokal aktualisiert",
-        "placeholders": {
-            "P1": {
-                "content": "$1"
-            },
-            "P2": {
-                "content": "$2"
-            }
-        }
+		"placeholders": {
+			"P1": {
+				"content": "$1"
+			},
+			"P2": {
+				"content": "$2"
+			}
+		}
 	},
 	"cardAlreadyGetFromCache": {
 		"message": "$P1$: Kontakt $P2$ bereits aus dem Cache gelesen",
-        "placeholders": {
-            "P1": {
-                "content": "$1"
-            },
-            "P2": {
-                "content": "$2"
-            }
-        }
+		"placeholders": {
+			"P1": {
+				"content": "$1"
+			},
+			"P2": {
+				"content": "$2"
+			}
+		}
 	},
 	"cardDeletedOnDiskUpdatedOnServer": {
 		"message": "$P1$: Kontakt $P2$ lokal gelöscht und auf dem Server aktualisiert",
-        "placeholders": {
-            "P1": {
-                "content": "$1"
-            },
-            "P2": {
-                "content": "$2"
-            }
-        }
+		"placeholders": {
+			"P1": {
+				"content": "$1"
+			},
+			"P2": {
+				"content": "$2"
+			}
+		}
 	},
 	"cardUpdatedOnBoth": {
 		"message": "$P1$: Kontakt $P2$ lokal und auf dem Server aktualisiert",
-        "placeholders": {
-            "P1": {
-                "content": "$1"
-            },
-            "P2": {
-                "content": "$2"
-            }
-        }
+		"placeholders": {
+			"P1": {
+				"content": "$1"
+			},
+			"P2": {
+				"content": "$2"
+			}
+		}
 	},
 	"cardUpdatedOnServer": {
 		"message": "$P1$: Kontakt $P2$ auf dem Server aktualisiert (etag gefunden: $P3$, etag im Cache: $P4$)",
-        "placeholders": {
-            "P1": {
-                "content": "$1"
-            },
-            "P2": {
-                "content": "$2"
-            },
-            "P3": {
-                "content": "$3"
-            },
-            "P4": {
-                "content": "$4"
-            }
-        }
+		"placeholders": {
+			"P1": {
+				"content": "$1"
+			},
+			"P2": {
+				"content": "$2"
+			},
+			"P3": {
+				"content": "$3"
+			},
+			"P4": {
+				"content": "$4"
+			}
+		}
 	},
 	"cardNewOnServer": {
 		"message": "$P1$: Neuer Kontakt auf dem Server gefunden",
-        "placeholders": {
-            "P1": {
-                "content": "$1"
-            }
-        }
+		"placeholders": {
+			"P1": {
+				"content": "$1"
+			}
+		}
 	},
 	"cardLoadedFromCacheDB": {
 		"message": "$P1$: Kontakt $P2$ aus dem Cache geladen (IndexedDB)",
-        "placeholders": {
-            "P1": {
-                "content": "$1"
-            },
-            "P2": {
-                "content": "$2"
-            }
-        }
+		"placeholders": {
+			"P1": {
+				"content": "$1"
+			},
+			"P2": {
+				"content": "$2"
+			}
+		}
 	},
 	"cardNewOnDisk": {
 		"message": "$P1$: Neuer lokaler Kontakt: $P2$",
-        "placeholders": {
-            "P1": {
-                "content": "$1"
-            },
-            "P2": {
-                "content": "$2"
-            }
-        }
+		"placeholders": {
+			"P1": {
+				"content": "$1"
+			},
+			"P2": {
+				"content": "$2"
+			}
+		}
 	},
 	"cardUpdatedOnDiskDeletedOnServer": {
 		"message": "$P1$: Kontakt $P2$ lokal aktualisiert und vom Server gelöscht",
-        "placeholders": {
-            "P1": {
-                "content": "$1"
-            },
-            "P2": {
-                "content": "$2"
-            }
-        }
+		"placeholders": {
+			"P1": {
+				"content": "$1"
+			},
+			"P2": {
+				"content": "$2"
+			}
+		}
 	},
 	"cardDeletedOnServer": {
 		"message": "$P1$: Kontakt $P2$ auf dem Server gelöscht",
-        "placeholders": {
-            "P1": {
-                "content": "$1"
-            },
-            "P2": {
-                "content": "$2"
-            }
-        }
+		"placeholders": {
+			"P1": {
+				"content": "$1"
+			},
+			"P2": {
+				"content": "$2"
+			}
+		}
 	},
 	"cardAlreadyExists": {
 		"message": "$P1$: Kontakt $P2$ existiert bereits",
-        "placeholders": {
-            "P1": {
-                "content": "$1"
-            },
-            "P2": {
-                "content": "$2"
-            }
-        }
+		"placeholders": {
+			"P1": {
+				"content": "$1"
+			},
+			"P2": {
+				"content": "$2"
+			}
+		}
 	},
 	"cardAskUserTitle": {
 		"message": "Konflikt beim Ändern des Kontakts"
@@ -861,524 +879,524 @@
 	},
 	"serverCardDeletedFromServer": {
 		"message": "$P1$: Kontakt $P2$ vom Server gelöscht",
-        "placeholders": {
-            "P1": {
-                "content": "$1"
-            },
-            "P2": {
-                "content": "$2"
-            }
-        }
+		"placeholders": {
+			"P1": {
+				"content": "$1"
+			},
+			"P2": {
+				"content": "$2"
+			}
+		}
 	},
 	"serverCardNotExistServer": {
 		"message": "$P1$: Kontakt $P2$ existiert nicht auf dem Server",
-        "placeholders": {
-            "P1": {
-                "content": "$1"
-            },
-            "P2": {
-                "content": "$2"
-            }
-        }
+		"placeholders": {
+			"P1": {
+				"content": "$1"
+			},
+			"P2": {
+				"content": "$2"
+			}
+		}
 	},
 	"serverCardDeleteFailed": {
 		"message": "$P1$: Kontakt $P2$ konnte nicht vom Server gelöscht werden (URL: $P3$, Status: $P4$)",
-        "placeholders": {
-            "P1": {
-                "content": "$1"
-            },
-            "P2": {
-                "content": "$2"
-            },
-            "P3": {
-                "content": "$3"
-            },
-            "P4": {
-                "content": "$4"
-            }
-        }
+		"placeholders": {
+			"P1": {
+				"content": "$1"
+			},
+			"P2": {
+				"content": "$2"
+			},
+			"P3": {
+				"content": "$3"
+			},
+			"P4": {
+				"content": "$4"
+			}
+		}
 	},
 	"serverCardSendingDeletion": {
 		"message": "$P1$: Kontakt $P2$: Sende Löschauftrag …",
-        "placeholders": {
-            "P1": {
-                "content": "$1"
-            },
-            "P2": {
-                "content": "$2"
-            }
-        }
+		"placeholders": {
+			"P1": {
+				"content": "$1"
+			},
+			"P2": {
+				"content": "$2"
+			}
+		}
 	},
 	"serverCardUpdatedOnServerWithEtag": {
 		"message": "$P1$: Kontakt $P2$ auf dem Server aktualisiert (etag: $P3$)",
-        "placeholders": {
-            "P1": {
-                "content": "$1"
-            },
-            "P2": {
-                "content": "$2"
-            },
-            "P3": {
-                "content": "$3"
-            }
-        }
+		"placeholders": {
+			"P1": {
+				"content": "$1"
+			},
+			"P2": {
+				"content": "$2"
+			},
+			"P3": {
+				"content": "$3"
+			}
+		}
 	},
 	"serverCardUpdatedOnServerWithoutEtag": {
 		"message": "$P1$: Kontakt $P2$ auf dem Server aktualisiert (Kein etag in Antwort)",
-        "placeholders": {
-            "P1": {
-                "content": "$1"
-            },
-            "P2": {
-                "content": "$2"
-            }
-        }
+		"placeholders": {
+			"P1": {
+				"content": "$1"
+			},
+			"P2": {
+				"content": "$2"
+			}
+		}
 	},
 	"serverCardUpdateFailed": {
 		"message": "$P1$: Kontakt $P2$ konnte nicht auf dem Server aktualisiert werden (URL: $P3$, Status: $P4$)",
-        "placeholders": {
-            "P1": {
-                "content": "$1"
-            },
-            "P2": {
-                "content": "$2"
-            },
-            "P3": {
-                "content": "$3"
-            },
-            "P4": {
-                "content": "$4"
-            }
-        }
+		"placeholders": {
+			"P1": {
+				"content": "$1"
+			},
+			"P2": {
+				"content": "$2"
+			},
+			"P3": {
+				"content": "$3"
+			},
+			"P4": {
+				"content": "$4"
+			}
+		}
 	},
 	"serverCardSendingUpdate": {
 		"message": "$P1$: Kontakt $P2$: Sende Aktualisierungsauftrag …",
-        "placeholders": {
-            "P1": {
-                "content": "$1"
-            },
-            "P2": {
-                "content": "$2"
-            }
-        }
+		"placeholders": {
+			"P1": {
+				"content": "$1"
+			},
+			"P2": {
+				"content": "$2"
+			}
+		}
 	},
 	"serverCardCreatedOnServerWithEtag": {
 		"message": "$P1$: Kontakt $P2$ auf dem Server erstellt (etag: $P3$)",
-        "placeholders": {
-            "P1": {
-                "content": "$1"
-            },
-            "P2": {
-                "content": "$2"
-            },
-            "P3": {
-                "content": "$3"
-            }
-        }
+		"placeholders": {
+			"P1": {
+				"content": "$1"
+			},
+			"P2": {
+				"content": "$2"
+			},
+			"P3": {
+				"content": "$3"
+			}
+		}
 	},
 	"serverCardCreatedOnServerWithoutEtag": {
 		"message": "$P1$: Kontakt $P2$ auf dem Server erstellt (Kein etag in Antwort)",
-        "placeholders": {
-            "P1": {
-                "content": "$1"
-            },
-            "P2": {
-                "content": "$2"
-            }
-        }
+		"placeholders": {
+			"P1": {
+				"content": "$1"
+			},
+			"P2": {
+				"content": "$2"
+			}
+		}
 	},
 	"serverCardCreateFailed": {
 		"message": "$P1$: Kontakt $P2$ konnte nicht auf dem Server erstellt werden (URL: $P3$, Status: $P4$)",
-        "placeholders": {
-            "P1": {
-                "content": "$1"
-            },
-            "P2": {
-                "content": "$2"
-            },
-            "P3": {
-                "content": "$3"
-            },
-            "P4": {
-                "content": "$4"
-            }
-        }
+		"placeholders": {
+			"P1": {
+				"content": "$1"
+			},
+			"P2": {
+				"content": "$2"
+			},
+			"P3": {
+				"content": "$3"
+			},
+			"P4": {
+				"content": "$4"
+			}
+		}
 	},
 	"serverCardSendingCreate": {
 		"message": "$P1$: Kontakt $P2$: Sende Erstellungsauftrag …",
-        "placeholders": {
-            "P1": {
-                "content": "$1"
-            },
-            "P2": {
-                "content": "$2"
-            }
-        }
+		"placeholders": {
+			"P1": {
+				"content": "$1"
+			},
+			"P2": {
+				"content": "$2"
+			}
+		}
 	},
 	"serverCardGetImageFailed": {
 		"message": "$P1$: Bild konnte nicht heruntergeladen werden für Kontakt $P2$ (URL: $P3$, Status: $P4$)",
-        "placeholders": {
-            "P1": {
-                "content": "$1"
-            },
-            "P2": {
-                "content": "$2"
-            },
-            "P3": {
-                "content": "$3"
-            },
-            "P4": {
-                "content": "$4"
-            }
-        }
+		"placeholders": {
+			"P1": {
+				"content": "$1"
+			},
+			"P2": {
+				"content": "$2"
+			},
+			"P3": {
+				"content": "$3"
+			},
+			"P4": {
+				"content": "$4"
+			}
+		}
 	},
 	"serverCardGetImageOK": {
 		"message": "$P1$: Bild heruntergeladen für Kontakt $P2$",
-        "placeholders": {
-            "P1": {
-                "content": "$1"
-            },
-            "P2": {
-                "content": "$2"
-            }
-        }
+		"placeholders": {
+			"P1": {
+				"content": "$1"
+			},
+			"P2": {
+				"content": "$2"
+			}
+		}
 	},
 	"serverCardGettingImage": {
 		"message": "$P1$: Bild wird heruntergeladen für Kontakt $P2$ …",
-        "placeholders": {
-            "P1": {
-                "content": "$1"
-            },
-            "P2": {
-                "content": "$2"
-            }
-        }
+		"placeholders": {
+			"P1": {
+				"content": "$1"
+			},
+			"P2": {
+				"content": "$2"
+			}
+		}
 	},
 	"serverCardGetKeyFailed": {
-		"message": "$P1$: Der Schlüssel für Kontakt $P2$ konnte nicht heruntergeladen werden (url : $P3$, status : $P4$)",
-        "placeholders": {
-            "P1": {
-                "content": "$1"
-            },
-            "P2": {
-                "content": "$2"
-            },
-            "P3": {
-                "content": "$3"
-            },
-            "P4": {
-                "content": "$4"
-            }
-        }
+		"message": "$P1$: Der Schlüssel für Kontakt $P2$ konnte nicht heruntergeladen werden (URL: $P3$, Status: $P4$)",
+		"placeholders": {
+			"P1": {
+				"content": "$1"
+			},
+			"P2": {
+				"content": "$2"
+			},
+			"P3": {
+				"content": "$3"
+			},
+			"P4": {
+				"content": "$4"
+			}
+		}
 	},
 	"serverCardGetKeyOK": {
 		"message": "$P1$: Der Schlüssel für Kontakt $P2$ wurde heruntergeladen",
-        "placeholders": {
-            "P1": {
-                "content": "$1"
-            },
-            "P2": {
-                "content": "$2"
-            }
-        }
+		"placeholders": {
+			"P1": {
+				"content": "$1"
+			},
+			"P2": {
+				"content": "$2"
+			}
+		}
 	},
 	"serverCardGettingKey": {
 		"message": "$P1$: Der Schlüssel für Kontakt $P2$ wird heruntergeladen …",
-        "placeholders": {
-            "P1": {
-                "content": "$1"
-            },
-            "P2": {
-                "content": "$2"
-            }
-        }
+		"placeholders": {
+			"P1": {
+				"content": "$1"
+			},
+			"P2": {
+				"content": "$2"
+			}
+		}
 	},
 	"serverCardGetOK": {
 		"message": "$P1$: Kontakt $P2$ von Server geladen",
-        "placeholders": {
-            "P1": {
-                "content": "$1"
-            },
-            "P2": {
-                "content": "$2"
-            }
-        }
+		"placeholders": {
+			"P1": {
+				"content": "$1"
+			},
+			"P2": {
+				"content": "$2"
+			}
+		}
 	},
 	"serverCardGetFailed": {
 		"message": "$P1$: Fehler: Konnte nicht von Server laden (URL: $P2$, Status: $P3$)",
-        "placeholders": {
-            "P1": {
-                "content": "$1"
-            },
-            "P2": {
-                "content": "$2"
-            },
-            "P3": {
-                "content": "$3"
-            }
-        }
+		"placeholders": {
+			"P1": {
+				"content": "$1"
+			},
+			"P2": {
+				"content": "$2"
+			},
+			"P3": {
+				"content": "$3"
+			}
+		}
 	},
 	"serverSendingGetLabels": {
-		"message": "$P1$: sende Anfrage für Kontakt Labels …",
-        "placeholders": {
-            "P1": {
-                "content": "$1"
-            }
-        }
+		"message": "$P1$: Anfrage für Kontakt-Labels senden …",
+		"placeholders": {
+			"P1": {
+				"content": "$1"
+			}
+		}
 	},
 	"serverGetLabelsOK": {
 		"message": "$P1$: Labels erhalten",
-        "placeholders": {
-            "P1": {
-                "content": "$1"
-            }
-        }
+		"placeholders": {
+			"P1": {
+				"content": "$1"
+			}
+		}
 	},
 	"serverGetLabelsFailed": {
-		"message": "$P1$: Keine Labels vom Server erhalten (url : $P2$, status : $P3$)",
-        "placeholders": {
-            "P1": {
-                "content": "$1"
-            },
-            "P2": {
-                "content": "$2"
-            },
-            "P3": {
-                "content": "$3"
-            }
-        }
+		"message": "$P1$: Keine Labels vom Server erhalten (URL: $P2$, Status: $P3$)",
+		"placeholders": {
+			"P1": {
+				"content": "$1"
+			},
+			"P2": {
+				"content": "$2"
+			},
+			"P3": {
+				"content": "$3"
+			}
+		}
 	},
 	"serverSendingGetCardLabels": {
-		"message": "$P1$: Kontakt $P2$ : sende Anfrage für Kontakt Labels …",
-        "placeholders": {
-            "P1": {
-                "content": "$1"
-            },
-            "P2": {
-                "content": "$2"
-            }
-        }
+		"message": "$P1$: Kontakt $P2$ : Anfrage für Kontakt-Labels senden …",
+		"placeholders": {
+			"P1": {
+				"content": "$1"
+			},
+			"P2": {
+				"content": "$2"
+			}
+		}
 	},
 	"serverGetCardLabelsOK": {
 		"message": "$P1$: Kontakt $P2$ : Labels erhalten",
-        "placeholders": {
-            "P1": {
-                "content": "$1"
-            },
-            "P2": {
-                "content": "$2"
-            }
-        }
+		"placeholders": {
+			"P1": {
+				"content": "$1"
+			},
+			"P2": {
+				"content": "$2"
+			}
+		}
 	},
 	"serverGetCardLabelsFailed": {
-		"message": "$P1$: Kontakt $P2$ : Keine Labels vom Server erhalten (url : $P3$, status : $P4$)",
-        "placeholders": {
-            "P1": {
-                "content": "$1"
-            },
-            "P2": {
-                "content": "$2"
-            },
-            "P3": {
-                "content": "$3"
-            },
-            "P4": {
-                "content": "$4"
-            }
-        }
+		"message": "$P1$: Kontakt $P2$ : Keine Labels vom Server erhalten (URL: $P3$, Status: $P4$)",
+		"placeholders": {
+			"P1": {
+				"content": "$1"
+			},
+			"P2": {
+				"content": "$2"
+			},
+			"P3": {
+				"content": "$3"
+			},
+			"P4": {
+				"content": "$4"
+			}
+		}
 	},
 	"serverSendingPutLabels": {
-		"message": "$P1$: sende Aktualisierungs-Anfrage für die Kontakt Labels …",
-        "placeholders": {
-            "P1": {
-                "content": "$1"
-            }
-        }
+		"message": "$P1$: Aktualisierungsanfrage für Kontakt-Labels senden …",
+		"placeholders": {
+			"P1": {
+				"content": "$1"
+			}
+		}
 	},
 	"serverPutLabelsOK": {
 		"message": "$P1$: Labels aktualisiert",
-        "placeholders": {
-            "P1": {
-                "content": "$1"
-            }
-        }
+		"placeholders": {
+			"P1": {
+				"content": "$1"
+			}
+		}
 	},
 	"serverPutLabelsFailed": {
-		"message": "$P1$: Labels konnten auf dem Server nicht aktualisiert werden (url : $P2$, status : $P3$)",
-        "placeholders": {
-            "P1": {
-                "content": "$1"
-            },
-            "P2": {
-                "content": "$2"
-            },
-            "P3": {
-                "content": "$3"
-            }
-        }
+		"message": "$P1$: Labels konnten auf dem Server nicht aktualisiert werden (URL: $P2$, Status: $P3$)",
+		"placeholders": {
+			"P1": {
+				"content": "$1"
+			},
+			"P2": {
+				"content": "$2"
+			},
+			"P3": {
+				"content": "$3"
+			}
+		}
 	},
 	"serverSendingPutCardLabels": {
-		"message": "$P1$: Kontakt $P2$ : sende Aktualisierungs-Anfrage für die Kontakt Labels …",
-        "placeholders": {
-            "P1": {
-                "content": "$1"
-            },
-            "P2": {
-                "content": "$2"
-            }
-        }
+		"message": "$P1$: Kontakt $P2$ : Aktualisierungsanfrage für Kontakt-Labels senden …",
+		"placeholders": {
+			"P1": {
+				"content": "$1"
+			},
+			"P2": {
+				"content": "$2"
+			}
+		}
 	},
 	"serverPutCardLabelsOK": {
 		"message": "$P1$: Kontakt $P2$ : Labels aktualisiert",
-        "placeholders": {
-            "P1": {
-                "content": "$1"
-            },
-            "P2": {
-                "content": "$2"
-            }
-        }
+		"placeholders": {
+			"P1": {
+				"content": "$1"
+			},
+			"P2": {
+				"content": "$2"
+			}
+		}
 	},
 	"serverPutCardLabelsFailed": {
-		"message": "$P1$: Kontakt $P2$ : Labels konnten auf dem Server nicht aktualisiert werden (url : $P3$, status : $P4$)",
-        "placeholders": {
-            "P1": {
-                "content": "$1"
-            },
-            "P2": {
-                "content": "$2"
-            },
-            "P3": {
-                "content": "$3"
-            },
-            "P4": {
-                "content": "$4"
-            }
-        }
+		"message": "$P1$: Kontakt $P2$ : Labels konnten auf dem Server nicht aktualisiert werden (URL: $P3$, Status: $P4$)",
+		"placeholders": {
+			"P1": {
+				"content": "$1"
+			},
+			"P2": {
+				"content": "$2"
+			},
+			"P3": {
+				"content": "$3"
+			},
+			"P4": {
+				"content": "$4"
+			}
+		}
 	},
 	"categoryDeletedOnDisk": {
 		"message": "$P1$: Kategorie $P2$ lokal gelöscht",
-        "placeholders": {
-            "P1": {
-                "content": "$1"
-            },
-            "P2": {
-                "content": "$2"
-            }
-        }
+		"placeholders": {
+			"P1": {
+				"content": "$1"
+			},
+			"P2": {
+				"content": "$2"
+			}
+		}
 	},
 	"categoryUpdatedOnDisk": {
 		"message": "$P1$: Kategorie $P2$ lokal aktualisiert",
-        "placeholders": {
-            "P1": {
-                "content": "$1"
-            },
-            "P2": {
-                "content": "$2"
-            }
-        }
+		"placeholders": {
+			"P1": {
+				"content": "$1"
+			},
+			"P2": {
+				"content": "$2"
+			}
+		}
 	},
 	"categoryAlreadyGetFromCache": {
 		"message": "$P1$: Kategorie $P2$ bereits aus dem Cache gelesen",
-        "placeholders": {
-            "P1": {
-                "content": "$1"
-            },
-            "P2": {
-                "content": "$2"
-            }
-        }
+		"placeholders": {
+			"P1": {
+				"content": "$1"
+			},
+			"P2": {
+				"content": "$2"
+			}
+		}
 	},
 	"categoryDeletedOnDiskUpdatedOnServer": {
 		"message": "$P1$: Kategorie $P2$ lokal gelöscht und auf dem Server aktualisiert",
-        "placeholders": {
-            "P1": {
-                "content": "$1"
-            },
-            "P2": {
-                "content": "$2"
-            }
-        }
+		"placeholders": {
+			"P1": {
+				"content": "$1"
+			},
+			"P2": {
+				"content": "$2"
+			}
+		}
 	},
 	"categoryUpdatedOnBoth": {
 		"message": "$P1$: Kategorie $P2$ lokal und auf dem Server aktualisiert",
-        "placeholders": {
-            "P1": {
-                "content": "$1"
-            },
-            "P2": {
-                "content": "$2"
-            }
-        }
+		"placeholders": {
+			"P1": {
+				"content": "$1"
+			},
+			"P2": {
+				"content": "$2"
+			}
+		}
 	},
 	"categoryUpdatedOnServer": {
 		"message": "$P1$: Kontakt $P2$ auf dem Server aktualisiert (etag gefunden: $P3$, etag im Cache: $P4$)",
-        "placeholders": {
-            "P1": {
-                "content": "$1"
-            },
-            "P2": {
-                "content": "$2"
-            },
-            "P3": {
-                "content": "$3"
-            },
-            "P4": {
-                "content": "$4"
-            }
-        }
+		"placeholders": {
+			"P1": {
+				"content": "$1"
+			},
+			"P2": {
+				"content": "$2"
+			},
+			"P3": {
+				"content": "$3"
+			},
+			"P4": {
+				"content": "$4"
+			}
+		}
 	},
 	"categoryNewOnServer": {
 		"message": "$P1$: Neue Kategorie auf dem Server gefunden",
-        "placeholders": {
-            "P1": {
-                "content": "$1"
-            }
-        }
+		"placeholders": {
+			"P1": {
+				"content": "$1"
+			}
+		}
 	},
 	"categoryLoadedFromCacheDB": {
 		"message": "$P1$: Kategorie $P2$ aus dem Cache geladen (IndexedDB)",
-        "placeholders": {
-            "P1": {
-                "content": "$1"
-            },
-            "P2": {
-                "content": "$2"
-            }
-        }
+		"placeholders": {
+			"P1": {
+				"content": "$1"
+			},
+			"P2": {
+				"content": "$2"
+			}
+		}
 	},
 	"categoryNewOnDisk": {
 		"message": "$P1$: Neue lokale Kategorie $P2$",
-        "placeholders": {
-            "P1": {
-                "content": "$1"
-            },
-            "P2": {
-                "content": "$2"
-            }
-        }
+		"placeholders": {
+			"P1": {
+				"content": "$1"
+			},
+			"P2": {
+				"content": "$2"
+			}
+		}
 	},
 	"categoryUpdatedOnDiskDeletedOnServer": {
 		"message": "$P1$: Kategorie $P2$ lokal aktualisiert und vom Server gelöscht",
-        "placeholders": {
-            "P1": {
-                "content": "$1"
-            },
-            "P2": {
-                "content": "$2"
-            }
-        }
+		"placeholders": {
+			"P1": {
+				"content": "$1"
+			},
+			"P2": {
+				"content": "$2"
+			}
+		}
 	},
 	"categoryDeletedOnServer": {
 		"message": "$P1$: Kategorie $P2$ auf dem Server gelöscht",
-        "placeholders": {
-            "P1": {
-                "content": "$1"
-            },
-            "P2": {
-                "content": "$2"
-            }
-        }
+		"placeholders": {
+			"P1": {
+				"content": "$1"
+			},
+			"P2": {
+				"content": "$2"
+			}
+		}
 	},
 	"categoryAskUserTitle": {
 		"message": "Konflikt beim Ändern der Kategorie"
@@ -1397,637 +1415,637 @@
 	},
 	"serverCategoryDeletedFromServer": {
 		"message": "$P1$: Kategorie $P2$ auf dem Server gelöscht",
-        "placeholders": {
-            "P1": {
-                "content": "$1"
-            },
-            "P2": {
-                "content": "$2"
-            }
-        }
+		"placeholders": {
+			"P1": {
+				"content": "$1"
+			},
+			"P2": {
+				"content": "$2"
+			}
+		}
 	},
 	"serverCategoryNotExistServer": {
 		"message": "$P1$: Kategorie $P2$ existiert nicht auf dem Server",
-        "placeholders": {
-            "P1": {
-                "content": "$1"
-            },
-            "P2": {
-                "content": "$2"
-            }
-        }
+		"placeholders": {
+			"P1": {
+				"content": "$1"
+			},
+			"P2": {
+				"content": "$2"
+			}
+		}
 	},
 	"serverCategoryDeleteFailed": {
 		"message": "$P1$: Kategorie $P2$ konnte nicht vom Server gelöscht werden (URL: $P3$, Status: $P4$)",
-        "placeholders": {
-            "P1": {
-                "content": "$1"
-            },
-            "P2": {
-                "content": "$2"
-            },
-            "P3": {
-                "content": "$3"
-            },
-            "P4": {
-                "content": "$4"
-            }
-        }
+		"placeholders": {
+			"P1": {
+				"content": "$1"
+			},
+			"P2": {
+				"content": "$2"
+			},
+			"P3": {
+				"content": "$3"
+			},
+			"P4": {
+				"content": "$4"
+			}
+		}
 	},
 	"serverCategorySendingDeletion": {
 		"message": "$P1$: Kategorie $P2$: Sende Löschauftrag …",
-        "placeholders": {
-            "P1": {
-                "content": "$1"
-            },
-            "P2": {
-                "content": "$2"
-            }
-        }
+		"placeholders": {
+			"P1": {
+				"content": "$1"
+			},
+			"P2": {
+				"content": "$2"
+			}
+		}
 	},
 	"serverCategoryUpdatedOnServerWithEtag": {
 		"message": "$P1$: Kategorie $P2$ auf dem Server aktualisiert (etag: $P3$)",
-        "placeholders": {
-            "P1": {
-                "content": "$1"
-            },
-            "P2": {
-                "content": "$2"
-            },
-            "P3": {
-                "content": "$3"
-            }
-        }
+		"placeholders": {
+			"P1": {
+				"content": "$1"
+			},
+			"P2": {
+				"content": "$2"
+			},
+			"P3": {
+				"content": "$3"
+			}
+		}
 	},
 	"serverCategoryUpdatedOnServerWithoutEtag": {
 		"message": "$P1$: Kategorie $P2$ auf dem Server aktualisiert (Kein etag in Antwort)",
-        "placeholders": {
-            "P1": {
-                "content": "$1"
-            },
-            "P2": {
-                "content": "$2"
-            }
-        }
+		"placeholders": {
+			"P1": {
+				"content": "$1"
+			},
+			"P2": {
+				"content": "$2"
+			}
+		}
 	},
 	"serverCategoryUpdateFailed": {
 		"message": "$P1$: Kategorie $P2$ konnte nicht auf dem Server aktualisiert werden (URL: $P3$, Status: $P4$)",
-        "placeholders": {
-            "P1": {
-                "content": "$1"
-            },
-            "P2": {
-                "content": "$2"
-            },
-            "P3": {
-                "content": "$3"
-            },
-            "P4": {
-                "content": "$4"
-            }
-        }
+		"placeholders": {
+			"P1": {
+				"content": "$1"
+			},
+			"P2": {
+				"content": "$2"
+			},
+			"P3": {
+				"content": "$3"
+			},
+			"P4": {
+				"content": "$4"
+			}
+		}
 	},
 	"serverCategorySendingUpdate": {
 		"message": "$P1$: Kategorie $P2$: Sende Aktualisierungsauftrag …",
-        "placeholders": {
-            "P1": {
-                "content": "$1"
-            },
-            "P2": {
-                "content": "$2"
-            }
-        }
+		"placeholders": {
+			"P1": {
+				"content": "$1"
+			},
+			"P2": {
+				"content": "$2"
+			}
+		}
 	},
 	"serverCategoryCreatedOnServerWithEtag": {
 		"message": "$P1$: Kategorie $P2$ auf dem Server erstellt (etag: $P3$)",
-        "placeholders": {
-            "P1": {
-                "content": "$1"
-            },
-            "P2": {
-                "content": "$2"
-            },
-            "P3": {
-                "content": "$3"
-            }
-        }
+		"placeholders": {
+			"P1": {
+				"content": "$1"
+			},
+			"P2": {
+				"content": "$2"
+			},
+			"P3": {
+				"content": "$3"
+			}
+		}
 	},
 	"serverCategoryCreatedOnServerWithoutEtag": {
 		"message": "$P1$: Kategorie $P2$ auf dem Server erstellt (Kein etag in Antwort)",
-        "placeholders": {
-            "P1": {
-                "content": "$1"
-            },
-            "P2": {
-                "content": "$2"
-            }
-        }
+		"placeholders": {
+			"P1": {
+				"content": "$1"
+			},
+			"P2": {
+				"content": "$2"
+			}
+		}
 	},
 	"serverCategoryCreateFailed": {
 		"message": "$P1$: Kategorie $P2$ konnte nicht auf dem Server erstellt werden (URL: $P3$, Status: $P4$)",
-        "placeholders": {
-            "P1": {
-                "content": "$1"
-            },
-            "P2": {
-                "content": "$2"
-            },
-            "P3": {
-                "content": "$3"
-            },
-            "P4": {
-                "content": "$4"
-            }
-        }
+		"placeholders": {
+			"P1": {
+				"content": "$1"
+			},
+			"P2": {
+				"content": "$2"
+			},
+			"P3": {
+				"content": "$3"
+			},
+			"P4": {
+				"content": "$4"
+			}
+		}
 	},
 	"serverCategorySendingCreate": {
 		"message": "$P1$: Kategorie $P2$: Sende Erstellungsauftrag …",
-        "placeholders": {
-            "P1": {
-                "content": "$1"
-            },
-            "P2": {
-                "content": "$2"
-            }
-        }
+		"placeholders": {
+			"P1": {
+				"content": "$1"
+			},
+			"P2": {
+				"content": "$2"
+			}
+		}
 	},
 	"synchronizationSearchingCategories": {
 		"message": "$P1$: Suche Kategorien …",
-        "placeholders": {
-            "P1": {
-                "content": "$1"
-            }
-        }
+		"placeholders": {
+			"P1": {
+				"content": "$1"
+			}
+		}
 	},
 	"synchronizationFailed": {
 		"message": "$P1$: Synchronisation fehlgeschlagen (Schritt: $P2$, URL: $P3$, Status: $P4$)",
-        "placeholders": {
-            "P1": {
-                "content": "$1"
-            },
-            "P2": {
-                "content": "$2"
-            },
-            "P3": {
-                "content": "$3"
-            },
-            "P4": {
-                "content": "$4"
-            }
-        }
+		"placeholders": {
+			"P1": {
+				"content": "$1"
+			},
+			"P2": {
+				"content": "$2"
+			},
+			"P3": {
+				"content": "$3"
+			},
+			"P4": {
+				"content": "$4"
+			}
+		}
 	},
 	"synchronizationUnauthorized": {
 		"message": "$P1$: Anmeldung auf dem Server fehlgeschlagen. Eventuell sind Konfiguration, Benutzername oder Passwort nicht korrekt.",
-        "placeholders": {
-            "P1": {
-                "content": "$1"
-            }
-        }
+		"placeholders": {
+			"P1": {
+				"content": "$1"
+			}
+		}
 	},
 	"synchronizationSearchingCards": {
 		"message": "$P1$: Suche Kontakte …",
-        "placeholders": {
-            "P1": {
-                "content": "$1"
-            }
-        }
+		"placeholders": {
+			"P1": {
+				"content": "$1"
+			}
+		}
 	},
 	"synchronizationRequestDiscovery": {
 		"message": "$P1$: Überprüfe ohne Suchauftrag auf $P2$ …",
-        "placeholders": {
-            "P1": {
-                "content": "$1"
-            },
-            "P2": {
-                "content": "$2"
-            }
-        }
+		"placeholders": {
+			"P1": {
+				"content": "$1"
+			},
+			"P2": {
+				"content": "$2"
+			}
+		}
 	},
 	"synchronizationRequestDiscovery4": {
 		"message": "$P1$: Discovery-Phase 4 auf $P2$ …",
-        "placeholders": {
-            "P1": {
-                "content": "$1"
-            },
-            "P2": {
-                "content": "$2"
-            }
-        }
+		"placeholders": {
+			"P1": {
+				"content": "$1"
+			},
+			"P2": {
+				"content": "$2"
+			}
+		}
 	},
 	"synchronizationRequestDiscovery3": {
 		"message": "$P1$: Discovery-Phase 3 auf $P2$ …",
-        "placeholders": {
-            "P1": {
-                "content": "$1"
-            },
-            "P2": {
-                "content": "$2"
-            }
-        }
+		"placeholders": {
+			"P1": {
+				"content": "$1"
+			},
+			"P2": {
+				"content": "$2"
+			}
+		}
 	},
 	"synchronizationRequestDiscovery2": {
 		"message": "$P1$: Discovery-Phase 2 auf $P2$ …",
-        "placeholders": {
-            "P1": {
-                "content": "$1"
-            },
-            "P2": {
-                "content": "$2"
-            }
-        }
+		"placeholders": {
+			"P1": {
+				"content": "$1"
+			},
+			"P2": {
+				"content": "$2"
+			}
+		}
 	},
 	"synchronizationRequestDiscovery1": {
 		"message": "$P1$: Discovery-Phase 1 auf $P2$ …",
-        "placeholders": {
-            "P1": {
-                "content": "$1"
-            },
-            "P2": {
-                "content": "$2"
-            }
-        }
+		"placeholders": {
+			"P1": {
+				"content": "$1"
+			},
+			"P2": {
+				"content": "$2"
+			}
+		}
 	},
 	"googleAccessTokenOK": {
-		"message": "$P1$: Anforderung nach Google-Zugriffs-Token OK. Token: $P2$",
-        "placeholders": {
-            "P1": {
-                "content": "$1"
-            },
-            "P2": {
-                "content": "$2"
-            }
-        }
+		"message": "$P1$: Anforderung nach Google-Zugriffstoken OK. Token: $P2$",
+		"placeholders": {
+			"P1": {
+				"content": "$1"
+			},
+			"P2": {
+				"content": "$2"
+			}
+		}
 	},
 	"googleRefreshTokenOK": {
-		"message": "$P1$: Erneuerung des Google-Zugriffs-Token OK. Token: $P2$",
-        "placeholders": {
-            "P1": {
-                "content": "$1"
-            },
-            "P2": {
-                "content": "$2"
-            }
-        }
+		"message": "$P1$: Erneuerung des Google-Zugriffstokens OK. Token: $P2$",
+		"placeholders": {
+			"P1": {
+				"content": "$1"
+			},
+			"P2": {
+				"content": "$2"
+			}
+		}
 	},
 	"googleGetNewRefreshToken": {
-		"message": "$P1$: Versuche, ein neues Google Token zu erhalten für $P2$ …",
-        "placeholders": {
-            "P1": {
-                "content": "$1"
-            },
-            "P2": {
-                "content": "$2"
-            }
-        }
+		"message": "$P1$: Versuche, ein neues Google-Token zu erhalten für $P2$ …",
+		"placeholders": {
+			"P1": {
+				"content": "$1"
+			},
+			"P2": {
+				"content": "$2"
+			}
+		}
 	},
 	"googleNewRefreshTokenOK": {
-		"message": "$P1$: Authorisierungscode empfangen: $P2$ …",
-        "placeholders": {
-            "P1": {
-                "content": "$1"
-            },
-            "P2": {
-                "content": "$2"
-            }
-        }
+		"message": "$P1$: Autorisierungscode empfangen: $P2$ …",
+		"placeholders": {
+			"P1": {
+				"content": "$1"
+			},
+			"P2": {
+				"content": "$2"
+			}
+		}
 	},
 	"googleRequestAccessToken": {
-		"message": "$P1$: Anforderung nach Google-Zugriffs-Token auf $P2$ …",
-        "placeholders": {
-            "P1": {
-                "content": "$1"
-            },
-            "P2": {
-                "content": "$2"
-            }
-        }
+		"message": "$P1$: Anforderung nach Google-Zugriffstoken auf $P2$ …",
+		"placeholders": {
+			"P1": {
+				"content": "$1"
+			},
+			"P2": {
+				"content": "$2"
+			}
+		}
 	},
 	"googleRequestRefreshToken": {
-		"message": "$P1$: Fordere neues Google Token an für $P2$ …",
-        "placeholders": {
-            "P1": {
-                "content": "$1"
-            },
-            "P2": {
-                "content": "$2"
-            }
-        }
+		"message": "$P1$: Neues Google-Token anfordern für $P2$ …",
+		"placeholders": {
+			"P1": {
+				"content": "$1"
+			},
+			"P2": {
+				"content": "$2"
+			}
+		}
 	},
 	"yahooAccessTokenOK": {
-		"message": "$P1$: Anforderung nach Yahoo!-Zugriffs-Token OK. Token: $P2$",
-        "placeholders": {
-            "P1": {
-                "content": "$1"
-            },
-            "P2": {
-                "content": "$2"
-            }
-        }
+		"message": "$P1$: Anforderung nach Yahoo!-Zugriffstoken OK. Token: $P2$",
+		"placeholders": {
+			"P1": {
+				"content": "$1"
+			},
+			"P2": {
+				"content": "$2"
+			}
+		}
 	},
 	"yahooRefreshTokenOK": {
-		"message": "$P1$: Erneuerung des Yahoo!-Zugriffs-Token OK. Token: $P2$",
-        "placeholders": {
-            "P1": {
-                "content": "$1"
-            },
-            "P2": {
-                "content": "$2"
-            }
-        }
+		"message": "$P1$: Erneuerung des Yahoo!-Zugriffstokens OK. Token: $P2$",
+		"placeholders": {
+			"P1": {
+				"content": "$1"
+			},
+			"P2": {
+				"content": "$2"
+			}
+		}
 	},
 	"yahooGetNewRefreshToken": {
-		"message": "$P1$: Versuche ein neues Yahoo! Token zu erhalten für $P2$ …",
-        "placeholders": {
-            "P1": {
-                "content": "$1"
-            },
-            "P2": {
-                "content": "$2"
-            }
-        }
+		"message": "$P1$: Versuche, ein neues Yahoo!-Token zu erhalten für $P2$ …",
+		"placeholders": {
+			"P1": {
+				"content": "$1"
+			},
+			"P2": {
+				"content": "$2"
+			}
+		}
 	},
 	"yahooNewRefreshTokenOK": {
-		"message": "$P1$: Authorisierungscode empfangen: $P2$ …",
-        "placeholders": {
-            "P1": {
-                "content": "$1"
-            },
-            "P2": {
-                "content": "$2"
-            }
-        }
+		"message": "$P1$: Autorisierungscode empfangen: $P2$ …",
+		"placeholders": {
+			"P1": {
+				"content": "$1"
+			},
+			"P2": {
+				"content": "$2"
+			}
+		}
 	},
 	"yahooRequestAccessToken": {
-		"message": "$P1$: Anforderung nach Yahoo!-Zugriffs-Token auf $P2$ …",
-        "placeholders": {
-            "P1": {
-                "content": "$1"
-            },
-            "P2": {
-                "content": "$2"
-            }
-        }
+		"message": "$P1$: Anforderung nach Yahoo!-Zugriffstoken auf $P2$ …",
+		"placeholders": {
+			"P1": {
+				"content": "$1"
+			},
+			"P2": {
+				"content": "$2"
+			}
+		}
 	},
 	"yahooRequestRefreshToken": {
-		"message": "$P1$: Yahoo! Erneuerungs-Token angefordert für $P2$ …",
-        "placeholders": {
-            "P1": {
-                "content": "$1"
-            },
-            "P2": {
-                "content": "$2"
-            }
-        }
+		"message": "$P1$: Yahoo!-Erneuerungstoken angefordert für $P2$ …",
+		"placeholders": {
+			"P1": {
+				"content": "$1"
+			},
+			"P2": {
+				"content": "$2"
+			}
+		}
 	},
 	"periodicSyncDeleting": {
 		"message": "$P1$: Lösche periodischen Sync (ID: $P2$)",
-        "placeholders": {
-            "P1": {
-                "content": "$1"
-            },
-            "P2": {
-                "content": "$2"
-            }
-        }
+		"placeholders": {
+			"P1": {
+				"content": "$1"
+			},
+			"P2": {
+				"content": "$2"
+			}
+		}
 	},
 	"periodicSyncSetting": {
 		"message": "$P1$: Richte periodischen Sync ein (Intervall: $P2$ ms, ID: $P3$)",
-        "placeholders": {
-            "P1": {
-                "content": "$1"
-            },
-            "P2": {
-                "content": "$2"
-            },
-            "P3": {
-                "content": "$3"
-            }
-        }
+		"placeholders": {
+			"P1": {
+				"content": "$1"
+			},
+			"P2": {
+				"content": "$2"
+			},
+			"P3": {
+				"content": "$3"
+			}
+		}
 	},
 	"periodicSyncSyncing": {
 		"message": "$P1$: Synchronisiere aufgrund des periodischen Syncs …",
-        "placeholders": {
-            "P1": {
-                "content": "$1"
-            }
-        }
+		"placeholders": {
+			"P1": {
+				"content": "$1"
+			}
+		}
 	},
 	"fileNotFound": {
 		"message": "Die Datei $P1$ wurde nicht gefunden.",
-        "placeholders": {
-            "P1": {
-                "content": "$1"
-            }
-        }
+		"placeholders": {
+			"P1": {
+				"content": "$1"
+			}
+		}
 	},
 	"fileEmpty": {
 		"message": "Datei $P1$ ist leer",
-        "placeholders": {
-            "P1": {
-                "content": "$1"
-            }
-        }
+		"placeholders": {
+			"P1": {
+				"content": "$1"
+			}
+		}
 	},
 	"fileAlreadyOpen": {
 		"message": "Datei $P1$ ist bereits geöffnet",
-        "placeholders": {
-            "P1": {
-                "content": "$1"
-            }
-        }
+		"placeholders": {
+			"P1": {
+				"content": "$1"
+			}
+		}
 	},
 	"directoryAlreadyOpen": {
 		"message": "Verzeichnis $P1$ ist bereits geöffnet",
-        "placeholders": {
-            "P1": {
-                "content": "$1"
-            }
-        }
+		"placeholders": {
+			"P1": {
+				"content": "$1"
+			}
+		}
 	},
 	"parsingCardError": {
 		"message": "$P1$: Fehler beim Parsen des Kontakts: \n$P2$ \n$P3$",
-        "placeholders": {
-            "P1": {
-                "content": "$1"
-            },
-            "P2": {
-                "content": "$2"
-            },
-            "P3": {
-                "content": "$3"
-            }
-        }
+		"placeholders": {
+			"P1": {
+				"content": "$1"
+			},
+			"P2": {
+				"content": "$2"
+			},
+			"P3": {
+				"content": "$3"
+			}
+		}
 	},
 	"addressbookOpened": {
 		"message": "$P1$: Adressbuch geöffnet",
-        "placeholders": {
-            "P1": {
-                "content": "$1"
-            }
-        }
+		"placeholders": {
+			"P1": {
+				"content": "$1"
+			}
+		}
 	},
 	"addressbookModified": {
 		"message": "$P1$: Adressbuch geändert",
-        "placeholders": {
-            "P1": {
-                "content": "$1"
-            }
-        }
+		"placeholders": {
+			"P1": {
+				"content": "$1"
+			}
+		}
 	},
 	"addressbookDeleted": {
 		"message": "$P1$: Adressbuch geschlossen",
-        "placeholders": {
-            "P1": {
-                "content": "$1"
-            }
-        }
+		"placeholders": {
+			"P1": {
+				"content": "$1"
+			}
+		}
 	},
 	"addressbookCreated": {
 		"message": "$P1$: Adressbuch erstellt",
-        "placeholders": {
-            "P1": {
-                "content": "$1"
-            }
-        }
+		"placeholders": {
+			"P1": {
+				"content": "$1"
+			}
+		}
 	},
 	"addressbookDisabled": {
 		"message": "$P1$: Adressbuch deaktiviert",
-        "placeholders": {
-            "P1": {
-                "content": "$1"
-            }
-        }
+		"placeholders": {
+			"P1": {
+				"content": "$1"
+			}
+		}
 	},
 	"addressbookReadOnly": {
 		"message": "$P1$: Adressbuch schreibgeschützt",
-        "placeholders": {
-            "P1": {
-                "content": "$1"
-            }
-        }
+		"placeholders": {
+			"P1": {
+				"content": "$1"
+			}
+		}
 	},
 	"addressbookReadWrite": {
 		"message": "$P1$: Adressbuch im Lese- und Schreibmodus",
-        "placeholders": {
-            "P1": {
-                "content": "$1"
-            }
-        }
+		"placeholders": {
+			"P1": {
+				"content": "$1"
+			}
+		}
 	},
 	"addressbookEnabled": {
 		"message": "$P1$: Adressbuch aktiviert",
-        "placeholders": {
-            "P1": {
-                "content": "$1"
-            }
-        }
+		"placeholders": {
+			"P1": {
+				"content": "$1"
+			}
+		}
 	},
 	"cardCreated": {
 		"message": "$P1$: Kontakt $P2$ erstellt",
-        "placeholders": {
-            "P1": {
-                "content": "$1"
-            },
-            "P2": {
-                "content": "$2"
-            }
-        }
+		"placeholders": {
+			"P1": {
+				"content": "$1"
+			},
+			"P2": {
+				"content": "$2"
+			}
+		}
 	},
 	"cardUpdated": {
 		"message": "$P1$: Kontakt $P2$ aktualisiert",
-        "placeholders": {
-            "P1": {
-                "content": "$1"
-            },
-            "P2": {
-                "content": "$2"
-            }
-        }
+		"placeholders": {
+			"P1": {
+				"content": "$1"
+			},
+			"P2": {
+				"content": "$2"
+			}
+		}
 	},
 	"cardDeleted": {
 		"message": "$P1$: Kontakt $P2$ gelöscht",
-        "placeholders": {
-            "P1": {
-                "content": "$1"
-            },
-            "P2": {
-                "content": "$2"
-            }
-        }
+		"placeholders": {
+			"P1": {
+				"content": "$1"
+			},
+			"P2": {
+				"content": "$2"
+			}
+		}
 	},
 	"cardAddedToCategory": {
 		"message": "$P1$: Kontakt $P2$ zu Kategorie $P3$ hinzugefügt",
-        "placeholders": {
-            "P1": {
-                "content": "$1"
-            },
-            "P2": {
-                "content": "$2"
-            },
-            "P3": {
-                "content": "$3"
-            }
-        }
+		"placeholders": {
+			"P1": {
+				"content": "$1"
+			},
+			"P2": {
+				"content": "$2"
+			},
+			"P3": {
+				"content": "$3"
+			}
+		}
 	},
 	"cardDeletedFromAllCategory": {
 		"message": "$P1$: Kontakt $P2$ von allen Kategorien entfernt",
-        "placeholders": {
-            "P1": {
-                "content": "$1"
-            },
-            "P2": {
-                "content": "$2"
-            }
-        }
+		"placeholders": {
+			"P1": {
+				"content": "$1"
+			},
+			"P2": {
+				"content": "$2"
+			}
+		}
 	},
 	"cardsConverted": {
 		"message": "$P1$: Kontakte konvertiert zu $P2$ : $P3$",
-        "placeholders": {
-            "P1": {
-                "content": "$1"
-            },
-            "P2": {
-                "content": "$2"
-            },
-            "P3": {
-                "content": "$3"
-            }
-        }
+		"placeholders": {
+			"P1": {
+				"content": "$1"
+			},
+			"P2": {
+				"content": "$2"
+			},
+			"P3": {
+				"content": "$3"
+			}
+		}
 	},
 	"cardsConvertedUndo": {
 		"message": "VCards konvertiert"
 	},
 	"cardsImportedFromFileUndo": {
 		"message": "Datei $P1$ importiert",
-        "placeholders": {
-            "P1": {
-                "content": "$1"
-            }
-        }
+		"placeholders": {
+			"P1": {
+				"content": "$1"
+			}
+		}
 	},
 	"cardsImportedFromDirUndo": {
 		"message": "Verzeichnis $P1$ importiert",
-        "placeholders": {
-            "P1": {
-                "content": "$1"
-            }
-        }
+		"placeholders": {
+			"P1": {
+				"content": "$1"
+			}
+		}
 	},
 	"undoActionDoneUndo": {
 		"message": "Rückgängigmachen abgeschlossen ($P1$)",
-        "placeholders": {
-            "P1": {
-                "content": "$1"
-            }
-        }
+		"placeholders": {
+			"P1": {
+				"content": "$1"
+			}
+		}
 	},
 	"redoActionDoneUndo": {
 		"message": "Wiederherstellen abgeschlossen ($P1$)",
-        "placeholders": {
-            "P1": {
-                "content": "$1"
-            }
-        }
+		"placeholders": {
+			"P1": {
+				"content": "$1"
+			}
+		}
 	},
 	"cardsExportedToFileUndo": {
 		"message": "Kontakte in Datei $P1$ exportiert",
@@ -2047,28 +2065,28 @@
 	},
 	"cardCreatedUndo": {
 		"message": "Kontakt $P1$ erstellt",
-        "placeholders": {
-            "P1": {
-                "content": "$1"
-            }
-        }
+		"placeholders": {
+			"P1": {
+				"content": "$1"
+			}
+		}
 	},
 	"cardUpdatedUndo": {
 		"message": "Kontakt $P1$ aktualisiert",
-        "placeholders": {
-            "P1": {
-                "content": "$1"
-            }
-        }
+		"placeholders": {
+			"P1": {
+				"content": "$1"
+			}
+		}
 	},
 	"outgoingEmailCollectedUndo": {
-		"message": "Ausgehende Email-Adressen gesammelt"
+		"message": "Ausgehende E-Mail-Adressen gesammelt"
 	},
 	"emailCollectedByFilterUndo": {
-		"message": "Email-Adressen gesammelt durch Filter"
+		"message": "E-Mail-Adressen gesammelt durch Filter"
 	},
 	"emailDeletedByFilterUndo": {
-		"message": "Email-Adressen gelöscht durch Filter"
+		"message": "E-Mail-Adressen gelöscht durch Filter"
 	},
 	"cardsMergedUndo": {
 		"message": "Kontakte zusammengeführt"
@@ -2078,33 +2096,33 @@
 	},
 	"displayNameGenerated": {
 		"message": "$P1$: Kontakte, deren Anzeigenamen wiederhergestellt worden ist: $P2$",
-        "placeholders": {
-            "P1": {
-                "content": "$1"
-            },
-            "P2": {
-                "content": "$2"
-            }
-        }
+		"placeholders": {
+			"P1": {
+				"content": "$1"
+			},
+			"P2": {
+				"content": "$2"
+			}
+		}
 	},
 	"displayNameGeneratedUndo": {
 		"message": "Anzeigenamen wiederhergestellt"
 	},
 	"cardModifiedUndo": {
 		"message": "Kontakt $P1$ aktualisiert",
-        "placeholders": {
-            "P1": {
-                "content": "$1"
-            }
-        }
+		"placeholders": {
+			"P1": {
+				"content": "$1"
+			}
+		}
 	},
 	"cardsDeleted1Undo": {
 		"message": "Kontakt $P1$ gelöscht",
-        "placeholders": {
-            "P1": {
-                "content": "$1"
-            }
-        }
+		"placeholders": {
+			"P1": {
+				"content": "$1"
+			}
+		}
 	},
 	"cardsDeleted2Undo": {
 		"message": "Kontakte gelöscht"
@@ -2117,174 +2135,185 @@
 	},
 	"categoryCreated": {
 		"message": "$P1$: Kategorie $P2$ erstellt",
-        "placeholders": {
-            "P1": {
-                "content": "$1"
-            },
-            "P2": {
-                "content": "$2"
-            }
-        }
+		"placeholders": {
+			"P1": {
+				"content": "$1"
+			},
+			"P2": {
+				"content": "$2"
+			}
+		}
 	},
 	"categoryCreatedUndo": {
 		"message": "Kategorie $P1$ erstellt",
-        "placeholders": {
-            "P1": {
-                "content": "$1"
-            }
-        }
+		"placeholders": {
+			"P1": {
+				"content": "$1"
+			}
+		}
 	},
 	"categorySelectedUndo": {
 		"message": "Kategorie $P1$ ausgewählt",
-        "placeholders": {
-            "P1": {
-                "content": "$1"
-            }
-        }
+		"placeholders": {
+			"P1": {
+				"content": "$1"
+			}
+		}
 	},
 	"categoryUnselectedUndo": {
 		"message": "Kategorie $P1$ abgewählt",
-        "placeholders": {
-            "P1": {
-                "content": "$1"
-            }
-        }
+		"placeholders": {
+			"P1": {
+				"content": "$1"
+			}
+		}
 	},
 	"categoryRenamed": {
 		"message": "$P1$: Kategorie $P2$ umbenannt",
-        "placeholders": {
-            "P1": {
-                "content": "$1"
-            },
-            "P2": {
-                "content": "$2"
-            }
-        }
+		"placeholders": {
+			"P1": {
+				"content": "$1"
+			},
+			"P2": {
+				"content": "$2"
+			}
+		}
 	},
 	"categoryRenamedUndo": {
 		"message": "Kategorie $P1$ umbenannt",
-        "placeholders": {
-            "P1": {
-                "content": "$1"
-            }
-        }
+		"placeholders": {
+			"P1": {
+				"content": "$1"
+			}
+		}
 	},
 	"categoryDeleted": {
 		"message": "$P1$: Kategorie $P2$ gelöscht",
-        "placeholders": {
-            "P1": {
-                "content": "$1"
-            },
-            "P2": {
-                "content": "$2"
-            }
-        }
+		"placeholders": {
+			"P1": {
+				"content": "$1"
+			},
+			"P2": {
+				"content": "$2"
+			}
+		}
 	},
 	"categoryDeletedUndo": {
 		"message": "Kategorie $P1$ gelöscht",
-        "placeholders": {
-            "P1": {
-                "content": "$1"
-            }
-        }
+		"placeholders": {
+			"P1": {
+				"content": "$1"
+			}
+		}
 	},
 	"categoryConvertedToListUndo": {
 		"message": "Kategorie $P1$ zu einer Liste konvertiert",
-        "placeholders": {
-            "P1": {
-                "content": "$1"
-            }
-        }
+		"placeholders": {
+			"P1": {
+				"content": "$1"
+			}
+		}
 	},
 	"listConvertedToCategoryUndo": {
 		"message": "Liste $P1$ zu einer Kategorie konvertiert",
-        "placeholders": {
-            "P1": {
-                "content": "$1"
-            }
-        }
+		"placeholders": {
+			"P1": {
+				"content": "$1"
+			}
+		}
 	},
 	"linePastedUndo": {
 		"message": "Zeile eingefügt"
 	},
 	"nodeRenamedUndo": {
 		"message": "Knoten $P1$ umbenannt",
-        "placeholders": {
-            "P1": {
-                "content": "$1"
-            }
-        }
+		"placeholders": {
+			"P1": {
+				"content": "$1"
+			}
+		}
 	},
 	"nodeDeleted": {
 		"message": "$P1$: Knoten $P2$ gelöscht",
-        "placeholders": {
-            "P1": {
-                "content": "$1"
-            },
-            "P2": {
-                "content": "$2"
-            }
-        }
+		"placeholders": {
+			"P1": {
+				"content": "$1"
+			},
+			"P2": {
+				"content": "$2"
+			}
+		}
 	},
 	"nodeDeletedUndo": {
 		"message": "Knoten $P1$ gelöscht",
-        "placeholders": {
-            "P1": {
-                "content": "$1"
-            }
-        }
+		"placeholders": {
+			"P1": {
+				"content": "$1"
+			}
+		}
 	},
 	"listCreatedFromNodeUndo": {
 		"message": "Liste $P1$ aus Knoten erstellt",
-        "placeholders": {
-            "P1": {
-                "content": "$1"
-            }
-        }
+		"placeholders": {
+			"P1": {
+				"content": "$1"
+			}
+		}
+	},
+	"cardsFormattedUndo": {
+		"message": "$P1$ : Kontakte formatiert ($P2$)",
+		"placeholders": {
+			"P1": {
+				"content": "$1"
+			},
+			"P2": {
+				"content": "$2"
+			}
+		}
 	},
 	"exportCardToDirMessagePF": {
 		"message": "$P1$ Kontakt wurde in das Verzeichnis $P2$ exportiert;$P1$ Kontakte wurden in das Verzeichnis $P2$ exportiert",
-        "placeholders": {
-            "P1": {
-                "content": "$1"
-            },
-            "P2": {
-                "content": "$2"
-            }
-        }
+		"placeholders": {
+			"P1": {
+				"content": "$1"
+			},
+			"P2": {
+				"content": "$2"
+			}
+		}
 	},
 	"exportCardToFileMessagePF": {
 		"message": "$P1$ Kontakt wurde in die Datei $P2$ exportiert;$P1$ Kontakte wurden in die Datei $P2$ exportiert",
-        "placeholders": {
-            "P1": {
-                "content": "$1"
-            },
-            "P2": {
-                "content": "$2"
-            }
-        }
+		"placeholders": {
+			"P1": {
+				"content": "$1"
+			},
+			"P2": {
+				"content": "$2"
+			}
+		}
 	},
 	"importCardFromDirMessagePF": {
 		"message": "$P1$ Kontakt wurde aus dem Verzeichnis $P2$ importiert;$P1$ Kontakte wurden aus dem Verzeichnis $P2$ importiert",
-        "placeholders": {
-            "P1": {
-                "content": "$1"
-            },
-            "P2": {
-                "content": "$2"
-            }
-        }
+		"placeholders": {
+			"P1": {
+				"content": "$1"
+			},
+			"P2": {
+				"content": "$2"
+			}
+		}
 	},
 	"importCardFromFileMessagePF": {
 		"message": "$P1$ Kontakt wurde aus der Datei $P2$ importiert;$P1$ Kontakte wurden aus der Datei $P2$ importiert",
-        "placeholders": {
-            "P1": {
-                "content": "$1"
-            },
-            "P2": {
-                "content": "$2"
-            }
-        }
+		"placeholders": {
+			"P1": {
+				"content": "$1"
+			},
+			"P2": {
+				"content": "$2"
+			}
+		}
 	},
 	"importNotIntoSameFile": {
 		"message": "Import in die gleiche Datei ist verboten"
@@ -2303,19 +2332,19 @@
 	},
 	"imageErrorWithMessage": {
 		"message": "Bild nicht hinzugefügt: $P1$",
-        "placeholders": {
-            "P1": {
-                "content": "$1"
-            }
-        }
+		"placeholders": {
+			"P1": {
+				"content": "$1"
+			}
+		}
 	},
 	"imageSavedToFile": {
 		"message": "Bild in Datei gespeichert: $P1$",
-        "placeholders": {
-            "P1": {
-                "content": "$1"
-            }
-        }
+		"placeholders": {
+			"P1": {
+				"content": "$1"
+			}
+		}
 	},
 	"contactsCopied": {
 		"message": "Kontakte in die Zwischenablage kopiert"
@@ -2328,65 +2357,65 @@
 	},
 	"linePastedToCard": {
 		"message": "Eintrag zu Kontakt hinzugefügt: $P1$",
-        "placeholders": {
-            "P1": {
-                "content": "$1"
-            }
-        }
+		"placeholders": {
+			"P1": {
+				"content": "$1"
+			}
+		}
 	},
 	"numberContactsFound": {
 		"message": "Anzahl gefundener Kontakte: $P1$",
-        "placeholders": {
-            "P1": {
-                "content": "$1"
-            }
-        }
+		"placeholders": {
+			"P1": {
+				"content": "$1"
+			}
+		}
 	},
 	"numberContacts": {
 		"message": "Anzahl der Kontakte: $P1$",
-        "placeholders": {
-            "P1": {
-                "content": "$1"
-            }
-        }
+		"placeholders": {
+			"P1": {
+				"content": "$1"
+			}
+		}
 	},
 	"numberContactsFoundModified": {
 		"message": "Anzahl gefundener Kontakte: $P1$ (lokal geändert: $P2$)",
-        "placeholders": {
-            "P1": {
-                "content": "$1"
-            },
-            "P2": {
-                "content": "$2"
-            }
-        }
+		"placeholders": {
+			"P1": {
+				"content": "$1"
+			},
+			"P2": {
+				"content": "$2"
+			}
+		}
 	},
 	"numberContactsModified": {
 		"message": "Anzahl Kontakte: $P1$ (lokal geändert: $P2$)",
-        "placeholders": {
-            "P1": {
-                "content": "$1"
-            },
-            "P2": {
-                "content": "$2"
-            }
-        }
+		"placeholders": {
+			"P1": {
+				"content": "$1"
+			},
+			"P2": {
+				"content": "$2"
+			}
+		}
 	},
 	"numberContactsSelected": {
 		"message": "Ausgewählt: $P1$",
-        "placeholders": {
-            "P1": {
-                "content": "$1"
-            }
-        }
+		"placeholders": {
+			"P1": {
+				"content": "$1"
+			}
+		}
 	},
 	"numberLines": {
 		"message": "Anzahl Zeilen: $P1$",
-        "placeholders": {
-            "P1": {
-                "content": "$1"
-            }
-        }
+		"placeholders": {
+			"P1": {
+				"content": "$1"
+			}
+		}
 	},
 	"cardbook.searchFrom.name": {
 		"message": "CardBook Von (From)"
@@ -2440,15 +2469,15 @@
 		"message": "Von (From), An (To), Kopie (Cc) oder Blindkopie (Bcc) von CardBook löschen"
 	},
 	"cardbook.filterForNotJunk": {
-		"message": "Mails von CardBook-Adressaten nie als Spam kennzeichnen"
+		"message": "E-Mails von einem CardBook-Kontakt nicht als Spam kennzeichnen"
 	},
 	"urlDownloaded": {
 		"message": "URL heruntergeladen: $P1$",
-        "placeholders": {
-            "P1": {
-                "content": "$1"
-            }
-        }
+		"placeholders": {
+			"P1": {
+				"content": "$1"
+			}
+		}
 	},
 	"addressbookHeader": {
 		"message": "Adressbuch"
@@ -2520,7 +2549,7 @@
 		"message": "Telefon"
 	},
 	"emailLabel": {
-		"message": "Emails"
+		"message": "E-Mails"
 	},
 	"imppLabel": {
 		"message": "Instant Messenger"
@@ -2580,22 +2609,22 @@
 		"message": "Geo"
 	},
 	"prodidLabel": {
-		"message": "Prodid"
+		"message": "Produkt-ID"
 	},
 	"sortstringLabel": {
 		"message": "Sortierbegriff"
 	},
 	"uidLabel": {
-		"message": "Uid"
+		"message": "Kontakt-ID"
 	},
 	"cbidLabel": {
-		"message": "CardBook id"
+		"message": "CardBook-ID"
 	},
 	"class1Label": {
 		"message": "Klasse"
 	},
 	"dirPrefIdLabel": {
-		"message": "DirPrefId"
+		"message": "Adressbuch-ID"
 	},
 	"kindLabel": {
 		"message": "Typ"
@@ -2604,10 +2633,10 @@
 		"message": "Etag"
 	},
 	"phoneticfirstnameLabel": {
-		"message": "Vorname (Phonetisch)"
+		"message": "Vorname (phonetisch)"
 	},
 	"phoneticlastnameLabel": {
-		"message": "Nachname (Phonetisch)"
+		"message": "Nachname (phonetisch)"
 	},
 	"custom1Label": {
 		"message": "Benutzerdef. 1"
@@ -2631,86 +2660,86 @@
 		"message": "Bestätigen"
 	},
 	"birthdaysListWindowLabel": {
-		"message": "Liste der Geburtstage (Gesamt : $P1$)",
-        "placeholders": {
-            "P1": {
-                "content": "$1"
-            }
-        }
+		"message": "Liste der Geburtstage (insgesamt: $P1$)",
+		"placeholders": {
+			"P1": {
+				"content": "$1"
+			}
+		}
 	},
 	"syncListWindowLabelRunning": {
 		"message": "Synchronisation der Geburtstage laufend ($P1$/$P2$)",
-        "placeholders": {
-            "P1": {
-                "content": "$1"
-            },
-            "P2": {
-                "content": "$2"
-            }
-        }
+		"placeholders": {
+			"P1": {
+				"content": "$1"
+			},
+			"P2": {
+				"content": "$2"
+			}
+		}
 	},
 	"syncListWindowLabelEnded": {
 		"message": "Synchronisation der Geburtstage beendet ($P1$/$P2$)",
-        "placeholders": {
-            "P1": {
-                "content": "$1"
-            },
-            "P2": {
-                "content": "$2"
-            }
-        }
+		"placeholders": {
+			"P1": {
+				"content": "$1"
+			},
+			"P2": {
+				"content": "$2"
+			}
+		}
 	},
 	"syncListWindowLabelFailed": {
 		"message": "Synchronisation der Geburtstage fehlgeschlagen"
 	},
 	"syncListExistingEntry": {
 		"message": "$P1$: Termin vorhanden in Lightning: $P2$",
-        "placeholders": {
-            "P1": {
-                "content": "$1"
-            },
-            "P2": {
-                "content": "$2"
-            }
-        }
+		"placeholders": {
+			"P1": {
+				"content": "$1"
+			},
+			"P2": {
+				"content": "$2"
+			}
+		}
 	},
 	"syncListCreatedEntry": {
 		"message": "$P1$: Termin erstellt in Lightning: $P2$",
-        "placeholders": {
-            "P1": {
-                "content": "$1"
-            },
-            "P2": {
-                "content": "$2"
-            }
-        }
+		"placeholders": {
+			"P1": {
+				"content": "$1"
+			},
+			"P2": {
+				"content": "$2"
+			}
+		}
 	},
 	"syncListErrorEntry": {
 		"message": "$P1$: Termin fehlerhaft in Lightning: $P2$",
-        "placeholders": {
-            "P1": {
-                "content": "$1"
-            },
-            "P2": {
-                "content": "$2"
-            }
-        }
+		"placeholders": {
+			"P1": {
+				"content": "$1"
+			},
+			"P2": {
+				"content": "$2"
+			}
+		}
 	},
 	"noBirthdaysFoundMessage": {
 		"message": "Keine Geburtstage gefunden bis $P1$",
-        "placeholders": {
-            "P1": {
-                "content": "$1"
-            }
-        }
+		"placeholders": {
+			"P1": {
+				"content": "$1"
+			}
+		}
 	},
 	"noEmailFoundMessage": {
-		"message": "Keine Email-Adresse gefunden ($P1$)",
-        "placeholders": {
-            "P1": {
-                "content": "$1"
-            }
-        }
+		"message": "Keine E-Mail-Adresse gefunden ($P1$)",
+		"placeholders": {
+			"P1": {
+				"content": "$1"
+			}
+		}
 	},
 	"eventEntryTitleMessage": {
 		"message": "Geburtstag von %1$S"
@@ -2723,97 +2752,150 @@
 	},
 	"calendarNotFoundMessage": {
 		"message": "Kalender $P1$ nicht gefunden. Synchronisation mit Lightning abgebrochen.",
-        "placeholders": {
-            "P1": {
-                "content": "$1"
-            }
-        }
+		"placeholders": {
+			"P1": {
+				"content": "$1"
+			}
+		}
 	},
 	"calendarNotWritableTitle": {
 		"message": "Geburtstag-Erinnerung - Synchronisation mit Lightning abgebrochen"
 	},
 	"calendarNotWritableMessage": {
 		"message": "Kalender $P1$ ist nicht schreibbar, nur-lesend oder offline. Synchronisation mit Lightning abgebrochen.",
-        "placeholders": {
-            "P1": {
-                "content": "$1"
-            }
-        }
+		"placeholders": {
+			"P1": {
+				"content": "$1"
+			}
+		}
 	},
 	"errorAttachingFile": {
 		"message": "Attaching vCard : Die Datei zum Anhängen der vCard kann nicht erstellt werden : $P1$ ($P2$)",
-        "placeholders": {
-            "P1": {
-                "content": "$1"
-            },
-            "P2": {
-                "content": "$2"
-            }
-        }
+		"placeholders": {
+			"P1": {
+				"content": "$1"
+			},
+			"P2": {
+				"content": "$2"
+			}
+		}
 	},
 	"errorInfiniteLoopRecursion": {
 		"message": "Lists : Nicht beendbare Rekursion in Listen : $P1$",
-        "placeholders": {
-            "P1": {
-                "content": "$1"
-            }
-        }
+		"placeholders": {
+			"P1": {
+				"content": "$1"
+			}
+		}
 	},
 	"WRONG_VERSION": {
 		"message": "Nur vCards Version 3.0 oder 4.0 werden unterstützt"
 	},
 	"unableToParseResponse": {
 		"message": "$P1$: Konnte die Antwort von Server nicht parsen. Fehlerhafte Zeile: $P2$",
-        "placeholders": {
-            "P1": {
-                "content": "$1"
-            },
-            "P2": {
-                "content": "$2"
-            }
-        }
+		"placeholders": {
+			"P1": {
+				"content": "$1"
+			},
+			"P2": {
+				"content": "$2"
+			}
+		}
 	},
 	"dateEntry1Wrong": {
 		"message": "$P1$: Kontakt $P2$ hat ein Datum ($P3$), das nicht übereinstimmt mit dem Datumsformat des Adressbuchs ($P4$)",
-        "placeholders": {
-            "P1": {
-                "content": "$1"
-            },
-            "P2": {
-                "content": "$2"
-            },
-            "P3": {
-                "content": "$3"
-            },
-            "P4": {
-                "content": "$4"
-            }
-        }
+		"placeholders": {
+			"P1": {
+				"content": "$1"
+			},
+			"P2": {
+				"content": "$2"
+			},
+			"P3": {
+				"content": "$3"
+			},
+			"P4": {
+				"content": "$4"
+			}
+		}
 	},
 	"dateEntry2Wrong": {
 		"message": "Das Datum ($P1$) stimmt nicht überein mit dem Datumsformat des Adressbuchs ($P2$)",
-        "placeholders": {
-            "P1": {
-                "content": "$1"
-            },
-            "P2": {
-                "content": "$2"
-            }
-        }
+		"placeholders": {
+			"P1": {
+				"content": "$1"
+			},
+			"P2": {
+				"content": "$2"
+			}
+		}
+	},
+	"invalidOffice365Field": {
+		"message": "$P1$ kann nicht synchronisiert werden (Wert: $P2$)",
+		"placeholders": {
+			"P1": {
+				"content": "$1"
+			},
+			"P2": {
+				"content": "$2"
+			}
+		}
+	},
+	"invalidOffice365Email": {
+		"message": "Es können nicht mehr als 3 E-Mail-Adressen synchronisiert werden"
+	},
+	"invalidOffice365Impp": {
+		"message": "Es kann nur eine IM-Adresse synchronisiert werden"
+	},
+	"invalidOffice365Adr": {
+		"message": "Es können nicht mehr als 3 physische Adressen synchronisiert werden"
+	},
+	"invalidOffice365Tel": {
+		"message": "Es können nicht mehr als 17 Telefonnummern synchronisiert werden"
+	},
+	"invalidOffice365EmptyType": {
+		"message": "$P1$ : Leere Typen sind nicht erlaubt",
+		"placeholders": {
+			"P1": {
+				"content": "$1"
+			}
+		}
+	},
+	"invalidOffice365Type": {
+		"message": "$P1$ : zu viel Typ $P2$ (maximal erlaubt: $P3$)",
+		"placeholders": {
+			"P1": {
+				"content": "$1"
+			},
+			"P2": {
+				"content": "$2"
+			},
+			"P3": {
+				"content": "$3"
+			}
+		}
+	},
+	"invalidOffice365Member": {
+		"message": "Sie können keine E-Mail hinzufügen, die nicht zu einem Kontakt in Ihrem Adressbuch ($P1$) gehört",
+		"placeholders": {
+			"P1": {
+				"content": "$1"
+			}
+		}
 	},
 	"validateIntegerMsg": {
 		"message": "Das Feld $P1$ sollte leer oder eine Zahl zwischen 1 und $P2$ sein (Wert: $P3$)",
-        "placeholders": {
-            "P1": {
-                "content": "$1"
-            },
-            "P2": {
-                "content": "$2"
-            },
-            "P3": {
-                "content": "$3"
-            }
-        }
+		"placeholders": {
+			"P1": {
+				"content": "$1"
+			},
+			"P2": {
+				"content": "$2"
+			},
+			"P3": {
+				"content": "$3"
+			}
+		}
 	},
 	"eventNameNull": {
 		"message": "Mindestens ein Termin hat eine leere Beschreibung"
@@ -2823,11 +2905,11 @@
 	},
 	"invalidURL": {
 		"message": "Ungültige URL : $P1$",
-        "placeholders": {
-            "P1": {
-                "content": "$1"
-            }
-        }
+		"placeholders": {
+			"P1": {
+				"content": "$1"
+			}
+		}
 	},
 	"cardbookSearchInputDefault": {
 		"message": "Suchen…"
@@ -2842,7 +2924,7 @@
 		"message": "Fax"
 	},
 	"homefaxtype": {
-		"message": "Fax (Privat)"
+		"message": "Fax (privat)"
 	},
 	"homepagetype": {
 		"message": "Startseite"
@@ -2871,6 +2953,27 @@
 	"worktype": {
 		"message": "Geschäftlich"
 	},
+	"otherfaxtype": {
+		"message": "Anderes Fax"
+	},
+	"assistanttype": {
+		"message": "Assistent"
+	},
+	"callbacktype": {
+		"message": "Rückruf"
+	},
+	"carphonetype": {
+		"message": "Auto"
+	},
+	"radiotype": {
+		"message": "Radio"
+	},
+	"telextype": {
+		"message": "Telex"
+	},
+	"ttytype": {
+		"message": "TTY"
+	},
 	"types.gender.f": {
 		"message": "Weiblich"
 	},
@@ -2887,7 +2990,7 @@
 		"message": "Unbekannt"
 	},
 	"typesTooltip": {
-		"message": "Typen werden in den CardBook-Einstellungen definiert. Kontakte können nur entsprechend dieser Werte geändert werden. Stellen Sie also sicher, dass dort richtigen Type angegeben sind."
+		"message": "Um die verfügbaren Typen zu ändern, verwenden Sie die CardBook-Einstellungen."
 	},
 	"prefLabel": {
 		"message": "Präferenz"
@@ -2911,7 +3014,7 @@
 		"message": "Tencent QQ"
 	},
 	"addToAddressbook": {
-		"message": "Füge zu diesem Adressbuch hinzu"
+		"message": "Zu diesem Adressbuch hinzufügen"
 	},
 	"wdw_cardEditionViewResultTitle": {
 		"message": "Bearbeitung des resultierenden Kontakts"
@@ -2920,7 +3023,7 @@
 		"message": "Bearbeitung des resultierenden Kontakts"
 	},
 	"wdw_cardEditionAddEmailTitle": {
-		"message": "Füge eine neue Email-Adresse hinzu"
+		"message": "Neue E-Mail-Adresse hinzufügen"
 	},
 	"wdw_cardEditionCreateContactTitle": {
 		"message": "Neuen Kontakt erstellen"
@@ -2948,11 +3051,11 @@
 	},
 	"wdw_cardbookPrintTitleLong": {
 		"message": "Druckvorschau von $P1$ - CardBook - Thunderbird",
-        "placeholders": {
-            "P1": {
-                "content": "$1"
-            }
-        }
+		"placeholders": {
+			"P1": {
+				"content": "$1"
+			}
+		}
 	},
 	"wdw_cardbookPrintTitle": {
 		"message": "Druckvorschau"
@@ -2976,7 +3079,7 @@
 		"message": "Telefon"
 	},
 	"emailGroupboxLabel": {
-		"message": "Emails"
+		"message": "E-Mail-Adressen"
 	},
 	"urlGroupboxLabel": {
 		"message": "URLs"
@@ -3019,73 +3122,73 @@
 	},
 	"selectedCardsDeletionConfirmMessagePF": {
 		"message": "Sind Sie sicher, dass Sie den ausgewählten Kontakt löschen möchten?;Sind Sie sicher, dass Sie die $P1$ ausgewählten Kontakte löschen möchten?",
-        "placeholders": {
-            "P1": {
-                "content": "$1"
-            }
-        }
+		"placeholders": {
+			"P1": {
+				"content": "$1"
+			}
+		}
 	},
 	"catDeletionsConfirmMessagePF": {
 		"message": "Sind Sie sicher, dass Sie die Kategorie $P2$ löschen möchten, die 1 Kontakt enthält?;Sind Sie sicher, dass Sie die Kategorie $P2$ löschen möchte, die $P1$ Kontakte enthält?",
-        "placeholders": {
-            "P1": {
-                "content": "$1"
-            },
-            "P2": {
-                "content": "$2"
-            }
-        }
+		"placeholders": {
+			"P1": {
+				"content": "$1"
+			},
+			"P2": {
+				"content": "$2"
+			}
+		}
 	},
 	"nodeDeletionsConfirmMessagePF": {
-		"message": "Sind Sie sicher, dass Sie den Knoten $P2$, der 1 Kontakt enhält, löschen möchten?;Sind Sie sicher, dass Sie den Knoten $P2$, der $P1$ Kontakte enthält, löschen möchten?",
-        "placeholders": {
-            "P1": {
-                "content": "$1"
-            },
-            "P2": {
-                "content": "$2"
-            }
-        }
+		"message": "Sind Sie sicher, dass Sie den Knoten $P2$, der 1 Kontakt enthält, löschen möchten?;Sind Sie sicher, dass Sie den Knoten $P2$, der $P1$ Kontakte enthält, löschen möchten?",
+		"placeholders": {
+			"P1": {
+				"content": "$1"
+			},
+			"P2": {
+				"content": "$2"
+			}
+		}
 	},
 	"accountDeletionConfirmMessage": {
 		"message": "Sind Sie sicher, dass Sie das Adressbuch $P1$ aus CardBook entfernen möchten?",
-        "placeholders": {
-            "P1": {
-                "content": "$1"
-            }
-        }
+		"placeholders": {
+			"P1": {
+				"content": "$1"
+			}
+		}
 	},
 	"accountDeletionDiscoveryConfirmMessage": {
 		"message": "Das Adressbuch $P1$ scheint von Ihrem Server entfernt worden zu sein, möchten Sie es aus Ihrem CardBook-Speicher entfernen?",
-        "placeholders": {
-            "P1": {
-                "content": "$1"
-            }
-        }
+		"placeholders": {
+			"P1": {
+				"content": "$1"
+			}
+		}
 	},
 	"accountDeletiondeleteContentFileMessage": {
 		"message": "Datei $P1$ löschen",
-        "placeholders": {
-            "P1": {
-                "content": "$1"
-            }
-        }
+		"placeholders": {
+			"P1": {
+				"content": "$1"
+			}
+		}
 	},
 	"accountDeletiondeleteContentDirMessage": {
 		"message": "Verzeichnis $P1$ löschen",
-        "placeholders": {
-            "P1": {
-                "content": "$1"
-            }
-        }
+		"placeholders": {
+			"P1": {
+				"content": "$1"
+			}
+		}
 	},
 	"directoryDeletionConfirmMessage": {
 		"message": "Das Verzeichnis $P1$ ist nicht leer. Sind Sie sicher, dass Sie den gesamten Inhalt des Verzeichnisses löschen möchten?",
-        "placeholders": {
-            "P1": {
-                "content": "$1"
-            }
-        }
+		"placeholders": {
+			"P1": {
+				"content": "$1"
+			}
+		}
 	},
 	"choiceMappingTitle": {
 		"message": "Auswahl der Felder"
@@ -3143,19 +3246,19 @@
 	},
 	"copyFieldValue": {
 		"message": "Kopieren ($P1$)",
-        "placeholders": {
-            "P1": {
-                "content": "$1"
-            }
-        }
+		"placeholders": {
+			"P1": {
+				"content": "$1"
+			}
+		}
 	},
 	"pasteFieldValue": {
 		"message": "Einfügen ($P1$)",
-        "placeholders": {
-            "P1": {
-                "content": "$1"
-            }
-        }
+		"placeholders": {
+			"P1": {
+				"content": "$1"
+			}
+		}
 	},
 	"wdw_cardbookRenameFieldEditTypeTitle": {
 		"message": "Typ umbenennen"
@@ -3192,11 +3295,11 @@
 	},
 	"wdw_cardbookRenameFieldEditNodeLabel": {
 		"message": "$P1$:",
-        "placeholders": {
-            "P1": {
-                "content": "$1"
-            }
-        }
+		"placeholders": {
+			"P1": {
+				"content": "$1"
+			}
+		}
 	},
 	"wdw_cardbookConfigurationAddEmailsRestrictionTitle": {
 		"message": "Beschränkungen festlegen"
@@ -3239,11 +3342,11 @@
 	},
 	"eventContactsWindowLabel": {
 		"message": "Termine für: $P1$",
-        "placeholders": {
-            "P1": {
-                "content": "$1"
-            }
-        }
+		"placeholders": {
+			"P1": {
+				"content": "$1"
+			}
+		}
 	},
 	"fnDuplicatedMessage": {
 		"message": "(Kopie)"
@@ -3261,29 +3364,26 @@
 		"message": "Neue Nachricht verfassen"
 	},
 	"doNotShowAnymore": {
-		"message": "Mich nicht warnen, wenn ich versuche an einen Kontakt zu senden, zu dem keine E-Mailadresse gespeichert ist."
+		"message": "Mich nicht warnen, wenn ich versuche, an einen Kontakt zu senden, zu dem keine E-Mail-Adresse gespeichert ist."
 	},
 	"emptyEmailsCardConfirmMessage": {
-		"message": "Zu diesem Kontakt existiert keine E-Mailadresse: $P1$",
-        "placeholders": {
-            "P1": {
-                "content": "$1"
-            }
-        }
+		"message": "Zu diesem Kontakt existiert keine E-Mail-Adresse: $P1$",
+		"placeholders": {
+			"P1": {
+				"content": "$1"
+			}
+		}
 	},
 	"emptyEmailsCardsConfirmMessage": {
-		"message": "Zu diesen Kontakten existieren keine E-Mailadressen: $P1$",
-        "placeholders": {
-            "P1": {
-                "content": "$1"
-            }
-        }
+		"message": "Zu diesen Kontakten existieren keine E-Mail-Adressen: $P1$",
+		"placeholders": {
+			"P1": {
+				"content": "$1"
+			}
+		}
 	},
 	"eventInNoteEventPrefix": {
 		"message": "Termin"
-	},
-	"deathSuffix": {
-		"message": "(Tod)"
 	},
 	"dateFormatsDLabel": {
 		"message": "D"
@@ -3305,11 +3405,11 @@
 	},
 	"valueAlreadyExists": {
 		"message": "Der Wert $P1$ existiert bereits",
-        "placeholders": {
-            "P1": {
-                "content": "$1"
-            }
-        }
+		"placeholders": {
+			"P1": {
+				"content": "$1"
+			}
+		}
 	},
 	"allAccountsLabel": {
 		"message": "Alle Adressbücher"
@@ -3346,59 +3446,59 @@
 	},
 	"newTokenTitle": {
 		"message": "Anmelden mit Ihrem Konto $P1$",
-        "placeholders": {
-            "P1": {
-                "content": "$1"
-            }
-        }
+		"placeholders": {
+			"P1": {
+				"content": "$1"
+			}
+		}
 	},
 	"warnDescription": {
 		"message": "CardBook möchte auf ihren Account $P1$ zugreifen, um Kontakte herunterzuladen. Zugangsdaten sowie Kontaktdaten werden ausschließlich zwischen Ihrem Computer und Google ausgetauscht, es werden keine Daten an Drittseiten weitergeleitet.",
-        "placeholders": {
-            "P1": {
-                "content": "$1"
-            }
-        }
+		"placeholders": {
+			"P1": {
+				"content": "$1"
+			}
+		}
 	},
 	"applicationName": {
 		"message": "Anwendung: $P1$",
-        "placeholders": {
-            "P1": {
-                "content": "$1"
-            }
-        }
+		"placeholders": {
+			"P1": {
+				"content": "$1"
+			}
+		}
 	},
 	"clientID": {
 		"message": "Client-Identifikation: $P1$",
-        "placeholders": {
-            "P1": {
-                "content": "$1"
-            }
-        }
+		"placeholders": {
+			"P1": {
+				"content": "$1"
+			}
+		}
 	},
 	"scopeURL": {
 		"message": "Umfang: $P1$",
-        "placeholders": {
-            "P1": {
-                "content": "$1"
-            }
-        }
+		"placeholders": {
+			"P1": {
+				"content": "$1"
+			}
+		}
 	},
 	"invalidEmail": {
 		"message": "$P1$ ist keine gültige E-Mail-Adresse, weil sie nicht dem Format user@host entspricht.",
-        "placeholders": {
-            "P1": {
-                "content": "$1"
-            }
-        }
+		"placeholders": {
+			"P1": {
+				"content": "$1"
+			}
+		}
 	},
 	"appendEmailLabel": {
-		"message": "Zur liste hinzufügen: $P1$",
-        "placeholders": {
-            "P1": {
-                "content": "$1"
-            }
-        }
+		"message": "Zur Liste hinzufügen: $P1$",
+		"placeholders": {
+			"P1": {
+				"content": "$1"
+			}
+		}
 	},
 	"categoryAddNew": {
 		"message": "Neue Kategorie hinzufügen"
@@ -3417,14 +3517,14 @@
 	},
 	"encryptionProcessed": {
 		"message": "Verschlüsselte Einträge: $P1$/$P2$",
-        "placeholders": {
-            "P1": {
-                "content": "$1"
-            },
-            "P2": {
-                "content": "$2"
-            }
-        }
+		"placeholders": {
+			"P1": {
+				"content": "$1"
+			},
+			"P2": {
+				"content": "$2"
+			}
+		}
 	},
 	"encryptionFinished": {
 		"message": "Verschlüsselung beendet"
@@ -3434,36 +3534,36 @@
 	},
 	"decryptionProcessed": {
 		"message": "Entschlüsselte Einträge: $P1$/$P2$",
-        "placeholders": {
-            "P1": {
-                "content": "$1"
-            },
-            "P2": {
-                "content": "$2"
-            }
-        }
+		"placeholders": {
+			"P1": {
+				"content": "$1"
+			},
+			"P2": {
+				"content": "$2"
+			}
+		}
 	},
 	"decryptionFinished": {
 		"message": "Entschlüsselung beendet"
 	},
 	"menu_undo.long.label": {
 		"message": "Rückgängig - $P1$",
-        "placeholders": {
-            "P1": {
-                "content": "$1"
-            }
-        }
+		"placeholders": {
+			"P1": {
+				"content": "$1"
+			}
+		}
 	},
 	"menu_undo.short.label": {
 		"message": "Rückgängig"
 	},
 	"menu_redo.long.label": {
 		"message": "Wiederherstellen - $P1$",
-        "placeholders": {
-            "P1": {
-                "content": "$1"
-            }
-        }
+		"placeholders": {
+			"P1": {
+				"content": "$1"
+			}
+		}
 	},
 	"menu_redo.short.label": {
 		"message": "Wiederherstellen"
@@ -3502,19 +3602,19 @@
 		"message": "Schlagwort-Filterungsmodus"
 	},
 	"quickFilterBar.booleanModeAny.label": {
-		"message": "Eins der Ausgewählten"
+		"message": "Eins der ausgewählten"
 	},
 	"quickFilterBar.booleanModeAny.tooltip": {
 		"message": "Nachricht muss mindestens eins der ausgewählten Schlagwörter besitzen."
 	},
 	"quickFilterBar.booleanModeAll.label": {
-		"message": "Alle Ausgewählten"
+		"message": "Alle ausgewählten"
 	},
 	"quickFilterBar.booleanModeAll.tooltip": {
 		"message": "Nachricht muss alle ausgewählten Schlagwörter besitzen."
 	},
 	"newCardBookCardMenuLabel": {
-		"message": "CardBook Kontakt…"
+		"message": "CardBook-Kontakt…"
 	},
 	"newCardBookCardMenuAccesskey": {
 		"message": "C"
@@ -3541,7 +3641,7 @@
 		"message": "M"
 	},
 	"deleteInCardBookMenuLabel": {
-		"message": "CardBook Kontakt löschen"
+		"message": "CardBook-Kontakt löschen"
 	},
 	"deleteInCardBookMenuAccesskey": {
 		"message": "L"
@@ -3553,25 +3653,25 @@
 		"message": "V"
 	},
 	"findAllEmailsFromContactMessengerLabel": {
-		"message": "Suche Emails des Kontakts"
+		"message": "E-Mails des Kontakts suchen"
 	},
 	"findAllEmailsFromContactMessengerAccesskey": {
 		"message": "K"
 	},
 	"findEmailsFromEmailMessengerLabel": {
-		"message": "Suche Emails in Bezug auf diese Email-Adresse"
+		"message": "E-Mails in Bezug auf diese E-Mail-Adresse suchen"
 	},
 	"findEmailsFromEmailMessengerAccesskey": {
 		"message": "E"
 	},
 	"findAllEventsFromContactMessengerLabel": {
-		"message": "Suche Termine des Kontakts"
+		"message": "Termine des Kontakts suchen"
 	},
 	"findAllEventsFromContactMessengerAccesskey": {
 		"message": "T"
 	},
 	"findEventsFromEmailMessengerLabel": {
-		"message": "Suche Termine in Bezug auf diese Email-Adresse"
+		"message": "Termine in Bezug auf diese E-Mail-Adresse suchen"
 	},
 	"findEventsFromEmailMessengerAccesskey": {
 		"message": "T"
@@ -3595,25 +3695,25 @@
 		"message": "A"
 	},
 	"cardbookContactPaneItemLabel": {
-		"message": "Kontaktebereich"
+		"message": "Kontaktbereich"
 	},
 	"cardbookContactPaneItemAccesskey": {
 		"message": "K"
 	},
+	"wizard.next.label": {
+		"message": "Weiter"
+	},
+	"wizard.back.label": {
+		"message": "Zurück"
+	},
+	"wizard.create.label": {
+		"message": "Erstelle"
+	},
 	"wizard.title": {
 		"message": "Neues Adressbuch hinzufügen"
 	},
-	"wizard.label": {
-		"message": "Neues Adressbuch hinzufügen"
-	},
-	"welcomePage.wizard.description": {
-		"message": "Willkommen"
-	},
 	"welcomePage.description": {
-		"message": "Anscheinend verwenden Sie CardBook zum ersten Mal, also werden wir versuchen Kontakte zu sammeln. Zuerst versuchen wir die Standard-Adressbücher von Thunderbird zu importieren, anschließend suchen wir nach möglichen Netzwerk-Adressbüchern."
-	},
-	"initialPage.wizard.description": {
-		"message": "Ort des neuen Adressbuchs"
+		"message": "Anscheinend verwenden Sie CardBook zum ersten Mal, also werden wir versuchen, Kontakte zu sammeln. Zuerst versuchen wir, die Standard-Adressbücher von Thunderbird zu importieren. Anschließend suchen wir nach möglichen Netzwerk-Adressbüchern."
 	},
 	"initialPage.description": {
 		"message": "Ist das Adressbuch lokal oder im Netzwerk gespeichert?"
@@ -3625,16 +3725,13 @@
 		"message": "Im Netzwerk"
 	},
 	"initialPage.standard.label": {
-		"message": "Standard Adressbücher von Thunderbird importieren"
+		"message": "Standard-Adressbücher von Thunderbird importieren"
 	},
 	"initialPage.search.label": {
 		"message": "Suche in einem existierenden Adressbuch"
 	},
 	"initialPage.find.label": {
 		"message": "Suche nach Netzwerk-Adressbüchern"
-	},
-	"localPage.wizard.description": {
-		"message": "Art und Ort des neuen lokalen Adressbuchs."
 	},
 	"localPage.type.description": {
 		"message": "Welcher Art ist das lokale Adressbuch?"
@@ -3669,9 +3766,6 @@
 	"localPage.uributton.label": {
 		"message": "Durchsuchen"
 	},
-	"remotePage.wizard.description": {
-		"message": "Art und Ort des neuen Netzwerk-Adressbuchs"
-	},
 	"remotePage.description": {
 		"message": "Welcher Art ist das Netzwerk-Adressbuch? (Achtung: Google hält sich nicht an vCard-Standards.)"
 	},
@@ -3679,7 +3773,10 @@
 		"message": "Art"
 	},
 	"remotePageType.carddav.label": {
-		"message": "CardDAV"
+		"message": "CardDAV (Eine URL eingeben oder einfügen)"
+	},
+	"remotePageType.ews.label": {
+		"message": "EWS (Eine URL eingeben oder einfügen)"
 	},
 	"remotePageType.google2.label": {
 		"message": "Google"
@@ -3706,13 +3803,13 @@
 		"message": "Verbindung"
 	},
 	"remotePage.url.description": {
-		"message": "Adresse für das CardDAV-Adressbuch. Sie können versuchen, Teil-URLs anzugeben (z.B. http(s)://carddav.example.org). Für Google-Adressbücher muss keine URL angegeben werden."
+		"message": "Adresse für das CardDAV-Adressbuch. Sie können versuchen, Teil-URLs anzugeben (z. B. http(s)://carddav.example.org). Für Google-Adressbücher muss keine URL angegeben werden."
 	},
 	"remotePage.url.label": {
 		"message": "URL:"
 	},
 	"remotePage.credentials.description": {
-		"message": "Zugangsdaten für das Adressbuch. Für Google-Adressbücher sollte der Benutzername der Email-Adresse entsprechen."
+		"message": "Zugangsdaten für das Adressbuch. Für Google-Adressbücher sollte der Benutzername der E-Mail-Adresse entsprechen."
 	},
 	"remotePage.user.label": {
 		"message": "Benutzername:"
@@ -3720,17 +3817,17 @@
 	"remotePage.password.label": {
 		"message": "Passwort:"
 	},
+	"rememberPassword": {
+		"message": "Die Thunderbird-Passwortverwaltung benutzen, um dieses Passwort zu speichern"
+	},
 	"showHidePassword.tooltip": {
 		"message": "Passwortanzeige umschalten"
 	},
 	"remotePage.validatebutton.label": {
 		"message": "Überprüfen"
 	},
-	"locationSearchPage.wizard.description": {
-		"message": "Die gespeichterte Suche definieren."
-	},
 	"locationSearchPage.label": {
-		"message": "Gespeichterte Suche"
+		"message": "Gespeicherte Suche"
 	},
 	"abSearchHeading.label": {
 		"message": "Suchen in:"
@@ -3753,9 +3850,6 @@
 	"googleOauthPage.wizard.description": {
 		"message": "Google-Authentifizierung"
 	},
-	"namePage.wizard.description": {
-		"message": "Eigenschaften des Adressbuchs"
-	},
 	"namePage.selected.label": {
 		"message": "Ausgewählt"
 	},
@@ -3766,7 +3860,7 @@
 		"message": "Farbe"
 	},
 	"namePage.urnuuid.label": {
-		"message": "Benutze urn:uuid"
+		"message": "urn:uuid benutzen"
 	},
 	"namePage.DBCached.label": {
 		"message": "Offline arbeiten"
@@ -3774,17 +3868,11 @@
 	"namePage.vCardVersion.label": {
 		"message": "vCard"
 	},
-	"namesPage.wizard.description": {
-		"message": "Eigenschaften der Adressbücher"
-	},
 	"namesPage.name.label": {
 		"message": "Namen"
 	},
 	"namesPage.name.description": {
 		"message": "Es wurden mehrere Adressbücher gefunden. Wählen Sie, welche Adressbücher geöffnet werden sollen und vergeben Sie Namen für diese."
-	},
-	"findPage.wizard.description": {
-		"message": "Suche nach Netzwerk-Adressbüchern"
 	},
 	"findPage.name1.description": {
 		"message": "Kein Netzwerk-Adressbuch gefunden."
@@ -3794,9 +3882,6 @@
 	},
 	"findPage.name3.description": {
 		"message": "Mehrere Adressbücher können hinzugefügt werden. Wählen Sie die Adressbücher aus, die Sie hinzufügen möchten:"
-	},
-	"finishPage.wizard.description": {
-		"message": "Einstellungen der Adressbücher"
 	},
 	"finishPage.description": {
 		"message": "Ihr neues Adressbuch wurde erfolgreich konfiguriert."
@@ -3841,7 +3926,7 @@
 		"message": "S"
 	},
 	"urnuuidLabel": {
-		"message": "Benutze urn:uuid"
+		"message": "urn:uuid benutzen"
 	},
 	"DBCachedLabel": {
 		"message": "Offline arbeiten"
@@ -3928,13 +4013,13 @@
 		"message": "Geburtstag (gefunden)"
 	},
 	"emailColumnLabel": {
-		"message": "Email"
+		"message": "E-Mail"
 	},
 	"sendEmailLabel": {
 		"message": "Neue Nachricht verfassen"
 	},
 	"sendEmailAccesskey": {
-		"message": "m"
+		"message": "N"
 	},
 	"syncLightningMenuItemLabel": {
 		"message": "Mit Lightning synchronisieren"
@@ -3943,10 +4028,10 @@
 		"message": "L"
 	},
 	"calendarNameLabel": {
-		"message": "Kalendar"
+		"message": "Kalender"
 	},
 	"calendarIdLabel": {
-		"message": "Kalendar ID"
+		"message": "Kalender-ID"
 	},
 	"existingLabel": {
 		"message": "Vorhanden"
@@ -3961,7 +4046,7 @@
 		"message": "Wird ausgeführt…"
 	},
 	"wdw_cardbookConfigurationAddCustomFieldTitle": {
-		"message": "Editor für Benutzerdefiniertes Feld"
+		"message": "Editor für benutzerdefinierte Felder"
 	},
 	"customFieldCodeLabel": {
 		"message": "Feldname:"
@@ -3970,7 +4055,7 @@
 		"message": "Feldlabel:"
 	},
 	"mailAccountLabel": {
-		"message": "Email-Konto:"
+		"message": "E-Mail-Konto:"
 	},
 	"addressbookLabel": {
 		"message": "Adressbuch:"
@@ -3982,7 +4067,7 @@
 		"message": "Kontakt"
 	},
 	"wdw_cardbookConfigurationAddIMPPTitle": {
-		"message": "IMPP Editor"
+		"message": "IMPP-Editor"
 	},
 	"IMPPCodeLabel": {
 		"message": "Code:"
@@ -4012,7 +4097,7 @@
 		"message": "Edition"
 	},
 	"IMPPsTabLabel": {
-		"message": "IM Adressen"
+		"message": "IM-Adressen"
 	},
 	"customFieldsTabLabel": {
 		"message": "Benutzerdefinierte Felder"
@@ -4024,7 +4109,7 @@
 		"message": "Synchronisation"
 	},
 	"emailTabLabel": {
-		"message": "Email"
+		"message": "E-Mail"
 	},
 	"birthdaylistTabLabel": {
 		"message": "Geburtstage"
@@ -4036,7 +4121,7 @@
 		"message": "Integration in Thunderbird"
 	},
 	"autocompletionLabel": {
-		"message": "Autovervollständigung der Email-Adressen"
+		"message": "Autovervollständigung der E-Mail-Adressen"
 	},
 	"autocompletionAccesskey": {
 		"message": "A"
@@ -4045,7 +4130,7 @@
 		"message": "Erweitert die standardmäßige Autovervollständigung von Kontakten in Adressbüchern von Thunderbird um eine Autovervollständigung von Kontakten in Adressbüchern von CardBook."
 	},
 	"autocompleteSortByPopularityLabel": {
-		"message": "Sortiere Email-Adressen nach Popularität"
+		"message": "E-Mail-Adressen nach Popularität sortieren"
 	},
 	"autocompleteSortByPopularityAccesskey": {
 		"message": "S"
@@ -4057,34 +4142,34 @@
 		"message": "V"
 	},
 	"autocompleteShowAddressbookLabel": {
-		"message": "Zeige den Namen des Adressbuchs"
+		"message": "Namen des Adressbuchs anzeigen"
 	},
 	"autocompleteShowAddressbookAccesskey": {
 		"message": "Z"
 	},
 	"autocompleteShowEmailTypeLabel": {
-		"message": "Zeige den Email Typ"
+		"message": "E-Mail-Typ anzeigen"
 	},
 	"autocompleteShowEmailTypeAccesskey": {
-		"message": "E"
+		"message": "Y"
 	},
 	"autocompleteShowPopularityLabel": {
-		"message": "Zeige die Beliebtheit"
+		"message": "Beliebtheit anzeigen"
 	},
 	"autocompleteShowPopularityAccesskey": {
 		"message": "B"
 	},
 	"autocompleteWithColorLabel": {
-		"message": "Benutze die Farbe des Adressbuchs"
+		"message": "Farbe des Adressbuchs benutzen"
 	},
 	"autocompleteWithColorAccesskey": {
 		"message": "F"
 	},
 	"autocompleteRestrictSearchLabel": {
-		"message": "Begrenze die durchsuchten Felder"
+		"message": "Suchfelder einschränken"
 	},
 	"autocompleteRestrictSearchAccesskey": {
-		"message": "P"
+		"message": "U"
 	},
 	"chooseAutocompleteRestrictSearchFieldsButtonLabel": {
 		"message": "Hinzufügen"
@@ -4126,7 +4211,7 @@
 		"message": "E"
 	},
 	"exclusiveTooltip": {
-		"message": "Falls deaktiviert, ermöglicht diese Einstellung die Zuordnung von Kontakten aus den Standardadressbüchern von Thunderbird für die Gelben Sterne, die Anzeigenamen und die Autovervollständigung."
+		"message": "Falls deaktiviert, ermöglicht diese Einstellung die Zuordnung von Kontakten aus den Standard-Adressbüchern von Thunderbird für die gelben Sterne, die Anzeigenamen und die Autovervollständigung."
 	},
 	"accountsRestrictionsLabel": {
 		"message": "Beschränkungen für Mail-Konten"
@@ -4135,7 +4220,7 @@
 		"message": "Aktiviert"
 	},
 	"accountsRestrictionsMailNameLabel": {
-		"message": "Email-Konto"
+		"message": "E-Mail-Konto"
 	},
 	"accountsRestrictionsABNameLabel": {
 		"message": "Adressbuch"
@@ -4165,16 +4250,16 @@
 		"message": "L"
 	},
 	"emailsCollectionLabel": {
-		"message": "Sammlung ausgehender Email-Adressen"
+		"message": "Sammlung ausgehender E-Mail-Adressen"
 	},
 	"emailsCollectionTooltip": {
-		"message": "Erweitert die standardmäßige Sammlung ausgehender Email-Adressen in Thunderbird. Falls aktiviert, werden Email-Adressen, die nicht in einem Adressbuch von CardBook vorhanden sind, automatisch den ausgewählten Adressbüchern hinzufügt."
+		"message": "Erweitert die standardmäßige Sammlung ausgehender E-Mail-Adressen in Thunderbird. Falls aktiviert, werden E-Mail-Adressen, die nicht in einem Adressbuch von CardBook vorhanden sind, automatisch den ausgewählten Adressbüchern hinzugefügt."
 	},
 	"emailsCollectionEnabledLabel": {
 		"message": "Aktiviert"
 	},
 	"emailsCollectionMailNameLabel": {
-		"message": "Email-Konto"
+		"message": "E-Mail-Konto"
 	},
 	"emailsCollectionABNameLabel": {
 		"message": "Adressbuch"
@@ -4345,16 +4430,16 @@
 		"message": "Sonstiges"
 	},
 	"preferEmailEditionLabel": {
-		"message": "Durch einen Doppelklick den Kontakt bearbeiten anstatt eine E-Mail zu verfassen"
+		"message": "Durch einen Doppelklick den Kontakt bearbeiten, statt eine E-Mail zu verfassen"
 	},
 	"preferEmailEditionAccesskey": {
 		"message": "D"
 	},
 	"dateDisplayedFormatLabel": {
-		"message": "Datums-Textformat:"
+		"message": "Datumsformat:"
 	},
 	"dateDisplayedFormatAccesskey": {
-		"message": "x"
+		"message": "U"
 	},
 	"defaultRegionLabel": {
 		"message": "Standardregion:"
@@ -4369,7 +4454,7 @@
 		"message": "Auswahl der Felder"
 	},
 	"editionWarn": {
-		"message": "Bei der Bearbeitung eines Kontakts wird CardBook defaultmäßig nur die ausgewählten Felder anzeigen."
+		"message": "Bei der Bearbeitung eines Kontakts zeigt CardBook standardmäßig nur die ausgewählten Felder an."
 	},
 	"fieldsButtonLabel": {
 		"message": "Als Standard festlegen"
@@ -4378,7 +4463,7 @@
 		"message": "Immer Anzeigename statt der Angabe im Nachrichtenkopf verwenden"
 	},
 	"selectAllFieldsLabel": {
-		"message": "Alles auswählen"
+		"message": "Alle auswählen"
 	},
 	"preferenceGroupboxLabel": {
 		"message": "Feld PREF"
@@ -4410,6 +4495,12 @@
 	"typesCategoryAppleAccesskey": {
 		"message": "A"
 	},
+	"typesCategoryOffice365Label": {
+		"message": "Office365"
+	},
+	"typesCategoryOffice365Accesskey": {
+		"message": "O"
+	},
 	"typesCategoryYahooLabel": {
 		"message": "Yahoo!"
 	},
@@ -4432,7 +4523,7 @@
 		"message": "d"
 	},
 	"typesCategoryEmailLabel": {
-		"message": "Email"
+		"message": "E-Mail"
 	},
 	"typesCategoryEmailAccesskey": {
 		"message": "E"
@@ -4483,19 +4574,19 @@
 		"message": "Z"
 	},
 	"IMPPGroupboxWarn": {
-		"message": "Diese Einstellungen ermöglichen das direkte Öffnen einer IM Adresse mit dem angegebenen Protokoll."
+		"message": "Diese Einstellungen ermöglichen das direkte Öffnen einer IM-Adresse mit dem angegebenen Protokoll."
 	},
 	"IMPPGroupboxLabel": {
-		"message": "IM Adressen"
+		"message": "IM-Adressen"
 	},
 	"preferIMPPPrefLabel": {
-		"message": "Bevorzuge IM Adressen markiert mit Stern"
+		"message": "Mit Stern markierte IM-Adressen bevorzugen"
 	},
 	"preferIMPPPrefAccesskey": {
 		"message": "I"
 	},
 	"preferIMPPPrefWarn": {
-		"message": "Ist keine IM Adresse markiert mit Stern, so werden alle IM Adressen vorgeschlagen."
+		"message": "Ist keine IM-Adresse mit Stern markiert, so werden alle IM-Adressen vorgeschlagen."
 	},
 	"IMPPCodeHeaderLabel": {
 		"message": "Code"
@@ -4528,7 +4619,7 @@
 		"message": "URL zum Öffnen von Softphones"
 	},
 	"URLPhoneGroupboxWarn": {
-		"message": "Dieser Abschnitt trifft nur zu, wenn man ein url Protokoll für das Telefon festgelegt hat. Die URL sollte {{1}} als Platzhalter für die Telefonnummer enthalten."
+		"message": "Dieser Abschnitt gilt, wenn Sie das URL-Protokoll für das Telefon festgelegt haben. Die URL sollte {{1}} als Platzhalter für die Telefonnummer enthalten."
 	},
 	"URLPhoneURLLabel": {
 		"message": "URL:"
@@ -4558,10 +4649,10 @@
 		"message": "Verschlüsselung"
 	},
 	"encryptionExplanation": {
-		"message": "CardBook kann Ihre lokalen Daten verschlüsseln. Der dafür benötigte geheime Schlüssel wird im Passwort-Manager gespeichert. Wenn Sie diesen Schlüssel verlieren, ist die Wiederherstellung Ihrer lokalen Daten unmöglich. Für einen vollständigen Schutz empfiehlt es sich die Thunderbird Master-Passwort Funktion zu aktivieren."
+		"message": "CardBook kann Ihre lokalen Daten verschlüsseln. Der dafür benötigte geheime Schlüssel wird im Passwort-Manager gespeichert. Wenn Sie diesen Schlüssel verlieren, ist die Wiederherstellung Ihrer lokalen Daten unmöglich. Für einen vollständigen Schutz empfiehlt es sich, Thunderbirds Masterpasswort-Funktion zu aktivieren."
 	},
 	"localDataEncryptionEnabledLabel": {
-		"message": "Lokal zwischengespeichterte Adresskarten verschlüsseln"
+		"message": "Lokal zwischengespeicherte Adresskarten verschlüsseln"
 	},
 	"localDataEncryptionEnabledAccesskey": {
 		"message": "v"
@@ -4606,7 +4697,7 @@
 		"message": "L"
 	},
 	"orgWarn": {
-		"message": "Das Feld ORG darf mehrere durch SEMIKOLON getrennte Zeichenketten enthalten, z.B.: yourcompany;yourservice;yourdepartment. Die Felder unten definieren die Namen der jeweiligen Zeichenketten."
+		"message": "Das Feld ORG darf mehrere durch SEMIKOLON getrennte Zeichenketten enthalten, z. B.: yourcompany;yourservice;yourdepartment. Die Felder unten definieren die Namen der jeweiligen Zeichenketten."
 	},
 	"orgRankLabel": {
 		"message": "Rang"
@@ -4615,7 +4706,7 @@
 		"message": "Feldlabel"
 	},
 	"listPanelLabel": {
-		"message": "Falls Ihr Server keine Kategorien unterstützt (z.B. Google, Apple, Zimbra, etc.), dann sind Listen eine gute Alternative, um Emails an Gruppen zu senden. vCard 3.0 hat keine native Unterstützung für Listen; stattdessen können Benutzerdefinierte Felder verwendet werden. Wenn Sie Listen in vCard 3.0 benutzen möchten, dann müssen Sie diese Felder definieren."
+		"message": "Falls Ihr Server keine Kategorien unterstützt (z. B. Google, Apple, Zimbra etc.), dann sind Listen eine gute Alternative, um E-Mails an Gruppen zu senden. vCard 3.0 hat keine native Unterstützung für Listen, stattdessen können benutzerdefinierte Felder verwendet werden. Wenn Sie Listen in vCard 3.0 benutzen möchten, dann müssen Sie diese Felder definieren."
 	},
 	"listGroupboxLabel": {
 		"message": "Benutzerdefinierte Felder für Listen"
@@ -4666,19 +4757,19 @@
 		"message": "Falls ein Kontakt sowohl lokal als auch serverseitig geändert worden ist:"
 	},
 	"solveConflictsLocalLabel": {
-		"message": "Bevorzuge die lokale Änderung"
+		"message": "Lokale Änderung bevorzugen"
 	},
 	"solveConflictsLocalAccesskey": {
 		"message": "L"
 	},
 	"solveConflictsRemoteLabel": {
-		"message": "Bevorzuge die serverseitige Änderung"
+		"message": "Serverseitige Änderung bevorzugen"
 	},
 	"solveConflictsRemoteAccesskey": {
 		"message": "S"
 	},
 	"solveConflictsUserLabel": {
-		"message": "Frage den Benutzer"
+		"message": "Benutzer fragen"
 	},
 	"solveConflictsUserAccesskey": {
 		"message": "B"
@@ -4705,7 +4796,7 @@
 		"message": "G"
 	},
 	"discoveryGroupboxLabel": {
-		"message": "Adressbücher Erkennung"
+		"message": "Adressbücher entdecken"
 	},
 	"discoveryWarn": {
 		"message": "Bei jeder Synchronisierung wird eine Überprüfung der unten aufgeführten URLs durchgeführt, um nach neuen oder gelöschten Adressbüchern zu suchen."
@@ -4717,25 +4808,25 @@
 		"message": "Erweiterte Eigenschaften"
 	},
 	"decodeReportLabel": {
-		"message": "Dekodiere URLs für REPORT Anfragen"
+		"message": "URLs für REPORT-Anfragen decodieren"
 	},
 	"decodeReportAccesskey": {
 		"message": "D"
 	},
 	"miscEmailGroupboxLabel": {
-		"message": "Email-Versand"
+		"message": "E-Mail-Versand"
 	},
 	"preferEmailPrefLabel": {
-		"message": "Adressen mit dem Typ „pref” bevorzugen"
+		"message": "E-Mail-Adressen mit dem Typ “pref” bevorzugen"
 	},
 	"preferEmailPrefAccesskey": {
 		"message": "P"
 	},
 	"preferEmailPrefWarn": {
-		"message": "Ist keine Adresse mit dem Typ „pref” vorhanden, so werden alle Adressen genutzt."
+		"message": "Ist keine Adresse mit dem Typ “pref” vorhanden, so werden alle Adressen genutzt."
 	},
 	"warnEmptyEmailsLabel": {
-		"message": "Mich warnen, wenn ich versuche an einen Kontakt zu senden, zu dem keine E-Mailadresse gespeichert ist"
+		"message": "Mich warnen, wenn ich versuche, an einen Kontakt zu senden, zu dem keine E-Mail-Adresse gespeichert ist"
 	},
 	"warnEmptyEmailsAccesskey": {
 		"message": "W"
@@ -4747,16 +4838,16 @@
 		"message": "U"
 	},
 	"attachVCardWarn": {
-		"message": "Automatisch vCard an Emails anhängen: Eine vCard pro E-Mail-Konto auswählen. Falls aktiviert wird diese vCard an jede ausgehende E-Mail angehängt."
+		"message": "Automatisch vCard an E-Mails anhängen: Eine vCard pro E-Mail-Konto auswählen. Falls aktiviert, wird diese vCard an jede ausgehende E-Mail angehängt."
 	},
 	"attachVCardGroupboxLabel": {
-		"message": "Fürs an Email anhängen"
+		"message": "Einer vCard hinzufügen"
 	},
 	"accountsVCardsEnabledLabel": {
 		"message": "Aktiviert"
 	},
 	"accountsVCardsMailLabel": {
-		"message": "Email-Konto"
+		"message": "E-Mail-Konto"
 	},
 	"accountsVCardsABNameLabel": {
 		"message": "Adressbuch"
@@ -4788,11 +4879,14 @@
 	"birthdayListWarn": {
 		"message": "Geburtstage werden nur in Adressbüchern von CardBook gesucht."
 	},
+	"generalGroupboxLabel": {
+		"message": "Allgemein"
+	},
 	"addressbooksGroupboxLabel": {
 		"message": "Adressbücher"
 	},
 	"selectAllABsLabel": {
-		"message": "Alles auswählen"
+		"message": "Alle auswählen"
 	},
 	"searchForLabel": {
 		"message": "Suche nach:"
@@ -4834,7 +4928,7 @@
 		"message": "Kalender"
 	},
 	"selectAllCalendarsLabel": {
-		"message": "Alles auswählen"
+		"message": "Alle auswählen"
 	},
 	"remindersTabLabel": {
 		"message": "Erinnerungen"
@@ -4843,19 +4937,19 @@
 		"message": "Erinnerung mit Popup-Fenster"
 	},
 	"numberOfDaysForSearchingLabel": {
-		"message": "Anzahl der Tage zum Suchen der Geburtstage:"
+		"message": "Anzahl der Tage zum Prüfen der Geburtstage:"
 	},
 	"numberOfDaysForSearchingAccesskey": {
 		"message": "A"
 	},
 	"showPopupOnStartupLabel": {
-		"message": "Zeige ein Popup-Fenster beim Starten"
+		"message": "Popup-Fenster beim Start anzeigen"
 	},
 	"showPopupOnStartupAccesskey": {
 		"message": "S"
 	},
 	"showPeriodicPopupLabel": {
-		"message": "Zeige ein Popup-Fenster täglich"
+		"message": "Popup-Fenster täglich anzeigen"
 	},
 	"showPeriodicPopupAccesskey": {
 		"message": "t"
@@ -4867,13 +4961,13 @@
 		"message": "Z"
 	},
 	"showPopupEvenIfNoBirthdayLabel": {
-		"message": "Zeige ein Popup-Fenster, falls die Liste der Geburtstage leer ist"
+		"message": "Popup-Fenster anzeigen, wenn die Liste der Geburtstage leer ist"
 	},
 	"showPopupEvenIfNoBirthdayAccesskey": {
 		"message": "f"
 	},
 	"remindViaLightningGroupboxLabel": {
-		"message": "Erinnerung mit Lightning (Erweiterung für Thunderbird)"
+		"message": "Erinnerung mit Lightning"
 	},
 	"numberOfDaysForWritingLabel": {
 		"message": "Anzahl der Tage zum Eintragen der Geburtstage:"
@@ -4882,7 +4976,7 @@
 		"message": "E"
 	},
 	"syncWithLightningOnStartupLabel": {
-		"message": "Synchronisiere mit Lightning beim Starten"
+		"message": "Mit Lightning beim Start synchronisieren"
 	},
 	"syncWithLightningOnStartupAccesskey": {
 		"message": "L"
@@ -5059,7 +5153,7 @@
 		"message": "Adressbuch-Farbe zur Unterscheidung mehrerer Adressbücher."
 	},
 	"readonlyAccountsTooltip": {
-		"message": "Setzt das Adressbuch in den schreibgeschützen oder Lese- und Schreibmodus."
+		"message": "Setzt das Adressbuch in den schreibgeschützten oder Lese- und Schreibmodus."
 	},
 	"searchRemoteLabel": {
 		"message": "Dieses Adressbuch zeigt Kontakte erst nach einer Suche an"
@@ -5107,13 +5201,13 @@
 		"message": "CardBook-Einstellungen"
 	},
 	"cardbookToolbarLabel": {
-		"message": "CardBook Symbolleiste"
+		"message": "CardBook-Symbolleiste"
 	},
 	"cardbookToolbarAccesskey": {
 		"message": "y"
 	},
 	"cardbookABPaneToolbarLabel": {
-		"message": "CardBook Seitenleiste"
+		"message": "CardBook-Seitenleiste"
 	},
 	"cardbookABPaneToolbarAccesskey": {
 		"message": "e"
@@ -5146,7 +5240,7 @@
 		"message": "Verbinden"
 	},
 	"cardbookToolbarChatButtonTooltip": {
-		"message": "Neue Sofortnachricht (instant message) oder neuen Chat verfassen"
+		"message": "Senden einer Sofortnachricht oder eines Chats"
 	},
 	"cardbookToolbarConfigurationButtonLabel": {
 		"message": "Einstellungen"
@@ -5176,13 +5270,13 @@
 		"message": "Bearbeiten"
 	},
 	"cardbookToolbarEditButtonTooltip": {
-		"message": "Erlaube das Ändern von Kontakten"
+		"message": "Ausgewählten Kontakt bearbeiten"
 	},
 	"cardbookToolbarRemoveButtonLabel": {
 		"message": "Löschen"
 	},
 	"cardbookToolbarRemoveButtonTooltip": {
-		"message": "Erlaube das Löschen von Kontakten"
+		"message": "Ausgewählten Kontakt löschen"
 	},
 	"cardbookToolbarPrintButtonLabel": {
 		"message": "Druckvorschau"
@@ -5203,10 +5297,10 @@
 		"message": "Eine Aktion vorwärts"
 	},
 	"cardbookToolbarAppMenuButtonLabel": {
-		"message": "CardBook Menü"
+		"message": "CardBook-Menü"
 	},
 	"cardbookToolbarAppMenuButtonTooltip": {
-		"message": "CardBook Menü"
+		"message": "CardBook-Menü"
 	},
 	"cardbookToolbarSearchBoxLabel": {
 		"message": "Suche Kontakte"
@@ -5242,7 +5336,7 @@
 		"message": "Ansicht der Adressbücher"
 	},
 	"cardbookToolbarABMenuTooltip": {
-		"message": "Wähle wie die Adressbücher angezeigt werden"
+		"message": "Wählen Sie, wie die Adressbücher angezeigt werden"
 	},
 	"generalTabLabel": {
 		"message": "Allgemein"
@@ -5266,7 +5360,7 @@
 		"message": "Anderes"
 	},
 	"techGroupboxLabel": {
-		"message": "Technisches"
+		"message": "Technische Details"
 	},
 	"labelGroupboxLabel": {
 		"message": "Labels"
@@ -5290,7 +5384,7 @@
 		"message": "Kontakt-URL"
 	},
 	"cacheuriLabel": {
-		"message": "Cache URI"
+		"message": "URL-Cache"
 	},
 	"localizeadrTreeLabel": {
 		"message": "Lokalisieren"
@@ -5305,10 +5399,10 @@
 		"message": "Neue Nachricht verfassen (Blindkopie / Bcc)"
 	},
 	"findemailemailTreeLabel": {
-		"message": "Suche Emails in Bezug auf diese Email-Adresse"
+		"message": "E-Mails in Bezug auf diese E-Mail-Adresse suchen"
 	},
 	"findeventemailTreeLabel": {
-		"message": "Suche Termine in Bezug auf diese Email-Adresse"
+		"message": "Termine in Bezug auf diese E-Mail-Adresse suchen"
 	},
 	"openURLTreeLabel": {
 		"message": "URL öffnen"
@@ -5335,7 +5429,7 @@
 		"message": "E-Mail-Format"
 	},
 	"PreferMailFormat.label": {
-		"message": "Bevorzugt folgendes Nachrichten-Format:"
+		"message": "Folgendes Nachrichten-Format bevorzugen:"
 	},
 	"PreferMailFormat.accesskey": {
 		"message": "B"
@@ -5389,7 +5483,7 @@
 		"message": "Kategorie"
 	},
 	"findEmailsFromCardsLabel": {
-		"message": "Suche Emails des Kontakts"
+		"message": "E-Mails des Kontakts suchen"
 	},
 	"eventsAndTasksLabel": {
 		"message": "Termine und Aufgaben"
@@ -5401,7 +5495,7 @@
 		"message": "Neue Aufgabe"
 	},
 	"findEventsFromCardsLabel": {
-		"message": "Suche Termine des Kontakts"
+		"message": "Termine des Kontakts suchen"
 	},
 	"localizeCardFromCardsLabel": {
 		"message": "Lokalisieren"
@@ -5442,8 +5536,11 @@
 	"importCardFromDirLabel": {
 		"message": "Importieren aus einem Verzeichnis"
 	},
+	"formatDataFromAccountsOrCatsLabel": {
+		"message": "Kontaktdaten aufbereiten"
+	},
 	"findDuplicatesFromAccountsOrCatsLabel": {
-		"message": "Doppelte Kontakte im aktuellen Adressbuch suchen"
+		"message": "Doppelte Kontakte suchen"
 	},
 	"generateFnFromAccountsOrCatsLabel": {
 		"message": "Anzeigenamen erstellen"
@@ -5455,7 +5552,7 @@
 		"message": "Kontakt verdoppeln"
 	},
 	"convertListToCategoryFromCardsLabel": {
-		"message": "Konvertiere die Liste zu einer Kategorie"
+		"message": "Liste zu einer Kategorie konvertieren"
 	},
 	"editAccountFromAccountsOrCatsLabel": {
 		"message": "Adressbuch bearbeiten"
@@ -5512,7 +5609,7 @@
 		"message": "Kalendername"
 	},
 	"eventsTree.calendarname.tooltip2": {
-		"message": "Nach Kalendername sortieren"
+		"message": "Nach Kalendernamen sortieren"
 	},
 	"createEventLabel": {
 		"message": "Neuer Termin"
@@ -5521,13 +5618,13 @@
 		"message": "N"
 	},
 	"adrFormulaExplanation": {
-		"message": "Die Formatierung der Adresse kann in CardBook angepasst werden. Die Formel besteht aus Blöcken, die in Klammern „()” eingeschlossen werden. Innerhalb dieser Blöcke können mehrere Elemente durch “|” voneinander abgegrenzt werden."
+		"message": "Die Formatierung der Adresse kann in CardBook angepasst werden. Die Formel besteht aus Blöcken, die in Klammern “()” eingeschlossen werden. Innerhalb dieser Blöcke können mehrere Elemente durch “|” voneinander abgegrenzt werden."
 	},
 	"fnFormulaExplanation": {
-		"message": "Man kann in CardBook einstellen, wie der Anzeigename dargestellt wird. Die Formel besteht aus Blöcken, die in Klammern „()” eingeschlossen werden. Innerhalb dieser Blöcke können mehrere Elemente durch “|” voneinander abgegrenzt werden."
+		"message": "Man kann in CardBook einstellen, wie der Anzeigename dargestellt wird. Die Formel besteht aus Blöcken, die in Klammern “()” eingeschlossen werden. Innerhalb dieser Blöcke können mehrere Elemente durch “|” voneinander abgegrenzt werden."
 	},
 	"templateFormulaExplanation": {
-		"message": "Es ist möglich Vorlagen mit vordefinierten Feldern zu erstellen. Zum Beispiel eine Vorlage mit der E-Mail “({{2}}).({{4}})@mycompany.org“. Wird diese auf einem Kontakt mit dem Vornamen “John“  und Nachnamen “Doe“ angewendet, wird die E-Mail “john.doe@mycompany.org“ hinzugefügt."
+		"message": "Es ist möglich, Vorlagen mit vordefinierten Feldern zu erstellen. Zum Beispiel eine Vorlage mit der E-Mail “({{2}}).({{4}})@mycompany.org”. Wird diese auf einen Kontakt mit dem Vornamen “John” und Nachnamen “Doe” angewendet, wird die E-Mail “john.doe@mycompany.org” hinzugefügt."
 	},
 	"formulaExplanation1": {
 		"message": "({{1}}|{{2}}) : Wenn {{1}} leer ist, wird es durch {{2}} ersetzt."
@@ -5568,14 +5665,8 @@
 	"displayFieldNamesAccesskey": {
 		"message": "F"
 	},
-	"displayTypesLabel": {
-		"message": "Typen und Präferenzen anzeigen"
-	},
-	"displayTypesAccesskey": {
-		"message": "y"
-	},
 	"fieldsToPrintGroupboxLabel": {
-		"message": "Druckauswahl"
+		"message": "Zu druckende Felder"
 	},
 	"displayLabel": {
 		"message": "Anzeigename"
@@ -5620,13 +5711,13 @@
 		"message": "T"
 	},
 	"email.print.label": {
-		"message": "Emails"
+		"message": "E-Mail-Adressen"
 	},
 	"email.print.accesskey": {
 		"message": "E"
 	},
 	"impp.print.label": {
-		"message": "IM Adressen"
+		"message": "IM-Adressen"
 	},
 	"impp.print.accesskey": {
 		"message": "I"
@@ -5659,7 +5750,7 @@
 		"message": "Diesem Kontakt hinzufügen"
 	},
 	"cardbookSwitchButtonTooltip": {
-		"message": "Vertausche Nachname und Vorname"
+		"message": "Nachname und Vorname vertauschen"
 	},
 	"descriptionTextbox": {
 		"message": "Beschreibung"
@@ -5710,7 +5801,7 @@
 		"message": "Übernehmen"
 	},
 	"validateEditionAccesskey": {
-		"message": "U"
+		"message": "Ü"
 	},
 	"cancelEditionLabel": {
 		"message": "Abbrechen"
@@ -5741,6 +5832,21 @@
 	},
 	"mergeAllEditionAccesskey": {
 		"message": "A"
+	},
+	"formatAllEditionLabel": {
+		"message": "Alle formatieren"
+	},
+	"formatAllEditionAccesskey": {
+		"message": "F"
+	},
+	"undoAllEditionLabel": {
+		"message": "Alles rückgängig"
+	},
+	"undoAllEditionAccesskey": {
+		"message": "R"
+	},
+	"formatEditionLabel": {
+		"message": "Formatieren"
 	},
 	"buttonAppendToListLabel": {
 		"message": "Übernehmen"
@@ -5782,7 +5888,20 @@
 		"message": "K"
 	},
 	"wdw_findDuplicatesTitle": {
-		"message": "Doppelte Kontakte"
+		"message": "Doppelte Kontakte ($P1$)",
+		"placeholders": {
+			"P1": {
+				"content": "$1"
+			}
+		}
+	},
+	"wdw_formatDataTitle": {
+		"message": "Kontaktdaten aufbereiten ($P1$)",
+		"placeholders": {
+			"P1": {
+				"content": "$1"
+			}
+		}
 	},
 	"addImageCardFromFileLabel": {
 		"message": "Bild aus Datei hinzufügen"
@@ -5815,7 +5934,7 @@
 		"message": "Name oder E-Mail-Adresse"
 	},
 	"appendContactLabel": {
-		"message": "Zur liste hinzufügen"
+		"message": "Zur Liste hinzufügen"
 	},
 	"deletelistTreeLabel": {
 		"message": "Aus Liste entfernen"
@@ -5836,10 +5955,10 @@
 		"message": "A"
 	},
 	"flushLogEditionLabel": {
-		"message": "Flush"
+		"message": "Liste löschen"
 	},
 	"flushLogEditionAccesskey": {
-		"message": "F"
+		"message": "L"
 	},
 	"clipboardLogEditionLabel": {
 		"message": "In die Zwischenablage kopieren"
@@ -5864,5 +5983,8 @@
 	},
 	"orgTitleLabel": {
 		"message": "Berufliche Informationen"
+	},
+	"allAddressBooks": {
+		"message": "Alle Adressbücher"
 	}
 }

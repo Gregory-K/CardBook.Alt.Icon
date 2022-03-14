@@ -37,12 +37,6 @@ var ovl_cardbookComposeMsg = {
 		}
 	},
 
-	LoadIdentity: function() {
-		var mailWindow = Services.wm.getMostRecentWindow("msgcompose");
-		var outerID = mailWindow.windowUtils.outerWindowID;
-		cardbookRepository.composeMsgIdentity[outerID] = document.getElementById("msgIdentity").selectedItem.getAttribute("identitykey");
-	},
-
 	newInCardBook: function() {
 		try {
 			let myNewCard = new cardbookCardParser();
@@ -94,12 +88,12 @@ var ovl_cardbookComposeMsg = {
 		cardBookComposeMsgObserver.unregister();
 
 		// functions
-		LoadIdentity = ovl_cardbookComposeMsg.origFunctions.LoadIdentity;
 		GenericSendMessage = ovl_cardbookComposeMsg.origFunctions.GenericSendMessage;
 		toggleAddressPicker = ovl_cardbookComposeMsg.origFunctions.toggleAddressPicker;
 
 		expandRecipients = ovl_list.origFunctions.expandRecipients;
 		updateSendLock = ovl_list.origFunctions.updateSendLock;
+		calculateHeaderHeight = ovl_list.origFunctions.calculateHeaderHeight;
 	},
 
 	loadMsg: function () {
@@ -114,24 +108,6 @@ var ovl_cardbookComposeMsg = {
 	}
 
 };
-
-// LoadIdentity
-(function() {
-	// Keep a reference to the original function.
-	ovl_cardbookComposeMsg.origFunctions.LoadIdentity = LoadIdentity;
-
-	// Override a function.
-	LoadIdentity = function() {
-		// Execute original function.
-		var rv = ovl_cardbookComposeMsg.origFunctions.LoadIdentity.apply(null, arguments);
-
-		// Execute some action afterwards.
-		ovl_cardbookComposeMsg.LoadIdentity();
-
-		// return the original result
-		return rv;
-	};
-})();
 
 // GenericSendMessage
 (function() {

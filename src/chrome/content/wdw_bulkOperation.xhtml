@@ -5,34 +5,31 @@
 <!-- for the display -->
 <?xml-stylesheet type="text/css" href="chrome://messenger/skin/themeableDialog.css"?>
 
-<window xmlns="http://www.mozilla.org/keymaster/gatekeeper/there.is.only.xul"
+<html id="wdw_bulkOperation" xmlns="http://www.w3.org/1999/xhtml"
+	role="document"
+	xmlns:xul="http://www.mozilla.org/keymaster/gatekeeper/there.is.only.xul"
 	xmlns:html="http://www.w3.org/1999/xhtml"
-	onload="wdw_bulkOperation.load();" resizable="true"
-	onclose="wdw_bulkOperation.cancel();"
-	id="wdw_bulkOperation" title="__MSG_wdw_bulkOperationTitle__"
-	persist="screenX screenY width height"
-	windowtype="CardBook:bulkWindow"
+	persist="screenX screenY width height sizemode"
 	lightweightthemes="true"
-	style="min-width:100px;min-height:100px;">
-	
-	<script type="application/x-javascript" src="chrome://cardbook/content/cardbookElementTools.js"/>
-	<script type="application/x-javascript" src="chrome://cardbook/content/wdw_bulkOperation.js"/>
-	<script type="application/x-javascript" src="chrome://cardbook/content/scripts/i18n.js"/>
+	windowtype="CardBook:bulkWindow"
+	style="min-width:400px;min-height:100px;">
+	<head>
+		<title>__MSG_wdw_bulkOperationTitle__</title>
+		<script type="application/x-javascript" src="chrome://cardbook/content/cardbookElementTools.js"/>
+		<script type="application/x-javascript" src="chrome://cardbook/content/wdw_bulkOperation.js"/>
+		<script type="application/x-javascript" src="chrome://cardbook/content/scripts/i18n.js"/>
+	</head>
 
-	<keyset id="wdw_bulkOperation-keys">
-		<key id="escapeKey" keycode="VK_ESCAPE" oncommand="wdw_bulkOperation.cancel();"/>
-	</keyset>
+	<html:body xmlns="http://www.mozilla.org/keymaster/gatekeeper/there.is.only.xul">
+		<keyset id="wdw_bulkOperation-keys">
+			<key id="escapeKey" keycode="VK_ESCAPE" oncommand="wdw_bulkOperation.cancel();"/>
+		</keyset>
 
-	<grid id="bulkOperationGrid" align="center" flex="1">
-		<columns>
-			<column/>
-			<column flex="1"/>
-		</columns>
-		<rows id="bulkOperationRows"/>
-	</grid>
+		<html:table id="bulkOperationTable"/>
 
-	<hbox>
-		<spacer flex="1"/>
-		<button id="closeEditionLabel" label="__MSG_closeEditionLabel__" accesskey="__MSG_closeEditionAccesskey__" oncommand="wdw_bulkOperation.cancel();"/>
-	</hbox>
-</window>
+		<hbox>
+			<spacer flex="1"/>
+			<html:button id="closeEditionLabel">__MSG_closeEditionLabel__</html:button>
+		</hbox>
+	</html:body>
+</html>

@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <?xml-stylesheet href="chrome://global/skin/" type="text/css"?>
+<?xml-stylesheet href="chrome://cardbook/content/skin/cardbookMain.css" type="text/css"?>
 <?xml-stylesheet href="chrome://cardbook/content/skin/cardBookMerge.css" type="text/css"?>
 <!-- for the toolbarbutton-icon-fill-attention var -->
 <?xml-stylesheet href="chrome://messenger/skin/messenger.css" type="text/css"?>
@@ -10,48 +11,42 @@
 <!-- for the display -->
 <?xml-stylesheet type="text/css" href="chrome://messenger/skin/themeableDialog.css"?>
 
-<window xmlns="http://www.mozilla.org/keymaster/gatekeeper/there.is.only.xul"
+<html id="wdw_mergeCards" xmlns="http://www.w3.org/1999/xhtml"
+	role="document"
+	xmlns:xul="http://www.mozilla.org/keymaster/gatekeeper/there.is.only.xul"
 	xmlns:html="http://www.w3.org/1999/xhtml"
-	onload="wdw_mergeCards.load();" resizable="true"
-	onclose="wdw_mergeCards.cancel();"
-	id="wdw_mergeCards" title="__MSG_wdw_mergeCardsTitle__"
-	persist="screenX screenY width height sizemode" class="cardbookMergeSelectedClass"
+	persist="screenX screenY width height sizemode"
 	lightweightthemes="true"
 	style="min-width:400px;min-height:100px;">
-	
-	<script type="application/x-javascript" src="chrome://cardbook/content/indexedDB/cardbookEncryptor.js"/>
-	<script type="application/x-javascript" src="chrome://cardbook/content/indexedDB/cardbookIndexedDB.js"/>
-	<script type="application/x-javascript" src="chrome://cardbook/content/indexedDB/cardbookIDBImage.js"/>
-	<script type="application/x-javascript" src="chrome://cardbook/content/cardbookCardParser.js"/>
-	<script type="application/x-javascript" src="chrome://cardbook/content/mergeCards/wdw_mergeCards.js"/>
-	<script type="application/x-javascript" src="chrome://cardbook/content/scripts/i18n.js"/>
+	<head>
+		<title>__MSG_wdw_mergeCardsTitle__</title>
+		<script type="application/x-javascript" src="chrome://cardbook/content/cardbookElementTools.js"/>
+		<script type="application/x-javascript" src="chrome://cardbook/content/indexedDB/cardbookEncryptor.js"/>
+		<script type="application/x-javascript" src="chrome://cardbook/content/indexedDB/cardbookIndexedDB.js"/>
+		<script type="application/x-javascript" src="chrome://cardbook/content/indexedDB/cardbookIDBImage.js"/>
+		<script type="application/x-javascript" src="chrome://cardbook/content/cardbookCardParser.js"/>
+		<script type="application/x-javascript" src="chrome://cardbook/content/mergeCards/wdw_mergeCards.js"/>
+		<script type="application/x-javascript" src="chrome://cardbook/content/scripts/i18n.js"/>
+	</head>
 
-	<keyset id="wdw_mergeCards-keys">
-		<key keycode="VK_ESCAPE" oncommand="wdw_mergeCards.cancel();"/>
-	</keyset>
-
-	<hbox align="center" flex="1" style="overflow:auto">
-		<vbox align="center" flex="1" style="overflow:auto">
-			<hbox align="center" flex="1">
-				<vbox align="center" flex="1">
-					<description style="width:600px;" align="center" flex="1">__MSG_mergeInstructionsLabel__</description>
-				</vbox>
-			</hbox>
-			<separator class="thin"/>
-			<hbox align="center" flex="1">
-				<grid flex="1">
-					<columns flex="1"/>
-					<rows id="fieldsVbox" align="left" flex="1"/>
-				</grid>
-			</hbox>
-		</vbox>
-   </hbox>
-
-	<hbox>
-		<spacer flex="1"/>
-		<button id="viewResultEditionLabel" label="__MSG_viewResultEditionLabel__" accesskey="__MSG_viewResultEditionAccesskey__" oncommand="wdw_mergeCards.viewResult();"/>
-		<button id="createEditionLabel" label="__MSG_createEditionLabel__" accesskey="__MSG_createEditionAccesskey__" oncommand="wdw_mergeCards.create();"/>
-		<button id="createAndReplaceEditionLabel" label="__MSG_createAndReplaceEditionLabel__" accesskey="__MSG_createAndReplaceEditionAccesskey__" oncommand="wdw_mergeCards.createAndReplace();"/>
-		<button id="cancelEditionLabel" label="__MSG_cancelEditionLabel__" accesskey="__MSG_cancelEditionAccesskey__" oncommand="wdw_mergeCards.cancel();"/>
-	</hbox>
-</window>
+	<html:body xmlns="http://www.mozilla.org/keymaster/gatekeeper/there.is.only.xul" class="cardbookMergeSelectedClass">
+		<html:div class="fullContainer">
+			<html:div class="flex-pad-x">
+				<html:div class="flex-pad-y">
+					<html:div class="fullline justifyCenter">
+						<label>__MSG_mergeInstructionsLabel__</label>
+					</html:div>
+					<html:div class="flex-grow-y alignLeft">
+						<html:table id="fieldsTable"/>
+					</html:div>
+					<html:div class="fullline">
+						<button id="viewResultEditionLabel" class="pushRight" label="__MSG_viewResultEditionLabel__" accesskey="__MSG_viewResultEditionAccesskey__" oncommand="wdw_mergeCards.viewResult();"/>
+						<button id="createEditionLabel" label="__MSG_createEditionLabel__" accesskey="__MSG_createEditionAccesskey__" oncommand="wdw_mergeCards.create();"/>
+						<button id="createAndReplaceEditionLabel" label="__MSG_createAndReplaceEditionLabel__" accesskey="__MSG_createAndReplaceEditionAccesskey__" oncommand="wdw_mergeCards.createAndReplace();"/>
+						<button id="cancelEditionLabel" label="__MSG_cancelEditionLabel__" accesskey="__MSG_cancelEditionAccesskey__" oncommand="wdw_mergeCards.cancel();"/>
+					</html:div>
+				</html:div>
+			</html:div>
+		</html:div>
+	</html:body>
+</html>

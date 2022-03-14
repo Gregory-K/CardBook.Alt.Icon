@@ -126,6 +126,9 @@
 	"noContactsDuplicated": {
 		"message": "Nisu pronađeni ponovljeni kontakti."
 	},
+	"noDataAvailable": {
+		"message": "Podaci nisu dostupni."
+	},
 	"targetCategoryLabel": {
 		"message": "rezultata"
 	},
@@ -149,11 +152,26 @@
 	"ValidatingURLFailedLabel": {
 		"message": "URL je neispravan"
 	},
+	"ValidatingURILabel": {
+		"message": "Utipkaj ili umetni URL"
+	},
+	"ValidatingURIFailedLabel": {
+		"message": "Neispravan URL"
+	},
+	"ValidatingLoginLabel": {
+		"message": "??Your login??"
+	},
+	"ValidatingEmailLabel": {
+		"message": "??Your existing email address??"
+	},
 	"ValidatingEmailFailedLabel": {
 		"message": "Potrebna je ispravna e-adresa"
 	},
 	"ValidationFailedLabel": {
 		"message": "Provjera valjanosti nije uspjela"
+	},
+	"ValidationFailedOffLine": {
+		"message": "Trenutno ste u izvanmrežnom načinu rada."
 	},
 	"ValidationOKLabel": {
 		"message": "Validacija je u redu"
@@ -2242,6 +2260,17 @@
             }
         }
 	},
+	"cardsFormattedUndo": {
+		"message": "??$P1$ : Contacts formatted ($P2$)??",
+        "placeholders": {
+            "P1": {
+                "content": "$1"
+            },
+            "P2": {
+                "content": "$2"
+            }
+        }
+	},
 	"exportCardToDirMessagePF": {
 		"message": "??$P1$ contact exported into the directory $P2$;$P1$ contacts exported into the directory $P2$??",
         "placeholders": {
@@ -2801,6 +2830,59 @@
             }
         }
 	},
+	"invalidOffice365Field": {
+		"message": "??$P1$ can't be synced (value: $P2$)??",
+        "placeholders": {
+            "P1": {
+                "content": "$1"
+            },
+            "P2": {
+                "content": "$2"
+            }
+       }
+	},
+	"invalidOffice365Email": {
+		"message": "??No more than 3 email addresses can be synced??"
+	},
+	"invalidOffice365Impp": {
+		"message": "??Only one IM address can be synced??"
+	},
+	"invalidOffice365Adr": {
+		"message": "??No more than 3 physical addresses can be synced??"
+	},
+	"invalidOffice365Tel": {
+		"message": "??No more than 17 phone numbers can be synced??"
+	},
+	"invalidOffice365EmptyType": {
+		"message": "??Empty types are not allowed in the element $P1$??",
+        "placeholders": {
+            "P1": {
+                "content": "$1"
+            }
+        }
+	},
+	"invalidOffice365Type": {
+		"message": "??Too many $P2$ types in the element $P1$ (max allowed: $P3$)??",
+		"placeholders": {
+			"P1": {
+				"content": "$1"
+			},
+			"P2": {
+				"content": "$2"
+			},
+			"P3": {
+				"content": "$3"
+			}
+		}
+	},
+	"invalidOffice365Member": {
+		"message": "??You cannot add an email that does not belong to one contact of your address book ($P1$)??",
+		"placeholders": {
+			"P1": {
+				"content": "$1"
+			}
+		}
+	},
 	"validateIntegerMsg": {
 		"message": "Polje $P1$ bi trebao biti null ili cijeli broj između 1 i $P2$ (vrijednost : $P3$)",
         "placeholders": {
@@ -2870,6 +2952,27 @@
 	},
 	"worktype": {
 		"message": "Posao"
+	},
+	"otherfaxtype": {
+		"message": "??Other fax??"
+	},
+	"assistanttype": {
+		"message": "??Assistant??"
+	},
+	"callbacktype": {
+		"message": "??Callback??"
+	},
+	"carphonetype": {
+		"message": "??Car??"
+	},
+	"radiotype": {
+		"message": "??Radio??"
+	},
+	"telextype": {
+		"message": "??Telex??"
+	},
+	"ttytype": {
+		"message": "TTY"
 	},
 	"types.gender.f": {
 		"message": "Žena"
@@ -3282,9 +3385,6 @@
 	"eventInNoteEventPrefix": {
 		"message": "Događaj"
 	},
-	"deathSuffix": {
-		"message": "(umro je)"
-	},
 	"dateFormatsDLabel": {
 		"message": "D"
 	},
@@ -3600,20 +3700,20 @@
 	"cardbookContactPaneItemAccesskey": {
 		"message": "O"
 	},
+	"wizard.next.label": {
+		"message": "Sljedeća"
+	},	
+	"wizard.back.label": {
+		"message": "Natrag"
+	},	
+	"wizard.create.label": {
+		"message": "Stvori"
+	},
 	"wizard.title": {
 		"message": "Unesite novu adresu"
 	},
-	"wizard.label": {
-		"message": "Unesite novi adresar"
-	},
-	"welcomePage.wizard.description": {
-		"message": "Dobro došli"
-	},
 	"welcomePage.description": {
 		"message": "??It seems that this is the first time CardBook has been run. CardBook will attempt to collect contacts from Thunderbird’s standard address books and remote address books.??"
-	},
-	"initialPage.wizard.description": {
-		"message": "Lokacija za novi adresar"
 	},
 	"initialPage.description": {
 		"message": "Je li Vaš adresar mjesni ili daleko? :"
@@ -3632,9 +3732,6 @@
 	},
 	"initialPage.find.label": {
 		"message": "??Search for remote address books??"
-	},
-	"localPage.wizard.description": {
-		"message": "Vrsta i mjesto novog lokalnog adresara."
 	},
 	"localPage.type.description": {
 		"message": "Koje vrsta je Vaš novi lokalni adresar? :"
@@ -3669,9 +3766,6 @@
 	"localPage.uributton.label": {
 		"message": "Traži"
 	},
-	"remotePage.wizard.description": {
-		"message": "Vrsta i lokacija novog udaljenog adresara."
-	},
 	"remotePage.description": {
 		"message": "Koje vrste je Vaš udaljeni adresar? : (Caution: Google does NOT conform to vCard standards)"
 	},
@@ -3679,7 +3773,10 @@
 		"message": "Vrsta"
 	},
 	"remotePageType.carddav.label": {
-		"message": "CardDAV"
+		"message": "CardDAV (Utipkaj ili umetni URL)"
+	},
+	"remotePageType.ews.label": {
+		"message": "EWS (Utipkaj ili umetni URL)"
 	},
 	"remotePageType.google2.label": {
 		"message": "Google"
@@ -3720,14 +3817,14 @@
 	"remotePage.password.label": {
 		"message": "Lozinka:"
 	},
+	"rememberPassword": {
+		"message": "Koristi upravljača lozinki za pamćenje ove lozinke"
+	},
 	"showHidePassword.tooltip": {
 		"message": "Prikaži/sakrij lozinku"
 	},
 	"remotePage.validatebutton.label": {
 		"message": "Potvrdi"
-	},
-	"locationSearchPage.wizard.description": {
-		"message": "Definicija: sačuvano traži."
 	},
 	"locationSearchPage.label": {
 		"message": "Sačuvano Traži"
@@ -3753,9 +3850,6 @@
 	"googleOauthPage.wizard.description": {
 		"message": "Googleova ovjera"
 	},
-	"namePage.wizard.description": {
-		"message": "Svojstva adresara"
-	},
 	"namePage.selected.label": {
 		"message": "Odabrano"
 	},
@@ -3774,17 +3868,11 @@
 	"namePage.vCardVersion.label": {
 		"message": "vCard"
 	},
-	"namesPage.wizard.description": {
-		"message": "Svojstva adresara"
-	},
 	"namesPage.name.label": {
 		"message": "Nazivi"
 	},
 	"namesPage.name.description": {
 		"message": "Otkrili smo nekoliko adresara. Odaberite koji adresar želite otvoriti i njegovo ime.:"
-	},
-	"findPage.wizard.description": {
-		"message": "??Remote address book search??"
 	},
 	"findPage.name1.description": {
 		"message": "??No remote address books found.??"
@@ -3794,9 +3882,6 @@
 	},
 	"findPage.name3.description": {
 		"message": "??Multiple remote address books found. Validate remote address books to add:??"
-	},
-	"finishPage.wizard.description": {
-		"message": "??Address books configuration??"
 	},
 	"finishPage.description": {
 		"message": "Vaš novi adresar je uspješno oblikovan."
@@ -4410,6 +4495,12 @@
 	"typesCategoryAppleAccesskey": {
 		"message": "A"
 	},
+	"typesCategoryOffice365Label": {
+		"message": "Office365"
+	},
+	"typesCategoryOffice365Accesskey": {
+		"message": "O"
+	},
 	"typesCategoryYahooLabel": {
 		"message": "Yahoo!"
 	},
@@ -4787,6 +4878,9 @@
 	},
 	"birthdayListWarn": {
 		"message": "Traži samo godišnjice unutar Kontakti adresara."
+	},
+	"generalGroupboxLabel": {
+		"message": "Općenito"
 	},
 	"addressbooksGroupboxLabel": {
 		"message": "Adresar"
@@ -5442,8 +5536,11 @@
 	"importCardFromDirLabel": {
 		"message": "Unesi kontakte iz imenika"
 	},
+	"formatDataFromAccountsOrCatsLabel": {
+		"message": "??Format contacts data??"
+	},
 	"findDuplicatesFromAccountsOrCatsLabel": {
-		"message": "Pronađi duplikate kontakata u postojećem adresaru"
+		"message": "Pronađi duplikate kontakata"
 	},
 	"generateFnFromAccountsOrCatsLabel": {
 		"message": "Stvori nazive za pokaz"
@@ -5567,12 +5664,6 @@
 	},
 	"displayFieldNamesAccesskey": {
 		"message": "F"
-	},
-	"displayTypesLabel": {
-		"message": "Vrste i pripriteti"
-	},
-	"displayTypesAccesskey": {
-		"message": "y"
 	},
 	"fieldsToPrintGroupboxLabel": {
 		"message": "Što otiskati"
@@ -5742,6 +5833,21 @@
 	"mergeAllEditionAccesskey": {
 		"message": "M"
 	},
+	"formatAllEditionLabel": {
+		"message": "??Format all??"
+	},
+	"formatAllEditionAccesskey": {
+		"message": "F"
+	},
+	"undoAllEditionLabel": {
+		"message": "??Undo all??"
+	},
+	"undoAllEditionAccesskey": {
+		"message": "U"
+	},
+	"formatEditionLabel": {
+		"message": "??Format??"
+	},
 	"buttonAppendToListLabel": {
 		"message": "Dodaj"
 	},
@@ -5782,7 +5888,20 @@
 		"message": "C"
 	},
 	"wdw_findDuplicatesTitle": {
-		"message": "Duplirani kontakti"
+		"message": "Duplirani kontakti ($P1$)",
+        "placeholders": {
+            "P1": {
+                "content": "$1"
+            }
+        }
+	},
+	"wdw_formatDataTitle": {
+		"message": "??Format contacts data ($P1$)??",
+        "placeholders": {
+            "P1": {
+                "content": "$1"
+            }
+        }
 	},
 	"addImageCardFromFileLabel": {
 		"message": "Dodaj sliku iz dosjea"
@@ -5864,5 +5983,8 @@
 	},
 	"orgTitleLabel": {
 		"message": "Profesionalne informacije"
+	},
+	"allAddressBooks": {
+		"message": "Svi adresari"
 	}
 }

@@ -126,6 +126,9 @@
 	"noContactsDuplicated": {
 		"message": "Geen dubbele contactpersonen gevonden."
 	},
+	"noDataAvailable": {
+		"message": "Geen gegevens beschikbaar."
+	},
 	"targetCategoryLabel": {
 		"message": "resultaten weergeven"
 	},
@@ -149,17 +152,32 @@
 	"ValidatingURLFailedLabel": {
 		"message": "Ongeldige URL"
 	},
+	"ValidatingURILabel": {
+		"message": "Typ of plak een URL"
+	},
+	"ValidatingURIFailedLabel": {
+		"message": "Ongeldige URL"
+	},
+	"ValidatingLoginLabel": {
+		"message": "Uw aanmelding"
+	},
+	"ValidatingEmailLabel": {
+		"message": "Uw bestaande e-mailadres"
+	},
 	"ValidatingEmailFailedLabel": {
 		"message": "Geldig e-mailadres vereist"
 	},
 	"ValidationFailedLabel": {
 		"message": "Controle mislukt"
 	},
+	"ValidationFailedOffLine": {
+		"message": "U bent momenteel offline."
+	},
 	"ValidationOKLabel": {
 		"message": "Controle gelukt"
 	},
 	"passwordApplicationRequiredLabel": {
-		"message": "Voor dit account is een wachtwoord vereist"
+		"message": "Dit account vereist een applicatie wachtwoord"
 	},
 	"customFieldsErrorUPPERCASE": {
 		"message": "Namen van eigen rubrieken moeten in hoofdletters: $P1$",
@@ -2242,6 +2260,17 @@
             }
         }
 	},
+	"cardsFormattedUndo": {
+		"message": "$P1$ : Geformatteerde contactpersonen ($P2$)",
+        "placeholders": {
+            "P1": {
+                "content": "$1"
+            },
+            "P2": {
+                "content": "$2"
+            }
+        }
+	},
 	"exportCardToDirMessagePF": {
 		"message": "$P1$ contactpersoon geëxporteerd naar map $P2$;$P1$ contactpersonen geëxporteerd naar map $P2$",
         "placeholders": {
@@ -2801,6 +2830,59 @@
             }
         }
 	},
+	"invalidOffice365Field": {
+		"message": "$P1$ kan niet worden gesynchroniseerd (waarde: $P2$)",
+        "placeholders": {
+            "P1": {
+                "content": "$1"
+            },
+            "P2": {
+                "content": "$2"
+            }
+       }
+	},
+	"invalidOffice365Email": {
+		"message": "Niet meer dan 3 e-mailadressen kunnen worden gesynchroniseerd"
+	},
+	"invalidOffice365Impp": {
+		"message": "Slechts één IM adres kan worden gesynchroniseerd"
+	},
+	"invalidOffice365Adr": {
+		"message": "Niet meer dan 3 fysieke adressen kunnen worden gesynchroniseerd"
+	},
+	"invalidOffice365Tel": {
+		"message": "Niet meer dan 17 telefoonnummers kunnen worden gesynchroniseerd"
+	},
+	"invalidOffice365EmptyType": {
+		"message": "$P1$ : lege types zijn niet toegestaan",
+        "placeholders": {
+            "P1": {
+                "content": "$1"
+            }
+        }
+	},
+	"invalidOffice365Type": {
+		"message": "$P1$ : te veel type $P2$ (max toegestaan: $P3$)",
+		"placeholders": {
+			"P1": {
+				"content": "$1"
+			},
+			"P2": {
+				"content": "$2"
+			},
+			"P3": {
+				"content": "$3"
+			}
+		}
+	},
+	"invalidOffice365Member": {
+		"message": "U kunt alleen een e-mailadres toevoegen dat hoort bij een contact in het adresboek ($P1$)",
+		"placeholders": {
+			"P1": {
+				"content": "$1"
+			}
+		}
+	},
 	"validateIntegerMsg": {
 		"message": "De rubriek $P1$ moet leeg zijn of een getal tussen 1 en $P2$ bevatten (Waarde: $P3$)",
         "placeholders": {
@@ -2870,6 +2952,27 @@
 	},
 	"worktype": {
 		"message": "Werk"
+	},
+	"otherfaxtype": {
+		"message": "Andere fax"
+	},
+	"assistanttype": {
+		"message": "Assistent"
+	},
+	"callbacktype": {
+		"message": "Terugbellen"
+	},
+	"carphonetype": {
+		"message": "Auto"
+	},
+	"radiotype": {
+		"message": "Radio"
+	},
+	"telextype": {
+		"message": "Telex"
+	},
+	"ttytype": {
+		"message": "TTY"
 	},
 	"types.gender.f": {
 		"message": "Vrouw"
@@ -3282,9 +3385,6 @@
 	"eventInNoteEventPrefix": {
 		"message": "Gebeurtenis"
 	},
-	"deathSuffix": {
-		"message": "(dood)"
-	},
 	"dateFormatsDLabel": {
 		"message": "D"
 	},
@@ -3600,20 +3700,20 @@
 	"cardbookContactPaneItemAccesskey": {
 		"message": "O"
 	},
+	"wizard.next.label": {
+		"message": "Volgende"
+	},	
+	"wizard.back.label": {
+		"message": "Terug"
+	},	
+	"wizard.create.label": {
+		"message": "Maken"
+	},
 	"wizard.title": {
 		"message": "Adresboek toevoegen"
 	},
-	"wizard.label": {
-		"message": "Adresboek toevoegen"
-	},
-	"welcomePage.wizard.description": {
-		"message": "Welkom"
-	},
 	"welcomePage.description": {
 		"message": "Het lijkt er op dat dit de eerste keer is dat CardBook gebruikt wordt. Het programma gaat proberen om bekende contactpersonen om te zetten naar CardBook. Eerst wordt er gekeken naar contactpersonen in Thunderbird's standaard adresboeken en daarna naar eventuele adresboeken op servers."
-	},
-	"initialPage.wizard.description": {
-		"message": "Opslag van het nieuwe adresboek"
 	},
 	"initialPage.description": {
 		"message": "Staat het nieuwe adresboek lokaal of op internet:"
@@ -3632,9 +3732,6 @@
 	},
 	"initialPage.find.label": {
 		"message": "Zoeken naar adresboeken op servers"
-	},
-	"localPage.wizard.description": {
-		"message": "Plaats en type van het lokale adresboek."
 	},
 	"localPage.type.description": {
 		"message": "Type van het lokale adresboek:"
@@ -3669,9 +3766,6 @@
 	"localPage.uributton.label": {
 		"message": "Verkenner"
 	},
-	"remotePage.wizard.description": {
-		"message": "Type en plaats van het nieuwe internet-adresboek."
-	},
 	"remotePage.description": {
 		"message": "Type van het internet-adresboek: (Pas op: Google ondersteunt geen vCard-standaarden.)"
 	},
@@ -3679,7 +3773,10 @@
 		"message": "Type"
 	},
 	"remotePageType.carddav.label": {
-		"message": "CardDAV"
+		"message": "CardDAV (Typ of plak een URL)"
+	},
+	"remotePageType.ews.label": {
+		"message": "EWS (Typ of plak een URL)"
 	},
 	"remotePageType.google2.label": {
 		"message": "Google"
@@ -3720,14 +3817,14 @@
 	"remotePage.password.label": {
 		"message": "Wachtwoord:"
 	},
+	"rememberPassword": {
+		"message": "Wachtwoordenbeheerder gebruiken om dit wachtwoord te onthouden"
+	},
 	"showHidePassword.tooltip": {
 		"message": "Wachtwoord tonen/verbergen"
 	},
 	"remotePage.validatebutton.label": {
 		"message": "Controleren"
-	},
-	"locationSearchPage.wizard.description": {
-		"message": "Definitie van geavanceerd zoeken"
 	},
 	"locationSearchPage.label": {
 		"message": "Geavanceerd zoeken"
@@ -3753,9 +3850,6 @@
 	"googleOauthPage.wizard.description": {
 		"message": "Google-authenticatie"
 	},
-	"namePage.wizard.description": {
-		"message": "Eigenschappen van adresboek"
-	},
 	"namePage.selected.label": {
 		"message": "Geselecteerd"
 	},
@@ -3774,17 +3868,11 @@
 	"namePage.vCardVersion.label": {
 		"message": "vCard"
 	},
-	"namesPage.wizard.description": {
-		"message": "Eigenschappen van adresboeken"
-	},
 	"namesPage.name.label": {
 		"message": "Namen"
 	},
 	"namesPage.name.description": {
 		"message": "Er zijn meerdere adresboeken gevonden. Kies welke geopend moeten worden en kies de namen:"
-	},
-	"findPage.wizard.description": {
-		"message": "Zoeken naar adresboeken op servers"
 	},
 	"findPage.name1.description": {
 		"message": "Er kan geen adresboek toegevoegd worden."
@@ -3794,9 +3882,6 @@
 	},
 	"findPage.name3.description": {
 		"message": "Er zijn meerdere adresboeken gevonden. Welke moeten omgezet worden:"
-	},
-	"finishPage.wizard.description": {
-		"message": "Adresboek-configuratie"
 	},
 	"finishPage.description": {
 		"message": "Het nieuwe adresboek is succesvol geconfigureerd."
@@ -4410,6 +4495,12 @@
 	"typesCategoryAppleAccesskey": {
 		"message": "A"
 	},
+	"typesCategoryOffice365Label": {
+		"message": "Office365"
+	},
+	"typesCategoryOffice365Accesskey": {
+		"message": "O"
+	},
 	"typesCategoryYahooLabel": {
 		"message": "Yahoo!"
 	},
@@ -4787,6 +4878,9 @@
 	},
 	"birthdayListWarn": {
 		"message": "Let op: geboortedata worden uitsluitend in CardBook adresboeken gezocht."
+	},
+	"generalGroupboxLabel": {
+		"message": "Algemeen"
 	},
 	"addressbooksGroupboxLabel": {
 		"message": "Adresboeken"
@@ -5442,8 +5536,11 @@
 	"importCardFromDirLabel": {
 		"message": "Importeer contactpersoon van een map"
 	},
+	"formatDataFromAccountsOrCatsLabel": {
+		"message": "Formatteer gegevens van contactpersonen"
+	},
 	"findDuplicatesFromAccountsOrCatsLabel": {
-		"message": "Zoek overeenkomende contactpersonen in huidige adresboek"
+		"message": "Zoek overeenkomende contactpersonen"
 	},
 	"generateFnFromAccountsOrCatsLabel": {
 		"message": "Genereer getoonde namen"
@@ -5567,12 +5664,6 @@
 	},
 	"displayFieldNamesAccesskey": {
 		"message": "r"
-	},
-	"displayTypesLabel": {
-		"message": "Toon types en voorkeuren"
-	},
-	"displayTypesAccesskey": {
-		"message": "y"
 	},
 	"fieldsToPrintGroupboxLabel": {
 		"message": "Af te drukken"
@@ -5742,6 +5833,21 @@
 	"mergeAllEditionAccesskey": {
 		"message": "A"
 	},
+	"formatAllEditionLabel": {
+		"message": "Formatteer alle contactpersonen"
+	},
+	"formatAllEditionAccesskey": {
+		"message": "F"
+	},
+	"undoAllEditionLabel": {
+		"message": "Alle contactpersonen ongedaan maken"
+	},
+	"undoAllEditionAccesskey": {
+		"message": "o"
+	},
+	"formatEditionLabel": {
+		"message": "Formatteren"
+	},
 	"buttonAppendToListLabel": {
 		"message": "Afdrukken"
 	},
@@ -5782,7 +5888,20 @@
 		"message": "C"
 	},
 	"wdw_findDuplicatesTitle": {
-		"message": "Dubbele contactpersonen"
+		"message": "Dubbele contactpersonen ($P1$)",
+        "placeholders": {
+            "P1": {
+                "content": "$1"
+            }
+        }
+	},
+	"wdw_formatDataTitle": {
+		"message": "Formatteren van gegevens van contactpersonen ($P1$)",
+        "placeholders": {
+            "P1": {
+                "content": "$1"
+            }
+        }
 	},
 	"addImageCardFromFileLabel": {
 		"message": "Afbeelding toevoegen uit bestand"
@@ -5864,5 +5983,8 @@
 	},
 	"orgTitleLabel": {
 		"message": "Professionele informatie"
+	},
+	"allAddressBooks": {
+		"message": "Alle adresboeken"
 	}
 }

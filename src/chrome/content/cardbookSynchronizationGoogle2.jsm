@@ -1,5 +1,5 @@
 var { Services } = ChromeUtils.import("resource://gre/modules/Services.jsm");
-
+var { MailE10SUtils } = ChromeUtils.import("resource:///modules/MailE10SUtils.jsm");
 var loader = Services.scriptloader;
 loader.loadSubScript("chrome://cardbook/content/cardbookWebDAV.js", this);
 
@@ -26,7 +26,7 @@ var cardbookSynchronizationGoogle2 = {
 		wizard.addEventListener("load", function onloadListener() {
 			var browser = wizard.document.getElementById("browser");
 			var url = cardbookSynchronizationGoogle2.getGoogleOAuthURLForGooglePeople(aConnection.connUser, aConnection.connType);
-			browser.setAttribute("src", url);
+			MailE10SUtils.loadURI(browser, url);
 			cardbookRepository.lTimerNewRefreshTokenAll[aConnection.connPrefId] = Components.classes["@mozilla.org/timer;1"].createInstance(Components.interfaces.nsITimer);
 			var lTimerCheckTitle = cardbookRepository.lTimerNewRefreshTokenAll[aConnection.connPrefId];
 			lTimerCheckTitle.initWithCallback({ notify: function(lTimerCheckTitle) {
@@ -906,6 +906,49 @@ var cardbookSynchronizationGoogle2 = {
 				if (status > 199 && status < 400) {
 					let responseJSON = JSON.parse(response);
 					let myCard = cardbookSynchronizationGoogle2.parseGoogleContactToCard(responseJSON, aConnection.connPrefId);
+					cardbookSynchronizationGoogle2.serverGetPhoForMerge(aCardConnection, aEtag, myCacheCard);
+					if (myCard.photo.URI != "") {
+						// setting new id from storing temporary photo into DB
+						myCard.uid = cardbookRepository.cardbookUtils.getUUID();
+						myCard.cbid = aConnection.connPrefId+"::"+cardbookRepository.cardbookUtils.getUUID();
+						await cardbookRepository.cardbookUtils.changeMediaFromFileToContent(myCard);
+					}
+					cardbookRepository.cardbookUtils.formatStringForOutput("serverCardGetOK", [aConnection.connDescription, myCard.fn]);
+					var myArgs = {cardsIn: [myCard, aCacheCard], cardsOut: [], hideCreate: true, action: ""};
+					var myWindow = Services.wm.getMostRecentWindow("mail:3pane").openDialog("chrome://cardbook/content/mergeCards/wdw_mergeCards.xhtml", "", cardbookRepository.modalWindowParams, myArgs);
+					if (myArgs.action == "CREATEANDREPLACE") {
+						myArgs.cardsOut[0].uid = aCacheCard.uid;
+						myArgs.cardsOut[0].cardurl = aCacheCard.cardurl;
+						cardbookRepository.cardbookUtils.addEtag(myArgs.cardsOut[0], aEtag);
+						cardbookRepository.cardbookUtils.setCalculatedFields(myArgs.cardsOut[0]);
+						cardbookRepository.cardbookServerUpdatedCardRequest[aConnection.connPrefId]++;
+						cardbookRepository.cardbookServerGetCardForMergeResponse[aConnection.connPrefId]++;
+						cardbookSynchronizationGoogle2.serverUpdateCard(aConnection, myArgs.cardsOut[0]);
+					} else {
+						cardbookRepository.cardbookServerCardSyncDone[aConnection.connPrefId]++;
+						cardbookRepository.cardbookServerGetCardForMergeResponse[aConnection.connPrefId]++;
+					}
+				} else {
+					cardbookRepository.cardbookServerGetCardForMergeError[aConnection.connPrefId]++;
+					cardbookRepository.cardbookServerGetCardForMergeResponse[aConnection.connPrefId]++;
+					cardbookRepository.cardbookServerCardSyncDone[aConnection.connPrefId]++;
+					cardbookRepository.cardbookUtils.formatStringForOutput("serverCardGetFailed", [aConnection.connDescription, aConnection.connUrl, status], "Error");
+				}
+			}
+		};
+		let params = {personFields: cardbookRepository.cardbookOAuthData.GOOGLE2.GET_PERSON_FIELDS};
+		let encodedParams = cardbookRepository.cardbookSynchronization.encodeParams(params);
+		aConnection.connUrl = cardbookRepository.cardbookOAuthData.GOOGLE2.CONTACT_URL + "/" + aCacheCard.uid + "?" + encodedParams;
+		let request = new cardbookWebDAV(aConnection, listener_get, "");
+		request.get();
+	},
+
+	serverGetPhotoForMerge: function(aConnection, aEtag, aCacheCard) {
+		var listener_get = {
+			onDAVQueryComplete: async function(status, response, askCertificate) {
+				if (status > 199 && status < 400) {
+					let responseJSON = JSON.parse(response);
+					let myCard = cardbookSynchronizationGoogle2.parseGoogleContactToCard(responseJSON, aConnection.connPrefId);
 					if (myCard.photo.URI != "") {
 						// setting new id from storing temporary photo into DB
 						myCard.uid = cardbookRepository.cardbookUtils.getUUID();
@@ -1370,24 +1413,22 @@ var cardbookSynchronizationGoogle2 = {
 		function buildElement(aType, aElement, aLine, aLineValue) {
 			let types = [];
 			types = cardbookRepository.cardbookUtils.getOnlyTypesFromTypes(aLine[1]);
-			let labels = [];
 			if (aLine[3].length != 0 && aLine[2] != "") {
 				let found = false;
 				for (let j = 0; j < aLine[3].length; j++) {
 					let tmpArray = aLine[3][j].split(":");
 					if (tmpArray[0] == "X-ABLABEL") {
-						labels.push(tmpArray[1]);
+						aElement.type = tmpArray[1];
 						found = true;
 						break;
 					}
 				}
 				if (!found) {
-					labels.push(cardbookRepository.cardbookTypes.whichLabelTypeShouldBeChecked(aType, aCard.dirPrefId, types));
+					aElement.type = types[0];
 				}
 			} else {
-				labels.push(cardbookRepository.cardbookTypes.whichLabelTypeShouldBeChecked(aType, aCard.dirPrefId, types));
+				aElement.type = types[0];
 			}
-			aElement.type = labels[0];
 
 			let pref = aLine[1].filter(type => type.toLowerCase() == "pref=1" || type.toLowerCase() == "pref" || type.toLowerCase() == "type=pref");
 			if (pref.length) {
@@ -1563,7 +1604,7 @@ var cardbookSynchronizationGoogle2 = {
 				if (!photo.url.includes("___________")) {
 					let value = photo.url;
 					let extension = cardbookRepository.cardbookUtils.getFileNameExtension(value);
-					aCard.photo = {types: [], value: "", URI: value, extension: extension};
+					aCard.photo = {types: [], value: "", URI: value, extension: extension, attachmentId: ""};
 					break;
 				}
 			}

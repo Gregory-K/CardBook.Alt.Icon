@@ -1,24 +1,54 @@
 {
 	"name": "__MSG_extName__ Alt.Icon",
-	"version": "62.9",
-	"description": "__MSG_extDesc__ -- An alternative icon version/fork (Caution: see Homepage). --",
+	"version": "73.7.1",
+	"description": "__MSG_extDesc__ -- An alternative icon version/fork (**CAUTION**: visit 'Homepage' bellow). --",
 	"homepage_url": "https://github.com/Gregory-K/CardBook.Alt.Icon",
 	"author": "Philippe VIGNEAU",
 	"default_locale": "en-US",
 	"applications": {
 		"gecko": {
 			"id": "cardbook@vigneau.philippe",
-			"strict_min_version": "78.0a1",
-			"strict_max_version": "79.0"
+			"strict_min_version": "91.0a1",
+			"strict_max_version": "91.*"
 		}
 	},
 	"icons": {
-		"16": "chrome/content/skin/cardbook.svg",
-		"24": "chrome/content/skin/cardbook.svg",
-		"32": "chrome/content/skin/cardbook.svg"
+		"16": "chrome/content/skin/cardbook-listing.svg",
+		"24": "chrome/content/skin/cardbook-listing.svg",
+		"32": "chrome/content/skin/cardbook-listing.svg"
 	},
 	"background": {
 		"scripts": ["background.js"]
+	},
+	"permissions": [
+		"compose",
+		"accountsRead",
+		"clipboardRead",
+		"clipboardWrite"
+	],
+	"browser_action": {
+		"default_label": "__MSG_cardbookToolbarButtonLabel__",
+		"default_title": "__MSG_cardbookToolbarButtonTooltip__",
+		"default_icon": "chrome/content/skin/cardbook.svg",
+		"theme_icons": [
+			{
+				"light": "chrome/content/skin/cardbook_w.svg",
+				"dark": "chrome/content/skin/cardbook_b.svg",
+				"size": 32
+			}
+		]
+	},
+	"compose_action": {
+		"default_label": "__MSG_cardbookToolbarButtonLabel__",
+		"default_title": "__MSG_cardbookToolbarButtonTooltip__",
+		"default_icon": "chrome/content/skin/cardbook.svg",
+		"theme_icons": [
+			{
+				"light": "chrome/content/skin/cardbook_w.svg",
+				"dark": "chrome/content/skin/cardbook_b.svg",
+				"size": 32
+			}
+		]
 	},
 	"experiment_apis": {
 		"WindowListener": {
@@ -34,7 +64,8 @@
 			"parent": {
 				"scopes": ["addon_parent"],
 				"paths": [["NotifyTools"]],
-				"script": "chrome/content/api/NotifyTools/implementation.js"
+				"script": "chrome/content/api/NotifyTools/implementation.js",
+				"events": ["startup"]
 			}
 		}
 	},

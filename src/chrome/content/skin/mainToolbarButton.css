@@ -7,15 +7,13 @@
 	list-style-image: url("chrome://cardbook/content/skin/cardbook.svg");
 }
 
-#qfb-cardbook,
-#cardbookToolbarButton {
+#qfb-cardbook {
 	list-style-image: url("chrome://cardbook/content/skin/cardbook.svg");
 }
 
 #cardbookTabButton {
 	list-style-image: url("chrome://cardbook/content/skin/cardbook.svg");
 }
-
 
 #cardbookFolderPaneToolbar {
 	min-height: 24px;

@@ -126,6 +126,9 @@
 	"noContactsDuplicated": {
 		"message": "Nu au fost găsite contacte duplicate."
 	},
+	"noDataAvailable": {
+		"message": "Nu există date disponibile."
+	},
 	"targetCategoryLabel": {
 		"message": "rezultate"
 	},
@@ -149,8 +152,23 @@
 	"ValidatingURLFailedLabel": {
 		"message": "Adresa URL este incorectă"
 	},
+	"ValidatingURILabel": {
+		"message": "Tastează sau lipește un URL"
+	},
+	"ValidatingURIFailedLabel": {
+		"message": "URL nevalid"
+	},
+	"ValidatingLoginLabel": {
+		"message": "??Your login??"
+	},
+	"ValidatingEmailLabel": {
+		"message": "??Your existing email address??"
+	},
 	"ValidatingEmailFailedLabel": {
 		"message": "Este necesară o adresă de e-mail validă"
+	},
+	"ValidationFailedOffLine": {
+		"message": "Momentan ești offline."
 	},
 	"ValidationFailedLabel": {
 		"message": "Validarea a esuat"
@@ -2014,7 +2032,7 @@
         }
 	},
 	"cardsExportedToFileUndo": {
-		"message": "??Contacts exported to file $P1$??",
+		"message": "Contactele au fost exportate în fișierul $P1$",
         "placeholders": {
             "P1": {
                 "content": "$1"
@@ -2022,7 +2040,7 @@
         }
 	},
 	"cardsExportedToDirUndo": {
-		"message": "??Contacts exported to directory $P1$??",
+		"message": "Contactele au fost exportate în directorul $P1$",
         "placeholders": {
             "P1": {
                 "content": "$1"
@@ -2242,8 +2260,19 @@
             }
         }
 	},
+	"cardsFormattedUndo": {
+		"message": "$P1$ : Contacte formatate ($P2$)",
+        "placeholders": {
+            "P1": {
+                "content": "$1"
+            },
+            "P2": {
+                "content": "$2"
+            }
+        }
+	},
 	"exportCardToDirMessagePF": {
-		"message": "??$P1$ contact exported into the directory $P2$;$P1$ contacts exported into the directory $P2$??",
+		"message": "$P1$ contact exportat în directorul $P2$;$P1$ contacte exportate în directorul $P2$",
         "placeholders": {
             "P1": {
                 "content": "$1"
@@ -2254,7 +2283,7 @@
         }
 	},
 	"exportCardToFileMessagePF": {
-		"message": "??$P1$ contact exported into the file $P2$;$P1$ contacts exported into the file $P2$??",
+		"message": "$P1$ contact exportat în fisierul $P2$;$P1$ contacte exportate în fisierul $P2$",
         "placeholders": {
             "P1": {
                 "content": "$1"
@@ -2265,7 +2294,7 @@
         }
 	},
 	"importCardFromDirMessagePF": {
-		"message": "??$P1$ contact imported from the directory $P2$;$P1$ contacts imported from the directory $P2$??",
+		"message": "$P1$ contact importat din directorul $P2$;$P1$ contacte importate din directorul $P2$",
         "placeholders": {
             "P1": {
                 "content": "$1"
@@ -2276,7 +2305,7 @@
         }
 	},
 	"importCardFromFileMessagePF": {
-		"message": "??$P1$ contact imported from the file $P2$;$P1$ contacts imported from the file $P2$??",
+		"message": "$P1$ contact importat din fisierul $P2$;$P1$ contacte importate din fisierul $P2$",
         "placeholders": {
             "P1": {
                 "content": "$1"
@@ -2801,6 +2830,59 @@
             }
         }
 	},
+	"invalidOffice365Field": {
+		"message": "$P1$ nu poate fi sincronizat (valoare: $P2$)",
+        "placeholders": {
+            "P1": {
+                "content": "$1"
+            },
+            "P2": {
+                "content": "$2"
+            }
+       }
+	},
+	"invalidOffice365Email": {
+		"message": "Nu pot fi sincronizate mai mult de 3 adrese de e-mail"
+	},
+	"invalidOffice365Impp": {
+		"message": "Doar o singură adresă IM poate fi sincronizată"
+	},
+	"invalidOffice365Adr": {
+		"message": "Nu pot fi sincronizate mai mult de 3 adrese fizice"
+	},
+	"invalidOffice365Tel": {
+		"message": "Nu pot fi sincronizate mai mult de 17 numere de telefon"
+	},
+	"invalidOffice365EmptyType": {
+		"message": "$P1$ : tipurile goale nu sunt permise",
+        "placeholders": {
+            "P1": {
+                "content": "$1"
+            }
+        }
+	},
+	"invalidOffice365Type": {
+		"message": "$P1$ : prea mult tip $P2$ (maxim permis: $P3$)",
+		"placeholders": {
+			"P1": {
+				"content": "$1"
+			},
+			"P2": {
+				"content": "$2"
+			},
+			"P3": {
+				"content": "$3"
+			}
+		}
+	},
+	"invalidOffice365Member": {
+		"message": "Nu poți adăuga o adresă de e-mail care nu aparține unei persoane de contact din agenda ta ($P1$)",
+		"placeholders": {
+			"P1": {
+				"content": "$1"
+			}
+		}
+	},
 	"validateIntegerMsg": {
 		"message": "Câmpul $P1$ ar trebui să fie nul sau un număr întreg între 1 și $P2$ (valoare : $P3$)",
         "placeholders": {
@@ -2870,6 +2952,27 @@
 	},
 	"worktype": {
 		"message": "Serviciu"
+	},
+	"otherfaxtype": {
+		"message": "Alt fax"
+	},
+	"assistanttype": {
+		"message": "Asistent"
+	},
+	"callbacktype": {
+		"message": "Apelare înapoi"
+	},
+	"carphonetype": {
+		"message": "Maşină"
+	},
+	"radiotype": {
+		"message": "Radio"
+	},
+	"telextype": {
+		"message": "Telex"
+	},
+	"ttytype": {
+		"message": "TTY"
 	},
 	"types.gender.f": {
 		"message": "Feminin"
@@ -3282,9 +3385,6 @@
 	"eventInNoteEventPrefix": {
 		"message": "Eveniment"
 	},
-	"deathSuffix": {
-		"message": "(decedat)"
-	},
 	"dateFormatsDLabel": {
 		"message": "Z"
 	},
@@ -3600,20 +3700,20 @@
 	"cardbookContactPaneItemAccesskey": {
 		"message": "c"
 	},
+	"wizard.next.label": {
+		"message": "Înainte"
+	},	
+	"wizard.back.label": {
+		"message": "Înapoi"
+	},	
+	"wizard.create.label": {
+		"message": "Creează"
+	},
 	"wizard.title": {
 		"message": "Adăugă o agendă nouă"
 	},
-	"wizard.label": {
-		"message": "Adăugă o agendă nouă"
-	},
-	"welcomePage.wizard.description": {
-		"message": "Bine ai venit!"
-	},
 	"welcomePage.description": {
 		"message": "Se pare că este prima dată când a fost rulat CardBook. CardBook va încerca să colecteze contactele din agendele standard Thunderbird și din agendele la distanță."
-	},
-	"initialPage.wizard.description": {
-		"message": "Locația pentru agenda nouă."
 	},
 	"initialPage.description": {
 		"message": "Locație agendă nouă"
@@ -3632,9 +3732,6 @@
 	},
 	"initialPage.find.label": {
 		"message": "Caută agende la distanță"
-	},
-	"localPage.wizard.description": {
-		"message": "Tipul și locația agendei locale nouă."
 	},
 	"localPage.type.description": {
 		"message": "Tipul agendei locale:"
@@ -3669,9 +3766,6 @@
 	"localPage.uributton.label": {
 		"message": "Răsfoiește"
 	},
-	"remotePage.wizard.description": {
-		"message": "Tipul și locația agendei la distanță nouă."
-	},
 	"remotePage.description": {
 		"message": "Care este tipul agendei la distanță? (Atenție: Google nu se conformează standardului vCard)"
 	},
@@ -3679,7 +3773,10 @@
 		"message": "Tip"
 	},
 	"remotePageType.carddav.label": {
-		"message": "CardDAV"
+		"message": "CardDAV (Tastează sau lipește un URL)"
+	},
+	"remotePageType.ews.label": {
+		"message": "EWS (Tastează sau lipește un URL)"
 	},
 	"remotePageType.google2.label": {
 		"message": "Google"
@@ -3720,14 +3817,14 @@
 	"remotePage.password.label": {
 		"message": "Parolă:"
 	},
+	"rememberPassword": {
+		"message": "Folosește managerul de parole pentru a reține această parolă"
+	},
 	"showHidePassword.tooltip": {
 		"message": "Afișează/Ascunde parola"
 	},
 	"remotePage.validatebutton.label": {
 		"message": "Validează"
-	},
-	"locationSearchPage.wizard.description": {
-		"message": "Definirea căutării salvate"
 	},
 	"locationSearchPage.label": {
 		"message": "Căutare salvată"
@@ -3753,9 +3850,6 @@
 	"googleOauthPage.wizard.description": {
 		"message": "Autentificare Google"
 	},
-	"namePage.wizard.description": {
-		"message": "Proprietăți agendă"
-	},
 	"namePage.selected.label": {
 		"message": "Selectat"
 	},
@@ -3774,17 +3868,11 @@
 	"namePage.vCardVersion.label": {
 		"message": "vCard"
 	},
-	"namesPage.wizard.description": {
-		"message": "Proprietăți agendă"
-	},
 	"namesPage.name.label": {
 		"message": "Nume"
 	},
 	"namesPage.name.description": {
 		"message": "Au fost descoperite mai multe agende. Alege agendele pe care dorești să le deschizi și numele lor :"
-	},
-	"findPage.wizard.description": {
-		"message": "Căutare agendă la distanță"
 	},
 	"findPage.name1.description": {
 		"message": "Nu au fost găsite agende la distanță."
@@ -3794,9 +3882,6 @@
 	},
 	"findPage.name3.description": {
 		"message": "Au fost găsite multiple agende la distanță. Validează agendele pentru a le adăuga:"
-	},
-	"finishPage.wizard.description": {
-		"message": "Configurație agende"
 	},
 	"finishPage.description": {
 		"message": "Noua ta agendă a fost configurată cu succes."
@@ -4410,6 +4495,12 @@
 	"typesCategoryAppleAccesskey": {
 		"message": "A"
 	},
+	"typesCategoryOffice365Label": {
+		"message": "Office365"
+	},
+	"typesCategoryOffice365Accesskey": {
+		"message": "O"
+	},
 	"typesCategoryYahooLabel": {
 		"message": "Yahoo!"
 	},
@@ -4787,6 +4878,9 @@
 	},
 	"birthdayListWarn": {
 		"message": "Aniversările sunt căutate doar în agendele CardBook."
+	},
+	"generalGroupboxLabel": {
+		"message": "General"
 	},
 	"addressbooksGroupboxLabel": {
 		"message": "Agende"
@@ -5442,8 +5536,11 @@
 	"importCardFromDirLabel": {
 		"message": "Importă contacte dintr-un director"
 	},
+	"formatDataFromAccountsOrCatsLabel": {
+		"message": "Formatează datele contactelor"
+	},
 	"findDuplicatesFromAccountsOrCatsLabel": {
-		"message": "Găsește contacte duplicat în agenda curentă"
+		"message": "Găsește contacte duplicat"
 	},
 	"generateFnFromAccountsOrCatsLabel": {
 		"message": "Generează nume afișate"
@@ -5567,12 +5664,6 @@
 	},
 	"displayFieldNamesAccesskey": {
 		"message": "c"
-	},
-	"displayTypesLabel": {
-		"message": "Afișează tipuri și preferințe"
-	},
-	"displayTypesAccesskey": {
-		"message": "u"
 	},
 	"fieldsToPrintGroupboxLabel": {
 		"message": "Câmpuri de tipărit"
@@ -5742,6 +5833,21 @@
 	"mergeAllEditionAccesskey": {
 		"message": "m"
 	},
+	"formatAllEditionLabel": {
+		"message": "Formează tot"
+	},
+	"formatAllEditionAccesskey": {
+		"message": "F"
+	},
+	"undoAllEditionLabel": {
+		"message": "Anulează tot"
+	},
+	"undoAllEditionAccesskey": {
+		"message": "A"
+	},
+	"formatEditionLabel": {
+		"message": "Formatează"
+	},
 	"buttonAppendToListLabel": {
 		"message": "Adaugă"
 	},
@@ -5782,7 +5888,20 @@
 		"message": "C"
 	},
 	"wdw_findDuplicatesTitle": {
-		"message": "Contacte duplicat"
+		"message": "Contacte duplicat ($P1$)",
+        "placeholders": {
+            "P1": {
+                "content": "$1"
+            }
+        }
+	},
+	"wdw_formatDataTitle": {
+		"message": "Formatează datele contactelor ($P1$)",
+        "placeholders": {
+            "P1": {
+                "content": "$1"
+            }
+        }
 	},
 	"addImageCardFromFileLabel": {
 		"message": "Adaugă imagine dintr-un fișier"
@@ -5864,5 +5983,8 @@
 	},
 	"orgTitleLabel": {
 		"message": "Informații profesionale"
+	},
+	"allAddressBooks": {
+		"message": "Toate agendele de contacte"
 	}
 }

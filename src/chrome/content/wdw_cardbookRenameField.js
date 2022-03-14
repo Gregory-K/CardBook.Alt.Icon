@@ -76,6 +76,9 @@ function onLoadDialog () {
 	}
 	document.getElementById('typeTextBox').value = window.arguments[0].type;
 	document.getElementById('typeTextBox').focus();
+
+	document.addEventListener("dialogaccept", onAcceptDialog);
+	document.addEventListener("dialogcancel", onCancelDialog);
 };
 
 function onAcceptDialog (aEvent) {
@@ -102,6 +105,5 @@ function onCancelDialog () {
 	close();
 };
 
-document.addEventListener("dialogaccept", onAcceptDialog);
-document.addEventListener("dialogcancel", onCancelDialog);
+document.addEventListener("DOMContentLoaded",onLoadDialog);
 document.addEventListener("popupshowing", cardbookRichContext.loadRichContext, true);

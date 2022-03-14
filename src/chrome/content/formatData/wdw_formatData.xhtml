@@ -1,0 +1,72 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?xml-stylesheet href="chrome://global/skin/" type="text/css"?>
+<?xml-stylesheet type="text/css" href="chrome://messenger/skin/messenger.css"?>
+<?xml-stylesheet href="chrome://cardbook/content/skin/cardbookMain.css" type="text/css"?>
+<?xml-stylesheet href="chrome://cardbook/content/skin/cardbookFormatCards.css" type="text/css"?>
+<!-- for the textbox -->
+<?xml-stylesheet type="text/css" href="chrome://messenger/skin/input-fields.css"?>
+<!-- for the display -->
+<?xml-stylesheet type="text/css" href="chrome://messenger/skin/themeableDialog.css"?>
+
+<html id="wdw_formatData" xmlns="http://www.w3.org/1999/xhtml"
+	windowtype="CardBook:contactFormatWindow"
+	role="document"
+	xmlns:xul="http://www.mozilla.org/keymaster/gatekeeper/there.is.only.xul"
+	xmlns:html="http://www.w3.org/1999/xhtml"
+	persist="screenX screenY width height sizemode" class="cardbookFormatCardsClass"
+	lightweightthemes="true"
+	style="min-width:500px;min-height:300px">
+	<head>
+		<title></title>
+		<script type="application/x-javascript" src="chrome://cardbook/content/indexedDB/cardbookEncryptor.js"/>
+		<script type="application/x-javascript" src="chrome://cardbook/content/indexedDB/cardbookIndexedDB.js"/>
+		<script type="application/x-javascript" src="chrome://cardbook/content/indexedDB/cardbookIDBCard.js"/>
+		<script type="application/x-javascript" src="chrome://cardbook/content/indexedDB/cardbookIDBCat.js"/>
+		<script type="application/x-javascript" src="chrome://cardbook/content/indexedDB/cardbookIDBUndo.js"/>
+		<script type="application/x-javascript" src="chrome://cardbook/content/indexedDB/cardbookIDBImage.js"/>
+		<script type="application/x-javascript" src="chrome://cardbook/content/indexedDB/cardbookIDBMailPop.js"/>
+		<script type="application/x-javascript" src="chrome://cardbook/content/indexedDB/cardbookIDBPrefDispName.js"/>
+		<script type="application/x-javascript" src="chrome://cardbook/content/indexedDB/cardbookIDBSearch.js"/>
+		<script type="application/x-javascript" src="chrome://cardbook/content/cardbookActions.js"/>
+		<script type="application/x-javascript" src="chrome://cardbook/content/cardbookCardParser.js"/>
+		<script type="application/x-javascript" src="chrome://cardbook/content/cardbookElementTools.js"/>
+		<script type="application/x-javascript" src="chrome://cardbook/content/formatData/wdw_formatData.js"/>
+		<script type="application/x-javascript" src="chrome://cardbook/content/scripts/i18n.js"/>
+		<!-- for the textbox -->
+		<script type="application/x-javascript" src="chrome://global/content/globalOverlay.js"/>
+		<script type="application/x-javascript" src="chrome://global/content/editMenuOverlay.js"/>
+	</head>
+
+	<html:body xmlns="http://www.mozilla.org/keymaster/gatekeeper/there.is.only.xul">
+		<keyset id="wdw_formatData-keys">
+			<key keycode="VK_ESCAPE" oncommand="wdw_formatData.cancel();"/>
+		</keyset>
+
+		<html:div class="fullContainer">
+			<html:div class="flex-pad-x">
+				<html:div class="flex-pad-y">
+					<html:div id="cardbookContactButtonsBox" class="fullline justifyCenter">
+						<button id="email" label="__MSG_emailLabel__" class="cardbookContactButtons" oncommand="wdw_formatData.setData(this);" visuallyselected="true"/>
+						<button id="tel" label="__MSG_telLabel__" class="cardbookContactButtons" oncommand="wdw_formatData.setData(this);"/>
+					</html:div>
+					<html:div id="noLinesFoundDescVbox" class="hidden">
+						<label id="noLinesFoundDesc"/>
+					</html:div>
+					<html:div id="recordsHbox" class="flex-grow-y alignLeft hidden">
+						<html:table id="fieldsTable"/>
+					</html:div>
+					<html:div id="formatAllVbox">
+						<html:progress id="formatAll-progressmeter" value="0" max="100"/>
+					</html:div>
+					<html:div class="fullline">
+						<label id="numberLinesFoundDesc"/>
+						<button id="formatAllLabel" class="pushRight" label="__MSG_formatAllEditionLabel__" accesskey="__MSG_mergeAllEditionAccesskey__" oncommand="wdw_formatData.actionAll('format');"/>
+						<button id="undoAllLabel" label="__MSG_undoAllEditionLabel__" accesskey="__MSG_undoAllEditionAccesskey__" oncommand="wdw_formatData.actionAll('undo');"/>
+						<button id="cancelEditionLabel" label="__MSG_cancelEditionLabel__" accesskey="__MSG_cancelEditionAccesskey__" oncommand="wdw_formatData.cancel();"/>
+						<button id="saveEditionLabel" label="__MSG_saveEditionLabel__" accesskey="__MSG_saveEditionAccesskey__" oncommand="wdw_formatData.save();"/>
+					</html:div>
+				</html:div>
+			</html:div>
+		</html:div>
+	</html:body>
+</html>

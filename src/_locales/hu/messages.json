@@ -126,6 +126,9 @@
 	"noContactsDuplicated": {
 		"message": "Ismétlődő névjegyek nem található."
 	},
+	"noDataAvailable": {
+		"message": "Nincs elérhető adat."
+	},
 	"targetCategoryLabel": {
 		"message": "találat"
 	},
@@ -149,11 +152,26 @@
 	"ValidatingURLFailedLabel": {
 		"message": "Webcím formátuma hibás"
 	},
+	"ValidatingURILabel": {
+		"message": "Írjon vagy illesszen be egy URL-t"
+	},
+	"ValidatingURIFailedLabel": {
+		"message": "Érvénytelen URL"
+	},
+	"ValidatingLoginLabel": {
+		"message": "Az Ön bejelentkezése"
+	},
+	"ValidatingEmailLabel": {
+		"message": "A meglévő e-mail címe"
+	},
 	"ValidatingEmailFailedLabel": {
 		"message": "Érvényes e-mail cím szükséges"
 	},
 	"ValidationFailedLabel": {
 		"message": "Ellenőrzése nem sikerült"
+	},
+	"ValidationFailedOffLine": {
+		"message": "Jelenleg kapcsolat nélküli módban van."
 	},
 	"ValidationOKLabel": {
 		"message": "Érvényesítés sikeres"
@@ -2242,6 +2260,17 @@
             }
         }
 	},
+	"cardsFormattedUndo": {
+		"message": "??$P1$ : Contacts formatted ($P2$)??",
+        "placeholders": {
+            "P1": {
+                "content": "$1"
+            },
+            "P2": {
+                "content": "$2"
+            }
+        }
+	},
 	"exportCardToDirMessagePF": {
 		"message": "$P1$ névjegy exportálva a(z) $P2$ könyvtárba;$P1$ névjegy exportálva a(z) $P2$ könyvtárba",
         "placeholders": {
@@ -2801,6 +2830,59 @@
             }
         }
 	},
+	"invalidOffice365Field": {
+		"message": "??$P1$ can't be synced (value: $P2$)??",
+        "placeholders": {
+            "P1": {
+                "content": "$1"
+            },
+            "P2": {
+                "content": "$2"
+            }
+       }
+	},
+	"invalidOffice365Email": {
+		"message": "??No more than 3 email addresses can be synced??"
+	},
+	"invalidOffice365Impp": {
+		"message": "??Only one IM address can be synced??"
+	},
+	"invalidOffice365Adr": {
+		"message": "??No more than 3 physical addresses can be synced??"
+	},
+	"invalidOffice365Tel": {
+		"message": "??No more than 17 phone numbers can be synced??"
+	},
+	"invalidOffice365EmptyType": {
+		"message": "??Empty types are not allowed in the element $P1$??",
+        "placeholders": {
+            "P1": {
+                "content": "$1"
+            }
+        }
+	},
+	"invalidOffice365Type": {
+		"message": "??Too many $P2$ types in the element $P1$ (max allowed: $P3$)??",
+		"placeholders": {
+			"P1": {
+				"content": "$1"
+			},
+			"P2": {
+				"content": "$2"
+			},
+			"P3": {
+				"content": "$3"
+			}
+		}
+	},
+	"invalidOffice365Member": {
+		"message": "??You cannot add an email that does not belong to one contact of your address book ($P1$)??",
+		"placeholders": {
+			"P1": {
+				"content": "$1"
+			}
+		}
+	},
 	"validateIntegerMsg": {
 		"message": "A $P1$ adatmező kell lennie semmis vagy egy egész szám 1 és $P2$ között (érték : $P3$)",
         "placeholders": {
@@ -2870,6 +2952,27 @@
 	},
 	"worktype": {
 		"message": "Munkahelyi"
+	},
+	"otherfaxtype": {
+		"message": "??Other fax??"
+	},
+	"assistanttype": {
+		"message": "??Assistant??"
+	},
+	"callbacktype": {
+		"message": "??Callback??"
+	},
+	"carphonetype": {
+		"message": "??Car??"
+	},
+	"radiotype": {
+		"message": "??Radio??"
+	},
+	"telextype": {
+		"message": "??Telex??"
+	},
+	"ttytype": {
+		"message": "TTY"
 	},
 	"types.gender.f": {
 		"message": "Nő"
@@ -3282,9 +3385,6 @@
 	"eventInNoteEventPrefix": {
 		"message": "Esemény"
 	},
-	"deathSuffix": {
-		"message": "(elhunyt)"
-	},
 	"dateFormatsDLabel": {
 		"message": "N"
 	},
@@ -3600,20 +3700,20 @@
 	"cardbookContactPaneItemAccesskey": {
 		"message": "N"
 	},
+	"wizard.next.label": {
+		"message": "Tovább"
+	},	
+	"wizard.back.label": {
+		"message": "Vissza"
+	},	
+	"wizard.create.label": {
+		"message": "Létrehozás"
+	},
 	"wizard.title": {
 		"message": "Új névjegytár mappa"
 	},
-	"wizard.label": {
-		"message": "Új névjegytár mappa"
-	},
-	"welcomePage.wizard.description": {
-		"message": "Üdvözöljük!"
-	},
 	"welcomePage.description": {
 		"message": "Úgy tűnik, ez az első alkalom, amikor a Névjegyzék programot futtatták. A Névjegyzék megpróbálja összegyűjteni a Thunderbird szabványos címjegyzékeit és távoli névjegytárakat."
-	},
-	"initialPage.wizard.description": {
-		"message": "Névjegytár mappa típus."
 	},
 	"initialPage.description": {
 		"message": "Névjegytár mappa típus:"
@@ -3632,9 +3732,6 @@
 	},
 	"initialPage.find.label": {
 		"message": "Távoli névjegytár keresése"
-	},
-	"localPage.wizard.description": {
-		"message": "Helyi névjegytár mappaformátum és tárolási hely."
 	},
 	"localPage.type.description": {
 		"message": "Válassza ki a helyi névjegytár mappaformátum:"
@@ -3669,9 +3766,6 @@
 	"localPage.uributton.label": {
 		"message": "Tallózás…"
 	},
-	"remotePage.wizard.description": {
-		"message": "Távoli névjegytár mappaformátum és tárolási hely."
-	},
 	"remotePage.description": {
 		"message": "Válassza ki a távoli névjegytár mappaformátum: (Vigyázat: Google végrehajtása a vCard formátum hibás.)"
 	},
@@ -3679,7 +3773,10 @@
 		"message": "Mappaformátum"
 	},
 	"remotePageType.carddav.label": {
-		"message": "CardDAV"
+		"message": "CardDAV (Írjon vagy illesszen be egy URL-t)"
+	},
+	"remotePageType.ews.label": {
+		"message": "EWS (Írjon vagy illesszen be egy URL-t)"
 	},
 	"remotePageType.google2.label": {
 		"message": "Google"
@@ -3720,14 +3817,14 @@
 	"remotePage.password.label": {
 		"message": "Jelszó:"
 	},
+	"rememberPassword": {
+		"message": "Jelszókezelő használata a jelszó megjegyzésére"
+	},
 	"showHidePassword.tooltip": {
 		"message": "Jelszó megjelenítése/elrejtése"
 	},
 	"remotePage.validatebutton.label": {
 		"message": "Érvényesít"
-	},
-	"locationSearchPage.wizard.description": {
-		"message": "Mentett keresés meghatározása."
 	},
 	"locationSearchPage.label": {
 		"message": "Mentett keresés"
@@ -3753,9 +3850,6 @@
 	"googleOauthPage.wizard.description": {
 		"message": "Google hitelesítés"
 	},
-	"namePage.wizard.description": {
-		"message": "Névjegytár mappa tulajdonságok"
-	},
 	"namePage.selected.label": {
 		"message": "Kijelölt"
 	},
@@ -3774,17 +3868,11 @@
 	"namePage.vCardVersion.label": {
 		"message": "vCard"
 	},
-	"namesPage.wizard.description": {
-		"message": "Névjegytár mappák tulajdonságok"
-	},
 	"namesPage.name.label": {
 		"message": "Nevek"
 	},
 	"namesPage.name.description": {
 		"message": "Felfedeztuk több névjegytár mappák. Válassza ki a nevek, a névjegytár amit szeretné megnyitni:"
-	},
-	"findPage.wizard.description": {
-		"message": "Távoli névjegytár keresése"
 	},
 	"findPage.name1.description": {
 		"message": "Távoli névjegytár nem található."
@@ -3794,9 +3882,6 @@
 	},
 	"findPage.name3.description": {
 		"message": "Több távoli névjegytár található. Érvényesítse a hozzáadandó távoli névjegytárakat:"
-	},
-	"finishPage.wizard.description": {
-		"message": "Névjegytár beállítások"
 	},
 	"finishPage.description": {
 		"message": "Az új névjegytár mappa sikeresen beállítva."
@@ -4410,6 +4495,12 @@
 	"typesCategoryAppleAccesskey": {
 		"message": "A"
 	},
+	"typesCategoryOffice365Label": {
+		"message": "Office365"
+	},
+	"typesCategoryOffice365Accesskey": {
+		"message": "O"
+	},
 	"typesCategoryYahooLabel": {
 		"message": "Yahoo!"
 	},
@@ -4787,6 +4878,9 @@
 	},
 	"birthdayListWarn": {
 		"message": "Az évfordulókat csak a névjegyzék kiegészítő program névjegytárában keresi."
+	},
+	"generalGroupboxLabel": {
+		"message": "Általános"
 	},
 	"addressbooksGroupboxLabel": {
 		"message": "Minden mappa"
@@ -5442,8 +5536,11 @@
 	"importCardFromDirLabel": {
 		"message": "Megnyitás és mentés mappából"
 	},
+	"formatDataFromAccountsOrCatsLabel": {
+		"message": "??Format contacts data??"
+	},
 	"findDuplicatesFromAccountsOrCatsLabel": {
-		"message": "A jelenlegi névjegytárban ismétlődő névjegy keresése"
+		"message": "??Find duplicate contacts??"
 	},
 	"generateFnFromAccountsOrCatsLabel": {
 		"message": "Megjelenítendő nevek létrehozása"
@@ -5567,12 +5664,6 @@
 	},
 	"displayFieldNamesAccesskey": {
 		"message": "M"
-	},
-	"displayTypesLabel": {
-		"message": "Típusok és beállítások"
-	},
-	"displayTypesAccesskey": {
-		"message": "b"
 	},
 	"fieldsToPrintGroupboxLabel": {
 		"message": "Helyszíni beállítások"
@@ -5742,6 +5833,21 @@
 	"mergeAllEditionAccesskey": {
 		"message": "A"
 	},
+	"formatAllEditionLabel": {
+		"message": "??Format all??"
+	},
+	"formatAllEditionAccesskey": {
+		"message": "F"
+	},
+	"undoAllEditionLabel": {
+		"message": "??Undo all??"
+	},
+	"undoAllEditionAccesskey": {
+		"message": "U"
+	},
+	"formatEditionLabel": {
+		"message": "??Format??"
+	},
 	"buttonAppendToListLabel": {
 		"message": "Hozzáad"
 	},
@@ -5782,7 +5888,20 @@
 		"message": "v"
 	},
 	"wdw_findDuplicatesTitle": {
-		"message": "Ismétlődő névjegyet"
+		"message": "Ismétlődő névjegyet ($P1$)",
+        "placeholders": {
+            "P1": {
+                "content": "$1"
+            }
+        }
+	},
+	"wdw_formatDataTitle": {
+		"message": "??Format contacts data ($P1$)??",
+        "placeholders": {
+            "P1": {
+                "content": "$1"
+            }
+        }
 	},
 	"addImageCardFromFileLabel": {
 		"message": "Kép hozzáadása fájlból"
@@ -5864,5 +5983,8 @@
 	},
 	"orgTitleLabel": {
 		"message": "Szakmai profil"
+	},
+	"allAddressBooks": {
+		"message": "Minden címjegyzék"
 	}
 }

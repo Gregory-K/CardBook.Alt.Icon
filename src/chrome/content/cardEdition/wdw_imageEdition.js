@@ -31,6 +31,9 @@ if ("undefined" == typeof(wdw_imageEdition)) {
 			let dirname = cardbookRepository.cardbookPreferences.getName(aCard.dirPrefId);
 			wdw_imageEdition.setMediaContentForCard(aDisplayDefault, aCard, "logo", aCard.logo.extension, aCard.logo.value);
 			wdw_imageEdition.setMediaContentForCard(aDisplayDefault, aCard, "sound", aCard.sound.extension, aCard.sound.value);
+			if (aCard.photo.attachmentId) {
+				document.getElementById('photoAttachmentIdTextBox').value = aCard.photo.attachmentId;
+			}
 			await cardbookIDBImage.getImage("photo", dirname, aCard.cbid, aCard.fn)
 				.then( image => {
 					wdw_imageEdition.resizeImageCard(image, aDisplayDefault);
@@ -180,18 +183,13 @@ if ("undefined" == typeof(wdw_imageEdition)) {
 			cardbookWindowUtils.callFilePicker("imageSaveTitle", "SAVE", "IMAGES", defaultName, "", wdw_imageEdition.saveImageCardNext);
 		},
 
-		saveImageCardNext: function (aFile) {
-			cardbookRepository.cardbookUtils.writeContentToFile(aFile.path, atob(document.getElementById('photoURITextBox').value), "NOUTF8");
+		saveImageCardNext: async function (aFile) {
+			await cardbookRepository.cardbookUtils.writeContentToFile(aFile.path, atob(document.getElementById('photoURITextBox').value), "NOUTF8");
 			cardbookRepository.cardbookUtils.formatStringForOutput("imageSavedToFile", [aFile.path]);
 		},
 
 		copyImageCard: function () {
-			try {
-				cardbookClipboard.clipboardSetImage(document.getElementById('photoURITextBox').value);
-			}
-			catch (e) {
-				cardbookRepository.cardbookLog.updateStatusProgressInformation("wdw_imageEdition.copyImageCard error : " + e, "Error");
-			}
+			cardbookClipboard.clipboardSetImage(document.getElementById('photoURITextBox').value, document.getElementById('photoExtensionTextBox').value);
 		},
 
 		deleteImageCard: function () {

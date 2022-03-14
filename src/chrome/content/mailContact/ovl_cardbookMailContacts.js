@@ -42,11 +42,7 @@ if ("undefined" == typeof(ovl_cardbookMailContacts)) {
 			try {
 				var myNewCard = new cardbookCardParser();
 				myNewCard.dirPrefId = aDirPrefId;
-				if (aEmailNode) {
-					var myEmailNode = aEmailNode;
-				} else {
-					var myEmailNode = document.popupNode.closest("mail-emailaddress");
-				}
+				var myEmailNode = aEmailNode.closest("mail-emailaddress");
 				var myEmail = myEmailNode.getAttribute('emailAddress');
 				myNewCard.email.push([[myEmail], [], "", []]);
 				myNewCard.fn = myEmailNode.getAttribute('displayName');
@@ -83,11 +79,7 @@ if ("undefined" == typeof(ovl_cardbookMailContacts)) {
 		},
 
 		editOrViewContact: function(aEmailNode) {
-			if (aEmailNode) {
-				var myEmailNode = aEmailNode;
-			} else {
-				var myEmailNode = document.popupNode.closest("mail-emailaddress");
-			}
+			var myEmailNode = aEmailNode.closest("mail-emailaddress");
 			var myEmail = myEmailNode.getAttribute('emailAddress');
 			var isEmailRegistered = ovl_cardbookMailContacts.isEmailRegistered(myEmail);
 	
@@ -108,9 +100,9 @@ if ("undefined" == typeof(ovl_cardbookMailContacts)) {
 			}
 		},
 
-		deleteContact: function() {
-			var myEmailNode = document.popupNode.closest("mail-emailaddress");
-			var myEmail = myEmailNode.getAttribute('emailAddress');
+		deleteContact: function(emailAddressNode) {
+			emailAddressNode = emailAddressNode.closest("mail-emailaddress");
+			var myEmail = emailAddressNode.getAttribute('emailAddress');
 			var isEmailRegistered = ovl_cardbookMailContacts.isEmailRegistered(myEmail);
 	
 			if (isEmailRegistered) {
@@ -247,15 +239,15 @@ if ("undefined" == typeof(ovl_cardbookMailContacts)) {
 		var isEmailRegistered = ovl_cardbookMailContacts.isEmailRegistered(myEmailAddress);
 		if (showCondensedAddresses) {
 			if (exclusive) {
-				arguments[1].setAttribute("hascard", isEmailRegistered.toString());
+				arguments[1].setAddressBookState(!!isEmailRegistered);
 			} else if (isEmailRegistered) {
-				arguments[1].setAttribute("hascard",isEmailRegistered.toString());
+				arguments[1].setAddressBookState(!!isEmailRegistered);
 			}
 		} else {
 			if (exclusive) {
-				arguments[1].setAttribute("hascard", isEmailRegistered.toString());
+				arguments[1].setAddressBookState(!!isEmailRegistered);
 			} else if (isEmailRegistered) {
-				arguments[1].setAttribute("hascard", isEmailRegistered.toString());
+				arguments[1].setAddressBookState(!!isEmailRegistered);
 			}
 		}
 		return rv;
@@ -263,32 +255,31 @@ if ("undefined" == typeof(ovl_cardbookMailContacts)) {
 
 })();
 
-// nothing happens when click the yellow star
-// 	
 (function() {
 	// Keep a reference to the original function.
-	ovl_cardbookMailContacts.origFunctions.onClickEmailStar = onClickEmailStar;
+	ovl_cardbookMailContacts.origFunctions.onClickStar = customElements.get("mail-emailaddress").prototype.onClickStar;
 	
 	// Override a function.
-	onClickEmailStar = function() {
-		
-		if (arguments[1].getAttribute("hascard") == "true") {
-			if (ovl_cardbookMailContacts.isEmailRegistered(arguments[1].getAttribute('emailAddress'))) {
-				ovl_cardbookMailContacts.editOrViewContact(arguments[1]);
+	// onClickStar
+	customElements.get("mail-emailaddress").prototype.onClickStar = function() {
+		if (this.hasCard) {
+			if (ovl_cardbookMailContacts.isEmailRegistered(this.getAttribute('emailAddress'))) {
+				ovl_cardbookMailContacts.editOrViewContact(this);
 			} else {
-				var rv = ovl_cardbookMailContacts.origFunctions.onClickEmailStar.apply(null, arguments);
+				var rv = ovl_cardbookMailContacts.origFunctions.onClickStar.apply(null, arguments);
 			}
 		} else {
 			var myAccount = cardbookRepository.cardbookUtils.getFirstAvailableAccount();
 			if (myAccount != "-1") {
-				ovl_cardbookMailContacts.addToCardBook(myAccount, arguments[1]);
+				ovl_cardbookMailContacts.addToCardBook(myAccount, this);
 			} else {
-				var rv = ovl_cardbookMailContacts.origFunctions.onClickEmailStar.apply(null, arguments);
+				var rv = ovl_cardbookMailContacts.origFunctions.onClickStar.apply(null, arguments);
 			}
 		}
 	};
 
 })();
+
 
 // for adding a contact from an email address
 // fillMailContextMenu

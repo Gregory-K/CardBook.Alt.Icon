@@ -1,7 +1,7 @@
 if ("undefined" == typeof(cardbookDuplicate)) {
 	var cardbookDuplicate = {
 
-		updateDuplicate: function (aListOfCards) {
+		updateDuplicate: async function (aListOfCards) {
 			var myArray = [];
 			for (var i = 0; i < aListOfCards.length; i++) {
 				myArray.push(aListOfCards[i].uid);
@@ -17,17 +17,16 @@ if ("undefined" == typeof(cardbookDuplicate)) {
 					}
 				}
 			}
-			cardbookDuplicate.writeDuplicate();
+			await cardbookDuplicate.writeDuplicate();
 		},
 
 		loadDuplicate: function () {
 			var cacheDir = cardbookRepository.getLocalDirectory();
 			cacheDir.append(cardbookRepository.cardbookDuplicateFile);
-			
 			if (cacheDir.exists()) {
 				var params = {};
 				params["showError"] = true;
-				cardbookRepository.cardbookSynchronization.getFileDataAsync(cacheDir.path, cardbookDuplicate.loadDuplicateAsync, params);
+				cardbookRepository.cardbookUtils.readContentFromFile(cacheDir.path, cardbookDuplicate.loadDuplicateAsync, params);
 			} else {
 				wdw_findDuplicates.load();
 			}
@@ -47,7 +46,7 @@ if ("undefined" == typeof(cardbookDuplicate)) {
 			wdw_findDuplicates.load();
 		},
 
-		writeDuplicate: function () {
+		writeDuplicate: async function () {
 			var cacheDir = cardbookRepository.getLocalDirectory();
 			cacheDir.append(cardbookRepository.cardbookDuplicateFile);
 			
@@ -63,9 +62,7 @@ if ("undefined" == typeof(cardbookDuplicate)) {
 					}
 				}
 				myArray = cardbookRepository.arrayUnique(myArray);
-				cardbookRepository.cardbookSynchronization.writeFileDataAsync(cacheDir.path, myArray.join("\r\n"), function () {
-				cardbookRepository.cardbookLog.updateStatusProgressInformationWithDebug2("debug mode : Duplicate file written to : " + cacheDir.path);
-				});
+				await cardbookRepository.cardbookUtils.writeContentToFile(cacheDir.path, myArray.join("\r\n"), "UTF8");
 			}
 		}
 

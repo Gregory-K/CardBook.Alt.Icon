@@ -1,27 +1,27 @@
 # CardBook Alt.Icon
 
-This is a **fork** of **CardBook**, a [Thunderbird](https://www.thunderbird.net/) address book based on the CardDAV and vCard standards.
+This is a **fork** of [**CardBook**](https://gitlab.com/CardBook/CardBook), a [Thunderbird](https://www.thunderbird.net/) address book based on the CardDAV and vCard standards.
 
 **CardBook Alt.Icon** simply provides an **alternative** main **icon** more aligned with Thunderbird's toolbar icon design.
 
 Icon Variations (sub-releases):  
 - card (`card`)  
-  <img src="./icons/cardbook_card.svg" height="18" />
+  ![card icons](./icons/preview_card.png)
 - people (`people`)  
-  <img src="./icons/cardbook_people.svg" height="18" />
+  ![people icons](./icons/preview_people.png)
 - people colour (`people_colour`)  
-  <img src="./icons/cardbook_people_colour.svg" height="18" />
+  ![people colour icons](./icons/preview_people_colour.png)
 - person (`person`)  
-  <img src="./icons/cardbook_person.svg" height="18" />
+  ![person icons](./icons/preview_person.png)
 
 Homepage:  
 GitHub (main) - https://github.com/Gregory-K/CardBook.Alt.Icon  
 GitLab (alt.) - https://gitlab.com/Gregory.K/CardBook.Alt.Icon
 
 Version:  
-**62.9.1**  
+**73.7.1**  
 Compatibility:  
-78.0a1 <= Thunderbird version >= 79.0
+91.0a1 <= Thunderbird version >= 91.*
 
 
 ## Install / Update

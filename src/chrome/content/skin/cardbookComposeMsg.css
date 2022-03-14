@@ -1,7 +1,7 @@
 #cardbookMenuItem {
-	list-style-image: url("chrome://cardbook/content/skin/cardbook.svg");
+	list-style-image: url("chrome://cardbook/content/skin/cardbook_b.svg");
 }
-
-#cardbookComposeToolbarButton {
-	list-style-image: url("chrome://cardbook/content/skin/cardbook.svg");
+/* dark theme */
+:root[lwt-tree] #cardbookMenuItem {
+  list-style-image: url("chrome://cardbook/content/skin/cardbook_w.svg");
 }

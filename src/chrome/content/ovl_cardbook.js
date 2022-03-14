@@ -150,7 +150,7 @@ var cardbookTabType = {
 						break;
 					case "cmd_print":
 					case "cmd_printpreview":
-						wdw_cardbook.print();
+						wdw_cardbook.printCards();
 						break;
 					case "cmd_selectAll":
 						wdw_cardbook.selectAllKey();
@@ -284,7 +284,7 @@ var ovl_cardbook = {
 		// functions
 		setupEmailAddressPopup = ovl_cardbookMailContacts.origFunctions.setupEmailAddressPopup;
 		UpdateEmailNodeDetails = ovl_cardbookMailContacts.origFunctions.UpdateEmailNodeDetails;
-		onClickEmailStar = ovl_cardbookMailContacts.origFunctions.onClickEmailStar;
+		customElements.get("mail-emailaddress").prototype.onClickStar = ovl_cardbookMailContacts.origFunctions.onClickStar;
 		fillMailContextMenu = ovl_cardbookMailContacts.origFunctions.fillMailContextMenu;
 
 		DisplayNameUtils.formatDisplayName = ovl_formatEmailCorrespondents.origFunctions.formatDisplayName;

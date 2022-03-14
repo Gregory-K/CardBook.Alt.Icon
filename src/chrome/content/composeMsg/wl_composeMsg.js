@@ -1,7 +1,5 @@
 // Import any needed modules.
 var { Services } = ChromeUtils.import("resource://gre/modules/Services.jsm");
-Services.scriptloader.loadSubScript("chrome://cardbook/content/attachvCard/ovl_attachvCard.js", window, "UTF-8");
-
 Services.scriptloader.loadSubScript("chrome://cardbook/content/indexedDB/cardbookEncryptor.js", window, "UTF-8");
 Services.scriptloader.loadSubScript("chrome://cardbook/content/indexedDB/cardbookIndexedDB.js", window, "UTF-8");
 Services.scriptloader.loadSubScript("chrome://cardbook/content/indexedDB/cardbookIDBCard.js", window, "UTF-8");
@@ -14,7 +12,6 @@ Services.scriptloader.loadSubScript("chrome://cardbook/content/indexedDB/cardboo
 
 Services.scriptloader.loadSubScript("chrome://cardbook/content/cardbookActions.js", window, "UTF-8");
 Services.scriptloader.loadSubScript("chrome://cardbook/content/cardbookCardParser.js", window, "UTF-8");
-Services.scriptloader.loadSubScript("chrome://cardbook/content/collected/ovl_collected.js", window, "UTF-8");
 
 Services.scriptloader.loadSubScript("chrome://cardbook/content/autocomplete/cardbookAutocompleteSearch.js", window, "UTF-8");
 Services.scriptloader.loadSubScript("chrome://cardbook/content/autocomplete/cardbookAutocomplete.js", window, "UTF-8");
@@ -43,12 +40,6 @@ function onLoad(wasAlreadyOpen) {
 		setTimeout(toggleAddressPicker, 0, false);
 	}
 
-	// attach vCard
-	window.addEventListener("compose-send-message", function(e) { window.ovl_attachvCard.attachvCard(e); }, true);
-
-	// collect emails
-	window.addEventListener("compose-send-message", function(e) { window.ovl_collected.collectToCardBook(e); }, true);
-	
 	// autocompletion, buttons and menus
 	WL.injectCSS("chrome://cardbook/content/skin/cardbookAutocomplete.css");
 	WL.injectCSS("chrome://cardbook/content/skin/cardbookComposeMsg.css");
@@ -66,16 +57,6 @@ function onLoad(wasAlreadyOpen) {
 			oncommand="ovl_cardbook.open();"
 			insertafter="tasksMenuAddressBook"/>
 	</menupopup>
-
-	<toolbarpalette id="MsgComposeToolbarPalette">
-		<toolbarbutton id="cardbookComposeToolbarButton"
-			insertafter="button-save"
-			label="__MSG_cardbookToolbarButtonLabel__"
-			tooltiptext="__MSG_cardbookToolbarButtonTooltip__"
-			removable="true"
-			oncommand="ovl_cardbook.open();"
-			class="toolbarbutton-1"/>
-	</toolbarpalette>
 	`);
 
 	window.ovl_cardbookComposeMsg.loadMsg();

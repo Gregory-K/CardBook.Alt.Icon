@@ -5,8 +5,7 @@ if ("undefined" == typeof(wdw_cardbookEventContacts)) {
 	var wdw_cardbookEventContacts = {
 		allEvents: [],
 		emailArray: [],
-		attendeeId: "",
-		attendeeName: "",
+		displayName: "",
 
 		sortTrees: function (aEvent) {
 			wdw_cardbookEventContacts.buttonShowing();
@@ -109,7 +108,7 @@ if ("undefined" == typeof(wdw_cardbookEventContacts)) {
 		},
 
 		formatEventDateTime: function (aDatetime) {
-			return cal.getDateFormatter().formatDateTime(aDatetime.getInTimezone(cal.dtz.defaultTimezone));
+			return cal.dtz.formatter.formatDateTime(aDatetime.getInTimezone(cal.dtz.defaultTimezone));
 		},
 		
 		getItemFromEvent: function (event) {
@@ -120,8 +119,8 @@ if ("undefined" == typeof(wdw_cardbookEventContacts)) {
 			return null;
 		},
 
-		eventsTreeContextShowing: function () {
-			if (cardbookWindowUtils.displayColumnsPicker()) {
+		eventsTreeContextShowing: function (aEvent) {
+			if (cardbookWindowUtils.displayColumnsPicker(aEvent)) {
 				wdw_cardbookEventContacts.eventsTreeContextShowingNext();
 				return true;
 			} else {
@@ -208,7 +207,11 @@ if ("undefined" == typeof(wdw_cardbookEventContacts)) {
 				// wdw_cardbookEventContacts.loadEvents();
 			};
 		
-			cardbookLightning.createLightningEvent([[wdw_cardbookEventContacts.attendeeId, wdw_cardbookEventContacts.attendeeName]], onNewEvent);
+			let contacts = [];
+			for (let email of wdw_cardbookEventContacts.emailArray) {
+				contacts.push(["mailto:" + email, wdw_cardbookEventContacts.displayName]);
+			}
+			cardbookLightning.createLightningEvent(contacts, onNewEvent);
 		},
 
 		chooseActionForKey: function (aEvent) {
@@ -275,9 +278,8 @@ if ("undefined" == typeof(wdw_cardbookEventContacts)) {
 		load: function () {
 			i18n.updateDocument({ extension: cardbookRepository.extension });
 			wdw_cardbookEventContacts.emailArray = window.arguments[0].listOfEmail;
-			wdw_cardbookEventContacts.attendeeId = window.arguments[0].attendeeId;
-			wdw_cardbookEventContacts.attendeeName = window.arguments[0].attendeeName;
-			document.title = cardbookRepository.extension.localeData.localizeMessage("eventContactsWindowLabel", [window.arguments[0].displayName]);
+			wdw_cardbookEventContacts.displayName = window.arguments[0].displayName;
+			document.title = cardbookRepository.extension.localeData.localizeMessage("eventContactsWindowLabel", [wdw_cardbookEventContacts.displayName]);
 
 			wdw_cardbookEventContacts.loadEvents();
 		},
@@ -290,3 +292,5 @@ if ("undefined" == typeof(wdw_cardbookEventContacts)) {
 
 function ensureCalendarVisible(aCalendar) {};
 function goUpdateCommand(aCommand) {};
+
+document.addEventListener("DOMContentLoaded", wdw_cardbookEventContacts.load);

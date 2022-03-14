@@ -35,6 +35,10 @@
 	color: -moz-activehyperlinktext;
 }
 
+.cardbookBackgroundColorClass tr {
+	vertical-align: top !important;
+}
+
 .cardbookVerticalSplitterClass {
 	-moz-appearance: none !important;
 	border-top: 0px;
@@ -62,7 +66,14 @@
 :root[lwt-tree] #cardsTree {
 	-moz-appearance: none;
 }
-#rightPaneDownHbox1,
+#rightPaneDownHbox1 {
+	color: WindowText;
+	background-color: ButtonFace;
+ }
+:root[lwt-tree] #rightPaneDownHbox1 {
+	background-color: var(--toolbar-bgcolor);
+	color: var(--toolbar-color);
+}
 #cardbookFolderPaneToolbox {
 	-moz-appearance: none !important;
 	color: -moz-DialogText;
@@ -70,7 +81,7 @@
 }
 
 #rightPaneDownHbox1 {
-  overflow: auto;
+	overflow: auto;
 }
 
 treecol#cardIcon.cardIconHeader[hidden="true"] .treecol-text {
@@ -80,6 +91,10 @@ treecol#cardIcon.cardIconHeader .treecol-text {
 }
 treecol#cardIcon.cardIconHeader .treecol-sortdirection {
 	list-style-image: url("chrome://cardbook/content/skin/abcard.svg");
+}
+
+.boldFont {
+	font-weight: bold;
 }
 
 /* categories */
@@ -101,7 +116,7 @@ treecol#cardIcon.cardIconHeader .treecol-sortdirection {
 /* textarea */
 #notemodernGroupbox,
 #noteclassicalGroupbox,
-#noteTabpanel,
+#noteGroupbox,
 #othersGroupboxWrapper,
 #vcardTabGroupbox {
     display: flex;
@@ -119,6 +134,7 @@ treecol#cardIcon.cardIconHeader .treecol-sortdirection {
 .cardbookBackgroundColorClass textarea[readonly="true"] {
 	background-color: transparent !important;
 	border: 0px !important;
+	color: inherit;
 }
 .cardbookBackgroundColorClass textarea[link="true"] {
 	background-color: transparent !important;
@@ -169,4 +185,75 @@ treecol#cardIcon.cardIconHeader .treecol-sortdirection {
 	margin-block: 0;
 	background-color: var(--tab-selected-background);
 	border-bottom: 2px solid var(--tab-line-color, var(--highlight-color));
+}
+
+.cardbook-large-column {
+    width: 60%;
+}
+
+.box {
+	display: flex;
+}
+.alignCenter {
+	align-items: center;
+}
+.alignLeft {
+	align-items: left;
+}
+.justifyCenter {
+	justify-content: center;
+}
+.pushRight {
+	margin-left: auto;
+}
+
+.fullContainer {
+	position: fixed;
+	top: 0px;
+	left: 0px;
+	bottom: 0px;
+	right: 0px;
+	width: 100%;
+	height: 100%;
+}
+.flex-pad-x {
+	display: flex;
+	height: 100%;
+	overflow: auto;
+}
+.flex-pad-y {
+	display: flex;
+	width: 100%;
+	overflow: auto;
+	flex-direction: column;
+}
+.flex-grow-y {
+	display: flex;
+	flex-direction: column;
+	flex-grow: 1;
+	justify-content: center;
+}
+.flex-grow-x {
+	display: flex;
+	flex-direction: row;
+	flex-grow: 1;
+	justify-content: center;
+}
+.fullline {
+	display: flex;
+	width: 100%;
+	align-items: center;
+}
+.hidden {
+	display: none;
+}
+
+.red {
+	border: 1px solid red;
+}
+.blue {
+	border: 1px solid blue;
+}
+.green {
+	border: 1px solid green;
 }

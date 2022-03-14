@@ -1,7 +1,7 @@
 if ("undefined" == typeof(wdw_templateEdition)) {
 	var { Services } = ChromeUtils.import("resource://gre/modules/Services.jsm");
 	var { cardbookRepository } = ChromeUtils.import("chrome://cardbook/content/cardbookRepository.js");
-		
+
 	var wdw_templateEdition = {
 		
 		createTemplate: function () {
@@ -18,7 +18,7 @@ if ("undefined" == typeof(wdw_templateEdition)) {
 		loadTemplateNext: function (aFile) {
 			try {
 				if (aFile) {
-					cardbookRepository.cardbookSynchronization.getFileDataAsync(aFile.path, wdw_templateEdition.loadTemplateNext2, {});
+					cardbookRepository.cardbookUtils.readContentFromFile(aFile.path, wdw_templateEdition.loadTemplateNext2, {});
 				}
 			}
 			catch (e) {
@@ -67,7 +67,7 @@ if ("undefined" == typeof(wdw_templateEdition)) {
 				}
 
 				let content = await cardbookRepository.cardbookUtils.getvCardForEmail(aCardOut);
-				cardbookRepository.cardbookUtils.writeContentToFile(aFile.path, content, "UTF8");
+				await cardbookRepository.cardbookUtils.writeContentToFile(aFile.path, content, "UTF8");
 			} catch (e) {
 				cardbookRepository.cardbookLog.updateStatusProgressInformation("saveTemplateNext error : " + e, "Error");
 			}
@@ -80,7 +80,7 @@ if ("undefined" == typeof(wdw_templateEdition)) {
 		applyTemplateNext: function (aFile) {
 			try {
 				if (aFile) {
-					cardbookRepository.cardbookSynchronization.getFileDataAsync(aFile.path, wdw_templateEdition.applyTemplateNext2, {});
+					cardbookRepository.cardbookUtils.readContentFromFile(aFile.path, wdw_templateEdition.applyTemplateNext2, {});
 				}
 			}
 			catch (e) {

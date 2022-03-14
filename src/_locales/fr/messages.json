@@ -126,6 +126,9 @@
 	"noContactsDuplicated": {
 		"message": "Aucun contact dupliqué n'a été trouvé."
 	},
+	"noDataAvailable": {
+		"message": "Aucune donnée disponible."
+	},
 	"targetCategoryLabel": {
 		"message": "résultats"
 	},
@@ -149,11 +152,26 @@
 	"ValidatingURLFailedLabel": {
 		"message": "l'URL est malformée"
 	},
+	"ValidatingURILabel": {
+		"message": "Saisir ou coller une adresse web"
+	},
+	"ValidatingURIFailedLabel": {
+		"message": "Adresse invalide"
+	},
+	"ValidatingLoginLabel": {
+		"message": "Votre identifiant"
+	},
+	"ValidatingEmailLabel": {
+		"message": "Votre adresse électronique existante"
+	},
 	"ValidatingEmailFailedLabel": {
 		"message": "Adresse électronique valide requise"
 	},
 	"ValidationFailedLabel": {
 		"message": "Validation en erreur"
+	},
+	"ValidationFailedOffLine": {
+		"message": "Vous êtes actuellement hors connexion."
 	},
 	"ValidationOKLabel": {
 		"message": "Validation réussie"
@@ -2242,6 +2260,17 @@
             }
         }
 	},
+	"cardsFormattedUndo": {
+		"message": "$P1$ : Contacts formatés ($P2$)",
+        "placeholders": {
+            "P1": {
+                "content": "$1"
+            },
+            "P2": {
+                "content": "$2"
+            }
+        }
+	},
 	"exportCardToDirMessagePF": {
 		"message": "$P1$ contact exporté vers le répertoire $P2$;$P1$ contacts exportés vers le répertoire $P2$",
         "placeholders": {
@@ -2801,6 +2830,59 @@
             }
         }
 	},
+	"invalidOffice365Field": {
+		"message": "$P1$ ne peut pas être synchronisé (valeur : $P2$)",
+        "placeholders": {
+            "P1": {
+                "content": "$1"
+            },
+            "P2": {
+                "content": "$2"
+            }
+       }
+	},
+	"invalidOffice365Email": {
+		"message": "Pas plus de 3 adresses email peuvent être synchronisées"
+	},
+	"invalidOffice365Impp": {
+		"message": "Seulement une adresse IM peut être synchronisée"
+	},
+	"invalidOffice365Adr": {
+		"message": "Pas plus de 3 adresses physiques peuvent être synchronisées"
+	},
+	"invalidOffice365Tel": {
+		"message": "Pas plus de 17 numéros de téléphone peuvent être synchronisés"
+	},
+	"invalidOffice365EmptyType": {
+		"message": "$P1$ : les types vides ne sont pas autorisés",
+        "placeholders": {
+            "P1": {
+                "content": "$1"
+            }
+        }
+	},
+	"invalidOffice365Type": {
+		"message": "$P1$ : trop de type $P2$ (maximum possible : $P3$)",
+		"placeholders": {
+			"P1": {
+				"content": "$1"
+			},
+			"P2": {
+				"content": "$2"
+			},
+			"P3": {
+				"content": "$3"
+			}
+		}
+	},
+	"invalidOffice365Member": {
+		"message": "Il n'est pas possible d'ajouter un email qui n'appartient pas à un contact de votre carnet d'adresses ($P1$)",
+		"placeholders": {
+			"P1": {
+				"content": "$1"
+			}
+		}
+	},
 	"validateIntegerMsg": {
 		"message": "Le champ $P1$ doit avoir une valeur nulle ou bien être un entier compris entre 1 et $P2$ (valeur : $P3$)",
         "placeholders": {
@@ -2870,6 +2952,27 @@
 	},
 	"worktype": {
 		"message": "Bureau"
+	},
+	"otherfaxtype": {
+		"message": "Fax (autre)"
+	},
+	"assistanttype": {
+		"message": "Assistant"
+	},
+	"callbacktype": {
+		"message": "Rappel"
+	},
+	"carphonetype": {
+		"message": "Voiture"
+	},
+	"radiotype": {
+		"message": "Radio"
+	},
+	"telextype": {
+		"message": "Telex"
+	},
+	"ttytype": {
+		"message": "TTY"
 	},
 	"types.gender.f": {
 		"message": "Féminin"
@@ -3282,9 +3385,6 @@
 	"eventInNoteEventPrefix": {
 		"message": "Évènement"
 	},
-	"deathSuffix": {
-		"message": "(décès)"
-	},
 	"dateFormatsDLabel": {
 		"message": "D"
 	},
@@ -3600,20 +3700,20 @@
 	"cardbookContactPaneItemAccesskey": {
 		"message": "O"
 	},
+	"wizard.next.label": {
+		"message": "Suivant"
+	},	
+	"wizard.back.label": {
+		"message": "Retour"
+	},	
+	"wizard.create.label": {
+		"message": "Créer"
+	},
 	"wizard.title": {
 		"message": "Ajouter un nouveau carnet d'adresses"
 	},
-	"wizard.label": {
-		"message": "Ajouter un nouveau carnet d'adresses"
-	},
-	"welcomePage.wizard.description": {
-		"message": "Bienvenue"
-	},
 	"welcomePage.description": {
 		"message": "Il semblerait que cela soit la première fois que vous utilisez CardBook, nous allons donc essayer de rechercher des contacts. Nous allons d'abord tenter d'importer les contacts existants dans CardBook, puis nous rechercherons de possibles carnets d'adresses distants."
-	},
-	"initialPage.wizard.description": {
-		"message": "Emplacement du nouveau carnet d'adresses."
 	},
 	"initialPage.description": {
 		"message": "Emplacement de votre carnet d'adresses :"
@@ -3632,9 +3732,6 @@
 	},
 	"initialPage.find.label": {
 		"message": "Recherche de carnets d'adresses distants"
-	},
-	"localPage.wizard.description": {
-		"message": "Type et emplacement du nouveau carnet d'adresses local."
 	},
 	"localPage.type.description": {
 		"message": "Type de votre carnet d'adresses local :"
@@ -3669,9 +3766,6 @@
 	"localPage.uributton.label": {
 		"message": "Naviguer"
 	},
-	"remotePage.wizard.description": {
-		"message": "Type et emplacement du nouveau carnet d'adresses distant."
-	},
 	"remotePage.description": {
 		"message": "Quel est le type de votre carnet d'adresses distant ? : (Attention avec Google, qui ne respecte pas le standard vCard)"
 	},
@@ -3679,7 +3773,10 @@
 		"message": "Type"
 	},
 	"remotePageType.carddav.label": {
-		"message": "CardDAV"
+		"message": "CardDAV (Saisir ou coller une adresse web)"
+	},
+	"remotePageType.ews.label": {
+		"message": "EWS (Saisir ou coller une adresse web)"
 	},
 	"remotePageType.google2.label": {
 		"message": "Google"
@@ -3720,14 +3817,14 @@
 	"remotePage.password.label": {
 		"message": "Mot de passe :"
 	},
+	"rememberPassword": {
+		"message": "Utiliser le gestionnaire de mots de passe pour se souvenir de ce mot de passe"
+	},
 	"showHidePassword.tooltip": {
 		"message": "Afficher/masquer le mot de passe"
 	},
 	"remotePage.validatebutton.label": {
 		"message": "Valider"
-	},
-	"locationSearchPage.wizard.description": {
-		"message": "Définition de la recherche."
 	},
 	"locationSearchPage.label": {
 		"message": "Recherche avancée"
@@ -3753,9 +3850,6 @@
 	"googleOauthPage.wizard.description": {
 		"message": "Authentification Google"
 	},
-	"namePage.wizard.description": {
-		"message": "Propriétés du carnet d'adresses"
-	},
 	"namePage.selected.label": {
 		"message": "Selectionné"
 	},
@@ -3774,17 +3868,11 @@
 	"namePage.vCardVersion.label": {
 		"message": "vCard"
 	},
-	"namesPage.wizard.description": {
-		"message": "Propriétés des nouveaux carnets d'adresses"
-	},
 	"namesPage.name.label": {
 		"message": "Noms"
 	},
 	"namesPage.name.description": {
 		"message": "Plusieurs carnets d'adresses ont été découverts. Choisissez quels carnets d'adresses vous désirez ouvrir ainsi que leurs noms :"
-	},
-	"findPage.wizard.description": {
-		"message": "Recherche de carnet d'adresses distants"
 	},
 	"findPage.name1.description": {
 		"message": "Aucun carnet d'adresses distant ne peut être ajouté."
@@ -3794,9 +3882,6 @@
 	},
 	"findPage.name3.description": {
 		"message": "Plusieurs carnets d'adresses distants peuvent être ajoutés. Choisissez ceux que vous souhaitez ajouter :"
-	},
-	"finishPage.wizard.description": {
-		"message": "Configuration des nouveaux carnets d'adresses"
 	},
 	"finishPage.description": {
 		"message": "Votre nouveau carnet d'adresses a été configuré avec succès."
@@ -4410,6 +4495,12 @@
 	"typesCategoryAppleAccesskey": {
 		"message": "p"
 	},
+	"typesCategoryOffice365Label": {
+		"message": "Office365"
+	},
+	"typesCategoryOffice365Accesskey": {
+		"message": "O"
+	},
 	"typesCategoryYahooLabel": {
 		"message": "Yahoo!"
 	},
@@ -4787,6 +4878,9 @@
 	},
 	"birthdayListWarn": {
 		"message": "Les anniversaires sont uniquement recherchés dans les carnets d'adresses de CardBook."
+	},
+	"generalGroupboxLabel": {
+		"message": "Général"
 	},
 	"addressbooksGroupboxLabel": {
 		"message": "Carnets d'adresses"
@@ -5442,8 +5536,11 @@
 	"importCardFromDirLabel": {
 		"message": "Importer des contacts depuis un répertoire"
 	},
+	"formatDataFromAccountsOrCatsLabel": {
+		"message": "Formater les données des contacts"
+	},
 	"findDuplicatesFromAccountsOrCatsLabel": {
-		"message": "Recherche des contacts dupliqués dans le carnet d'adresses courant"
+		"message": "Recherche des contacts dupliqués"
 	},
 	"generateFnFromAccountsOrCatsLabel": {
 		"message": "Générer les noms affichés"
@@ -5567,12 +5664,6 @@
 	},
 	"displayFieldNamesAccesskey": {
 		"message": "m"
-	},
-	"displayTypesLabel": {
-		"message": "Types et préférences"
-	},
-	"displayTypesAccesskey": {
-		"message": "y"
 	},
 	"fieldsToPrintGroupboxLabel": {
 		"message": "Champs à imprimer"
@@ -5742,6 +5833,21 @@
 	"mergeAllEditionAccesskey": {
 		"message": "F"
 	},
+	"formatAllEditionLabel": {
+		"message": "Formater tout"
+	},
+	"formatAllEditionAccesskey": {
+		"message": "F"
+	},
+	"undoAllEditionLabel": {
+		"message": "Annuler tout"
+	},
+	"undoAllEditionAccesskey": {
+		"message": "U"
+	},
+	"formatEditionLabel": {
+		"message": "Formater"
+	},
 	"buttonAppendToListLabel": {
 		"message": "Ajouter"
 	},
@@ -5782,7 +5888,20 @@
 		"message": "C"
 	},
 	"wdw_findDuplicatesTitle": {
-		"message": "Contacts dupliqués"
+		"message": "Contacts dupliqués ($P1$)",
+        "placeholders": {
+            "P1": {
+                "content": "$1"
+            }
+        }
+	},
+	"wdw_formatDataTitle": {
+		"message": "Formater les données des contacts ($P1$)",
+        "placeholders": {
+            "P1": {
+                "content": "$1"
+            }
+        }
 	},
 	"addImageCardFromFileLabel": {
 		"message": "Ajouter une image depuis un fichier"
@@ -5864,5 +5983,8 @@
 	},
 	"orgTitleLabel": {
 		"message": "Informations professionnelles"
+	},
+	"allAddressBooks": {
+		"message": "Tous les carnets d’adresses"
 	}
 }

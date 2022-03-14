@@ -151,7 +151,7 @@ function patchCardBookABSelector(es) {
 	try {
 		let wrapper = es.closest("search-value");
 		let menulistFragment = window.MozXULElement.parseXULToFragment(`
-			<menulist flex="1" class="search-value-menulist flexinput cardbookABSelector" inherits="disabled" oncommand="this.parentNode.updateSearchValue(this);">
+			<menulist flex="1" class="search-value-menulist flexinput cardbookABSelector" inherits="disabled" sizetopopup="none" oncommand="this.parentNode.updateSearchValue(this);">
 				<menupopup class="search-value-popup"/>
 			</menulist>
 		`);
@@ -168,8 +168,7 @@ function patchCardBookABSelector(es) {
 		let selectedIndex = 0;
 		var found = false;
 		var k = 0;
-		var ABStrBundle = Services.strings.createBundle("chrome://messenger/locale/addressbook/addressBook.properties");
-		addDirectories(menuPopup, "allAddressBooks", ABStrBundle.GetStringFromName("allAddressBooks"), "");
+		addDirectories(menuPopup, "allAddressBooks", cardbookRepository.extension.localeData.localizeMessage("allAddressBooks"), "");
 		k++;
 		for (let account of cardbookRepository.cardbookAccounts) {
 			if (account[5] && account[6] != "SEARCH") {
@@ -297,10 +296,10 @@ function cardBookFilterSearchFunction(mutationList, observer) {
 const cardBookFilterSearchObserver = new MutationObserver(cardBookFilterSearchFunction);
 
 const cardBookFilterSearchObserverOptions = {
-childList: true,
-attributes: true,
-// Omit (or set to false) to observe only changes to the parent node
-subtree: true
+	childList: true,
+	attributes: true,
+	// Omit (or set to false) to observe only changes to the parent node
+	subtree: true
 }
 
 let termList = window.document.querySelector('#searchTermList')

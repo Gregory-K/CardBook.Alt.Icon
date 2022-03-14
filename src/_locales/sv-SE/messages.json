@@ -126,6 +126,9 @@
 	"noContactsDuplicated": {
 		"message": "Inga dubbletter av kontakter har hitats."
 	},
+	"noDataAvailable": {
+		"message": "Ingen data tillgänglig."
+	},
 	"targetCategoryLabel": {
 		"message": "resultat"
 	},
@@ -149,8 +152,23 @@
 	"ValidatingURLFailedLabel": {
 		"message": "Webbadress är felformaterad"
 	},
+	"ValidatingURILabel": {
+		"message": "Skriv eller klistra in en URL"
+	},
+	"ValidatingURIFailedLabel": {
+		"message": "Ogiltig URL"
+	},
+	"ValidatingLoginLabel": {
+		"message": "Din inloggning"
+	},
+	"ValidatingEmailLabel": {
+		"message": "Din befintliga e-postadress"
+	},
 	"ValidatingEmailFailedLabel": {
 		"message": "Giltig e-postadress krävs"
+	},
+	"ValidationFailedOffLine": {
+		"message": "Du är nedkopplad."
 	},
 	"ValidationFailedLabel": {
 		"message": "Validering misslyckades"
@@ -2242,6 +2260,17 @@
             }
         }
 	},
+	"cardsFormattedUndo": {
+		"message": "??$P1$ : Contacts formatted ($P2$)??",
+        "placeholders": {
+            "P1": {
+                "content": "$1"
+            },
+            "P2": {
+                "content": "$2"
+            }
+        }
+	},
 	"exportCardToDirMessagePF": {
 		"message": "$P1$ kontakt exporterad till katalogen $P2$;$P1$ kontakter som exporteras till katalogen $P2$",
         "placeholders": {
@@ -2801,6 +2830,59 @@
             }
         }
 	},
+	"invalidOffice365Field": {
+		"message": "??$P1$ can't be synced (value: $P2$)??",
+        "placeholders": {
+            "P1": {
+                "content": "$1"
+            },
+            "P2": {
+                "content": "$2"
+            }
+       }
+	},
+	"invalidOffice365Email": {
+		"message": "??No more than 3 email addresses can be synced??"
+	},
+	"invalidOffice365Impp": {
+		"message": "??Only one IM address can be synced??"
+	},
+	"invalidOffice365Adr": {
+		"message": "??No more than 3 physical addresses can be synced??"
+	},
+	"invalidOffice365Tel": {
+		"message": "??No more than 17 phone numbers can be synced??"
+	},
+	"invalidOffice365EmptyType": {
+		"message": "??Empty types are not allowed in the element $P1$??",
+        "placeholders": {
+            "P1": {
+                "content": "$1"
+            }
+        }
+	},
+	"invalidOffice365Type": {
+		"message": "??Too many $P2$ types in the element $P1$ (max allowed: $P3$)??",
+		"placeholders": {
+			"P1": {
+				"content": "$1"
+			},
+			"P2": {
+				"content": "$2"
+			},
+			"P3": {
+				"content": "$3"
+			}
+		}
+	},
+	"invalidOffice365Member": {
+		"message": "??You cannot add an email that does not belong to one contact of your address book ($P1$)??",
+		"placeholders": {
+			"P1": {
+				"content": "$1"
+			}
+		}
+	},
 	"validateIntegerMsg": {
 		"message": "Fältet $P1$ bör vara null eller ett heltal mellan 1 och $P2$ (värde : $P3$)",
         "placeholders": {
@@ -2870,6 +2952,27 @@
 	},
 	"worktype": {
 		"message": "Arbete"
+	},
+	"otherfaxtype": {
+		"message": "??Other fax??"
+	},
+	"assistanttype": {
+		"message": "??Assistant??"
+	},
+	"callbacktype": {
+		"message": "??Callback??"
+	},
+	"carphonetype": {
+		"message": "??Car??"
+	},
+	"radiotype": {
+		"message": "??Radio??"
+	},
+	"telextype": {
+		"message": "??Telex??"
+	},
+	"ttytype": {
+		"message": "TTY"
 	},
 	"types.gender.f": {
 		"message": "Kvinna"
@@ -3282,9 +3385,6 @@
 	"eventInNoteEventPrefix": {
 		"message": "Evenemang"
 	},
-	"deathSuffix": {
-		"message": "(avled)"
-	},
 	"dateFormatsDLabel": {
 		"message": "D"
 	},
@@ -3600,20 +3700,20 @@
 	"cardbookContactPaneItemAccesskey": {
 		"message": "O"
 	},
+	"wizard.next.label": {
+		"message": "Nästa"
+	},	
+	"wizard.back.label": {
+		"message": "Tillbaka"
+	},	
+	"wizard.create.label": {
+		"message": "Skapa"
+	},
 	"wizard.title": {
 		"message": "Lägg till ny adressbok"
 	},
-	"wizard.label": {
-		"message": "Lägg till ny adressbok"
-	},
-	"welcomePage.wizard.description": {
-		"message": "Välkommen"
-	},
 	"welcomePage.description": {
 		"message": "??It seems that this is the first time CardBook has been run. CardBook will attempt to collect contacts from Thunderbird’s standard address books and remote address books.??"
-	},
-	"initialPage.wizard.description": {
-		"message": "Plats för ny adressbok."
 	},
 	"initialPage.description": {
 		"message": "Är adressboken lokal eller online ? :"
@@ -3632,9 +3732,6 @@
 	},
 	"initialPage.find.label": {
 		"message": "??Search for remote address books??"
-	},
-	"localPage.wizard.description": {
-		"message": "Typ och plats för din nya lokala adressbok."
 	},
 	"localPage.type.description": {
 		"message": "Vad är det för typ av lokal adressbok ? :"
@@ -3669,9 +3766,6 @@
 	"localPage.uributton.label": {
 		"message": "Bläddra"
 	},
-	"remotePage.wizard.description": {
-		"message": "Typ och plats för din nya online adressbok."
-	},
 	"remotePage.description": {
 		"message": "Vad är det för typ av online adressbok ? : (Varning: Google följer inte standarden för vCard)"
 	},
@@ -3679,7 +3773,10 @@
 		"message": "Typ"
 	},
 	"remotePageType.carddav.label": {
-		"message": "CardDAV"
+		"message": "CardDAV (Skriv eller klistra in en URL)"
+	},
+	"remotePageType.ews.label": {
+		"message": "EWS (Skriv eller klistra in en URL)"
 	},
 	"remotePageType.google2.label": {
 		"message": "Google"
@@ -3720,14 +3817,14 @@
 	"remotePage.password.label": {
 		"message": "Lösenord:"
 	},
+	"rememberPassword": {
+		"message": "Använd lösenordshanteraren för att komma ihåg lösenordet"
+	},
 	"showHidePassword.tooltip": {
 		"message": "Visa/dölj lösenord"
 	},
 	"remotePage.validatebutton.label": {
 		"message": "Validera/Testa"
-	},
-	"locationSearchPage.wizard.description": {
-		"message": "Definition av den sparade sökningen."
 	},
 	"locationSearchPage.label": {
 		"message": "Sparad sökning"
@@ -3753,9 +3850,6 @@
 	"googleOauthPage.wizard.description": {
 		"message": "Google Autentisering"
 	},
-	"namePage.wizard.description": {
-		"message": "Adressboks inställningar"
-	},
 	"namePage.selected.label": {
 		"message": "Välj"
 	},
@@ -3774,17 +3868,11 @@
 	"namePage.vCardVersion.label": {
 		"message": "vCard"
 	},
-	"namesPage.wizard.description": {
-		"message": "Adressboks inställningar"
-	},
 	"namesPage.name.label": {
 		"message": "Namn"
 	},
 	"namesPage.name.description": {
 		"message": "Flera adressböker hittades. Välj vilka du vill använda och namnge dem :"
-	},
-	"findPage.wizard.description": {
-		"message": "??Remote address book search??"
 	},
 	"findPage.name1.description": {
 		"message": "??No remote address books found.??"
@@ -3794,9 +3882,6 @@
 	},
 	"findPage.name3.description": {
 		"message": "??Multiple remote address books found. Validate remote address books to add:??"
-	},
-	"finishPage.wizard.description": {
-		"message": "??Address books configuration??"
 	},
 	"finishPage.description": {
 		"message": "Din nya adressbok är nu klar för användning."
@@ -4410,6 +4495,12 @@
 	"typesCategoryAppleAccesskey": {
 		"message": "A"
 	},
+	"typesCategoryOffice365Label": {
+		"message": "Office365"
+	},
+	"typesCategoryOffice365Accesskey": {
+		"message": "O"
+	},
 	"typesCategoryYahooLabel": {
 		"message": "Yahoo!"
 	},
@@ -4787,6 +4878,9 @@
 	},
 	"birthdayListWarn": {
 		"message": "Årsdagen söks endast i Kontakter adressböcker."
+	},
+	"generalGroupboxLabel": {
+		"message": "Allmänt"
 	},
 	"addressbooksGroupboxLabel": {
 		"message": "Adressböcker"
@@ -5442,8 +5536,11 @@
 	"importCardFromDirLabel": {
 		"message": "Importera kontakter från katalog"
 	},
+	"formatDataFromAccountsOrCatsLabel": {
+		"message": "??Format contacts data??"
+	},
 	"findDuplicatesFromAccountsOrCatsLabel": {
-		"message": "Hitta dubblettkontakt i aktuell adressbok"
+		"message": "Hitta dubblettkontakt"
 	},
 	"generateFnFromAccountsOrCatsLabel": {
 		"message": "Generera visningsnamn"
@@ -5567,12 +5664,6 @@
 	},
 	"displayFieldNamesAccesskey": {
 		"message": "F"
-	},
-	"displayTypesLabel": {
-		"message": "Typer och förval"
-	},
-	"displayTypesAccesskey": {
-		"message": "y"
 	},
 	"fieldsToPrintGroupboxLabel": {
 		"message": "Vad som skrivs ut"
@@ -5742,6 +5833,21 @@
 	"mergeAllEditionAccesskey": {
 		"message": "M"
 	},
+	"formatAllEditionLabel": {
+		"message": "??Format all??"
+	},
+	"formatAllEditionAccesskey": {
+		"message": "F"
+	},
+	"undoAllEditionLabel": {
+		"message": "??Undo all??"
+	},
+	"undoAllEditionAccesskey": {
+		"message": "U"
+	},
+	"formatEditionLabel": {
+		"message": "??Format??"
+	},
 	"buttonAppendToListLabel": {
 		"message": "Lägg till"
 	},
@@ -5782,7 +5888,20 @@
 		"message": "C"
 	},
 	"wdw_findDuplicatesTitle": {
-		"message": "Dubblett kontakter"
+		"message": "Dubblett kontakter ($P1$)",
+        "placeholders": {
+            "P1": {
+                "content": "$1"
+            }
+        }
+	},
+	"wdw_formatDataTitle": {
+		"message": "??Format contacts data ($P1$)??",
+        "placeholders": {
+            "P1": {
+                "content": "$1"
+            }
+        }
 	},
 	"addImageCardFromFileLabel": {
 		"message": "Lägg till bild från fil"
@@ -5864,5 +5983,8 @@
 	},
 	"orgTitleLabel": {
 		"message": "Arbetsrelaterad information"
+	},
+	"allAddressBooks": {
+		"message": "Alla adressböcker"
 	}
 }

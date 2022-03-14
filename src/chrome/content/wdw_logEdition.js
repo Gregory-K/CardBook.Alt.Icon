@@ -2,6 +2,9 @@ if ("undefined" == typeof(wdw_logEdition)) {
 	var { Services } = ChromeUtils.import("resource://gre/modules/Services.jsm");
 	var { cardbookRepository } = ChromeUtils.import("chrome://cardbook/content/cardbookRepository.js");
 
+	var loader = Services.scriptloader;
+	loader.loadSubScript("chrome://cardbook/content/scripts/notifyTools.js", this);
+
 	var wdw_logEdition = {
 		
 		load: function () {
@@ -47,7 +50,7 @@ if ("undefined" == typeof(wdw_logEdition)) {
 						myLogArray.push(myTree.view.getCellText(i, myTree.columns.getNamedColumn('logEditionValue')));
 					}
 				}
-				cardbookClipboard.clipboardSetText('text/unicode', myLogArray.join("\n"));
+				cardbookClipboard.clipboardSetText(myLogArray.join("\n"));
 			}
 			catch (e) {
 				var errorTitle = "clipboard error";
@@ -63,7 +66,8 @@ if ("undefined" == typeof(wdw_logEdition)) {
 		cancel: function () {
 			close();
 		}
-
 	};
-
 };
+
+
+document.addEventListener("DOMContentLoaded", wdw_logEdition.load);

@@ -126,6 +126,9 @@
 	"noContactsDuplicated": {
 		"message": "重複した連絡先は見つかりませんでした。"
 	},
+	"noDataAvailable": {
+		"message": "データがありません。"
+	},
 	"targetCategoryLabel": {
 		"message": "件以上は表示しない"
 	},
@@ -149,11 +152,26 @@
 	"ValidatingURLFailedLabel": {
 		"message": "URLが不正です"
 	},
+	"ValidatingURILabel": {
+		"message": "URL を入力するか貼り付け"
+	},
+	"ValidatingURIFailedLabel": {
+		"message": "不正な URL"
+	},
+	"ValidatingLoginLabel": {
+		"message": "ログイン名"
+	},
+	"ValidatingEmailLabel": {
+		"message": "既存のメールアドレスを入力"
+	},
 	"ValidatingEmailFailedLabel": {
 		"message": "有効なメールアドレスが必要です"
 	},
 	"ValidationFailedLabel": {
 		"message": "検証に失敗しました"
+	},
+	"ValidationFailedOffLine": {
+		"message": "現在オフラインです。"
 	},
 	"ValidationOKLabel": {
 		"message": "検証済み"
@@ -2242,6 +2260,17 @@
             }
         }
 	},
+	"cardsFormattedUndo": {
+		"message": "$P1$ : フォーマットした連絡先 ($P2$)",
+        "placeholders": {
+            "P1": {
+                "content": "$1"
+            },
+            "P2": {
+                "content": "$2"
+            }
+        }
+	},
 	"exportCardToDirMessagePF": {
 		"message": "$P1$ 件の連絡先をディレクトリ $P2$ にエクスポートしました",
         "placeholders": {
@@ -2801,6 +2830,59 @@
             }
         }
 	},
+	"invalidOffice365Field": {
+		"message": "$P1$ は同期できません (値: $P2$)",
+        "placeholders": {
+            "P1": {
+                "content": "$1"
+            },
+            "P2": {
+                "content": "$2"
+            }
+       }
+	},
+	"invalidOffice365Email": {
+		"message": "3つ以上のE-mailアドレスは同期できません"
+	},
+	"invalidOffice365Impp": {
+		"message": "IMアドレスは1つのみ同期できます"
+	},
+	"invalidOffice365Adr": {
+		"message": "3つ以上の住所は同期できません"
+	},
+	"invalidOffice365Tel": {
+		"message": "17件以上の電話番号は同期できません"
+	},
+	"invalidOffice365EmptyType": {
+		"message": "$P1$ : 空の型は許可されていません",
+        "placeholders": {
+            "P1": {
+                "content": "$1"
+            }
+        }
+	},
+	"invalidOffice365Type": {
+		"message": "$P1$ : $P2$ 型が多すぎます (最大: $P3$)",
+		"placeholders": {
+			"P1": {
+				"content": "$1"
+			},
+			"P2": {
+				"content": "$2"
+			},
+			"P3": {
+				"content": "$3"
+			}
+		}
+	},
+	"invalidOffice365Member": {
+		"message": "アドレス帳内の連絡先に属していないメールアドレスは追加できません ($P1$)",
+		"placeholders": {
+			"P1": {
+				"content": "$1"
+			}
+		}
+	},
 	"validateIntegerMsg": {
 		"message": "フィールド$P1$は、nullまたは1〜$P2$の整数値でなければなりません(値：$P3$)",
         "placeholders": {
@@ -2870,6 +2952,27 @@
 	},
 	"worktype": {
 		"message": "仕事"
+	},
+	"otherfaxtype": {
+		"message": "その他のFax"
+	},
+	"assistanttype": {
+		"message": "アシスタント"
+	},
+	"callbacktype": {
+		"message": "コールバック先"
+	},
+	"carphonetype": {
+		"message": "自動車"
+	},
+	"radiotype": {
+		"message": "ラジオ"
+	},
+	"telextype": {
+		"message": "テレックス"
+	},
+	"ttytype": {
+		"message": "TTY"
 	},
 	"types.gender.f": {
 		"message": "女性"
@@ -3282,9 +3385,6 @@
 	"eventInNoteEventPrefix": {
 		"message": "イベント"
 	},
-	"deathSuffix": {
-		"message": "（故人）"
-	},
 	"dateFormatsDLabel": {
 		"message": "日"
 	},
@@ -3600,20 +3700,20 @@
 	"cardbookContactPaneItemAccesskey": {
 		"message": "O"
 	},
+	"wizard.next.label": {
+		"message": "次へ"
+	},	
+	"wizard.back.label": {
+		"message": "戻る"
+	},	
+	"wizard.create.label": {
+		"message": "作成"
+	},
 	"wizard.title": {
 		"message": "新しいアドレス帳を追加する"
 	},
-	"wizard.label": {
-		"message": "新しいアドレス帳を追加する"
-	},
-	"welcomePage.wizard.description": {
-		"message": "ようこそ"
-	},
 	"welcomePage.description": {
 		"message": "CardBookを初めて起動した方へ：CardBookはThunderbirdの標準のアドレス帳とリモートアドレス帳から連絡先を収集することができます。"
-	},
-	"initialPage.wizard.description": {
-		"message": "新しいアドレス帳の場所"
 	},
 	"initialPage.description": {
 		"message": "アドレス帳の場所："
@@ -3632,9 +3732,6 @@
 	},
 	"initialPage.find.label": {
 		"message": "リモートのアドレス帳を検索する"
-	},
-	"localPage.wizard.description": {
-		"message": "新しいローカルアドレス帳の種類と場所"
 	},
 	"localPage.type.description": {
 		"message": "ローカルアドレス帳の種類："
@@ -3669,9 +3766,6 @@
 	"localPage.uributton.label": {
 		"message": "参照"
 	},
-	"remotePage.wizard.description": {
-		"message": "新しいリモートアドレス帳の種類と場所"
-	},
 	"remotePage.description": {
 		"message": "どの種類のリモートアドレス帳を使いますか？（注意：Googleアドレス帳はvCardの標準仕様に準拠していません）"
 	},
@@ -3679,7 +3773,10 @@
 		"message": "種類"
 	},
 	"remotePageType.carddav.label": {
-		"message": "CardDAV"
+		"message": "CardDAV (URL を入力するか貼り付け)"
+	},
+	"remotePageType.ews.label": {
+		"message": "EWS (URL を入力するか貼り付け)"
 	},
 	"remotePageType.google2.label": {
 		"message": "Google"
@@ -3720,14 +3817,14 @@
 	"remotePage.password.label": {
 		"message": "パスワード："
 	},
+	"rememberPassword": {
+		"message": "パスワードマネージャーにこのパスワードを保存する"
+	},
 	"showHidePassword.tooltip": {
 		"message": "パスワードを表示または隠す"
 	},
 	"remotePage.validatebutton.label": {
 		"message": "検証"
-	},
-	"locationSearchPage.wizard.description": {
-		"message": "保存された検索の定義"
 	},
 	"locationSearchPage.label": {
 		"message": "検索フォルダー"
@@ -3753,9 +3850,6 @@
 	"googleOauthPage.wizard.description": {
 		"message": "Google認証"
 	},
-	"namePage.wizard.description": {
-		"message": "アドレス帳のプロパティ"
-	},
 	"namePage.selected.label": {
 		"message": "選択"
 	},
@@ -3774,17 +3868,11 @@
 	"namePage.vCardVersion.label": {
 		"message": "vCardのバージョン"
 	},
-	"namesPage.wizard.description": {
-		"message": "アドレス帳のプロパティ"
-	},
 	"namesPage.name.label": {
 		"message": "名前"
 	},
 	"namesPage.name.description": {
 		"message": "複数のアドレス帳が発見されました。開くアドレス帳とその名前を選択してください："
-	},
-	"findPage.wizard.description": {
-		"message": "リモートアドレス帳の検索"
 	},
 	"findPage.name1.description": {
 		"message": "リモートアドレス帳が見つかりませんでした。"
@@ -3794,9 +3882,6 @@
 	},
 	"findPage.name3.description": {
 		"message": "複数のリモートアドレス帳が見つかりました。追加するリモートアドレス帳を検証中:"
-	},
-	"finishPage.wizard.description": {
-		"message": "アドレス帳の設定"
 	},
 	"finishPage.description": {
 		"message": "新しいアドレス帳が正常に設定されました。"
@@ -4410,6 +4495,12 @@
 	"typesCategoryAppleAccesskey": {
 		"message": "A"
 	},
+	"typesCategoryOffice365Label": {
+		"message": "Office365"
+	},
+	"typesCategoryOffice365Accesskey": {
+		"message": "O"
+	},
 	"typesCategoryYahooLabel": {
 		"message": "Yahoo!"
 	},
@@ -4787,6 +4878,9 @@
 	},
 	"birthdayListWarn": {
 		"message": "記念日はCardBookのアドレス帳内でのみ検索されます。"
+	},
+	"generalGroupboxLabel": {
+		"message": "一般"
 	},
 	"addressbooksGroupboxLabel": {
 		"message": "アドレス帳"
@@ -5442,8 +5536,11 @@
 	"importCardFromDirLabel": {
 		"message": "ディレクトリから連絡先をインポート"
 	},
+	"formatDataFromAccountsOrCatsLabel": {
+		"message": "連絡先データをフォーマット"
+	},
 	"findDuplicatesFromAccountsOrCatsLabel": {
-		"message": "重複する連絡先を現在のアドレス帳から検索"
+		"message": "重複した連絡先を検索"
 	},
 	"generateFnFromAccountsOrCatsLabel": {
 		"message": "表示名を生成"
@@ -5567,12 +5664,6 @@
 	},
 	"displayFieldNamesAccesskey": {
 		"message": "F"
-	},
-	"displayTypesLabel": {
-		"message": "タイプと環境設定"
-	},
-	"displayTypesAccesskey": {
-		"message": "Y"
 	},
 	"fieldsToPrintGroupboxLabel": {
 		"message": "印刷するフィールド"
@@ -5742,6 +5833,21 @@
 	"mergeAllEditionAccesskey": {
 		"message": "M"
 	},
+	"formatAllEditionLabel": {
+		"message": "すべてフォーマット"
+	},
+	"formatAllEditionAccesskey": {
+		"message": "F"
+	},
+	"undoAllEditionLabel": {
+		"message": "すべて元に戻す"
+	},
+	"undoAllEditionAccesskey": {
+		"message": "U"
+	},
+	"formatEditionLabel": {
+		"message": "フォーマット"
+	},
 	"buttonAppendToListLabel": {
 		"message": "追加"
 	},
@@ -5782,7 +5888,20 @@
 		"message": "C"
 	},
 	"wdw_findDuplicatesTitle": {
-		"message": "重複した連絡先"
+		"message": "重複した連絡先 ($P1$)",
+        "placeholders": {
+            "P1": {
+                "content": "$1"
+            }
+        }
+	},
+	"wdw_formatDataTitle": {
+		"message": "連絡先データをフォーマット ($P1$)",
+        "placeholders": {
+            "P1": {
+                "content": "$1"
+            }
+        }
 	},
 	"addImageCardFromFileLabel": {
 		"message": "ファイルから画像を追加"
@@ -5864,5 +5983,8 @@
 	},
 	"orgTitleLabel": {
 		"message": "プロフェッショナル情報"
+	},
+	"allAddressBooks": {
+		"message": "すべてのアドレス帳"
 	}
 }

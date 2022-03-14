@@ -77,7 +77,7 @@ if ("undefined" == typeof(cardbookRichContext)) {
 
 		// don't have found a better way to add a contextual menu to a html:textarea or html:input
 		fireBasicFieldContext: function(aEvent) {
-			var textbox = document.activeElement;
+			var textbox = aEvent.target;
 			if (!textbox.getAttribute('fieldName')) {
 				return;
 			}

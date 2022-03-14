@@ -4,38 +4,36 @@
 <!-- for the display -->
 <?xml-stylesheet type="text/css" href="chrome://messenger/skin/themeableDialog.css"?>
 
-<window xmlns="http://www.mozilla.org/keymaster/gatekeeper/there.is.only.xul"
-	onload="wdw_cardbookAskUser.load();" resizable="true"
-	onclose="wdw_cardbookAskUser.cancel();"
-	id="wdw_cardbookAskUser"
-	persist="screenX screenY width height"
+<html id="wdw_cardbookAskUser" xmlns="http://www.w3.org/1999/xhtml"
+	role="document"
+	xmlns:xul="http://www.mozilla.org/keymaster/gatekeeper/there.is.only.xul"
+	xmlns:html="http://www.w3.org/1999/xhtml"
+	persist="screenX screenY width height sizemode"
 	lightweightthemes="true"
 	style="min-width:200px;min-height:100px;">
-	
-	<script type="application/x-javascript" src="chrome://cardbook/content/wdw_cardbookAskUser.js"/>
+	<head>
+		<title></title>
+		<script type="application/x-javascript" src="chrome://cardbook/content/wdw_cardbookAskUser.js"/>
+	</head>
 
-	<keyset id="wdw_cardbookAskUser-keys">
-		<key keycode="VK_ESCAPE" oncommand="wdw_cardbookAskUser.cancel();"/>
-	</keyset>
+	<html:body xmlns="http://www.mozilla.org/keymaster/gatekeeper/there.is.only.xul">
+		<keyset id="wdw_cardbookAskUser-keys">
+			<key keycode="VK_ESCAPE" oncommand="wdw_cardbookAskUser.close();"/>
+		</keyset>
 
-	<hbox flex="1" align="center">
-		<vbox flex="1" align="center">
+		<html:div align="center">
 			<label id="messageLabel" flex="1"/>
-		</vbox>
-	</hbox>
+		</html:div>
 
-	<vbox flex="1" align="center">
-		<hbox flex="1" align="center">
+		<html:div align="center">
 			<button id="askUserButton1" oncommand="wdw_cardbookAskUser.fireButton(this);"/>
 			<button id="askUserButton2" oncommand="wdw_cardbookAskUser.fireButton(this);"/>
 			<button id="askUserButton3" oncommand="wdw_cardbookAskUser.fireButton(this);"/>
 			<button id="askUserButton4" oncommand="wdw_cardbookAskUser.fireButton(this);"/>
-		</hbox>
-	</vbox>
+		</html:div>
 
-	<hbox flex="1" align="center">
-		<vbox flex="1" align="center">
+		<html:div align="center">
 			<checkbox id="confirmCheckBox" flex="1"/>
-		</vbox>
-	</hbox>
-</window>
+		</html:div>
+	</html:body>
+</html>

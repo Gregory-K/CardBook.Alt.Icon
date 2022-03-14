@@ -126,6 +126,9 @@
 	"noContactsDuplicated": {
 		"message": "Дублікати контактів не знайдено."
 	},
+	"noDataAvailable": {
+		"message": "Немає доступних даних."
+	},
 	"targetCategoryLabel": {
 		"message": "результатів"
 	},
@@ -149,8 +152,23 @@
 	"ValidatingURLFailedLabel": {
 		"message": "Уніфікований покажчик інформаційного ресурсу «URL» неправильно"
 	},
+	"ValidatingURILabel": {
+		"message": "Введіть або вставте URL-адресу"
+	},
+	"ValidatingURIFailedLabel": {
+		"message": "Недійсна URL-адреса"
+	},
+	"ValidatingLoginLabel": {
+		"message": "Ваше ім'я"
+	},
+	"ValidatingEmailLabel": {
+		"message": "Ваша наявна адреса електронної пошти"
+	},
 	"ValidatingEmailFailedLabel": {
 		"message": "Необхідна дійсна адреса е-пошти"
+	},
+	"ValidationFailedOffLine": {
+		"message": "Ви в автономному режимі."
 	},
 	"ValidationFailedLabel": {
 		"message": "Перевірка не вдалася"
@@ -2242,6 +2260,17 @@
             }
         }
 	},
+	"cardsFormattedUndo": {
+		"message": "??$P1$ : Contacts formatted ($P2$)??",
+        "placeholders": {
+            "P1": {
+                "content": "$1"
+            },
+            "P2": {
+                "content": "$2"
+            }
+        }
+	},
 	"exportCardToDirMessagePF": {
 		"message": "??$P1$ contact exported into the directory $P2$;$P1$ contacts exported into the directory $P2$??",
         "placeholders": {
@@ -2801,6 +2830,59 @@
             }
         }
 	},
+	"invalidOffice365Field": {
+		"message": "??$P1$ can't be synced (value: $P2$)??",
+        "placeholders": {
+            "P1": {
+                "content": "$1"
+            },
+            "P2": {
+                "content": "$2"
+            }
+       }
+	},
+	"invalidOffice365Email": {
+		"message": "??No more than 3 email addresses can be synced??"
+	},
+	"invalidOffice365Impp": {
+		"message": "??Only one IM address can be synced??"
+	},
+	"invalidOffice365Adr": {
+		"message": "??No more than 3 physical addresses can be synced??"
+	},
+	"invalidOffice365Tel": {
+		"message": "??No more than 17 phone numbers can be synced??"
+	},
+	"invalidOffice365EmptyType": {
+		"message": "??Empty types are not allowed in the element $P1$??",
+        "placeholders": {
+            "P1": {
+                "content": "$1"
+            }
+        }
+	},
+	"invalidOffice365Type": {
+		"message": "??Too many $P2$ types in the element $P1$ (max allowed: $P3$)??",
+		"placeholders": {
+			"P1": {
+				"content": "$1"
+			},
+			"P2": {
+				"content": "$2"
+			},
+			"P3": {
+				"content": "$3"
+			}
+		}
+	},
+	"invalidOffice365Member": {
+		"message": "??You cannot add an email that does not belong to one contact of your address book ($P1$)??",
+		"placeholders": {
+			"P1": {
+				"content": "$1"
+			}
+		}
+	},
 	"validateIntegerMsg": {
 		"message": "Поле $P1$ має бути нульовим або цілим числом від 1 до $P2$ (величина : $P3$)",
         "placeholders": {
@@ -2870,6 +2952,27 @@
 	},
 	"worktype": {
 		"message": "Робочий"
+	},
+	"otherfaxtype": {
+		"message": "??Other fax??"
+	},
+	"assistanttype": {
+		"message": "??Assistant??"
+	},
+	"callbacktype": {
+		"message": "??Callback??"
+	},
+	"carphonetype": {
+		"message": "??Car??"
+	},
+	"radiotype": {
+		"message": "??Radio??"
+	},
+	"telextype": {
+		"message": "??Telex??"
+	},
+	"ttytype": {
+		"message": "TTY"
 	},
 	"types.gender.f": {
 		"message": "Жінка"
@@ -3282,9 +3385,6 @@
 	"eventInNoteEventPrefix": {
 		"message": "Подію"
 	},
-	"deathSuffix": {
-		"message": "(помер)"
-	},
 	"dateFormatsDLabel": {
 		"message": "Д"
 	},
@@ -3600,20 +3700,20 @@
 	"cardbookContactPaneItemAccesskey": {
 		"message": "к"
 	},
+	"wizard.next.label": {
+		"message": "Наступна"
+	},	
+	"wizard.back.label": {
+		"message": "Назад"
+	},	
+	"wizard.create.label": {
+		"message": "Створити"
+	},
 	"wizard.title": {
 		"message": "Додайте нову адресну книгу"
 	},
-	"wizard.label": {
-		"message": "Додайте нову адресну книгу"
-	},
-	"welcomePage.wizard.description": {
-		"message": "Вітаємо"
-	},
 	"welcomePage.description": {
 		"message": "??It seems that this is the first time CardBook has been run. CardBook will attempt to collect contacts from Thunderbird’s standard address books and remote address books.??"
-	},
-	"initialPage.wizard.description": {
-		"message": "Розташування нової адресної книги."
 	},
 	"initialPage.description": {
 		"message": "Розташування адресної книги:"
@@ -3632,9 +3732,6 @@
 	},
 	"initialPage.find.label": {
 		"message": "??Search for remote address books??"
-	},
-	"localPage.wizard.description": {
-		"message": "Тип і місце розташування нової локальної адресної книги."
 	},
 	"localPage.type.description": {
 		"message": "Тип локальної адресної книги:"
@@ -3669,9 +3766,6 @@
 	"localPage.uributton.label": {
 		"message": "Вибрати"
 	},
-	"remotePage.wizard.description": {
-		"message": "Тип і розташування нової віддаленої адресної книги."
-	},
 	"remotePage.description": {
 		"message": "Який тип вашої віддаленої адресної книги? (Увага: Гугл НЕ відповідає стандартам Особиста картка «vCard»)"
 	},
@@ -3679,7 +3773,10 @@
 		"message": "Тип"
 	},
 	"remotePageType.carddav.label": {
-		"message": "КартаDAV «CardDAV»"
+		"message": "КартаDAV «CardDAV» (Введіть або вставте URL-адресу)"
+	},
+	"remotePageType.ews.label": {
+		"message": "EWS (Введіть або вставте URL-адресу)"
 	},
 	"remotePageType.google2.label": {
 		"message": "Гугл"
@@ -3720,14 +3817,14 @@
 	"remotePage.password.label": {
 		"message": "Пароль:"
 	},
+	"rememberPassword": {
+		"message": "Використовувати Менеджер паролів, щоб запам’ятати цей пароль"
+	},
 	"showHidePassword.tooltip": {
 		"message": "Показати/Приховати пароль"
 	},
 	"remotePage.validatebutton.label": {
 		"message": "Підтвердження"
-	},
-	"locationSearchPage.wizard.description": {
-		"message": "Віртуальну теку визначень"
 	},
 	"locationSearchPage.label": {
 		"message": "Віртуальну теку"
@@ -3753,9 +3850,6 @@
 	"googleOauthPage.wizard.description": {
 		"message": "Аутентифікація Гугл"
 	},
-	"namePage.wizard.description": {
-		"message": "Властивості адресної книги"
-	},
 	"namePage.selected.label": {
 		"message": "Вибрано"
 	},
@@ -3774,17 +3868,11 @@
 	"namePage.vCardVersion.label": {
 		"message": "Особиста картка «vCard»"
 	},
-	"namesPage.wizard.description": {
-		"message": "Властивості адресної книги"
-	},
 	"namesPage.name.label": {
 		"message": "Імена"
 	},
 	"namesPage.name.description": {
 		"message": "Виявлено кілька адресних книг. Виберіть, які адресні книги ви хочете відкрити, і їхні імена :"
-	},
-	"findPage.wizard.description": {
-		"message": "??Remote address book search??"
 	},
 	"findPage.name1.description": {
 		"message": "??No remote address books found.??"
@@ -3794,9 +3882,6 @@
 	},
 	"findPage.name3.description": {
 		"message": "??Multiple remote address books found. Validate remote address books to add:??"
-	},
-	"finishPage.wizard.description": {
-		"message": "??Address books configuration??"
 	},
 	"finishPage.description": {
 		"message": "Ваша нова адресна книга була успішно налаштована."
@@ -4410,6 +4495,12 @@
 	"typesCategoryAppleAccesskey": {
 		"message": "Я"
 	},
+	"typesCategoryOffice365Label": {
+		"message": "Office365"
+	},
+	"typesCategoryOffice365Accesskey": {
+		"message": "O"
+	},
 	"typesCategoryYahooLabel": {
 		"message": "Yahoo!"
 	},
@@ -4787,6 +4878,9 @@
 	},
 	"birthdayListWarn": {
 		"message": "Ювілеї проводяться лише в адресній книзі Контакти."
+	},
+	"generalGroupboxLabel": {
+		"message": "Загальні"
 	},
 	"addressbooksGroupboxLabel": {
 		"message": "Адресні книги"
@@ -5442,8 +5536,11 @@
 	"importCardFromDirLabel": {
 		"message": "Імпортувати контакти з каталогу"
 	},
+	"formatDataFromAccountsOrCatsLabel": {
+		"message": "??Format contacts data??"
+	},
 	"findDuplicatesFromAccountsOrCatsLabel": {
-		"message": "Знайти дублікати контактів у поточній адресній книзі"
+		"message": "Знайти дублікати контактів"
 	},
 	"generateFnFromAccountsOrCatsLabel": {
 		"message": "Створити відображення імен"
@@ -5567,12 +5664,6 @@
 	},
 	"displayFieldNamesAccesskey": {
 		"message": "п"
-	},
-	"displayTypesLabel": {
-		"message": "Типи та уподобання"
-	},
-	"displayTypesAccesskey": {
-		"message": "Т"
 	},
 	"fieldsToPrintGroupboxLabel": {
 		"message": "Що друкувати"
@@ -5742,6 +5833,21 @@
 	"mergeAllEditionAccesskey": {
 		"message": "M"
 	},
+	"formatAllEditionLabel": {
+		"message": "??Format all??"
+	},
+	"formatAllEditionAccesskey": {
+		"message": "F"
+	},
+	"undoAllEditionLabel": {
+		"message": "??Undo all??"
+	},
+	"undoAllEditionAccesskey": {
+		"message": "U"
+	},
+	"formatEditionLabel": {
+		"message": "??Format??"
+	},
 	"buttonAppendToListLabel": {
 		"message": "Додати"
 	},
@@ -5782,7 +5888,20 @@
 		"message": "C"
 	},
 	"wdw_findDuplicatesTitle": {
-		"message": "Дубльовані контакти"
+		"message": "Дубльовані контакти ($P1$)",
+        "placeholders": {
+            "P1": {
+                "content": "$1"
+            }
+        }
+	},
+	"wdw_formatDataTitle": {
+		"message": "??Format contacts data ($P1$)??",
+        "placeholders": {
+            "P1": {
+                "content": "$1"
+            }
+        }
 	},
 	"addImageCardFromFileLabel": {
 		"message": "Вставте зображення з файлу"
@@ -5864,5 +5983,8 @@
 	},
 	"orgTitleLabel": {
 		"message": "Професійна інформація"
+	},
+	"allAddressBooks": {
+		"message": "Усі адресні книги"
 	}
 }

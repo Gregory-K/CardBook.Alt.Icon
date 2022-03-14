@@ -126,6 +126,9 @@
 	"noContactsDuplicated": {
 		"message": "Không tìm thấy địa chỉ liên hệ trùng lặp."
 	},
+	"noDataAvailable": {
+		"message": "Không có dữ liệu."
+	},
 	"targetCategoryLabel": {
 		"message": "kết quả"
 	},
@@ -149,8 +152,23 @@
 	"ValidatingURLFailedLabel": {
 		"message": "Địa chỉ URL không đúng định dạng"
 	},
+	"ValidatingURILabel": {
+		"message": "Nhập hoặc dán URL"
+	},
+	"ValidatingURIFailedLabel": {
+		"message": "URL không hợp lệ"
+	},
+	"ValidatingLoginLabel": {
+		"message": "Thông tin đăng nhập của bạn"
+	},
+	"ValidatingEmailLabel": {
+		"message": "Địa chỉ email hiện tại của bạn"
+	},
 	"ValidatingEmailFailedLabel": {
 		"message": "Yêu cầu thư điện tử hợp lệ"
+	},
+	"ValidationFailedOffLine": {
+		"message": "Bạn hiện đang ngoại tuyến."
 	},
 	"ValidationFailedLabel": {
 		"message": "Xác thực không thành công"
@@ -2242,6 +2260,17 @@
             }
         }
 	},
+	"cardsFormattedUndo": {
+		"message": "??$P1$ : Contacts formatted ($P2$)??",
+        "placeholders": {
+            "P1": {
+                "content": "$1"
+            },
+            "P2": {
+                "content": "$2"
+            }
+        }
+	},
 	"exportCardToDirMessagePF": {
 		"message": "??$P1$ contact exported into the directory $P2$;$P1$ contacts exported into the directory $P2$??",
         "placeholders": {
@@ -2801,6 +2830,59 @@
             }
         }
 	},
+	"invalidOffice365Field": {
+		"message": "??$P1$ can't be synced (value: $P2$)??",
+        "placeholders": {
+            "P1": {
+                "content": "$1"
+            },
+            "P2": {
+                "content": "$2"
+            }
+       }
+	},
+	"invalidOffice365Email": {
+		"message": "??No more than 3 email addresses can be synced??"
+	},
+	"invalidOffice365Impp": {
+		"message": "??Only one IM address can be synced??"
+	},
+	"invalidOffice365Adr": {
+		"message": "??No more than 3 physical addresses can be synced??"
+	},
+	"invalidOffice365Tel": {
+		"message": "??No more than 17 phone numbers can be synced??"
+	},
+	"invalidOffice365EmptyType": {
+		"message": "??Empty types are not allowed in the element $P1$??",
+        "placeholders": {
+            "P1": {
+                "content": "$1"
+            }
+        }
+	},
+	"invalidOffice365Type": {
+		"message": "??Too many $P2$ types in the element $P1$ (max allowed: $P3$)??",
+		"placeholders": {
+			"P1": {
+				"content": "$1"
+			},
+			"P2": {
+				"content": "$2"
+			},
+			"P3": {
+				"content": "$3"
+			}
+		}
+	},
+	"invalidOffice365Member": {
+		"message": "??You cannot add an email that does not belong to one contact of your address book ($P1$)??",
+		"placeholders": {
+			"P1": {
+				"content": "$1"
+			}
+		}
+	},
 	"validateIntegerMsg": {
 		"message": "Trường $P1$ phải là số không hoặc một số nguyên giữa 1 và $P2$ (giá trị : $P3$)",
         "placeholders": {
@@ -2870,6 +2952,27 @@
 	},
 	"worktype": {
 		"message": "Cơ quan"
+	},
+	"otherfaxtype": {
+		"message": "??Other fax??"
+	},
+	"assistanttype": {
+		"message": "??Assistant??"
+	},
+	"callbacktype": {
+		"message": "??Callback??"
+	},
+	"carphonetype": {
+		"message": "??Car??"
+	},
+	"radiotype": {
+		"message": "??Radio??"
+	},
+	"telextype": {
+		"message": "??Telex??"
+	},
+	"ttytype": {
+		"message": "TTY"
 	},
 	"types.gender.f": {
 		"message": "Giống cái"
@@ -3282,9 +3385,6 @@
 	"eventInNoteEventPrefix": {
 		"message": "Sự kiện"
 	},
-	"deathSuffix": {
-		"message": "(qua đời)"
-	},
 	"dateFormatsDLabel": {
 		"message": "n"
 	},
@@ -3600,20 +3700,20 @@
 	"cardbookContactPaneItemAccesskey": {
 		"message": "O"
 	},
+	"wizard.next.label": {
+		"message": "Tiếp"
+	},	
+	"wizard.back.label": {
+		"message": "Quay lại"
+	},	
+	"wizard.create.label": {
+		"message": "Tạo"
+	},
 	"wizard.title": {
 		"message": "Thêm sổ địa chỉ mới"
 	},
-	"wizard.label": {
-		"message": "Thêm sổ địa chỉ mới"
-	},
-	"welcomePage.wizard.description": {
-		"message": "Chào mừng!"
-	},
 	"welcomePage.description": {
 		"message": "??It seems that this is the first time CardBook has been run. CardBook will attempt to collect contacts from Thunderbird’s standard address books and remote address books.??"
-	},
-	"initialPage.wizard.description": {
-		"message": "Vị trí của sổ địa chỉ mới."
 	},
 	"initialPage.description": {
 		"message": "Vị trí của sổ địa chỉ:"
@@ -3632,9 +3732,6 @@
 	},
 	"initialPage.find.label": {
 		"message": "??Search for remote address books??"
-	},
-	"localPage.wizard.description": {
-		"message": "Nhập và vị trí của sổ địa chỉ địa phương mới."
 	},
 	"localPage.type.description": {
 		"message": "Loại sổ địa chỉ địa phương:"
@@ -3669,9 +3766,6 @@
 	"localPage.uributton.label": {
 		"message": "Duyệtn"
 	},
-	"remotePage.wizard.description": {
-		"message": "Loại và vị trí của sổ địa chỉ mới từ xa."
-	},
 	"remotePage.description": {
 		"message": "Loại sổ địa chỉ từ xa của bạn là gì (Chú ý: Google KHÔNG tuân thủ các tiêu chuẩn vCard)?"
 	},
@@ -3679,7 +3773,10 @@
 		"message": "Loại"
 	},
 	"remotePageType.carddav.label": {
-		"message": "CardDAV"
+		"message": "CardDAV (Nhập hoặc dán URL)"
+	},
+	"remotePageType.ews.label": {
+		"message": "EWS (Nhập hoặc dán URL)"
 	},
 	"remotePageType.google2.label": {
 		"message": "Google"
@@ -3720,14 +3817,14 @@
 	"remotePage.password.label": {
 		"message": "Mật khẩu:"
 	},
+	"rememberPassword": {
+		"message": "Dùng Trình quản lí mật khẩu để ghi nhớ mật khẩu này"
+	},
 	"showHidePassword.tooltip": {
 		"message": "Hiện/ẩn mật khẩu"
 	},
 	"remotePage.validatebutton.label": {
 		"message": "Xác thực"
-	},
-	"locationSearchPage.wizard.description": {
-		"message": "Tìm kiếm Được lưu Định nghĩa."
 	},
 	"locationSearchPage.label": {
 		"message": "Tìm kiếm Được lưu"
@@ -3753,9 +3850,6 @@
 	"googleOauthPage.wizard.description": {
 		"message": "Xác thực của Google"
 	},
-	"namePage.wizard.description": {
-		"message": "Thuộc tính của sổ địa chỉ"
-	},
 	"namePage.selected.label": {
 		"message": "Đã chọn"
 	},
@@ -3774,17 +3868,11 @@
 	"namePage.vCardVersion.label": {
 		"message": "Thẻ Ảo"
 	},
-	"namesPage.wizard.description": {
-		"message": "Thuộc tính của sổ địa chỉ"
-	},
 	"namesPage.name.label": {
 		"message": "Tên"
 	},
 	"namesPage.name.description": {
 		"message": "Nhiều cuốn sách địa chỉ đã được phát hiện. Chọn sách địa chỉ bạn muốn mở và tên của họ:"
-	},
-	"findPage.wizard.description": {
-		"message": "??Remote address book search??"
 	},
 	"findPage.name1.description": {
 		"message": "??No remote address books found.??"
@@ -3794,9 +3882,6 @@
 	},
 	"findPage.name3.description": {
 		"message": "??Multiple remote address books found. Validate remote address books to add:??"
-	},
-	"finishPage.wizard.description": {
-		"message": "??Address books configuration??"
 	},
 	"finishPage.description": {
 		"message": "Sổ địa chỉ mới của bạn đã được định cấu hình thành công."
@@ -4410,6 +4495,12 @@
 	"typesCategoryAppleAccesskey": {
 		"message": "A"
 	},
+	"typesCategoryOffice365Label": {
+		"message": "Office365"
+	},
+	"typesCategoryOffice365Accesskey": {
+		"message": "O"
+	},
 	"typesCategoryYahooLabel": {
 		"message": "Yahoo!"
 	},
@@ -4787,6 +4878,9 @@
 	},
 	"birthdayListWarn": {
 		"message": "Các ngày kỷ niệm chỉ được tìm kiếm trong sổ địa chỉ của Danh bạ."
+	},
+	"generalGroupboxLabel": {
+		"message": "Tổng quát"
 	},
 	"addressbooksGroupboxLabel": {
 		"message": "Sổ Địa Chỉ"
@@ -5442,8 +5536,11 @@
 	"importCardFromDirLabel": {
 		"message": "Nhập địa chỉ liên hệ từ một thư mục"
 	},
+	"formatDataFromAccountsOrCatsLabel": {
+		"message": "??Format contacts data??"
+	},
 	"findDuplicatesFromAccountsOrCatsLabel": {
-		"message": "Tìm địa chỉ liên hệ trùng lặp trong sổ địa chỉ hiện tại"
+		"message": "Tìm địa chỉ liên hệ trùng lặp"
 	},
 	"generateFnFromAccountsOrCatsLabel": {
 		"message": "Tạo tên Hiển thị"
@@ -5567,12 +5664,6 @@
 	},
 	"displayFieldNamesAccesskey": {
 		"message": "T"
-	},
-	"displayTypesLabel": {
-		"message": "Loại và Tùy chỉnh"
-	},
-	"displayTypesAccesskey": {
-		"message": "y"
 	},
 	"fieldsToPrintGroupboxLabel": {
 		"message": "Các trường để in"
@@ -5742,6 +5833,21 @@
 	"mergeAllEditionAccesskey": {
 		"message": "M"
 	},
+	"formatAllEditionLabel": {
+		"message": "??Format all??"
+	},
+	"formatAllEditionAccesskey": {
+		"message": "F"
+	},
+	"undoAllEditionLabel": {
+		"message": "??Undo all??"
+	},
+	"undoAllEditionAccesskey": {
+		"message": "U"
+	},
+	"formatEditionLabel": {
+		"message": "??Format??"
+	},
 	"buttonAppendToListLabel": {
 		"message": "Mới"
 	},
@@ -5782,7 +5888,20 @@
 		"message": "C"
 	},
 	"wdw_findDuplicatesTitle": {
-		"message": "Địa chỉ liên hệ trùng lặp"
+		"message": "Địa chỉ liên hệ trùng lặp ($P1$)",
+        "placeholders": {
+            "P1": {
+                "content": "$1"
+            }
+        }
+	},
+	"wdw_formatDataTitle": {
+		"message": "??Format contacts data ($P1$)??",
+        "placeholders": {
+            "P1": {
+                "content": "$1"
+            }
+        }
 	},
 	"addImageCardFromFileLabel": {
 		"message": "Thêm ảnh từ Tập tin"
@@ -5864,5 +5983,8 @@
 	},
 	"orgTitleLabel": {
 		"message": "Thông tin chuyên nghiệp"
+	},
+	"allAddressBooks": {
+		"message": "Tất cả các sổ địa chỉ"
 	}
 }

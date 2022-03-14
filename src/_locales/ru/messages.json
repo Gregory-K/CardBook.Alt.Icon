@@ -126,6 +126,9 @@
 	"noContactsDuplicated": {
 		"message": "Дублирющихся контактов не найдено."
 	},
+	"noDataAvailable": {
+		"message": "Нет доступных данных."
+	},
 	"targetCategoryLabel": {
 		"message": "результатов"
 	},
@@ -149,8 +152,23 @@
 	"ValidatingURLFailedLabel": {
 		"message": "URL не верен"
 	},
+	"ValidatingURILabel": {
+		"message": "Введите или вставьте URL"
+	},
+	"ValidatingURIFailedLabel": {
+		"message": "Некорректный URL"
+	},
+	"ValidatingLoginLabel": {
+		"message": "Ваш логин"
+	},
+	"ValidatingEmailLabel": {
+		"message": "Имеющаяся у вас учётная запись электронной почты"
+	},
 	"ValidatingEmailFailedLabel": {
 		"message": "Введите действующий адрес эл. почты"
+	},
+	"ValidationFailedOffLine": {
+		"message": "Вы работаете в автономном режиме."
 	},
 	"ValidationFailedLabel": {
 		"message": "Ошибка при проверке"
@@ -2242,6 +2260,17 @@
             }
         }
 	},
+	"cardsFormattedUndo": {
+		"message": "$P1$ : Контакты отформатированы ($P2$)",
+        "placeholders": {
+            "P1": {
+                "content": "$1"
+            },
+            "P2": {
+                "content": "$2"
+            }
+        }
+	},
 	"exportCardToDirMessagePF": {
 		"message": "$P1$ контакт экспортирован в папку «$P2$»;$P1$ контакта экспортировано в папку «$P2$»;$P1$ контактов экспортировано в папку «$P2$»",
         "placeholders": {
@@ -2801,6 +2830,59 @@
             }
         }
 	},
+	"invalidOffice365Field": {
+		"message": "$P1$ не может быть синхронизирован (значение: $P2$)",
+        "placeholders": {
+            "P1": {
+                "content": "$1"
+            },
+            "P2": {
+                "content": "$2"
+            }
+       }
+	},
+	"invalidOffice365Email": {
+		"message": "Допускается не более 3 адресов электронной почты"
+	},
+	"invalidOffice365Impp": {
+		"message": "Можно синхронизировать только один IM-адрес"
+	},
+	"invalidOffice365Adr": {
+		"message": "Допускается не более 3 физических адресов"
+	},
+	"invalidOffice365Tel": {
+		"message": "Допускается не более 17 номеров телефона"
+	},
+	"invalidOffice365EmptyType": {
+		"message": "Пустые типы не допускаются в элементе $P1$",
+        "placeholders": {
+            "P1": {
+                "content": "$1"
+            }
+        }
+	},
+	"invalidOffice365Type": {
+		"message": "Слишком много $P2$ типов в элементе $P1$ (макс. разрешено: $P3$)",
+		"placeholders": {
+			"P1": {
+				"content": "$1"
+			},
+			"P2": {
+				"content": "$2"
+			},
+			"P3": {
+				"content": "$3"
+			}
+		}
+	},
+	"invalidOffice365Member": {
+		"message": "Вы не можете добавить письмо, которое не принадлежит хотя бы одному контакту вашей адресной книги ($P1$)",
+		"placeholders": {
+			"P1": {
+				"content": "$1"
+			}
+		}
+	},
 	"validateIntegerMsg": {
 		"message": "Поле «$P1$» должно быть нулём или целым числом между 1 и $P2$ (значение : $P3$)",
         "placeholders": {
@@ -2870,6 +2952,27 @@
 	},
 	"worktype": {
 		"message": "Рабочий"
+	},
+	"otherfaxtype": {
+		"message": "Доп. факс"
+	},
+	"assistanttype": {
+		"message": "Ассистент"
+	},
+	"callbacktype": {
+		"message": "Callback"
+	},
+	"carphonetype": {
+		"message": "Автомобиль"
+	},
+	"radiotype": {
+		"message": "Радио"
+	},
+	"telextype": {
+		"message": "Телекс"
+	},
+	"ttytype": {
+		"message": "TTY"
 	},
 	"types.gender.f": {
 		"message": "Женский"
@@ -3282,9 +3385,6 @@
 	"eventInNoteEventPrefix": {
 		"message": "Событие"
 	},
-	"deathSuffix": {
-		"message": "(умерший)"
-	},
 	"dateFormatsDLabel": {
 		"message": "D"
 	},
@@ -3600,20 +3700,20 @@
 	"cardbookContactPaneItemAccesskey": {
 		"message": "к"
 	},
+	"wizard.next.label": {
+		"message": "Следующая"
+	},	
+	"wizard.back.label": {
+		"message": "Назад"
+	},	
+	"wizard.create.label": {
+		"message": "Создать"
+	},
 	"wizard.title": {
 		"message": "Добавьте новую адресную книгу"
 	},
-	"wizard.label": {
-		"message": "Добавьте новую адресную книгу"
-	},
-	"welcomePage.wizard.description": {
-		"message": "Добро пожаловать"
-	},
 	"welcomePage.description": {
 		"message": "Это первый запуск CardBook. Будет выполнена попытка получить данные о контактах из стандарных адресных книг Thunderbird, а также адресных книг, расположенных на серверах в Интернете."
-	},
-	"initialPage.wizard.description": {
-		"message": "Расположение новой адресной книги."
 	},
 	"initialPage.description": {
 		"message": "Адресная книга расположена локально или на сервере в сети?"
@@ -3632,9 +3732,6 @@
 	},
 	"initialPage.find.label": {
 		"message": "Поиск сетевых адресных книг"
-	},
-	"localPage.wizard.description": {
-		"message": "Тип и расположение новой адресной книги."
 	},
 	"localPage.type.description": {
 		"message": "Какой тип новой локальной адресной книги? :"
@@ -3669,9 +3766,6 @@
 	"localPage.uributton.label": {
 		"message": "Просмотреть"
 	},
-	"remotePage.wizard.description": {
-		"message": "Тип и расположение новой адресной книги в Интрернете."
-	},
 	"remotePage.description": {
 		"message": "Какой тип вашей удалённой адресной книги? : (Внимание: Google НЕ соблюдает стандарт vCard)"
 	},
@@ -3679,7 +3773,10 @@
 		"message": "Тип"
 	},
 	"remotePageType.carddav.label": {
-		"message": "CardDAV"
+		"message": "CardDAV (Введите или вставьте URL)"
+	},
+	"remotePageType.ews.label": {
+		"message": "EWS (Введите или вставьте URL)"
 	},
 	"remotePageType.google2.label": {
 		"message": "Google"
@@ -3720,14 +3817,14 @@
 	"remotePage.password.label": {
 		"message": "Пароль:"
 	},
+	"rememberPassword": {
+		"message": "Сохранить этот пароль в хранилище паролей"
+	},
 	"showHidePassword.tooltip": {
 		"message": "Показать/Скрыть пароль"
 	},
 	"remotePage.validatebutton.label": {
 		"message": "Проверить"
-	},
-	"locationSearchPage.wizard.description": {
-		"message": "Параметры расширенного поиска"
 	},
 	"locationSearchPage.label": {
 		"message": "Расширенный поиск"
@@ -3753,9 +3850,6 @@
 	"googleOauthPage.wizard.description": {
 		"message": "Аутентификация Google"
 	},
-	"namePage.wizard.description": {
-		"message": "Свойства адресной книги"
-	},
 	"namePage.selected.label": {
 		"message": "Отмеченное"
 	},
@@ -3774,17 +3868,11 @@
 	"namePage.vCardVersion.label": {
 		"message": "vCard"
 	},
-	"namesPage.wizard.description": {
-		"message": "Свойства адресных книг"
-	},
 	"namesPage.name.label": {
 		"message": "Имена"
 	},
 	"namesPage.name.description": {
 		"message": "Было обнаружено множество адресных книг. Выберете нужные для открытия и их имена :"
-	},
-	"findPage.wizard.description": {
-		"message": "Поиск сетевых адресных книг"
 	},
 	"findPage.name1.description": {
 		"message": "Не удалось найти сетевые адресные книги."
@@ -3794,9 +3882,6 @@
 	},
 	"findPage.name3.description": {
 		"message": "Найдены несколько сетевых адресных книг. Проверьте добавляемые адреса:"
-	},
-	"finishPage.wizard.description": {
-		"message": "Параметры адресной книги"
 	},
 	"finishPage.description": {
 		"message": "Новая адресная книга была успешно настроена."
@@ -4410,6 +4495,12 @@
 	"typesCategoryAppleAccesskey": {
 		"message": "A"
 	},
+	"typesCategoryOffice365Label": {
+		"message": "Office365"
+	},
+	"typesCategoryOffice365Accesskey": {
+		"message": "O"
+	},
 	"typesCategoryYahooLabel": {
 		"message": "Yahoo!"
 	},
@@ -4787,6 +4878,9 @@
 	},
 	"birthdayListWarn": {
 		"message": "Поиск дней рождения производиться только по адресным книгам CardBook."
+	},
+	"generalGroupboxLabel": {
+		"message": "Основные"
 	},
 	"addressbooksGroupboxLabel": {
 		"message": "Контакты"
@@ -5442,8 +5536,11 @@
 	"importCardFromDirLabel": {
 		"message": "Импортировать контакт из каталога"
 	},
+	"formatDataFromAccountsOrCatsLabel": {
+		"message": "Форматировать данные контактов"
+	},
 	"findDuplicatesFromAccountsOrCatsLabel": {
-		"message": "Искать повторяющиеся контакты во текущей адресной книге"
+		"message": "Искать повторяющиеся контакты"
 	},
 	"generateFnFromAccountsOrCatsLabel": {
 		"message": "Формировать поле «Отображаемое имя»"
@@ -5567,12 +5664,6 @@
 	},
 	"displayFieldNamesAccesskey": {
 		"message": "И"
-	},
-	"displayTypesLabel": {
-		"message": "Типы и настройки"
-	},
-	"displayTypesAccesskey": {
-		"message": "н"
 	},
 	"fieldsToPrintGroupboxLabel": {
 		"message": "Что печатать"
@@ -5742,6 +5833,21 @@
 	"mergeAllEditionAccesskey": {
 		"message": "M"
 	},
+	"formatAllEditionLabel": {
+		"message": "Форматировать все"
+	},
+	"formatAllEditionAccesskey": {
+		"message": "Ф"
+	},
+	"undoAllEditionLabel": {
+		"message": "Отменить все"
+	},
+	"undoAllEditionAccesskey": {
+		"message": "О"
+	},
+	"formatEditionLabel": {
+		"message": "Форматировать"
+	},
 	"buttonAppendToListLabel": {
 		"message": "Добавить"
 	},
@@ -5782,7 +5888,20 @@
 		"message": "ф"
 	},
 	"wdw_findDuplicatesTitle": {
-		"message": "Дублирующиеся контакты"
+		"message": "Дублирующиеся контакты ($P1$)",
+        "placeholders": {
+            "P1": {
+                "content": "$1"
+            }
+        }
+	},
+	"wdw_formatDataTitle": {
+		"message": "Форматировать данные контактов ($P1$)",
+        "placeholders": {
+            "P1": {
+                "content": "$1"
+            }
+        }
 	},
 	"addImageCardFromFileLabel": {
 		"message": "Добавить изображение из файла"
@@ -5864,5 +5983,8 @@
 	},
 	"orgTitleLabel": {
 		"message": "Профессиональная информация"
+	},
+	"allAddressBooks": {
+		"message": "Все адресные книги"
 	}
 }

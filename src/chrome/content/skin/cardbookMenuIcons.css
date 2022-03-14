@@ -64,7 +64,6 @@
   list-style-image: url("moz-icon://stock/gtk-cut?size=menu&state=disabled");
 }
 
-#copyAdr,
 #copyImageCard,
 #copyadrTree,
 #copytelTree,
@@ -76,7 +75,6 @@
 #copyCardsFromCards {
   list-style-image: url("moz-icon://stock/gtk-copy?size=menu");
 }
-#copyAdr[disabled],
 #copyImageCard[disabled],
 #copyadrTree[disabled],
 #copytelTree[disabled],
@@ -89,7 +87,6 @@
   list-style-image: url("moz-icon://stock/gtk-copy?size=menu&state=disabled");
 }
 
-#pasteAdr,
 #pasteImageCard,
 #cardbookContactsMenuPasteEntry,
 #pasteEntryFromCards,
@@ -98,7 +95,6 @@
 #pasteCardsFromCards {
   list-style-image: url("moz-icon://stock/gtk-paste?size=menu");
 }
-#pasteAdr[disabled],
 #pasteImageCard[disabled],
 #cardbookContactsMenuPasteEntry[disabled],
 #pasteEntryFromCards[disabled],
