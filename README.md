@@ -44,7 +44,8 @@ If you are not sure about using this extension, please prefer the official one b
 
 ## Notes
 
-The present repository contains only the files needed for an .xpi release.
+The present repository contains only the files needed for an .xpi release.  
+The whole codebase resides in a different GitLab repository under the ["Alt.Icon"](https://gitlab.com/Gregory.K/CardBook/-/tree/Alt.Icon) branch.
 
 Versioning: one decimal after the official one  
 e.g. `62.9` (official) `62.9.1` (Alt.Icon)
