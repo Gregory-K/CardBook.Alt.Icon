@@ -3,5 +3,5 @@
 }
 /* dark theme */
 :root[lwt-tree] #cardbookMenuItem {
-  list-style-image: url("chrome://cardbook/content/skin/cardbook_w.svg");
+	list-style-image: url("chrome://cardbook/content/skin/cardbook_w.svg");
 }
