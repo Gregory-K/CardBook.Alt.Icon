@@ -7,7 +7,7 @@ root = true
 # across the codebase, this '.editorconfig' will only try to
 # protect the original styling of the altered files (easier diffs).
 
-[{manifest.json,cardbookComposeMsg.css,mainToolbarButton.css}]
+[{manifest.json,cardbookComposeMsg.css,mainToolbarButton.css,wdw_cardbookConfiguration.xhtml}]
 charset = utf-8
 end_of_line = CRLF
 indent_size = 2
