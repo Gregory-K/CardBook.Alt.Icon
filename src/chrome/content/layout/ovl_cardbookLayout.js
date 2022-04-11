@@ -77,7 +77,7 @@ if ("undefined" == typeof(ovl_cardbookLayout)) {
 			cardbookRepository.cardbookPreferences.setStringPref("extensions.cardbook.panesView", strData);
 		},
 
-		orientPanes: function() {
+		orientPanes: async function() {
 			if (document.getElementById("cardsBox") && document.getElementById("resultsSplitter")) {
 				var panesView = cardbookRepository.cardbookPreferences.getStringPref("extensions.cardbook.panesView");
 				if (panesView == "modern") {
@@ -93,7 +93,7 @@ if ("undefined" == typeof(ovl_cardbookLayout)) {
 				}
 				if (cardbookRepository.cardbookCards[document.getElementById('dirPrefIdTextBox').value+"::"+document.getElementById('uidTextBox').value]) {
 					var myCard = cardbookRepository.cardbookCards[document.getElementById('dirPrefIdTextBox').value+"::"+document.getElementById('uidTextBox').value];
-					wdw_cardbook.displayCard(myCard);
+					await wdw_cardbook.displayCard(myCard);
 				}
 			}
 		}

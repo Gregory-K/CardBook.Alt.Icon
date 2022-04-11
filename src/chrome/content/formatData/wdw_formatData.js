@@ -15,10 +15,10 @@ if ("undefined" == typeof(wdw_formatData)) {
 		cardsLoaded: false,
 		abort: false,
 
-		loadCountries: function () {
-			const loc = new Localization(["toolkit/intl/regionNames.ftl"], true);
+		loadCountries: async function () {
+			const loc = new Localization(["toolkit/intl/regionNames.ftl"]);
 			for (let code of cardbookRepository.countriesList) {
-				let country = loc.formatValueSync("region-name-" + code);
+				let country = await loc.formatValue("region-name-" + code);
 				wdw_formatData.countries.push([code, country]);
 			}
 			cardbookRepository.cardbookUtils.sortMultipleArrayByString(wdw_formatData.countries,1,1);
@@ -47,7 +47,7 @@ if ("undefined" == typeof(wdw_formatData)) {
 			}
         },
 
-		displayCardLineTels: function (aCardLine) {
+		displayCardLineTels: async function (aCardLine) {
             // [index, aCard.cbid, aCard.fn, country, tel source, tel modified, index tel line]
 			let table = document.getElementById('fieldsTable');
 			let row = cardbookElementTools.addHTMLTR(table, `${aCardLine[0]}.row`, {"align": "center", "class": "rowCount"});
@@ -56,7 +56,7 @@ if ("undefined" == typeof(wdw_formatData)) {
             let valueData = cardbookElementTools.addHTMLTD(row, `${aCardLine[0]}.valueData`);
             wdw_formatData.createTextbox(valueData, `${aCardLine[0]}.value`, aCardLine[5], 'tel', {country: aCardLine[3]});
             let countryData = cardbookElementTools.addHTMLTD(row, `${aCardLine[0]}.countryData`);
-            wdw_formatData.createCountryList(countryData, `${aCardLine[0]}.country`, aCardLine[3]);
+            await wdw_formatData.createCountryList(countryData, `${aCardLine[0]}.country`, aCardLine[3]);
             let formatData = cardbookElementTools.addHTMLTD(row, `${aCardLine[0]}.formatData`);
             wdw_formatData.createFormatButton(formatData, `${aCardLine[0]}.format`);
             let undoData = cardbookElementTools.addHTMLTD(row, `${aCardLine[0]}.undoData`);
@@ -69,14 +69,14 @@ if ("undefined" == typeof(wdw_formatData)) {
             wdw_formatData.createHiddenLabel(indexData, `${aCardLine[0]}.index`, aCardLine[6]);
         },
 
-		loadCardTels: function (aCard) {
-			let country = cardbookRepository.cardbookUtils.getCardRegion(aCard);
+		loadCardTels: async function (aCard) {
+			let country = await cardbookRepository.cardbookUtils.getCardRegion(aCard);
             let i = 0;
             for (let telLine of aCard.tel) {
 				if (wdw_formatData.abort) {
 					return
 				}
-				wdw_formatData.displayCardLineTels([wdw_formatData.lines, aCard.cbid, aCard.fn, country.toLowerCase(), telLine[0][0], telLine[0][0], i]);
+				await wdw_formatData.displayCardLineTels([wdw_formatData.lines, aCard.cbid, aCard.fn, country.toLowerCase(), telLine[0][0], telLine[0][0], i]);
 				wdw_formatData.lines++;
 				i++;
 		    }
@@ -103,7 +103,7 @@ if ("undefined" == typeof(wdw_formatData)) {
             wdw_formatData.createHiddenLabel(indexData, `${aCardLine[0]}.index`, aCardLine[5]);
         },
 
-		loadCardEmails: function (aCard) {
+		loadCardEmails: async function (aCard) {
 			let i = 0;
 			for (let emailLine of aCard.email) {
 				if (wdw_formatData.abort) {
@@ -133,11 +133,11 @@ if ("undefined" == typeof(wdw_formatData)) {
 					let data = JSON.parse(JSON.stringify(cardbookRepository.cardbookDisplayCards[aDirPrefId].cards));
 					wdw_formatData.toDo = data.length;
 					for (let card of data) {
-						Services.tm.currentThread.dispatch({ run: function() {
+						Services.tm.currentThread.dispatch({ run: async function() {
 							if (wdw_formatData.abort) {
 								return
 							}
-							aLoadFunction(card);
+							await aLoadFunction(card);
 						}}, Components.interfaces.nsIEventTarget.DISPATCH_SYNC);
 					}
 					data = null;
@@ -147,12 +147,12 @@ if ("undefined" == typeof(wdw_formatData)) {
 						wdw_formatData.toDo++;
 					}
 					for (let i in data) {
-						Services.tm.currentThread.dispatch({ run: function() {
+						Services.tm.currentThread.dispatch({ run: async function() {
 							if (wdw_formatData.abort) {
 								return
 							}
 							let card = data[i];
-							aLoadFunction(card);
+							await aLoadFunction(card);
 						}}, Components.interfaces.nsIEventTarget.DISPATCH_SYNC);
 					}
 					data = null;
@@ -208,7 +208,7 @@ if ("undefined" == typeof(wdw_formatData)) {
             return aLabel;
 		},
 
-		createCountryList: function (aTableData, aId, aValue) {
+		createCountryList: async function (aTableData, aId, aValue) {
 			let aMenulist = document.createXULElement('menulist');
 			aTableData.appendChild(aMenulist);
 			aMenulist.setAttribute('id', aId + '.menulist');
@@ -217,8 +217,8 @@ if ("undefined" == typeof(wdw_formatData)) {
 			aMenulist.appendChild(aMenupopup);
 			aMenupopup.setAttribute('id', aId + '.menupopup');
 
-			const loc = new Localization(["toolkit/intl/regionNames.ftl"], true);
-			let value = loc.formatValueSync("region-name-" + aValue);
+			const loc = new Localization(["toolkit/intl/regionNames.ftl"]);
+			let value = await loc.formatValue("region-name-" + aValue);
 			let menuItem = aMenulist.appendItem(value, aValue);
 			aMenupopup.appendChild(menuItem);
 			aMenulist.selectedIndex = 0;
@@ -460,7 +460,7 @@ if ("undefined" == typeof(wdw_formatData)) {
 
 			document.title = cardbookRepository.extension.localeData.localizeMessage("wdw_formatDataTitle", [wdw_formatData.scopeName]);
 
-            wdw_formatData.loadCountries();
+            await wdw_formatData.loadCountries();
 
 			let nodeSelected = document.getElementById("cardbookContactButtonsBox").querySelectorAll("button[visuallyselected]");
 			wdw_formatData.setData(nodeSelected[0]);

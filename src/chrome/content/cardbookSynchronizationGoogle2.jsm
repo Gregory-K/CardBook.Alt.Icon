@@ -761,7 +761,7 @@ var cardbookSynchronizationGoogle2 = {
 					cardbookRepository.cardbookServerUpdatedCardRequest[aCardConnection.connPrefId]++;
 					cardbookRepository.cardbookServerSyncUpdatedCardOnDisk[aCardConnection.connPrefId]++;
 					cardbookRepository.cardbookUtils.formatStringForOutput("cardUpdatedOnDisk", [aCardConnection.connDescription, myCacheCard.fn]);
-					cardbookSynchronizationGoogle2.serverUpdateCard(aCardConnection, myCacheCard);
+					await cardbookSynchronizationGoogle2.serverUpdateCard(aCardConnection, myCacheCard);
 				} else {
 					// "NOTUPDATED";
 					cardbookRepository.cardbookUtils.formatStringForOutput("cardAlreadyGetFromCache", [aCardConnection.connDescription, myCacheCard.fn]);
@@ -814,7 +814,7 @@ var cardbookSynchronizationGoogle2 = {
 				switch (conflictResult) {
 					case "local":
 						cardbookRepository.cardbookServerUpdatedCardRequest[aCardConnection.connPrefId]++;
-						cardbookSynchronizationGoogle2.serverUpdateCard(aCardConnection, myCacheCard);
+						await cardbookSynchronizationGoogle2.serverUpdateCard(aCardConnection, myCacheCard);
 						break;
 					case "remote":
 						cardbookRepository.cardbookServerMultiGetArray[aCardConnection.connPrefId].push(aId);
@@ -853,7 +853,7 @@ var cardbookSynchronizationGoogle2 = {
 					cardbookRepository.cardbookServerCardSyncTotal[aConnection.connPrefId]++;
 					cardbookRepository.cardbookServerSyncNewCardOnDisk[aConnection.connPrefId]++;
 					var aCreateConnection = JSON.parse(JSON.stringify(aConnection));
-					cardbookSynchronizationGoogle2.serverCreateCard(aCreateConnection, aCard);
+					await cardbookSynchronizationGoogle2.serverCreateCard(aCreateConnection, aCard);
 				} else if (aCard.updated) {
 					// "UPDATEDONDISKDELETEDONSERVER";
 					cardbookRepository.cardbookUtils.formatStringForOutput("cardUpdatedOnDiskDeletedOnServer", [aConnection.connDescription, aCard.fn]);
@@ -875,7 +875,7 @@ var cardbookSynchronizationGoogle2 = {
 							cardbookRepository.cardbookServerCreatedCardRequest[aConnection.connPrefId]++;
 							var aCreateConnection = JSON.parse(JSON.stringify(aConnection));
 							cardbookRepository.cardbookUtils.nullifyEtag(aCard);
-							cardbookSynchronizationGoogle2.serverCreateCard(aCreateConnection, aCard);
+							await cardbookSynchronizationGoogle2.serverCreateCard(aCreateConnection, aCard);
 							break;
 						case "delete":
 							await cardbookRepository.removeCardFromRepository(aCard, true);
@@ -923,7 +923,7 @@ var cardbookSynchronizationGoogle2 = {
 						cardbookRepository.cardbookUtils.setCalculatedFields(myArgs.cardsOut[0]);
 						cardbookRepository.cardbookServerUpdatedCardRequest[aConnection.connPrefId]++;
 						cardbookRepository.cardbookServerGetCardForMergeResponse[aConnection.connPrefId]++;
-						cardbookSynchronizationGoogle2.serverUpdateCard(aConnection, myArgs.cardsOut[0]);
+						await cardbookSynchronizationGoogle2.serverUpdateCard(aConnection, myArgs.cardsOut[0]);
 					} else {
 						cardbookRepository.cardbookServerCardSyncDone[aConnection.connPrefId]++;
 						cardbookRepository.cardbookServerGetCardForMergeResponse[aConnection.connPrefId]++;
@@ -965,7 +965,7 @@ var cardbookSynchronizationGoogle2 = {
 						cardbookRepository.cardbookUtils.setCalculatedFields(myArgs.cardsOut[0]);
 						cardbookRepository.cardbookServerUpdatedCardRequest[aConnection.connPrefId]++;
 						cardbookRepository.cardbookServerGetCardForMergeResponse[aConnection.connPrefId]++;
-						cardbookSynchronizationGoogle2.serverUpdateCard(aConnection, myArgs.cardsOut[0]);
+						await cardbookSynchronizationGoogle2.serverUpdateCard(aConnection, myArgs.cardsOut[0]);
 					} else {
 						cardbookRepository.cardbookServerCardSyncDone[aConnection.connPrefId]++;
 						cardbookRepository.cardbookServerGetCardForMergeResponse[aConnection.connPrefId]++;
@@ -1074,7 +1074,7 @@ var cardbookSynchronizationGoogle2 = {
 		}
 	},
 
-	serverUpdateCard: function(aConnection, aCard) {
+	serverUpdateCard: async function(aConnection, aCard) {
 		var listener_update = {
 			onDAVQueryComplete: async function(status, response, askCertificate) {
 				if (status > 199 && status < 400) {
@@ -1111,7 +1111,7 @@ var cardbookSynchronizationGoogle2 = {
 			aConnection.connUrl = cardbookRepository.cardbookOAuthData.GOOGLE2.CONTACT_URL + "/" + aCard.uid + ":updateContact" + "?" + encodedParams;
 			let request = new cardbookWebDAV(aConnection, listener_update);
 			cardbookRepository.cardbookUtils.formatStringForOutput("serverCardSendingUpdate", [aConnection.connDescription, aCard.fn]);
-			let GoogleContact = cardbookSynchronizationGoogle2.parseCardToGoogleContact(aCard);
+			let GoogleContact = await cardbookSynchronizationGoogle2.parseCardToGoogleContact(aCard);
 			request.patchContact2(JSON.stringify(GoogleContact));
 		} else {
 			cardbookRepository.cardbookServerCardSyncDone[aConnection.connPrefId]++;
@@ -1120,7 +1120,7 @@ var cardbookSynchronizationGoogle2 = {
 		}
 	},
 
-	serverCreateCard: function(aConnection, aCard) {
+	serverCreateCard: async function(aConnection, aCard) {
 		var listener_create = {
 			onDAVQueryComplete: async function(status, response, askCertificate) {
 				if (status > 199 && status < 400) {
@@ -1157,7 +1157,7 @@ var cardbookSynchronizationGoogle2 = {
 			aConnection.connUrl = cardbookRepository.cardbookOAuthData.GOOGLE2.CONTACT_URL + ":createContact" + "?" + encodedParams;
 			let request = new cardbookWebDAV(aConnection, listener_create, aCard.etag);
 			cardbookRepository.cardbookUtils.formatStringForOutput("serverCardSendingCreate", [aConnection.connDescription, aCard.fn]);
-			let GoogleContact = cardbookSynchronizationGoogle2.parseCardToGoogleContact(aCard);
+			let GoogleContact = await cardbookSynchronizationGoogle2.parseCardToGoogleContact(aCard);
 			request.postContact2(JSON.stringify(GoogleContact));
 		} else {
 			cardbookRepository.cardbookServerCardSyncDone[aConnection.connPrefId]++;
@@ -1238,7 +1238,7 @@ var cardbookSynchronizationGoogle2 = {
 		}
 	},
 
-	parseCardToGoogleContact: function (aCard) {
+	parseCardToGoogleContact: async function (aCard) {
 		console.debug(aCard);
 		let dateFormat = cardbookRepository.getDateFormat(aCard.dirPrefId, aCard.version);
 		let GoogleContact = {};
@@ -1271,12 +1271,9 @@ var cardbookSynchronizationGoogle2 = {
 			name.middleName = aCard.othername;
 			setFn = true;
 		}
-		if (setFn) {
+		if (setFn == true) {
 			name.displayName = aCard.fn;
 			name.unstructuredName = aCard.fn;
-		} else {
-			name.displayName = aCard.fn;
-			name.givenName = aCard.fn;
 		}
 		GoogleContact.names.push(name);
 
@@ -1475,7 +1472,7 @@ var cardbookSynchronizationGoogle2 = {
 				address.city = adrLine[0][3];
 				address.region = adrLine[0][4];
 				address.postalCode = adrLine[0][5];
-				let countryCode = cardbookRepository.cardbookUtils.getCountryCodeFromCountryName(adrLine[0][6]);
+				let countryCode = await cardbookRepository.cardbookUtils.getCountryCodeFromCountryName(adrLine[0][6]);
 				if (countryCode.length == 2) {
 					address.countryCode = countryCode;
 				} else if (countryCode) {

@@ -487,7 +487,6 @@ if ("undefined" == typeof(wdw_findDuplicates)) {
 				}
 				let deleteData = cardbookElementTools.addHTMLTD(row, i + '.4');
 				wdw_findDuplicates.createDeleteButton(deleteData, i, buttonDeleteLabel);
-				// test
 				for (let j = 0; j < wdw_findDuplicates.gResults[i].length; j++) {
 					let myCard = wdw_findDuplicates.gResults[i][j];
 					let textboxData = cardbookElementTools.addHTMLTD(row, i + '.' + j + '.1');

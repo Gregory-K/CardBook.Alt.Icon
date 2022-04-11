@@ -50,7 +50,7 @@ if ("undefined" == typeof(ovl_cardbookFindEvents)) {
 				listOfEmail = JSON.parse(JSON.stringify(aListOfSelectedEmails));
 			}
 			var myArgs = {listOfEmail: listOfEmail, displayName: aDisplayName};
-			var myWindow = Services.wm.getMostRecentWindow("mail:3pane").openDialog("chrome://cardbook/content/lightning/wdw_cardbookEventContacts.xhtml", "", cardbookRepository.modalWindowParams, myArgs);
+			var myWindow = Services.wm.getMostRecentWindow("mail:3pane").openDialog("chrome://cardbook/content/lightning/wdw_cardbookEventContacts.xhtml", "", cardbookRepository.windowParams, myArgs);
 		}
 	};
 };

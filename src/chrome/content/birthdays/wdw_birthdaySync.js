@@ -23,59 +23,55 @@ function do_close () {
 };
 
 function do_refresh () {
-	var maxDaysUntilNextBirthday = cardbookRepository.cardbookPreferences.getStringPref("extensions.cardbook.numberOfDaysForWriting");
+	let noneFound = document.getElementById("noneFound");
+	let resulTable = document.getElementById("syncListTable");
+	let maxDaysUntilNextBirthday = cardbookRepository.cardbookPreferences.getStringPref("extensions.cardbook.numberOfDaysForWriting");
 
 	// if there are no birthdays in the configured timespan
 	if (cardbookBirthdaysUtils.lBirthdayList.length == 0) {
-		var today = new Date();
-		today = new Date(today.getTime() + maxDaysUntilNextBirthday * 24*60*60*1000);
-		var noBirthdaysFoundMessage = cardbookRepository.extension.localeData.localizeMessage("noBirthdaysFoundMessage", [cardbookRepository.cardbookDates.convertDateToDateString(today, 'YYYYMMDD')]);
-		var treeView = {
-			rowCount : 1,
-			getCellText : function(row,column){
-				if (column.id == "addressbook") return noBirthdaysFoundMessage;
-			}
-		}
-		document.getElementById('syncListTree').view = treeView;
+		noneFound.hidden = false;
+		resulTable.hidden = true;
+		let date = new Date();
+		let today = new Date(date.getTime() + maxDaysUntilNextBirthday *24*60*60*1000);
+		let noBirthdaysFoundMessage = cardbookRepository.extension.localeData.localizeMessage("noBirthdaysFoundMessage", [cardbookRepository.cardbookDates.convertDateToDateString(today, 'YYYYMMDD')]);
+		noneFound.textContent = noBirthdaysFoundMessage;
 		document.title = cardbookRepository.extension.localeData.localizeMessage("syncListWindowLabelEnded", [0,0]);
 	} else {
-		var totalRecordsToInsert = cardbookBirthdaysUtils.lBirthdayList.length * cardbookBirthdaysUtils.lCalendarList.length;
-		var totalRecordsInserted = 0;
-		
-		var lBirthdaySyncResultGrouped = [];
-		for (var i=0; i<cardbookBirthdaysUtils.lBirthdaySyncResult.length; i++) {
-			totalRecordsInserted += cardbookBirthdaysUtils.lBirthdaySyncResult[i][1] + cardbookBirthdaysUtils.lBirthdaySyncResult[i][2] + cardbookBirthdaysUtils.lBirthdaySyncResult[i][3];
-			var jfound = -1;
-			for (var j=0; j<lBirthdaySyncResultGrouped.length; j++) {
-				if (cardbookBirthdaysUtils.lBirthdaySyncResult[i][4] == lBirthdaySyncResultGrouped[j][4] && jfound == -1) {
+		noneFound.hidden = true;
+		resulTable.hidden = false;
+
+		let totalRecordsToInsert = cardbookBirthdaysUtils.lBirthdayList.length * cardbookBirthdaysUtils.lCalendarList.length;
+		let totalRecordsInserted = 0;
+		let birthdaySyncResultGrouped = [];
+		for (let result of cardbookBirthdaysUtils.lBirthdaySyncResult) {
+			totalRecordsInserted += result[1] + result[2] + result[3];
+			let jfound = -1;
+			for (var j=0; j<birthdaySyncResultGrouped.length; j++) {
+				if (result[4] == birthdaySyncResultGrouped[j][4] && jfound == -1) {
 					jfound = j;
 				}
 			}
 			if (jfound == -1) {
-				lBirthdaySyncResultGrouped.push([cardbookBirthdaysUtils.lBirthdaySyncResult[i][0],cardbookBirthdaysUtils.lBirthdaySyncResult[i][1],cardbookBirthdaysUtils.lBirthdaySyncResult[i][2],cardbookBirthdaysUtils.lBirthdaySyncResult[i][3],cardbookBirthdaysUtils.lBirthdaySyncResult[i][4]]);
+				birthdaySyncResultGrouped.push([result[0],result[1],result[2],result[3],result[4]]);
 			} else {
-				lBirthdaySyncResultGrouped[jfound][1] += cardbookBirthdaysUtils.lBirthdaySyncResult[i][1];
-				lBirthdaySyncResultGrouped[jfound][2] += cardbookBirthdaysUtils.lBirthdaySyncResult[i][2];
-				lBirthdaySyncResultGrouped[jfound][3] += cardbookBirthdaysUtils.lBirthdaySyncResult[i][3];
+				birthdaySyncResultGrouped[jfound][1] += result[1];
+				birthdaySyncResultGrouped[jfound][2] += result[2];
+				birthdaySyncResultGrouped[jfound][3] += result[3];
 			}
 		}
 
-		var treeView = {
-			rowCount : lBirthdaySyncResultGrouped.length,
-			getCellText : function(row,column){
-				if (column.id == "addressbook") return lBirthdaySyncResultGrouped[row][0];
-				else if (column.id == "existing") return lBirthdaySyncResultGrouped[row][1];
-				else if (column.id == "failed") return lBirthdaySyncResultGrouped[row][2];
-				else if (column.id == "succeeded") return lBirthdaySyncResultGrouped[row][3];
-				else return lBirthdaySyncResultGrouped[row][4];
-			}
-		}
-		document.getElementById('syncListTree').view = treeView;
+		cardbookElementTools.deleteRows("syncListTable");
+		let headers = [ "calendarName", "existing", "failed", "succeeded" ];
+		let data = birthdaySyncResultGrouped.map(x => [ x[0], x[1], x[2], x[3] ]);
+		let dataParameters = [];
+		let rowParameters = {};
+		cardbookElementTools.addTreeTable("syncListTable", headers, data, dataParameters, rowParameters);
+
 		if (totalRecordsToInsert != totalRecordsInserted) {
-			var lTotalDisplayed = (totalRecordsInserted<0?'0':totalRecordsInserted.toString());
-			document.title=cardbookRepository.extension.localeData.localizeMessage("syncListWindowLabelRunning", [lTotalDisplayed, totalRecordsToInsert.toString()]);
+			let lTotalDisplayed = (totalRecordsInserted<0?'0':totalRecordsInserted.toString());
+			document.title = cardbookRepository.extension.localeData.localizeMessage("syncListWindowLabelRunning", [lTotalDisplayed, totalRecordsToInsert.toString()]);
 		} else {
-			document.title=cardbookRepository.extension.localeData.localizeMessage("syncListWindowLabelEnded", [totalRecordsInserted.toString(), totalRecordsToInsert.toString()]);
+			document.title = cardbookRepository.extension.localeData.localizeMessage("syncListWindowLabelEnded", [totalRecordsInserted.toString(), totalRecordsToInsert.toString()]);
 		}
 	}
 };

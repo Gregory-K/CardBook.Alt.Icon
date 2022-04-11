@@ -8,54 +8,123 @@ if ("undefined" == typeof(wdw_birthdayList)) {
 
 	var wdw_birthdayList = {
 		
-		sortTrees: function (aEvent) {
-			wdw_birthdayList.buttonShowing();
-			if (aEvent.button != 0) {
-				return;
+		getIndexFromName: function (aName) {
+			let tmpArray = aName.split("_");
+			return tmpArray[tmpArray.length - 1];
+		},
+
+		getTableCurrentIndex: function (aTableName) {
+			let selectedList = document.getElementById(aTableName).querySelectorAll("tr[rowSelected='true']");
+			if (selectedList.length) {
+				return wdw_birthdayList.getIndexFromName(selectedList[0].id);
 			}
 		},
 
-		birthdayListTreeContextShowing: function (aEvent) {
-			if (cardbookWindowUtils.displayColumnsPicker(aEvent)) {
-				wdw_birthdayList.birthdayListTreeContextShowingNext();
-				return true;
-			} else {
-				return false;
+		clickTree: function (aEvent) {
+			if (aEvent.target.tagName == "html:td") {
+				let tbody = aEvent.target.closest("tbody");
+				let row = aEvent.target.closest("tr");
+				if (aEvent.shiftKey) {
+					let startIndex = wdw_birthdayList.getTableCurrentIndex("birthdayListTable") || 0;
+					let endIndex = wdw_birthdayList.getIndexFromName(row.id);
+					let i = 0;
+					for (let child of tbody.childNodes) {
+						if (i >= startIndex && i <= endIndex) {
+							child.setAttribute("rowSelected", "true");
+						} else {
+							child.removeAttribute("rowSelected");
+						}
+						i++;
+					}
+				} else if (aEvent.ctrlKey) {
+					if (row.hasAttribute("rowSelected")) {
+						row.removeAttribute("rowSelected");
+					} else {
+						row.setAttribute("rowSelected", "true");
+					}
+				} else {
+					for (let child of tbody.childNodes) {
+						child.removeAttribute("rowSelected");
+					}
+					row.setAttribute("rowSelected", "true");
+				}
+				wdw_birthdayList.buttonShowing();
 			}
 		},
 
-		birthdayListTreeContextShowingNext: function () {
-			var menuSend = document.getElementById("sendEmail");
-			var myTree = document.getElementById("birthdayListTree");
-			if (myTree.view.selection.getRangeCount() > 0) {
-				menuSend.disabled = false;
-			} else {
-				menuSend.disabled = true;
+		sortTable: function (aTableName) {
+			let table = document.getElementById(aTableName);
+			let order = table.getAttribute("data-sort-order") == "ascending" ? 1 : -1;
+			let columnName = table.getAttribute("data-sort-column");
+			
+			let columnArray = wdw_birthdayList.getTableMapArray(columnName);
+			let columnType = wdw_birthdayList.getTableMapType(columnName);
+			let data = cardbookBirthdaysUtils.lBirthdayList;
+	
+			if (data && data.length) {
+				if (columnType == "number") {
+					cardbookRepository.cardbookUtils.sortMultipleArrayByNumber(data, columnArray, order);
+				} else {
+					cardbookRepository.cardbookUtils.sortMultipleArrayByString(data, columnArray, order);
+				}
 			}
-		},
-
-		setupWindow: function () {
-			document.getElementById('syncLightningMenuItemLabel').disabled = false;
+			wdw_birthdayList.displayBirthdays();
 		},
 	
+		clickToSort: function (aEvent) {
+			if (aEvent.target.tagName == "html:th" || aEvent.target.tagName == "html:img") {
+				let column = aEvent.target.closest("th");
+				let columnName = column.getAttribute("data-value");
+				let table = column.closest("table");
+				if (table.getAttribute("data-sort-column") == columnName) {
+					if (table.getAttribute("data-sort-order") == "ascending") {
+						table.setAttribute("data-sort-order", "descending");
+					} else {
+						table.setAttribute("data-sort-order", "ascending");
+					}
+				} else {
+					table.setAttribute("data-sort-column", columnName);
+					table.setAttribute("data-sort-order", "ascending");
+				}
+				wdw_birthdayList.sortTable(table.id);
+			}
+			aEvent.stopImmediatePropagation();
+		},
+	
+		getTableMapArray: function (aColumnName) {
+			let headers = [ "daysLeftColumn", "nameColumn", "ageColumn", "dateOfBirthColumn" ];
+			return headers.indexOf(aColumnName);
+		},
+
+		getTableMapType: function (aColumnName) {
+			if (aColumnName == "daysLeftColumn") {
+				return "number";
+			} else if (aColumnName == "nameColumn") {
+				return "string";
+			} else if (aColumnName == "ageColumn") {
+				return "number";
+			} else if (aColumnName == "dateOfBirthColumn") {
+				return "string";
+			}
+		},
+
 		loadCssRules: function () {
-			var myStyleSheet = "chrome://cardbook/content/skin/cardbookBirthday.css";
-			var myStyleSheetRuleName = "cardbookBirthday";
+			let myStyleSheet = "chrome://cardbook/content/skin/cardbookBirthday.css";
+			let myStyleSheetRuleName = "cardbookBirthday";
 			for (let styleSheet of InspectorUtils.getAllStyleSheets(window.document, false)) {
 				for (let rule of styleSheet.cssRules) {
 					// difficult to find as the sheet as no href 
 					if (rule.cssText.includes(myStyleSheetRuleName)) {
 						cardbookRepository.deleteCssAllRules(styleSheet);
 						cardbookRepository.createMarkerRule(styleSheet, myStyleSheetRuleName);
-						var createSearchRules = 0;
-						for (var i in cardbookBirthdaysUtils.lBirthdayAccountList) {
+						let createSearchRules = 0;
+						for (let dirPrefId in cardbookBirthdaysUtils.lBirthdayAccountList) {
 							createSearchRules++;
 						}
-						for (var i in cardbookBirthdaysUtils.lBirthdayAccountList) {
-							var dirPrefId = i;
-							var color = cardbookRepository.cardbookPreferences.getColor(dirPrefId)
+						for (let dirPrefId in cardbookBirthdaysUtils.lBirthdayAccountList) {
+							let color = cardbookRepository.cardbookPreferences.getColor(dirPrefId)
 							if (createSearchRules > 1) {
-								cardbookRepository.createCssCardRules(styleSheet, dirPrefId, color);
+								cardbookRepository.createCssCardRulesForTable(styleSheet, dirPrefId, color);
 							}
 						}
 						cardbookRepository.reloadCss(myStyleSheet);
@@ -67,48 +136,38 @@ if ("undefined" == typeof(wdw_birthdayList)) {
 
 		displayAllBirthdays: function () {
 			i18n.updateDocument({ extension: cardbookRepository.extension });
-			wdw_birthdayList.setupWindow();
-			
-			var maxDaysUntilNextBirthday = cardbookRepository.cardbookPreferences.getStringPref("extensions.cardbook.numberOfDaysForSearching");
+			document.getElementById('syncLightningMenuItemLabel').disabled = false;
+			let maxDaysUntilNextBirthday = cardbookRepository.cardbookPreferences.getStringPref("extensions.cardbook.numberOfDaysForSearching");
 			cardbookBirthdaysUtils.loadBirthdays(maxDaysUntilNextBirthday);
-			cardbookRepository.cardbookUtils.sortArrayByNumber(cardbookBirthdaysUtils.lBirthdayList,0,1);
+			wdw_birthdayList.sortTable("birthdayListTable");
+		},
+
+		displayBirthdays: function () {
 			wdw_birthdayList.loadCssRules();
+			let noneFound = document.getElementById("noneFound");
+			let resulTable = document.getElementById("birthdayListTable");
 
 			// if there are no birthdays in the configured timespan
 			if (cardbookBirthdaysUtils.lBirthdayList.length == 0) {
-				var today = new Date();
-				today = new Date(today.getTime() + maxDaysUntilNextBirthday *24*60*60*1000);
-				var noBirthdaysFoundMessage = cardbookRepository.extension.localeData.localizeMessage("noBirthdaysFoundMessage", [cardbookRepository.cardbookDates.convertDateToDateString(today, 'YYYYMMDD')]);
-				var treeView = {
-					rowCount : 1,
-					getCellText : function(row,column){
-						if (column.id == "daysleft") return noBirthdaysFoundMessage;
-					}
-				}
+				noneFound.hidden = false;
+				resulTable.hidden = true;
+				let date = new Date();
+				let today = new Date(date.getTime() + maxDaysUntilNextBirthday *24*60*60*1000);
+				let noBirthdaysFoundMessage = cardbookRepository.extension.localeData.localizeMessage("noBirthdaysFoundMessage", [cardbookRepository.cardbookDates.convertDateToDateString(today, 'YYYYMMDD')]);
+				noneFound.textContent = noBirthdaysFoundMessage;
 			} else {
-				var treeView = {
-					rowCount: cardbookBirthdaysUtils.lBirthdayList.length,
-					isContainer: function(row) { return false },
-					cycleHeader: function(row) { return false },
-					getRowProperties: function(row) {
-						return "SEARCH color_" + cardbookBirthdaysUtils.lBirthdayList[row][6];
-					},
-					getCellProperties: function(row, column) {
-						return this.getRowProperties(row);
-					},
-					getCellText: function(row, column){
-						if (column.id == "daysleft") return cardbookBirthdaysUtils.lBirthdayList[row][0];
-						else if (column.id == "name") return cardbookBirthdaysUtils.lBirthdayList[row][1];
-						else if (column.id == "age") return cardbookBirthdaysUtils.lBirthdayList[row][2];
-						else if (column.id == "dateofbirth") return cardbookRepository.cardbookDates.getFormattedDateForDateString(cardbookBirthdaysUtils.lBirthdayList[row][3], cardbookBirthdaysUtils.lBirthdayList[row][7], cardbookRepository.dateDisplayedFormat);
-						else if (column.id == "dateofbirthfound") return cardbookBirthdaysUtils.lBirthdayList[row][4];
-						else if (column.id == "email") return cardbookBirthdaysUtils.lBirthdayList[row][5];
-						else return cardbookBirthdaysUtils.lBirthdayList[row][5];
-					}
-				}
+				noneFound.hidden = true;
+				resulTable.hidden = false;
+				cardbookElementTools.deleteRows("birthdayListTable");
+				let headers = [ "daysLeftColumn", "nameColumn", "ageColumn", "dateOfBirthColumn" ];
+				let data = cardbookBirthdaysUtils.lBirthdayList.map(x => [ x[0], x[1], x[2], x[3] ]);
+				let dataParameters = [];
+				let rowParameters = {};
+				let sortFunction = wdw_birthdayList.clickToSort;
+				rowParameters.values = cardbookBirthdaysUtils.lBirthdayList.map(x => "SEARCH color_" + x[6]);
+				cardbookElementTools.addTreeTable("birthdayListTable", headers, data, dataParameters, rowParameters, sortFunction);
 			}
-			document.getElementById('birthdayListTree').view = treeView;
-			document.title=cardbookRepository.extension.localeData.localizeMessage("birthdaysListWindowLabel", [cardbookBirthdaysUtils.lBirthdayList.length.toString()]);
+			document.title = cardbookRepository.extension.localeData.localizeMessage("birthdaysListWindowLabel", [cardbookBirthdaysUtils.lBirthdayList.length.toString()]);
 			wdw_birthdayList.buttonShowing();
 		},
 	
@@ -117,33 +176,34 @@ if ("undefined" == typeof(wdw_birthdayList)) {
 		},
 
 		buttonShowing: function () {
-			var btnSend = document.getElementById("sendEmailLabel");
-			var myTree = document.getElementById("birthdayListTree");
-			if (myTree.view.selection.getRangeCount() > 0) {
+			let btnSend = document.getElementById("sendEmailLabel");
+			let currentIndex = wdw_birthdayList.getTableCurrentIndex("birthdayListTable");
+			if (currentIndex) {
 				btnSend.disabled = false;
 			} else {
 				btnSend.disabled = true;
 			}
+			let btnSync = document.getElementById("syncLightningMenuItemLabel");
+			if (cardbookBirthdaysUtils.lBirthdayList.length == 0) {
+				btnSync.disabled = true;
+			} else {
+				btnSync.disabled = false;
+			}
 		},
 
-		sendEmail: function () {
-			var myTree = document.getElementById('birthdayListTree');
-			var numRanges = myTree.view.selection.getRangeCount();
-			var start = new Object();
-			var end = new Object();
-
-			for (var i = 0; i < numRanges; i++) {
-				myTree.view.selection.getRangeAt(i,start,end);
-				for (var k = start.value; k <= end.value; k++){
-					var myEmail = myTree.view.getCellText(k, myTree.columns.getNamedColumn('email'));
-					var myName = myTree.view.getCellText(k, myTree.columns.getNamedColumn('name'));
-					if (myEmail == "") {
-						var errorTitle = cardbookRepository.extension.localeData.localizeMessage("warningTitle");
-						var errorMsg = cardbookRepository.extension.localeData.localizeMessage("noEmailFoundMessage", [myName]);
-						Services.prompt.alert(null, errorTitle, errorMsg);
-					} else {
-						notifyTools.notifyBackground({query: "cardbook.emailCards", compFields: [{field: "to", value: myEmail}]});
-					}
+		sendEmail: async function () {
+			let table = document.getElementById("birthdayListTable");
+			let selectedRows = table.querySelectorAll("tr[rowSelected='true']");
+			for (let row of selectedRows) {
+				let index =  wdw_birthdayList.getIndexFromName(row.id);
+				let email = cardbookBirthdaysUtils.lBirthdayList[index][5];
+				let name = cardbookBirthdaysUtils.lBirthdayList[index][1];
+				if (email == "") {
+					let errorTitle = cardbookRepository.extension.localeData.localizeMessage("warningTitle");
+					let errorMsg = cardbookRepository.extension.localeData.localizeMessage("noEmailFoundMessage", [name]);
+					Services.prompt.alert(null, errorTitle, errorMsg);
+				} else {
+					await notifyTools.notifyBackground({query: "cardbook.emailCards", compFields: [{field: "to", value: email}]});
 				}
 			}
 		},

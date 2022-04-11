@@ -144,7 +144,6 @@
 	min-width: 700px;
 }
 
-
 .tableTree {
 	width: 100%;
 	overflow-y: auto;
@@ -166,7 +165,13 @@
 }
 
 .tableTree thead th {
+	font-weight: bold;
+	text-align: left;
 	background-color: var(--in-content-button-background);
+}
+
+.tableTree th img {
+	padding-left: 20px;
 }
 
 .tableTree td, th {

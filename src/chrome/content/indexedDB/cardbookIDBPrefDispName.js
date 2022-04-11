@@ -119,14 +119,18 @@ var cardbookIDBPrefDispName = {
 	removePrefDispName: function(aEmail) {
 		aEmail = aEmail.toLowerCase();
 		if (cardbookRepository.cardbookPreferDisplayNameIndex[aEmail]) {
-			var prefDispNameId = cardbookRepository.cardbookPreferDisplayNameIndex[aEmail].prefDispNameId;
+			let prefDispNameId = cardbookRepository.cardbookPreferDisplayNameIndex[aEmail].prefDispNameId;
+			cardbookIDBPrefDispName.removePrefDispNameWithId(prefDispNameId, aEmail);
 		} else {
 			return;
 		}
+	},
+
+	removePrefDispNameWithId: function(aPrefDispNameId, aEmail) {
 		var db = cardbookRepository.cardbookPrefDispNameDatabase.db;
 		var transaction = db.transaction(["prefDispName"], "readwrite");
 		var store = transaction.objectStore("prefDispName");
-		var cursorDelete = store.delete(prefDispNameId);
+		var cursorDelete = store.delete(aPrefDispNameId);
 		
 		cursorDelete.onsuccess = async function(e) {
 			if (cardbookRepository.cardbookPreferDisplayNameIndex[aEmail]) {
@@ -155,7 +159,11 @@ var cardbookIDBPrefDispName = {
 				prefDispName = await cardbookIDBPrefDispName.checkPrefDispName(prefDispName);
 			} catch(e) {}
 			if (prefDispName) {
-				cardbookIDBPrefDispName.addPrefDispNameToIndex(prefDispName);
+				if (cardbookRepository.cardbookPreferDisplayNameIndex[prefDispName.email]) {
+					cardbookIDBPrefDispName.removePrefDispNameWithId(prefDispName.prefDispNameId, prefDispName.email);
+				} else {
+					cardbookIDBPrefDispName.addPrefDispNameToIndex(prefDispName);
+				}
 			}
 		};
 

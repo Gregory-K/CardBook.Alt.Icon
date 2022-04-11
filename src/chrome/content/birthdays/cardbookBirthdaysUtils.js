@@ -102,7 +102,7 @@ if ("undefined" == typeof(cardbookBirthdaysUtils)) {
 				var ldaysUntilNextBirthday = cardbookBirthdaysUtils.lBirthdayList[i][0];
 				var lBirthdayTitle = cardbookBirthdaysUtils.lBirthdayList[i][1];
 				var lBirthdayAge = cardbookBirthdaysUtils.lBirthdayList[i][2];
-				var lBirthdayName = cardbookBirthdaysUtils.lBirthdayList[i][8];
+				var lBirthdayName = cardbookBirthdaysUtils.lBirthdayList[i][7];
 
 				var lBirthdayDate = new Date();
 				lBirthdayDate.setDate(date_of_today.getUTCDate()+parseInt(ldaysUntilNextBirthday));
@@ -309,9 +309,10 @@ if ("undefined" == typeof(cardbookBirthdaysUtils)) {
 				ldaysUntilNextBirthday = this.daysBetween(lnextBirthday, date_of_today);
 				if (parseInt(ldaysUntilNextBirthday) <= parseInt(aNumberOfDays)) {
 					if (ldaysUntilNextBirthday === parseInt(ldaysUntilNextBirthday)) {
-						cardbookBirthdaysUtils.lBirthdayList.push([ldaysUntilNextBirthday, lBirthdayTitle, lAge, lDateOfBirthOld, aDateOfBirthFound, aEmail, aDirPrefId, aDateFormat, aName, aType]);
+						let dateOfBirthOld = cardbookRepository.cardbookDates.getFormattedDateForDateString(lDateOfBirthOld, aDateFormat, cardbookRepository.dateDisplayedFormat)
+						cardbookBirthdaysUtils.lBirthdayList.push([ldaysUntilNextBirthday, lBirthdayTitle, lAge, dateOfBirthOld, aDateOfBirthFound, aEmail, aDirPrefId, aName]);
 					} else {
-						cardbookBirthdaysUtils.lBirthdayList.push(["0", lBirthdayTitle + " : Error", "0", "0", aDateOfBirthFound, aEmail, aDirPrefId, aDateFormat, aName, aType]);
+						cardbookBirthdaysUtils.lBirthdayList.push(["0", lBirthdayTitle + " : Error", "0", "0", aDateOfBirthFound, aEmail, aDirPrefId, aName]);
 					}
 					if (!(cardbookBirthdaysUtils.lBirthdayAccountList[aDirPrefId])) {
 						cardbookBirthdaysUtils.lBirthdayAccountList[aDirPrefId] = "";

@@ -88,7 +88,7 @@ if ("undefined" == typeof(wdw_templateEdition)) {
 			}
 		},
 
-		applyTemplateNext2: function (aContent) {
+		applyTemplateNext2: async function (aContent) {
 			if (aContent) {
  				let re = /[\n\u0085\u2028\u2029]|\r\n?/;
 				let fileContentArray = cardbookRepository.cardbookUtils.cleanArrayWithoutTrim(aContent.split(re));
@@ -177,7 +177,7 @@ if ("undefined" == typeof(wdw_templateEdition)) {
 						}
 
 						wdw_cardEdition.cloneCard(myTempCard, wdw_cardEdition.workingCard);
-						wdw_cardEdition.displayCard(wdw_cardEdition.workingCard);
+						await wdw_cardEdition.displayCard(wdw_cardEdition.workingCard);
 						myTempCard = null;
 						
 						// first vCard shown

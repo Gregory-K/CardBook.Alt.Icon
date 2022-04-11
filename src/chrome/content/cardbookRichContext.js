@@ -95,20 +95,20 @@ if ("undefined" == typeof(cardbookRichContext)) {
 				var fieldLabel = cardbookRepository.extension.localeData.localizeMessage(textbox.getAttribute('fieldName') + "Label");
 			}
 			var message = cardbookRepository.extension.localeData.localizeMessage("copyFieldValue", [fieldLabel]);
-			menuItem.addEventListener("command", function(aEvent) {
+			menuItem.addEventListener("command", async function(aEvent) {
 					var tmpArray = this.id.split('::');
 					var textbox1 = document.getElementById(tmpArray[1]);
 					var fieldName = textbox1.getAttribute('fieldName');
 					if (cardbookRepository.dateFields.includes(fieldName)) {
-						wdw_cardbook.copyFieldValue(fieldName, fieldLabel, "", "");
+						await wdw_cardbook.copyFieldValue(fieldName, fieldLabel, "", "");
 					} else if (cardbookRepository.newFields.includes(fieldName)) {
-						wdw_cardbook.copyFieldValue(fieldName, fieldLabel, "", "");
+						await wdw_cardbook.copyFieldValue(fieldName, fieldLabel, "", "");
 					} else if (fieldName.startsWith("X-") || fieldName == 'org') {
-						wdw_cardbook.copyFieldValue(fieldName, fieldLabel, "", textbox1.value);
+						await wdw_cardbook.copyFieldValue(fieldName, fieldLabel, "", textbox1.value);
 					} else if (fieldName.startsWith("org.")) {
-						wdw_cardbook.copyFieldValue(fieldName, fieldLabel, "", textbox1.value, textbox1.getAttribute('allValue'));
+						await wdw_cardbook.copyFieldValue(fieldName, fieldLabel, "", textbox1.value, textbox1.getAttribute('allValue'));
 					} else {
-						wdw_cardbook.copyFieldValue(fieldName, fieldLabel, "", "");
+						await wdw_cardbook.copyFieldValue(fieldName, fieldLabel, "", "");
 					}
 				}, false);
 			menuItem.setAttribute("label", message);

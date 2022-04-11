@@ -34,7 +34,7 @@
 	 */
 	async function updatePreview() {
 		let cards = ownerDocument.getElementById("cardbookPrintContent").getAttribute("cards");
-		cardbookPrint.buildHTML(PrintEventHandler.printPreviewEl.querySelector("browser").contentDocument,
+		await cardbookPrint.buildHTML(PrintEventHandler.printPreviewEl.querySelector("browser").contentDocument,
 												cards,
 												{ headers: document.getElementById("displayHeadersCheckBox").checked,
 													fieldNames: document.getElementById("displayFieldNamesCheckBox").checked,

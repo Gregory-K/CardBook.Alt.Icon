@@ -68,7 +68,7 @@ var cardbookPreferences = {
 		this.setIMPPs(4,"jami:" + cardbookRepository.extension.localeData.localizeMessage("impp.jami") + ":jami");
 	},
 
-	sortArrayByNumber: function (aArray, aIndex, aInvert) {
+	sortMultipleArrayByNumber: function (aArray, aIndex, aInvert) {
 		function compare1(a, b) { return (a[aIndex] - b[aIndex])*aInvert; };
 		function compare2(a, b) { return (a - b)*aInvert; };
 		if (aIndex != -1) {
@@ -91,7 +91,7 @@ var cardbookPreferences = {
 				var tmpArray = prefValue.split(":");
 				finalResult.push([tmpArray[0], tmpArray[1], parseInt(prefNumber)]);
 			}
-			cardbookPreferences.sortArrayByNumber(finalResult,2,1);
+			cardbookPreferences.sortMultipleArrayByNumber(finalResult,2,1);
 			return finalResult;
 		}
 		catch(e) {

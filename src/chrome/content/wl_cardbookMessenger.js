@@ -572,7 +572,7 @@ function onLoad(wasAlreadyOpen) {
 				<menuitem id="importCardsFromDirFromAccountsOrCats" label="__MSG_importCardFromDirLabel__" oncommand="wdw_cardbook.importCardsFromDir();"/>
 			</menupopup>
 	
-			<menupopup id="cardsTreeContextMenu" onpopupshowing="return wdw_cardbook.cardsTreeContextShowing(event);">
+			<menupopup id="cardsTreeContextMenu" onpopupshowing="return await wdw_cardbook.cardsTreeContextShowing(event);">
 				<menuitem id="addContactFromCards" label="__MSG_cardbookToolbarAddContactButtonLabel__" oncommand="wdw_cardbook.newKey();"/>
 				<menuitem id="addListFromCards" label="__MSG_cardbookToolbarAddListButtonLabel__" oncommand="wdw_cardbook.createList();"/>
 				<menuitem id="editCardFromCards" label="__MSG_cardbookToolbarEditButtonLabel__" oncommand="wdw_cardbook.editCard();"/>

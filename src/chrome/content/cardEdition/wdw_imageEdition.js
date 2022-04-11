@@ -34,8 +34,13 @@ if ("undefined" == typeof(wdw_imageEdition)) {
 			if (aCard.photo.attachmentId) {
 				document.getElementById('photoAttachmentIdTextBox').value = aCard.photo.attachmentId;
 			}
-			await cardbookIDBImage.getImage("photo", dirname, aCard.cbid, aCard.fn)
+			if (aCard.photo.value) {
+				let image = {cbid: aCard.dirPrefId+"::"+aCard.uid, dirPrefId: aCard.dirPrefId, extension: aCard.photo.extension, content: aCard.photo.value};
+				wdw_imageEdition.resizeImageCard(image, aDisplayDefault);
+			} else {
+				await cardbookIDBImage.getImage("photo", dirname, aCard.cbid, aCard.fn)
 				.then( image => {
+					console.debug(image)
 					wdw_imageEdition.resizeImageCard(image, aDisplayDefault);
 				}).catch( () => {
 					if (aDisplayDefault) {
@@ -44,6 +49,7 @@ if ("undefined" == typeof(wdw_imageEdition)) {
 						document.getElementById('imageBox').setAttribute('hidden', 'true');
 					}
 				});
+			}
 		},
 
 		resizeImageCard: function (aContent, aDisplayDefault) {

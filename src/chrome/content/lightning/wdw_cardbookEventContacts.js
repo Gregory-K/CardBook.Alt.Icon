@@ -7,103 +7,109 @@ if ("undefined" == typeof(wdw_cardbookEventContacts)) {
 		emailArray: [],
 		displayName: "",
 
-		sortTrees: function (aEvent) {
-			wdw_cardbookEventContacts.buttonShowing();
-			if (aEvent.button != 0) {
-				return;
-			}
-			var target = aEvent.originalTarget;
-			if (target.localName == "treecol") {
-				wdw_cardbookEventContacts.sortCardsTreeCol(target);
+		getIndexFromName: function (aName) {
+			let tmpArray = aName.split("_");
+			return tmpArray[tmpArray.length - 1];
+		},
+
+		getTableCurrentIndex: function (aTableName) {
+			let selectedList = document.getElementById(aTableName).querySelectorAll("tr[rowSelected='true']");
+			if (selectedList.length) {
+				return wdw_cardbookEventContacts.getIndexFromName(selectedList[0].id);
 			}
 		},
 
-		sortCardsTreeCol: function (aColumn) {
-			var myTree = document.getElementById('eventsTree');
-			if (aColumn) {
-				if (myTree.currentIndex !== -1) {
-					var mySelectedValue = myTree.view.getCellText(myTree.currentIndex, myTree.columns.getNamedColumn(aColumn.id));
+		clickTree: function (aEvent) {
+			if (aEvent.target.tagName == "html:td") {
+				let row = aEvent.target.closest("tr");
+				let tbody = aEvent.target.closest("tbody");
+				for (let child of tbody.childNodes) {
+					child.removeAttribute("rowSelected");
 				}
+				row.setAttribute("rowSelected", "true");
+				wdw_cardbookEventContacts.buttonShowing();
 			}
+		},
 
-			var columnName;
-			var columnArray;
-			var columnType;
-			var order = myTree.getAttribute("sortDirection") == "ascending" ? 1 : -1;
-
-			if (aColumn) {
-				var myColumn = aColumn;
-				columnName = aColumn.id;
-				if (myTree.getAttribute("sortResource") == columnName) {
-					order *= -1;
-				}
-			} else {
-				columnName = myTree.getAttribute("sortResource");
-				var myColumn = document.getElementById(columnName);
-			}
-			cal.unifinder.sortItems(wdw_cardbookEventContacts.allEvents, columnName, order);
-
-			//setting these will make the sort option persist
-			myTree.setAttribute("sortDirection", order == 1 ? "ascending" : "descending");
-			myTree.setAttribute("sortResource", columnName);
+		sortTable: function (aTableName) {
+			let table = document.getElementById(aTableName);
+			let order = table.getAttribute("data-sort-order") == "ascending" ? 1 : -1;
+			let columnName = table.getAttribute("data-sort-column");
 			
+			let columnSort = wdw_cardbookEventContacts.getTableMapColumn(columnName);
+
+			cal.unifinder.sortItems(wdw_cardbookEventContacts.allEvents, columnSort, order);
+
 			wdw_cardbookEventContacts.displayEvents();
-			
-			//set the appropriate attributes to show to indicator
-			var cols = myTree.getElementsByTagName("treecol");
-			for (var i = 0; i < cols.length; i++) {
-				cols[i].removeAttribute("sortDirection");
-			}
-			document.getElementById(columnName).setAttribute("sortDirection", order == 1 ? "ascending" : "descending");
-
-			// select back
-			if (aColumn && mySelectedValue) {
-				for (var i = 0; i < myTree.view.rowCount; i++) {
-					if (myTree.view.getCellText(i, myTree.columns.getNamedColumn(aColumn.id)) == mySelectedValue) {
-						myTree.view.selection.rangedSelect(i,i,true);
-						found = true
-						foundIndex = i;
-						break;
+		},
+	
+		clickToSort: function (aEvent) {
+			if (aEvent.target.tagName == "html:th" || aEvent.target.tagName == "html:img") {
+				let column = aEvent.target.closest("th");
+				let columnName = column.getAttribute("data-value");
+				let table = column.closest("table");
+				if (table.getAttribute("data-sort-column") == columnName) {
+					if (table.getAttribute("data-sort-order") == "ascending") {
+						table.setAttribute("data-sort-order", "descending");
+					} else {
+						table.setAttribute("data-sort-order", "ascending");
 					}
+				} else {
+					table.setAttribute("data-sort-column", columnName);
+					table.setAttribute("data-sort-order", "ascending");
 				}
+				wdw_cardbookEventContacts.sortTable(table.id);
+			}
+			aEvent.stopImmediatePropagation();
+		},
+	
+		getTableMapColumn: function (aColumnName) {
+			if (aColumnName == "eventsTableTitle") {
+				return "title";
+			} else if (aColumnName == "eventsTableStartdate") {
+				return "startDate";
+			} else if (aColumnName == "eventsTableEnddate") {
+				return "endDate";
+			} else if (aColumnName == "eventsTableCategories") {
+				return "categories";
+			} else if (aColumnName == "eventsTableLocation") {
+				return "location";
+			} else if (aColumnName == "eventsTableCalendarname") {
+				return "calendarName";
 			}
 		},
 
 		doubleClickTree: function (aEvent) {
-			var myTree = document.getElementById('eventsTree');
-			if (myTree.currentIndex != -1) {
-				var cell = myTree.getCellAt(aEvent.clientX, aEvent.clientY);
-				if (cell.row != -1) {
-					wdw_cardbookEventContacts.editEvent();
-				} else {
-					wdw_cardbookEventContacts.createEvent();
-				}
+			if (aEvent.target.tagName == "html:th") {
+				return;
+			} else if (aEvent.target.tagName == "html:td") {
+				wdw_cardbookEventContacts.editEvent();
+			} else {
+				wdw_cardbookEventContacts.createEvent();
 			}
 		},
 
 		displayEvents: function () {
-			var eventsTreeView = {
-				get rowCount() { return wdw_cardbookEventContacts.allEvents.length; },
-				isContainer: function(idx) { return false },
-				cycleHeader: function(idx) { return false },
-				isEditable: function(idx, column) { return false },
-				getCellText: function(idx, column) {
-					var calendarEvent = wdw_cardbookEventContacts.allEvents[idx];
-					if (column.id == "title") return (calendarEvent.title ? calendarEvent.title.replace(/\n/g, ' ') : "");
-					else if (column.id == "startDate") return wdw_cardbookEventContacts.formatEventDateTime(calendarEvent.startDate);
-					else if (column.id == "endDate") {
-						let eventEndDate = calendarEvent.endDate.clone();
-						if (calendarEvent.startDate.isDate) {
-							eventEndDate.day = eventEndDate.day - 1;
-						}
-						return wdw_cardbookEventContacts.formatEventDateTime(eventEndDate);
-					} else if (column.id == "categories") return calendarEvent.getCategories({}).join(", ");
-					else if (column.id == "location") return calendarEvent.getProperty("LOCATION");
-					else if (column.id == "status") return getEventStatusString(calendarEvent);
-					else if (column.id == "calendarName") return calendarEvent.calendar.name;
+			function getEventEndDate (x) {
+				let eventEndDate = x.endDate.clone();
+				if (x.startDate.isDate) {
+					eventEndDate.day = eventEndDate.day - 1;
 				}
+				return eventEndDate;
 			}
-			document.getElementById('eventsTree').view = eventsTreeView;
+
+			cardbookElementTools.deleteRows("eventsTable");
+			let headers = [ "eventsTableTitle", "eventsTableStartdate", "eventsTableEnddate", "eventsTableCategories", "eventsTableLocation", "eventsTableCalendarname" ];
+			let data = wdw_cardbookEventContacts.allEvents.map(x => [ (x.title ? x.title.replace(/\n/g, ' ') : ""),
+																		wdw_cardbookEventContacts.formatEventDateTime(x.startDate),
+																		wdw_cardbookEventContacts.formatEventDateTime(getEventEndDate(x)),
+																		x.getCategories({}).join(", "),
+																		x.getProperty("LOCATION"),
+																		x.calendar.name ]);
+			let dataParameters = [];
+			let rowParameters = {};
+			let sortFunction = wdw_cardbookEventContacts.clickToSort;
+			cardbookElementTools.addTreeTable("eventsTable", headers, data, dataParameters, rowParameters, sortFunction);
 			wdw_cardbookEventContacts.buttonShowing();
 		},
 
@@ -111,37 +117,10 @@ if ("undefined" == typeof(wdw_cardbookEventContacts)) {
 			return cal.dtz.formatter.formatDateTime(aDatetime.getInTimezone(cal.dtz.defaultTimezone));
 		},
 		
-		getItemFromEvent: function (event) {
-			let row = document.getElementById('eventsTree').getRowAt(event.clientX, event.clientY);
-			if (row > -1) {
-				return wdw_cardbookEventContacts.allEvents[row];
-			}
-			return null;
-		},
-
-		eventsTreeContextShowing: function (aEvent) {
-			if (cardbookWindowUtils.displayColumnsPicker(aEvent)) {
-				wdw_cardbookEventContacts.eventsTreeContextShowingNext();
-				return true;
-			} else {
-				return false;
-			}
-		},
-
-		eventsTreeContextShowingNext: function () {
-			var menuEdit = document.getElementById("editEvent");
-			var myTree = document.getElementById("eventsTree");
-			if (myTree.currentIndex != -1) {
-				menuEdit.disabled = false;
-			} else {
-				menuEdit.disabled = true;
-			}
-		},
-
 		buttonShowing: function () {
 			var btnEdit = document.getElementById("editEventLabel");
-			var myTree = document.getElementById("eventsTree");
-			if (myTree.currentIndex != -1) {
+			let currentIndex = wdw_cardbookEventContacts.getTableCurrentIndex("eventsTable");
+			if (currentIndex) {
 				btnEdit.disabled = false;
 			} else {
 				btnEdit.disabled = true;
@@ -150,11 +129,9 @@ if ("undefined" == typeof(wdw_cardbookEventContacts)) {
 
 		// code taken from modifyEventWithDialog
 		editEvent: function() {
-			var myTree = document.getElementById('eventsTree');
-			if (myTree.currentIndex == -1) {
-				return;
-			} else {
-				var myItem = wdw_cardbookEventContacts.allEvents[myTree.currentIndex];
+			let currentIndex = wdw_cardbookEventContacts.getTableCurrentIndex("eventsTable");
+			if (currentIndex) {
+				var myItem = wdw_cardbookEventContacts.allEvents[currentIndex];
 				let dlg = cal.item.findWindow(myItem);
 				if (dlg) {
 					dlg.focus();
@@ -262,7 +239,7 @@ if ("undefined" == typeof(wdw_cardbookEventContacts)) {
 					i--;
 				}
 			}
-			wdw_cardbookEventContacts.sortCardsTreeCol(null);
+			wdw_cardbookEventContacts.sortTable("eventsTable");
 		},
 
 		loadEvents: function () {

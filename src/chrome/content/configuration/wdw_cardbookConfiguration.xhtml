@@ -169,7 +169,7 @@
 									<label><html:h2>__MSG_accountsRestrictionsLabel__</html:h2></label>
 									<hbox flex="1">
 										<table id="accountsRestrictionsTable" class="tableTree"
-											sortDirection="ascending" sortResource="accountsRestrictionsABName"
+											data-sort-order="ascending" data-sort-column="accountsRestrictionsABName"
 											onclick="wdw_cardbookConfiguration.clickTree(event);"
 											ondblclick="wdw_cardbookConfiguration.doubleClickTree(event);"
 											onkeydown="wdw_cardbookConfiguration.keyDownTree(event);"/>
@@ -369,7 +369,7 @@
 								<label>__MSG_editionWarn__</label>
 								<checkbox id="fieldsCheckbox" oncommand="wdw_cardbookConfiguration.changedFieldsMainCheckbox();" label="__MSG_selectAllFieldsLabel__"/>
 								<table id="fieldsTreeTable" class="tableTree"
-									sortDirection="ascending" sortResource="fieldsName"
+									data-sort-order="ascending" data-sort-column="fieldsName"
 									onclick="wdw_cardbookConfiguration.clickTree(event);"
 									onkeydown="wdw_cardbookConfiguration.keyDownTree(event);"/>
 							</vbox>
@@ -378,7 +378,7 @@
 								<label><html:h2>__MSG_typesGroupboxLabel__</html:h2></label>
 								<label><html:h2>__MSG_ABtypesGroupboxLabel__</html:h2></label>
 								<hbox align="center">
-									<radiogroup id="ABtypesCategoryRadiogroup" orient="horizontal" onselect="wdw_cardbookConfiguration.sortTable(null, 'typesTable');">
+									<radiogroup id="ABtypesCategoryRadiogroup" orient="horizontal" onselect="wdw_cardbookConfiguration.sortTable('typesTable');">
 										<radio value="GOOGLE2" label="__MSG_typesCategoryGoogleLabel__" accesskey="__MSG_typesCategoryGoogleAccesskey__" selected="true"/>
 										<radio value="APPLE" label="__MSG_typesCategoryAppleLabel__" accesskey="__MSG_typesCategoryAppleAccesskey__"/>
 										<radio value="YAHOO" label="__MSG_typesCategoryYahooLabel__" accesskey="__MSG_typesCategoryYahooAccesskey__"/>
@@ -389,7 +389,7 @@
 								<separator class="thin"/>
 								<label><html:h2>__MSG_typesGroupboxLabel__</html:h2></label>
 								<hbox align="center">
-									<radiogroup id="typesCategoryRadiogroup" orient="horizontal" onselect="wdw_cardbookConfiguration.sortTable(null, 'typesTable');">
+									<radiogroup id="typesCategoryRadiogroup" orient="horizontal" onselect="wdw_cardbookConfiguration.sortTable('typesTable');">
 										<radio value="email" label="__MSG_typesCategoryEmailLabel__" accesskey="__MSG_typesCategoryEmailAccesskey__" selected="true"/>
 										<radio value="tel" label="__MSG_typesCategoryTelLabel__" accesskey="__MSG_typesCategoryTelAccesskey__"/>
 										<radio value="adr" label="__MSG_typesCategoryAdrLabel__" accesskey="__MSG_typesCategoryAdrAccesskey__"/>
@@ -400,7 +400,7 @@
 								<separator class="thin"/>
 								<hbox flex="1">
 									<table id="typesTable" class="tableTree"
-										sortDirection="ascending" sortResource="typesLabel"
+										data-sort-order="ascending" data-sort-column="typesLabel"
 										onclick="wdw_cardbookConfiguration.clickTree(event);"
 										ondblclick="wdw_cardbookConfiguration.doubleClickTree(event);"
 										onkeydown="wdw_cardbookConfiguration.keyDownTree(event);"/>
@@ -444,7 +444,7 @@
 								<separator class="thin"/>
 								<hbox flex="1">
 									<table id="IMPPsTable" class="tableTree"
-										sortDirection="ascending" sortResource="IMPPLabel"
+										data-sort-order="ascending" data-sort-column="IMPPLabelHeader"
 										onclick="wdw_cardbookConfiguration.clickTree(event);"
 										ondblclick="wdw_cardbookConfiguration.doubleClickTree(event);"
 										onkeydown="wdw_cardbookConfiguration.keyDownTree(event);"/>
@@ -518,7 +518,7 @@
 							<vbox id="cardbook-customFieldsPane" class="cardbook-pane" label="__MSG_customFieldsTabLabel__">
 								<label><html:h2>__MSG_customFieldsTabLabel__</html:h2></label>
 								<hbox align="center">
-									<radiogroup id="customFieldsCategoryRadiogroup" orient="horizontal" onselect="wdw_cardbookConfiguration.sortTable(null, 'customFieldsTable');">
+									<radiogroup id="customFieldsCategoryRadiogroup" orient="horizontal" onselect="wdw_cardbookConfiguration.sortTable('customFieldsTable');">
 										<radio value="personal" label="__MSG_customFieldsPersTitleLabel__" accesskey="__MSG_customFieldsPersTitleAccesskey__" selected="true"/>
 										<radio value="org" label="__MSG_customFieldsOrgTitleLabel__" accesskey="__MSG_customFieldsOrgTitleAccesskey__"/>
 									</radiogroup>
@@ -526,7 +526,7 @@
 
 								<hbox flex="1">
 									<table id="customFieldsTable" class="tableTree"
-										sortDirection="ascending" sortResource="customFieldsRank"
+										data-sort-order="ascending" data-sort-column="customFieldRankHeader"
 										onclick="wdw_cardbookConfiguration.clickTree(event);"
 										ondblclick="wdw_cardbookConfiguration.doubleClickTree(event);"
 										onkeydown="wdw_cardbookConfiguration.keyDownTree(event);"/>
@@ -545,7 +545,7 @@
 								<separator class="thin"/>
 								<hbox flex="1">
 									<table id="orgTreeTable" class="tableTree"
-										sortDirection="ascending" sortResource="orgRank"
+										data-sort-order="ascending" data-sort-column="orgRank"
 										onclick="wdw_cardbookConfiguration.clickTree(event);"
 										ondblclick="wdw_cardbookConfiguration.doubleClickTree(event);"
 										onkeydown="wdw_cardbookConfiguration.keyDownTree(event);"/>
@@ -670,7 +670,7 @@
 								<checkbox id="discoveryAccountsCheckbox" oncommand="wdw_cardbookConfiguration.changedDiscoveryMainCheckbox();" label="__MSG_selectAllDiscoveryLabel__"/>
 								<hbox flex="1">
 									<table id="discoveryAccountsTable" class="tableTree"
-										sortDirection="ascending" sortResource="discoveryAccountsName"
+										data-sort-order="ascending" data-sort-column="discoveryAccountsName"
 										onclick="wdw_cardbookConfiguration.clickTree(event);"
 										ondblclick="wdw_cardbookConfiguration.doubleClickTree(event);"
 										onkeydown="wdw_cardbookConfiguration.keyDownTree(event);"/>
@@ -706,7 +706,7 @@
 								<label>__MSG_attachVCardWarn__</label>
 								<hbox flex="1">
 									<table id="accountsVCardsTable" class="tableTree"
-										sortDirection="ascending" sortResource="accountsVCardsMailName"
+										data-sort-order="ascending" data-sort-column="accountsVCardsMailName"
 										onclick="wdw_cardbookConfiguration.clickTree(event);"
 										ondblclick="wdw_cardbookConfiguration.doubleClickTree(event);"
 										onkeydown="wdw_cardbookConfiguration.keyDownTree(event);"/>
@@ -721,7 +721,7 @@
 								<label>__MSG_emailsCollectionTooltip__</label>
 								<hbox flex="1">
 									<table id="emailsCollectionTable" class="tableTree"
-										sortDirection="ascending" sortResource="emailsCollectionMailName"
+										data-sort-order="ascending" data-sort-column="emailsCollectionMailName"
 										onclick="wdw_cardbookConfiguration.clickTree(event);"
 										ondblclick="wdw_cardbookConfiguration.doubleClickTree(event);"
 										onkeydown="wdw_cardbookConfiguration.keyDownTree(event);"/>
@@ -772,7 +772,7 @@
 									<checkbox id="addressbooksCheckbox" oncommand="wdw_cardbookConfiguration.changedAddressbooksMainCheckbox();" label="__MSG_selectAllABsLabel__"/>
 									<hbox flex="1">
 										<table id="addressbooksTable" class="tableTree"
-											sortDirection="ascending" sortResource="addressbooksName"
+											data-sort-order="ascending" data-sort-column="addressbooksName"
 											onclick="wdw_cardbookConfiguration.clickTree(event);"
 											ondblclick="wdw_cardbookConfiguration.doubleClickTree(event);"
 											onkeydown="wdw_cardbookConfiguration.keyDownTree(event);"/>
@@ -784,7 +784,7 @@
 									<checkbox id="calendarsCheckbox" oncommand="wdw_cardbookConfiguration.changedCalendarsMainCheckbox();" label="__MSG_selectAllCalendarsLabel__"/>
 									<hbox flex="1">
 										<table id="calendarsTable" class="tableTree"
-											sortDirection="ascending" sortResource="calendarsName"
+											data-sort-order="ascending" data-sort-column="calendarsName"
 											onclick="wdw_cardbookConfiguration.clickTree(event);"
 											ondblclick="wdw_cardbookConfiguration.doubleClickTree(event);"
 											onkeydown="wdw_cardbookConfiguration.keyDownTree(event);"/>

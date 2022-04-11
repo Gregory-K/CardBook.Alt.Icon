@@ -257,24 +257,28 @@ myFormatObserver.register();
 			
 			var showCondensedAddresses = cardbookRepository.cardbookPreferences.getBoolPref("mail.showCondensedAddresses");
 			var exclusive = cardbookRepository.cardbookPreferences.getBoolPref("extensions.cardbook.exclusive");
-			var identity = ovl_formatEmailCorrespondents.getIdentityForEmail(arguments[0]);
-			if (identity) {
-				return ovl_formatEmailCorrespondents.origFunctions.formatDisplayName.apply(null, arguments);
-			} else if (showCondensedAddresses) {
-				var myCardBookResult = {};
-				myCardBookResult = ovl_formatEmailCorrespondents.getCardBookDisplayNameFromEmail(arguments[0], arguments[1]);
+			var myCardBookResult = {};
+			myCardBookResult = ovl_formatEmailCorrespondents.getCardBookDisplayNameFromEmail(arguments[0], arguments[1]);
+			if (myCardBookResult.found) {
+				return myCardBookResult.result;
+			} else {
 				if (exclusive) {
-					if (myCardBookResult.found) {
-						return myCardBookResult.result;
-					} else {
-						return MailServices.headerParser.makeMailboxObject(arguments[1], arguments[0]).toString();
+					let displayName = null;
+					var identity = ovl_formatEmailCorrespondents.getIdentityForEmail(arguments[0]);
+					if (identity) {
+						try {
+							displayName = gMessengerBundle.GetStringFromName("header" + aContext + "FieldMe");
+						} catch (e) {
+							displayName = gMessengerBundle.GetStringFromName("headertoFieldMe");
+						}
+					
+						if (MailServices.accounts.allIdentities.length > 1) {
+							displayName = MailServices.headerParser.makeMailboxObject(displayName, identity.email).toString();
+						}
 					}
+					return displayName;
 				} else {
-					if (!myCardBookResult.found) {
-						return ovl_formatEmailCorrespondents.origFunctions.formatDisplayName.apply(null, arguments);
-					} else {
-						return myCardBookResult.result;
-					}
+					return ovl_formatEmailCorrespondents.origFunctions.formatDisplayName.apply(null, arguments);
 				}
 			}
 		};

@@ -81,7 +81,7 @@ var cardbookUtils = {
 		return cardbookRepository.arrayUnique(result);
 	},
 
-	formatAddress: function(aAddress, aAdrFormula) {
+	formatAddress: async function(aAddress, aAdrFormula) {
 		let result =  "";
 		let resultArray =  [];
 		let myAdrFormula = aAdrFormula ||
@@ -91,8 +91,8 @@ var cardbookUtils = {
 		// maybe a country code (Google uses them)
 		let lcRegionCode = addressArray[6].toLowerCase();
 		if (cardbookRepository.countriesList.includes(lcRegionCode)) {
-			const loc = new Localization(["toolkit/intl/regionNames.ftl"], true);
-			addressArray[6] = loc.formatValueSync("region-name-" + lcRegionCode);
+			const loc = new Localization(["toolkit/intl/regionNames.ftl"]);
+			addressArray[6] = await loc.formatValue("region-name-" + lcRegionCode);
 		}
 		result = cardbookUtils.getStringFromFormula(myAdrFormula, addressArray);
 		var re = /[\n\u0085\u2028\u2029]|\r\n?/;
@@ -100,31 +100,33 @@ var cardbookUtils = {
 		return cardbookUtils.cleanArray(myAdrResultArray).join("\n");
 	},
 
-	getCountryCodeFromCountryName: function (aName) {
-		const loc = new Localization(["toolkit/intl/regionNames.ftl"], true);
+	getCountryCodeFromCountryName: async function (aName) {
+		const loc = new Localization(["toolkit/intl/regionNames.ftl"]);
 		for (let code of cardbookRepository.countriesList) {
-			if (loc.formatValueSync("region-name-" + code).toLowerCase() == aName.toLowerCase()) {
+			let locName = await loc.formatValue("region-name-" + code);
+			if (locName.toLowerCase() == aName.toLowerCase()) {
 				return code.toUpperCase();
 			}
 		}
 		return aName;
 	},
 
-	getCardRegion: function (aCard) {
-		var i = 0;
+	getCardRegion: async function (aCard) {
+		let i = 0;
 		while (true) {
 			if (aCard.adr[i] && aCard.adr[i][0]) {
 				var country = aCard.adr[i][0][6].toUpperCase();
 				if (country != "") {
-					const loc = new Localization(["toolkit/intl/regionNames.ftl"], true);
-					var lcRegionCode = country.toLowerCase();
+					const loc = new Localization(["toolkit/intl/regionNames.ftl"]);
+					let lcRegionCode = country.toLowerCase();
 					// maybe a country code
 					if (cardbookRepository.countriesList.includes(lcRegionCode)) {
 						return country;
 					}
 					// let's try to find a known country
 					for (let code of cardbookRepository.countriesList) {
-						if (lcRegionCode == loc.formatValueSync("region-name-" + code).toLowerCase()) {
+						let locName = await loc.formatValue("region-name-" + code);
+						if (lcRegionCode == locName.toLowerCase()) {
 							return code.toUpperCase();
 						}
 					}
@@ -241,14 +243,9 @@ var cardbookUtils = {
 		return aArray.sort(compare);
 	},
 
-	sortArrayByNumber: function (aArray, aIndex, aInvert) {
-		function compare1(a, b) { return (a[aIndex] - b[aIndex])*aInvert; };
-		function compare2(a, b) { return (a - b)*aInvert; };
-		if (aIndex != -1) {
-			return aArray.sort(compare1);
-		} else {
-			return aArray.sort(compare2);
-		}
+	sortMultipleArrayByNumber: function (aArray, aIndex, aInvert) {
+		function compare(a, b) { return (a[aIndex] - b[aIndex])*aInvert; };
+		return aArray.sort(compare);
 	},
 
 	compareArray: function (aArray1, aArray2) {

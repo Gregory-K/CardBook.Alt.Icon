@@ -215,7 +215,7 @@ var cardbookIDBMailPop = {
 	},
 	
 	addMailPopToIndex: function(aMailPop) {
-		cardbookRepository.cardbookMailPopularityIndex[aMailPop.email] = {count: aMailPop.count, mailPopId: aMailPop.mailPopId};
+		cardbookRepository.cardbookMailPopularityIndex[aMailPop.email.toLowerCase()] = {count: aMailPop.count, mailPopId: aMailPop.mailPopId};
 		if (aMailPop.mailPopId > cardbookRepository.cardbookMailPopularityLastIndex) {
 			cardbookRepository.cardbookMailPopularityLastIndex = aMailPop.mailPopId;
 		}

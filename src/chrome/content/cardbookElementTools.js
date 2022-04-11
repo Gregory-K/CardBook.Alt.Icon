@@ -183,8 +183,15 @@ if ("undefined" == typeof(cardbookElementTools)) {
 			return image;
 		},
 
-		addTreeTable: function (aId, aHeaders, aData, aDataParameters) {
+		addHTMLOPTION: function (aParent, aId, aParameters) {
+			let image = cardbookElementTools.addHTMLElement("option", aParent, aId, aParameters)
+			return image;
+		},
+
+		addTreeTable: function (aId, aHeaders, aData, aDataParameters, aRowParameters, aSortFunction) {
 			let table = document.getElementById(aId);
+			let sortColumn = table.getAttribute("data-sort-column");
+			let orderColumn = table.getAttribute("data-sort-order");
 
 			if (aHeaders.length) {
 				let thead = cardbookElementTools.addHTMLTHEAD(table, `${aId}_thead`);
@@ -192,6 +199,25 @@ if ("undefined" == typeof(cardbookElementTools)) {
 				for (let i = 0; i < aHeaders.length; i++) {
 					let th = cardbookElementTools.addHTMLTH(tr, `${aId}_thead_th_${i}`);
 					th.textContent = cardbookRepository.extension.localeData.localizeMessage(`${aHeaders[i]}Label`);
+					th.setAttribute("data-value", aHeaders[i]);
+					try {
+						let tooltip = cardbookRepository.extension.localeData.localizeMessage(`${aHeaders[i]}Tooltip`);
+						th.setAttribute("title", tooltip);
+					} catch (e) {}
+					if (aHeaders[i] == sortColumn) {
+						let sortImg;
+						if (orderColumn == "ascending" ) {
+							sortImg = cardbookElementTools.addHTMLIMAGE(th, `${aId}_thead_th_${i}_image`, { "src": "chrome://global/skin/icons/arrow-down-12.svg" } );
+						} else {
+							sortImg = cardbookElementTools.addHTMLIMAGE(th, `${aId}_thead_th_${i}_image`, { "src": "chrome://global/skin/icons/arrow-up-12.svg" } );
+						}
+						if (aSortFunction) {
+							sortImg.addEventListener("click", aSortFunction, false);
+						}
+					}
+				}
+				if (aSortFunction) {
+					tr.addEventListener("click", aSortFunction, false);
 				}
 			}
 			if (aData.length) {
@@ -214,9 +240,29 @@ if ("undefined" == typeof(cardbookElementTools)) {
 							}
 						}
 					}
+					if (aRowParameters && aRowParameters.titles && aRowParameters.titles[i]) {
+						tr.setAttribute("title", aRowParameters.titles[i]);
+					}
+					if (aRowParameters && aRowParameters.values && aRowParameters.values[i]) {
+						tr.setAttribute("data-value", aRowParameters.values[i]);
+					}
 				}
 			}
 			return table;
+		},
+
+		addTreeSelect: function (aId, aData, aRowParameters) {
+			let select = document.getElementById(aId);
+			if (aData.length) {
+				for (let i = 0; i < aData.length; i++) {
+					let option = cardbookElementTools.addHTMLOPTION(select, `${aId}_option_${i}`, { "value": aData[i] } );
+					option.textContent = aData[i];
+					if (aRowParameters && aRowParameters.values && aRowParameters.values[i]) {
+						option.setAttribute("data-value", aRowParameters.values[i]);
+					}
+				}
+			}
+			return select;
 		},
 
 		addLabel: function (aOrigBox, aId, aValue, aControl, aParameters) {
@@ -319,11 +365,11 @@ if ("undefined" == typeof(cardbookElementTools)) {
 			return aTextarea;
 		},
 
-		loadCountries: function (aPopup, aMenu, aDefaultValue, aAddEmptyCountries, aUseCodeValues) {
-			const loc = new Localization(["toolkit/intl/regionNames.ftl"], true);
+		loadCountries: async function (aPopup, aMenu, aDefaultValue, aAddEmptyCountries, aUseCodeValues) {
+			const loc = new Localization(["toolkit/intl/regionNames.ftl"]);
 			var myResult = [];
 			for (let code of cardbookRepository.countriesList) {
-				let country = loc.formatValueSync("region-name-" + code);
+				let country = await loc.formatValue("region-name-" + code);
 				if (aUseCodeValues) {
 					myResult.push([code.toUpperCase(), country]);
 				} else {

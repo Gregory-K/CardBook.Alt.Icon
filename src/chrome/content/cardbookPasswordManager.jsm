@@ -115,12 +115,14 @@ var cardbookPasswordManager = {
 	},
 
 	rememberPassword: function (aUsername, aUrl, aPassword, aSave) {
-		if (aSave) {
-			cardbookPasswordManager.removePassword(aUsername, aUrl);
-			cardbookPasswordManager.addPassword(aUsername, aUrl, aPassword);
-		} else {
-			cardbookRepository.logins[aUsername] = {};
-			cardbookRepository.logins[aUsername][cardbookPasswordManager.getRootUrl(aUrl)] = aPassword;
+		if (aUsername && aPassword) {
+			if (aSave) {
+				cardbookPasswordManager.removePassword(aUsername, aUrl);
+				cardbookPasswordManager.addPassword(aUsername, aUrl, aPassword);
+			} else {
+				cardbookRepository.logins[aUsername] = {};
+				cardbookRepository.logins[aUsername][cardbookPasswordManager.getRootUrl(aUrl)] = aPassword;
+			}
 		}
 	}
 

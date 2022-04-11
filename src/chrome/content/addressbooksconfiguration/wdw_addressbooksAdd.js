@@ -491,7 +491,6 @@ if ("undefined" == typeof(wdw_addressbooksAdd)) {
 				document.getElementById('remotePageURI').value = cardbookRepository.cardbookOAuthData[type].ROOT_API;
 				document.getElementById('remotePagePasswordLabel').disabled=true;
 				document.getElementById('remotePagePassword').disabled=true;
-				document.getElementById('remotePagePassword').setAttribute('required', 'false');
 				document.getElementById('rememberPasswordCheckbox').disabled=true;
 			} else {
 				if (connection[0].url) {
@@ -505,7 +504,6 @@ if ("undefined" == typeof(wdw_addressbooksAdd)) {
 				document.getElementById('remotePageURI').setAttribute('required', 'true');
 				document.getElementById('remotePagePasswordLabel').disabled=false;
 				document.getElementById('remotePagePassword').disabled=false;
-				document.getElementById('remotePagePassword').setAttribute('required', 'true');
 				document.getElementById('rememberPasswordCheckbox').disabled=false;
 			}
 			wdw_addressbooksAdd.checklocationNetwork();
@@ -1170,7 +1168,7 @@ if ("undefined" == typeof(wdw_addressbooksAdd)) {
 								aAddressbookURL = connection[0].url;
 							}
 							let aReadonly = false;
-							if (myType == 'GOOGLE3') {
+							if (myType == 'GOOGLE3' || aAddressbookUsername == "") {
 								aReadonly = true;
 							}
 							wdw_addressbooksAdd.gFinishParams.push({type: aAddressbookValidationType, url: aAddressbookURL, name: aAddressbookName, username: aAddressbookUsername, color: aAddressbookColor,

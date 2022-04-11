@@ -205,8 +205,8 @@ if ("undefined" == typeof(cardbookWebDAV)) {
 				}
 				if (this.username) {
 					this.password = cardbookRepository.cardbookPasswordManager.getNotNullPassword(this.username, this.prefId, this.url);
+					aHeader["Authorization"] = "Basic " + this.b64EncodeUnicode(this.username + ':' + this.password);
 				}
-				aHeader["Authorization"] = "Basic " + this.b64EncodeUnicode(this.username + ':' + this.password);
 			}
 		},
 

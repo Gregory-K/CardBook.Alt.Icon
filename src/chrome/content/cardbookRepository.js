@@ -2290,6 +2290,23 @@ var cardbookRepository = {
 		}
 	},
 
+	createCssCardRulesForTable: function (aStyleSheet, aDirPrefId, aColor) {
+		let oppositeColor = cardbookRepository.getTextColorFromBackgroundColor(aColor);
+		if (cardbookRepository.useColor == "text") {
+			let ruleString1 = ".tableTree tr[data-value='SEARCH color_" + aDirPrefId + "']:not([rowSelected='true']) {color: " + aColor + " !important;}";
+			let ruleIndex1 = aStyleSheet.insertRule(ruleString1, aStyleSheet.cssRules.length);
+
+			let ruleString2 = ".tableTree tr[data-value='SEARCH color_" + aDirPrefId + "']:not([rowSelected='true']) {background-color: " + oppositeColor + " !important;}";
+			let ruleIndex2 = aStyleSheet.insertRule(ruleString2, aStyleSheet.cssRules.length);
+		} else if (cardbookRepository.useColor == "background") {
+			let ruleString1 = ".tableTree tr[data-value='SEARCH color_" + aDirPrefId + "']:not([rowSelected='true']) {background-color: " + aColor + " !important;}";
+			let ruleIndex1 = aStyleSheet.insertRule(ruleString1, aStyleSheet.cssRules.length);
+
+			let ruleString2 = ".tableTree tr[data-value='SEARCH color_" + aDirPrefId + "']:not([rowSelected='true']) {color: " + oppositeColor + " !important;}";
+			let ruleIndex2 = aStyleSheet.insertRule(ruleString2, aStyleSheet.cssRules.length);
+		}
+	},
+
 	unregisterCss: function (aChromeUri) {
 		var sss = Components.classes['@mozilla.org/content/style-sheet-service;1'].getService(Components.interfaces.nsIStyleSheetService);
 		var uri = Services.io.newURI(aChromeUri, null, null);

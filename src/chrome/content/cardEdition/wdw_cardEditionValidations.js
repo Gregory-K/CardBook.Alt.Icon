@@ -201,7 +201,7 @@ if ("undefined" == typeof(wdw_cardEditionValidations)) {
 						break;
 					}
 				}
-				for (let addedCardLine of wdw_cardEdition.cardbookeditlists.addedCards) {
+				for (let addedCardLine of wdw_cardEdition.cardbookeditlists.addedCardsTree) {
 					if (addedCardLine[5] == "EMAIL") {
 						let email = addedCardLine[1];
 						let card = cardbookRepository.cardbookUtils.getCardFromEmail(email, wdw_cardEdition.workingCard.dirPrefId);

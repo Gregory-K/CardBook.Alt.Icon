@@ -569,7 +569,7 @@ if ("undefined" == typeof(wdw_mergeCards)) {
 										wdw_mergeCards.createTextBox(aHbox, i + '_' + j + '_' + k + '_Textbox0', cardbookRepository.cardbookUtils.formatTypesForDisplay(myDisplayedTypes), selected, true);
 										if (i == "adr") {
 											var re = /[\n\u0085\u2028\u2029]|\r\n?/;
-											var myAdrResult = cardbookRepository.cardbookUtils.formatAddress(aCardValue);
+											var myAdrResult = await cardbookRepository.cardbookUtils.formatAddress(aCardValue);
 											var myAdrResultArray = myAdrResult.split(re);
 											wdw_mergeCards.createMultilineTextBox(aHbox, i + '_' + j + '_' + k + '_Textbox1', myAdrResult, selected, true, myAdrResultArray.length);
 										} else {

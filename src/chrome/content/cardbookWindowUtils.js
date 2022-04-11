@@ -5,7 +5,7 @@ if ("undefined" == typeof(cardbookWindowUtils)) {
 	loader.loadSubScript("chrome://cardbook/content/lists/cardbookListConversion.js", this);
 
 	var cardbookWindowUtils = {
-		
+
 		getBroadcasterOnCardBook: function () {
 			if (document.getElementById('cardboookModeBroadcasterTab')) {
 				if (document.getElementById('cardboookModeBroadcasterTab').getAttribute('mode') == 'cardbook') {
@@ -765,7 +765,7 @@ if ("undefined" == typeof(cardbookWindowUtils)) {
 			}
 		},
 
-		displayCard: function (aCard, aReadOnly) {
+		displayCard: async function (aCard, aReadOnly) {
 			var fieldArray = [ "fn", "lastname", "firstname", "othername", "prefixname", "suffixname", "nickname",
 								"birthplace", "deathplace", "mailer", "geo", "sortstring",
 								"class1", "tz", "agent", "prodid", "uid", "version", "dirPrefId", "cardurl", "etag" ];
@@ -862,7 +862,7 @@ if ("undefined" == typeof(cardbookWindowUtils)) {
 				for (let field of cardbookRepository.multilineFields) {
 					if (aReadOnly) {
 						if (aCard[field].length > 0) {
-							cardbookWindowUtils.constructStaticRows(aCard.dirPrefId, field, aCard[field], aCard.version);
+							await cardbookWindowUtils.constructStaticRows(aCard.dirPrefId, field, aCard[field], aCard.version);
 						}
 					} else {
 						if (field == "impp") {
@@ -1247,7 +1247,7 @@ if ("undefined" == typeof(cardbookWindowUtils)) {
 			return result;
 		},
 
-		openAdrPanel: function (aAdrLine, aIdArray) {
+		openAdrPanel: async function (aAdrLine, aIdArray) {
 			wdw_cardEdition.currentAdrId = JSON.parse(JSON.stringify(aIdArray));
 			document.getElementById('adrPostOfficeTextBox').value = cardbookRepository.cardbookUtils.undefinedToBlank(aAdrLine[0][0]);
 			document.getElementById('adrExtendedAddrTextBox').value = cardbookRepository.cardbookUtils.undefinedToBlank(aAdrLine[0][1]);
@@ -1257,19 +1257,19 @@ if ("undefined" == typeof(cardbookWindowUtils)) {
 			document.getElementById('adrPostalCodeTextBox').value = cardbookRepository.cardbookUtils.undefinedToBlank(aAdrLine[0][5]);
 			document.getElementById('adrCountryMenulist').value = cardbookRepository.cardbookUtils.undefinedToBlank(aAdrLine[0][6]);
 			if (document.getElementById('adrCountryMenulist').value == "") {
-				const loc = new Localization(["toolkit/intl/regionNames.ftl"], true);
-				var country = cardbookRepository.cardbookUtils.getCardRegion(wdw_cardEdition.workingCard);
+				let country = await cardbookRepository.cardbookUtils.getCardRegion(wdw_cardEdition.workingCard);
 				document.getElementById('adrCountryMenulist').value = "";
 				if (country != "") {
-					document.getElementById('adrCountryMenulist').value = loc.formatValueSync("region-name-" + country.toLowerCase());
+					const loc = new Localization(["toolkit/intl/regionNames.ftl"]);
+					document.getElementById('adrCountryMenulist').value = await loc.formatValue("region-name-" + country.toLowerCase());
 				}
 			}
 			document.getElementById('adrPanel').openPopup(document.getElementById(wdw_cardEdition.currentAdrId.join("_")), 'after_start', 0, 0, true);
 		},
 
-		closeAdrPanel: function () {
+		closeAdrPanel: async function () {
 			document.getElementById('adrPanel').hidePopup();
-			wdw_cardEdition.cardRegion = cardbookRepository.cardbookUtils.getCardRegion(wdw_cardEdition.workingCard);
+			wdw_cardEdition.cardRegion = await cardbookRepository.cardbookUtils.getCardRegion(wdw_cardEdition.workingCard);
 		},
 
 		validateAdrPanel: function () {
@@ -1337,9 +1337,9 @@ if ("undefined" == typeof(cardbookWindowUtils)) {
 			}
 		},
 
-		constructStaticRows: function (aDirPrefId, aType, aArray, aVersion) {
-			for (var i = 0; i < aArray.length; i++) {
-				cardbookWindowUtils.loadStaticTypes(aDirPrefId, aType, i, aArray[i][1], aArray[i][2], aArray[i][3], aArray[i][0], aVersion);
+		constructStaticRows: async function (aDirPrefId, aType, aArray, aVersion) {
+			for (let i = 0; i < aArray.length; i++) {
+				await cardbookWindowUtils.loadStaticTypes(aDirPrefId, aType, i, aArray[i][1], aArray[i][2], aArray[i][3], aArray[i][0], aVersion);
 			}
 		},
 
@@ -2004,7 +2004,7 @@ if ("undefined" == typeof(cardbookWindowUtils)) {
 			keyTextbox.dispatchEvent(new Event('input'));
 		},
 
-		loadStaticTypes: function (aDirPrefId, aType, aIndex, aInputTypes, aPgName, aPgType, aCardValue, aVersion) {
+		loadStaticTypes: async function (aDirPrefId, aType, aIndex, aInputTypes, aPgName, aPgType, aCardValue, aVersion) {
 			if (aCardValue.join(" ") == "") {
 				return;
 			}
@@ -2113,7 +2113,7 @@ if ("undefined" == typeof(cardbookWindowUtils)) {
 	
 				if (aType == "adr") {
 					let re = /[\n\u0085\u2028\u2029]|\r\n?/;
-					let myAdrResult = cardbookRepository.cardbookUtils.formatAddress(aCardValue);
+					let myAdrResult = await cardbookRepository.cardbookUtils.formatAddress(aCardValue);
 					let myAdrResultArray = myAdrResult.split(re);
 					myValueTextbox = cardbookElementTools.addHTMLTEXTAREA(valueData, aType + '_' + aIndex + '_valueBox', myAdrResult, {rows: myAdrResultArray.length});
 				} else {

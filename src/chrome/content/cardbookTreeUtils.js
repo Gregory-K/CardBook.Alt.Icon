@@ -123,7 +123,7 @@ if ("undefined" == typeof(cardbookTreeUtils)) {
 					columnStates.push([colChild.id + ":" + colChild.getAttribute("width"), colChild.getAttribute("ordinal")]);
 				}
 			}
-			cardbookRepository.cardbookUtils.sortArrayByNumber(columnStates,1,1);
+			cardbookRepository.cardbookUtils.sortMultipleArrayByNumber(columnStates,1,1);
 			var result = [];
 			for (let i = 0; i < columnStates.length; i++) {
 				result.push(columnStates[i][0]);

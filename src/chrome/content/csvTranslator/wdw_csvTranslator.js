@@ -5,207 +5,244 @@ var cardbookeditlists = {};
 var blankColumn = "";
 var nIntervId = "";
 
-function getSelectedLines (aTreeName) {
-	var myTree = document.getElementById(aTreeName + 'Tree');
-	var listOfSelected = {};
-	var numRanges = myTree.view.selection.getRangeCount();
-	var start = new Object();
-	var end = new Object();
-	var count = 0;
-	for (var i = 0; i < numRanges; i++) {
-		myTree.view.selection.getRangeAt(i,start,end);
-		for (var j = start.value; j <= end.value; j++){
-			listOfSelected[j] = true;
-			count++;
-		}
+function getIndexFromName (aName) {
+	let tmpArray = aName.split("_");
+	return tmpArray[tmpArray.length - 1];
+};
+
+function getTableCurrentIndex (aTableName) {
+	let selectedList = document.getElementById(aTableName).querySelectorAll("tr[rowSelected='true']");
+	if (selectedList.length) {
+		return getIndexFromName(selectedList[0].id);
 	}
-	return {lines: listOfSelected, total: count};
+};
+
+function getSelectedLines (aTableName) {
+	let listOfSelected = [];
+	let table = document.getElementById(aTableName);
+	let selectedRows = table.querySelectorAll("tr[rowSelected='true']");
+	for (let row of selectedRows) {
+		let index = getIndexFromName(row.id);
+		listOfSelected.push(cardbookeditlists[aTableName][index][0]);
+	}
+	return listOfSelected;
+};
+
+function setSelectedLines (aTableName, aIndex) {
+	let table = document.getElementById(aTableName);
+	let selectedRow = table.querySelector("tr:nth-of-type(" + aIndex + ")");
+	selectedRow.setAttribute("rowSelected", "true");
 };
 
 function upColumns () {
-	var myTreeName = "addedColumns";
-	var myTree = document.getElementById(myTreeName + 'Tree');
-	var listOfSelected = {};
-	listOfSelected = getSelectedLines(myTreeName);
-	var first = true;
-	var found = false;
-	for (var i = 0; i < cardbookeditlists[myTreeName].length; i++) {
-		if (listOfSelected.lines[i]) {
-			if (!first) {
-				var temp = cardbookeditlists[myTreeName][i-1];
-				cardbookeditlists[myTreeName][i-1] = cardbookeditlists[myTreeName][i];
-				cardbookeditlists[myTreeName][i] = temp;
-				found = true;
-			}
-		} else {
-			first = false;
-		}
+	let tableName = "addedColumnsTable";
+	let listOfSelected = [];
+	listOfSelected = getSelectedLines(tableName);
+	if (cardbookeditlists[tableName][0][0] == listOfSelected[0]) {
+		return
 	}
-	displayListTrees(myTreeName);
-	for (var i = 0; i < cardbookeditlists[myTreeName].length; i++) {
-		if (!found && listOfSelected.lines[i]) {
-			myTree.view.selection.rangedSelect(i,i,true);
-		} else {
-			if (listOfSelected.lines[i] && i == 0) {
-				myTree.view.selection.rangedSelect(i,i,true);
-			} else if (listOfSelected.lines[i]) {
-				myTree.view.selection.rangedSelect(i-1,i-1,true);
+	for (let selected of listOfSelected) {
+		let index = -1;
+		for (let i = 0; i < cardbookeditlists[tableName].length; i++) {
+			if (cardbookeditlists[tableName][i][0] == selected) {
+				index = i;
+				break;
 			}
+		}
+		if (index != -1) {
+			let temp = cardbookeditlists[tableName][index-1];
+			cardbookeditlists[tableName][index-1] = cardbookeditlists[tableName][index];
+			cardbookeditlists[tableName][index] = temp;
+		}
+
+	}
+	displayListTables(tableName);
+	for (let selected of listOfSelected) {
+		let index = -1;
+		for (let i = 0; i < cardbookeditlists[tableName].length; i++) {
+			if (cardbookeditlists[tableName][i][0] == selected) {
+				index = i;
+				break;
+			}
+		}
+		if (index != -1) {
+			let rowIndex = index + +1;
+			setSelectedLines(tableName, rowIndex);
 		}
 	}
 };
 
 function downColumns () {
-	var myTreeName = "addedColumns";
-	var myTree = document.getElementById(myTreeName + 'Tree');
-	var listOfSelected = {};
-	listOfSelected = getSelectedLines(myTreeName);
-	var first = true;
-	var found = false;
-	for (var i = cardbookeditlists[myTreeName].length-1; i >= 0; i--) {
-		if (listOfSelected.lines[i]) {
-			if (!first) {
-				var temp = cardbookeditlists[myTreeName][i+1];
-				cardbookeditlists[myTreeName][i+1] = cardbookeditlists[myTreeName][i];
-				cardbookeditlists[myTreeName][i] = temp;
-				found = true;
+	let tableName = "addedColumnsTable";
+	let listOfSelected = [];
+	listOfSelected = getSelectedLines(tableName);
+	if (cardbookeditlists[tableName][cardbookeditlists[tableName].length - 1][0] == listOfSelected[listOfSelected.length - 1]) {
+		return
+	}
+	for (let i = listOfSelected.length-1; i >= 0; i--) {
+		let selected = listOfSelected[i];
+		let index = -1;
+		for (let j = 0; i < cardbookeditlists[tableName].length; j++) {
+			if (cardbookeditlists[tableName][j][0] == selected) {
+				index =j;
+				break;
+			}
+		}
+		if (index != -1) {
+			let temp = cardbookeditlists[tableName][index+1];
+			cardbookeditlists[tableName][index+1] = cardbookeditlists[tableName][index];
+			cardbookeditlists[tableName][index] = temp;
+		}
+
+	}
+	displayListTables(tableName);
+	for (let selected of listOfSelected) {
+		let index = -1;
+		for (let i = 0; i < cardbookeditlists[tableName].length; i++) {
+			if (cardbookeditlists[tableName][i][0] == selected) {
+				index = i;
+				break;
+			}
+		}
+		if (index != -1) {
+			let rowIndex = index + +1;
+			setSelectedLines(tableName, rowIndex);
+		}
+	}
+};
+
+function clickTree (aEvent) {
+	if (aEvent.target.tagName == "html:td") {
+		let table = aEvent.target.closest("table");
+		let tbody = aEvent.target.closest("tbody");
+		let row = aEvent.target.closest("tr");
+		if (aEvent.shiftKey) {
+			let startIndex = getTableCurrentIndex(table.id) || 0;
+			let endIndex = getIndexFromName(row.id);
+			let i = 0;
+			for (let child of tbody.childNodes) {
+				if (i >= startIndex && i <= endIndex) {
+					child.setAttribute("rowSelected", "true");
+				} else {
+					child.removeAttribute("rowSelected");
+				}
+				i++;
+			}
+		} else if (aEvent.ctrlKey) {
+			if (row.hasAttribute("rowSelected")) {
+				row.removeAttribute("rowSelected");
+			} else {
+				row.setAttribute("rowSelected", "true");
 			}
 		} else {
-			first = false;
-		}
-	}
-	displayListTrees(myTreeName);
-	for (var i = 0; i < cardbookeditlists[myTreeName].length; i++) {
-		if (!found && listOfSelected.lines[i]) {
-			myTree.view.selection.rangedSelect(i,i,true);
-		} else {
-			if (listOfSelected.lines[i] && i == cardbookeditlists[myTreeName].length-1) {
-				myTree.view.selection.rangedSelect(i,i,true);
-			} else if (listOfSelected.lines[i]) {
-				myTree.view.selection.rangedSelect(i+1,i+1,true);
+			for (let child of tbody.childNodes) {
+				child.removeAttribute("rowSelected");
 			}
+			row.setAttribute("rowSelected", "true");
 		}
+		windowControlShowing();
 	}
 };
 
-function displayListTrees (aTreeName) {
-	var columnsTreeView = {
-		get rowCount() { return cardbookeditlists[aTreeName].length; },
-		isContainer: function(idx) { return false },
-		canDrop: function(idx) { return true },
-		cycleHeader: function(idx) { return false },
-		isEditable: function(idx, column) { return false },
-		getCellText: function(idx, column) {
-			if (column.id == aTreeName + "Id") {
-				if (cardbookeditlists[aTreeName][idx]) return cardbookeditlists[aTreeName][idx][0];
-			}
-			else if (column.id == aTreeName + "Name") {
-				if (cardbookeditlists[aTreeName][idx]) return cardbookeditlists[aTreeName][idx][1];
+function keyDownTree (aEvent) {
+	let focusedElement = document.commandDispatcher.focusedElement; 
+	if (aEvent.ctrlKey && aEvent.key.toUpperCase() == "A" && focusedElement) {
+		let table = aEvent.target.closest("table");
+		if (table) {
+			let tbody = table.querySelector("tbody");
+			for (let child of tbody.childNodes) {
+				child.setAttribute("rowSelected", "true");
 			}
 		}
-	}
-	document.getElementById(aTreeName + 'Tree').view = columnsTreeView;
+	}	
 };
 
-function getSelectedColumnsForList (aTree) {
-	var myTreeName = aTree.id.replace("Tree", "");
-	var listOfUid = [];
-	var numRanges = aTree.view.selection.getRangeCount();
-	var start = new Object();
-	var end = new Object();
-	for (var i = 0; i < numRanges; i++) {
-		aTree.view.selection.getRangeAt(i,start,end);
-		for (var j = start.value; j <= end.value; j++){
-			listOfUid.push([aTree.view.getCellText(j, aTree.columns.getNamedColumn(myTreeName + 'Id')), aTree.view.getCellText(j, aTree.columns.getNamedColumn(myTreeName + 'Name')), j]);
-		}
-	}
-	return listOfUid;
+function displayListTables (aTableName) {
+	cardbookElementTools.deleteRows(aTableName);
+	let headers = [];
+	let data = cardbookeditlists[aTableName].map(x => [ x[1] ]);
+	let dataParameters = [];
+	cardbookElementTools.addTreeTable(aTableName, headers, data, dataParameters);
+	windowControlShowing();
 };
 
-function modifyLists (aMenuOrTree) {
-	switch (aMenuOrTree.id) {
-		case "availableColumnsTreeChildren":
-			var myAction = "appendlistavailableColumnsTree";
-			break;
-		case "addedColumnsTreeChildren":
-			var myAction = "deletelistaddedColumnsTree";
-			break;
-		default:
-			var myAction = aMenuOrTree.id.replace("Button", "");
-			break;
+function getSelectedColumnsForList (aTableName) {
+	let listOfSelected = [];
+	let table = document.getElementById(aTableName);
+	let selectedRows = table.querySelectorAll("tr[rowSelected='true']");
+	for (let row of selectedRows) {
+		let index = getIndexFromName(row.id);
+		listOfSelected.push(index);
 	}
-	var myAvailableColumnsTree = document.getElementById('availableColumnsTree');
-	var myAddedColumnsTree = document.getElementById('addedColumnsTree');
-	var myAvailableColumns = getSelectedColumnsForList(myAvailableColumnsTree);
-	var myAddedColumns = getSelectedColumnsForList(myAddedColumnsTree);
-	switch (myAction) {
-		case "appendlistavailableColumnsTree":
-			for (var i = 0; i < myAvailableColumns.length; i++) {
-				cardbookeditlists.addedColumns.push([myAvailableColumns[i][0], myAvailableColumns[i][1]]);
+	return listOfSelected;
+};
+
+function modifyLists (aMenuOrTable) {
+	let addedTablename = "addedColumnsTable";
+	let availableTablename = "availableColumnsTable";
+	let selectedIndexes = [];
+	switch (aMenuOrTable.id) {
+		case "availableColumnsTable":
+		case "appendlistavailableColumnsButton":
+			selectedIndexes = getSelectedColumnsForList(availableTablename);
+			for (let selectedIndex of selectedIndexes) {
+				cardbookeditlists[addedTablename] = cardbookeditlists[addedTablename].concat([cardbookeditlists[availableTablename][selectedIndex]]);
 			}
 			break;
-		case "deletelistaddedColumnsTree":
-			for (var i = myAddedColumns.length-1; i >= 0; i--) {
-				cardbookeditlists.addedColumns.splice(myAddedColumns[i][2], 1);
+		case "addedColumnsTable":
+		case "deletelistaddedColumnsButton":
+			selectedIndexes = getSelectedColumnsForList(addedTablename);
+			for (let i = selectedIndexes.length-1; i >= 0; i--) {
+				cardbookeditlists[addedTablename].splice(selectedIndexes[i], 1);
 			}
 			break;
 		default:
 			break;
 	}
-	displayListTrees("addedColumns");
+	displayListTables(addedTablename);
 };
 
 function validateImportColumns () {
-	if (cardbookeditlists.foundColumns.length != cardbookeditlists.addedColumns.length) {
-		var confirmTitle = cardbookRepository.extension.localeData.localizeMessage("confirmTitle");
-		var confirmMsg = cardbookRepository.extension.localeData.localizeMessage("missingColumnsConfirmMessage");
+	if (cardbookeditlists.foundColumnsTable.length != cardbookeditlists.addedColumnsTable.length) {
+		let confirmTitle = cardbookRepository.extension.localeData.localizeMessage("confirmTitle");
+		let confirmMsg = cardbookRepository.extension.localeData.localizeMessage("missingColumnsConfirmMessage");
 		if (!Services.prompt.confirm(window, confirmTitle, confirmMsg)) {
 			return false;
 		}
-		var missing = cardbookeditlists.foundColumns.length - cardbookeditlists.addedColumns.length;
-		for (var i = 0; i < missing; i++) {
-			cardbookeditlists.addedColumns.push(["blank", blankColumn]);
+		let missing = cardbookeditlists.foundColumnsTable.length - cardbookeditlists.addedColumnsTable.length;
+		for (let i = 0; i < missing; i++) {
+			cardbookeditlists.addedColumnsTable.push(["blank", blankColumn]);
 		}
-		var more = cardbookeditlists.addedColumns.length - cardbookeditlists.foundColumns.length;
-		for (var i = 0; i < more; i++) {
-			cardbookeditlists.addedColumns.slice(cardbookeditlists.addedColumns.length, 1);
+		let more = cardbookeditlists.addedColumnsTable.length - cardbookeditlists.foundColumnsTable.length;
+		for (let i = 0; i < more; i++) {
+			cardbookeditlists.addedColumnsTable.slice(cardbookeditlists.addedColumnsTable.length, 1);
 		}
 	}
 	return true;
 };
 
 function loadFoundColumns () {
-	cardbookeditlists.foundColumns = [];
-	var mySep = document.getElementById('fieldDelimiterTextBox').value;
-	if (mySep == "") {
-		mySep = ";";
+	cardbookeditlists.foundColumnsTable = [];
+	let separator = document.getElementById('fieldDelimiterTextBox').value;
+	if (separator == "") {
+		separator = ";";
 	}
-	var myTempArray = window.arguments[0].headers.split(mySep);
-	for (var i = 0; i < myTempArray.length; i++) {
-		cardbookeditlists.foundColumns.push([i, myTempArray[i]]);
+	let tmpArray = window.arguments[0].headers.split(separator);
+	for (let i = 0; i < tmpArray.length; i++) {
+		cardbookeditlists.foundColumnsTable.push([i, tmpArray[i]]);
 	}
-	displayListTrees("foundColumns");
+	displayListTables("foundColumnsTable");
 };
 
-function startDrag (aEvent, aTreeChildren) {
+function startDrag (aEvent) {
 	try {
 		var listOfUid = [];
-		if (aTreeChildren.id == "availableColumnsTreeChildren") {
-			var myTree = document.getElementById('availableColumnsTree');
-		} else if (aTreeChildren.id == "addedColumnsTreeChildren") {
-			var myTree = document.getElementById('addedColumnsTree');
-		} else {
-			return;
-		}
-		var numRanges = myTree.view.selection.getRangeCount();
-		var start = new Object();
-		var end = new Object();
-		for (var i = 0; i < numRanges; i++) {
-			myTree.view.selection.getRangeAt(i,start,end);
-			for (var j = start.value; j <= end.value; j++){
-				var myId = myTree.view.getCellText(j, myTree.columns.getNamedColumn(myTree.id.replace('Tree', '') + 'Id'));
-				listOfUid.push(j+"::"+myId);
-			}
+		let table = aEvent.target.closest("table");
+		let tablename = table.id;
+		let selectedRows = table.querySelectorAll("tr[rowSelected='true']");
+		for (let row of selectedRows) {
+			let index = getIndexFromName(row.id);
+			listOfUid.push(index + "::" + cardbookeditlists[tablename][index][0]);
 		}
 		aEvent.dataTransfer.setData("text/plain", listOfUid.join("@@@@@"));
 	}
@@ -214,64 +251,71 @@ function startDrag (aEvent, aTreeChildren) {
 	}
 };
 
-function dragCards (aEvent, aTreeName) {
-	var myData = aEvent.dataTransfer.getData("text/plain");
-	var myColumns = myData.split("@@@@@");
+function dragCards (aEvent) {
+	let table;
+	let rowIndex = -1;
+	// outside the rows
+	if (aEvent.target.tagName == "table") {
+		table = aEvent.target;
+	// in the rows
+	} else {
+		table = aEvent.target.closest("table");
+		let row = aEvent.target.closest("tr");
+		rowIndex = getIndexFromName(row.id);
+	}
+	let tablename = table.id;
+	let data = aEvent.dataTransfer.getData("text/plain");
+	let columns = data.split("@@@@@");
 
-	if (aTreeName == "availableColumnsTree") {
-		for (var i = myColumns.length-1; i >= 0; i--) {
-			var myTempArray = myColumns[i].split("::");
-			cardbookeditlists.addedColumns.splice(myTempArray[0], 1);
+	if (tablename == "availableColumnsTable") {
+		for (let i = columns.length-1; i >= 0; i--) {
+			let tmpArray = columns[i].split("::");
+			cardbookeditlists.addedColumnsTable.splice(tmpArray[0], 1);
 		}
-	} else if (aTreeName == "addedColumnsTree") {
-		var myTree = document.getElementById('addedColumnsTree');
-		var myTarget = myTree.getRowAt(aEvent.clientX, aEvent.clientY);
-			
-		for (var i = 0; i < myColumns.length; i++) {
-			var myTempArray = myColumns[i].split("::");
-			var myValue = myTempArray[1];
-			if (myTarget == -1) {
-				cardbookeditlists.addedColumns.push([myValue, cardbookRepository.cardbookUtils.getTranslatedField(myValue)]);
+	} else if (tablename == "addedColumnsTable") {
+		for (let column of columns) {
+			let tmpArray = column.split("::");
+			let value = tmpArray[1];
+			if (rowIndex == -1) {
+				cardbookeditlists.addedColumnsTable.push([value, cardbookRepository.cardbookUtils.getTranslatedField(value)]);
 			} else {
-				cardbookeditlists.addedColumns.splice(myTarget, 0, [myValue, cardbookRepository.cardbookUtils.getTranslatedField(myValue)]);
-				myTarget++;
+				cardbookeditlists.addedColumnsTable.splice(rowIndex, 0, [value, cardbookRepository.cardbookUtils.getTranslatedField(value)]);
+				rowIndex++;
 			}
 		}
 	}
-	displayListTrees("addedColumns");
+	displayListTables("addedColumnsTable");
 };
 
 function windowControlShowing () {
-	var myTreeName = "addedColumns";
-	var listOfSelected = {};
-	listOfSelected = getSelectedLines("addedColumns");
-	if (listOfSelected.total > 0) {
-		document.getElementById('upAddedColumnsTreeButton').disabled = false;
-		document.getElementById('downAddedColumnsTreeButton').disabled = false;
+	let listOfSelected = getSelectedLines("addedColumnsTable");
+	if (listOfSelected.length > 0) {
+		document.getElementById('deletelistaddedColumnsButton').disabled = false;
+		document.getElementById('upAddedColumnsButton').disabled = false;
+		document.getElementById('downAddedColumnsButton').disabled = false;
 	} else {
-		document.getElementById('upAddedColumnsTreeButton').disabled = true;
-		document.getElementById('downAddedColumnsTreeButton').disabled = true;
+		document.getElementById('deletelistaddedColumnsButton').disabled = true;
+		document.getElementById('upAddedColumnsButton').disabled = true;
+		document.getElementById('downAddedColumnsButton').disabled = true;
+	}
+	listOfSelected = getSelectedLines("availableColumnsTable");
+	if (listOfSelected.length > 0) {
+		document.getElementById('appendlistavailableColumnsButton').disabled = false;
+	} else {
+		document.getElementById('appendlistavailableColumnsButton').disabled = true;
 	}
 };
 
-function setSyncControl () {
-	nIntervId = setInterval(windowControlShowing, 500);
-};
-
-function clearSyncControl () {
-	clearInterval(nIntervId);
-};
-
 function guess () {
-	var oneFound = false;
-	var result = [];
+	let oneFound = false;
+	let result = [];
 	// search with current locale
-	for (var i = 0; i < cardbookeditlists.foundColumns.length; i++) {
-		var myFoundColumn = cardbookeditlists.foundColumns[i][1].replace(/^\"|\"$/g, "").replace(/^\'|\'$/g, "");
-		var found = false;
-		for (var j = 0; j < cardbookeditlists.availableColumns.length; j++) {
-			if (cardbookeditlists.availableColumns[j][1].toLowerCase() == myFoundColumn.toLowerCase()) {
-				result.push([cardbookeditlists.availableColumns[j][0], cardbookeditlists.availableColumns[j][1]]);
+	for (let foundColumn of cardbookeditlists.foundColumnsTable) {
+		foundColumn = foundColumn[1].replace(/^\"|\"$/g, "").replace(/^\'|\'$/g, "");
+		let found = false;
+		for (let availableColumn of cardbookeditlists.availableColumnsTable) {
+			if (availableColumn[1].toLowerCase() == foundColumn.toLowerCase()) {
+				result.push([availableColumn[0], availableColumn[1]]);
 				found = true;
 				oneFound = true;
 				break;
@@ -284,13 +328,13 @@ function guess () {
 	if (!oneFound) {
 		result = [];
 		// search with en-US locale
-		for (var i = 0; i < cardbookeditlists.foundColumns.length; i++) {
-			var myFoundColumn = cardbookeditlists.foundColumns[i][1].replace(/^\"|\"$/g, "").replace(/^\'|\'$/g, "");
-			var found = false;
-			for (var j = 0; j < cardbookeditlists.availableColumns.length; j++) {
-				var myTranslatedColumn = cardbookRepository.cardbookUtils.getTranslatedField(cardbookeditlists.availableColumns[j][0], "locale-US");
-				if (myTranslatedColumn.toLowerCase() == myFoundColumn.toLowerCase()) {
-					result.push([cardbookeditlists.availableColumns[j][0], cardbookeditlists.availableColumns[j][1]]);
+		for (let foundColumn of cardbookeditlists.foundColumnsTable) {
+			foundColumn = foundColumn[1].replace(/^\"|\"$/g, "").replace(/^\'|\'$/g, "");
+			let found = false;
+			for (let availableColumn of cardbookeditlists.availableColumnsTable) {
+				let translatedColumn = cardbookRepository.cardbookUtils.getTranslatedField(availableColumn[0], "locale-US");
+				if (translatedColumn.toLowerCase() == foundColumn.toLowerCase()) {
+					result.push([availableColumn[0], availableColumn[1]]);
 					found = true;
 					oneFound = true;
 					break;
@@ -302,14 +346,13 @@ function guess () {
 		}
 	}
 	if (oneFound) {
-		cardbookeditlists.addedColumns = result;
-		displayListTrees("addedColumns");
+		cardbookeditlists.addedColumnsTable = result;
+		displayListTables("addedColumnsTable");
 	}
 };
 
 function onLoadDialog () {
 	i18n.updateDocument({ extension: cardbookRepository.extension });
-	setSyncControl();
 
 	window.arguments[0].action = "CANCEL";
 	document.title = cardbookRepository.extension.localeData.localizeMessage(window.arguments[0].mode + "MappingTitle");
@@ -318,8 +361,8 @@ function onLoadDialog () {
 	document.getElementById('availableColumnsGroupboxLabel').value = cardbookRepository.extension.localeData.localizeMessage(window.arguments[0].mode + "availableColumnsGroupboxLabel");
 	document.getElementById('addedColumnsGroupboxLabel').value = cardbookRepository.extension.localeData.localizeMessage(window.arguments[0].mode + "addedColumnsGroupboxLabel");
 	
-	cardbookeditlists.availableColumns = [];
-	cardbookeditlists.addedColumns = [];
+	cardbookeditlists.availableColumnsTable = [];
+	cardbookeditlists.addedColumnsTable = [];
 	
 	document.getElementById('fieldDelimiterLabel').value = cardbookRepository.extension.localeData.localizeMessage("fieldDelimiterLabel");
 	document.getElementById('includePrefLabel').value = cardbookRepository.extension.localeData.localizeMessage("includePrefLabel");
@@ -335,13 +378,13 @@ function onLoadDialog () {
 		document.getElementById('lineHeaderCheckBox').hidden = true;
 		document.querySelector("dialog").getButton("extra1").hidden = true;
 		document.querySelector("dialog").getButton("extra2").hidden = true;
-		document.getElementById('guesslistavailableColumnsTreeButton').hidden = true;
+		document.getElementById('guesslistavailableColumnsButton').hidden = true;
 	} else if (window.arguments[0].mode == "export") {
 		document.getElementById('foundColumnsVBox').hidden = true;
 		document.getElementById('lineHeaderLabel').hidden = true;
 		document.getElementById('lineHeaderCheckBox').hidden = true;
 		document.getElementById('fieldDelimiterTextBox').value = window.arguments[0].columnSeparator;
-		document.getElementById('guesslistavailableColumnsTreeButton').hidden = true;
+		document.getElementById('guesslistavailableColumnsButton').hidden = true;
 	} else if (window.arguments[0].mode == "import") {
 		document.getElementById('foundColumnsGroupboxLabel').value = cardbookRepository.extension.localeData.localizeMessage(window.arguments[0].mode + "foundColumnsGroupboxLabel");
 		document.getElementById('includePrefLabel').hidden = true;
@@ -349,14 +392,14 @@ function onLoadDialog () {
 		document.getElementById('lineHeaderCheckBox').setAttribute('checked', true);
 		document.getElementById('fieldDelimiterTextBox').value = window.arguments[0].columnSeparator;
 		blankColumn = cardbookRepository.extension.localeData.localizeMessage(window.arguments[0].mode + "blankColumn");
-		cardbookeditlists.availableColumns.push(["blank", blankColumn]);
+		cardbookeditlists.availableColumnsTable.push(["blank", blankColumn]);
 	}
 	
-	cardbookeditlists.addedColumns = window.arguments[0].template;
-	displayListTrees("addedColumns");
+	cardbookeditlists.addedColumnsTable = window.arguments[0].template;
+	displayListTables("addedColumnsTable");
 
-	cardbookeditlists.availableColumns = cardbookeditlists.availableColumns.concat(cardbookRepository.cardbookUtils.getAllAvailableColumns(window.arguments[0].mode));
-	displayListTrees("availableColumns");
+	cardbookeditlists.availableColumnsTable = cardbookeditlists.availableColumnsTable.concat(cardbookRepository.cardbookUtils.getAllAvailableColumns(window.arguments[0].mode));
+	displayListTables("availableColumnsTable");
 
 	if (window.arguments[0].mode == "import") {
 		loadFoundColumns();
@@ -364,7 +407,7 @@ function onLoadDialog () {
 };
 
 function onAcceptDialog () {
-	window.arguments[0].template = cardbookeditlists.addedColumns;
+	window.arguments[0].template = cardbookeditlists.addedColumnsTable;
 	window.arguments[0].columnSeparator = document.getElementById('fieldDelimiterTextBox').value;
 	window.arguments[0].includePref = document.getElementById('includePrefCheckBox').checked;
 	window.arguments[0].lineHeader = document.getElementById('lineHeaderCheckBox').checked;
@@ -377,19 +420,18 @@ function onAcceptDialog () {
 			return;
 		}
 	}
-	clearSyncControl();
-	close();
+	onCancelDialog();
 };
 
 function getDefaultTemplateName () {
-	if (window.arguments[0].filename.endsWith(".csv")) {
-		var defaultTemplateName = window.arguments[0].filename.replace(/\.csv$/, ".tpl");
-	} else if (window.arguments[0].filename.includes(".")) {
-		var tmpArray = window.arguments[0].filename.split(".");
+	let filename = window.arguments[0].file.leafName;
+	let defaultTemplateName = filename + ".tpl";
+	if (filename.endsWith(".csv")) {
+		defaultTemplateName = filename.replace(/\.csv$/, ".tpl");
+	} else if (filename.includes(".")) {
+		let tmpArray = filename.split(".");
 		tmpArray.pop();
-		var defaultTemplateName = tmpArray.join(".") + ".tpl";
-	} else {
-		var defaultTemplateName = window.arguments[0].filename + ".tpl";
+		defaultTemplateName = tmpArray.join(".") + ".tpl";
 	}
 	return defaultTemplateName;
 };
@@ -412,8 +454,8 @@ function loadTemplateNext (aFile) {
 function loadTemplateNext2 (aContent, aParams) {
 	try {
 		if (aContent) {
-			cardbookeditlists.addedColumns = cardbookRepository.cardbookUtils.getTemplate(aContent);
-			displayListTrees("addedColumns");
+			cardbookeditlists.addedColumnsTable = cardbookRepository.cardbookUtils.getTemplate(aContent);
+			displayListTables("addedColumnsTable");
 		}
 	}
 	catch (e) {
@@ -432,8 +474,8 @@ async function saveTemplateNext (aFile) {
 		}
 
 		var result = [];
-		for (var i = 0; i < cardbookeditlists.addedColumns.length; i++) {
-			result.push(cardbookeditlists.addedColumns[i][0]);
+		for (let addedColumn of cardbookeditlists.addedColumnsTable) {
+			result.push(addedColumn[0]);
 		}
 
 		await cardbookRepository.cardbookUtils.writeContentToFile(aFile.path, result.join('|'), "UTF8");
@@ -444,7 +486,13 @@ async function saveTemplateNext (aFile) {
 };
 
 function onCancelDialog () {
-	clearSyncControl();
+	if (window.arguments[0].actionCallback) {
+		window.arguments[0].actionCallback(window.arguments[0].file, window.arguments[0].selectedCards,
+											window.arguments[0].actionId, window.arguments[0].template,
+											window.arguments[0].columnSeparator, window.arguments[0].includePref,
+											window.arguments[0].action, window.arguments[0].headers, window.arguments[0].lineHeader,
+											window.arguments[0].params);
+	}
 	close();
 };
 

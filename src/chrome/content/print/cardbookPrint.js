@@ -147,7 +147,7 @@ if ("undefined" == typeof(cardbookPrint)) {
 			}
 		},
 
-		buildHTML: function (document, cards, options) {
+		buildHTML: async function (document, cards, options) {
 			for (let option in options) {
 				cardbookPrint.options[option] = options[option];
 			}
@@ -254,7 +254,7 @@ if ("undefined" == typeof(cardbookPrint)) {
 								let pref = cardbookRepository.cardbookUtils.getPrefBooleanFromTypes(line[1]);
 								let type = cardbookPrint.getTypes(card.dirPrefId, field, line[1], line[3], line[2], line[0][0]).join(" ");
 								if (field == "adr") {
-									value = cardbookRepository.cardbookUtils.formatAddress(line[0]);
+									value = await cardbookRepository.cardbookUtils.formatAddress(line[0]);
 								}
 								if (!cardbookPrint.options.headers) {
 									let initField = field[0].toUpperCase() + field.slice(1);

@@ -7,60 +7,45 @@ if ("undefined" == typeof(wdw_logEdition)) {
 
 	var wdw_logEdition = {
 		
+		displaySelect: function () {
+			let selectName = "logEditionTable";
+			cardbookElementTools.deleteRows(selectName);
+			let data = cardbookRepository.statusInformation.map(x => [ x[0] ]);
+			let rowParameters = {};
+			rowParameters.values = cardbookRepository.statusInformation.map(x => x[1]);
+			cardbookElementTools.addTreeSelect(selectName, data, rowParameters);
+		},
+	
 		load: function () {
 			i18n.updateDocument({ extension: cardbookRepository.extension });
-			var myLogArray = cardbookRepository.statusInformation;
-			var myTree = document.getElementById('logEditionTree');
-			var myTreeView = {
-				rowCount : myLogArray.length,
-				isContainer: function(row) { return false },
-				cycleHeader: function(row) { return false },
-				getRowProperties: function(row) { return myLogArray[row][1] },
-				getCellText : function(row,column){
-					if (column.id == "logEditionValue") return myLogArray[row][0];
-					else if (column.id == "logEditionType") return myLogArray[row][1];
-				}
-			}
-			var currentFirstVisibleRow = myTree.getFirstVisibleRow();
-			myTree.view = myTreeView;
-			myTree.scrollToRow(currentFirstVisibleRow);
+			wdw_logEdition.displaySelect();
 		},
 
 		selectAllKey: function () {
-			var myTree = document.getElementById('logEditionTree');
-			myTree.view.selection.selectAll();
+			let select = document.getElementById("logEditionTable");
+			for (let child of select.childNodes) {
+				child.setAttribute("selected", "true");
+			}
 		},
 
 		clipboard: function () {
 			try {
-				var myTree = document.getElementById('logEditionTree');
-				var myLogArray = [];
-				var numRanges = myTree.view.selection.getRangeCount();
-				if (numRanges > 0) {
-					for (var i = 0; i < numRanges; i++) {
-						var start = new Object();
-						var end = new Object();
-						myTree.view.selection.getRangeAt(i,start,end);
-						for (var j = start.value; j <= end.value; j++){
-							myLogArray.push(myTree.view.getCellText(j, myTree.columns.getNamedColumn('logEditionValue')));
-						}
-					}
-				} else {
-					for (var i = 0; i < myTree.view.rowCount; i++) {
-						myLogArray.push(myTree.view.getCellText(i, myTree.columns.getNamedColumn('logEditionValue')));
-					}
+				let select = document.getElementById("logEditionTable");
+				const { selectedOptions } = select;
+				if (selectedOptions) {
+					const selectedValues = Array.from(selectedOptions).map(e => e.value);
+					cardbookClipboard.clipboardSetText(selectedValues.join("\n"));
 				}
-				cardbookClipboard.clipboardSetText(myLogArray.join("\n"));
 			}
 			catch (e) {
-				var errorTitle = "clipboard error";
+				let errorTitle = "clipboard error";
 				Services.prompt.alert(null, errorTitle, e);
 			}
 		},
 
 		flush: function () {
 			cardbookRepository.statusInformation = [];
-			wdw_logEdition.load();
+			wdw_logEdition.displaySelect();
 		},
 
 		cancel: function () {
