@@ -5578,46 +5578,40 @@
 	"editEventAccesskey": {
 		"message": "M"
 	},
-	"eventsTree.title.label": {
+	"eventsTableTitleLabel": {
 		"message": "Titolo"
 	},
-	"eventsTree.title.tooltip2": {
+	"eventsTableTitleTooltip": {
 		"message": "Ordinare per Titolo"
 	},
-	"eventsTree.startdate.label": {
+	"eventsTableStartdateLabel": {
 		"message": "Inizio"
 	},
-	"eventsTree.startdate.tooltip2": {
+	"eventsTableStartdateTooltip": {
 		"message": "Ordinare per Data di inizio"
 	},
-	"eventsTree.enddate.label": {
+	"eventsTableEnddateLabel": {
 		"message": "Fine"
 	},
-	"eventsTree.enddate.tooltip2": {
+	"eventsTableEnddateTooltip": {
 		"message": "Ordinare per Data di fine"
 	},
-	"eventsTree.categories.label": {
+	"eventsTableCategoriesLabel": {
 		"message": "Categoria"
 	},
-	"eventsTree.categories.tooltip2": {
+	"eventsTableCategoriesTooltip": {
 		"message": "Ordinare per Categoria"
 	},
-	"eventsTree.location.label": {
+	"eventsTableLocationLabel": {
 		"message": "Luogo"
 	},
-	"eventsTree.location.tooltip2": {
+	"eventsTableLocationTooltip": {
 		"message": "Ordinare per Luogo"
 	},
-	"eventsTree.status.label": {
-		"message": "Stato"
-	},
-	"eventsTree.status.tooltip2": {
-		"message": "Ordinare per Stato"
-	},
-	"eventsTree.calendarname.label": {
+	"eventsTableCalendarnameLabel": {
 		"message": "Nome calendario"
 	},
-	"eventsTree.calendarname.tooltip2": {
+	"eventsTableCalendarnameTooltip": {
 		"message": "Ordinare per Nome del calendario"
 	},
 	"createEventLabel": {
@@ -5863,6 +5857,9 @@
 	"buttonAppendToListAccesskey": {
 		"message": "A"
 	},
+	"buttonAppendEmailsToListLabel": {
+		"message": "Aggiungi indirizzi email"
+	},
 	"buttonRemoveFromListLabel": {
 		"message": "Rimuovi"
 	},
@@ -5953,9 +5950,6 @@
 	},
 	"wdw_logEditionTitle": {
 		"message": "Visualizzatore di registro"
-	},
-	"logEditionValueLabel": {
-		"message": "Evento di marcatura oraria"
 	},
 	"refreshLogEditionLabel": {
 		"message": "Aggiorna"

@@ -5578,46 +5578,40 @@
 	"editEventAccesskey": {
 		"message": "C"
 	},
-	"eventsTree.title.label": {
+	"eventsTableTitleLabel": {
 		"message": "Tiêu đề"
 	},
-	"eventsTree.title.tooltip2": {
+	"eventsTableTitleTooltip": {
 		"message": "Sắp xếp theo tiêu đề"
 	},
-	"eventsTree.startdate.label": {
+	"eventsTableStartdateLabel": {
 		"message": "Bắt đầu"
 	},
-	"eventsTree.startdate.tooltip2": {
+	"eventsTableStartdateTooltip": {
 		"message": "Sắp xếp theo ngày bắt đầu"
 	},
-	"eventsTree.enddate.label": {
+	"eventsTableEnddateLabel": {
 		"message": "Kết thúc"
 	},
-	"eventsTree.enddate.tooltip2": {
+	"eventsTableEnddateTooltip": {
 		"message": "Sắp xếp theo ngày kết thúc"
 	},
-	"eventsTree.categories.label": {
+	"eventsTableCategoriesLabel": {
 		"message": "Danh mục"
 	},
-	"eventsTree.categories.tooltip2": {
+	"eventsTableCategoriesTooltip": {
 		"message": "Sắp xếp theo danh mục"
 	},
-	"eventsTree.location.label": {
+	"eventsTableLocationLabel": {
 		"message": "Địa điểm"
 	},
-	"eventsTree.location.tooltip2": {
+	"eventsTableLocationTooltip": {
 		"message": "Sắp xếp theo địa chỉ"
 	},
-	"eventsTree.status.label": {
-		"message": "Trạng thái"
-	},
-	"eventsTree.status.tooltip2": {
-		"message": "Sắp xếp theo trạng thái"
-	},
-	"eventsTree.calendarname.label": {
+	"eventsTableCalendarnameLabel": {
 		"message": "Tên Lịch"
 	},
-	"eventsTree.calendarname.tooltip2": {
+	"eventsTableCalendarnameTooltip": {
 		"message": "Sắp xếp theo tên lịch"
 	},
 	"createEventLabel": {
@@ -5863,6 +5857,9 @@
 	"buttonAppendToListAccesskey": {
 		"message": "M"
 	},
+	"buttonAppendEmailsToListLabel": {
+		"message": "??Add email addresses??"
+	},
 	"buttonRemoveFromListLabel": {
 		"message": "Xóa"
 	},
@@ -5953,9 +5950,6 @@
 	},
 	"wdw_logEditionTitle": {
 		"message": "Trình xem nhật ký"
-	},
-	"logEditionValueLabel": {
-		"message": "Sự kiện Dấu thời gian"
 	},
 	"refreshLogEditionLabel": {
 		"message": "Tải lại"

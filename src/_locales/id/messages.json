@@ -5578,46 +5578,40 @@
 	"editEventAccesskey": {
 		"message": "U"
 	},
-	"eventsTree.title.label": {
+	"eventsTableTitleLabel": {
 		"message": "Judul"
 	},
-	"eventsTree.title.tooltip2": {
+	"eventsTableTitleTooltip": {
 		"message": "Urutkan berdasarkan judul"
 	},
-	"eventsTree.startdate.label": {
+	"eventsTableStartdateLabel": {
 		"message": "Mulai"
 	},
-	"eventsTree.startdate.tooltip2": {
+	"eventsTableStartdateTooltip": {
 		"message": "Urutkan berdasarkan tanggal mulai"
 	},
-	"eventsTree.enddate.label": {
+	"eventsTableEnddateLabel": {
 		"message": "Selesai"
 	},
-	"eventsTree.enddate.tooltip2": {
+	"eventsTableEnddateTooltip": {
 		"message": "Urutkan berdasarkan tanggal berakhir"
 	},
-	"eventsTree.categories.label": {
+	"eventsTableCategoriesLabel": {
 		"message": "Kategori"
 	},
-	"eventsTree.categories.tooltip2": {
+	"eventsTableCategoriesTooltip": {
 		"message": "Urutkan berdasarkan kategori"
 	},
-	"eventsTree.location.label": {
+	"eventsTableLocationLabel": {
 		"message": "Lokasi"
 	},
-	"eventsTree.location.tooltip2": {
+	"eventsTableLocationTooltip": {
 		"message": "Urutkan berdasarkan lokasi"
 	},
-	"eventsTree.status.label": {
-		"message": "Status"
-	},
-	"eventsTree.status.tooltip2": {
-		"message": "Urutkan berdasarkan status"
-	},
-	"eventsTree.calendarname.label": {
+	"eventsTableCalendarnameLabel": {
 		"message": "Nama Kalender"
 	},
-	"eventsTree.calendarname.tooltip2": {
+	"eventsTableCalendarnameTooltip": {
 		"message": "Urut berdasarkan nama kalender"
 	},
 	"createEventLabel": {
@@ -5863,6 +5857,9 @@
 	"buttonAppendToListAccesskey": {
 		"message": "T"
 	},
+	"buttonAppendEmailsToListLabel": {
+		"message": "??Add email addresses??"
+	},
 	"buttonRemoveFromListLabel": {
 		"message": "Hapus"
 	},
@@ -5953,9 +5950,6 @@
 	},
 	"wdw_logEditionTitle": {
 		"message": "Penampil Jurnal"
-	},
-	"logEditionValueLabel": {
-		"message": "Peristiwa Cap Waktu"
 	},
 	"refreshLogEditionLabel": {
 		"message": "Muat Ulang"

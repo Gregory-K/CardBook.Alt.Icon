@@ -3962,7 +3962,7 @@
 		"message": "m"
 	},
 	"resetFnFormulaLabel": {
-		"message": "Restaurar valores predeterminados"
+		"message": "Restaurar"
 	},
 	"resetFnFormulaAccesskey": {
 		"message": "R"
@@ -4181,7 +4181,7 @@
 		"message": "M"
 	},
 	"resetAutocompleteRestrictSearchFieldsButtonLabel": {
-		"message": "Vaciar"
+		"message": "Restaurar"
 	},
 	"resetAutocompleteRestrictSearchFieldsButtonAccesskey": {
 		"message": "R"
@@ -4424,7 +4424,7 @@
 		"message": "F"
 	},
 	"resetAdrFormulaLabel": {
-		"message": "Restaurar valores predeterminados"
+		"message": "Restaurar"
 	},
 	"resetAdrFormulaAccesskey": {
 		"message": "R"
@@ -4574,7 +4574,7 @@
 		"message": "S"
 	},
 	"resetTypeLabel": {
-		"message": "Vaciar"
+		"message": "Restaurar"
 	},
 	"resetTypeAccesskey": {
 		"message": "R"
@@ -4622,7 +4622,7 @@
 		"message": "B"
 	},
 	"resetIMPPLabel": {
-		"message": "Vaciar"
+		"message": "Restaurar"
 	},
 	"resetIMPPAccesskey": {
 		"message": "R"
@@ -4736,7 +4736,7 @@
 		"message": "M"
 	},
 	"resetListLabel": {
-		"message": "Restaurar valores predeterminados"
+		"message": "Restaurar"
 	},
 	"resetListAccesskey": {
 		"message": "R"
@@ -5000,7 +5000,7 @@
 		"message": "T"
 	},
 	"resetCalendarEntryTitleButtonLabel": {
-		"message": "Vaciar"
+		"message": "Restaurar"
 	},
 	"resetCalendarEntryTitleButtonAccesskey": {
 		"message": "R"
@@ -5578,47 +5578,41 @@
 	"editEventAccesskey": {
 		"message": "M"
 	},
-	"eventsTree.title.label": {
+	"eventsTableTitleLabel": {
 		"message": "Título"
 	},
-	"eventsTree.title.tooltip2": {
-		"message": "Ordenar por tamaño"
+	"eventsTableTitleTooltip": {
+		"message": "Ordenar por título"
 	},
-	"eventsTree.startdate.label": {
+	"eventsTableStartdateLabel": {
 		"message": "Inicio"
 	},
-	"eventsTree.startdate.tooltip2": {
+	"eventsTableStartdateTooltip": {
 		"message": "Ordenar por fecha de inicio"
 	},
-	"eventsTree.enddate.label": {
+	"eventsTableEnddateLabel": {
 		"message": "Fin"
 	},
-	"eventsTree.enddate.tooltip2": {
-		"message": "Ordenar por fecha final"
+	"eventsTableEnddateTooltip": {
+		"message": "Ordenar por fecha de fin"
 	},
-	"eventsTree.categories.label": {
+	"eventsTableCategoriesLabel": {
 		"message": "Categoría"
 	},
-	"eventsTree.categories.tooltip2": {
+	"eventsTableCategoriesTooltip": {
 		"message": "Ordenar por categoría"
 	},
-	"eventsTree.location.label": {
-		"message": "Lugar"
+	"eventsTableLocationLabel": {
+		"message": "Ubicación"
 	},
-	"eventsTree.location.tooltip2": {
+	"eventsTableLocationTooltip": {
 		"message": "Ordenar por ubicación"
 	},
-	"eventsTree.status.label": {
-		"message": "Estado"
-	},
-	"eventsTree.status.tooltip2": {
-		"message": "Ordenar por estado"
-	},
-	"eventsTree.calendarname.label": {
+	"eventsTableCalendarnameLabel": {
 		"message": "Nombre del calendario"
 	},
-	"eventsTree.calendarname.tooltip2": {
-		"message": "Ordenar por nombre de calendario"
+	"eventsTableCalendarnameTooltip": {
+		"message": "Ordenar por nombre del calendario"
 	},
 	"createEventLabel": {
 		"message": "Nuevo evento"
@@ -5863,6 +5857,9 @@
 	"buttonAppendToListAccesskey": {
 		"message": "J"
 	},
+	"buttonAppendEmailsToListLabel": {
+		"message": "Añadir direcciones de correo electrónico"
+	},
 	"buttonRemoveFromListLabel": {
 		"message": "Borrar"
 	},
@@ -5953,9 +5950,6 @@
 	},
 	"wdw_logEditionTitle": {
 		"message": "Consulta del diario"
-	},
-	"logEditionValueLabel": {
-		"message": "Fila"
 	},
 	"refreshLogEditionLabel": {
 		"message": "Actualizar"

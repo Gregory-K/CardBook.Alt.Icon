@@ -5578,46 +5578,40 @@
 	"editEventAccesskey": {
 		"message": "Ε"
 	},
-	"eventsTree.title.label": {
+	"eventsTableTitleLabel": {
 		"message": "Τίτλος"
 	},
-	"eventsTree.title.tooltip2": {
+	"eventsTableTitleTooltip": {
 		"message": "Ταξινόμηση με βάση τον τίτλο"
 	},
-	"eventsTree.startdate.label": {
+	"eventsTableStartdateLabel": {
 		"message": "Έναρξη"
 	},
-	"eventsTree.startdate.tooltip2": {
+	"eventsTableStartdateTooltip": {
 		"message": "Ταξινόμηση κατά ημερομηνία έναρξης"
 	},
-	"eventsTree.enddate.label": {
+	"eventsTableEnddateLabel": {
 		"message": "Λήξη"
 	},
-	"eventsTree.enddate.tooltip2": {
+	"eventsTableEnddateTooltip": {
 		"message": "Ταξινόμηση κατά ημερομηνία λήξης"
 	},
-	"eventsTree.categories.label": {
+	"eventsTableCategoriesLabel": {
 		"message": "Κατηγορία"
 	},
-	"eventsTree.categories.tooltip2": {
+	"eventsTableCategoriesTooltip": {
 		"message": "Ταξινόμηση κατά κατηγορία"
 	},
-	"eventsTree.location.label": {
+	"eventsTableLocationLabel": {
 		"message": "Τοποθεσία"
 	},
-	"eventsTree.location.tooltip2": {
+	"eventsTableLocationTooltip": {
 		"message": "Ταξινόμηση κατά τοποθεσία"
 	},
-	"eventsTree.status.label": {
-		"message": "Κατάσταση"
-	},
-	"eventsTree.status.tooltip2": {
-		"message": "Ταξινόμηση κατά σειρά κατάστασης"
-	},
-	"eventsTree.calendarname.label": {
+	"eventsTableCalendarnameLabel": {
 		"message": "Όνομα ημερολογίου"
 	},
-	"eventsTree.calendarname.tooltip2": {
+	"eventsTableCalendarnameTooltip": {
 		"message": "Ταξινόμηση κατά όνομα ημερολογίου"
 	},
 	"createEventLabel": {
@@ -5863,6 +5857,9 @@
 	"buttonAppendToListAccesskey": {
 		"message": "Ν"
 	},
+	"buttonAppendEmailsToListLabel": {
+		"message": "Προσθήκη διευθύνσεων email"
+	},
 	"buttonRemoveFromListLabel": {
 		"message": "Διαγραφή"
 	},
@@ -5953,9 +5950,6 @@
 	},
 	"wdw_logEditionTitle": {
 		"message": "Πρόγραμμα προβολής αρχείων καταγραφής"
-	},
-	"logEditionValueLabel": {
-		"message": "Χρονική σφραγίδα εκδήλωσης"
 	},
 	"refreshLogEditionLabel": {
 		"message": "Ανανέωση"

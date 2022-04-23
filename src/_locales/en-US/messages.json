@@ -5578,46 +5578,40 @@
 	"editEventAccesskey": {
 		"message": "E"
 	},
-	"eventsTree.title.label": {
+	"eventsTableTitleLabel": {
 		"message": "Title"
 	},
-	"eventsTree.title.tooltip2": {
+	"eventsTableTitleTooltip": {
 		"message": "Sort by title"
 	},
-	"eventsTree.startdate.label": {
+	"eventsTableStartdateLabel": {
 		"message": "Start"
 	},
-	"eventsTree.startdate.tooltip2": {
+	"eventsTableStartdateTooltip": {
 		"message": "Sort by start date"
 	},
-	"eventsTree.enddate.label": {
+	"eventsTableEnddateLabel": {
 		"message": "End"
 	},
-	"eventsTree.enddate.tooltip2": {
+	"eventsTableEnddateTooltip": {
 		"message": "Sort by end date"
 	},
-	"eventsTree.categories.label": {
+	"eventsTableCategoriesLabel": {
 		"message": "Category"
 	},
-	"eventsTree.categories.tooltip2": {
+	"eventsTableCategoriesTooltip": {
 		"message": "Sort by category"
 	},
-	"eventsTree.location.label": {
+	"eventsTableLocationLabel": {
 		"message": "Location"
 	},
-	"eventsTree.location.tooltip2": {
+	"eventsTableLocationTooltip": {
 		"message": "Sort by location"
 	},
-	"eventsTree.status.label": {
-		"message": "Status"
-	},
-	"eventsTree.status.tooltip2": {
-		"message": "Sort by status"
-	},
-	"eventsTree.calendarname.label": {
+	"eventsTableCalendarnameLabel": {
 		"message": "Calendar Name"
 	},
-	"eventsTree.calendarname.tooltip2": {
+	"eventsTableCalendarnameTooltip": {
 		"message": "Sort by calendar name"
 	},
 	"createEventLabel": {
@@ -5863,6 +5857,9 @@
 	"buttonAppendToListAccesskey": {
 		"message": "A"
 	},
+	"buttonAppendEmailsToListLabel": {
+		"message": "Add email addresses"
+	},
 	"buttonRemoveFromListLabel": {
 		"message": "Remove"
 	},
@@ -5953,9 +5950,6 @@
 	},
 	"wdw_logEditionTitle": {
 		"message": "Log Viewer"
-	},
-	"logEditionValueLabel": {
-		"message": "Timestamp Event"
 	},
 	"refreshLogEditionLabel": {
 		"message": "Refresh"

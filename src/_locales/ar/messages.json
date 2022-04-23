@@ -5578,46 +5578,40 @@
 	"editEventAccesskey": {
 		"message": "E"
 	},
-	"eventsTree.title.label": {
+	"eventsTableTitleLabel": {
 		"message": "العنوان"
 	},
-	"eventsTree.title.tooltip2": {
+	"eventsTableTitleTooltip": {
 		"message": "رتّب بالعنوان"
 	},
-	"eventsTree.startdate.label": {
+	"eventsTableStartdateLabel": {
 		"message": "البدء"
 	},
-	"eventsTree.startdate.tooltip2": {
+	"eventsTableStartdateTooltip": {
 		"message": "رتّب بتاريخ البدء"
 	},
-	"eventsTree.enddate.label": {
+	"eventsTableEnddateLabel": {
 		"message": "الانتهاء"
 	},
-	"eventsTree.enddate.tooltip2": {
+	"eventsTableEnddateTooltip": {
 		"message": "رتّب بتاريخ الانتهاء"
 	},
-	"eventsTree.categories.label": {
+	"eventsTableCategoriesLabel": {
 		"message": "الفئة"
 	},
-	"eventsTree.categories.tooltip2": {
+	"eventsTableCategoriesTooltip": {
 		"message": "رتّب بالفئة"
 	},
-	"eventsTree.location.label": {
+	"eventsTableLocationLabel": {
 		"message": "المكان"
 	},
-	"eventsTree.location.tooltip2": {
+	"eventsTableLocationTooltip": {
 		"message": "رتّب بالمكان"
 	},
-	"eventsTree.status.label": {
-		"message": "الحالة"
-	},
-	"eventsTree.status.tooltip2": {
-		"message": "رتّب بالحالة"
-	},
-	"eventsTree.calendarname.label": {
+	"eventsTableCalendarnameLabel": {
 		"message": "اسم التقويم"
 	},
-	"eventsTree.calendarname.tooltip2": {
+	"eventsTableCalendarnameTooltip": {
 		"message": "رتّب باسم التقويم"
 	},
 	"createEventLabel": {
@@ -5863,6 +5857,9 @@
 	"buttonAppendToListAccesskey": {
 		"message": "A"
 	},
+	"buttonAppendEmailsToListLabel": {
+		"message": "??Add email addresses??"
+	},
 	"buttonRemoveFromListLabel": {
 		"message": "إزالة"
 	},
@@ -5953,9 +5950,6 @@
 	},
 	"wdw_logEditionTitle": {
 		"message": "عارض السجل"
-	},
-	"logEditionValueLabel": {
-		"message": "حدث الختم زمني"
 	},
 	"refreshLogEditionLabel": {
 		"message": "تحديث"

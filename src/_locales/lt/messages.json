@@ -5578,46 +5578,40 @@
 	"editEventAccesskey": {
 		"message": "K"
 	},
-	"eventsTree.title.label": {
+	"eventsTableTitleLabel": {
 		"message": "Pavadinimas"
 	},
-	"eventsTree.title.tooltip2": {
+	"eventsTableTitleTooltip": {
 		"message": "Rikiuoti pagal pavadinimą"
 	},
-	"eventsTree.startdate.label": {
+	"eventsTableStartdateLabel": {
 		"message": "Pradžia"
 	},
-	"eventsTree.startdate.tooltip2": {
+	"eventsTableStartdateTooltip": {
 		"message": "Rikiuoti pagal pradžios datą"
 	},
-	"eventsTree.enddate.label": {
+	"eventsTableEnddateLabel": {
 		"message": "Pabaiga"
 	},
-	"eventsTree.enddate.tooltip2": {
+	"eventsTableEnddateTooltip": {
 		"message": "Rikiuoti pagal pabaigos datą"
 	},
-	"eventsTree.categories.label": {
+	"eventsTableCategoriesLabel": {
 		"message": "Kategorija"
 	},
-	"eventsTree.categories.tooltip2": {
+	"eventsTableCategoriesTooltip": {
 		"message": "Rikiuoti pagal kategoriją"
 	},
-	"eventsTree.location.label": {
+	"eventsTableLocationLabel": {
 		"message": "Vieta"
 	},
-	"eventsTree.location.tooltip2": {
+	"eventsTableLocationTooltip": {
 		"message": "Rikiuoti pagal vietą"
 	},
-	"eventsTree.status.label": {
-		"message": "Eiga"
-	},
-	"eventsTree.status.tooltip2": {
-		"message": "Rikiuoti pagal eigą"
-	},
-	"eventsTree.calendarname.label": {
+	"eventsTableCalendarnameLabel": {
 		"message": "Kalendoriaus pavadinimas"
 	},
-	"eventsTree.calendarname.tooltip2": {
+	"eventsTableCalendarnameTooltip": {
 		"message": "Rikiuoti pagal kalendoriaus pavadinimą"
 	},
 	"createEventLabel": {
@@ -5863,6 +5857,9 @@
 	"buttonAppendToListAccesskey": {
 		"message": "P"
 	},
+	"buttonAppendEmailsToListLabel": {
+		"message": "??Add email addresses??"
+	},
 	"buttonRemoveFromListLabel": {
 		"message": "Pašalinti"
 	},
@@ -5953,9 +5950,6 @@
 	},
 	"wdw_logEditionTitle": {
 		"message": "Ataskaitų peržiūros programa"
-	},
-	"logEditionValueLabel": {
-		"message": "Nurodyti renginio laiką"
 	},
 	"refreshLogEditionLabel": {
 		"message": "Atnaujinti"

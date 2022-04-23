@@ -5578,46 +5578,40 @@
 	"editEventAccesskey": {
 		"message": "R"
 	},
-	"eventsTree.title.label": {
+	"eventsTableTitleLabel": {
 		"message": "Titel"
 	},
-	"eventsTree.title.tooltip2": {
+	"eventsTableTitleTooltip": {
 		"message": "Sorter efter titel"
 	},
-	"eventsTree.startdate.label": {
+	"eventsTableStartdateLabel": {
 		"message": "Start"
 	},
-	"eventsTree.startdate.tooltip2": {
-		"message": "Sorter efter start"
+	"eventsTableStartdateTooltip": {
+		"message": "Sorter efter startdato"
 	},
-	"eventsTree.enddate.label": {
+	"eventsTableEnddateLabel": {
 		"message": "Slut"
 	},
-	"eventsTree.enddate.tooltip2": {
-		"message": "Sorter efter slut"
+	"eventsTableEnddateTooltip": {
+		"message": "Sorter efter slutdato"
 	},
-	"eventsTree.categories.label": {
+	"eventsTableCategoriesLabel": {
 		"message": "Kategori"
 	},
-	"eventsTree.categories.tooltip2": {
+	"eventsTableCategoriesTooltip": {
 		"message": "Sorter efter kategori"
 	},
-	"eventsTree.location.label": {
+	"eventsTableLocationLabel": {
 		"message": "Sted"
 	},
-	"eventsTree.location.tooltip2": {
+	"eventsTableLocationTooltip": {
 		"message": "Sorter efter sted"
 	},
-	"eventsTree.status.label": {
-		"message": "Status"
-	},
-	"eventsTree.status.tooltip2": {
-		"message": "Sorter efter status"
-	},
-	"eventsTree.calendarname.label": {
+	"eventsTableCalendarnameLabel": {
 		"message": "Kalendernavn"
 	},
-	"eventsTree.calendarname.tooltip2": {
+	"eventsTableCalendarnameTooltip": {
 		"message": "Sorter efter kalendernavn"
 	},
 	"createEventLabel": {
@@ -5863,6 +5857,9 @@
 	"buttonAppendToListAccesskey": {
 		"message": "T"
 	},
+	"buttonAppendEmailsToListLabel": {
+		"message": "Tilføj e-mail-adresser"
+	},
 	"buttonRemoveFromListLabel": {
 		"message": "Fjern"
 	},
@@ -5953,9 +5950,6 @@
 	},
 	"wdw_logEditionTitle": {
 		"message": "Logviser"
-	},
-	"logEditionValueLabel": {
-		"message": "Tidsstempel Hændelse"
 	},
 	"refreshLogEditionLabel": {
 		"message": "Opdater"

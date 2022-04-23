@@ -5578,47 +5578,41 @@
 	"editEventAccesskey": {
 		"message": "U"
 	},
-	"eventsTree.title.label": {
+	"eventsTableTitleLabel": {
 		"message": "Název"
 	},
-	"eventsTree.title.tooltip2": {
-		"message": "Seřadíte podle názvu"
+	"eventsTableTitleTooltip": {
+		"message": "Seřadit podle názvu"
 	},
-	"eventsTree.startdate.label": {
+	"eventsTableStartdateLabel": {
 		"message": "Začátek"
 	},
-	"eventsTree.startdate.tooltip2": {
-		"message": "Seřadíte podle začátku"
+	"eventsTableStartdateTooltip": {
+		"message": "Seřadit podle začátku"
 	},
-	"eventsTree.enddate.label": {
+	"eventsTableEnddateLabel": {
 		"message": "Konec"
 	},
-	"eventsTree.enddate.tooltip2": {
-		"message": "Seřadíte podle konce"
+	"eventsTableEnddateTooltip": {
+		"message": "Seřadit podle konce"
 	},
-	"eventsTree.categories.label": {
+	"eventsTableCategoriesLabel": {
 		"message": "Kategorie"
 	},
-	"eventsTree.categories.tooltip2": {
-		"message": "Seřadíte podle kategorie"
+	"eventsTableCategoriesTooltip": {
+		"message": "Seřadit podle kategorie"
 	},
-	"eventsTree.location.label": {
+	"eventsTableLocationLabel": {
 		"message": "Místo"
 	},
-	"eventsTree.location.tooltip2": {
-		"message": "Seřadíte podle místa"
+	"eventsTableLocationTooltip": {
+		"message": "Seřadit podle místa"
 	},
-	"eventsTree.status.label": {
-		"message": "Stav"
-	},
-	"eventsTree.status.tooltip2": {
-		"message": "Seřadíte podle stavu"
-	},
-	"eventsTree.calendarname.label": {
+	"eventsTableCalendarnameLabel": {
 		"message": "Název kalendáře"
 	},
-	"eventsTree.calendarname.tooltip2": {
-		"message": "Seřadíte podle názvu kalendáře"
+	"eventsTableCalendarnameTooltip": {
+		"message": "Seřadit podle názvu kalendáře"
 	},
 	"createEventLabel": {
 		"message": "Nová událost"
@@ -5863,6 +5857,9 @@
 	"buttonAppendToListAccesskey": {
 		"message": "P"
 	},
+	"buttonAppendEmailsToListLabel": {
+		"message": "Přidat e-mailové adresy"
+	},
 	"buttonRemoveFromListLabel": {
 		"message": "Odstranit"
 	},
@@ -5953,9 +5950,6 @@
 	},
 	"wdw_logEditionTitle": {
 		"message": "Prohlížeč protokolu"
-	},
-	"logEditionValueLabel": {
-		"message": "Čas události"
 	},
 	"refreshLogEditionLabel": {
 		"message": "Obnovit"

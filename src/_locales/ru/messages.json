@@ -5578,46 +5578,40 @@
 	"editEventAccesskey": {
 		"message": "П"
 	},
-	"eventsTree.title.label": {
+	"eventsTableTitleLabel": {
 		"message": "Название"
 	},
-	"eventsTree.title.tooltip2": {
+	"eventsTableTitleTooltip": {
 		"message": "Сортировка по названию"
 	},
-	"eventsTree.startdate.label": {
+	"eventsTableStartdateLabel": {
 		"message": "Начало"
 	},
-	"eventsTree.startdate.tooltip2": {
+	"eventsTableStartdateTooltip": {
 		"message": "Сортировка по дате начала"
 	},
-	"eventsTree.enddate.label": {
+	"eventsTableEnddateLabel": {
 		"message": "Окончание"
 	},
-	"eventsTree.enddate.tooltip2": {
+	"eventsTableEnddateTooltip": {
 		"message": "Сортировка по дате окончания"
 	},
-	"eventsTree.categories.label": {
+	"eventsTableCategoriesLabel": {
 		"message": "Категория"
 	},
-	"eventsTree.categories.tooltip2": {
+	"eventsTableCategoriesTooltip": {
 		"message": "Сортировка по категории"
 	},
-	"eventsTree.location.label": {
+	"eventsTableLocationLabel": {
 		"message": "Место"
 	},
-	"eventsTree.location.tooltip2": {
+	"eventsTableLocationTooltip": {
 		"message": "Сортировка по месту"
 	},
-	"eventsTree.status.label": {
-		"message": "Состояние"
-	},
-	"eventsTree.status.tooltip2": {
-		"message": "Сортировка по состоянию"
-	},
-	"eventsTree.calendarname.label": {
+	"eventsTableCalendarnameLabel": {
 		"message": "Календарь"
 	},
-	"eventsTree.calendarname.tooltip2": {
+	"eventsTableCalendarnameTooltip": {
 		"message": "Сортировка по названию календаря"
 	},
 	"createEventLabel": {
@@ -5863,6 +5857,9 @@
 	"buttonAppendToListAccesskey": {
 		"message": "Д"
 	},
+	"buttonAppendEmailsToListLabel": {
+		"message": "Добавить адреса электронной"
+	},
 	"buttonRemoveFromListLabel": {
 		"message": "Удалить"
 	},
@@ -5953,9 +5950,6 @@
 	},
 	"wdw_logEditionTitle": {
 		"message": "Просмотр журнала"
-	},
-	"logEditionValueLabel": {
-		"message": "Временная метка события"
 	},
 	"refreshLogEditionLabel": {
 		"message": "Обновить"

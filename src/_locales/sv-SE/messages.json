@@ -5578,46 +5578,40 @@
 	"editEventAccesskey": {
 		"message": "R"
 	},
-	"eventsTree.title.label": {
+	"eventsTableTitleLabel": {
 		"message": "Titel"
 	},
-	"eventsTree.title.tooltip2": {
+	"eventsTableTitleTooltip": {
 		"message": "Sortera på titel"
 	},
-	"eventsTree.startdate.label": {
+	"eventsTableStartdateLabel": {
 		"message": "Start"
 	},
-	"eventsTree.startdate.tooltip2": {
+	"eventsTableStartdateTooltip": {
 		"message": "Sortera på startdatum"
 	},
-	"eventsTree.enddate.label": {
+	"eventsTableEnddateLabel": {
 		"message": "Slut"
 	},
-	"eventsTree.enddate.tooltip2": {
+	"eventsTableEnddateTooltip": {
 		"message": "Sortera på slutdatum"
 	},
-	"eventsTree.categories.label": {
+	"eventsTableCategoriesLabel": {
 		"message": "Kategori"
 	},
-	"eventsTree.categories.tooltip2": {
+	"eventsTableCategoriesTooltip": {
 		"message": "Sortera på kategori"
 	},
-	"eventsTree.location.label": {
+	"eventsTableLocationLabel": {
 		"message": "Plats"
 	},
-	"eventsTree.location.tooltip2": {
+	"eventsTableLocationTooltip": {
 		"message": "Sortera på plats"
 	},
-	"eventsTree.status.label": {
-		"message": "Status"
-	},
-	"eventsTree.status.tooltip2": {
-		"message": "Sortera på status"
-	},
-	"eventsTree.calendarname.label": {
+	"eventsTableCalendarnameLabel": {
 		"message": "Kalender namn"
 	},
-	"eventsTree.calendarname.tooltip2": {
+	"eventsTableCalendarnameTooltip": {
 		"message": "Sortera på kalendernamn"
 	},
 	"createEventLabel": {
@@ -5863,6 +5857,9 @@
 	"buttonAppendToListAccesskey": {
 		"message": "L"
 	},
+	"buttonAppendEmailsToListLabel": {
+		"message": "??Add email addresses??"
+	},
 	"buttonRemoveFromListLabel": {
 		"message": "Ta bort"
 	},
@@ -5953,9 +5950,6 @@
 	},
 	"wdw_logEditionTitle": {
 		"message": "Loggbok"
-	},
-	"logEditionValueLabel": {
-		"message": "Tidsstämpla händelse"
 	},
 	"refreshLogEditionLabel": {
 		"message": "Uppdatera"

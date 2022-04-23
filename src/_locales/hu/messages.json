@@ -3614,7 +3614,7 @@
 		"message": "Mind"
 	},
 	"quickFilterBar.booleanModeAll.tooltip": {
-		"message": "Minden kijelölt címkefeltételnek illeszkednie kell"
+		"message": "Összes kijelölt címkefeltételnek illeszkednie kell"
 	},
 	"newCardBookCardMenuLabel": {
 		"message": "Névjegy…"
@@ -3962,7 +3962,7 @@
 		"message": "P"
 	},
 	"resetFnFormulaLabel": {
-		"message": "Alapértelmezés"
+		"message": "Alapértékek visszaállítása"
 	},
 	"resetFnFormulaAccesskey": {
 		"message": "A"
@@ -4181,7 +4181,7 @@
 		"message": "S"
 	},
 	"resetAutocompleteRestrictSearchFieldsButtonLabel": {
-		"message": "Alapértelmezés"
+		"message": "Alapértékek visszaállítása"
 	},
 	"resetAutocompleteRestrictSearchFieldsButtonAccesskey": {
 		"message": "A"
@@ -4424,7 +4424,7 @@
 		"message": "k"
 	},
 	"resetAdrFormulaLabel": {
-		"message": "Alapértelmezés"
+		"message": "Alapértékek visszaállítása"
 	},
 	"resetAdrFormulaAccesskey": {
 		"message": "A"
@@ -4466,10 +4466,10 @@
 		"message": "A megjelenítendő név használata az üzenetfejlécben levő helyett"
 	},
 	"selectAllFieldsLabel": {
-		"message": "Minden kijelölése"
+		"message": "Összes kijelölése"
 	},
 	"selectAllDiscoveryLabel": {
-		"message": "Minden kijelölése"
+		"message": "Összes kijelölése"
 	},
 	"preferenceGroupboxLabel": {
 		"message": "Preferenciális mező"
@@ -4574,7 +4574,7 @@
 		"message": "T"
 	},
 	"resetTypeLabel": {
-		"message": "Alapértelmezés"
+		"message": "Alapértékek visszaállítása"
 	},
 	"resetTypeAccesskey": {
 		"message": "A"
@@ -4622,7 +4622,7 @@
 		"message": "T"
 	},
 	"resetIMPPLabel": {
-		"message": "Alapértelmezés"
+		"message": "Alapértékek visszaállítása"
 	},
 	"resetIMPPAccesskey": {
 		"message": "A"
@@ -4673,10 +4673,10 @@
 		"message": "Sorrend"
 	},
 	"customFieldCodeHeaderLabel": {
-		"message": "Mező neve"
+		"message": "Mezőnév"
 	},
 	"customFieldLabelHeaderLabel": {
-		"message": "Mező címke"
+		"message": "Mezőcímke"
 	},
 	"customFieldsPersTitleLabel": {
 		"message": "Személyes adatok"
@@ -4736,7 +4736,7 @@
 		"message": "T"
 	},
 	"resetListLabel": {
-		"message": "Alapértelmezés"
+		"message": "Alapértékek visszaállítása"
 	},
 	"resetListAccesskey": {
 		"message": "A"
@@ -4895,7 +4895,7 @@
 		"message": "Minden mappa"
 	},
 	"selectAllABsLabel": {
-		"message": "Minden kijelölése"
+		"message": "Összes kijelölése"
 	},
 	"searchForLabel": {
 		"message": "Keresés:"
@@ -4937,7 +4937,7 @@
 		"message": "Naptár"
 	},
 	"selectAllCalendarsLabel": {
-		"message": "Minden kijelölése"
+		"message": "Összes kijelölése"
 	},
 	"remindersTabLabel": {
 		"message": "Emlékeztetők"
@@ -5000,7 +5000,7 @@
 		"message": "C"
 	},
 	"resetCalendarEntryTitleButtonLabel": {
-		"message": "Alapértelmezés"
+		"message": "Alapértékek visszaállítása"
 	},
 	"resetCalendarEntryTitleButtonAccesskey": {
 		"message": "A"
@@ -5578,46 +5578,40 @@
 	"editEventAccesskey": {
 		"message": "s"
 	},
-	"eventsTree.title.label": {
+	"eventsTableTitleLabel": {
 		"message": "Cím"
 	},
-	"eventsTree.title.tooltip2": {
+	"eventsTableTitleTooltip": {
 		"message": "Rendezés cím szerint"
 	},
-	"eventsTree.startdate.label": {
-		"message": "Kezdés"
+	"eventsTableStartdateLabel": {
+		"message": "Kezdete"
 	},
-	"eventsTree.startdate.tooltip2": {
+	"eventsTableStartdateTooltip": {
 		"message": "Rendezés kezdési dátum szerint"
 	},
-	"eventsTree.enddate.label": {
-		"message": "Befejezés"
+	"eventsTableEnddateLabel": {
+		"message": "Vége"
 	},
-	"eventsTree.enddate.tooltip2": {
+	"eventsTableEnddateTooltip": {
 		"message": "Rendezés befejezési dátum szerint"
 	},
-	"eventsTree.categories.label": {
+	"eventsTableCategoriesLabel": {
 		"message": "Kategória"
 	},
-	"eventsTree.categories.tooltip2": {
+	"eventsTableCategoriesTooltip": {
 		"message": "Rendezés kategória szerint"
 	},
-	"eventsTree.location.label": {
+	"eventsTableLocationLabel": {
 		"message": "Hely"
 	},
-	"eventsTree.location.tooltip2": {
+	"eventsTableLocationTooltip": {
 		"message": "Rendezés hely szerint"
 	},
-	"eventsTree.status.label": {
-		"message": "Állapot"
-	},
-	"eventsTree.status.tooltip2": {
-		"message": "Rendezés állapot szerint"
-	},
-	"eventsTree.calendarname.label": {
+	"eventsTableCalendarnameLabel": {
 		"message": "Naptár neve"
 	},
-	"eventsTree.calendarname.tooltip2": {
+	"eventsTableCalendarnameTooltip": {
 		"message": "Rendezés naptárnév szerint"
 	},
 	"createEventLabel": {
@@ -5863,6 +5857,9 @@
 	"buttonAppendToListAccesskey": {
 		"message": "H"
 	},
+	"buttonAppendEmailsToListLabel": {
+		"message": "E-mail-címek hozzáadása"
+	},
 	"buttonRemoveFromListLabel": {
 		"message": "Törlés"
 	},
@@ -5953,9 +5950,6 @@
 	},
 	"wdw_logEditionTitle": {
 		"message": "Naplómegjelenítő"
-	},
-	"logEditionValueLabel": {
-		"message": "Időbélyeg esemény"
 	},
 	"refreshLogEditionLabel": {
 		"message": "Frissítés"

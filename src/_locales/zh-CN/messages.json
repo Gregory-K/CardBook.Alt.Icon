@@ -5578,46 +5578,40 @@
 	"editEventAccesskey": {
 		"message": "E"
 	},
-	"eventsTree.title.label": {
+	"eventsTableTitleLabel": {
 		"message": "标题"
 	},
-	"eventsTree.title.tooltip2": {
+	"eventsTableTitleTooltip": {
 		"message": "按标题排序"
 	},
-	"eventsTree.startdate.label": {
+	"eventsTableStartdateLabel": {
 		"message": "开始"
 	},
-	"eventsTree.startdate.tooltip2": {
+	"eventsTableStartdateTooltip": {
 		"message": "按开始日期排序"
 	},
-	"eventsTree.enddate.label": {
+	"eventsTableEnddateLabel": {
 		"message": "结束"
 	},
-	"eventsTree.enddate.tooltip2": {
+	"eventsTableEnddateTooltip": {
 		"message": "按结束日期排序"
 	},
-	"eventsTree.categories.label": {
+	"eventsTableCategoriesLabel": {
 		"message": "类别"
 	},
-	"eventsTree.categories.tooltip2": {
+	"eventsTableCategoriesTooltip": {
 		"message": "按分类排序"
 	},
-	"eventsTree.location.label": {
+	"eventsTableLocationLabel": {
 		"message": "位置"
 	},
-	"eventsTree.location.tooltip2": {
+	"eventsTableLocationTooltip": {
 		"message": "按位置排序"
 	},
-	"eventsTree.status.label": {
-		"message": "状态"
-	},
-	"eventsTree.status.tooltip2": {
-		"message": "按状态排序"
-	},
-	"eventsTree.calendarname.label": {
+	"eventsTableCalendarnameLabel": {
 		"message": "日历名称"
 	},
-	"eventsTree.calendarname.tooltip2": {
+	"eventsTableCalendarnameTooltip": {
 		"message": "按日历名称排序"
 	},
 	"createEventLabel": {
@@ -5863,6 +5857,9 @@
 	"buttonAppendToListAccesskey": {
 		"message": "A"
 	},
+	"buttonAppendEmailsToListLabel": {
+		"message": "??Add email addresses??"
+	},
 	"buttonRemoveFromListLabel": {
 		"message": "删除"
 	},
@@ -5953,9 +5950,6 @@
 	},
 	"wdw_logEditionTitle": {
 		"message": "日志查看器"
-	},
-	"logEditionValueLabel": {
-		"message": "时间戳事件"
 	},
 	"refreshLogEditionLabel": {
 		"message": "刷新"

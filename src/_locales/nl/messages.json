@@ -31,25 +31,25 @@
 		"message": "Map opslaan"
 	},
 	"dirChooseTitle": {
-		"message": "Kies map"
+		"message": "Map kiezen"
 	},
 	"fileCreationVCFTitle": {
-		"message": "Maak een nieuw VCF-bestand (UTF-8-encoded)"
+		"message": "Een nieuw VCF-bestand aanmaken (UTF-8-gecodeerd)"
 	},
 	"fileSelectionVCFTitle": {
-		"message": "Open een bestaand VCF-bestand (UTF-8-encoded)"
+		"message": "Een VCF-bestand openen (UTF-8-gecodeerd)"
 	},
 	"fileImportTitle": {
-		"message": "Importeer een VCF-bestand (UTF-8-encoded)"
+		"message": "VCF bestand importeren (UTF-8 gecodeerd)"
 	},
 	"dirImportTitle": {
-		"message": "Importeer een map"
+		"message": "Importeren uit een map"
 	},
 	"fileCreationTPLTitle": {
-		"message": "Maak een nieuw TPL-bestand"
+		"message": "Een nieuw TPL-bestand maken"
 	},
 	"fileSelectionTPLTitle": {
-		"message": "Open een bestaand TPL-bestand"
+		"message": "Een TPL-bestand openen\""
 	},
 	"fileSelectionTitle": {
 		"message": "Koppelingslocatie"
@@ -73,7 +73,7 @@
 		"message": "Zet adresboek in alleen lezen-modus"
 	},
 	"createCategoryFromAccountsOrCats": {
-		"message": "Categorie toevoegen"
+		"message": "Categorie aanmaken"
 	},
 	"editCategoryFromAccountsOrCats": {
 		"message": "Categorie bewerken"
@@ -91,10 +91,10 @@
 		"message": "Knooppunt verwijderen"
 	},
 	"convertNodeFromAccountsOrCats": {
-		"message": "Maak lijst van knooppunt"
+		"message": "Lijst maken van knooppunt"
 	},
 	"viewCardButtonLabel": {
-		"message": "Tonen"
+		"message": "Weergeven"
 	},
 	"editCardButtonLabel": {
 		"message": "Wijzigen"
@@ -118,7 +118,7 @@
 		"message": "T"
 	},
 	"hideForgottenLabel": {
-		"message": "Verberg vergeten duplicaten"
+		"message": "Vergeten duplicaten verbergen"
 	},
 	"hideForgottenAccesskey": {
 		"message": "V"
@@ -136,15 +136,15 @@
 		"message": "bron"
 	},
 	"serverWarningGoogleLabel": {
-		"message": "Gebruik van Google is experimenteel, Google ondersteunt geen vCard-standaards."
+		"message": "Gebruik van Google is experimenteel, Google ondersteunt geen vCard-standaarden."
 	},
 	"Validating1Label": {
 		"message": "Controleren ($P1$)…",
-        "placeholders": {
-            "P1": {
-                "content": "$1"
-            }
-        }
+		"placeholders": {
+			"P1": {
+				"content": "$1"
+			}
+		}
 	},
 	"Validating2Label": {
 		"message": "Controleren…"
@@ -153,16 +153,16 @@
 		"message": "Ongeldige URL"
 	},
 	"ValidatingURILabel": {
-		"message": "Typ of plak een URL"
+		"message": "Een URL invoeren of plakken"
 	},
 	"ValidatingURIFailedLabel": {
 		"message": "Ongeldige URL"
 	},
 	"ValidatingLoginLabel": {
-		"message": "Uw aanmelding"
+		"message": "Aanmelden"
 	},
 	"ValidatingEmailLabel": {
-		"message": "Uw bestaande e-mailadres"
+		"message": "Bestaand e-mailadres"
 	},
 	"ValidatingEmailFailedLabel": {
 		"message": "Geldig e-mailadres vereist"
@@ -180,675 +180,675 @@
 		"message": "Dit account vereist een applicatie wachtwoord"
 	},
 	"customFieldsErrorUPPERCASE": {
-		"message": "Namen van eigen rubrieken moeten in hoofdletters: $P1$",
-        "placeholders": {
-            "P1": {
-                "content": "$1"
-            }
-        }
+		"message": "Eigen veldnamen moeten in hoofdletters: $P1$",
+		"placeholders": {
+			"P1": {
+				"content": "$1"
+			}
+		}
 	},
 	"customFieldsErrorX": {
-		"message": "Namen van eigen rubrieken moeten beginnen met X- : $P1$",
-        "placeholders": {
-            "P1": {
-                "content": "$1"
-            }
-        }
+		"message": "Eigen veldnamen moeten beginnen met X- : $P1$",
+		"placeholders": {
+			"P1": {
+				"content": "$1"
+			}
+		}
 	},
 	"customFieldsErrorFIELD": {
-		"message": "$P1$ kan niet worden gebruikt als naam voor een eigen rubriek",
-        "placeholders": {
-            "P1": {
-                "content": "$1"
-            }
-        }
+		"message": "$P1$ is gereserveerd en kan niet worden gebruikt voor een eigen veldnaam",
+		"placeholders": {
+			"P1": {
+				"content": "$1"
+			}
+		}
 	},
 	"customFieldsErrorCHAR": {
-		"message": "Namen van eigen rubrieken mogen geen speciale karakters (komma, puntkomma, dubbelepunt, punt) bevatten: $P1$",
-        "placeholders": {
-            "P1": {
-                "content": "$1"
-            }
-        }
+		"message": "Eigen veldnamen mogen geen speciale karakters (komma, puntkomma, dubbelepunt, punt) bevatten: $P1$",
+		"placeholders": {
+			"P1": {
+				"content": "$1"
+			}
+		}
 	},
 	"customFieldsErrorUNIQUE": {
-		"message": "Namen van eigen rubrieken moeten uniek zijn (over alle verschillende tabbladen)."
+		"message": "Eigen veldnamen moeten uniek zijn (over alle verschillende tabbladen)."
 	},
 	"customFieldsErrorLABEL": {
-		"message": "Namen van eigen rubrieken moeten ingevuld zijn."
+		"message": "Eigen veldnamen moeten ingevuld zijn."
 	},
 	"allContactsLoadedFromFile": {
-		"message": "$P1$ : Alle contactpersonen zijn geladen uit het bestand.",
-        "placeholders": {
-            "P1": {
-                "content": "$1"
-            }
-        }
+		"message": "$P1$ : Alle contactpersonen uit bestand geladen.",
+		"placeholders": {
+			"P1": {
+				"content": "$1"
+			}
+		}
 	},
 	"notAllContactsLoadedFromFile": {
 		"message": "$P1$ : Niet alle contactpersonen zijn geladen uit het bestand: $P2$ fouten.",
-        "placeholders": {
-            "P1": {
-                "content": "$1"
-            },
-            "P2": {
-                "content": "$2"
-            }
-        }
+		"placeholders": {
+			"P1": {
+				"content": "$1"
+			},
+			"P2": {
+				"content": "$2"
+			}
+		}
 	},
 	"synchroRunning": {
 		"message": "$P1$ : Synchronisatie bezig…",
-        "placeholders": {
-            "P1": {
-                "content": "$1"
-            }
-        }
+		"placeholders": {
+			"P1": {
+				"content": "$1"
+			}
+		}
 	},
 	"synchroNotTried": {
-		"message": "$P1$ : Synchronisatie niet uitgevoerd",
-        "placeholders": {
-            "P1": {
-                "content": "$1"
-            }
-        }
+		"message": "$P1$ : Synchronisatie niet geprobeerd",
+		"placeholders": {
+			"P1": {
+				"content": "$1"
+			}
+		}
 	},
 	"synchroFinished": {
 		"message": "$P1$ : Synchronisatie afgerond",
-        "placeholders": {
-            "P1": {
-                "content": "$1"
-            }
-        }
+		"placeholders": {
+			"P1": {
+				"content": "$1"
+			}
+		}
 	},
 	"synchroFinishedResult": {
 		"message": "$P1$ : Synchronisatie afgerond, resultaat :",
-        "placeholders": {
-            "P1": {
-                "content": "$1"
-            }
-        }
+		"placeholders": {
+			"P1": {
+				"content": "$1"
+			}
+		}
 	},
 	"synchroProcessed": {
 		"message": "Verwerkte contactpersonen: $P1$/$P2$",
-        "placeholders": {
-            "P1": {
-                "content": "$1"
-            },
-            "P2": {
-                "content": "$2"
-            }
-        }
+		"placeholders": {
+			"P1": {
+				"content": "$1"
+			},
+			"P2": {
+				"content": "$2"
+			}
+		}
 	},
 	"synchroCardsUpToDate": {
 		"message": "$P1$ : Ongewijzigde contactpersonen : $P2$",
-        "placeholders": {
-            "P1": {
-                "content": "$1"
-            },
-            "P2": {
-                "content": "$2"
-            }
-        }
+		"placeholders": {
+			"P1": {
+				"content": "$1"
+			},
+			"P2": {
+				"content": "$2"
+			}
+		}
 	},
 	"synchroCardsNewOnServer": {
 		"message": "$P1$ : Nieuwe contactpersonen op de server : $P2$",
-        "placeholders": {
-            "P1": {
-                "content": "$1"
-            },
-            "P2": {
-                "content": "$2"
-            }
-        }
+		"placeholders": {
+			"P1": {
+				"content": "$1"
+			},
+			"P2": {
+				"content": "$2"
+			}
+		}
 	},
 	"synchroCardsUpdatedOnServer": {
-		"message": "$P1$ : Gewijzigde contactpersonen op de server : $P2$",
-        "placeholders": {
-            "P1": {
-                "content": "$1"
-            },
-            "P2": {
-                "content": "$2"
-            }
-        }
+		"message": "$P1$ : Bijgewerkte contactpersonen op server : $P2$",
+		"placeholders": {
+			"P1": {
+				"content": "$1"
+			},
+			"P2": {
+				"content": "$2"
+			}
+		}
 	},
 	"synchroCardsDeletedOnServer": {
-		"message": "$P1$ : Verwijderde contactpersonen op de server : $P2$",
-        "placeholders": {
-            "P1": {
-                "content": "$1"
-            },
-            "P2": {
-                "content": "$2"
-            }
-        }
+		"message": "$P1$ : Verwijderde contactpersonen van server : $P2$",
+		"placeholders": {
+			"P1": {
+				"content": "$1"
+			},
+			"P2": {
+				"content": "$2"
+			}
+		}
 	},
 	"synchroCardsDeletedOnDisk": {
 		"message": "$P1$ : Verwijderde contactpersonen lokaal : $P2$",
-        "placeholders": {
-            "P1": {
-                "content": "$1"
-            },
-            "P2": {
-                "content": "$2"
-            }
-        }
+		"placeholders": {
+			"P1": {
+				"content": "$1"
+			},
+			"P2": {
+				"content": "$2"
+			}
+		}
 	},
 	"synchroCardsDeletedOnDiskUpdatedOnServer": {
-		"message": "$P1$ : Contactpersonen die lokaal verwijderd zijn, maar gewijzigd op de server : $P2$",
-        "placeholders": {
-            "P1": {
-                "content": "$1"
-            },
-            "P2": {
-                "content": "$2"
-            }
-        }
+		"message": "$P1$ : Contactpersonen lokaal verwijderd en bijgewerkt op server : $P2$",
+		"placeholders": {
+			"P1": {
+				"content": "$1"
+			},
+			"P2": {
+				"content": "$2"
+			}
+		}
 	},
 	"synchroCardsNewOnDisk": {
 		"message": "$P1$ : Nieuwe contactpersonen lokaal : $P2$",
-        "placeholders": {
-            "P1": {
-                "content": "$1"
-            },
-            "P2": {
-                "content": "$2"
-            }
-        }
+		"placeholders": {
+			"P1": {
+				"content": "$1"
+			},
+			"P2": {
+				"content": "$2"
+			}
+		}
 	},
 	"synchroCardsUpdatedOnDisk": {
-		"message": "$P1$ : Gewijzigde contactpersonen lokaal : $P2$",
-        "placeholders": {
-            "P1": {
-                "content": "$1"
-            },
-            "P2": {
-                "content": "$2"
-            }
-        }
+		"message": "$P1$ : Bijgewerkte contactpersonen lokaal : $P2$",
+		"placeholders": {
+			"P1": {
+				"content": "$1"
+			},
+			"P2": {
+				"content": "$2"
+			}
+		}
 	},
 	"synchroCardsUpdatedOnBoth": {
-		"message": "$P1$ : Gewijzigde contactpersonen lokaal en op de server : $P2$",
-        "placeholders": {
-            "P1": {
-                "content": "$1"
-            },
-            "P2": {
-                "content": "$2"
-            }
-        }
+		"message": "$P1$ : Bijgewerkte contactpersonen lokaal en op server : $P2$",
+		"placeholders": {
+			"P1": {
+				"content": "$1"
+			},
+			"P2": {
+				"content": "$2"
+			}
+		}
 	},
 	"synchroCardsUpdatedOnDiskDeletedOnServer": {
-		"message": "$P1$ : Contactpersonen die lokaal gewijzigd zijn, maar verwijderd op de server : $P2$",
-        "placeholders": {
-            "P1": {
-                "content": "$1"
-            },
-            "P2": {
-                "content": "$2"
-            }
-        }
+		"message": "$P1$ : Contactpersonen lokaal bijgewerkt en verwijderd van server : $P2$",
+		"placeholders": {
+			"P1": {
+				"content": "$1"
+			},
+			"P2": {
+				"content": "$2"
+			}
+		}
 	},
 	"synchroCategoriesUpToDate": {
 		"message": "$P1$ : Ongewijzigde Categorieën : $P2$",
-        "placeholders": {
-            "P1": {
-                "content": "$1"
-            },
-            "P2": {
-                "content": "$2"
-            }
-        }
+		"placeholders": {
+			"P1": {
+				"content": "$1"
+			},
+			"P2": {
+				"content": "$2"
+			}
+		}
 	},
 	"synchroCategoriesNewOnServer": {
 		"message": "$P1$ : Nieuwe categorieën op de server : $P2$",
-        "placeholders": {
-            "P1": {
-                "content": "$1"
-            },
-            "P2": {
-                "content": "$2"
-            }
-        }
+		"placeholders": {
+			"P1": {
+				"content": "$1"
+			},
+			"P2": {
+				"content": "$2"
+			}
+		}
 	},
 	"synchroCategoriesUpdatedOnServer": {
 		"message": "$P1$ : Categorieën bijgewerkt op de server : $P2$",
-        "placeholders": {
-            "P1": {
-                "content": "$1"
-            },
-            "P2": {
-                "content": "$2"
-            }
-        }
+		"placeholders": {
+			"P1": {
+				"content": "$1"
+			},
+			"P2": {
+				"content": "$2"
+			}
+		}
 	},
 	"synchroCategoriesDeletedOnServer": {
 		"message": "$P1$ : Categorieën verwijderd van de server : $P2$",
-        "placeholders": {
-            "P1": {
-                "content": "$1"
-            },
-            "P2": {
-                "content": "$2"
-            }
-        }
+		"placeholders": {
+			"P1": {
+				"content": "$1"
+			},
+			"P2": {
+				"content": "$2"
+			}
+		}
 	},
 	"synchroCategoriesDeletedOnDisk": {
 		"message": "$P1$ : Categorieën verwijderd lokaal : $P2$",
-        "placeholders": {
-            "P1": {
-                "content": "$1"
-            },
-            "P2": {
-                "content": "$2"
-            }
-        }
+		"placeholders": {
+			"P1": {
+				"content": "$1"
+			},
+			"P2": {
+				"content": "$2"
+			}
+		}
 	},
 	"synchroCategoriesDeletedOnDiskUpdatedOnServer": {
 		"message": "$P1$ : Categorieën verwijderd lokaal en bijgewerkt op de server : $P2$",
-        "placeholders": {
-            "P1": {
-                "content": "$1"
-            },
-            "P2": {
-                "content": "$2"
-            }
-        }
+		"placeholders": {
+			"P1": {
+				"content": "$1"
+			},
+			"P2": {
+				"content": "$2"
+			}
+		}
 	},
 	"synchroCategoriesNewOnDisk": {
 		"message": "$P1$ : Categorieën toegeoegd lokaal : $P2$",
-        "placeholders": {
-            "P1": {
-                "content": "$1"
-            },
-            "P2": {
-                "content": "$2"
-            }
-        }
+		"placeholders": {
+			"P1": {
+				"content": "$1"
+			},
+			"P2": {
+				"content": "$2"
+			}
+		}
 	},
 	"synchroCategoriesUpdatedOnDisk": {
 		"message": "$P1$ : Categorieën bijgewerkt lokaal : $P2$",
-        "placeholders": {
-            "P1": {
-                "content": "$1"
-            },
-            "P2": {
-                "content": "$2"
-            }
-        }
+		"placeholders": {
+			"P1": {
+				"content": "$1"
+			},
+			"P2": {
+				"content": "$2"
+			}
+		}
 	},
 	"synchroCategoriesUpdatedOnBoth": {
 		"message": "$P1$ : Categorieën bijgewerkt lokaal en op de server : $P2$",
-        "placeholders": {
-            "P1": {
-                "content": "$1"
-            },
-            "P2": {
-                "content": "$2"
-            }
-        }
+		"placeholders": {
+			"P1": {
+				"content": "$1"
+			},
+			"P2": {
+				"content": "$2"
+			}
+		}
 	},
 	"synchroCategoriesUpdatedOnDiskDeletedOnServer": {
 		"message": "$P1$ : Categorieën bijgewerkt lokaal en verwijderd van de server : $P2$",
-        "placeholders": {
-            "P1": {
-                "content": "$1"
-            },
-            "P2": {
-                "content": "$2"
-            }
-        }
+		"placeholders": {
+			"P1": {
+				"content": "$1"
+			},
+			"P2": {
+				"content": "$2"
+			}
+		}
 	},
 	"synchroModifGetOKFromServer": {
 		"message": "$P1$ : Wijzigingen die succesvol van de server verzonden zijn : $P2$",
-        "placeholders": {
-            "P1": {
-                "content": "$1"
-            },
-            "P2": {
-                "content": "$2"
-            }
-        }
+		"placeholders": {
+			"P1": {
+				"content": "$1"
+			},
+			"P2": {
+				"content": "$2"
+			}
+		}
 	},
 	"synchroModifGetKOFromServer": {
 		"message": "$P1$ : Wijzigingen die niet succesvol van de server verzonden zijn : $P2$",
-        "placeholders": {
-            "P1": {
-                "content": "$1"
-            },
-            "P2": {
-                "content": "$2"
-            }
-        }
+		"placeholders": {
+			"P1": {
+				"content": "$1"
+			},
+			"P2": {
+				"content": "$2"
+			}
+		}
 	},
 	"synchroModifPutOKToServer": {
 		"message": "$P1$ : Wijzigingen die succesvol naar de server verzonden zijn : $P2$",
-        "placeholders": {
-            "P1": {
-                "content": "$1"
-            },
-            "P2": {
-                "content": "$2"
-            }
-        }
+		"placeholders": {
+			"P1": {
+				"content": "$1"
+			},
+			"P2": {
+				"content": "$2"
+			}
+		}
 	},
 	"synchroModifPutKOToServer": {
 		"message": "$P1$ : Wijzigingen die niet succesvol naar de server verzonden zijn : $P2$",
-        "placeholders": {
-            "P1": {
-                "content": "$1"
-            },
-            "P2": {
-                "content": "$2"
-            }
-        }
+		"placeholders": {
+			"P1": {
+				"content": "$1"
+			},
+			"P2": {
+				"content": "$2"
+			}
+		}
 	},
 	"synchroImpossible": {
 		"message": "$P1$ : Synchronisatie met de server niet mogelijk.",
-        "placeholders": {
-            "P1": {
-                "content": "$1"
-            }
-        }
+		"placeholders": {
+			"P1": {
+				"content": "$1"
+			}
+		}
 	},
 	"synchroDBFinishedResult": {
 		"message": "$P1$ : Lokale database geopend, resultaat :",
-        "placeholders": {
-            "P1": {
-                "content": "$1"
-            }
-        }
+		"placeholders": {
+			"P1": {
+				"content": "$1"
+			}
+		}
 	},
 	"synchroDBCardsOK": {
 		"message": "$P1$ : Contactpersonen geopend : $P2$",
-        "placeholders": {
-            "P1": {
-                "content": "$1"
-            },
-            "P2": {
-                "content": "$2"
-            }
-        }
+		"placeholders": {
+			"P1": {
+				"content": "$1"
+			},
+			"P2": {
+				"content": "$2"
+			}
+		}
 	},
 	"synchroDBCardsKO": {
 		"message": "$P1$ : Fouten in contactpersonen : $P2$",
-        "placeholders": {
-            "P1": {
-                "content": "$1"
-            },
-            "P2": {
-                "content": "$2"
-            }
-        }
+		"placeholders": {
+			"P1": {
+				"content": "$1"
+			},
+			"P2": {
+				"content": "$2"
+			}
+		}
 	},
 	"synchroDirFinishedResult": {
 		"message": "$P1$ : Map geopend, resultaat :",
-        "placeholders": {
-            "P1": {
-                "content": "$1"
-            }
-        }
+		"placeholders": {
+			"P1": {
+				"content": "$1"
+			}
+		}
 	},
 	"synchroDirCardsOK": {
 		"message": "$P1$ : Contactpersonen geopend : $P2$",
-        "placeholders": {
-            "P1": {
-                "content": "$1"
-            },
-            "P2": {
-                "content": "$2"
-            }
-        }
+		"placeholders": {
+			"P1": {
+				"content": "$1"
+			},
+			"P2": {
+				"content": "$2"
+			}
+		}
 	},
 	"synchroDirCardsKO": {
 		"message": "$P1$ : Fouten in contactpersonen : $P2$",
-        "placeholders": {
-            "P1": {
-                "content": "$1"
-            },
-            "P2": {
-                "content": "$2"
-            }
-        }
+		"placeholders": {
+			"P1": {
+				"content": "$1"
+			},
+			"P2": {
+				"content": "$2"
+			}
+		}
 	},
 	"synchroFileFinishedResult": {
 		"message": "$P1$ : Bestand geopend, resultaat :",
-        "placeholders": {
-            "P1": {
-                "content": "$1"
-            }
-        }
+		"placeholders": {
+			"P1": {
+				"content": "$1"
+			}
+		}
 	},
 	"synchroFileCardsOK": {
 		"message": "$P1$ : Contactpersonen geopend : $P2$",
-        "placeholders": {
-            "P1": {
-                "content": "$1"
-            },
-            "P2": {
-                "content": "$2"
-            }
-        }
+		"placeholders": {
+			"P1": {
+				"content": "$1"
+			},
+			"P2": {
+				"content": "$2"
+			}
+		}
 	},
 	"synchroFileCardsKO": {
 		"message": "$P1$ : Fouten in contactpersonen : $P2$",
-        "placeholders": {
-            "P1": {
-                "content": "$1"
-            },
-            "P2": {
-                "content": "$2"
-            }
-        }
+		"placeholders": {
+			"P1": {
+				"content": "$1"
+			},
+			"P2": {
+				"content": "$2"
+			}
+		}
 	},
 	"synchroForcedToResync": {
 		"message": "$P1$ : Account moet opnieuw gesynchroniseerd worden",
-        "placeholders": {
-            "P1": {
-                "content": "$1"
-            }
-        }
+		"placeholders": {
+			"P1": {
+				"content": "$1"
+			}
+		}
 	},
 	"synchroAllFinished": {
 		"message": "Alle synchronisaties afgerond"
 	},
 	"discoveryRunning": {
 		"message": "$P1$ : Automatische adresboeken-controle op server…",
-        "placeholders": {
-            "P1": {
-                "content": "$1"
-            }
-        }
+		"placeholders": {
+			"P1": {
+				"content": "$1"
+			}
+		}
 	},
 	"imageGetResponse": {
 		"message": "$P1$ : Afbeeldingen gedownload : $P2$",
-        "placeholders": {
-            "P1": {
-                "content": "$1"
-            },
-            "P2": {
-                "content": "$2"
-            }
-        }
+		"placeholders": {
+			"P1": {
+				"content": "$1"
+			},
+			"P2": {
+				"content": "$2"
+			}
+		}
 	},
 	"imageGetError": {
 		"message": "$P1$ : Fouten in afbeeldingen : $P2$",
-        "placeholders": {
-            "P1": {
-                "content": "$1"
-            },
-            "P2": {
-                "content": "$2"
-            }
-        }
+		"placeholders": {
+			"P1": {
+				"content": "$1"
+			},
+			"P2": {
+				"content": "$2"
+			}
+		}
 	},
 	"importFinishedResult": {
 		"message": "$P1$ : Import afgerond, resultaat :",
-        "placeholders": {
-            "P1": {
-                "content": "$1"
-            }
-        }
+		"placeholders": {
+			"P1": {
+				"content": "$1"
+			}
+		}
 	},
 	"importCardsOK": {
 		"message": "$P1$ : Contactpersonen geïmporteerd : $P2$",
-        "placeholders": {
-            "P1": {
-                "content": "$1"
-            },
-            "P2": {
-                "content": "$2"
-            }
-        }
+		"placeholders": {
+			"P1": {
+				"content": "$1"
+			},
+			"P2": {
+				"content": "$2"
+			}
+		}
 	},
 	"importCardsKO": {
 		"message": "$P1$ : Fouten in contactpersonen : $P2$",
-        "placeholders": {
-            "P1": {
-                "content": "$1"
-            },
-            "P2": {
-                "content": "$2"
-            }
-        }
+		"placeholders": {
+			"P1": {
+				"content": "$1"
+			},
+			"P2": {
+				"content": "$2"
+			}
+		}
 	},
 	"importAllFinished": {
 		"message": "Alle imports afgerond"
 	},
 	"cardDeletedOnDisk": {
 		"message": "$P1$ : Contactpersoon $P2$ lokaal verwijderd",
-        "placeholders": {
-            "P1": {
-                "content": "$1"
-            },
-            "P2": {
-                "content": "$2"
-            }
-        }
+		"placeholders": {
+			"P1": {
+				"content": "$1"
+			},
+			"P2": {
+				"content": "$2"
+			}
+		}
 	},
 	"cardUpdatedOnDisk": {
 		"message": "$P1$ : Contactpersoon $P2$ lokaal gewijzigd",
-        "placeholders": {
-            "P1": {
-                "content": "$1"
-            },
-            "P2": {
-                "content": "$2"
-            }
-        }
+		"placeholders": {
+			"P1": {
+				"content": "$1"
+			},
+			"P2": {
+				"content": "$2"
+			}
+		}
 	},
 	"cardAlreadyGetFromCache": {
 		"message": "$P1$ : Contactpersoon $P2$ reeds gelezen uit cache",
-        "placeholders": {
-            "P1": {
-                "content": "$1"
-            },
-            "P2": {
-                "content": "$2"
-            }
-        }
+		"placeholders": {
+			"P1": {
+				"content": "$1"
+			},
+			"P2": {
+				"content": "$2"
+			}
+		}
 	},
 	"cardDeletedOnDiskUpdatedOnServer": {
 		"message": "$P1$ : Contactpersoon $P2$ lokaal verwijderd, maar gewijzigd op de server",
-        "placeholders": {
-            "P1": {
-                "content": "$1"
-            },
-            "P2": {
-                "content": "$2"
-            }
-        }
+		"placeholders": {
+			"P1": {
+				"content": "$1"
+			},
+			"P2": {
+				"content": "$2"
+			}
+		}
 	},
 	"cardUpdatedOnBoth": {
 		"message": "$P1$ : Contactpersoon $P2$ lokaal en op de server gewijzigd",
-        "placeholders": {
-            "P1": {
-                "content": "$1"
-            },
-            "P2": {
-                "content": "$2"
-            }
-        }
+		"placeholders": {
+			"P1": {
+				"content": "$1"
+			},
+			"P2": {
+				"content": "$2"
+			}
+		}
 	},
 	"cardUpdatedOnServer": {
 		"message": "$P1$ : Contactpersoon $P2$ gewijzigd op de server (etag gevonden : $P3$, etag in cache : $P4$)",
-        "placeholders": {
-            "P1": {
-                "content": "$1"
-            },
-            "P2": {
-                "content": "$2"
-            },
-            "P3": {
-                "content": "$3"
-            },
-            "P4": {
-                "content": "$4"
-            }
-        }
+		"placeholders": {
+			"P1": {
+				"content": "$1"
+			},
+			"P2": {
+				"content": "$2"
+			},
+			"P3": {
+				"content": "$3"
+			},
+			"P4": {
+				"content": "$4"
+			}
+		}
 	},
 	"cardNewOnServer": {
 		"message": "$P1$ : Nieuwe contactpersoon on de server gevonden",
-        "placeholders": {
-            "P1": {
-                "content": "$1"
-            }
-        }
+		"placeholders": {
+			"P1": {
+				"content": "$1"
+			}
+		}
 	},
 	"cardLoadedFromCacheDB": {
 		"message": "$P1$ : Contactpersoon $P2$ geladen uit cache (IndexedDB)",
-        "placeholders": {
-            "P1": {
-                "content": "$1"
-            },
-            "P2": {
-                "content": "$2"
-            }
-        }
+		"placeholders": {
+			"P1": {
+				"content": "$1"
+			},
+			"P2": {
+				"content": "$2"
+			}
+		}
 	},
 	"cardNewOnDisk": {
 		"message": "$P1$ : Nieuwe contactpersoon lokaal $P2$",
-        "placeholders": {
-            "P1": {
-                "content": "$1"
-            },
-            "P2": {
-                "content": "$2"
-            }
-        }
+		"placeholders": {
+			"P1": {
+				"content": "$1"
+			},
+			"P2": {
+				"content": "$2"
+			}
+		}
 	},
 	"cardUpdatedOnDiskDeletedOnServer": {
 		"message": "$P1$ : Contactpersoon $P2$ lokaal gewijzigd, maar verwijderd op de server",
-        "placeholders": {
-            "P1": {
-                "content": "$1"
-            },
-            "P2": {
-                "content": "$2"
-            }
-        }
+		"placeholders": {
+			"P1": {
+				"content": "$1"
+			},
+			"P2": {
+				"content": "$2"
+			}
+		}
 	},
 	"cardDeletedOnServer": {
 		"message": "$P1$ : Contactpersoon $P2$ verwijderd on de server",
-        "placeholders": {
-            "P1": {
-                "content": "$1"
-            },
-            "P2": {
-                "content": "$2"
-            }
-        }
+		"placeholders": {
+			"P1": {
+				"content": "$1"
+			},
+			"P2": {
+				"content": "$2"
+			}
+		}
 	},
 	"cardAlreadyExists": {
 		"message": "$P1$ : Contactpersoon $P2$ komt al voor",
-        "placeholders": {
-            "P1": {
-                "content": "$1"
-            },
-            "P2": {
-                "content": "$2"
-            }
-        }
+		"placeholders": {
+			"P1": {
+				"content": "$1"
+			},
+			"P2": {
+				"content": "$2"
+			}
+		}
 	},
 	"cardAskUserTitle": {
 		"message": "Conflict bij wijzigingen"
@@ -879,524 +879,524 @@
 	},
 	"serverCardDeletedFromServer": {
 		"message": "$P1$ : Contactpersoon $P2$ verwijderd van de server",
-        "placeholders": {
-            "P1": {
-                "content": "$1"
-            },
-            "P2": {
-                "content": "$2"
-            }
-        }
+		"placeholders": {
+			"P1": {
+				"content": "$1"
+			},
+			"P2": {
+				"content": "$2"
+			}
+		}
 	},
 	"serverCardNotExistServer": {
 		"message": "$P1$ : Contactpersoon $P2$ niet aanwezig op de server",
-        "placeholders": {
-            "P1": {
-                "content": "$1"
-            },
-            "P2": {
-                "content": "$2"
-            }
-        }
+		"placeholders": {
+			"P1": {
+				"content": "$1"
+			},
+			"P2": {
+				"content": "$2"
+			}
+		}
 	},
 	"serverCardDeleteFailed": {
 		"message": "$P1$ : Contactpersoon $P2$ kon niet van de server verwijderd worden (URL : $P3$, Status : $P4$)",
-        "placeholders": {
-            "P1": {
-                "content": "$1"
-            },
-            "P2": {
-                "content": "$2"
-            },
-            "P3": {
-                "content": "$3"
-            },
-            "P4": {
-                "content": "$4"
-            }
-        }
+		"placeholders": {
+			"P1": {
+				"content": "$1"
+			},
+			"P2": {
+				"content": "$2"
+			},
+			"P3": {
+				"content": "$3"
+			},
+			"P4": {
+				"content": "$4"
+			}
+		}
 	},
 	"serverCardSendingDeletion": {
 		"message": "$P1$ : Contactpersoon $P2$ : verwijderingsverzoek verzonden…",
-        "placeholders": {
-            "P1": {
-                "content": "$1"
-            },
-            "P2": {
-                "content": "$2"
-            }
-        }
+		"placeholders": {
+			"P1": {
+				"content": "$1"
+			},
+			"P2": {
+				"content": "$2"
+			}
+		}
 	},
 	"serverCardUpdatedOnServerWithEtag": {
 		"message": "$P1$ : Contactpersoon $P2$ gewijzigd op de server (etag : $P3$)",
-        "placeholders": {
-            "P1": {
-                "content": "$1"
-            },
-            "P2": {
-                "content": "$2"
-            },
-            "P3": {
-                "content": "$3"
-            }
-        }
+		"placeholders": {
+			"P1": {
+				"content": "$1"
+			},
+			"P2": {
+				"content": "$2"
+			},
+			"P3": {
+				"content": "$3"
+			}
+		}
 	},
 	"serverCardUpdatedOnServerWithoutEtag": {
 		"message": "$P1$ : Contactpersoon $P2$ gewijzigd op de server (no etag in response)",
-        "placeholders": {
-            "P1": {
-                "content": "$1"
-            },
-            "P2": {
-                "content": "$2"
-            }
-        }
+		"placeholders": {
+			"P1": {
+				"content": "$1"
+			},
+			"P2": {
+				"content": "$2"
+			}
+		}
 	},
 	"serverCardUpdateFailed": {
 		"message": "$P1$ : Contactpersoon $P2$ kon niet op de server gewijzigd worden (URL : $P3$, Status : $P4$)",
-        "placeholders": {
-            "P1": {
-                "content": "$1"
-            },
-            "P2": {
-                "content": "$2"
-            },
-            "P3": {
-                "content": "$3"
-            },
-            "P4": {
-                "content": "$4"
-            }
-        }
+		"placeholders": {
+			"P1": {
+				"content": "$1"
+			},
+			"P2": {
+				"content": "$2"
+			},
+			"P3": {
+				"content": "$3"
+			},
+			"P4": {
+				"content": "$4"
+			}
+		}
 	},
 	"serverCardSendingUpdate": {
 		"message": "$P1$ : Contactpersoon $P2$ : wijzigingsverzoek verzonden…",
-        "placeholders": {
-            "P1": {
-                "content": "$1"
-            },
-            "P2": {
-                "content": "$2"
-            }
-        }
+		"placeholders": {
+			"P1": {
+				"content": "$1"
+			},
+			"P2": {
+				"content": "$2"
+			}
+		}
 	},
 	"serverCardCreatedOnServerWithEtag": {
 		"message": "$P1$ : Contactpersoon $P2$ toegevoegd op de server (etag : $P3$)",
-        "placeholders": {
-            "P1": {
-                "content": "$1"
-            },
-            "P2": {
-                "content": "$2"
-            },
-            "P3": {
-                "content": "$3"
-            }
-        }
+		"placeholders": {
+			"P1": {
+				"content": "$1"
+			},
+			"P2": {
+				"content": "$2"
+			},
+			"P3": {
+				"content": "$3"
+			}
+		}
 	},
 	"serverCardCreatedOnServerWithoutEtag": {
 		"message": "$P1$ : Contactpersoon $P2$ toegevoegd op de server (no etag in response)",
-        "placeholders": {
-            "P1": {
-                "content": "$1"
-            },
-            "P2": {
-                "content": "$2"
-            }
-        }
+		"placeholders": {
+			"P1": {
+				"content": "$1"
+			},
+			"P2": {
+				"content": "$2"
+			}
+		}
 	},
 	"serverCardCreateFailed": {
 		"message": "$P1$ : Contactpersoon $P2$ kon niet worden toegevoegd op de server (URL : $P3$, Status : $P4$)",
-        "placeholders": {
-            "P1": {
-                "content": "$1"
-            },
-            "P2": {
-                "content": "$2"
-            },
-            "P3": {
-                "content": "$3"
-            },
-            "P4": {
-                "content": "$4"
-            }
-        }
+		"placeholders": {
+			"P1": {
+				"content": "$1"
+			},
+			"P2": {
+				"content": "$2"
+			},
+			"P3": {
+				"content": "$3"
+			},
+			"P4": {
+				"content": "$4"
+			}
+		}
 	},
 	"serverCardSendingCreate": {
 		"message": "$P1$ : Contactpersoon $P2$ : toevoegingsverzoek verzonden…",
-        "placeholders": {
-            "P1": {
-                "content": "$1"
-            },
-            "P2": {
-                "content": "$2"
-            }
-        }
+		"placeholders": {
+			"P1": {
+				"content": "$1"
+			},
+			"P2": {
+				"content": "$2"
+			}
+		}
 	},
 	"serverCardGetImageFailed": {
 		"message": "$P1$ : Afbeelding kon niet gedownload worden van contactpersoon $P2$ (URL : $P3$, Status : $P4$)",
-        "placeholders": {
-            "P1": {
-                "content": "$1"
-            },
-            "P2": {
-                "content": "$2"
-            },
-            "P3": {
-                "content": "$3"
-            },
-            "P4": {
-                "content": "$4"
-            }
-        }
+		"placeholders": {
+			"P1": {
+				"content": "$1"
+			},
+			"P2": {
+				"content": "$2"
+			},
+			"P3": {
+				"content": "$3"
+			},
+			"P4": {
+				"content": "$4"
+			}
+		}
 	},
 	"serverCardGetImageOK": {
 		"message": "$P1$ : Afbeelding gedownload van contactpersoon $P2$",
-        "placeholders": {
-            "P1": {
-                "content": "$1"
-            },
-            "P2": {
-                "content": "$2"
-            }
-        }
+		"placeholders": {
+			"P1": {
+				"content": "$1"
+			},
+			"P2": {
+				"content": "$2"
+			}
+		}
 	},
 	"serverCardGettingImage": {
 		"message": "$P1$ : Afbeelding downloaden van contactpersoon $P2$ …",
-        "placeholders": {
-            "P1": {
-                "content": "$1"
-            },
-            "P2": {
-                "content": "$2"
-            }
-        }
+		"placeholders": {
+			"P1": {
+				"content": "$1"
+			},
+			"P2": {
+				"content": "$2"
+			}
+		}
 	},
 	"serverCardGetKeyFailed": {
 		"message": "$P1$ : Sleutel niet gedownload voor contactpersoon $P2$ (url : $P3$, status : $P4$)",
-        "placeholders": {
-            "P1": {
-                "content": "$1"
-            },
-            "P2": {
-                "content": "$2"
-            },
-            "P3": {
-                "content": "$3"
-            },
-            "P4": {
-                "content": "$4"
-            }
-        }
+		"placeholders": {
+			"P1": {
+				"content": "$1"
+			},
+			"P2": {
+				"content": "$2"
+			},
+			"P3": {
+				"content": "$3"
+			},
+			"P4": {
+				"content": "$4"
+			}
+		}
 	},
 	"serverCardGetKeyOK": {
 		"message": "$P1$ : Sleutel gedownload voor contactpersoon $P2$",
-        "placeholders": {
-            "P1": {
-                "content": "$1"
-            },
-            "P2": {
-                "content": "$2"
-            }
-        }
+		"placeholders": {
+			"P1": {
+				"content": "$1"
+			},
+			"P2": {
+				"content": "$2"
+			}
+		}
 	},
 	"serverCardGettingKey": {
 		"message": "$P1$ : Sleutel wordt gedownload voor contactpersoon $P2$ …",
-        "placeholders": {
-            "P1": {
-                "content": "$1"
-            },
-            "P2": {
-                "content": "$2"
-            }
-        }
+		"placeholders": {
+			"P1": {
+				"content": "$1"
+			},
+			"P2": {
+				"content": "$2"
+			}
+		}
 	},
 	"serverCardGetOK": {
 		"message": "$P1$ : Contactpersoon $P2$ gedownload van de server",
-        "placeholders": {
-            "P1": {
-                "content": "$1"
-            },
-            "P2": {
-                "content": "$2"
-            }
-        }
+		"placeholders": {
+			"P1": {
+				"content": "$1"
+			},
+			"P2": {
+				"content": "$2"
+			}
+		}
 	},
 	"serverCardGetFailed": {
 		"message": "$P1$ : Downloaden van de server mislukt (URL : $P2$, Status : $P3$)",
-        "placeholders": {
-            "P1": {
-                "content": "$1"
-            },
-            "P2": {
-                "content": "$2"
-            },
-            "P3": {
-                "content": "$3"
-            }
-        }
+		"placeholders": {
+			"P1": {
+				"content": "$1"
+			},
+			"P2": {
+				"content": "$2"
+			},
+			"P3": {
+				"content": "$3"
+			}
+		}
 	},
 	"serverSendingGetLabels": {
 		"message": "$P1$ : verzoek om labels verzonden…",
-        "placeholders": {
-            "P1": {
-                "content": "$1"
-            }
-        }
+		"placeholders": {
+			"P1": {
+				"content": "$1"
+			}
+		}
 	},
 	"serverGetLabelsOK": {
 		"message": "$P1$ : labels ontvangen",
-        "placeholders": {
-            "P1": {
-                "content": "$1"
-            }
-        }
+		"placeholders": {
+			"P1": {
+				"content": "$1"
+			}
+		}
 	},
 	"serverGetLabelsFailed": {
 		"message": "$P1$ : ontvangen van labels van de server mislukt (url : $P2$, status : $P3$)",
-        "placeholders": {
-            "P1": {
-                "content": "$1"
-            },
-            "P2": {
-                "content": "$2"
-            },
-            "P3": {
-                "content": "$3"
-            }
-        }
+		"placeholders": {
+			"P1": {
+				"content": "$1"
+			},
+			"P2": {
+				"content": "$2"
+			},
+			"P3": {
+				"content": "$3"
+			}
+		}
 	},
 	"serverSendingGetCardLabels": {
 		"message": "$P1$ : Contactpersoon $P2$ : verzoek om labels verzonden…",
-        "placeholders": {
-            "P1": {
-                "content": "$1"
-            },
-            "P2": {
-                "content": "$2"
-            }
-        }
+		"placeholders": {
+			"P1": {
+				"content": "$1"
+			},
+			"P2": {
+				"content": "$2"
+			}
+		}
 	},
 	"serverGetCardLabelsOK": {
 		"message": "$P1$ : Contactpersoon $P2$ : labels ontvangen",
-        "placeholders": {
-            "P1": {
-                "content": "$1"
-            },
-            "P2": {
-                "content": "$2"
-            }
-        }
+		"placeholders": {
+			"P1": {
+				"content": "$1"
+			},
+			"P2": {
+				"content": "$2"
+			}
+		}
 	},
 	"serverGetCardLabelsFailed": {
 		"message": "$P1$ : Contactpersoon $P2$ : ontvangen van labels van de server mislukt (url : $P3$, status : $P4$)",
-        "placeholders": {
-            "P1": {
-                "content": "$1"
-            },
-            "P2": {
-                "content": "$2"
-            },
-            "P3": {
-                "content": "$3"
-            },
-            "P4": {
-                "content": "$4"
-            }
-        }
+		"placeholders": {
+			"P1": {
+				"content": "$1"
+			},
+			"P2": {
+				"content": "$2"
+			},
+			"P3": {
+				"content": "$3"
+			},
+			"P4": {
+				"content": "$4"
+			}
+		}
 	},
 	"serverSendingPutLabels": {
 		"message": "$P1$ : verzoek om bijwerken labels verzonden…",
-        "placeholders": {
-            "P1": {
-                "content": "$1"
-            }
-        }
+		"placeholders": {
+			"P1": {
+				"content": "$1"
+			}
+		}
 	},
 	"serverPutLabelsOK": {
 		"message": "$P1$ : labels bijgewerkt",
-        "placeholders": {
-            "P1": {
-                "content": "$1"
-            }
-        }
+		"placeholders": {
+			"P1": {
+				"content": "$1"
+			}
+		}
 	},
 	"serverPutLabelsFailed": {
 		"message": "$P1$ : bijwerken van labels op de server mislukt (url : $P2$, status : $P3$)",
-        "placeholders": {
-            "P1": {
-                "content": "$1"
-            },
-            "P2": {
-                "content": "$2"
-            },
-            "P3": {
-                "content": "$3"
-            }
-        }
+		"placeholders": {
+			"P1": {
+				"content": "$1"
+			},
+			"P2": {
+				"content": "$2"
+			},
+			"P3": {
+				"content": "$3"
+			}
+		}
 	},
 	"serverSendingPutCardLabels": {
 		"message": "$P1$ : Contactpersoon $P2$ : verzoek om bijwerken labels verzonden…",
-        "placeholders": {
-            "P1": {
-                "content": "$1"
-            },
-            "P2": {
-                "content": "$2"
-            }
-        }
+		"placeholders": {
+			"P1": {
+				"content": "$1"
+			},
+			"P2": {
+				"content": "$2"
+			}
+		}
 	},
 	"serverPutCardLabelsOK": {
 		"message": "$P1$ : Contactpersoon $P2$ : labels bijgewerkt",
-        "placeholders": {
-            "P1": {
-                "content": "$1"
-            },
-            "P2": {
-                "content": "$2"
-            }
-        }
+		"placeholders": {
+			"P1": {
+				"content": "$1"
+			},
+			"P2": {
+				"content": "$2"
+			}
+		}
 	},
 	"serverPutCardLabelsFailed": {
 		"message": "$P1$ : Contactpersoon $P2$ : bijwerken van labels op de server mislukt (url : $P3$, status : $P4$)",
-        "placeholders": {
-            "P1": {
-                "content": "$1"
-            },
-            "P2": {
-                "content": "$2"
-            },
-            "P3": {
-                "content": "$3"
-            },
-            "P4": {
-                "content": "$4"
-            }
-        }
+		"placeholders": {
+			"P1": {
+				"content": "$1"
+			},
+			"P2": {
+				"content": "$2"
+			},
+			"P3": {
+				"content": "$3"
+			},
+			"P4": {
+				"content": "$4"
+			}
+		}
 	},
 	"categoryDeletedOnDisk": {
 		"message": "$P1$ : Categorie $P2$ lokaal verwijderd",
-        "placeholders": {
-            "P1": {
-                "content": "$1"
-            },
-            "P2": {
-                "content": "$2"
-            }
-        }
+		"placeholders": {
+			"P1": {
+				"content": "$1"
+			},
+			"P2": {
+				"content": "$2"
+			}
+		}
 	},
 	"categoryUpdatedOnDisk": {
 		"message": "$P1$ : Categorie $P2$ lokaal bijgewerkt",
-        "placeholders": {
-            "P1": {
-                "content": "$1"
-            },
-            "P2": {
-                "content": "$2"
-            }
-        }
+		"placeholders": {
+			"P1": {
+				"content": "$1"
+			},
+			"P2": {
+				"content": "$2"
+			}
+		}
 	},
 	"categoryAlreadyGetFromCache": {
 		"message": "$P1$ : Categorie $P2$ uit cache opgehaald",
-        "placeholders": {
-            "P1": {
-                "content": "$1"
-            },
-            "P2": {
-                "content": "$2"
-            }
-        }
+		"placeholders": {
+			"P1": {
+				"content": "$1"
+			},
+			"P2": {
+				"content": "$2"
+			}
+		}
 	},
 	"categoryDeletedOnDiskUpdatedOnServer": {
 		"message": "$P1$ : Categorie $P2$ lokaal verwijderd en bijgewerkt op de server",
-        "placeholders": {
-            "P1": {
-                "content": "$1"
-            },
-            "P2": {
-                "content": "$2"
-            }
-        }
+		"placeholders": {
+			"P1": {
+				"content": "$1"
+			},
+			"P2": {
+				"content": "$2"
+			}
+		}
 	},
 	"categoryUpdatedOnBoth": {
 		"message": "$P1$ : Categorie $P2$ lokaal en op de server bijgewerkt",
-        "placeholders": {
-            "P1": {
-                "content": "$1"
-            },
-            "P2": {
-                "content": "$2"
-            }
-        }
+		"placeholders": {
+			"P1": {
+				"content": "$1"
+			},
+			"P2": {
+				"content": "$2"
+			}
+		}
 	},
 	"categoryUpdatedOnServer": {
 		"message": "$P1$ : Categorie $P2$ op de server bijgewerkt (etag gevonden : $P3$, etag in cache : $P4$)",
-        "placeholders": {
-            "P1": {
-                "content": "$1"
-            },
-            "P2": {
-                "content": "$2"
-            },
-            "P3": {
-                "content": "$3"
-            },
-            "P4": {
-                "content": "$4"
-            }
-        }
+		"placeholders": {
+			"P1": {
+				"content": "$1"
+			},
+			"P2": {
+				"content": "$2"
+			},
+			"P3": {
+				"content": "$3"
+			},
+			"P4": {
+				"content": "$4"
+			}
+		}
 	},
 	"categoryNewOnServer": {
 		"message": "$P1$ : Nieuwe categorie gevonden op de server",
-        "placeholders": {
-            "P1": {
-                "content": "$1"
-            }
-        }
+		"placeholders": {
+			"P1": {
+				"content": "$1"
+			}
+		}
 	},
 	"categoryLoadedFromCacheDB": {
 		"message": "$P1$ : Categorie $P2$ opgehaald uit cache (IndexedDB)",
-        "placeholders": {
-            "P1": {
-                "content": "$1"
-            },
-            "P2": {
-                "content": "$2"
-            }
-        }
+		"placeholders": {
+			"P1": {
+				"content": "$1"
+			},
+			"P2": {
+				"content": "$2"
+			}
+		}
 	},
 	"categoryNewOnDisk": {
 		"message": "$P1$ : Categorie $P2$ nieuw lokaal",
-        "placeholders": {
-            "P1": {
-                "content": "$1"
-            },
-            "P2": {
-                "content": "$2"
-            }
-        }
+		"placeholders": {
+			"P1": {
+				"content": "$1"
+			},
+			"P2": {
+				"content": "$2"
+			}
+		}
 	},
 	"categoryUpdatedOnDiskDeletedOnServer": {
 		"message": "$P1$ : Categorie $P2$ lokaal bijgewerkt en verwijderd van de server",
-        "placeholders": {
-            "P1": {
-                "content": "$1"
-            },
-            "P2": {
-                "content": "$2"
-            }
-        }
+		"placeholders": {
+			"P1": {
+				"content": "$1"
+			},
+			"P2": {
+				"content": "$2"
+			}
+		}
 	},
 	"categoryDeletedOnServer": {
 		"message": "$P1$ : Categorie $P2$ verwijderd van de server",
-        "placeholders": {
-            "P1": {
-                "content": "$1"
-            },
-            "P2": {
-                "content": "$2"
-            }
-        }
+		"placeholders": {
+			"P1": {
+				"content": "$1"
+			},
+			"P2": {
+				"content": "$2"
+			}
+		}
 	},
 	"categoryAskUserTitle": {
 		"message": "Categorie bewerkingsprobleem"
@@ -1415,669 +1415,669 @@
 	},
 	"serverCategoryDeletedFromServer": {
 		"message": "$P1$ : Categorie $P2$ verwijderd van de server",
-        "placeholders": {
-            "P1": {
-                "content": "$1"
-            },
-            "P2": {
-                "content": "$2"
-            }
-        }
+		"placeholders": {
+			"P1": {
+				"content": "$1"
+			},
+			"P2": {
+				"content": "$2"
+			}
+		}
 	},
 	"serverCategoryNotExistServer": {
 		"message": "$P1$ : Categorie $P2$ komt niet voor op de server",
-        "placeholders": {
-            "P1": {
-                "content": "$1"
-            },
-            "P2": {
-                "content": "$2"
-            }
-        }
+		"placeholders": {
+			"P1": {
+				"content": "$1"
+			},
+			"P2": {
+				"content": "$2"
+			}
+		}
 	},
 	"serverCategoryDeleteFailed": {
 		"message": "$P1$ : Categorie $P2$ verwijderen van de server is mislukt (url : $P3$, status : $P4$)",
-        "placeholders": {
-            "P1": {
-                "content": "$1"
-            },
-            "P2": {
-                "content": "$2"
-            },
-            "P3": {
-                "content": "$3"
-            },
-            "P4": {
-                "content": "$4"
-            }
-        }
+		"placeholders": {
+			"P1": {
+				"content": "$1"
+			},
+			"P2": {
+				"content": "$2"
+			},
+			"P3": {
+				"content": "$3"
+			},
+			"P4": {
+				"content": "$4"
+			}
+		}
 	},
 	"serverCategorySendingDeletion": {
 		"message": "$P1$ : Categorie $P2$ : verzenden verwijder-verzoeken…",
-        "placeholders": {
-            "P1": {
-                "content": "$1"
-            },
-            "P2": {
-                "content": "$2"
-            }
-        }
+		"placeholders": {
+			"P1": {
+				"content": "$1"
+			},
+			"P2": {
+				"content": "$2"
+			}
+		}
 	},
 	"serverCategoryUpdatedOnServerWithEtag": {
 		"message": "$P1$ : Categorie $P2$ bijgewerkt op de server (etag : $P3$)",
-        "placeholders": {
-            "P1": {
-                "content": "$1"
-            },
-            "P2": {
-                "content": "$2"
-            },
-            "P3": {
-                "content": "$3"
-            }
-        }
+		"placeholders": {
+			"P1": {
+				"content": "$1"
+			},
+			"P2": {
+				"content": "$2"
+			},
+			"P3": {
+				"content": "$3"
+			}
+		}
 	},
 	"serverCategoryUpdatedOnServerWithoutEtag": {
 		"message": "$P1$ : Categorie $P2$ bijgewerkt op de server (geen etag in antwoord)",
-        "placeholders": {
-            "P1": {
-                "content": "$1"
-            },
-            "P2": {
-                "content": "$2"
-            }
-        }
+		"placeholders": {
+			"P1": {
+				"content": "$1"
+			},
+			"P2": {
+				"content": "$2"
+			}
+		}
 	},
 	"serverCategoryUpdateFailed": {
 		"message": "$P1$ : Categorie $P2$ bijwerken op de server mislukt (url : $P3$, status : $P4$)",
-        "placeholders": {
-            "P1": {
-                "content": "$1"
-            },
-            "P2": {
-                "content": "$2"
-            },
-            "P3": {
-                "content": "$3"
-            },
-            "P4": {
-                "content": "$4"
-            }
-        }
+		"placeholders": {
+			"P1": {
+				"content": "$1"
+			},
+			"P2": {
+				"content": "$2"
+			},
+			"P3": {
+				"content": "$3"
+			},
+			"P4": {
+				"content": "$4"
+			}
+		}
 	},
 	"serverCategorySendingUpdate": {
 		"message": "$P1$ : Categorie $P2$ : verzenden bijwerk-verzoeken…",
-        "placeholders": {
-            "P1": {
-                "content": "$1"
-            },
-            "P2": {
-                "content": "$2"
-            }
-        }
+		"placeholders": {
+			"P1": {
+				"content": "$1"
+			},
+			"P2": {
+				"content": "$2"
+			}
+		}
 	},
 	"serverCategoryCreatedOnServerWithEtag": {
 		"message": "$P1$ : Categorie $P2$ toegevoegd op de server (etag : $P3$)",
-        "placeholders": {
-            "P1": {
-                "content": "$1"
-            },
-            "P2": {
-                "content": "$2"
-            },
-            "P3": {
-                "content": "$3"
-            }
-        }
+		"placeholders": {
+			"P1": {
+				"content": "$1"
+			},
+			"P2": {
+				"content": "$2"
+			},
+			"P3": {
+				"content": "$3"
+			}
+		}
 	},
 	"serverCategoryCreatedOnServerWithoutEtag": {
 		"message": "$P1$ : Categorie $P2$ toegevoegd op de server (geen etag in antwoord)",
-        "placeholders": {
-            "P1": {
-                "content": "$1"
-            },
-            "P2": {
-                "content": "$2"
-            }
-        }
+		"placeholders": {
+			"P1": {
+				"content": "$1"
+			},
+			"P2": {
+				"content": "$2"
+			}
+		}
 	},
 	"serverCategoryCreateFailed": {
 		"message": "$P1$ : Categorie $P2$ toevoegen op de server mislukt (url : $P3$, status : $P4$)",
-        "placeholders": {
-            "P1": {
-                "content": "$1"
-            },
-            "P2": {
-                "content": "$2"
-            },
-            "P3": {
-                "content": "$3"
-            },
-            "P4": {
-                "content": "$4"
-            }
-        }
+		"placeholders": {
+			"P1": {
+				"content": "$1"
+			},
+			"P2": {
+				"content": "$2"
+			},
+			"P3": {
+				"content": "$3"
+			},
+			"P4": {
+				"content": "$4"
+			}
+		}
 	},
 	"serverCategorySendingCreate": {
 		"message": "$P1$ : Categorie $P2$ : verzenden toevoeg-verzoeken…",
-        "placeholders": {
-            "P1": {
-                "content": "$1"
-            },
-            "P2": {
-                "content": "$2"
-            }
-        }
+		"placeholders": {
+			"P1": {
+				"content": "$1"
+			},
+			"P2": {
+				"content": "$2"
+			}
+		}
 	},
 	"synchronizationSearchingCategories": {
 		"message": "$P1$ : Categorieën zoeken…",
-        "placeholders": {
-            "P1": {
-                "content": "$1"
-            }
-        }
+		"placeholders": {
+			"P1": {
+				"content": "$1"
+			}
+		}
 	},
 	"synchronizationFailed": {
 		"message": "$P1$ : Synchronisatie mislukt (Stap : $P2$, URL : $P3$, Status : $P4$)",
-        "placeholders": {
-            "P1": {
-                "content": "$1"
-            },
-            "P2": {
-                "content": "$2"
-            },
-            "P3": {
-                "content": "$3"
-            },
-            "P4": {
-                "content": "$4"
-            }
-        }
+		"placeholders": {
+			"P1": {
+				"content": "$1"
+			},
+			"P2": {
+				"content": "$2"
+			},
+			"P3": {
+				"content": "$3"
+			},
+			"P4": {
+				"content": "$4"
+			}
+		}
 	},
 	"synchronizationUnauthorized": {
 		"message": "$P1$: Aanmelden bij server is niet mogelijk. Waarschijnlijk een onjuiste configuratie, gebruikersnaam of wachtwoord.",
-        "placeholders": {
-            "P1": {
-                "content": "$1"
-            }
-        }
+		"placeholders": {
+			"P1": {
+				"content": "$1"
+			}
+		}
 	},
 	"synchronizationSearchingCards": {
 		"message": "$P1$ : Zoeken naar contactpersonen …",
-        "placeholders": {
-            "P1": {
-                "content": "$1"
-            }
-        }
+		"placeholders": {
+			"P1": {
+				"content": "$1"
+			}
+		}
 	},
 	"synchronizationRequestDiscovery": {
 		"message": "$P1$ : Controleren zonder zoekopdracht op $P2$ …",
-        "placeholders": {
-            "P1": {
-                "content": "$1"
-            },
-            "P2": {
-                "content": "$2"
-            }
-        }
+		"placeholders": {
+			"P1": {
+				"content": "$1"
+			},
+			"P2": {
+				"content": "$2"
+			}
+		}
 	},
 	"synchronizationRequestDiscovery4": {
 		"message": "$P1$ : Zoeken fase 4 opdracht op $P2$ …",
-        "placeholders": {
-            "P1": {
-                "content": "$1"
-            },
-            "P2": {
-                "content": "$2"
-            }
-        }
+		"placeholders": {
+			"P1": {
+				"content": "$1"
+			},
+			"P2": {
+				"content": "$2"
+			}
+		}
 	},
 	"synchronizationRequestDiscovery3": {
 		"message": "$P1$ : Zoeken fase 3 opdracht op $P2$ …",
-        "placeholders": {
-            "P1": {
-                "content": "$1"
-            },
-            "P2": {
-                "content": "$2"
-            }
-        }
+		"placeholders": {
+			"P1": {
+				"content": "$1"
+			},
+			"P2": {
+				"content": "$2"
+			}
+		}
 	},
 	"synchronizationRequestDiscovery2": {
 		"message": "$P1$ : Zoeken fase 2 opdracht op $P2$ …",
-        "placeholders": {
-            "P1": {
-                "content": "$1"
-            },
-            "P2": {
-                "content": "$2"
-            }
-        }
+		"placeholders": {
+			"P1": {
+				"content": "$1"
+			},
+			"P2": {
+				"content": "$2"
+			}
+		}
 	},
 	"synchronizationRequestDiscovery1": {
 		"message": "$P1$ : Zoeken fase 1 opdracht op $P2$ …",
-        "placeholders": {
-            "P1": {
-                "content": "$1"
-            },
-            "P2": {
-                "content": "$2"
-            }
-        }
+		"placeholders": {
+			"P1": {
+				"content": "$1"
+			},
+			"P2": {
+				"content": "$2"
+			}
+		}
 	},
 	"googleAccessTokenOK": {
 		"message": "$P1$ : Google toegang token verzoek OK, toegang token : $P2$",
-        "placeholders": {
-            "P1": {
-                "content": "$1"
-            },
-            "P2": {
-                "content": "$2"
-            }
-        }
+		"placeholders": {
+			"P1": {
+				"content": "$1"
+			},
+			"P2": {
+				"content": "$2"
+			}
+		}
 	},
 	"googleRefreshTokenOK": {
 		"message": "$P1$ : Google vernieuwing token verzoek OK, vernieuwing token : $P2$",
-        "placeholders": {
-            "P1": {
-                "content": "$1"
-            },
-            "P2": {
-                "content": "$2"
-            }
-        }
+		"placeholders": {
+			"P1": {
+				"content": "$1"
+			},
+			"P2": {
+				"content": "$2"
+			}
+		}
 	},
 	"googleGetNewRefreshToken": {
 		"message": "$P1$ : Google vernieuwing token verkrijgen op $P2$ …",
-        "placeholders": {
-            "P1": {
-                "content": "$1"
-            },
-            "P2": {
-                "content": "$2"
-            }
-        }
+		"placeholders": {
+			"P1": {
+				"content": "$1"
+			},
+			"P2": {
+				"content": "$2"
+			}
+		}
 	},
 	"googleNewRefreshTokenOK": {
 		"message": "$P1$ : Authorisatiecode ontvangen: $P2$ …",
-        "placeholders": {
-            "P1": {
-                "content": "$1"
-            },
-            "P2": {
-                "content": "$2"
-            }
-        }
+		"placeholders": {
+			"P1": {
+				"content": "$1"
+			},
+			"P2": {
+				"content": "$2"
+			}
+		}
 	},
 	"googleRequestAccessToken": {
 		"message": "$P1$ : Google toegang token verzoek op $P2$ …",
-        "placeholders": {
-            "P1": {
-                "content": "$1"
-            },
-            "P2": {
-                "content": "$2"
-            }
-        }
+		"placeholders": {
+			"P1": {
+				"content": "$1"
+			},
+			"P2": {
+				"content": "$2"
+			}
+		}
 	},
 	"googleRequestRefreshToken": {
 		"message": "$P1$ : Google vernieuwing token verzoek op $P2$ …",
-        "placeholders": {
-            "P1": {
-                "content": "$1"
-            },
-            "P2": {
-                "content": "$2"
-            }
-        }
+		"placeholders": {
+			"P1": {
+				"content": "$1"
+			},
+			"P2": {
+				"content": "$2"
+			}
+		}
 	},
 	"yahooAccessTokenOK": {
 		"message": "$P1$ : Yahoo! toegang token verzoek OK, toegang token : $P2$",
-        "placeholders": {
-            "P1": {
-                "content": "$1"
-            },
-            "P2": {
-                "content": "$2"
-            }
-        }
+		"placeholders": {
+			"P1": {
+				"content": "$1"
+			},
+			"P2": {
+				"content": "$2"
+			}
+		}
 	},
 	"yahooRefreshTokenOK": {
 		"message": "$P1$ : Yahoo! vernieuwing token verzoek OK, vernieuwing token : $P2$",
-        "placeholders": {
-            "P1": {
-                "content": "$1"
-            },
-            "P2": {
-                "content": "$2"
-            }
-        }
+		"placeholders": {
+			"P1": {
+				"content": "$1"
+			},
+			"P2": {
+				"content": "$2"
+			}
+		}
 	},
 	"yahooGetNewRefreshToken": {
 		"message": "$P1$ : Yahoo! vernieuwing token verkrijgen op $P2$ …",
-        "placeholders": {
-            "P1": {
-                "content": "$1"
-            },
-            "P2": {
-                "content": "$2"
-            }
-        }
+		"placeholders": {
+			"P1": {
+				"content": "$1"
+			},
+			"P2": {
+				"content": "$2"
+			}
+		}
 	},
 	"yahooNewRefreshTokenOK": {
 		"message": "$P1$ : Authorisatiecode ontvangen: $P2$ …",
-        "placeholders": {
-            "P1": {
-                "content": "$1"
-            },
-            "P2": {
-                "content": "$2"
-            }
-        }
+		"placeholders": {
+			"P1": {
+				"content": "$1"
+			},
+			"P2": {
+				"content": "$2"
+			}
+		}
 	},
 	"yahooRequestAccessToken": {
 		"message": "$P1$ : Yahoo! toegang token verzoek op $P2$ …",
-        "placeholders": {
-            "P1": {
-                "content": "$1"
-            },
-            "P2": {
-                "content": "$2"
-            }
-        }
+		"placeholders": {
+			"P1": {
+				"content": "$1"
+			},
+			"P2": {
+				"content": "$2"
+			}
+		}
 	},
 	"yahooRequestRefreshToken": {
 		"message": "$P1$ : Yahoo! vernieuwing token verzoek op $P2$ …",
-        "placeholders": {
-            "P1": {
-                "content": "$1"
-            },
-            "P2": {
-                "content": "$2"
-            }
-        }
+		"placeholders": {
+			"P1": {
+				"content": "$1"
+			},
+			"P2": {
+				"content": "$2"
+			}
+		}
 	},
 	"periodicSyncDeleting": {
 		"message": "$P1$ : Stoppen periodiek synchronisatieproces (id : $P2$)",
-        "placeholders": {
-            "P1": {
-                "content": "$1"
-            },
-            "P2": {
-                "content": "$2"
-            }
-        }
+		"placeholders": {
+			"P1": {
+				"content": "$1"
+			},
+			"P2": {
+				"content": "$2"
+			}
+		}
 	},
 	"periodicSyncSetting": {
 		"message": "$P1$ : Instellen van periodiek synchronisatieproces (interval : $P2$ ms, id : $P3$)",
-        "placeholders": {
-            "P1": {
-                "content": "$1"
-            },
-            "P2": {
-                "content": "$2"
-            },
-            "P3": {
-                "content": "$3"
-            }
-        }
+		"placeholders": {
+			"P1": {
+				"content": "$1"
+			},
+			"P2": {
+				"content": "$2"
+			},
+			"P3": {
+				"content": "$3"
+			}
+		}
 	},
 	"periodicSyncSyncing": {
 		"message": "$P1$ : Uitvoeren van periodieke synchronisatie…",
-        "placeholders": {
-            "P1": {
-                "content": "$1"
-            }
-        }
+		"placeholders": {
+			"P1": {
+				"content": "$1"
+			}
+		}
 	},
 	"fileNotFound": {
 		"message": "Het bestand $P1$ bestaat niet.",
-        "placeholders": {
-            "P1": {
-                "content": "$1"
-            }
-        }
+		"placeholders": {
+			"P1": {
+				"content": "$1"
+			}
+		}
 	},
 	"fileEmpty": {
 		"message": "Bestand $P1$ is leeg",
-        "placeholders": {
-            "P1": {
-                "content": "$1"
-            }
-        }
+		"placeholders": {
+			"P1": {
+				"content": "$1"
+			}
+		}
 	},
 	"fileAlreadyOpen": {
 		"message": "Bestand $P1$ is al geopend in CardBook",
-        "placeholders": {
-            "P1": {
-                "content": "$1"
-            }
-        }
+		"placeholders": {
+			"P1": {
+				"content": "$1"
+			}
+		}
 	},
 	"directoryAlreadyOpen": {
 		"message": "Map $P1$ is al geopend in CardBook",
-        "placeholders": {
-            "P1": {
-                "content": "$1"
-            }
-        }
+		"placeholders": {
+			"P1": {
+				"content": "$1"
+			}
+		}
 	},
 	"parsingCardError": {
 		"message": "$P1$ : Fout bij analyse van contactpersoon-gegevens: \n$P2$ \n$P3$",
-        "placeholders": {
-            "P1": {
-                "content": "$1"
-            },
-            "P2": {
-                "content": "$2"
-            },
-            "P3": {
-                "content": "$3"
-            }
-        }
+		"placeholders": {
+			"P1": {
+				"content": "$1"
+			},
+			"P2": {
+				"content": "$2"
+			},
+			"P3": {
+				"content": "$3"
+			}
+		}
 	},
 	"addressbookOpened": {
 		"message": "$P1$ : Adresboek geopened",
-        "placeholders": {
-            "P1": {
-                "content": "$1"
-            }
-        }
+		"placeholders": {
+			"P1": {
+				"content": "$1"
+			}
+		}
 	},
 	"addressbookModified": {
 		"message": "$P1$ : Adresboek gewijzigd",
-        "placeholders": {
-            "P1": {
-                "content": "$1"
-            }
-        }
+		"placeholders": {
+			"P1": {
+				"content": "$1"
+			}
+		}
 	},
 	"addressbookDeleted": {
 		"message": "$P1$ : Adresboek gesloten",
-        "placeholders": {
-            "P1": {
-                "content": "$1"
-            }
-        }
+		"placeholders": {
+			"P1": {
+				"content": "$1"
+			}
+		}
 	},
 	"addressbookCreated": {
 		"message": "$P1$ : Adresboek toegevoegd",
-        "placeholders": {
-            "P1": {
-                "content": "$1"
-            }
-        }
+		"placeholders": {
+			"P1": {
+				"content": "$1"
+			}
+		}
 	},
 	"addressbookDisabled": {
 		"message": "$P1$ : Adresboek geactiveerd",
-        "placeholders": {
-            "P1": {
-                "content": "$1"
-            }
-        }
+		"placeholders": {
+			"P1": {
+				"content": "$1"
+			}
+		}
 	},
 	"addressbookReadOnly": {
 		"message": "$P1$ : Addresboek in alleen lezen-modus",
-        "placeholders": {
-            "P1": {
-                "content": "$1"
-            }
-        }
+		"placeholders": {
+			"P1": {
+				"content": "$1"
+			}
+		}
 	},
 	"addressbookReadWrite": {
 		"message": "$P1$ : Adresboek in lees/schrijf-modus",
-        "placeholders": {
-            "P1": {
-                "content": "$1"
-            }
-        }
+		"placeholders": {
+			"P1": {
+				"content": "$1"
+			}
+		}
 	},
 	"addressbookEnabled": {
 		"message": "$P1$ : Adresboek gedeactiveerd",
-        "placeholders": {
-            "P1": {
-                "content": "$1"
-            }
-        }
+		"placeholders": {
+			"P1": {
+				"content": "$1"
+			}
+		}
 	},
 	"cardCreated": {
 		"message": "$P1$ : Contactpersoon $P2$ toegevoegd",
-        "placeholders": {
-            "P1": {
-                "content": "$1"
-            },
-            "P2": {
-                "content": "$2"
-            }
-        }
+		"placeholders": {
+			"P1": {
+				"content": "$1"
+			},
+			"P2": {
+				"content": "$2"
+			}
+		}
 	},
 	"cardUpdated": {
 		"message": "$P1$ : Contactpersoon $P2$ gewijzigd",
-        "placeholders": {
-            "P1": {
-                "content": "$1"
-            },
-            "P2": {
-                "content": "$2"
-            }
-        }
+		"placeholders": {
+			"P1": {
+				"content": "$1"
+			},
+			"P2": {
+				"content": "$2"
+			}
+		}
 	},
 	"cardDeleted": {
 		"message": "$P1$ : Contactpersoon $P2$ verwijderd",
-        "placeholders": {
-            "P1": {
-                "content": "$1"
-            },
-            "P2": {
-                "content": "$2"
-            }
-        }
+		"placeholders": {
+			"P1": {
+				"content": "$1"
+			},
+			"P2": {
+				"content": "$2"
+			}
+		}
 	},
 	"cardAddedToCategory": {
 		"message": "$P1$ : Contactpersoon $P2$ toegevoegd aan categorie $P3$",
-        "placeholders": {
-            "P1": {
-                "content": "$1"
-            },
-            "P2": {
-                "content": "$2"
-            },
-            "P3": {
-                "content": "$3"
-            }
-        }
+		"placeholders": {
+			"P1": {
+				"content": "$1"
+			},
+			"P2": {
+				"content": "$2"
+			},
+			"P3": {
+				"content": "$3"
+			}
+		}
 	},
 	"cardDeletedFromAllCategory": {
 		"message": "$P1$ : Contactpersoon $P2$ verwijderd uit alle categorieën",
-        "placeholders": {
-            "P1": {
-                "content": "$1"
-            },
-            "P2": {
-                "content": "$2"
-            }
-        }
+		"placeholders": {
+			"P1": {
+				"content": "$1"
+			},
+			"P2": {
+				"content": "$2"
+			}
+		}
 	},
 	"cardsConverted": {
 		"message": "$P1$ : contactpersonen omgezet naar $P2$ : $P3$",
-        "placeholders": {
-            "P1": {
-                "content": "$1"
-            },
-            "P2": {
-                "content": "$2"
-            },
-            "P3": {
-                "content": "$3"
-            }
-        }
+		"placeholders": {
+			"P1": {
+				"content": "$1"
+			},
+			"P2": {
+				"content": "$2"
+			},
+			"P3": {
+				"content": "$3"
+			}
+		}
 	},
 	"cardsConvertedUndo": {
 		"message": "Omgezette VCards"
 	},
 	"cardsImportedFromFileUndo": {
 		"message": "Bestand $P1$ geïmporteerd",
-        "placeholders": {
-            "P1": {
-                "content": "$1"
-            }
-        }
+		"placeholders": {
+			"P1": {
+				"content": "$1"
+			}
+		}
 	},
 	"cardsImportedFromDirUndo": {
 		"message": "Map $P1$ geïmporteerd",
-        "placeholders": {
-            "P1": {
-                "content": "$1"
-            }
-        }
+		"placeholders": {
+			"P1": {
+				"content": "$1"
+			}
+		}
 	},
 	"cardsExportedToFileUndo": {
 		"message": "Contactpersonen geëxporteerd naar bestand $P1$",
-        "placeholders": {
-            "P1": {
-                "content": "$1"
-            }
-        }
+		"placeholders": {
+			"P1": {
+				"content": "$1"
+			}
+		}
 	},
 	"cardsExportedToDirUndo": {
 		"message": "Contactpersonen geëxporteerd naar map $P1$",
-        "placeholders": {
-            "P1": {
-                "content": "$1"
-            }
-        }
+		"placeholders": {
+			"P1": {
+				"content": "$1"
+			}
+		}
 	},
 	"undoActionDoneUndo": {
 		"message": "Herstel uitgevoerd ($P1$)",
-        "placeholders": {
-            "P1": {
-                "content": "$1"
-            }
-        }
+		"placeholders": {
+			"P1": {
+				"content": "$1"
+			}
+		}
 	},
 	"redoActionDoneUndo": {
 		"message": "Re-herstel uitgevoerd ($P1$)",
-        "placeholders": {
-            "P1": {
-                "content": "$1"
-            }
-        }
+		"placeholders": {
+			"P1": {
+				"content": "$1"
+			}
+		}
 	},
 	"cardCreatedUndo": {
 		"message": "Contactpersoon $P1$ toegevoegd",
-        "placeholders": {
-            "P1": {
-                "content": "$1"
-            }
-        }
+		"placeholders": {
+			"P1": {
+				"content": "$1"
+			}
+		}
 	},
 	"cardUpdatedUndo": {
 		"message": "Contactpersoon $P1$ gewijzigd",
-        "placeholders": {
-            "P1": {
-                "content": "$1"
-            }
-        }
+		"placeholders": {
+			"P1": {
+				"content": "$1"
+			}
+		}
 	},
 	"outgoingEmailCollectedUndo": {
 		"message": "Uitgaande berichten verzameld"
@@ -2096,33 +2096,33 @@
 	},
 	"displayNameGenerated": {
 		"message": "$P1$ : contactpersonen met vernieuwde getoonde naam: $P2$",
-        "placeholders": {
-            "P1": {
-                "content": "$1"
-            },
-            "P2": {
-                "content": "$2"
-            }
-        }
+		"placeholders": {
+			"P1": {
+				"content": "$1"
+			},
+			"P2": {
+				"content": "$2"
+			}
+		}
 	},
 	"displayNameGeneratedUndo": {
 		"message": "Getoonde namen vernieuwd"
 	},
 	"cardModifiedUndo": {
 		"message": "Contactpersoon $P1$ gewijzigd",
-        "placeholders": {
-            "P1": {
-                "content": "$1"
-            }
-        }
+		"placeholders": {
+			"P1": {
+				"content": "$1"
+			}
+		}
 	},
 	"cardsDeleted1Undo": {
 		"message": "Contactpersoon $P1$ verwijderd",
-        "placeholders": {
-            "P1": {
-                "content": "$1"
-            }
-        }
+		"placeholders": {
+			"P1": {
+				"content": "$1"
+			}
+		}
 	},
 	"cardsDeleted2Undo": {
 		"message": "Verwijderde contactpersonen"
@@ -2135,185 +2135,185 @@
 	},
 	"categoryCreated": {
 		"message": "$P1$ : Categorie $P2$ toegevoegd",
-        "placeholders": {
-            "P1": {
-                "content": "$1"
-            },
-            "P2": {
-                "content": "$2"
-            }
-        }
+		"placeholders": {
+			"P1": {
+				"content": "$1"
+			},
+			"P2": {
+				"content": "$2"
+			}
+		}
 	},
 	"categoryCreatedUndo": {
 		"message": "Categorie $P1$ toegevoegd",
-        "placeholders": {
-            "P1": {
-                "content": "$1"
-            }
-        }
+		"placeholders": {
+			"P1": {
+				"content": "$1"
+			}
+		}
 	},
 	"categorySelectedUndo": {
 		"message": "Categorie $P1$ geselecteerd",
-        "placeholders": {
-            "P1": {
-                "content": "$1"
-            }
-        }
+		"placeholders": {
+			"P1": {
+				"content": "$1"
+			}
+		}
 	},
 	"categoryUnselectedUndo": {
 		"message": "Selectie van categorie $P1$ ongedaan gemaakt",
-        "placeholders": {
-            "P1": {
-                "content": "$1"
-            }
-        }
+		"placeholders": {
+			"P1": {
+				"content": "$1"
+			}
+		}
 	},
 	"categoryRenamed": {
 		"message": "$P1$ : Categorie $P2$ hernoemd",
-        "placeholders": {
-            "P1": {
-                "content": "$1"
-            },
-            "P2": {
-                "content": "$2"
-            }
-        }
+		"placeholders": {
+			"P1": {
+				"content": "$1"
+			},
+			"P2": {
+				"content": "$2"
+			}
+		}
 	},
 	"categoryRenamedUndo": {
 		"message": "Categorie $P1$ hernoemd",
-        "placeholders": {
-            "P1": {
-                "content": "$1"
-            }
-        }
+		"placeholders": {
+			"P1": {
+				"content": "$1"
+			}
+		}
 	},
 	"categoryDeleted": {
 		"message": "$P1$ : Categorie $P2$ verwijderd",
-        "placeholders": {
-            "P1": {
-                "content": "$1"
-            },
-            "P2": {
-                "content": "$2"
-            }
-        }
+		"placeholders": {
+			"P1": {
+				"content": "$1"
+			},
+			"P2": {
+				"content": "$2"
+			}
+		}
 	},
 	"categoryDeletedUndo": {
 		"message": "Categorie $P1$ verwijderd",
-        "placeholders": {
-            "P1": {
-                "content": "$1"
-            }
-        }
+		"placeholders": {
+			"P1": {
+				"content": "$1"
+			}
+		}
 	},
 	"categoryConvertedToListUndo": {
 		"message": "Categorie $P1$ omgezet naar lijst",
-        "placeholders": {
-            "P1": {
-                "content": "$1"
-            }
-        }
+		"placeholders": {
+			"P1": {
+				"content": "$1"
+			}
+		}
 	},
 	"listConvertedToCategoryUndo": {
 		"message": "Liist $P1$ omgezet naar categorie",
-        "placeholders": {
-            "P1": {
-                "content": "$1"
-            }
-        }
+		"placeholders": {
+			"P1": {
+				"content": "$1"
+			}
+		}
 	},
 	"linePastedUndo": {
 		"message": "Regel geplakt"
 	},
 	"nodeRenamedUndo": {
 		"message": "Knooppunt $P1$ hernoemd",
-        "placeholders": {
-            "P1": {
-                "content": "$1"
-            }
-        }
+		"placeholders": {
+			"P1": {
+				"content": "$1"
+			}
+		}
 	},
 	"nodeDeleted": {
 		"message": "$P1$ : Knooppunt $P2$ verwijderd",
-        "placeholders": {
-            "P1": {
-                "content": "$1"
-            },
-            "P2": {
-                "content": "$2"
-            }
-        }
+		"placeholders": {
+			"P1": {
+				"content": "$1"
+			},
+			"P2": {
+				"content": "$2"
+			}
+		}
 	},
 	"nodeDeletedUndo": {
 		"message": "Knooppunt $P1$ verwijderd",
-        "placeholders": {
-            "P1": {
-                "content": "$1"
-            }
-        }
+		"placeholders": {
+			"P1": {
+				"content": "$1"
+			}
+		}
 	},
 	"listCreatedFromNodeUndo": {
 		"message": "Lijst $P1$ gemaakt van knooppunt",
-        "placeholders": {
-            "P1": {
-                "content": "$1"
-            }
-        }
+		"placeholders": {
+			"P1": {
+				"content": "$1"
+			}
+		}
 	},
 	"cardsFormattedUndo": {
 		"message": "$P1$ : Geformatteerde contactpersonen ($P2$)",
-        "placeholders": {
-            "P1": {
-                "content": "$1"
-            },
-            "P2": {
-                "content": "$2"
-            }
-        }
+		"placeholders": {
+			"P1": {
+				"content": "$1"
+			},
+			"P2": {
+				"content": "$2"
+			}
+		}
 	},
 	"exportCardToDirMessagePF": {
 		"message": "$P1$ contactpersoon geëxporteerd naar map $P2$;$P1$ contactpersonen geëxporteerd naar map $P2$",
-        "placeholders": {
-            "P1": {
-                "content": "$1"
-            },
-            "P2": {
-                "content": "$2"
-            }
-        }
+		"placeholders": {
+			"P1": {
+				"content": "$1"
+			},
+			"P2": {
+				"content": "$2"
+			}
+		}
 	},
 	"exportCardToFileMessagePF": {
 		"message": "$P1$ contactpersoon geëxporteerd naar bestand $P2$;$P1$ contactpersonen geëxporteerd naar bestand $P2$",
-        "placeholders": {
-            "P1": {
-                "content": "$1"
-            },
-            "P2": {
-                "content": "$2"
-            }
-        }
+		"placeholders": {
+			"P1": {
+				"content": "$1"
+			},
+			"P2": {
+				"content": "$2"
+			}
+		}
 	},
 	"importCardFromDirMessagePF": {
 		"message": "$P1$ contactpersoon geïmporteerd uit map $P2$;$P1$ contactpersonen geïmporteerd uit map $P2$",
-        "placeholders": {
-            "P1": {
-                "content": "$1"
-            },
-            "P2": {
-                "content": "$2"
-            }
-        }
+		"placeholders": {
+			"P1": {
+				"content": "$1"
+			},
+			"P2": {
+				"content": "$2"
+			}
+		}
 	},
 	"importCardFromFileMessagePF": {
 		"message": "$P1$ contactpersoon geïmporteerd uit bestand $P2$;$P1$ contactpersonen geïmporteerd uit bestand $P2$",
-        "placeholders": {
-            "P1": {
-                "content": "$1"
-            },
-            "P2": {
-                "content": "$2"
-            }
-        }
+		"placeholders": {
+			"P1": {
+				"content": "$1"
+			},
+			"P2": {
+				"content": "$2"
+			}
+		}
 	},
 	"importNotIntoSameFile": {
 		"message": "Importeren in hetzelfde bestand is niet toegestaan"
@@ -2322,100 +2322,100 @@
 		"message": "Importeren vanuit dezelfde map is niet toegestaan"
 	},
 	"clipboardWrong": {
-		"message": "Gegevens op het prikbord zijn niet geschikt voor import"
+		"message": "Kan gegevens van klembord niet importeren"
 	},
 	"clipboardEmpty": {
-		"message": "Het prikbord is leeg"
+		"message": "Het klembord is leeg"
 	},
 	"imageError": {
 		"message": "Toevoegen van afbeelding mislukt"
 	},
 	"imageErrorWithMessage": {
 		"message": "Afbeelding niet toegevoegd: $P1$",
-        "placeholders": {
-            "P1": {
-                "content": "$1"
-            }
-        }
+		"placeholders": {
+			"P1": {
+				"content": "$1"
+			}
+		}
 	},
 	"imageSavedToFile": {
 		"message": "Afbeelding opgeslagen in bestand: $P1$",
-        "placeholders": {
-            "P1": {
-                "content": "$1"
-            }
-        }
+		"placeholders": {
+			"P1": {
+				"content": "$1"
+			}
+		}
 	},
 	"contactsCopied": {
-		"message": "Contactpersonen gekopieerd naar het prikbord"
+		"message": "Contactpersonen gekopieerd naar het klembord"
 	},
 	"contactCopied": {
-		"message": "Contactpersoon gekopieerd naar het prikbord"
+		"message": "Contactpersoon gekopieerd naar het klembord"
 	},
 	"lineCopied": {
-		"message": "Regel gekopieerd naar het prikbord"
+		"message": "Regel gekopieerd naar het klembord"
 	},
 	"linePastedToCard": {
 		"message": "Overnemen in contactpersoon: $P1$",
-        "placeholders": {
-            "P1": {
-                "content": "$1"
-            }
-        }
+		"placeholders": {
+			"P1": {
+				"content": "$1"
+			}
+		}
 	},
 	"numberContactsFound": {
 		"message": "Aantal gevonden contactpersonen: $P1$",
-        "placeholders": {
-            "P1": {
-                "content": "$1"
-            }
-        }
+		"placeholders": {
+			"P1": {
+				"content": "$1"
+			}
+		}
 	},
 	"numberContacts": {
 		"message": "Aantal contactpersonen: $P1$",
-        "placeholders": {
-            "P1": {
-                "content": "$1"
-            }
-        }
+		"placeholders": {
+			"P1": {
+				"content": "$1"
+			}
+		}
 	},
 	"numberContactsFoundModified": {
 		"message": "Aantal gevonden contactpersonen: $P1$ (locaal gewijzigd: $P2$)",
-        "placeholders": {
-            "P1": {
-                "content": "$1"
-            },
-            "P2": {
-                "content": "$2"
-            }
-        }
+		"placeholders": {
+			"P1": {
+				"content": "$1"
+			},
+			"P2": {
+				"content": "$2"
+			}
+		}
 	},
 	"numberContactsModified": {
 		"message": "Aantal contactpersonen: $P1$ (locaal gewijzigd: $P2$)",
-        "placeholders": {
-            "P1": {
-                "content": "$1"
-            },
-            "P2": {
-                "content": "$2"
-            }
-        }
+		"placeholders": {
+			"P1": {
+				"content": "$1"
+			},
+			"P2": {
+				"content": "$2"
+			}
+		}
 	},
 	"numberContactsSelected": {
 		"message": "Geselecteerd: $P1$",
-        "placeholders": {
-            "P1": {
-                "content": "$1"
-            }
-        }
+		"placeholders": {
+			"P1": {
+				"content": "$1"
+			}
+		}
 	},
 	"numberLines": {
 		"message": "Aantal regels: $P1$",
-        "placeholders": {
-            "P1": {
-                "content": "$1"
-            }
-        }
+		"placeholders": {
+			"P1": {
+				"content": "$1"
+			}
+		}
 	},
 	"cardbook.searchFrom.name": {
 		"message": "CardBook Van"
@@ -2473,11 +2473,11 @@
 	},
 	"urlDownloaded": {
 		"message": "URL gedownload : $P1$",
-        "placeholders": {
-            "P1": {
-                "content": "$1"
-            }
-        }
+		"placeholders": {
+			"P1": {
+				"content": "$1"
+			}
+		}
 	},
 	"addressbookHeader": {
 		"message": "Adresboek"
@@ -2549,7 +2549,7 @@
 		"message": "Telefoonnummer"
 	},
 	"emailLabel": {
-		"message": "Emails"
+		"message": "E-mails"
 	},
 	"imppLabel": {
 		"message": "Instant Messenger"
@@ -2661,85 +2661,85 @@
 	},
 	"birthdaysListWindowLabel": {
 		"message": "Lijst van geboortedata (Totaal : $P1$)",
-        "placeholders": {
-            "P1": {
-                "content": "$1"
-            }
-        }
+		"placeholders": {
+			"P1": {
+				"content": "$1"
+			}
+		}
 	},
 	"syncListWindowLabelRunning": {
 		"message": "Synchronisatie van geboortedata bezig… ($P1$/$P2$)",
-        "placeholders": {
-            "P1": {
-                "content": "$1"
-            },
-            "P2": {
-                "content": "$2"
-            }
-        }
+		"placeholders": {
+			"P1": {
+				"content": "$1"
+			},
+			"P2": {
+				"content": "$2"
+			}
+		}
 	},
 	"syncListWindowLabelEnded": {
 		"message": "Synchronisatie van geboortedata beëindigd ($P1$/$P2$)",
-        "placeholders": {
-            "P1": {
-                "content": "$1"
-            },
-            "P2": {
-                "content": "$2"
-            }
-        }
+		"placeholders": {
+			"P1": {
+				"content": "$1"
+			},
+			"P2": {
+				"content": "$2"
+			}
+		}
 	},
 	"syncListWindowLabelFailed": {
 		"message": "Synchronisatie van geboortedata mislukt"
 	},
 	"syncListExistingEntry": {
 		"message": "$P1$ : Gebeurtenis komt al voor in Lightning : $P2$",
-        "placeholders": {
-            "P1": {
-                "content": "$1"
-            },
-            "P2": {
-                "content": "$2"
-            }
-        }
+		"placeholders": {
+			"P1": {
+				"content": "$1"
+			},
+			"P2": {
+				"content": "$2"
+			}
+		}
 	},
 	"syncListCreatedEntry": {
 		"message": "$P1$ : Gebeurtenis toegevoegd in Lightning : $P2$",
-        "placeholders": {
-            "P1": {
-                "content": "$1"
-            },
-            "P2": {
-                "content": "$2"
-            }
-        }
+		"placeholders": {
+			"P1": {
+				"content": "$1"
+			},
+			"P2": {
+				"content": "$2"
+			}
+		}
 	},
 	"syncListErrorEntry": {
 		"message": "$P1$ : Gebeurtenis-fout in Lightning : $P2$",
-        "placeholders": {
-            "P1": {
-                "content": "$1"
-            },
-            "P2": {
-                "content": "$2"
-            }
-        }
+		"placeholders": {
+			"P1": {
+				"content": "$1"
+			},
+			"P2": {
+				"content": "$2"
+			}
+		}
 	},
 	"noBirthdaysFoundMessage": {
 		"message": "Geen geboortedata gevonden tot $P1$",
-        "placeholders": {
-            "P1": {
-                "content": "$1"
-            }
-        }
+		"placeholders": {
+			"P1": {
+				"content": "$1"
+			}
+		}
 	},
 	"noEmailFoundMessage": {
 		"message": "Geen email gevonden voor $P1$",
-        "placeholders": {
-            "P1": {
-                "content": "$1"
-            }
-        }
+		"placeholders": {
+			"P1": {
+				"content": "$1"
+			}
+		}
 	},
 	"eventEntryTitleMessage": {
 		"message": "Geboortedatum van %1$S"
@@ -2752,94 +2752,94 @@
 	},
 	"calendarNotFoundMessage": {
 		"message": "Agenda $P1$ niet gevonden. Synchronisatie met Lightning afgebroken.",
-        "placeholders": {
-            "P1": {
-                "content": "$1"
-            }
-        }
+		"placeholders": {
+			"P1": {
+				"content": "$1"
+			}
+		}
 	},
 	"calendarNotWritableTitle": {
 		"message": "Verjaardagsherinnering - synchronisatie met Lightning afgebroken"
 	},
 	"calendarNotWritableMessage": {
 		"message": "Agenda $P1$ kan niet bewerkt worden (Readonly? Offline?). Synchronisatie met Lightning afgebroken.",
-        "placeholders": {
-            "P1": {
-                "content": "$1"
-            }
-        }
+		"placeholders": {
+			"P1": {
+				"content": "$1"
+			}
+		}
 	},
 	"errorAttachingFile": {
 		"message": "Attaching vCard : Het bestand voor de vCard kan niet gegenereerd worden : $P1$ ($P2$)",
-        "placeholders": {
-            "P1": {
-                "content": "$1"
-            },
-            "P2": {
-                "content": "$2"
-            }
-        }
+		"placeholders": {
+			"P1": {
+				"content": "$1"
+			},
+			"P2": {
+				"content": "$2"
+			}
+		}
 	},
 	"errorInfiniteLoopRecursion": {
 		"message": "Lists : oneindige loop in lijsten : $P1$",
-        "placeholders": {
-            "P1": {
-                "content": "$1"
-            }
-        }
+		"placeholders": {
+			"P1": {
+				"content": "$1"
+			}
+		}
 	},
 	"WRONG_VERSION": {
 		"message": "Uitsluitend vCard-versie 3.0 en 4.0 worden ondersteund"
 	},
 	"unableToParseResponse": {
 		"message": "$P1$ : Antwoord van de server kan niet geanalyseerd worden, vanwege : $P2$",
-        "placeholders": {
-            "P1": {
-                "content": "$1"
-            },
-            "P2": {
-                "content": "$2"
-            }
-        }
+		"placeholders": {
+			"P1": {
+				"content": "$1"
+			},
+			"P2": {
+				"content": "$2"
+			}
+		}
 	},
 	"dateEntry1Wrong": {
 		"message": "$P1$ : Contactpersoon $P2$ heeft een datum ($P3$) die niet klopt met het formaat van het addresboek ($P4$)",
-        "placeholders": {
-            "P1": {
-                "content": "$1"
-            },
-            "P2": {
-                "content": "$2"
-            },
-            "P3": {
-                "content": "$3"
-            },
-            "P4": {
-                "content": "$4"
-            }
-        }
+		"placeholders": {
+			"P1": {
+				"content": "$1"
+			},
+			"P2": {
+				"content": "$2"
+			},
+			"P3": {
+				"content": "$3"
+			},
+			"P4": {
+				"content": "$4"
+			}
+		}
 	},
 	"dateEntry2Wrong": {
 		"message": "De datum ($P1$) klopt niet met het formaat van het adresboek ($P2$)",
-        "placeholders": {
-            "P1": {
-                "content": "$1"
-            },
-            "P2": {
-                "content": "$2"
-            }
-        }
+		"placeholders": {
+			"P1": {
+				"content": "$1"
+			},
+			"P2": {
+				"content": "$2"
+			}
+		}
 	},
 	"invalidOffice365Field": {
 		"message": "$P1$ kan niet worden gesynchroniseerd (waarde: $P2$)",
-        "placeholders": {
-            "P1": {
-                "content": "$1"
-            },
-            "P2": {
-                "content": "$2"
-            }
-       }
+		"placeholders": {
+			"P1": {
+				"content": "$1"
+			},
+			"P2": {
+				"content": "$2"
+			}
+		}
 	},
 	"invalidOffice365Email": {
 		"message": "Niet meer dan 3 e-mailadressen kunnen worden gesynchroniseerd"
@@ -2855,11 +2855,11 @@
 	},
 	"invalidOffice365EmptyType": {
 		"message": "$P1$ : lege types zijn niet toegestaan",
-        "placeholders": {
-            "P1": {
-                "content": "$1"
-            }
-        }
+		"placeholders": {
+			"P1": {
+				"content": "$1"
+			}
+		}
 	},
 	"invalidOffice365Type": {
 		"message": "$P1$ : te veel type $P2$ (max toegestaan: $P3$)",
@@ -2884,18 +2884,18 @@
 		}
 	},
 	"validateIntegerMsg": {
-		"message": "De rubriek $P1$ moet leeg zijn of een getal tussen 1 en $P2$ bevatten (Waarde: $P3$)",
-        "placeholders": {
-            "P1": {
-                "content": "$1"
-            },
-            "P2": {
-                "content": "$2"
-            },
-            "P3": {
-                "content": "$3"
-            }
-        }
+		"message": "Het veld $P1$ moet leeg zijn of een getal tussen 1 en $P2$ bevatten (Waarde: $P3$)",
+		"placeholders": {
+			"P1": {
+				"content": "$1"
+			},
+			"P2": {
+				"content": "$2"
+			},
+			"P3": {
+				"content": "$3"
+			}
+		}
 	},
 	"eventNameNull": {
 		"message": "Eén of meer gebeurtenissen hebben een lege omschrijving"
@@ -2905,11 +2905,11 @@
 	},
 	"invalidURL": {
 		"message": "Ongeldige URL : $P1$",
-        "placeholders": {
-            "P1": {
-                "content": "$1"
-            }
-        }
+		"placeholders": {
+			"P1": {
+				"content": "$1"
+			}
+		}
 	},
 	"cardbookSearchInputDefault": {
 		"message": "Zoeken…"
@@ -3026,7 +3026,7 @@
 		"message": "Resulterende contactpersoon wijzigen"
 	},
 	"wdw_cardEditionAddEmailTitle": {
-		"message": "Registreer een nieuw email adres"
+		"message": "Registreer een nieuw e-mailadres"
 	},
 	"wdw_cardEditionCreateContactTitle": {
 		"message": "Een nieuw adresboekcontact aanmaken"
@@ -3054,11 +3054,11 @@
 	},
 	"wdw_cardbookPrintTitleLong": {
 		"message": "Afdrukvoorbeeld van $P1$ - CardBook - Thunderbird",
-        "placeholders": {
-            "P1": {
-                "content": "$1"
-            }
-        }
+		"placeholders": {
+			"P1": {
+				"content": "$1"
+			}
+		}
 	},
 	"wdw_cardbookPrintTitle": {
 		"message": "Afdrukvoorbeeld"
@@ -3082,7 +3082,7 @@
 		"message": "Telefoonnummers"
 	},
 	"emailGroupboxLabel": {
-		"message": "Email adressen"
+		"message": "E-mailadressen"
 	},
 	"urlGroupboxLabel": {
 		"message": "URLs"
@@ -3125,76 +3125,76 @@
 	},
 	"selectedCardsDeletionConfirmMessagePF": {
 		"message": "Contactpersoon verwijderen?;$P1$ contactpersonen verwijderen?",
-        "placeholders": {
-            "P1": {
-                "content": "$1"
-            }
-        }
+		"placeholders": {
+			"P1": {
+				"content": "$1"
+			}
+		}
 	},
 	"catDeletionsConfirmMessagePF": {
 		"message": "Categorie $P2$ met één contactpersoon verwijderen?;Categorie $P2$ met $P1$ contactpersonen verwijderen?",
-        "placeholders": {
-            "P1": {
-                "content": "$1"
-            },
-            "P2": {
-                "content": "$2"
-            }
-        }
+		"placeholders": {
+			"P1": {
+				"content": "$1"
+			},
+			"P2": {
+				"content": "$2"
+			}
+		}
 	},
 	"nodeDeletionsConfirmMessagePF": {
 		"message": "Weet u zeker dat u knooppunt $P2$ met één contactpersoon wilt verwijderen?;Weet u zeker dat u knooppunt $P2$ met $P1$ contactpersonen wilt verwijderen?",
-        "placeholders": {
-            "P1": {
-                "content": "$1"
-            },
-            "P2": {
-                "content": "$2"
-            }
-        }
+		"placeholders": {
+			"P1": {
+				"content": "$1"
+			},
+			"P2": {
+				"content": "$2"
+			}
+		}
 	},
 	"accountDeletionConfirmMessage": {
 		"message": "Adresboek $P1$ verwijderen uit CardBook?",
-        "placeholders": {
-            "P1": {
-                "content": "$1"
-            }
-        }
+		"placeholders": {
+			"P1": {
+				"content": "$1"
+			}
+		}
 	},
 	"accountDeletionDiscoveryConfirmMessage": {
 		"message": "Het adresboek $P1$ lijkt van de server verwijderd te zijn. Moet het ook uit CardBook verwijderd worden?",
-        "placeholders": {
-            "P1": {
-                "content": "$1"
-            }
-        }
+		"placeholders": {
+			"P1": {
+				"content": "$1"
+			}
+		}
 	},
 	"accountDeletiondeleteContentFileMessage": {
 		"message": "Verwijder bestand $P1$",
-        "placeholders": {
-            "P1": {
-                "content": "$1"
-            }
-        }
+		"placeholders": {
+			"P1": {
+				"content": "$1"
+			}
+		}
 	},
 	"accountDeletiondeleteContentDirMessage": {
 		"message": "Verwijder map $P1$",
-        "placeholders": {
-            "P1": {
-                "content": "$1"
-            }
-        }
+		"placeholders": {
+			"P1": {
+				"content": "$1"
+			}
+		}
 	},
 	"directoryDeletionConfirmMessage": {
 		"message": "De map $P1$ is niet leeg. Toch alle objecten uit deze map verwijderen?",
-        "placeholders": {
-            "P1": {
-                "content": "$1"
-            }
-        }
+		"placeholders": {
+			"P1": {
+				"content": "$1"
+			}
+		}
 	},
 	"choiceMappingTitle": {
-		"message": "Rubriekkeuze"
+		"message": "Veld keuze"
 	},
 	"choiceavailableColumnsGroupboxLabel": {
 		"message": "Beschikbare kolommen"
@@ -3249,19 +3249,19 @@
 	},
 	"copyFieldValue": {
 		"message": "Kopiëren ($P1$)",
-        "placeholders": {
-            "P1": {
-                "content": "$1"
-            }
-        }
+		"placeholders": {
+			"P1": {
+				"content": "$1"
+			}
+		}
 	},
 	"pasteFieldValue": {
 		"message": "Plakken ($P1$)",
-        "placeholders": {
-            "P1": {
-                "content": "$1"
-            }
-        }
+		"placeholders": {
+			"P1": {
+				"content": "$1"
+			}
+		}
 	},
 	"wdw_cardbookRenameFieldEditTypeTitle": {
 		"message": "Type hernoemen"
@@ -3298,14 +3298,14 @@
 	},
 	"wdw_cardbookRenameFieldEditNodeLabel": {
 		"message": "$P1$:",
-        "placeholders": {
-            "P1": {
-                "content": "$1"
-            }
-        }
+		"placeholders": {
+			"P1": {
+				"content": "$1"
+			}
+		}
 	},
 	"wdw_cardbookConfigurationAddEmailsRestrictionTitle": {
-		"message": "Definitie van beperkingen"
+		"message": "Beperking van e-mailaccounts"
 	},
 	"wdw_cardbookConfigurationAddEmailsCollectionTitle": {
 		"message": "Account voor de verzameling van uitgaande berichten"
@@ -3345,11 +3345,11 @@
 	},
 	"eventContactsWindowLabel": {
 		"message": "Gebeurtenissen voor: $P1$",
-        "placeholders": {
-            "P1": {
-                "content": "$1"
-            }
-        }
+		"placeholders": {
+			"P1": {
+				"content": "$1"
+			}
+		}
 	},
 	"fnDuplicatedMessage": {
 		"message": "(kopie)"
@@ -3367,23 +3367,23 @@
 		"message": "Een e-mailbericht sturen"
 	},
 	"doNotShowAnymore": {
-		"message": "Geen waarschuwing als ik een bericht verstuur naar een contactpersoon zonder e-mail adres."
+		"message": "Geef geen waarschuwing als ik mail naar een contactpersoon zonder e-mailadres."
 	},
 	"emptyEmailsCardConfirmMessage": {
-		"message": "Deze contactpersoon heeft geen e-mail adres: $P1$",
-        "placeholders": {
-            "P1": {
-                "content": "$1"
-            }
-        }
+		"message": "Deze contactpersoon heeft geen e-mailadres: $P1$",
+		"placeholders": {
+			"P1": {
+				"content": "$1"
+			}
+		}
 	},
 	"emptyEmailsCardsConfirmMessage": {
-		"message": "Deze contactpersonen hebben geen e-mail adres: $P1$",
-        "placeholders": {
-            "P1": {
-                "content": "$1"
-            }
-        }
+		"message": "Deze contactpersonen hebben geen e-mailadres: $P1$",
+		"placeholders": {
+			"P1": {
+				"content": "$1"
+			}
+		}
 	},
 	"eventInNoteEventPrefix": {
 		"message": "Gebeurtenis"
@@ -3408,11 +3408,11 @@
 	},
 	"valueAlreadyExists": {
 		"message": "De waarde $P1$ komt al voor",
-        "placeholders": {
-            "P1": {
-                "content": "$1"
-            }
-        }
+		"placeholders": {
+			"P1": {
+				"content": "$1"
+			}
+		}
 	},
 	"allAccountsLabel": {
 		"message": "Alle adresboeken"
@@ -3449,59 +3449,59 @@
 	},
 	"newTokenTitle": {
 		"message": "Aanmelden bij uw account $P1$",
-        "placeholders": {
-            "P1": {
-                "content": "$1"
-            }
-        }
+		"placeholders": {
+			"P1": {
+				"content": "$1"
+			}
+		}
 	},
 	"warnDescription": {
 		"message": "CardBook vraagt om toegang tot de contactpersonen van uw account $P1$. Autorisaties en contactgegevens worden slechts uitgewisseld tussen uw computer en Google, er zijn geen derde partijen bij betrokken.",
-        "placeholders": {
-            "P1": {
-                "content": "$1"
-            }
-        }
+		"placeholders": {
+			"P1": {
+				"content": "$1"
+			}
+		}
 	},
 	"applicationName": {
 		"message": "Toepassing: $P1$",
-        "placeholders": {
-            "P1": {
-                "content": "$1"
-            }
-        }
+		"placeholders": {
+			"P1": {
+				"content": "$1"
+			}
+		}
 	},
 	"clientID": {
 		"message": "Client-identificatie: $P1$",
-        "placeholders": {
-            "P1": {
-                "content": "$1"
-            }
-        }
+		"placeholders": {
+			"P1": {
+				"content": "$1"
+			}
+		}
 	},
 	"scopeURL": {
 		"message": "Bereik: $P1$",
-        "placeholders": {
-            "P1": {
-                "content": "$1"
-            }
-        }
+		"placeholders": {
+			"P1": {
+				"content": "$1"
+			}
+		}
 	},
 	"invalidEmail": {
 		"message": "$P1$ is geen geldig e-mailadres, omdat het niet de vorm gebruiker@host heeft.",
-        "placeholders": {
-            "P1": {
-                "content": "$1"
-            }
-        }
+		"placeholders": {
+			"P1": {
+				"content": "$1"
+			}
+		}
 	},
 	"appendEmailLabel": {
 		"message": "Toevoegen aan lijst: $P1$",
-        "placeholders": {
-            "P1": {
-                "content": "$1"
-            }
-        }
+		"placeholders": {
+			"P1": {
+				"content": "$1"
+			}
+		}
 	},
 	"categoryAddNew": {
 		"message": "Nieuwe categorie toevoegen"
@@ -3520,14 +3520,14 @@
 	},
 	"encryptionProcessed": {
 		"message": "Versleutelde items: $P1$/$P2$",
-        "placeholders": {
-            "P1": {
-                "content": "$1"
-            },
-            "P2": {
-                "content": "$2"
-            }
-        }
+		"placeholders": {
+			"P1": {
+				"content": "$1"
+			},
+			"P2": {
+				"content": "$2"
+			}
+		}
 	},
 	"encryptionFinished": {
 		"message": "Versleuteling gereed"
@@ -3537,36 +3537,36 @@
 	},
 	"decryptionProcessed": {
 		"message": "Ontsleutelde items: $P1$/$P2$",
-        "placeholders": {
-            "P1": {
-                "content": "$1"
-            },
-            "P2": {
-                "content": "$2"
-            }
-        }
+		"placeholders": {
+			"P1": {
+				"content": "$1"
+			},
+			"P2": {
+				"content": "$2"
+			}
+		}
 	},
 	"decryptionFinished": {
 		"message": "Ontsleuteling gereed"
 	},
 	"menu_undo.long.label": {
 		"message": "Ongedaan maken - $P1$",
-        "placeholders": {
-            "P1": {
-                "content": "$1"
-            }
-        }
+		"placeholders": {
+			"P1": {
+				"content": "$1"
+			}
+		}
 	},
 	"menu_undo.short.label": {
 		"message": "Ongedaan maken"
 	},
 	"menu_redo.long.label": {
 		"message": "Opnieuw uitvoeren - $P1$",
-        "placeholders": {
-            "P1": {
-                "content": "$1"
-            }
-        }
+		"placeholders": {
+			"P1": {
+				"content": "$1"
+			}
+		}
 	},
 	"menu_redo.short.label": {
 		"message": "Opnieuw uitvoeren"
@@ -3662,7 +3662,7 @@
 		"message": "c"
 	},
 	"findEmailsFromEmailMessengerLabel": {
-		"message": "Zoek e-mails gerelateerd aan dit e-mail adres"
+		"message": "Zoek e-mails gerelateerd aan dit e-mailadres"
 	},
 	"findEmailsFromEmailMessengerAccesskey": {
 		"message": "e"
@@ -3674,7 +3674,7 @@
 		"message": "a"
 	},
 	"findEventsFromEmailMessengerLabel": {
-		"message": "Zoek agenda-gebeurtenissen gerelateerd aan dit e-mail adres"
+		"message": "Zoek agenda-gebeurtenissen gerelateerd aan dit e-mailadres"
 	},
 	"findEventsFromEmailMessengerAccesskey": {
 		"message": "a"
@@ -3705,10 +3705,10 @@
 	},
 	"wizard.next.label": {
 		"message": "Volgende"
-	},	
+	},
 	"wizard.back.label": {
 		"message": "Terug"
-	},	
+	},
 	"wizard.create.label": {
 		"message": "Maken"
 	},
@@ -3812,7 +3812,7 @@
 		"message": "URL:"
 	},
 	"remotePage.credentials.description": {
-		"message": "Toegangscodes voor het internet-adresboek. (Let op: voor Google-adresboek de Google-email invullen.)"
+		"message": "Voer de inloggegevens in voor toegang tot het adresboek. Voor een Google adresboek is de gebruikersnaam een Google e-mailadres."
 	},
 	"remotePage.user.label": {
 		"message": "Gebruikersnaam:"
@@ -3821,7 +3821,7 @@
 		"message": "Wachtwoord:"
 	},
 	"rememberPassword": {
-		"message": "Wachtwoordenbeheerder gebruiken om dit wachtwoord te onthouden"
+		"message": "Een wachtwoordprogramma gebruiken om dit wachtwoord te onthouden"
 	},
 	"showHidePassword.tooltip": {
 		"message": "Wachtwoord tonen/verbergen"
@@ -4016,7 +4016,7 @@
 		"message": "Gevonden datum"
 	},
 	"emailColumnLabel": {
-		"message": "Email"
+		"message": "E-mail"
 	},
 	"sendEmailLabel": {
 		"message": "Nieuw bericht aanmaken"
@@ -4052,13 +4052,13 @@
 		"message": "Editor voor eigen velden"
 	},
 	"customFieldCodeLabel": {
-		"message": "Rubriek naam:"
+		"message": "Veldnaam:"
 	},
 	"customFieldLabelLabel": {
-		"message": "Rubriek label:"
+		"message": "Veld label:"
 	},
 	"mailAccountLabel": {
-		"message": "Mail account:"
+		"message": "E-mailaccount:"
 	},
 	"addressbookLabel": {
 		"message": "Adresboek:"
@@ -4097,13 +4097,13 @@
 		"message": "CardBook tabblad"
 	},
 	"editionTabLabel": {
-		"message": "Te wijzigen rubrieken"
+		"message": "Velden bewerken"
 	},
 	"IMPPsTabLabel": {
 		"message": "Instant Messenger adressen"
 	},
 	"customFieldsTabLabel": {
-		"message": "Eigen rubrieken"
+		"message": "Eigen velden"
 	},
 	"listsTabLabel": {
 		"message": "Lijsten"
@@ -4112,7 +4112,7 @@
 		"message": "Synchroniseren"
 	},
 	"emailTabLabel": {
-		"message": "Email"
+		"message": "E-mail"
 	},
 	"birthdaylistTabLabel": {
 		"message": "Geboortedata"
@@ -4124,22 +4124,22 @@
 		"message": "Integratie in Thunderbird"
 	},
 	"autocompletionLabel": {
-		"message": "Auto-aanvullen bij het typen van email adressen"
+		"message": "Automatisch aanvullen van e-mailadressen"
 	},
 	"autocompletionAccesskey": {
 		"message": "h"
 	},
 	"autocompletionTooltip": {
-		"message": "Auto-aanvullen bij het typen van email adressen vanuit CardBook."
+		"message": "Auto-aanvullen bij het typen van e-mailadressen vanuit CardBook."
 	},
 	"autocompleteSortByPopularityLabel": {
-		"message": "Sorteer e-mail adressen op populariteit"
+		"message": "Sorteer e-mailadressen op populariteit"
 	},
 	"autocompleteSortByPopularityAccesskey": {
 		"message": "p"
 	},
 	"autocompleteProposeConcatEmailsLabel": {
-		"message": "Stel samengestelde adressen per contactpersoon voor"
+		"message": "Samengevoegde e-mails per contact voorstellen"
 	},
 	"autocompleteProposeConcatEmailsAccesskey": {
 		"message": "c"
@@ -4169,7 +4169,7 @@
 		"message": "G"
 	},
 	"autocompleteRestrictSearchLabel": {
-		"message": "Beperk te doorzoeken rubrieken"
+		"message": "Beperk te doorzoeken velden"
 	},
 	"autocompleteRestrictSearchAccesskey": {
 		"message": "d"
@@ -4214,16 +4214,16 @@
 		"message": "e"
 	},
 	"exclusiveTooltip": {
-		"message": "Als deze optie ingeschakeld is, dan wordt bij het typen uitsluitend naar email adressen in CardBook gezocht; als de optie uit staat, dan wordt ook in de Thunderbird-boeken gezocht."
+		"message": "Als deze optie ingeschakeld is, wordt bij het typen uitsluitend naar e-mailadressen in CardBook gezocht; wanneer de optie uit staat, wordt ook in de Thunderbird-boeken gezocht."
 	},
 	"accountsRestrictionsLabel": {
-		"message": "Beperkingen"
+		"message": "E-mailaccount beperkingen"
 	},
 	"accountsRestrictionsEnabledLabel": {
 		"message": "Ingeschakeld"
 	},
 	"accountsRestrictionsMailNameLabel": {
-		"message": "Mail account"
+		"message": "E-mailaccount"
 	},
 	"accountsRestrictionsABNameLabel": {
 		"message": "Adresboek"
@@ -4253,16 +4253,16 @@
 		"message": "V"
 	},
 	"emailsCollectionLabel": {
-		"message": "Contactpersoon toevoegen bij uitgaande berichten"
+		"message": "Uitgaande e-mail"
 	},
 	"emailsCollectionTooltip": {
-		"message": "Contactpersoon toevoegen bij uitgaande berichten als het email adres nog niet in CardBook voorkomt."
+		"message": "Deze optie verzamelt e-mailadressen, die niet in een CardBook-adresboek aanwezig zijn, automatisch in geselecteerde adresboek(en)"
 	},
 	"emailsCollectionEnabledLabel": {
 		"message": "Ingeschakeld"
 	},
 	"emailsCollectionMailNameLabel": {
-		"message": "Mail account"
+		"message": "E-mailaccount"
 	},
 	"emailsCollectionABNameLabel": {
 		"message": "Adresboek"
@@ -4433,7 +4433,7 @@
 		"message": "Overig"
 	},
 	"preferEmailEditionLabel": {
-		"message": "Dubbelklikken op contactpersoon start wijzigen (i.p.v. bericht verzenden)"
+		"message": "Dubbelklik om contactpersoon te bewerken"
 	},
 	"preferEmailEditionAccesskey": {
 		"message": "D"
@@ -4454,10 +4454,10 @@
 		"message": "Default regio voor adres- en telefoonnummer-formaten"
 	},
 	"editionGroupboxLabel": {
-		"message": "Rubrieken selecteren"
+		"message": "Velden selecteren"
 	},
 	"editionWarn": {
-		"message": "Bij het wijzigen van de gegevens van een contactpersoon, worden standaard alleen de geselecteerde rubrieken getoond."
+		"message": "Bij het bewerken van een contact, worden standaard alleen de geselecteerde velden weergegeven."
 	},
 	"fieldsButtonLabel": {
 		"message": "Als standaard instellen"
@@ -4529,7 +4529,7 @@
 		"message": "d"
 	},
 	"typesCategoryEmailLabel": {
-		"message": "Email"
+		"message": "E-mail"
 	},
 	"typesCategoryEmailAccesskey": {
 		"message": "E"
@@ -4673,10 +4673,10 @@
 		"message": "Volgorde"
 	},
 	"customFieldCodeHeaderLabel": {
-		"message": "Rubriek naam"
+		"message": "Veldnaam"
 	},
 	"customFieldLabelHeaderLabel": {
-		"message": "Rubriek label"
+		"message": "Veld label"
 	},
 	"customFieldsPersTitleLabel": {
 		"message": "Persoonlijke informatie"
@@ -4709,19 +4709,19 @@
 		"message": "V"
 	},
 	"orgWarn": {
-		"message": "De rubriek ORG kan bestaan uit tekst, gescheiden door puntkomma's. Bijvoorbeeld: bedrijfsnaam;dienstnaam;afdelingsnaam. De rubrieken hieronder beschrijven de namen van de onderdelen daarvan."
+		"message": "Het veld ORG kan bestaan uit tekst, gescheiden door puntkomma's. Bijvoorbeeld: bedrijfsnaam;dienstnaam;afdelingsnaam. De onderstaande velden beschrijven de namen van de onderdelen daarvan."
 	},
 	"orgRankLabel": {
 		"message": "Volgorde"
 	},
 	"orgLabelLabel": {
-		"message": "Rubriek label"
+		"message": "Veld label"
 	},
 	"listPanelLabel": {
-		"message": "Als de server geen categorieën ondersteunt (zoals Google, Apple, Zimbra, etc…), dan zijn lijsten een goede manier om emails aan groepen contactpersonen te versturen. (In geval van vCard 3.0 werkt dit alleen met eigen rubrieken.)"
+		"message": "Als de server geen categorieën ondersteunt (bijvoorbeeld: Google, Apple, Zimbra, etc…), zijn lijsten een goede manier om e-mails aan groepen contactpersonen te sturen. (In geval van vCard 3.0 werkt dit alleen met eigen velden.)"
 	},
 	"listGroupboxLabel": {
-		"message": "Eigen rubrieken voor lijsten"
+		"message": "Eigen velden voor lijsten"
 	},
 	"kindCustomLabel": {
 		"message": "Soort:"
@@ -4823,40 +4823,40 @@
 		"message": "O"
 	},
 	"miscEmailGroupboxLabel": {
-		"message": "Versturen emails"
+		"message": "E-mail verzenden"
 	},
 	"preferEmailPrefLabel": {
-		"message": "Voorkeur voor email adressen die als „Voorkeur” gemarkeerd zijn"
+		"message": "Bij voorkeur e-mailadressen gemarkeerd met"
 	},
 	"preferEmailPrefAccesskey": {
 		"message": "V"
 	},
 	"preferEmailPrefWarn": {
-		"message": "Als er geen email adres gemarkeerd is, dan worden berichten naar alle adressen van de betreffende contactpersoon verstuurd."
+		"message": "Als geen enkel adres is gemarkeerd, wordt het bericht naar alle adressen van de contactpersoon gestuurd."
 	},
 	"warnEmptyEmailsLabel": {
-		"message": "Waarschuwing als ik een bericht verstuur naar een contactpersoon zonder e-mail adres"
+		"message": "Waarschuw als ik contactpersonen zonder e-mailadres probeer te e-mailen"
 	},
 	"warnEmptyEmailsAccesskey": {
 		"message": "W"
 	},
 	"useOnlyEmailLabel": {
-		"message": "Gebruik alleen technische e-mail adressen"
+		"message": "Gebruik alleen e-mailadressen, geen weergavenamen"
 	},
 	"useOnlyEmailAccesskey": {
 		"message": "G"
 	},
 	"attachVCardWarn": {
-		"message": "Selecteer voor elke email-account een vCard om aan alle uitgaande berichten van die account(s) de betreffende vCard toe te voegen. Dit gebeurt automatisch als deze voorziening ingeschakeld is in de instellingen."
+		"message": "Selecteer voor elk e-mailaccount een vCard. Daarna voegt CardBook de vCard automatisch toe aan elk bericht vanuit dit account."
 	},
 	"attachVCardGroupboxLabel": {
-		"message": "vCard aan uitgaande emails toevoegen"
+		"message": "vCard toevoegen"
 	},
 	"accountsVCardsEnabledLabel": {
 		"message": "Ingeschakeld"
 	},
 	"accountsVCardsMailNameLabel": {
-		"message": "Mail account"
+		"message": "E-mailaccount"
 	},
 	"accountsVCardsABNameLabel": {
 		"message": "Adresboek"
@@ -5073,7 +5073,7 @@
 	},
 	"editAddrBookCard.label": {
 		"message": "Wijzigen"
-	},                                             
+	},
 	"editAddrBookCard.accesskey": {
 		"message": "W"
 	},
@@ -5159,13 +5159,13 @@
 		"message": "In- of uitschakelen van zoeken en synchroniseren van adresboeken."
 	},
 	"colorAccountsTooltip": {
-		"message": "Kleur adresboek."
+		"message": "Zoekresultaten weergeven in de kleuren van de adresboeken (bij zoeken in meerdere adresboeken)."
 	},
 	"readonlyAccountsTooltip": {
-		"message": "Zet adresboeken in lezen-/schrijven-modus of in alleen lezen-modus"
+		"message": "Zet adresboeken in alleen-lezen of lezen-schrijven modus."
 	},
 	"searchRemoteLabel": {
-		"message": "Dit adresboek toont alleen contacten na een zoekopdracht"
+		"message": "Dit adresboek toont contacten alleen na een zoekopdracht"
 	},
 	"columnChooser2.tooltip": {
 		"message": "Weer te geven kolommen selecteren"
@@ -5408,10 +5408,10 @@
 		"message": "Nieuw bericht aanmaken (blind copy / bcc)"
 	},
 	"findemailemailTreeLabel": {
-		"message": "Zoek e-mails gerelateerd aan dit e-mail adres"
+		"message": "Zoek e-mails gerelateerd aan dit e-mailadres"
 	},
 	"findeventemailTreeLabel": {
-		"message": "Zoek agenda-gebeurtenissen gerelateerd aan dit e-mail adres"
+		"message": "Zoek agenda-gebeurtenissen gerelateerd aan dit e-mailadres"
 	},
 	"openURLTreeLabel": {
 		"message": "Open URL"
@@ -5483,16 +5483,16 @@
 		"message": "Formules"
 	},
 	"shareCardByEmailFromAccountsOrCatsLabel": {
-		"message": "Gegevens van contactpersoon aan iemand anders mailen"
+		"message": "Delen via e-mail"
 	},
 	"shareCardByEmailFromCardsLabel": {
-		"message": "Gegevens van contactpersoon aan iemand anders mailen"
+		"message": "Delen via e-mail"
 	},
 	"categoryHeader": {
 		"message": "Categorie"
 	},
 	"findEmailsFromCardsLabel": {
-		"message": "Zoek e-mails van contactpersoon"
+		"message": "E-mails vinden gerelateerd aan deze contactpersoon"
 	},
 	"eventsAndTasksLabel": {
 		"message": "Gebeurtenissen en taken"
@@ -5507,7 +5507,7 @@
 		"message": "Zoek agenda-gebeurtenissen van contactpersoon"
 	},
 	"localizeCardFromCardsLabel": {
-		"message": "Localiseren"
+		"message": "Op kaart tonen"
 	},
 	"openURLCardFromCardsLabel": {
 		"message": "Open URLs"
@@ -5519,16 +5519,16 @@
 		"message": "Knippen"
 	},
 	"copyCardFromAccountsOrCatsLabel": {
-		"message": "Kopieer naar prikbord"
+		"message": "Kopiëren"
 	},
 	"copyCardFromCardsLabel": {
-		"message": "Kopieer naar prikbord"
+		"message": "Kopiëren"
 	},
 	"pasteCardFromAccountsOrCatsLabel": {
-		"message": "Plak van prikbord"
+		"message": "Plakken"
 	},
 	"pasteCardFromCardsLabel": {
-		"message": "Plak van prikbord"
+		"message": "Plakken"
 	},
 	"pasteEntryLabel": {
 		"message": "Overnemen entry"
@@ -5578,46 +5578,40 @@
 	"editEventAccesskey": {
 		"message": "B"
 	},
-	"eventsTree.title.label": {
+	"eventsTableTitleLabel": {
 		"message": "Titel"
 	},
-	"eventsTree.title.tooltip2": {
+	"eventsTableTitleTooltip": {
 		"message": "Sorteren op titel"
 	},
-	"eventsTree.startdate.label": {
+	"eventsTableStartdateLabel": {
 		"message": "Begin"
 	},
-	"eventsTree.startdate.tooltip2": {
+	"eventsTableStartdateTooltip": {
 		"message": "Sorteren op begindatum"
 	},
-	"eventsTree.enddate.label": {
+	"eventsTableEnddateLabel": {
 		"message": "Einde"
 	},
-	"eventsTree.enddate.tooltip2": {
-		"message": "Sorteren op einde"
+	"eventsTableEnddateTooltip": {
+		"message": "Sorteren op einddatum"
 	},
-	"eventsTree.categories.label": {
+	"eventsTableCategoriesLabel": {
 		"message": "Categorie"
 	},
-	"eventsTree.categories.tooltip2": {
+	"eventsTableCategoriesTooltip": {
 		"message": "Sorteren op categorie"
 	},
-	"eventsTree.location.label": {
+	"eventsTableLocationLabel": {
 		"message": "Locatie"
 	},
-	"eventsTree.location.tooltip2": {
+	"eventsTableLocationTooltip": {
 		"message": "Sorteren op locatie"
 	},
-	"eventsTree.status.label": {
-		"message": "Status"
-	},
-	"eventsTree.status.tooltip2": {
-		"message": "Sorteren op status"
-	},
-	"eventsTree.calendarname.label": {
+	"eventsTableCalendarnameLabel": {
 		"message": "Agendanaam"
 	},
-	"eventsTree.calendarname.tooltip2": {
+	"eventsTableCalendarnameTooltip": {
 		"message": "Sorteren op agendanaam"
 	},
 	"createEventLabel": {
@@ -5633,7 +5627,7 @@
 		"message": "Het is mogelijk om de manier waarop CardBook de getoonde naam genereert, zelf samen te stellen. Dat gebeurt met een formule die bestaat uit blokken, omsloten door haakjes, “()”. In deze blokken mogen verschillende onderdelen gescheiden worden door “|”."
 	},
 	"templateFormulaExplanation": {
-		"message": "Het is mogelijk om sjablonen te maken met voorgedefinieerde adressen. Bijvoorbeeld met het adres ”({{2}}).({{4}})@mijnbedrijf.org”. Toegepast op een contactpersoon die ”Pietje Puk” heet, wordt er dan een e-mail adres ”pietje.puk@mijnbedrijf.org” toegevoegd aan de contactpersonen."
+		"message": "Het is mogelijk om sjablonen te maken met voorgedefinieerde adressen. Bijvoorbeeld met het adres ”({{2}}).({{4}})@mijnbedrijf.org”. Toegepast op een contactpersoon die ”Pietje Puk” heet, wordt er dan een e-mailadres ”pietje.puk@mijnbedrijf.org” toegevoegd aan de contactpersonen."
 	},
 	"formulaExplanation1": {
 		"message": "({{1}}|{{2}}) : Als {{1}} leeg is, dan wordt het blok vervangen door {{2}}."
@@ -5669,7 +5663,7 @@
 		"message": "h"
 	},
 	"displayFieldNamesLabel": {
-		"message": "Toon rubriek-namen"
+		"message": "Veldnamen"
 	},
 	"displayFieldNamesAccesskey": {
 		"message": "r"
@@ -5696,7 +5690,7 @@
 		"message": "o"
 	},
 	"custom.print.label": {
-		"message": "Eigen rubrieken"
+		"message": "Eigen velden"
 	},
 	"custom.print.accesskey": {
 		"message": "E"
@@ -5863,6 +5857,9 @@
 	"buttonAppendToListAccesskey": {
 		"message": "A"
 	},
+	"buttonAppendEmailsToListLabel": {
+		"message": "E-mailadressen toevoegen"
+	},
 	"buttonRemoveFromListLabel": {
 		"message": "Verwijderen"
 	},
@@ -5898,19 +5895,19 @@
 	},
 	"wdw_findDuplicatesTitle": {
 		"message": "Dubbele contactpersonen ($P1$)",
-        "placeholders": {
-            "P1": {
-                "content": "$1"
-            }
-        }
+		"placeholders": {
+			"P1": {
+				"content": "$1"
+			}
+		}
 	},
 	"wdw_formatDataTitle": {
 		"message": "Formatteren van gegevens van contactpersonen ($P1$)",
-        "placeholders": {
-            "P1": {
-                "content": "$1"
-            }
-        }
+		"placeholders": {
+			"P1": {
+				"content": "$1"
+			}
+		}
 	},
 	"addImageCardFromFileLabel": {
 		"message": "Afbeelding toevoegen uit bestand"
@@ -5954,9 +5951,6 @@
 	"wdw_logEditionTitle": {
 		"message": "Logbestand bekijken"
 	},
-	"logEditionValueLabel": {
-		"message": "Tijd"
-	},
 	"refreshLogEditionLabel": {
 		"message": "Vernieuwen"
 	},
@@ -5970,7 +5964,7 @@
 		"message": "L"
 	},
 	"clipboardLogEditionLabel": {
-		"message": "Kopieëren naar prikbord"
+		"message": "Kopiëren naar klembord"
 	},
 	"clipboardLogEditionAccesskey": {
 		"message": "K"
@@ -5985,7 +5979,7 @@
 		"message": "Kaarten samenvoegen"
 	},
 	"mergeInstructionsLabel": {
-		"message": "Selecteer de rubrieken die je wilt bewaren voor de nieuwe kaart"
+		"message": "Selecteer de velden voor de nieuwe contactpersoon"
 	},
 	"persTitleLabel": {
 		"message": "Persoonlijke informatie"

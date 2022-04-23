@@ -1832,11 +1832,11 @@
 	},
 	"fileNotFound": {
 		"message": "$P1$ dosyası bulunamıyor.",
-        "placeholders": {
-            "P1": {
-                "content": "$1"
-            }
-        }
+		"placeholders": {
+			"P1": {
+				"content": "$1"
+			}
+		}
 	},
 	"fileEmpty": {
 		"message": "Dosya $P1$ boş",
@@ -2033,19 +2033,19 @@
 	},
 	"cardsExportedToFileUndo": {
 		"message": "Kişiler şu dosyaya aktarıldı $P1$",
-        "placeholders": {
-            "P1": {
-                "content": "$1"
-            }
-        }
+		"placeholders": {
+			"P1": {
+				"content": "$1"
+			}
+		}
 	},
 	"cardsExportedToDirUndo": {
 		"message": "Kişiler şu klasöre aktarıldı $P1$",
-        "placeholders": {
-            "P1": {
-                "content": "$1"
-            }
-        }
+		"placeholders": {
+			"P1": {
+				"content": "$1"
+			}
+		}
 	},
 	"undoActionDoneUndo": {
 		"message": "Geri alma tamamlandı ($P1$)",
@@ -2262,58 +2262,58 @@
 	},
 	"cardsFormattedUndo": {
 		"message": "$P1$ : Kişi biçimlendirildi ($P2$)",
-        "placeholders": {
-            "P1": {
-                "content": "$1"
-            },
-            "P2": {
-                "content": "$2"
-            }
-        }
+		"placeholders": {
+			"P1": {
+				"content": "$1"
+			},
+			"P2": {
+				"content": "$2"
+			}
+		}
 	},
 	"exportCardToDirMessagePF": {
-		"message": "$P1$ kişi şu klasöre aktarıldı $P2$",
-        "placeholders": {
-            "P1": {
-                "content": "$1"
-            },
-            "P2": {
-                "content": "$2"
-            }
-        }
+		"message": "$P1$ kişi şu klasöre çıkarıldı $P2$;$P1$ kişi şu klasöre çıkarıldı $P2$",
+		"placeholders": {
+			"P1": {
+				"content": "$1"
+			},
+			"P2": {
+				"content": "$2"
+			}
+		}
 	},
 	"exportCardToFileMessagePF": {
-		"message": "$P1$ kişi şu dosyaya aktarıldı $P2$",
-        "placeholders": {
-            "P1": {
-                "content": "$1"
-            },
-            "P2": {
-                "content": "$2"
-            }
-        }
+		"message": "$P1$ kişi şu dosyaya çıkarıldı $P2$;$P1$ kişi şu dosyaya çıkarıldı $P2$",
+		"placeholders": {
+			"P1": {
+				"content": "$1"
+			},
+			"P2": {
+				"content": "$2"
+			}
+		}
 	},
 	"importCardFromDirMessagePF": {
-		"message": "$P1$ kişi şu klasörden aktarıldı $P2$",
-        "placeholders": {
-            "P1": {
-                "content": "$1"
-            },
-            "P2": {
-                "content": "$2"
-            }
-        }
+		"message": "$P1$ kişi şu klasörden aktarıldı $P2$;$P1$ kişi şu klasörden aktarıldı $P2$",
+		"placeholders": {
+			"P1": {
+				"content": "$1"
+			},
+			"P2": {
+				"content": "$2"
+			}
+		}
 	},
 	"importCardFromFileMessagePF": {
-		"message": "$P1$ kişi şu dosyadan aktarıldı $P2$",
-        "placeholders": {
-            "P1": {
-                "content": "$1"
-            },
-            "P2": {
-                "content": "$2"
-            }
-        }
+		"message": "$P1$ kişi şu dosyadan aktarıldı $P2$;$P1$ kişi şu dosyadan aktarıldı $P2$",
+		"placeholders": {
+			"P1": {
+				"content": "$1"
+			},
+			"P2": {
+				"content": "$2"
+			}
+		}
 	},
 	"importNotIntoSameFile": {
 		"message": "Aynı dosyaya aktarılamaz"
@@ -2832,14 +2832,14 @@
 	},
 	"invalidOffice365Field": {
 		"message": "$P1$ senkronize edilemez (sonuç: $P2$)",
-        "placeholders": {
-            "P1": {
-                "content": "$1"
-            },
-            "P2": {
-                "content": "$2"
-            }
-       }
+		"placeholders": {
+			"P1": {
+				"content": "$1"
+			},
+			"P2": {
+				"content": "$2"
+			}
+		}
 	},
 	"invalidOffice365Email": {
 		"message": "3 e-posta adresinden fazla senkronize edilemez"
@@ -2855,11 +2855,11 @@
 	},
 	"invalidOffice365EmptyType": {
 		"message": "$P1$ : tür alanı boş bırakılamaz",
-        "placeholders": {
-            "P1": {
-                "content": "$1"
-            }
-        }
+		"placeholders": {
+			"P1": {
+				"content": "$1"
+			}
+		}
 	},
 	"invalidOffice365Type": {
 		"message": "$P1$ : çok fazla tür $P2$ (maksimum kabul edilen: $P3$)",
@@ -3705,10 +3705,10 @@
 	},
 	"wizard.next.label": {
 		"message": "Sonraki"
-	},	
+	},
 	"wizard.back.label": {
 		"message": "Geri"
-	},	
+	},
 	"wizard.create.label": {
 		"message": "Oluştur"
 	},
@@ -4670,7 +4670,7 @@
 		"message": "E"
 	},
 	"customFieldRankHeaderLabel": {
-		"message": "Sınıf"
+		"message": "Sıra"
 	},
 	"customFieldCodeHeaderLabel": {
 		"message": "Alan Adı"
@@ -5578,47 +5578,41 @@
 	"editEventAccesskey": {
 		"message": "E"
 	},
-	"eventsTree.title.label": {
+	"eventsTableTitleLabel": {
 		"message": "Ünvan"
 	},
-	"eventsTree.title.tooltip2": {
-		"message": "Ünvana göre sırala"
+	"eventsTableTitleTooltip": {
+		"message": "Başlığa göre sırala"
 	},
-	"eventsTree.startdate.label": {
+	"eventsTableStartdateLabel": {
 		"message": "Başlat"
 	},
-	"eventsTree.startdate.tooltip2": {
+	"eventsTableStartdateTooltip": {
 		"message": "Başlangıç tarihine göre sırala"
 	},
-	"eventsTree.enddate.label": {
+	"eventsTableEnddateLabel": {
 		"message": "Bitiş"
 	},
-	"eventsTree.enddate.tooltip2": {
+	"eventsTableEnddateTooltip": {
 		"message": "Bitiş tarihine göre sırala"
 	},
-	"eventsTree.categories.label": {
+	"eventsTableCategoriesLabel": {
 		"message": "Kategori"
 	},
-	"eventsTree.categories.tooltip2": {
+	"eventsTableCategoriesTooltip": {
 		"message": "Kategoriye göre sırala"
 	},
-	"eventsTree.location.label": {
-		"message": "Yer"
+	"eventsTableLocationLabel": {
+		"message": "Konum"
 	},
-	"eventsTree.location.tooltip2": {
-		"message": "Yere göre sırala"
+	"eventsTableLocationTooltip": {
+		"message": "Konuma göre sırala"
 	},
-	"eventsTree.status.label": {
-		"message": "Durum"
+	"eventsTableCalendarnameLabel": {
+		"message": "Takvim Adı"
 	},
-	"eventsTree.status.tooltip2": {
-		"message": "Duruma göre sırala"
-	},
-	"eventsTree.calendarname.label": {
-		"message": "Takvim İsmi"
-	},
-	"eventsTree.calendarname.tooltip2": {
-		"message": "Takvim ismine göre sırala"
+	"eventsTableCalendarnameTooltip": {
+		"message": "Takvim adına göre sırala"
 	},
 	"createEventLabel": {
 		"message": "Yeni Etkinlik"
@@ -5863,6 +5857,9 @@
 	"buttonAppendToListAccesskey": {
 		"message": "E"
 	},
+	"buttonAppendEmailsToListLabel": {
+		"message": "E-posta adreslerini ekle"
+	},
 	"buttonRemoveFromListLabel": {
 		"message": "Kaldır"
 	},
@@ -5898,19 +5895,19 @@
 	},
 	"wdw_findDuplicatesTitle": {
 		"message": "Kişileri Tekrarla ($P1$)",
-        "placeholders": {
-            "P1": {
-                "content": "$1"
-            }
-        }
+		"placeholders": {
+			"P1": {
+				"content": "$1"
+			}
+		}
 	},
 	"wdw_formatDataTitle": {
 		"message": "Kişi Verisini Biçimlendir ($P1$)",
-        "placeholders": {
-            "P1": {
-                "content": "$1"
-            }
-        }
+		"placeholders": {
+			"P1": {
+				"content": "$1"
+			}
+		}
 	},
 	"addImageCardFromFileLabel": {
 		"message": "Dosyadan resim ekle"
@@ -5953,9 +5950,6 @@
 	},
 	"wdw_logEditionTitle": {
 		"message": "Kayıt görüntüleyici"
-	},
-	"logEditionValueLabel": {
-		"message": "Tarih Damgası Olayı"
 	},
 	"refreshLogEditionLabel": {
 		"message": "Yenile"

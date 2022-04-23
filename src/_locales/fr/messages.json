@@ -5578,46 +5578,40 @@
 	"editEventAccesskey": {
 		"message": "M"
 	},
-	"eventsTree.title.label": {
+	"eventsTableTitleLabel": {
 		"message": "Titre"
 	},
-	"eventsTree.title.tooltip2": {
+	"eventsTableTitleTooltip": {
 		"message": "Trier par titre"
 	},
-	"eventsTree.startdate.label": {
+	"eventsTableStartdateLabel": {
 		"message": "Début"
 	},
-	"eventsTree.startdate.tooltip2": {
+	"eventsTableStartdateTooltip": {
 		"message": "Trier par date de début"
 	},
-	"eventsTree.enddate.label": {
+	"eventsTableEnddateLabel": {
 		"message": "Fin"
 	},
-	"eventsTree.enddate.tooltip2": {
+	"eventsTableEnddateTooltip": {
 		"message": "Trier par date de fin"
 	},
-	"eventsTree.categories.label": {
+	"eventsTableCategoriesLabel": {
 		"message": "Catégorie"
 	},
-	"eventsTree.categories.tooltip2": {
+	"eventsTableCategoriesTooltip": {
 		"message": "Trier par catégorie"
 	},
-	"eventsTree.location.label": {
+	"eventsTableLocationLabel": {
 		"message": "Lieu"
 	},
-	"eventsTree.location.tooltip2": {
+	"eventsTableLocationTooltip": {
 		"message": "Trier par lieu"
 	},
-	"eventsTree.status.label": {
-		"message": "État"
-	},
-	"eventsTree.status.tooltip2": {
-		"message": "Trier par état"
-	},
-	"eventsTree.calendarname.label": {
+	"eventsTableCalendarnameLabel": {
 		"message": "Nom de l’agenda"
 	},
-	"eventsTree.calendarname.tooltip2": {
+	"eventsTableCalendarnameTooltip": {
 		"message": "Trier par nom de l’agenda"
 	},
 	"createEventLabel": {
@@ -5863,6 +5857,9 @@
 	"buttonAppendToListAccesskey": {
 		"message": "J"
 	},
+	"buttonAppendEmailsToListLabel": {
+		"message": "Ajouter les adresses email"
+	},
 	"buttonRemoveFromListLabel": {
 		"message": "Supprimer"
 	},
@@ -5953,9 +5950,6 @@
 	},
 	"wdw_logEditionTitle": {
 		"message": "Consultation du log"
-	},
-	"logEditionValueLabel": {
-		"message": "Ligne"
 	},
 	"refreshLogEditionLabel": {
 		"message": "Actualiser"
