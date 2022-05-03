@@ -3976,27 +3976,6 @@
 	"wdw_adrEditionTitle": {
 		"message": "Adres düzenleyici"
 	},
-	"adrPostOfficeLabel": {
-		"message": "Posta Kutusu"
-	},
-	"adrExtendedAddrLabel": {
-		"message": "Daire ya da Oda"
-	},
-	"adrStreetLabel": {
-		"message": "Sokak"
-	},
-	"adrLocalityLabel": {
-		"message": "İlçe"
-	},
-	"adrRegionLabel": {
-		"message": "Şehir"
-	},
-	"adrPostalCodeLabel": {
-		"message": "Posta Kodu"
-	},
-	"adrCountryLabel": {
-		"message": "Ülke"
-	},
 	"deprecatedLabel": {
 		"message": "Terk edilmiş"
 	},

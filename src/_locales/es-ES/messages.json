@@ -3976,27 +3976,6 @@
 	"wdw_adrEditionTitle": {
 		"message": "Editor de direcciones"
 	},
-	"adrPostOfficeLabel": {
-		"message": "Apartado postal"
-	},
-	"adrExtendedAddrLabel": {
-		"message": "Departamento"
-	},
-	"adrStreetLabel": {
-		"message": "Calle"
-	},
-	"adrLocalityLabel": {
-		"message": "Ciudad"
-	},
-	"adrRegionLabel": {
-		"message": "Región"
-	},
-	"adrPostalCodeLabel": {
-		"message": "Código postal"
-	},
-	"adrCountryLabel": {
-		"message": "País"
-	},
 	"deprecatedLabel": {
 		"message": "Obsoleto"
 	},

@@ -1470,6 +1470,9 @@ var cardbookUtils = {
 		for (let field of cardbookRepository.allColumns.org) {
 			tmpArray.push([cardbookRepository.extension.localeData.localizeMessage(field + "Label"), field]);
 		}
+		for (let field of cardbookRepository.adrElements) {
+			tmpArray.push([cardbookRepository.extension.localeData.localizeMessage(field + "Label"), field]);
+		}
 		for (let type of ["personal", "org"]) {
 			for (let field of cardbookRepository.customFields[type]) {
 				tmpArray.push([field[1], field[0]]);

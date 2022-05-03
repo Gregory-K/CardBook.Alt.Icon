@@ -3976,27 +3976,6 @@
 	"wdw_adrEditionTitle": {
 		"message": "Chỉnh sửa Địa chỉ"
 	},
-	"adrPostOfficeLabel": {
-		"message": "Hộp thư"
-	},
-	"adrExtendedAddrLabel": {
-		"message": "Căn hộ"
-	},
-	"adrStreetLabel": {
-		"message": "Địa chỉ"
-	},
-	"adrLocalityLabel": {
-		"message": "Thành phố"
-	},
-	"adrRegionLabel": {
-		"message": "Tiểu bang / Tỉnh"
-	},
-	"adrPostalCodeLabel": {
-		"message": "Mã ZIP/Bưu chính"
-	},
-	"adrCountryLabel": {
-		"message": "Quốc gia"
-	},
 	"deprecatedLabel": {
 		"message": "Không phát triển nữa"
 	},

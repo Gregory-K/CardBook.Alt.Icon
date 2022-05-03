@@ -3962,7 +3962,7 @@
 		"message": "y"
 	},
 	"resetFnFormulaLabel": {
-		"message": "恢复默认"
+		"message": "恢复为默认设置"
 	},
 	"resetFnFormulaAccesskey": {
 		"message": "R"
@@ -3975,27 +3975,6 @@
 	},
 	"wdw_adrEditionTitle": {
 		"message": "地址编辑器"
-	},
-	"adrPostOfficeLabel": {
-		"message": "邮箱"
-	},
-	"adrExtendedAddrLabel": {
-		"message": "公寓"
-	},
-	"adrStreetLabel": {
-		"message": "街道"
-	},
-	"adrLocalityLabel": {
-		"message": "城市"
-	},
-	"adrRegionLabel": {
-		"message": "省份"
-	},
-	"adrPostalCodeLabel": {
-		"message": "邮编"
-	},
-	"adrCountryLabel": {
-		"message": "国家"
 	},
 	"deprecatedLabel": {
 		"message": "已不赞成使用"
@@ -4181,7 +4160,7 @@
 		"message": "E"
 	},
 	"resetAutocompleteRestrictSearchFieldsButtonLabel": {
-		"message": "恢复默认"
+		"message": "恢复为默认设置"
 	},
 	"resetAutocompleteRestrictSearchFieldsButtonAccesskey": {
 		"message": "D"
@@ -4424,7 +4403,7 @@
 		"message": "R"
 	},
 	"resetAdrFormulaLabel": {
-		"message": "恢复默认"
+		"message": "恢复为默认设置"
 	},
 	"resetAdrFormulaAccesskey": {
 		"message": "R"
@@ -4574,7 +4553,7 @@
 		"message": "D"
 	},
 	"resetTypeLabel": {
-		"message": "恢复默认"
+		"message": "恢复为默认设置"
 	},
 	"resetTypeAccesskey": {
 		"message": "R"
@@ -4622,10 +4601,10 @@
 		"message": "D"
 	},
 	"resetIMPPLabel": {
-		"message": "恢复默认"
+		"message": "恢复为默认设置"
 	},
 	"resetIMPPAccesskey": {
-		"message": "R"
+		"message": "S"
 	},
 	"URLPhoneGroupboxLabel": {
 		"message": "打开软电话的 URL"
@@ -4670,7 +4649,7 @@
 		"message": "E"
 	},
 	"customFieldRankHeaderLabel": {
-		"message": "设置级别"
+		"message": "级别"
 	},
 	"customFieldCodeHeaderLabel": {
 		"message": "字段名称"
@@ -4736,7 +4715,7 @@
 		"message": "M"
 	},
 	"resetListLabel": {
-		"message": "恢复默认"
+		"message": "恢复为默认设置"
 	},
 	"resetListAccesskey": {
 		"message": "R"
@@ -4856,7 +4835,7 @@
 		"message": "启用"
 	},
 	"accountsVCardsMailNameLabel": {
-		"message": "邮件帐户"
+		"message": "邮件账号"
 	},
 	"accountsVCardsABNameLabel": {
 		"message": "通讯录"
@@ -5000,7 +4979,7 @@
 		"message": "T"
 	},
 	"resetCalendarEntryTitleButtonLabel": {
-		"message": "恢复默认"
+		"message": "恢复为默认设置"
 	},
 	"resetCalendarEntryTitleButtonAccesskey": {
 		"message": "R"
@@ -5858,7 +5837,7 @@
 		"message": "A"
 	},
 	"buttonAppendEmailsToListLabel": {
-		"message": "??Add email addresses??"
+		"message": "添加电子邮箱地址"
 	},
 	"buttonRemoveFromListLabel": {
 		"message": "删除"

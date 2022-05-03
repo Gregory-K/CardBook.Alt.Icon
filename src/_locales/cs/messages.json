@@ -3976,27 +3976,6 @@
 	"wdw_adrEditionTitle": {
 		"message": "Editor adresy"
 	},
-	"adrPostOfficeLabel": {
-		"message": "P.O. Box"
-	},
-	"adrExtendedAddrLabel": {
-		"message": "Byt nebo apartmá"
-	},
-	"adrStreetLabel": {
-		"message": "Ulice"
-	},
-	"adrLocalityLabel": {
-		"message": "Lokalita (město)"
-	},
-	"adrRegionLabel": {
-		"message": "Oblast (Stát nebo provincie)"
-	},
-	"adrPostalCodeLabel": {
-		"message": "PSČ"
-	},
-	"adrCountryLabel": {
-		"message": "Země"
-	},
 	"deprecatedLabel": {
 		"message": "Zastaralé"
 	},

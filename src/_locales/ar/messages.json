@@ -3976,27 +3976,6 @@
 	"wdw_adrEditionTitle": {
 		"message": "محرر العنوان"
 	},
-	"adrPostOfficeLabel": {
-		"message": "صندوق البريد"
-	},
-	"adrExtendedAddrLabel": {
-		"message": "شقة أو جناح"
-	},
-	"adrStreetLabel": {
-		"message": "شارع"
-	},
-	"adrLocalityLabel": {
-		"message": "المنطقة (البلدة أو المدينة)"
-	},
-	"adrRegionLabel": {
-		"message": "المنطقة (الولاية أو المقاطعة)"
-	},
-	"adrPostalCodeLabel": {
-		"message": "الرمز البريدي"
-	},
-	"adrCountryLabel": {
-		"message": "الدولة"
-	},
 	"deprecatedLabel": {
 		"message": "مهجور"
 	},

@@ -60,7 +60,6 @@ function do_refresh () {
 			}
 		}
 
-		cardbookElementTools.deleteRows("syncListTable");
 		let headers = [ "calendarName", "existing", "failed", "succeeded" ];
 		let data = birthdaySyncResultGrouped.map(x => [ x[0], x[1], x[2], x[3] ]);
 		let dataParameters = [];

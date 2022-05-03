@@ -40,7 +40,6 @@ if ("undefined" == typeof(wdw_imageEdition)) {
 			} else {
 				await cardbookIDBImage.getImage("photo", dirname, aCard.cbid, aCard.fn)
 				.then( image => {
-					console.debug(image)
 					wdw_imageEdition.resizeImageCard(image, aDisplayDefault);
 				}).catch( () => {
 					if (aDisplayDefault) {

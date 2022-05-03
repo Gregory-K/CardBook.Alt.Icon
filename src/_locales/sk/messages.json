@@ -3976,27 +3976,6 @@
 	"wdw_adrEditionTitle": {
 		"message": "Editor adresy"
 	},
-	"adrPostOfficeLabel": {
-		"message": "P. O. Box"
-	},
-	"adrExtendedAddrLabel": {
-		"message": "Byt alebo apartmán"
-	},
-	"adrStreetLabel": {
-		"message": "Ulica"
-	},
-	"adrLocalityLabel": {
-		"message": "Lokalita (Mesto alebo Obec)"
-	},
-	"adrRegionLabel": {
-		"message": "Región (Štát alebo Provincia)"
-	},
-	"adrPostalCodeLabel": {
-		"message": "PSČ"
-	},
-	"adrCountryLabel": {
-		"message": "Krajina"
-	},
 	"deprecatedLabel": {
 		"message": "Zastaralé"
 	},
@@ -5858,7 +5837,7 @@
 		"message": "P"
 	},
 	"buttonAppendEmailsToListLabel": {
-		"message": "??Add email addresses??"
+		"message": "Pridať e-mailovú adresu"
 	},
 	"buttonRemoveFromListLabel": {
 		"message": "Odstrániť"

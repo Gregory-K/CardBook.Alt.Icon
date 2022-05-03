@@ -3976,27 +3976,6 @@
 	"wdw_adrEditionTitle": {
 		"message": "Adressredigerare"
 	},
-	"adrPostOfficeLabel": {
-		"message": "Postbox"
-	},
-	"adrExtendedAddrLabel": {
-		"message": "Lägenhet"
-	},
-	"adrStreetLabel": {
-		"message": "Gata"
-	},
-	"adrLocalityLabel": {
-		"message": "Stad"
-	},
-	"adrRegionLabel": {
-		"message": "Län"
-	},
-	"adrPostalCodeLabel": {
-		"message": "Postnummer"
-	},
-	"adrCountryLabel": {
-		"message": "Land"
-	},
 	"deprecatedLabel": {
 		"message": "Föråldrad"
 	},

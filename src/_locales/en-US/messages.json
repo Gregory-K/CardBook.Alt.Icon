@@ -3976,27 +3976,6 @@
 	"wdw_adrEditionTitle": {
 		"message": "Address editor"
 	},
-	"adrPostOfficeLabel": {
-		"message": "Post Office Box"
-	},
-	"adrExtendedAddrLabel": {
-		"message": "Apartment or Suite"
-	},
-	"adrStreetLabel": {
-		"message": "Street"
-	},
-	"adrLocalityLabel": {
-		"message": "Locality (Town or City)"
-	},
-	"adrRegionLabel": {
-		"message": "Region (State or Province)"
-	},
-	"adrPostalCodeLabel": {
-		"message": "Postal code"
-	},
-	"adrCountryLabel": {
-		"message": "Country"
-	},
 	"deprecatedLabel": {
 		"message": "Deprecated"
 	},

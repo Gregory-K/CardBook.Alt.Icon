@@ -3976,27 +3976,6 @@
 	"wdw_adrEditionTitle": {
 		"message": "주소 편집기"
 	},
-	"adrPostOfficeLabel": {
-		"message": "사서함"
-	},
-	"adrExtendedAddrLabel": {
-		"message": "아파트 및 동 호수"
-	},
-	"adrStreetLabel": {
-		"message": "도로명"
-	},
-	"adrLocalityLabel": {
-		"message": "시/구"
-	},
-	"adrRegionLabel": {
-		"message": "시/도"
-	},
-	"adrPostalCodeLabel": {
-		"message": "우편 번호"
-	},
-	"adrCountryLabel": {
-		"message": "국가"
-	},
 	"deprecatedLabel": {
 		"message": "더 이상 사용되지 않습니다"
 	},

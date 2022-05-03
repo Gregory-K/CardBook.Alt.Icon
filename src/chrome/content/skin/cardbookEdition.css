@@ -9,13 +9,13 @@
 	background-color: transparent;
 	color: inherit;
 	-moz-user-focus: normal;
-	list-style-image: url("chrome://global/skin/icons/arrow-right-12.svg");
+	list-style-image: url("chrome://cardbook/content/skin/small-icons/arrow-right.svg");
 	-moz-context-properties: fill, fill-opacity;
 	fill: currentColor;
 	fill-opacity: 1;
 }
 .cardbookExpandedClass[expanded="true"] {
-	list-style-image: url("chrome://global/skin/icons/arrow-down-12.svg");
+	list-style-image: url("chrome://cardbook/content/skin/small-icons/arrow-down.svg");
 }
 
 .cardbookAutoComputeFnClass {
@@ -34,6 +34,36 @@
 }
 .cardbookAutoComputeFnClass[autoComputeFn="true"] {
 	list-style-image: url("chrome://cardbook/content/skin/icons/computeOK.svg");
+}
+
+.cardbookSwitchButtonDownClass {
+	/* Override button appearance */
+	-moz-appearance: none;
+	min-width: 20px;
+	margin-block: 0;
+	margin-inline: 1px 0;
+	border: 0;
+	background-color: transparent;
+	color: inherit;
+	-moz-user-focus: normal;
+	list-style-image: url("chrome://cardbook/content/skin/small-icons/arrow-down.svg");
+	-moz-context-properties: fill;
+	fill: currentColor;
+}
+
+.cardbookSwitchButtonUpClass {
+	/* Override button appearance */
+	-moz-appearance: none;
+	min-width: 20px;
+	margin-block: 0;
+	margin-inline: 1px 0;
+	border: 0;
+	background-color: transparent;
+	color: inherit;
+	-moz-user-focus: normal;
+	list-style-image: url("chrome://cardbook/content/skin/small-icons/arrow-up.svg");
+	-moz-context-properties: fill;
+	fill: currentColor;
 }
 
 #searchForOnlineKeyEditButton {

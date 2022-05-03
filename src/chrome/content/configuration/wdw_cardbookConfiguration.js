@@ -693,7 +693,6 @@ var wdw_cardbookConfiguration = {
 	},
 	
 	displayFields: function () {
-		cardbookElementTools.deleteRows("fieldsTreeTable");
 		let headers = [];
 		let data = wdw_cardbookConfiguration.allFields.map(x => [ x[0], x[1] ]);
 		let dataParameters = [];
@@ -789,7 +788,6 @@ var wdw_cardbookConfiguration = {
 	},
 	
 	displayDiscoveryAccounts: function () {
-		cardbookElementTools.deleteRows("discoveryAccountsTable");
 		let headers = [];
 		let data = wdw_cardbookConfiguration.allDiscoveryAccounts.map(x => [ x[0], x[1] ]);
 		let dataParameters = [];
@@ -860,7 +858,6 @@ var wdw_cardbookConfiguration = {
 	},
 	
 	displayAddressbooks: function () {
-		cardbookElementTools.deleteRows("addressbooksTable");
 		let headers = [];
 		let data = wdw_cardbookConfiguration.allAddressbooks.map(x => [ x[0], x[1] ]);
 		let dataParameters = [];
@@ -941,7 +938,6 @@ var wdw_cardbookConfiguration = {
 	},
 	
 	displayCalendars: function () {
-		cardbookElementTools.deleteRows("calendarsTable");
 		let headers = [];
 		let data = wdw_cardbookConfiguration.allCalendars.map(x => [ x[0], x[1] ]);
 		let dataParameters = [];
@@ -1059,7 +1055,6 @@ var wdw_cardbookConfiguration = {
 	},
 	
 	displayVCards: function () {
-		cardbookElementTools.deleteRows("accountsVCardsTable");
 		let headers = [ "accountsVCardsEnabled", "accountsVCardsMailName", "accountsVCardsFn", "accountsVCardsFileName" ];
 		let data = wdw_cardbookConfiguration.allVCards.map(x => [ x[0], x[2], x[4], x[7] ]);
 		let dataParameters = [];
@@ -1179,7 +1174,6 @@ var wdw_cardbookConfiguration = {
 	},
 	
 	displayRestrictions: function () {
-		cardbookElementTools.deleteRows("accountsRestrictionsTable");
 		let headers = ["accountsRestrictionsEnabled", "accountsRestrictionsIncludeName", "accountsRestrictionsMailName", "accountsRestrictionsABName", "accountsRestrictionsCatName"];
 		let data = wdw_cardbookConfiguration.allRestrictions.map(x => [ x[0], x[8], x[2], x[4], x[6] ]);
 		let dataParameters = [];
@@ -1293,7 +1287,6 @@ var wdw_cardbookConfiguration = {
 	},
 
 	displayTypes: function () {
-		cardbookElementTools.deleteRows("typesTable");
 		let ABType = document.getElementById('ABtypesCategoryRadiogroup').selectedItem.value;
 		let type = document.getElementById('typesCategoryRadiogroup').selectedItem.value;
 		let headers = [ "typesLabel" ];
@@ -1468,7 +1461,6 @@ var wdw_cardbookConfiguration = {
 	},
 
 	displayEmailsCollection: function () {
-		cardbookElementTools.deleteRows("emailsCollectionTable");
 		let headers = [ "emailsCollectionEnabled", "emailsCollectionMailName", "emailsCollectionABName", "emailsCollectionCatName" ];
 		let data = wdw_cardbookConfiguration.allEmailsCollections.map(x => [ x[0], x[2], x[4], x[6] ]);
 		let dataParameters = [];
@@ -1658,7 +1650,6 @@ var wdw_cardbookConfiguration = {
 	},
 	
 	displayIMPPs: function () {
-		cardbookElementTools.deleteRows("IMPPsTable");
 		let headers = [ "IMPPCodeHeader", "IMPPLabelHeader", "IMPPProtocolHeader" ];
 		let type = document.getElementById('imppsCategoryRadiogroup').selectedItem.value;
 		let data = [];
@@ -1775,7 +1766,6 @@ var wdw_cardbookConfiguration = {
 	},
 
 	displayCustomFields: function () {
-		cardbookElementTools.deleteRows("customFieldsTable");
 		let headers = [ "customFieldRankHeader", "customFieldCodeHeader", "customFieldLabelHeader" ];
 		let type = document.getElementById('customFieldsCategoryRadiogroup').selectedItem.value;
 		let data = [];
@@ -1785,7 +1775,8 @@ var wdw_cardbookConfiguration = {
 		let dataParameters = [];
 		let rowParameters = {};
 		let sortFunction = wdw_cardbookConfiguration.clickToSort;
-		cardbookElementTools.addTreeTable("customFieldsTable", headers, data, dataParameters, rowParameters, sortFunction);
+		let dataId = 1;
+		cardbookElementTools.addTreeTable("customFieldsTable", headers, data, dataParameters, rowParameters, sortFunction, dataId);
 		wdw_cardbookConfiguration.selectCustomFields();
 	},
 
@@ -2020,7 +2011,6 @@ var wdw_cardbookConfiguration = {
 	},
 	
 	displayOrg: function () {
-		cardbookElementTools.deleteRows("orgTreeTable");
 		let headers = [ "orgRank", "orgLabel" ];
 		let data = [];
 		if (wdw_cardbookConfiguration.allOrg) {
@@ -2029,7 +2019,8 @@ var wdw_cardbookConfiguration = {
 		let dataParameters = [];
 		let rowParameters = {};
 		let sortFunction = wdw_cardbookConfiguration.clickToSort;
-		cardbookElementTools.addTreeTable("orgTreeTable", headers, data, dataParameters, rowParameters, sortFunction);
+		let dataId = 1;
+		cardbookElementTools.addTreeTable("orgTreeTable", headers, data, dataParameters, rowParameters, sortFunction, dataId);
 		wdw_cardbookConfiguration.selectOrg();
 	},
 	

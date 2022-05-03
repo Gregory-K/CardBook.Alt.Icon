@@ -57,6 +57,7 @@ var cardbookRepository = {
 	dateFields: [ 'bday', 'anniversary', 'deathdate' ],
 	multilineFields: [ 'email', 'tel', 'adr', 'impp', 'url' ],
 	possibleNodes: [ 'categories', 'org' ],
+	adrElements: [ "postOffice", "extendedAddr", "street", "locality", "region", "postalCode", "country" ],
 	prefCSVPrefix: "*:",
 
 	openedNodes: [],
@@ -501,6 +502,19 @@ var cardbookRepository = {
 		impps = cardbookRepository.cardbookPreferences.getAllIMPPs();
 		if (impps.length == 0) {
 			cardbookRepository.cardbookPreferences.insertIMPPsSeed();
+		}
+	},
+
+    updateFieldsNameList: function () {
+		let fieldsUpdate1 = cardbookRepository.cardbookPreferences.getBoolPref("extensions.cardbook.fieldsNameListUpdate1", false);
+		if (!fieldsUpdate1) {
+			let fields = cardbookRepository.cardbookPreferences.getStringPref("extensions.cardbook.fieldsNameList");
+			if (fields != "allFields") {
+				let prefs = cardbookRepository.cardbookUtils.unescapeArray(cardbookRepository.cardbookUtils.escapeString(fields).split(";"));
+				prefs = prefs.concat(cardbookRepository.adrElements);
+				cardbookRepository.cardbookPreferences.setStringPref("extensions.cardbook.fieldsNameList", cardbookRepository.cardbookUtils.unescapeStringSemiColon(prefs.join(";")));
+			}
+			cardbookRepository.cardbookPreferences.setBoolPref("extensions.cardbook.fieldsNameListUpdate1", true);
 		}
 	},
 

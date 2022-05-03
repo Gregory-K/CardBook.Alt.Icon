@@ -130,8 +130,7 @@
 							<vbox id="categoriesReadWriteGroupbox" flex="1">
 								<label class="header">__MSG_categoriesHeader__</label>
 								<hbox align="center" flex="1" style="min-height:36px;">
-									<menulist id="categoriesMenulist" flex="1" onkeydown="cardbookWindowUtils.panelMenulistKeydown(event, 'category', 'categoriesMenupopup');"
-										onkeyup="cardbookWindowUtils.panelMenulistKeyup(event, 'category', 'categoriesMenupopup');">
+									<menulist id="categoriesMenulist" flex="1" onkeydown="cardbookWindowUtils.panelMenulistKeydown(event, 'category', 'categoriesMenupopup');">
 										<menupopup id="categoriesMenupopup"
 											onpopuphiding="return cardbookWindowUtils.panelMenupopupHiding(event, 'category', this.id);" ignorekeys="true">
 											<html:input id="categoriesTextbox"
@@ -181,26 +180,24 @@
 					<html:table id="personalTable">
 						<html:tr id="lastnameRow">
 							<html:td>
-								<hbox flex="1" align="center">
-									<label id="lastnameLabel" value="__MSG_lastnameLabel__" control="lastnameTextBox" class="header"/>
-									<spacer flex="1"/>
-									<button id="cardbookSwitchButtonDown" class="small-button" label="↓" tooltiptext="__MSG_cardbookSwitchButtonTooltip__" oncommand="wdw_cardEdition.switchLastnameAndFirstname();"/>
-								</hbox>
+								<label id="lastnameLabel" value="__MSG_lastnameLabel__" control="lastnameTextBox" class="header"/>
 							</html:td>
 							<html:td>
-								<html:input id="lastnameTextBox" oninput="wdw_cardEdition.setDisplayName();"/>
+								<hbox flex="1" align="center">
+									<html:input id="lastnameTextBox" oninput="wdw_cardEdition.setDisplayName();"/>
+									<button type="checkbox" id="cardbookSwitchButtonDown" class="cardbookSwitchButtonDownClass" tooltiptext="__MSG_cardbookSwitchButtonTooltip__" oncommand="wdw_cardEdition.switchLastnameAndFirstname();"/>
+								</hbox>
 							</html:td>
 						</html:tr>
 						<html:tr id="firstnameRow">
 							<html:td>
-								<hbox flex="1" align="center">
-									<label id="firstnameLabel" value="__MSG_firstnameLabel__" control="firstnameTextBox" class="header"/>
-									<spacer flex="1"/>
-									<button id="cardbookSwitchButtonUp" class="small-button" label="↑" tooltiptext="__MSG_cardbookSwitchButtonTooltip__" oncommand="wdw_cardEdition.switchLastnameAndFirstname();"/>
-								</hbox>
+								<label id="firstnameLabel" value="__MSG_firstnameLabel__" control="firstnameTextBox" class="header"/>
 							</html:td>
 							<html:td>
-								<html:input id="firstnameTextBox" oninput="wdw_cardEdition.setDisplayName();"/>
+								<hbox flex="1" align="center">
+									<html:input id="firstnameTextBox" oninput="wdw_cardEdition.setDisplayName();"/>
+									<button type="checkbox" id="cardbookSwitchButtonUp" class="cardbookSwitchButtonUpClass" tooltiptext="__MSG_cardbookSwitchButtonTooltip__" oncommand="wdw_cardEdition.switchLastnameAndFirstname();"/>
+								</hbox>
 							</html:td>
 						</html:tr>
 						<html:tr id="othernameRow">
@@ -384,61 +381,61 @@
 						<hbox flex="1">
 							<vbox flex="1">
 								<html:table>
-									<html:tr>
+									<html:tr id="postOfficeRow">
 										<html:td>
-											<label value="__MSG_adrPostOfficeLabel__" control="adrPostOfficeTextBox" class="header"/>
+											<label value="__MSG_postOfficeLabel__" control="postOfficeTextBox" class="header"/>
 										</html:td>
 										<html:td>
-											<html:input id="adrPostOfficeTextBox" placeholder="__MSG_deprecatedLabel__"/>
-										</html:td>
-									</html:tr>
-									<html:tr>
-										<html:td>
-											<label value="__MSG_adrExtendedAddrLabel__" control="adrExtendedAddrTextBox" class="header"/>
-										</html:td>
-										<html:td>
-											<html:input id="adrExtendedAddrTextBox" placeholder="__MSG_deprecatedLabel__"/>
+											<html:input id="postOfficeTextBox" placeholder="__MSG_deprecatedLabel__"/>
 										</html:td>
 									</html:tr>
-									<html:tr>
+									<html:tr id="extendedAddrRow">
 										<html:td>
-											<label value="__MSG_adrStreetLabel__" control="adrStreetTextBox" class="header"/>
+											<label value="__MSG_extendedAddrLabel__" control="extendedAddrTextBox" class="header"/>
 										</html:td>
 										<html:td>
-											<html:textarea id="adrStreetTextBox"/>
-										</html:td>
-									</html:tr>
-									<html:tr>
-										<html:td>
-											<label value="__MSG_adrLocalityLabel__" control="adrLocalityTextBox" class="header"/>
-										</html:td>
-										<html:td>
-											<html:input id="adrLocalityTextBox" type="autocomplete" autocompletesearch="form-history" autocompletesearchparam="adrLocalityTextBox" class="padded"/>
+											<html:input id="extendedAddrTextBox" placeholder="__MSG_deprecatedLabel__"/>
 										</html:td>
 									</html:tr>
-									<html:tr>
+									<html:tr id="streetRow">
 										<html:td>
-											<label value="__MSG_adrRegionLabel__" control="adrRegionTextBox" class="header"/>
+											<label value="__MSG_streetLabel__" control="streetTextBox" class="header"/>
 										</html:td>
 										<html:td>
-											<html:input id="adrRegionTextBox" type="autocomplete" autocompletesearch="form-history" autocompletesearchparam="adrRegionTextBox" class="padded"/>
-										</html:td>
-									</html:tr>
-									<html:tr>
-										<html:td>
-											<label value="__MSG_adrPostalCodeLabel__" control="adrPostalCodeTextBox" class="header"/>
-										</html:td>
-										<html:td>
-											<html:input id="adrPostalCodeTextBox" type="autocomplete" autocompletesearch="form-history" autocompletesearchparam="adrPostalCodeTextBox" class="padded"/>
+											<html:textarea id="streetTextBox"/>
 										</html:td>
 									</html:tr>
-									<html:tr>
+									<html:tr id="localityRow">
 										<html:td>
-											<label value="__MSG_adrCountryLabel__" control="adrCountryMenulist" class="header"/>
+											<label value="__MSG_localityLabel__" control="localityTextBox" class="header"/>
 										</html:td>
 										<html:td>
-											<menulist id="adrCountryMenulist" is="menulist-editable" editable="true" onpopupshowing="wdw_cardEdition.loadCountries();">
-												<menupopup id="adrCountryMenupopup"/>
+											<html:input id="localityTextBox" type="autocomplete" autocompletesearch="form-history" autocompletesearchparam="localityTextBox" class="padded"/>
+										</html:td>
+									</html:tr>
+									<html:tr id="regionRow">
+										<html:td>
+											<label value="__MSG_regionLabel__" control="regionTextBox" class="header"/>
+										</html:td>
+										<html:td>
+											<html:input id="regionTextBox" type="autocomplete" autocompletesearch="form-history" autocompletesearchparam="regionTextBox" class="padded"/>
+										</html:td>
+									</html:tr>
+									<html:tr id="postalCodeRow">
+										<html:td>
+											<label value="__MSG_postalCodeLabel__" control="postalCodeTextBox" class="header"/>
+										</html:td>
+										<html:td>
+											<html:input id="postalCodeTextBox" type="autocomplete" autocompletesearch="form-history" autocompletesearchparam="postalCodeTextBox" class="padded"/>
+										</html:td>
+									</html:tr>
+									<html:tr id="countryRow">
+										<html:td>
+											<label value="__MSG_countryLabel__" control="countryMenulist" class="header"/>
+										</html:td>
+										<html:td>
+											<menulist id="countryMenulist" is="menulist-editable" editable="true">
+												<menupopup id="countryMenupopup"/>
 											</menulist>
 										</html:td>
 									</html:tr>

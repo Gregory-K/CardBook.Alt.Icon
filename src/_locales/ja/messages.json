@@ -3976,27 +3976,6 @@
 	"wdw_adrEditionTitle": {
 		"message": "アドレスエディタ"
 	},
-	"adrPostOfficeLabel": {
-		"message": "私書箱"
-	},
-	"adrExtendedAddrLabel": {
-		"message": "アパートメントまたはスイート"
-	},
-	"adrStreetLabel": {
-		"message": "番地"
-	},
-	"adrLocalityLabel": {
-		"message": "市区町村"
-	},
-	"adrRegionLabel": {
-		"message": "都道府県"
-	},
-	"adrPostalCodeLabel": {
-		"message": "郵便番号"
-	},
-	"adrCountryLabel": {
-		"message": "国"
-	},
 	"deprecatedLabel": {
 		"message": "廃止予定"
 	},

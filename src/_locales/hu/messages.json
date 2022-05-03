@@ -3976,27 +3976,6 @@
 	"wdw_adrEditionTitle": {
 		"message": "Cím szerkesztő"
 	},
-	"adrPostOfficeLabel": {
-		"message": "Postafiók (P.O.B.)"
-	},
-	"adrExtendedAddrLabel": {
-		"message": "Lakás vagy lakosztály"
-	},
-	"adrStreetLabel": {
-		"message": "Utca"
-	},
-	"adrLocalityLabel": {
-		"message": "Hely (város)"
-	},
-	"adrRegionLabel": {
-		"message": "Kerület (állam vagy tartomány)"
-	},
-	"adrPostalCodeLabel": {
-		"message": "Irányítószám"
-	},
-	"adrCountryLabel": {
-		"message": "Ország"
-	},
 	"deprecatedLabel": {
 		"message": "Elavult"
 	},

@@ -483,13 +483,13 @@ function onLoad(wasAlreadyOpen) {
 			<menupopup id="adrTreeContextMenu" onpopupshowing="wdw_cardbook.adrTreeContextShowing();">
 				<menuitem id="localizeadrTree" label="__MSG_localizeadrTreeLabel__" oncommand="wdw_cardbook.localizeCardFromTree();"/>
 				<menuseparator/>
-				<menuitem id="copyadrPostOfficeTree" oncommand="wdw_cardbook.copyPartialEntryFromTree(0);"/>
-				<menuitem id="copyadrExtendedAddrTree" oncommand="wdw_cardbook.copyPartialEntryFromTree(1);"/>
-				<menuitem id="copyadrStreetTree" oncommand="wdw_cardbook.copyPartialEntryFromTree(2);"/>
-				<menuitem id="copyadrLocalityTree" oncommand="wdw_cardbook.copyPartialEntryFromTree(3);"/>
-				<menuitem id="copyadrRegionTree" oncommand="wdw_cardbook.copyPartialEntryFromTree(4);"/>
-				<menuitem id="copyadrPostalCodeTree" oncommand="wdw_cardbook.copyPartialEntryFromTree(5);"/>
-				<menuitem id="copyadrCountryTree" oncommand="wdw_cardbook.copyPartialEntryFromTree(6);"/>
+				<menuitem id="copypostOfficeTree" oncommand="wdw_cardbook.copyPartialEntryFromTree(0);"/>
+				<menuitem id="copyextendedAddrTree" oncommand="wdw_cardbook.copyPartialEntryFromTree(1);"/>
+				<menuitem id="copystreetTree" oncommand="wdw_cardbook.copyPartialEntryFromTree(2);"/>
+				<menuitem id="copylocalityTree" oncommand="wdw_cardbook.copyPartialEntryFromTree(3);"/>
+				<menuitem id="copyregionTree" oncommand="wdw_cardbook.copyPartialEntryFromTree(4);"/>
+				<menuitem id="copypostalCodeTree" oncommand="wdw_cardbook.copyPartialEntryFromTree(5);"/>
+				<menuitem id="copycountryTree" oncommand="wdw_cardbook.copyPartialEntryFromTree(6);"/>
 				<menuseparator/>
 				<menuitem id="copyadrTree" oncommand="wdw_cardbook.copyEntryFromTree();"/>
 			</menupopup>
@@ -572,7 +572,7 @@ function onLoad(wasAlreadyOpen) {
 				<menuitem id="importCardsFromDirFromAccountsOrCats" label="__MSG_importCardFromDirLabel__" oncommand="wdw_cardbook.importCardsFromDir();"/>
 			</menupopup>
 	
-			<menupopup id="cardsTreeContextMenu" onpopupshowing="return await wdw_cardbook.cardsTreeContextShowing(event);">
+			<menupopup id="cardsTreeContextMenu" onpopupshowing="return wdw_cardbook.cardsTreeContextShowing(event);">
 				<menuitem id="addContactFromCards" label="__MSG_cardbookToolbarAddContactButtonLabel__" oncommand="wdw_cardbook.newKey();"/>
 				<menuitem id="addListFromCards" label="__MSG_cardbookToolbarAddListButtonLabel__" oncommand="wdw_cardbook.createList();"/>
 				<menuitem id="editCardFromCards" label="__MSG_cardbookToolbarEditButtonLabel__" oncommand="wdw_cardbook.editCard();"/>

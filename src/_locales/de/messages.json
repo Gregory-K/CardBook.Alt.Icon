@@ -3976,27 +3976,6 @@
 	"wdw_adrEditionTitle": {
 		"message": "Bearbeitung der Adresse"
 	},
-	"adrPostOfficeLabel": {
-		"message": "Postfach"
-	},
-	"adrExtendedAddrLabel": {
-		"message": "Zusätzliche Adressangaben"
-	},
-	"adrStreetLabel": {
-		"message": "Straße"
-	},
-	"adrLocalityLabel": {
-		"message": "Ort"
-	},
-	"adrRegionLabel": {
-		"message": "Region"
-	},
-	"adrPostalCodeLabel": {
-		"message": "Postleitzahl"
-	},
-	"adrCountryLabel": {
-		"message": "Land"
-	},
 	"deprecatedLabel": {
 		"message": "Veraltet"
 	},

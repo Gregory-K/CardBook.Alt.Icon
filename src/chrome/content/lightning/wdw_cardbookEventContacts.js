@@ -98,7 +98,6 @@ if ("undefined" == typeof(wdw_cardbookEventContacts)) {
 				return eventEndDate;
 			}
 
-			cardbookElementTools.deleteRows("eventsTable");
 			let headers = [ "eventsTableTitle", "eventsTableStartdate", "eventsTableEnddate", "eventsTableCategories", "eventsTableLocation", "eventsTableCalendarname" ];
 			let data = wdw_cardbookEventContacts.allEvents.map(x => [ (x.title ? x.title.replace(/\n/g, ' ') : ""),
 																		wdw_cardbookEventContacts.formatEventDateTime(x.startDate),
@@ -229,7 +228,7 @@ if ("undefined" == typeof(wdw_cardbookEventContacts)) {
 				let attendeesArray = cal.email.createRecipientList(wdw_cardbookEventContacts.allEvents[i].getAttendees({})).split(', ');
 				for (let j = 0; !found && j < attendeesArray.length; j++) {
 					for (let k = 0; !found && k < wdw_cardbookEventContacts.emailArray.length; k++) {
-						if (attendeesArray[j].indexOf(wdw_cardbookEventContacts.emailArray[k].toLowerCase()) >= 0) {
+						if (attendeesArray[j].toLowerCase().indexOf(wdw_cardbookEventContacts.emailArray[k].toLowerCase()) >= 0) {
 							found = true;
 						}
 					}

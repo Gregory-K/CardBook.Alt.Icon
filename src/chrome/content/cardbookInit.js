@@ -104,7 +104,7 @@ var cardbookInit = {
 		prefs.setCharPref("accountShown", "");
 		prefs.setCharPref("uncategorizedCards", "");
 		prefs.setCharPref("categoryColors", "");
-		prefs.setCharPref("addonVersion", "74.8.1");
+		prefs.setCharPref("addonVersion", "75.0.1");
 		prefs.setCharPref("defaultRegion", "NOTSET");
 
 		prefs.setBoolPref("localDataEncryption", false);
@@ -159,6 +159,9 @@ var cardbookInit = {
 
 		// migration functions (should be removed)
 		cardbookRepository.loadCustoms();
+
+		// for version < 75.0
+		cardbookRepository.updateFieldsNameList();
 
 		// load category colors
 		try {

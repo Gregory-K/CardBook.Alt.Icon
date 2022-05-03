@@ -158,7 +158,6 @@ function keyDownTree (aEvent) {
 };
 
 function displayListTables (aTableName) {
-	cardbookElementTools.deleteRows(aTableName);
 	let headers = [];
 	let data = cardbookeditlists[aTableName].map(x => [ x[1] ]);
 	let dataParameters = [];

@@ -3308,7 +3308,7 @@
 		"message": "Beperking van e-mailaccounts"
 	},
 	"wdw_cardbookConfigurationAddEmailsCollectionTitle": {
-		"message": "Account voor de verzameling van uitgaande berichten"
+		"message": "Account voor het verzamelen van uitgaande berichten"
 	},
 	"ignoreCaseIgnoreDiacriticLabel": {
 		"message": "Negeer hoofd-/kleine letters en diakrieten"
@@ -3976,27 +3976,6 @@
 	"wdw_adrEditionTitle": {
 		"message": "Adres bewerken"
 	},
-	"adrPostOfficeLabel": {
-		"message": "Postbus-/huisnummer"
-	},
-	"adrExtendedAddrLabel": {
-		"message": "Toevoeging"
-	},
-	"adrStreetLabel": {
-		"message": "Straat"
-	},
-	"adrLocalityLabel": {
-		"message": "Plaats"
-	},
-	"adrRegionLabel": {
-		"message": "Provincie"
-	},
-	"adrPostalCodeLabel": {
-		"message": "Postcode"
-	},
-	"adrCountryLabel": {
-		"message": "Land"
-	},
 	"deprecatedLabel": {
 		"message": "Niet meer ondersteund"
 	},
@@ -4253,10 +4232,10 @@
 		"message": "V"
 	},
 	"emailsCollectionLabel": {
-		"message": "Uitgaande e-mail"
+		"message": "Adressen van uitgaande e-mail verzamelen"
 	},
 	"emailsCollectionTooltip": {
-		"message": "Deze optie verzamelt e-mailadressen, die niet in een CardBook-adresboek aanwezig zijn, automatisch in geselecteerde adresboek(en)"
+		"message": "Verzamel e-mailadressen, die niet in een CardBook-adresboek staan, automatisch in geselecteerde adresboek(en)"
 	},
 	"emailsCollectionEnabledLabel": {
 		"message": "Ingeschakeld"
@@ -4847,7 +4826,7 @@
 		"message": "G"
 	},
 	"attachVCardWarn": {
-		"message": "Selecteer voor elk e-mailaccount een vCard. Daarna voegt CardBook de vCard automatisch toe aan elk bericht vanuit dit account."
+		"message": "Selecteer voor elk e-mailaccount een vCard. Cardbook voegt de vCard automatisch toe aan elk bericht vanuit dit account."
 	},
 	"attachVCardGroupboxLabel": {
 		"message": "vCard toevoegen"

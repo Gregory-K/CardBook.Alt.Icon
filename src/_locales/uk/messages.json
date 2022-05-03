@@ -3976,27 +3976,6 @@
 	"wdw_adrEditionTitle": {
 		"message": "Редактор адрес"
 	},
-	"adrPostOfficeLabel": {
-		"message": "Поштовий ящик"
-	},
-	"adrExtendedAddrLabel": {
-		"message": "Апартаменти або люкс"
-	},
-	"adrStreetLabel": {
-		"message": "Вулиця"
-	},
-	"adrLocalityLabel": {
-		"message": "Місце розташування (Місто)"
-	},
-	"adrRegionLabel": {
-		"message": "Регіон (штат або провінція)"
-	},
-	"adrPostalCodeLabel": {
-		"message": "Поштовий індекс"
-	},
-	"adrCountryLabel": {
-		"message": "Країна"
-	},
 	"deprecatedLabel": {
 		"message": "Застаріле"
 	},

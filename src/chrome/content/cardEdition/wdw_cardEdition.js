@@ -835,6 +835,21 @@ if ("undefined" == typeof(wdw_cardEdition)) {
 					document.getElementById(field + 'Row').setAttribute('hidden', 'true');
 				}
 			}
+			for (let field of cardbookRepository.adrElements) {
+				let partialIndex = cardbookRepository.adrElements.indexOf(field);
+				let found = false;
+				for (let adr of wdw_cardEdition.workingCard.adr) {
+					if (adr[0][partialIndex] != "") {
+						found = true;
+						break;
+					}
+				}
+				if (isElementInPref(field) || found) {
+					document.getElementById(field + 'Row').removeAttribute('hidden');
+				} else {
+					document.getElementById(field + 'Row').setAttribute('hidden', 'true');
+				}
+			}
 			
 			cardbookWindowUtils.updateComplexMenulist('fields', 'fieldsMenupopup');
 			wdw_cardEdition.showPane('generalTabPanel');
@@ -1145,8 +1160,8 @@ if ("undefined" == typeof(wdw_cardEdition)) {
 		},
 
 		loadCountries: async function () {
-			var countryList = document.getElementById('adrCountryMenulist');
-			var countryPopup = document.getElementById('adrCountryMenupopup');
+			var countryList = document.getElementById('countryMenulist');
+			var countryPopup = document.getElementById('countryMenupopup');
 			await cardbookElementTools.loadCountries(countryPopup, countryList, countryList.value, true, false);
 		},
 
@@ -1279,7 +1294,7 @@ if ("undefined" == typeof(wdw_cardEdition)) {
 			function firePopupShownAdr(event) {
 				//to avoid this would be fired by autocomplete popups
 				if (event.target.id == 'adrPanel') {
-					document.getElementById('adrStreetTextBox').focus();
+					document.getElementById('streetTextBox').focus();
 				}
 			};
 			document.getElementById('adrPanel').addEventListener("popupshown", firePopupShownAdr, false);
@@ -1351,7 +1366,7 @@ if ("undefined" == typeof(wdw_cardEdition)) {
 
 		updateFormFields: function () {
 			// first static fields
-			var fieldHistorized = [ 'adrLocality', 'adrRegion', 'adrPostalCode', 'title', 'role' ];
+			var fieldHistorized = [ 'locality', 'region', 'postalCode', 'title', 'role' ];
 			for (let field of fieldHistorized) {
 				wdw_cardEdition.updateFormHistory(field + 'TextBox');
 			}

@@ -3976,27 +3976,6 @@
 	"wdw_adrEditionTitle": {
 		"message": "Editor de adresă"
 	},
-	"adrPostOfficeLabel": {
-		"message": "Cutie poștală"
-	},
-	"adrExtendedAddrLabel": {
-		"message": "Apartament"
-	},
-	"adrStreetLabel": {
-		"message": "Stradă"
-	},
-	"adrLocalityLabel": {
-		"message": "Localitate"
-	},
-	"adrRegionLabel": {
-		"message": "Județ/provincie"
-	},
-	"adrPostalCodeLabel": {
-		"message": "Cod poştal"
-	},
-	"adrCountryLabel": {
-		"message": "Țară"
-	},
 	"deprecatedLabel": {
 		"message": "Depreciată"
 	},

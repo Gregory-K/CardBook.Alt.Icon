@@ -80,9 +80,8 @@ var cardbookPreferences = {
 
 	getAllCustomFieldsByType: function (aType) {
 		try {
-			var count = {};
 			var finalResult = [];
-			var result = Services.prefs.getChildList(this.prefCardBookCustomFields + aType + ".", count);
+			var result = Services.prefs.getChildList(this.prefCardBookCustomFields + aType + ".");
 			
 			for (let i = 0; i < result.length; i++) {
 				var prefName = result[i].replace(this.prefCardBookCustomFields, "");
@@ -139,10 +138,9 @@ var cardbookPreferences = {
 
 	getAllTels: function () {
 		try {
-			var count = {};
 			var finalResult = [];
 			var finalResult1 = [];
-			var result = Services.prefs.getChildList(this.prefCardBookTels, count);
+			var result = Services.prefs.getChildList(this.prefCardBookTels);
 			
 			for (let i = 0; i < result.length; i++) {
 				var prefName = result[i].replace(this.prefCardBookTels, "");
@@ -162,9 +160,8 @@ var cardbookPreferences = {
 
 	getAllComplexSearchIds: function () {
 		try {
-			let count = {};
 			let finalResult = [];
-			let result = Services.prefs.getChildList(this.prefCardBookData, count);
+			let result = Services.prefs.getChildList(this.prefCardBookData);
 			for (let i = 0; i < result.length; i++) {
 				result[i] = result[i].replace(this.prefCardBookData,"");
 				var myTmpArray = result[i].split('.');
@@ -184,9 +181,8 @@ var cardbookPreferences = {
 
 	getAllPrefIds: function () {
 		try {
-			let count = {};
 			let finalResult = [];
-			let result = Services.prefs.getChildList(this.prefCardBookData, count);
+			let result = Services.prefs.getChildList(this.prefCardBookData);
 			for (let i = 0; i < result.length; i++) {
 				result[i] = result[i].replace(this.prefCardBookData,"");
 				var myTmpArray = result[i].split('.');
@@ -203,9 +199,8 @@ var cardbookPreferences = {
 
 	getAllRestrictions: function () {
 		try {
-			let count = {};
 			let finalResult = [];
-			let result = Services.prefs.getChildList(this.prefCardBookAccountRestrictions, count);
+			let result = Services.prefs.getChildList(this.prefCardBookAccountRestrictions);
 			for (let i = 0; i < result.length; i++) {
 				finalResult.push(this.getStringPref(result[i]).split("::"));
 			}
@@ -240,9 +235,8 @@ var cardbookPreferences = {
 
 	getAllVCards: function () {
 		try {
-			let count = {};
 			let finalResult = [];
-			let result = Services.prefs.getChildList(this.prefCardBookAccountVCards, count);
+			let result = Services.prefs.getChildList(this.prefCardBookAccountVCards);
 			for (let i = 0; i < result.length; i++) {
 				finalResult.push(this.getStringPref(result[i]).split("::"));
 			}
@@ -277,9 +271,8 @@ var cardbookPreferences = {
 
 	getAllEmailsCollections: function () {
 		try {
-			let count = {};
 			let finalResult = [];
-			let result = Services.prefs.getChildList(this.prefCardBookEmailsCollection, count);
+			let result = Services.prefs.getChildList(this.prefCardBookEmailsCollection);
 			for (let i = 0; i < result.length; i++) {
 				finalResult.push(this.getStringPref(result[i]).split("::"));
 			}
@@ -314,10 +307,9 @@ var cardbookPreferences = {
 
 	getAllIMPPs: function () {
 		try {
-			var count = {};
 			var finalResult = [];
 			var finalResult1 = [];
-			var result = Services.prefs.getChildList(this.prefCardBookIMPPs, count);
+			var result = Services.prefs.getChildList(this.prefCardBookIMPPs);
 			for (let i = 0; i < result.length; i++) {
 				var prefName = result[i].replace(this.prefCardBookIMPPs, "");
 				finalResult.push(this.getIMPPs(prefName));

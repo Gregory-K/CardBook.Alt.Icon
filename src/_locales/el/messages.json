@@ -3976,27 +3976,6 @@
 	"wdw_adrEditionTitle": {
 		"message": "Συντάκτης διευθύνσεων"
 	},
-	"adrPostOfficeLabel": {
-		"message": "Ταχυδρομική θυρίδα"
-	},
-	"adrExtendedAddrLabel": {
-		"message": "Διαμέρισμα ή σουίτα"
-	},
-	"adrStreetLabel": {
-		"message": "Δρόμος"
-	},
-	"adrLocalityLabel": {
-		"message": "Πόλη"
-	},
-	"adrRegionLabel": {
-		"message": "Επαρχία"
-	},
-	"adrPostalCodeLabel": {
-		"message": "Ταχυδρομικος Κωδικος"
-	},
-	"adrCountryLabel": {
-		"message": "Χώρα"
-	},
 	"deprecatedLabel": {
 		"message": "Απορρίφθηκε"
 	},

@@ -158,7 +158,6 @@ if ("undefined" == typeof(wdw_birthdayList)) {
 			} else {
 				noneFound.hidden = true;
 				resulTable.hidden = false;
-				cardbookElementTools.deleteRows("birthdayListTable");
 				let headers = [ "daysLeftColumn", "nameColumn", "ageColumn", "dateOfBirthColumn" ];
 				let data = cardbookBirthdaysUtils.lBirthdayList.map(x => [ x[0], x[1], x[2], x[3] ]);
 				let dataParameters = [];

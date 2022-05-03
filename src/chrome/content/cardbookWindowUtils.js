@@ -396,29 +396,6 @@ if ("undefined" == typeof(cardbookWindowUtils)) {
 			}
 		},
 
-		panelMenulistKeyup: function (aEvent, aType, aMenupopupName) {
-			let myMenupopup = document.getElementById(aMenupopupName);
-			let myMenulist = document.getElementById(aMenupopupName.replace("Menupopup", "Menulist"));
-			var myLabel = myMenulist.getAttribute('label');
-			if (aType == "category") {
-				if (myLabel == cardbookRepository.extension.localeData.localizeMessage("multipleCategories")) {
-					return;
-				}
-			} else if (aType == "type") {
-				if (myLabel == cardbookRepository.extension.localeData.localizeMessage("multipleTypes")) {
-					return;
-				}
-			}
-			for (var i = 0; i < myMenupopup.childNodes.length; i++) {
-				var child = myMenupopup.childNodes[i];
-				if (child.getAttribute('label') == myLabel && ! child.hasAttribute("checked")) {
-					child.setAttribute("checked", "true");
-				} else {
-					child.removeAttribute("checked");
-				}
-			}
-		},
-
 		panelTextboxKeydown: function (aEvent, aType, aMenupopupName) {
 			let itemValue = aEvent.target.value;
 			let myMenupopup = document.getElementById(aMenupopupName);
@@ -452,7 +429,12 @@ if ("undefined" == typeof(cardbookWindowUtils)) {
 			
 			let newIndex = items.indexOf(itemValue);
 			if (newIndex > -1) {
-				itemList[newIndex].setAttribute("checked", true);
+				let item = itemList[newIndex];
+				if (item.hasAttribute("checked")) {
+					item.removeAttribute("checked");
+				} else {
+					item.setAttribute("checked", true);
+				}
 			} else {
 				items.push(itemValue);
 				cardbookRepository.cardbookUtils.sortArrayByString(items,1);
@@ -467,7 +449,7 @@ if ("undefined" == typeof(cardbookWindowUtils)) {
 				} else {
 					item.setAttribute("type", "checkbox");
 				}
-				item.setAttribute("checked", true);
+				item.setAttribute("checked", "true");
 				myMenupopup.insertBefore(item, itemList[newIndex]);
 			}
 			
@@ -1248,21 +1230,27 @@ if ("undefined" == typeof(cardbookWindowUtils)) {
 		},
 
 		openAdrPanel: async function (aAdrLine, aIdArray) {
+			await wdw_cardEdition.loadCountries();
 			wdw_cardEdition.currentAdrId = JSON.parse(JSON.stringify(aIdArray));
-			document.getElementById('adrPostOfficeTextBox').value = cardbookRepository.cardbookUtils.undefinedToBlank(aAdrLine[0][0]);
-			document.getElementById('adrExtendedAddrTextBox').value = cardbookRepository.cardbookUtils.undefinedToBlank(aAdrLine[0][1]);
-			document.getElementById('adrStreetTextBox').value = cardbookRepository.cardbookUtils.undefinedToBlank(aAdrLine[0][2]);
-			document.getElementById('adrLocalityTextBox').value = cardbookRepository.cardbookUtils.undefinedToBlank(aAdrLine[0][3]);
-			document.getElementById('adrRegionTextBox').value = cardbookRepository.cardbookUtils.undefinedToBlank(aAdrLine[0][4]);
-			document.getElementById('adrPostalCodeTextBox').value = cardbookRepository.cardbookUtils.undefinedToBlank(aAdrLine[0][5]);
-			document.getElementById('adrCountryMenulist').value = cardbookRepository.cardbookUtils.undefinedToBlank(aAdrLine[0][6]);
-			if (document.getElementById('adrCountryMenulist').value == "") {
-				let country = await cardbookRepository.cardbookUtils.getCardRegion(wdw_cardEdition.workingCard);
-				document.getElementById('adrCountryMenulist').value = "";
-				if (country != "") {
+			document.getElementById('postOfficeTextBox').value = cardbookRepository.cardbookUtils.undefinedToBlank(aAdrLine[0][0]);
+			document.getElementById('extendedAddrTextBox').value = cardbookRepository.cardbookUtils.undefinedToBlank(aAdrLine[0][1]);
+			document.getElementById('streetTextBox').value = cardbookRepository.cardbookUtils.undefinedToBlank(aAdrLine[0][2]);
+			document.getElementById('localityTextBox').value = cardbookRepository.cardbookUtils.undefinedToBlank(aAdrLine[0][3]);
+			document.getElementById('regionTextBox').value = cardbookRepository.cardbookUtils.undefinedToBlank(aAdrLine[0][4]);
+			document.getElementById('postalCodeTextBox').value = cardbookRepository.cardbookUtils.undefinedToBlank(aAdrLine[0][5]);
+			let country = cardbookRepository.cardbookUtils.undefinedToBlank(aAdrLine[0][6]);
+			if (cardbookRepository.countriesList.includes(country.toLowerCase())) {
+				const loc = new Localization(["toolkit/intl/regionNames.ftl"]);
+				document.getElementById('countryMenulist').value = await loc.formatValue("region-name-" + country.toLowerCase());
+			} else if (country == "") {
+				let cardRegion = await cardbookRepository.cardbookUtils.getCardRegion(wdw_cardEdition.workingCard);
+				document.getElementById('countryMenulist').value = "";
+				if (cardRegion != "") {
 					const loc = new Localization(["toolkit/intl/regionNames.ftl"]);
-					document.getElementById('adrCountryMenulist').value = await loc.formatValue("region-name-" + country.toLowerCase());
+					document.getElementById('countryMenulist').value = await loc.formatValue("region-name-" + cardRegion.toLowerCase());
 				}
+			} else {
+				document.getElementById('countryMenulist').value = country;
 			}
 			document.getElementById('adrPanel').openPopup(document.getElementById(wdw_cardEdition.currentAdrId.join("_")), 'after_start', 0, 0, true);
 		},
@@ -1274,13 +1262,13 @@ if ("undefined" == typeof(cardbookWindowUtils)) {
 
 		validateAdrPanel: function () {
 			var myId = wdw_cardEdition.currentAdrId.join("_");
-			document.getElementById(myId + '_' + '0').value = document.getElementById('adrPostOfficeTextBox').value.trim();
-			document.getElementById(myId + '_' + '1').value = document.getElementById('adrExtendedAddrTextBox').value.trim();
-			document.getElementById(myId + '_' + '2').value = document.getElementById('adrStreetTextBox').value.replace(/\n/g, "\\n").trim();
-			document.getElementById(myId + '_' + '3').value = document.getElementById('adrLocalityTextBox').value.trim();
-			document.getElementById(myId + '_' + '4').value = document.getElementById('adrRegionTextBox').value.trim();
-			document.getElementById(myId + '_' + '5').value = document.getElementById('adrPostalCodeTextBox').value.trim();
-			document.getElementById(myId + '_' + '6').value = document.getElementById('adrCountryMenulist').value.trim();
+			document.getElementById(myId + '_' + '0').value = document.getElementById('postOfficeTextBox').value.trim();
+			document.getElementById(myId + '_' + '1').value = document.getElementById('extendedAddrTextBox').value.trim();
+			document.getElementById(myId + '_' + '2').value = document.getElementById('streetTextBox').value.replace(/\n/g, "\\n").trim();
+			document.getElementById(myId + '_' + '3').value = document.getElementById('localityTextBox').value.trim();
+			document.getElementById(myId + '_' + '4').value = document.getElementById('regionTextBox').value.trim();
+			document.getElementById(myId + '_' + '5').value = document.getElementById('postalCodeTextBox').value.trim();
+			document.getElementById(myId + '_' + '6').value = document.getElementById('countryMenulist').value.trim();
 
 			var myTmpArray = [];
 			for (var i = 0; i < 7; i++) {
@@ -1665,10 +1653,10 @@ if ("undefined" == typeof(cardbookWindowUtils)) {
 					var myValidationButton = document.getElementById(aType + '_' + aIndex + '_validateButton');
 					var tel = PhoneNumber.Parse(this.value, wdw_cardEdition.cardRegion);
 					if (tel && tel.internationalFormat && this.value == tel.internationalFormat) {
-						myValidationButton.setAttribute('label', '✔');
+						myValidationButton.setAttribute('class', 'small-button cardbookValidated');
 						myValidationButton.setAttribute('tooltiptext', cardbookRepository.extension.localeData.localizeMessage("validatedEntryTooltip"));
 					} else {
-						myValidationButton.setAttribute('label', '!');
+						myValidationButton.setAttribute('class', 'small-button cardbookNotValidated');
 						myValidationButton.setAttribute('tooltiptext', cardbookRepository.extension.localeData.localizeMessage("notValidatedEntryTooltip"));
 					}
 				};
@@ -1679,10 +1667,10 @@ if ("undefined" == typeof(cardbookWindowUtils)) {
 					var emailLower = this.value.toLowerCase();
 					var atPos = this.value.lastIndexOf("@");
 					if (this.value == emailLower && atPos > 0 && atPos + 1 < this.value.length) {
-						myValidationButton.setAttribute('label', '✔');
+						myValidationButton.setAttribute('class', 'small-button cardbookValidated');
 						myValidationButton.setAttribute('tooltiptext', cardbookRepository.extension.localeData.localizeMessage("validatedEntryTooltip"));
 					} else {
-						myValidationButton.setAttribute('label', '!');
+						myValidationButton.setAttribute('class', 'small-button cardbookNotValidated');
 						myValidationButton.setAttribute('tooltiptext', cardbookRepository.extension.localeData.localizeMessage("notValidatedEntryTooltip"));
 					}
 				};
@@ -1698,10 +1686,10 @@ if ("undefined" == typeof(cardbookWindowUtils)) {
 					var tel = PhoneNumber.Parse(myTelTextBox.value, wdw_cardEdition.cardRegion);
 					if (tel && tel.internationalFormat) {
 						myTelTextBox.value = tel.internationalFormat;
-						this.setAttribute('label', '✔');
+						this.setAttribute('class', 'small-button cardbookValidated');
 						this.setAttribute('tooltiptext', cardbookRepository.extension.localeData.localizeMessage("validatedEntryTooltip"));
 					} else {
-						this.setAttribute('label', '!');
+						this.setAttribute('class', 'small-button cardbookNotValidated');
 						this.setAttribute('tooltiptext', cardbookRepository.extension.localeData.localizeMessage("notValidatedEntryTooltip"));
 					}
 				};

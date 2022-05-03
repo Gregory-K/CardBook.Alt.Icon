@@ -3,6 +3,7 @@
 <?xml-stylesheet href="chrome://cardbook/content/skin/cardbookCheckboxes.css" type="text/css"?>
 <?xml-stylesheet href="chrome://cardbook/content/skin/cardbookConfiguration.css" type="text/css"?>
 <?xml-stylesheet href="chrome://cardbook/content/skin/cardbookTableTree.css" type="text/css"?>
+<?xml-stylesheet href="chrome://cardbook/content/skin/cardbookMain.css" type="text/css"?>
 <!-- for the preference star -->
 <?xml-stylesheet href="chrome://cardbook/content/skin/cardbookPrefStar.css" type="text/css"?>
 <!-- for notificationbox.xml -->
@@ -168,7 +169,7 @@
 									<separator class="thin"/>
 									<label><html:h2>__MSG_accountsRestrictionsLabel__</html:h2></label>
 									<hbox flex="1">
-										<table id="accountsRestrictionsTable" class="tableTree"
+										<table id="accountsRestrictionsTable" class="tableTree" 
 											data-sort-order="ascending" data-sort-column="accountsRestrictionsABName"
 											onclick="wdw_cardbookConfiguration.clickTree(event);"
 											ondblclick="wdw_cardbookConfiguration.doubleClickTree(event);"
@@ -217,7 +218,7 @@
 										accesskey="__MSG_keyTab.conf.accesskey__"
 										preference="extensions.cardbook.keyTabView" type="bool" instantApply="true"/>
 								</vbox>
-								<separator class="thin"/>
+								<separator class="thin"/>					
 								<label><html:h2>__MSG_localizeEditingGroupboxLabel__</html:h2></label>
 								<hbox flex="1" align="center">
 									<radiogroup id="localizeEngineRadiogroup" orient="horizontal" preference="extensions.cardbook.localizeEngine" type="string" instantApply="true">
@@ -226,7 +227,7 @@
 										<radio value="BingMaps" label="__MSG_localizeEngineBingMapsLabel__" accesskey="__MSG_localizeEngineBingMapsAccesskey__"/>
 									</radiogroup>
 								</hbox>
-								<separator class="thin"/>
+								<separator class="thin"/>					
 								<label><html:h2>__MSG_showNameAsLabel__</html:h2></label>
 								<hbox flex="1" align="center">
 									<radiogroup id="showNameAsRadiogroup" orient="horizontal" preference="extensions.cardbook.showNameAs" type="string"
@@ -237,7 +238,7 @@
 										<radio value="DSP" label="__MSG_showNameAsDSPLabel__" accesskey="__MSG_showNameAsDSPAccesskey__"/>
 									</radiogroup>
 								</hbox>
-								<separator class="thin"/>
+								<separator class="thin"/>					
 								<label><html:h2>__MSG_adrFormulaCaption__</html:h2></label>
 								<separator class="thin"/>
 								<label>__MSG_adrFormulaExplanation__</label>
@@ -328,7 +329,7 @@
 										</vbox>
 									</hbox>
 								</vbox>
-								<separator class="thin"/>
+								<separator class="thin"/>					
 								<label><html:h2>__MSG_localizeTargetLabel__</html:h2></label>
 								<hbox flex="1" align="center">
 									<radiogroup id="localizeTargetRadiogroup" orient="horizontal" preference="extensions.cardbook.localizeTarget" type="string" instantApply="true">
@@ -336,7 +337,7 @@
 										<radio value="out" label="__MSG_localizeTargetOutLabel__" accesskey="__MSG_localizeTargetOutAccesskey__"/>
 									</radiogroup>
 								</hbox>
-								<separator class="thin"/>
+								<separator class="thin"/>					
 								<label><html:h2>__MSG_miscEditingGroupboxLabel__</html:h2></label>
 								<hbox flex="1" align="center">
 									<checkbox id="preferEmailEditionCheckBox" label="__MSG_preferEmailEditionLabel__"
@@ -368,7 +369,7 @@
 								<label><html:h2>__MSG_editionGroupboxLabel__</html:h2></label>
 								<label>__MSG_editionWarn__</label>
 								<checkbox id="fieldsCheckbox" oncommand="wdw_cardbookConfiguration.changedFieldsMainCheckbox();" label="__MSG_selectAllFieldsLabel__"/>
-								<table id="fieldsTreeTable" class="tableTree"
+								<table id="fieldsTreeTable" class="tableTree" 
 									data-sort-order="ascending" data-sort-column="fieldsName"
 									onclick="wdw_cardbookConfiguration.clickTree(event);"
 									onkeydown="wdw_cardbookConfiguration.keyDownTree(event);"/>
@@ -399,7 +400,7 @@
 								</hbox>
 								<separator class="thin"/>
 								<hbox flex="1">
-									<table id="typesTable" class="tableTree"
+									<table id="typesTable" class="tableTree" 
 										data-sort-order="ascending" data-sort-column="typesLabel"
 										onclick="wdw_cardbookConfiguration.clickTree(event);"
 										ondblclick="wdw_cardbookConfiguration.doubleClickTree(event);"
@@ -443,7 +444,7 @@
 								</hbox>
 								<separator class="thin"/>
 								<hbox flex="1">
-									<table id="IMPPsTable" class="tableTree"
+									<table id="IMPPsTable" class="tableTree" 
 										data-sort-order="ascending" data-sort-column="IMPPLabelHeader"
 										onclick="wdw_cardbookConfiguration.clickTree(event);"
 										ondblclick="wdw_cardbookConfiguration.doubleClickTree(event);"
@@ -523,9 +524,9 @@
 										<radio value="org" label="__MSG_customFieldsOrgTitleLabel__" accesskey="__MSG_customFieldsOrgTitleAccesskey__"/>
 									</radiogroup>
 								</hbox>
-
+					
 								<hbox flex="1">
-									<table id="customFieldsTable" class="tableTree"
+									<table id="customFieldsTable" class="tableTree" 
 										data-sort-order="ascending" data-sort-column="customFieldRankHeader"
 										onclick="wdw_cardbookConfiguration.clickTree(event);"
 										ondblclick="wdw_cardbookConfiguration.doubleClickTree(event);"
@@ -544,7 +545,7 @@
 								<label>__MSG_orgWarn__</label>
 								<separator class="thin"/>
 								<hbox flex="1">
-									<table id="orgTreeTable" class="tableTree"
+									<table id="orgTreeTable" class="tableTree" 
 										data-sort-order="ascending" data-sort-column="orgRank"
 										onclick="wdw_cardbookConfiguration.clickTree(event);"
 										ondblclick="wdw_cardbookConfiguration.doubleClickTree(event);"
@@ -572,11 +573,11 @@
 													<label value="__MSG_kindCustomLabel__"
 														accesskey="__MSG_kindCustomAccesskey__"
 														control="kindCustomTextBox"
-														id="kindCustom"/>
+														id="kindCustom"/>	
 												</html:td>
 												<html:td class="cardbook-td-input listPane-input">
 													<html:input id="kindCustomTextBox"
-														preference="extensions.cardbook.kindCustom" type="string"
+														preference="extensions.cardbook.kindCustom" type="string" 
 														oninput="wdw_cardbookConfiguration.customFieldCheck(this);wdw_cardbookConfiguration.validateCustomListValues();"/>
 												</html:td>
 												<html:td>
@@ -669,7 +670,7 @@
 								<label>__MSG_discoveryWarn__</label>
 								<checkbox id="discoveryAccountsCheckbox" oncommand="wdw_cardbookConfiguration.changedDiscoveryMainCheckbox();" label="__MSG_selectAllDiscoveryLabel__"/>
 								<hbox flex="1">
-									<table id="discoveryAccountsTable" class="tableTree"
+									<table id="discoveryAccountsTable" class="tableTree" 
 										data-sort-order="ascending" data-sort-column="discoveryAccountsName"
 										onclick="wdw_cardbookConfiguration.clickTree(event);"
 										ondblclick="wdw_cardbookConfiguration.doubleClickTree(event);"
@@ -705,7 +706,7 @@
 								<label><html:h2>__MSG_attachVCardGroupboxLabel__</html:h2></label>
 								<label>__MSG_attachVCardWarn__</label>
 								<hbox flex="1">
-									<table id="accountsVCardsTable" class="tableTree"
+									<table id="accountsVCardsTable" class="tableTree" 
 										data-sort-order="ascending" data-sort-column="accountsVCardsMailName"
 										onclick="wdw_cardbookConfiguration.clickTree(event);"
 										ondblclick="wdw_cardbookConfiguration.doubleClickTree(event);"
@@ -720,7 +721,7 @@
 								<label><html:h2>__MSG_emailsCollectionLabel__</html:h2></label>
 								<label>__MSG_emailsCollectionTooltip__</label>
 								<hbox flex="1">
-									<table id="emailsCollectionTable" class="tableTree"
+									<table id="emailsCollectionTable" class="tableTree" 
 										data-sort-order="ascending" data-sort-column="emailsCollectionMailName"
 										onclick="wdw_cardbookConfiguration.clickTree(event);"
 										ondblclick="wdw_cardbookConfiguration.doubleClickTree(event);"
@@ -765,32 +766,32 @@
 									<label id="eventEntryTimeDesc4" class="indent"/>
 									<label id="eventEntryTimeDesc5" class="indent"/>
 								</vbox>
-								<separator class="thin"/>
+								<separator class="thin"/>             
 								<label><html:h2>__MSG_addressbooksGroupboxLabel__</html:h2></label>
 								<label>__MSG_birthdayListWarn__</label>
 								<vbox flex="1">
 									<checkbox id="addressbooksCheckbox" oncommand="wdw_cardbookConfiguration.changedAddressbooksMainCheckbox();" label="__MSG_selectAllABsLabel__"/>
 									<hbox flex="1">
-										<table id="addressbooksTable" class="tableTree"
+										<table id="addressbooksTable" class="tableTree" 
 											data-sort-order="ascending" data-sort-column="addressbooksName"
 											onclick="wdw_cardbookConfiguration.clickTree(event);"
 											ondblclick="wdw_cardbookConfiguration.doubleClickTree(event);"
 											onkeydown="wdw_cardbookConfiguration.keyDownTree(event);"/>
 									</hbox>
 								</vbox>
-								<separator class="thin"/>
+								<separator class="thin"/>             
 								<label><html:h2>__MSG_calendarsGroupboxLabel__</html:h2></label>
 								<vbox flex="1">
 									<checkbox id="calendarsCheckbox" oncommand="wdw_cardbookConfiguration.changedCalendarsMainCheckbox();" label="__MSG_selectAllCalendarsLabel__"/>
 									<hbox flex="1">
-										<table id="calendarsTable" class="tableTree"
+										<table id="calendarsTable" class="tableTree" 
 											data-sort-order="ascending" data-sort-column="calendarsName"
 											onclick="wdw_cardbookConfiguration.clickTree(event);"
 											ondblclick="wdw_cardbookConfiguration.doubleClickTree(event);"
 											onkeydown="wdw_cardbookConfiguration.keyDownTree(event);"/>
 									</hbox>
 								</vbox>
-								<separator class="thin"/>
+								<separator class="thin"/>             
 								<label><html:h2>__MSG_remindViaPopupWindowGroupboxLabel__</html:h2></label>
 								<hbox flex="1" align="center">
 									<label value="__MSG_numberOfDaysForSearchingLabel__"
@@ -881,39 +882,6 @@
 							</vbox>
 
 							<vbox id="cardbook-helpPane" class="cardbook-pane" label="__MSG_helpTabLabel__">
-								<!-- +Alt.Icon -->
-								<label><html:h2>CardBook Alt.Icon</html:h2></label>
-								<vbox flex="1" class="indent">
-									<html:p>
-										This is a <html:strong>fork</html:strong> of <html:strong>CardBook</html:strong>.
-									</html:p>
-									<html:p>
-										<html:strong>CardBook Alt.Icon</html:strong> simply provides an <html:strong>alternative</html:strong> main <html:strong>icon</html:strong> more aligned with Thunderbird&#39;s toolbar icon design.
-									</html:p>
-									<html:p>
-										More on:<br/>
-										<label value="GitHub (main)" class="text-link"
-											onclick="cardbookRepository.cardbookUtils.openExternalURL('https://github.com/Gregory-K/CardBook.Alt.Icon')"/><br/>
-										<label value="GitLab (alt.)" class="text-link"
-											onclick="cardbookRepository.cardbookUtils.openExternalURL('https://gitlab.com/Gregory.K/CardBook.Alt.Icon')"/>
-									</html:p>
-								</vbox>
-								<label><html:h3>CAUTION</html:h3></label>
-								<vbox flex="1" class="indent">
-									<html:p>
-										This altered extension was only intended for the author's personal use, and it doesn't offer anything more than a different main icon design. It was plain experimentation now being offered "as is" for anyone to try. It is neither digitally signed nor distributed via the official Thunderbird channels.
-									</html:p>
-									<html:p>
-										You should not use unsigned Add-ons outside the official Thunderbird Add-ons Repository, unless you trust the author/developer or you're able to inspect the source code. It is a serious security risk. The author of the present extension disclaims any responsibility for any damage caused to your Thunderbird installation.
-									</html:p>
-									<html:p>
-										If you are not sure about using this extension, please prefer the
-										<label value="official one" class="text-link"
-											onclick="cardbookRepository.cardbookUtils.openExternalURL('https://gitlab.com/CardBook/CardBook')"/>.
-									</html:p>
-								</vbox>
-								<html:hr />
-								<!-- /+Alt.Icon -->
 								<label><html:h2>__MSG_translateLabel__</html:h2></label>
 								<hbox flex="1" align="center" class="indent">
 									<label>__MSG_websiteLabel__</label>

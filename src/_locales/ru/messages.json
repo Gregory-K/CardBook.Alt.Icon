@@ -3976,27 +3976,6 @@
 	"wdw_adrEditionTitle": {
 		"message": "Редактор адресов"
 	},
-	"adrPostOfficeLabel": {
-		"message": "Абонентский ящик"
-	},
-	"adrExtendedAddrLabel": {
-		"message": "Квартира"
-	},
-	"adrStreetLabel": {
-		"message": "Улица"
-	},
-	"adrLocalityLabel": {
-		"message": "Населённый пункт (Город или посёлок)"
-	},
-	"adrRegionLabel": {
-		"message": "Регион (Край или Район)"
-	},
-	"adrPostalCodeLabel": {
-		"message": "Почтовый индекс"
-	},
-	"adrCountryLabel": {
-		"message": "Страна"
-	},
 	"deprecatedLabel": {
 		"message": "Устарело"
 	},

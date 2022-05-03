@@ -188,10 +188,19 @@ if ("undefined" == typeof(cardbookElementTools)) {
 			return image;
 		},
 
-		addTreeTable: function (aId, aHeaders, aData, aDataParameters, aRowParameters, aSortFunction) {
+		addTreeTable: function (aId, aHeaders, aData, aDataParameters, aRowParameters, aSortFunction, aDataId) {
 			let table = document.getElementById(aId);
 			let sortColumn = table.getAttribute("data-sort-column");
 			let orderColumn = table.getAttribute("data-sort-order");
+
+			let selectedRows = table.querySelectorAll("tr[rowSelected='true']");
+			let selectedValues = [];
+			if (typeof aDataId !== 'undefined') {
+				selectedValues = Array.from(selectedRows, row => row.cells[aDataId].textContent);
+			} else {
+				selectedValues = Array.from(selectedRows, row => Array.from(row.cells, cell => cell.textContent).join());
+			}
+			cardbookElementTools.deleteRows(aId);
 
 			if (aHeaders.length) {
 				let thead = cardbookElementTools.addHTMLTHEAD(table, `${aId}_thead`);
@@ -207,9 +216,9 @@ if ("undefined" == typeof(cardbookElementTools)) {
 					if (aHeaders[i] == sortColumn) {
 						let sortImg;
 						if (orderColumn == "ascending" ) {
-							sortImg = cardbookElementTools.addHTMLIMAGE(th, `${aId}_thead_th_${i}_image`, { "src": "chrome://global/skin/icons/arrow-down-12.svg" } );
+							sortImg = cardbookElementTools.addHTMLIMAGE(th, `${aId}_thead_th_${i}_image`, { "src": "chrome://cardbook/content/skin/small-icons/arrow-down.svg" } );
 						} else {
-							sortImg = cardbookElementTools.addHTMLIMAGE(th, `${aId}_thead_th_${i}_image`, { "src": "chrome://global/skin/icons/arrow-up-12.svg" } );
+							sortImg = cardbookElementTools.addHTMLIMAGE(th, `${aId}_thead_th_${i}_image`, { "src": "chrome://cardbook/content/skin/small-icons/arrow-up.svg" } );
 						}
 						if (aSortFunction) {
 							sortImg.addEventListener("click", aSortFunction, false);
@@ -224,6 +233,12 @@ if ("undefined" == typeof(cardbookElementTools)) {
 				let tbody = cardbookElementTools.addHTMLTBODY(table, `${aId}_tbody`);
 				for (let i = 0; i < aData.length; i++) {
 					let tr = cardbookElementTools.addHTMLTR(tbody, `${aId}_thead_tr_${i}`, {"tabindex": "0"});
+					let trValue = "";
+					if (typeof aDataId !== 'undefined') {
+						trValue = aData[i][aDataId];
+					} else {
+						trValue = aData[i].join();
+					}
 					for (let j = 0; j < aData[i].length; j++) {
 						let td = cardbookElementTools.addHTMLTD(tr, `${aId}_thead_td_${i}_${j}`);
 						let last = td;
@@ -239,6 +254,9 @@ if ("undefined" == typeof(cardbookElementTools)) {
 								last.addEventListener(event[0], event[1], false);
 							}
 						}
+					}
+					if (selectedValues.includes(trValue)) {
+						tr.setAttribute("rowSelected", "true");
 					}
 					if (aRowParameters && aRowParameters.titles && aRowParameters.titles[i]) {
 						tr.setAttribute("title", aRowParameters.titles[i]);
@@ -876,12 +894,6 @@ if ("undefined" == typeof(cardbookElementTools)) {
 			aMenulist.addEventListener("keydown", function(aEvent) {
 				cardbookWindowUtils.panelMenulistKeydown(aEvent, 'type', aType + '_' + aIndex + '_MenupopupType');
 			}, false);
-			aMenulist.addEventListener("keyup", function(aEvent) {
-				cardbookWindowUtils.panelMenulistKeyup(aEvent, 'type', aType + '_' + aIndex + '_MenupopupType');
-			}, false);
-			aMenulist.addEventListener("click", function(aEvent) {
-				cardbookWindowUtils.panelMenulistKeyup(aEvent, 'type', aType + '_' + aIndex + '_MenupopupType');
-			}, false);
 
 			var aMenupopup = document.createXULElement('menupopup');
 			aMenupopup.setAttribute('id', aType + '_' + aIndex + '_MenupopupType');
@@ -1044,21 +1056,19 @@ if ("undefined" == typeof(cardbookElementTools)) {
 			aEditButton.setAttribute('id', aType + '_' + aIndex + '_' + aButtonName + 'Button');
 			aEditButton.setAttribute('class', 'small-button');
 			if (aButtonType == "add") {
-				aEditButton.setAttribute('label', '+');
+				aEditButton.setAttribute('class', 'small-button cardbookAdd');
 			} else if (aButtonType == "remove") {
-				aEditButton.setAttribute('label', '-');
+				aEditButton.setAttribute('class', 'small-button cardbookDelete');
 			} else if (aButtonType == "up") {
-				aEditButton.setAttribute('label', '↑');
+				aEditButton.setAttribute('class', 'small-button cardbookUp');
 			} else if (aButtonType == "down") {
-				aEditButton.setAttribute('label', '↓');
+				aEditButton.setAttribute('class', 'small-button cardbookDown');
 			} else if (aButtonType == "validated") {
-				aEditButton.setAttribute('label', '✔');
+				aEditButton.setAttribute('class', 'small-button cardbookValidated');
 			} else if (aButtonType == "notValidated") {
-				aEditButton.setAttribute('label', '!');
-			} else if (aButtonType == "noValidated") {
-				aEditButton.setAttribute('label', '?');
+				aEditButton.setAttribute('class', 'small-button cardbookNotValidated');
 			} else if (aButtonType == "link") {
-				aEditButton.setAttribute('label', '↔');
+				aEditButton.setAttribute('class', 'small-button cardbookLink');
 			}
 			aEditButton.setAttribute('tooltiptext', cardbookRepository.extension.localeData.localizeMessage(aButtonType + "EntryTooltip"));
 			// aEditButton.addEventListener("click", aFunction, false);

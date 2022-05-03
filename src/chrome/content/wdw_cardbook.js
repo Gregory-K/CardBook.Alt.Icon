@@ -2961,7 +2961,8 @@ if ("undefined" == typeof(wdw_cardbook)) {
 		},
 
 		copyPartialEntryFromTree: function (aPartialIndex) {
-			wdw_cardbook.copyPartialFieldValue(wdw_cardbook.currentType, wdw_cardbook.currentIndex, wdw_cardbook.currentValue, aPartialIndex);
+			var label = cardbookRepository.extension.localeData.localizeMessage(wdw_cardbook.currentType + "Label");
+			wdw_cardbook.copyPartialFieldValue(wdw_cardbook.currentType, wdw_cardbook.currentIndex, aPartialIndex);
 		},
 
 		copyFieldValue: async function (aFieldName, aFieldLabel, aFieldIndex, aFieldValue, aFieldAllValue) {
@@ -3016,14 +3017,16 @@ if ("undefined" == typeof(wdw_cardbook)) {
 			cardbookClipboard.clipboardSetText(result, message);
 		},
 
-		copyPartialFieldValue: function (aFieldName, aFieldIndex, aFieldValue, aPartialIndex) {
-			var card = cardbookRepository.cardbookCards[document.getElementById('dirPrefIdTextBox').value+"::"+document.getElementById('uidTextBox').value];
-			var result = "";
-			// addresses
-			if (aFieldName == "adr") {
-				result = card[aFieldName][aFieldIndex][0][aPartialIndex];
-			}
-			var message = cardbookRepository.extension.localeData.localizeMessage("lineCopied");
+		copyPartialFieldValue: function (aFieldName, aFieldIndex, aPartialIndex) {
+			let card = cardbookRepository.cardbookCards[document.getElementById('dirPrefIdTextBox').value+"::"+document.getElementById('uidTextBox').value];
+			cardbookRepository.currentCopiedEntryName = cardbookRepository.adrElements[aPartialIndex];
+
+			let label = cardbookRepository.extension.localeData.localizeMessage(`${cardbookRepository.adrElements[aPartialIndex]}Label`);
+			cardbookRepository.currentCopiedEntryLabel = label;
+
+			let result = card[aFieldName][aFieldIndex][0][aPartialIndex];
+			cardbookRepository.currentCopiedEntryValue = result;
+			let message = cardbookRepository.extension.localeData.localizeMessage("lineCopied");
 			cardbookClipboard.clipboardSetText(result, message);
 		},
 
@@ -3096,6 +3099,17 @@ if ("undefined" == typeof(wdw_cardbook)) {
 						node = node + "::" + orgArray[j];
 					}
 					cardbookRepository.addOrgToCard(myOutCard, node);
+
+				} else if (cardbookRepository.adrElements.includes(cardbookRepository.currentCopiedEntryName)) {
+					let partialIndex = cardbookRepository.adrElements.indexOf(cardbookRepository.currentCopiedEntryName);
+					if (myOutCard.adr.length) {
+						for (let i = 0; i < myOutCard.adr.length; i++) {
+							myOutCard.adr[i][0][partialIndex] = cardbookRepository.currentCopiedEntryValue;
+						}
+					} else {
+						myOutCard.adr.push([["", "", "", "", "", "", ""], [], "", []]);
+						myOutCard.adr[0][0][partialIndex] = cardbookRepository.currentCopiedEntryValue;
+					}
 				} else {
 					myOutCard[cardbookRepository.currentCopiedEntryName] = JSON.parse(cardbookRepository.currentCopiedEntryValue);
 				}
@@ -3572,10 +3586,9 @@ if ("undefined" == typeof(wdw_cardbook)) {
 
 		adrTreeContextShowing: function () {
 			wdw_cardbook.setCopyLabel('adr');
-			let adrElements = [ "PostOffice", "ExtendedAddr", "Street", "Locality", "Region", "PostalCode", "Country" ];
-			for (let element of adrElements) {
-				let label = cardbookRepository.extension.localeData.localizeMessage('adr' + element + 'Label');
-				wdw_cardbook.setElementIdLabelWithBundleArray('copyadr' + element + 'Tree', 'copyFieldValue', [ label ] );
+			for (let element of cardbookRepository.adrElements) {
+				let label = cardbookRepository.extension.localeData.localizeMessage(element + 'Label');
+				wdw_cardbook.setElementIdLabelWithBundleArray('copy' + element + 'Tree', 'copyFieldValue', [ label ] );
 			}
 		},
 

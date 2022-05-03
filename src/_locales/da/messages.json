@@ -3976,27 +3976,6 @@
 	"wdw_adrEditionTitle": {
 		"message": "Adresseredigering"
 	},
-	"adrPostOfficeLabel": {
-		"message": "Postboks"
-	},
-	"adrExtendedAddrLabel": {
-		"message": "Yderligere adresseoplysninger"
-	},
-	"adrStreetLabel": {
-		"message": "Gade"
-	},
-	"adrLocalityLabel": {
-		"message": "By"
-	},
-	"adrRegionLabel": {
-		"message": "Region"
-	},
-	"adrPostalCodeLabel": {
-		"message": "Postnummer"
-	},
-	"adrCountryLabel": {
-		"message": "Land"
-	},
 	"deprecatedLabel": {
 		"message": "Forældet"
 	},

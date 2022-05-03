@@ -162,8 +162,7 @@ var cardbookTypes = {
 			}
 		}
 		if (!aResetToCore) {
-			var count = {};
-			var customTypes = Services.prefs.getChildList(cardbookRepository.cardbookPreferences.prefCardBookCustomTypes + aABType + "." + aType + ".", count);
+			var customTypes = Services.prefs.getChildList(cardbookRepository.cardbookPreferences.prefCardBookCustomTypes + aABType + "." + aType + ".");
 			var tmpArray = [];
 			for (let k = 0; k < customTypes.length; k++) {
 				var tmpValue = customTypes[k].replace(cardbookRepository.cardbookPreferences.prefCardBookCustomTypes + aABType + "." + aType + ".", "");

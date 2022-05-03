@@ -3976,27 +3976,6 @@
 	"wdw_adrEditionTitle": {
 		"message": "Adreso redaktorius"
 	},
-	"adrPostOfficeLabel": {
-		"message": "Pašto dėžutė"
-	},
-	"adrExtendedAddrLabel": {
-		"message": "Apartamentai"
-	},
-	"adrStreetLabel": {
-		"message": "Gatvės adresas"
-	},
-	"adrLocalityLabel": {
-		"message": "Miestas"
-	},
-	"adrRegionLabel": {
-		"message": "Rajonas (Valstija, Provincija)"
-	},
-	"adrPostalCodeLabel": {
-		"message": "Pašto indeksas"
-	},
-	"adrCountryLabel": {
-		"message": "Valstybė"
-	},
 	"deprecatedLabel": {
 		"message": "Nenaudotina"
 	},

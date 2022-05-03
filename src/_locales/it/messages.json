@@ -3976,27 +3976,6 @@
 	"wdw_adrEditionTitle": {
 		"message": "Editor di indirizzo"
 	},
-	"adrPostOfficeLabel": {
-		"message": "Casella postale"
-	},
-	"adrExtendedAddrLabel": {
-		"message": "Interno"
-	},
-	"adrStreetLabel": {
-		"message": "Via"
-	},
-	"adrLocalityLabel": {
-		"message": "Città"
-	},
-	"adrRegionLabel": {
-		"message": "Provincia/Stato"
-	},
-	"adrPostalCodeLabel": {
-		"message": "CAP"
-	},
-	"adrCountryLabel": {
-		"message": "Paese"
-	},
 	"deprecatedLabel": {
 		"message": "Deprecato"
 	},

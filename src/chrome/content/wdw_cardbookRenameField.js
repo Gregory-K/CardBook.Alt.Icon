@@ -50,7 +50,7 @@ function onLoadDialog () {
 		if (orgStructure != "") {
 			var tmpArray = cardbookRepository.cardbookUtils.unescapeArray(cardbookRepository.cardbookUtils.escapeString(orgStructure).split(";"));
 			var idArray = window.arguments[0].id.split("::");
-			document.getElementById('typeLabel').value = cardbookRepository.extension.localeData.localizeMessage("wdw_cardbookRenameField" + window.arguments[0].context + "Label", [tmpArray[idArray.length - 2]]);
+			document.getElementById('typeLabel').value = cardbookRepository.extension.localeData.localizeMessage("wdw_cardbookRenameField" + window.arguments[0].context + "Label", [tmpArray[idArray.length - 3]]);
 		} else {
 			document.getElementById('typeLabel').value = cardbookRepository.extension.localeData.localizeMessage("orgNodeLabel");
 		}

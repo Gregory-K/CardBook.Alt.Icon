@@ -3976,27 +3976,6 @@
 	"wdw_adrEditionTitle": {
 		"message": "Uređivač adresa"
 	},
-	"adrPostOfficeLabel": {
-		"message": "Poštanski sandučić"
-	},
-	"adrExtendedAddrLabel": {
-		"message": "Apartman"
-	},
-	"adrStreetLabel": {
-		"message": "Ulica"
-	},
-	"adrLocalityLabel": {
-		"message": "Mjesto (mjesto ili grad)"
-	},
-	"adrRegionLabel": {
-		"message": "Regija (država ili teritorija)"
-	},
-	"adrPostalCodeLabel": {
-		"message": "Poštanski broj"
-	},
-	"adrCountryLabel": {
-		"message": "Zemlja"
-	},
 	"deprecatedLabel": {
 		"message": "Obustavljeno"
 	},

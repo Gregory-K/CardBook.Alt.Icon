@@ -3976,27 +3976,6 @@
 	"wdw_adrEditionTitle": {
 		"message": "Editor Alamat"
 	},
-	"adrPostOfficeLabel": {
-		"message": "Kotak surat"
-	},
-	"adrExtendedAddrLabel": {
-		"message": "Apartemen atau Suite"
-	},
-	"adrStreetLabel": {
-		"message": "Alamat Jalan"
-	},
-	"adrLocalityLabel": {
-		"message": "Kota"
-	},
-	"adrRegionLabel": {
-		"message": "Propinsi/Negara Begian"
-	},
-	"adrPostalCodeLabel": {
-		"message": "Kode Pos/ZIP"
-	},
-	"adrCountryLabel": {
-		"message": "Negara"
-	},
 	"deprecatedLabel": {
 		"message": "Sudah Usang"
 	},
