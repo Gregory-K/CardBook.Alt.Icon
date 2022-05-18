@@ -15,6 +15,7 @@ var cardBookEditionPrefObserver = {
 				wdw_cardEdition.setEditionFields();
 				wdw_cardEdition.loadEditionFields();
 				wdw_cardEdition.loadFieldSelector();
+				wdw_cardEdition.setConvertButtons();
 				break;
 			case "accountShown":
 				wdw_cardEdition.changePreviousNext();

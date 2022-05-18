@@ -167,11 +167,11 @@
 	"ValidatingEmailFailedLabel": {
 		"message": "Giltig e-postadress krävs"
 	},
-	"ValidationFailedOffLine": {
-		"message": "Du är nedkopplad."
-	},
 	"ValidationFailedLabel": {
 		"message": "Validering misslyckades"
+	},
+	"ValidationFailedOffLine": {
+		"message": "Du är nedkopplad."
 	},
 	"ValidationOKLabel": {
 		"message": "Validering OK"
@@ -3403,6 +3403,12 @@
 	"dontAutoComputeFn": {
 		"message": "??Disable the generation of the display name??"
 	},
+	"autoConvertField": {
+		"message": "??Enable the convertion of this field??"
+	},
+	"dontAutoConvertField": {
+		"message": "??Disable the convertion of this field??"
+	},
 	"customLabel": {
 		"message": "Anpassat"
 	},
@@ -4440,6 +4446,12 @@
 	},
 	"fieldsButtonLabel": {
 		"message": "Ange som standard"
+	},
+	"renameFieldsLabel": {
+		"message": "Redigera"
+	},
+	"renameFieldsAccesskey": {
+		"message": "R"
 	},
 	"preferDisplayNameCheckBoxLabel": {
 		"message": "Visa alltid namnet före namnet i rubriken"
@@ -5968,5 +5980,26 @@
 	},
 	"allAddressBooks": {
 		"message": "Alla adressböcker"
+	},
+	"selectedLabel": {
+		"message": "Vald"
+	},
+	"conversionWarn": {
+		"message": "??It is possible to force the convertion of some fields while providing them.??"
+	},
+	"convertToLabel": {
+		"message": "Konvertera till"
+	},
+	"wdw_cardbookConfigurationEditFieldTitle": {
+		"message": "??Choose a convertion function??"
+	},
+	"uppercaseLabel": {
+		"message": "??Uppercase??"
+	},
+	"lowercaseLabel": {
+		"message": "??Lowercase??"
+	},
+	"capitalizationLabel": {
+		"message": "??Capitalization??"
 	}
 }

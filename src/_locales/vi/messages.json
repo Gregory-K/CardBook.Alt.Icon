@@ -167,11 +167,11 @@
 	"ValidatingEmailFailedLabel": {
 		"message": "Yêu cầu thư điện tử hợp lệ"
 	},
-	"ValidationFailedOffLine": {
-		"message": "Bạn hiện đang ngoại tuyến."
-	},
 	"ValidationFailedLabel": {
 		"message": "Xác thực không thành công"
+	},
+	"ValidationFailedOffLine": {
+		"message": "Bạn hiện đang ngoại tuyến."
 	},
 	"ValidationOKLabel": {
 		"message": "Xác nhận Được"
@@ -3403,6 +3403,12 @@
 	"dontAutoComputeFn": {
 		"message": "??Disable the generation of the display name??"
 	},
+	"autoConvertField": {
+		"message": "??Enable the convertion of this field??"
+	},
+	"dontAutoConvertField": {
+		"message": "??Disable the convertion of this field??"
+	},
 	"customLabel": {
 		"message": "Tùy biến"
 	},
@@ -4440,6 +4446,12 @@
 	},
 	"fieldsButtonLabel": {
 		"message": "Đặt làm mặc định"
+	},
+	"renameFieldsLabel": {
+		"message": "Chỉnh sửa"
+	},
+	"renameFieldsAccesskey": {
+		"message": "C"
 	},
 	"preferDisplayNameCheckBoxLabel": {
 		"message": "Luôn ưu tiên tên hiển thị hơn tiêu đề thư"
@@ -5968,5 +5980,26 @@
 	},
 	"allAddressBooks": {
 		"message": "Tất cả các sổ địa chỉ"
+	},
+	"selectedLabel": {
+		"message": "Chọn"
+	},
+	"conversionWarn": {
+		"message": "??It is possible to force the convertion of some fields while providing them.??"
+	},
+	"convertToLabel": {
+		"message": "Chuyển đổi thành"
+	},
+	"wdw_cardbookConfigurationEditFieldTitle": {
+		"message": "??Choose a convertion function??"
+	},
+	"uppercaseLabel": {
+		"message": "??Uppercase??"
+	},
+	"lowercaseLabel": {
+		"message": "??Lowercase??"
+	},
+	"capitalizationLabel": {
+		"message": "??Capitalization??"
 	}
 }

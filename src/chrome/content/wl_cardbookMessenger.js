@@ -793,7 +793,7 @@ function onLoad(wasAlreadyOpen) {
 										<vbox id="fnGroupbox" flex="1">
 											<label class="header">__MSG_fnLabel__</label>
 											<hbox id="fnRow" flex="1" class="indent">
-												<label id="fnTextBox" fieldName="fn"/>
+												<label id="fnTextBox" data-field-name="fn"/>
 											</hbox>
 										</vbox>
 										<hbox id="persBox" flex="1">
@@ -806,7 +806,7 @@ function onLoad(wasAlreadyOpen) {
 																<label id="lastnameLabel" value="__MSG_lastnameLabel__" control="lastnameTextBox" class="header"/>
 															</html:td>
 															<html:td>
-																<label id="lastnameTextBox" fieldName="lastname"/>
+																<label id="lastnameTextBox" data-field-name="lastname"/>
 															</html:td>
 														</html:tr>
 														<html:tr id="firstnameRow">
@@ -814,7 +814,7 @@ function onLoad(wasAlreadyOpen) {
 																<label id="firstnameLabel" value="__MSG_firstnameLabel__" control="firstnameTextBox" class="header"/>
 															</html:td>
 															<html:td>
-																<label id="firstnameTextBox" fieldName="firstname"/>
+																<label id="firstnameTextBox" data-field-name="firstname"/>
 															</html:td>
 														</html:tr>
 														<html:tr id="othernameRow">
@@ -822,7 +822,7 @@ function onLoad(wasAlreadyOpen) {
 																<label id="othernameLabel" value="__MSG_othernameLabel__" control="othernameTextBox" class="header"/>
 															</html:td>
 															<html:td>
-																<label id="othernameTextBox" fieldName="othername"/>
+																<label id="othernameTextBox" data-field-name="othername"/>
 															</html:td>
 														</html:tr>
 														<html:tr id="prefixnameRow">
@@ -830,7 +830,7 @@ function onLoad(wasAlreadyOpen) {
 																<label id="prefixnameLabel" value="__MSG_prefixnameLabel__" control="prefixnameTextBox" class="header"/>
 															</html:td>
 															<html:td>
-																<label id="prefixnameTextBox" fieldName="prefixname"/>
+																<label id="prefixnameTextBox" data-field-name="prefixname"/>
 															</html:td>
 														</html:tr>
 														<html:tr id="suffixnameRow">
@@ -838,7 +838,7 @@ function onLoad(wasAlreadyOpen) {
 																<label id="suffixnameLabel" value="__MSG_suffixnameLabel__" control="suffixnameTextBox" class="header"/>
 															</html:td>
 															<html:td>
-																<label id="suffixnameTextBox" fieldName="suffixname"/>
+																<label id="suffixnameTextBox" data-field-name="suffixname"/>
 															</html:td>
 														</html:tr>
 														<html:tr id="nicknameRow">
@@ -846,7 +846,7 @@ function onLoad(wasAlreadyOpen) {
 																<label id="nicknameLabel" value="__MSG_nicknameLabel__" control="nicknameTextBox" class="header"/>
 															</html:td>
 															<html:td>
-																<label id="nicknameTextBox" fieldName="nickname"/>
+																<label id="nicknameTextBox" data-field-name="nickname"/>
 															</html:td>
 														</html:tr>
 														<html:tr id="genderRow">
@@ -854,7 +854,7 @@ function onLoad(wasAlreadyOpen) {
 																<label id="genderLabel" value="__MSG_genderLabel__" control="genderTextBox" class="header"/>
 															</html:td>
 															<html:td>
-																<label id="genderTextBox" fieldName="gender"/>
+																<label id="genderTextBox" data-field-name="gender"/>
 															</html:td>
 														</html:tr>
 														<html:tr id="bdayRow">
@@ -862,7 +862,7 @@ function onLoad(wasAlreadyOpen) {
 																<label id="bdayLabel" value="__MSG_bdayLabel__" control="bdayTextBox" class="header"/>
 															</html:td>
 															<html:td>
-																<label id="bdayTextBox" fieldName="bday"/>
+																<label id="bdayTextBox" data-field-name="bday"/>
 															</html:td>
 														</html:tr>
 														<html:tr id="birthplaceRow">
@@ -870,7 +870,7 @@ function onLoad(wasAlreadyOpen) {
 																<label id="birthplaceLabel" value="__MSG_birthplaceLabel__" control="birthplaceTextBox" class="header"/>
 															</html:td>
 															<html:td>
-																<label id="birthplaceTextBox" fieldName="birthplace"/>
+																<label id="birthplaceTextBox" data-field-name="birthplace"/>
 															</html:td>
 														</html:tr>
 														<html:tr id="deathdateRow">
@@ -878,7 +878,7 @@ function onLoad(wasAlreadyOpen) {
 																<label id="deathdateLabel" value="__MSG_deathdateLabel__" control="deathdateTextBox" class="header"/>
 															</html:td>
 															<html:td>
-																<label id="deathdateTextBox" fieldName="deathdate"/>
+																<label id="deathdateTextBox" data-field-name="deathdate"/>
 															</html:td>
 														</html:tr>
 														<html:tr id="deathplaceRow">
@@ -886,7 +886,7 @@ function onLoad(wasAlreadyOpen) {
 																<label id="deathplaceLabel" value="__MSG_deathplaceLabel__" control="deathplaceTextBox" class="header"/>
 															</html:td>
 															<html:td>
-																<label id="deathplaceTextBox" fieldName="deathplace"/>
+																<label id="deathplaceTextBox" data-field-name="deathplace"/>
 															</html:td>
 														</html:tr>
 														<html:tr id="anniversaryRow">
@@ -894,7 +894,7 @@ function onLoad(wasAlreadyOpen) {
 																<label id="anniversaryLabel" value="__MSG_anniversaryLabel__" control="anniversaryTextBox" class="header"/>
 															</html:td>
 															<html:td>
-																<label id="anniversaryTextBox" fieldName="anniversary"/>
+																<label id="anniversaryTextBox" data-field-name="anniversary"/>
 															</html:td>
 														</html:tr>
 													</html:table>

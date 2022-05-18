@@ -10,12 +10,13 @@
 }
 
 #fieldsTreeTable {
-	max-height: 600px;
+	max-height: 500px;
 }
 
-#fieldsTreeTable td:not(:first-child) {
+#fieldsTreeTable td:not(:first-child),
+#fieldsTreeTable th:not(:first-child) {
 	width: 100%;
-	min-width: 700px;
+	min-width: 230px;
 }
 
 #typesTable {

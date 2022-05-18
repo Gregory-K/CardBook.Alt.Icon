@@ -15,6 +15,26 @@ if ("undefined" == typeof(wdw_formatData)) {
 		cardsLoaded: false,
 		abort: false,
 
+		getFieldTypeValue: function () {
+			let field = document.getElementById('fieldMenulist').value;
+			if (cardbookRepository.allColumns.personal.includes(field) || cardbookRepository.allColumns.org.includes(field) || cardbookRepository.adrElements.includes(field)) {
+				return "string";
+			} else {
+				let personalCB = cardbookRepository.customFields.personal.filter(x => x[0] == field);
+				let orgCB = cardbookRepository.customFields.org.filter(x => x[0] == field);
+				if (personalCB.length || orgCB.length) {
+					return "custom";
+				} else {
+					let orgStructure = cardbookRepository.cardbookPreferences.getStringPref("extensions.cardbook.orgStructure");
+					let orgStructureArray = cardbookRepository.cardbookUtils.unescapeArray(cardbookRepository.cardbookUtils.escapeString(orgStructure).split(";"));
+					if (orgStructureArray.includes(field.replace(/^org\./, ""))) {
+						return "customOrg";
+					}
+				}
+			}
+			return "";
+		},
+
 		loadCountries: async function () {
 			const loc = new Localization(["toolkit/intl/regionNames.ftl"]);
 			for (let code of cardbookRepository.countriesList) {
@@ -44,6 +64,62 @@ if ("undefined" == typeof(wdw_formatData)) {
 						return aValue.toLowerCase();
 					}
 					break;
+			}
+        },
+
+		displayCardLineFields: function (aCardLine) {
+            // [index, aCard.cbid, aCard.fn, field source, field modified]
+			let table = document.getElementById('fieldsTable');
+			let row = cardbookElementTools.addHTMLTR(table, `${aCardLine[0]}.row`, {"align": "center", "class": "rowCount"});
+            let fnData = cardbookElementTools.addHTMLTD(row, `${aCardLine[0]}.fnData`);
+            wdw_formatData.createLabel(fnData, `${aCardLine[0]}.fn`, aCardLine[2]);
+            let valueData = cardbookElementTools.addHTMLTD(row, `${aCardLine[0]}.valueData`);
+            wdw_formatData.createTextbox(valueData, `${aCardLine[0]}.value`, aCardLine[4], 'fields');
+            let formatData = cardbookElementTools.addHTMLTD(row, `${aCardLine[0]}.formatData`);
+            wdw_formatData.createFormatFieldButton(formatData, `${aCardLine[0]}.format`);
+            let undoData = cardbookElementTools.addHTMLTD(row, `${aCardLine[0]}.undoData`);
+            wdw_formatData.createUndoButton(undoData, `${aCardLine[0]}.undo`);
+            let cbidData = cardbookElementTools.addHTMLTD(row, `${aCardLine[0]}.cbidData`);
+            wdw_formatData.createHiddenLabel(cbidData, `${aCardLine[0]}.cbid`, aCardLine[1]);
+            let sourceValueData = cardbookElementTools.addHTMLTD(row, `${aCardLine[0]}.sourceValueData`);
+            wdw_formatData.createHiddenLabel(sourceValueData, `${aCardLine[0]}.sourceValue`, aCardLine[3]);
+        },
+
+		loadCardFields: async function (aCard) {
+			if (wdw_formatData.abort) {
+				return
+			}
+			let field = document.getElementById('fieldMenulist').value;
+			let value = "";
+			let fieldType = wdw_formatData.getFieldTypeValue();
+
+			if (fieldType == "string") {
+				if (typeof aCard[field] !== 'undefined') {
+					value = aCard[field];
+				}
+				wdw_formatData.displayCardLineFields([wdw_formatData.lines, aCard.cbid, aCard.fn, value, value]);
+				wdw_formatData.lines++;
+				wdw_formatData.rowDone++;
+			} else if (fieldType == "custom") {
+				let tmpArray = aCard.others.filter( x => x.startsWith(field + ":"));
+				if (tmpArray.length) {
+					let regexp = new RegExp("^" + field + ":");
+					value = tmpArray[0].replace(regexp, "");
+				}
+				wdw_formatData.displayCardLineFields([wdw_formatData.lines, aCard.cbid, aCard.fn, value, value]);
+				wdw_formatData.lines++;
+				wdw_formatData.rowDone++;
+			} else if (fieldType == "customOrg") {
+				let orgStructure = cardbookRepository.cardbookPreferences.getStringPref("extensions.cardbook.orgStructure");
+				let orgStructureArray = cardbookRepository.cardbookUtils.unescapeArray(cardbookRepository.cardbookUtils.escapeString(orgStructure).split(";"));
+				let index = orgStructureArray.indexOf(field.replace(/^org\./, ""));
+				let orgValue = cardbookRepository.cardbookUtils.unescapeArray(cardbookRepository.cardbookUtils.escapeString(aCard.org).split(";"));
+				if (orgValue[index]) {
+					value = orgValue[index];
+				}
+				wdw_formatData.displayCardLineFields([wdw_formatData.lines, aCard.cbid, aCard.fn, value, value]);
+				wdw_formatData.lines++;
+				wdw_formatData.rowDone++;
 			}
         },
 
@@ -167,15 +243,29 @@ if ("undefined" == typeof(wdw_formatData)) {
 			aTextbox.setAttribute('id', aId);
 			aTextbox.setAttribute('value', aValue);
 			aTextbox.setAttribute('valuetype', aType);
-			let validatedValue = wdw_formatData.getNewFormat(aId.replace(/.value$/, ""), aValue, aType, aParam);
+			let validatedValue = "";
+			if (aType == "fields") {
+				if (aValue) {
+					let convertFunction = document.getElementById('convertFuntionMenulist').value;
+					validatedValue = cardbookRepository.cardbookUtils.convertField(convertFunction, aValue);
+				}
+			} else {
+				validatedValue = wdw_formatData.getNewFormat(aId.replace(/.value$/, ""), aValue, aType, aParam);
+			}
 			if (validatedValue && aValue == validatedValue) {
 				aTextbox.setAttribute("class", "validated");
 			}
 			async function fireButton(event) {
 				let id = this.id.replace(/.value$/, "");
 				let valuetype = this.getAttribute('valuetype');
-				let validatedValue = wdw_formatData.getNewFormat(id, this.value, valuetype);
-                if (validatedValue && this.value == validatedValue) {
+				let validatedValue = "";
+				if (valuetype == "fields") {
+					let convertFunction = document.getElementById('convertFuntionMenulist').value;
+					validatedValue = cardbookRepository.cardbookUtils.convertField(convertFunction, this.value);
+				} else {
+					validatedValue = wdw_formatData.getNewFormat(id, this.value, valuetype);
+				}
+				if (validatedValue && this.value == validatedValue) {
                     this.setAttribute("class", "validated");
                 } else {
                     this.removeAttribute("class");
@@ -250,7 +340,103 @@ if ("undefined" == typeof(wdw_formatData)) {
 				}
 			};
 			aMenupopup.addEventListener("popupshowing", fireButton, false);
-            return aMenulist;
+			return aMenulist;
+		},
+
+		createConvertFunctionList: async function (aParent) {
+			let aMenulist = document.createXULElement('menulist');
+			aParent.appendChild(aMenulist);
+			aMenulist.setAttribute('id', 'convertFuntionMenulist');
+			aMenulist.setAttribute('sizetopopup', 'none');
+			let aMenupopup = document.createXULElement('menupopup');
+			aMenulist.appendChild(aMenupopup);
+			aMenupopup.setAttribute('id', 'convertFuntionMenupopup');
+
+			let menuItem = aMenulist.appendItem(cardbookRepository.extension.localeData.localizeMessage("capitalizationLabel"), "capitalization");
+			aMenupopup.appendChild(menuItem);
+			aMenulist.selectedIndex = 0;
+
+			async function fireButton(event) {
+				cardbookElementTools.deleteRows(this.id);
+				let convertFunctions = [];
+				for (let value of [ "uppercase", "lowercase", "capitalization" ]) {
+					convertFunctions.push([value, cardbookRepository.extension.localeData.localizeMessage(`${value}Label`)]);
+				}
+				for (let convertFunction of convertFunctions) {
+					var menuItem = document.createXULElement("menuitem");
+					menuItem.setAttribute("label", convertFunction[1]);
+					menuItem.setAttribute("value",convertFunction[0]);
+					this.appendChild(menuItem);
+				}
+			};
+			aMenupopup.addEventListener("popupshowing", fireButton, false);
+			return aMenulist;
+		},
+
+		createFieldsList: async function (aParent) {
+			let aMenulist = document.createXULElement('menulist');
+			aParent.appendChild(aMenulist);
+			aMenulist.setAttribute('id', 'fieldMenulist');
+			aMenulist.setAttribute('sizetopopup', 'none');
+			let aMenupopup = document.createXULElement('menupopup');
+			aMenulist.appendChild(aMenupopup);
+			aMenupopup.setAttribute('id', 'fieldMenupopup');
+
+			// note and street are textarea fields
+			let disabledFields = [ "addressbook", "categories", "fn",  "key", "gender", "bday", "anniversary", "deathdate", "country", "email", "tel", "adr", "impp", "url", "event", "note", "street", "list"];
+			let editionFields = cardbookRepository.cardbookUtils.getEditionFieldsList();
+			editionFields = editionFields.filter(x => !disabledFields.includes(x[1]));
+			let menuItem = aMenulist.appendItem(editionFields[0][0], editionFields[0][1]);
+			aMenupopup.appendChild(menuItem);
+			aMenulist.selectedIndex = 0;
+
+			async function fireShowingButton(event) {
+				cardbookElementTools.deleteRows(this.id);
+				for (let editionField of editionFields) {
+					var menuItem = document.createXULElement("menuitem");
+					menuItem.setAttribute("label", editionField[0]);
+					menuItem.setAttribute("value",editionField[1]);
+					this.appendChild(menuItem);
+				}
+			};
+			aMenupopup.addEventListener("popupshowing", fireShowingButton, false);
+
+			async function fireHidingButton(event) {
+				wdw_formatData.displayCards(window.arguments[0].dirPrefId, wdw_formatData.loadCardFields);
+			};
+			aMenupopup.addEventListener("popuphiding", fireHidingButton, false);
+			return aMenulist;
+		},
+
+		createFormatFieldButton: function (aRow, aId) {
+			let aButton = document.createXULElement('button');
+			aRow.appendChild(aButton);
+			aButton.setAttribute('id', aId);
+			aButton.setAttribute('label', cardbookRepository.extension.localeData.localizeMessage("formatEditionLabel"));
+			aButton.setAttribute('flex', '1');
+			async function fireButton(event) {
+				let id = this.id.replace(/.format$/, "");
+                let textbox = document.getElementById(id + '.value');
+                let sourceTextbox = document.getElementById(id + '.sourceValue');
+				if (sourceTextbox.value != textbox.value || !textbox.value) {
+					return
+				}
+
+				let convertFunction = document.getElementById('convertFuntionMenulist').value;
+				let validatedValue = cardbookRepository.cardbookUtils.convertField(convertFunction, textbox.value);
+                if (validatedValue) {
+                    textbox.value = validatedValue;
+                    textbox.setAttribute("class", "validated");
+					if (sourceTextbox.value == textbox.value) {
+						return
+					} 
+					let undoButton = document.getElementById(id + '.undo');
+					undoButton.removeAttribute('disabled');
+                }
+             };
+			aButton.addEventListener("click", fireButton, false);
+			aButton.addEventListener("input", fireButton, false);
+            return aButton;
 		},
 
 		createFormatButton: function (aRow, aId) {
@@ -318,6 +504,15 @@ if ("undefined" == typeof(wdw_formatData)) {
 				return
 			}
 			let valueType = document.getElementById("0.value").getAttribute("valuetype");
+
+			// for field tab
+			let fieldType = "";
+			let field = "";
+			if (valueType == "fields") {
+				field = document.getElementById('fieldMenulist').value;
+				fieldType = wdw_formatData.getFieldTypeValue();
+			}
+
 			let valueTypeName = cardbookRepository.extension.localeData.localizeMessage(`${valueType}Label`);
 			let myTopic = "cardsFormatted";
 			let dirPrefId = window.arguments[0].dirPrefId || null;
@@ -330,7 +525,10 @@ if ("undefined" == typeof(wdw_formatData)) {
 				let cbid = document.getElementById(id + ".cbid").value;
 				let value = document.getElementById(id + ".value").value;
 				let sourceValue = document.getElementById(id + ".sourceValue").value;
-				let index = document.getElementById(id + ".index").value;
+				let index = 0
+				if (document.getElementById(id + ".index")) {
+					index = document.getElementById(id + ".index").value;
+				}
 				if (value != sourceValue) {
 					if (!results[cbid]) {
 						wdw_formatData.toDo++;
@@ -356,10 +554,35 @@ if ("undefined" == typeof(wdw_formatData)) {
 						let index = line[0] - deleted;
 						let value = line[1];
 						if (value) {
-							myOutCard[valueType][index][0] = [value];
+							if (valueType == "fields") {
+								if (fieldType == "string") {
+									myOutCard[field] = value;
+								} else if (fieldType == "custom") {
+									myOutCard.others = myOutCard.others.filter(x => !x.startsWith(field + ":"));
+									myOutCard.others.push(field + ":"+ value);
+								} else if (fieldType == "customOrg") {
+									let orgStructure = cardbookRepository.cardbookPreferences.getStringPref("extensions.cardbook.orgStructure");
+									let orgStructureArray = cardbookRepository.cardbookUtils.unescapeArray(cardbookRepository.cardbookUtils.escapeString(orgStructure).split(";"));
+									let index = orgStructureArray.indexOf(field.replace(/^org\./, ""));
+									let orgValue = cardbookRepository.cardbookUtils.unescapeArray(cardbookRepository.cardbookUtils.escapeString(myOutCard.org).split(";"));
+									orgValue[index] = cardbookRepository.cardbookUtils.escapeStringSemiColon(value.trim());
+									myOutCard.org = cardbookRepository.cardbookUtils.unescapeStringSemiColon(orgValue.join(";"));
+								}
+							} else {
+								myOutCard[valueType][index][0] = [value];
+							}
 						} else {
-							myOutCard[valueType].splice(index, 1);
-							deleted++;
+							if (valueType == "fields") {
+								if (fieldType == "string") {
+									myOutCard[field] = "";
+								} else if (fieldType == "custom") {
+									myOutCard.others = myOutCard.others.filter(x => !x.startsWith(field + ":"));
+								} else if (fieldType == "customOrg") {
+								}
+							} else {
+								myOutCard[valueType].splice(index, 1);
+								deleted++;
+							}
 						}
 					}
 					await cardbookRepository.saveCardFromUpdate(myCard, myOutCard, myActionId, false);
@@ -472,17 +695,26 @@ if ("undefined" == typeof(wdw_formatData)) {
 					aButton.setAttribute("visuallyselected", "true");
 				} else {
 					node.removeAttribute("visuallyselected");
-					node.disabled = true;
 				}
 			}
+            cardbookElementTools.deleteRows('fieldsBox');
+			let fieldsBox = document.getElementById('fieldsBox');
 			switch(aButton.id) {
 				case "tel":
+					fieldsBox.classList.add("hidden");
 					wdw_formatData.displayCards(window.arguments[0].dirPrefId, wdw_formatData.loadCardTels);
 					break;
 				case "email":
+					fieldsBox.classList.add("hidden");
 					wdw_formatData.displayCards(window.arguments[0].dirPrefId, wdw_formatData.loadCardEmails);
 					break;
-			}
+				case "fields":
+					fieldsBox.classList.remove("hidden");
+					wdw_formatData.createFieldsList(fieldsBox);
+					wdw_formatData.createConvertFunctionList(fieldsBox);
+					wdw_formatData.displayCards(window.arguments[0].dirPrefId, wdw_formatData.loadCardFields);
+					break;
+				}
 	},
 
 		cancel: function () {

@@ -3403,6 +3403,12 @@
 	"dontAutoComputeFn": {
 		"message": "Deaktiver genereringen af det viste navn"
 	},
+	"autoConvertField": {
+		"message": "Aktiver konvertingen af dette felt"
+	},
+	"dontAutoConvertField": {
+		"message": "Deaktiver konverteringen af dette felt"
+	},
 	"customLabel": {
 		"message": "Brugerdefineret"
 	},
@@ -4440,6 +4446,12 @@
 	},
 	"fieldsButtonLabel": {
 		"message": "Sæt som standard"
+	},
+	"renameFieldsLabel": {
+		"message": "Rediger"
+	},
+	"renameFieldsAccesskey": {
+		"message": "R"
 	},
 	"preferDisplayNameCheckBoxLabel": {
 		"message": "Vælg altid vis som-navnet frem for navnet i headeren"
@@ -5968,5 +5980,26 @@
 	},
 	"allAddressBooks": {
 		"message": "Alle adressebøger"
+	},
+	"selectedLabel": {
+		"message": "Valgte"
+	},
+	"conversionWarn": {
+		"message": "Det er muligt at gennemtvinge konverteringen af nogle felter men de bliver skaffet."
+	},
+	"convertToLabel": {
+		"message": "Konverter til"
+	},
+	"wdw_cardbookConfigurationEditFieldTitle": {
+		"message": "Vælg en konverteringsfunktion"
+	},
+	"uppercaseLabel": {
+		"message": "Store bogstaver"
+	},
+	"lowercaseLabel": {
+		"message": "Små bogstaver"
+	},
+	"capitalizationLabel": {
+		"message": "Store startbogstaver"
 	}
 }

@@ -3403,6 +3403,12 @@
 	"dontAutoComputeFn": {
 		"message": "Disable the generation of the display name"
 	},
+	"autoConvertField": {
+		"message": "Enable the conversion of this field"
+	},
+	"dontAutoConvertField": {
+		"message": "Disable the conversion of this field"
+	},
 	"customLabel": {
 		"message": "Custom"
 	},
@@ -4440,6 +4446,12 @@
 	},
 	"fieldsButtonLabel": {
 		"message": "Set as Default"
+	},
+	"renameFieldsLabel": {
+		"message": "Edit"
+	},
+	"renameFieldsAccesskey": {
+		"message": "E"
 	},
 	"preferDisplayNameCheckBoxLabel": {
 		"message": "Always prefer display name over message header"
@@ -5968,5 +5980,26 @@
 	},
 	"allAddressBooks": {
 		"message": "All Address Books"
+	},
+	"selectedLabel": {
+		"message": "Selected"
+	},
+	"conversionWarn": {
+		"message": "It is possible to force the conversion of some fields while providing them."
+	},
+	"convertToLabel": {
+		"message": "Convert To"
+	},
+	"wdw_cardbookConfigurationEditFieldTitle": {
+		"message": "Choose a conversion function"
+	},
+	"uppercaseLabel": {
+		"message": "Uppercase"
+	},
+	"lowercaseLabel": {
+		"message": "Lowercase"
+	},
+	"capitalizationLabel": {
+		"message": "Capitalization"
 	}
 }

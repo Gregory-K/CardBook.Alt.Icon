@@ -3403,6 +3403,12 @@
 	"dontAutoComputeFn": {
 		"message": "表示名の生成を無効にする"
 	},
+	"autoConvertField": {
+		"message": "このフィールドの変換を有効にする"
+	},
+	"dontAutoConvertField": {
+		"message": "このフィールドの変換を有効にする"
+	},
 	"customLabel": {
 		"message": "その他"
 	},
@@ -4440,6 +4446,12 @@
 	},
 	"fieldsButtonLabel": {
 		"message": "既定のブラウザーに設定する"
+	},
+	"renameFieldsLabel": {
+		"message": "編集"
+	},
+	"renameFieldsAccesskey": {
+		"message": "E"
 	},
 	"preferDisplayNameCheckBoxLabel": {
 		"message": "メッセージヘッダーでは常に表示名を優先する"
@@ -5968,5 +5980,26 @@
 	},
 	"allAddressBooks": {
 		"message": "すべてのアドレス帳"
+	},
+	"selectedLabel": {
+		"message": "選択しました"
+	},
+	"conversionWarn": {
+		"message": "??It is possible to force the convertion of some fields while providing them.??"
+	},
+	"convertToLabel": {
+		"message": "変換"
+	},
+	"wdw_cardbookConfigurationEditFieldTitle": {
+		"message": "??Choose a convertion function??"
+	},
+	"uppercaseLabel": {
+		"message": "??Uppercase??"
+	},
+	"lowercaseLabel": {
+		"message": "??Lowercase??"
+	},
+	"capitalizationLabel": {
+		"message": "??Capitalization??"
 	}
 }

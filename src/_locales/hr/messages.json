@@ -3403,6 +3403,12 @@
 	"dontAutoComputeFn": {
 		"message": "??Disable the generation of the display name??"
 	},
+	"autoConvertField": {
+		"message": "??Enable the convertion of this field??"
+	},
+	"dontAutoConvertField": {
+		"message": "??Disable the convertion of this field??"
+	},
 	"customLabel": {
 		"message": "Običaj"
 	},
@@ -4440,6 +4446,12 @@
 	},
 	"fieldsButtonLabel": {
 		"message": "??Set as Default??"
+	},
+	"renameFieldsLabel": {
+		"message": "Uredi"
+	},
+	"renameFieldsAccesskey": {
+		"message": "E"
 	},
 	"preferDisplayNameCheckBoxLabel": {
 		"message": "Uvijek preferiraj prikazano ime ispred zaglavlja poruke"
@@ -5968,5 +5980,26 @@
 	},
 	"allAddressBooks": {
 		"message": "Svi adresari"
+	},
+	"selectedLabel": {
+		"message": "Odabrano"
+	},
+	"conversionWarn": {
+		"message": "??It is possible to force the convertion of some fields while providing them.??"
+	},
+	"convertToLabel": {
+		"message": "Pretvori u"
+	},
+	"wdw_cardbookConfigurationEditFieldTitle": {
+		"message": "??Choose a convertion function??"
+	},
+	"uppercaseLabel": {
+		"message": "??Uppercase??"
+	},
+	"lowercaseLabel": {
+		"message": "??Lowercase??"
+	},
+	"capitalizationLabel": {
+		"message": "??Capitalization??"
 	}
 }

@@ -383,6 +383,31 @@ if ("undefined" == typeof(cardbookElementTools)) {
 			return aTextarea;
 		},
 
+		loadConvertionFuntions: async function (aPopup, aMenu, aDefaultValue) {
+			var myResult = [];
+			for (let value of [ "uppercase", "lowercase", "capitalization" ]) {
+				myResult.push([value, cardbookRepository.extension.localeData.localizeMessage(`${value}Label`)]);
+			}
+			cardbookRepository.cardbookUtils.sortMultipleArrayByString(myResult,1,1);
+			cardbookElementTools.deleteRows(aPopup.id);
+			var defaultIndex = 0;
+			var menuItem = aMenu.appendItem("", "");
+			var j = 1;
+			var found = false;
+			for (var i = 0; i < myResult.length; i++) {
+				var menuItem = aMenu.appendItem(myResult[i][1], myResult[i][0]);
+				aPopup.appendChild(menuItem);
+				if (!found && aDefaultValue && aDefaultValue != "" && myResult[i][0].toUpperCase() == aDefaultValue.toUpperCase()) {
+					defaultIndex=j;
+					found=true;
+				}
+				j++;
+			}
+			if (found) {
+				aMenu.selectedIndex = defaultIndex;
+			}
+		},
+
 		loadCountries: async function (aPopup, aMenu, aDefaultValue, aAddEmptyCountries, aUseCodeValues) {
 			const loc = new Localization(["toolkit/intl/regionNames.ftl"]);
 			var myResult = [];
@@ -1073,6 +1098,17 @@ if ("undefined" == typeof(cardbookElementTools)) {
 			aEditButton.setAttribute('tooltiptext', cardbookRepository.extension.localeData.localizeMessage(aButtonType + "EntryTooltip"));
 			// aEditButton.addEventListener("click", aFunction, false);
 			aEditButton.addEventListener("command", aFunction, false);
+		},
+
+		addProcessButton: function (aParent, aId) {
+			var aProcessButton = document.createXULElement('button');
+			aParent.appendChild(aProcessButton);
+			aProcessButton.setAttribute('id', aId);
+			aProcessButton.setAttribute('type', "checkbox");
+			aProcessButton.setAttribute('class', "cardbookProcessClass");
+			aProcessButton.setAttribute('autoConvertField', "true");
+			aProcessButton.addEventListener("command", wdw_cardEdition.setConvertFunction, false);
+			aProcessButton.setAttribute('tooltiptext', cardbookRepository.extension.localeData.localizeMessage("dontAutoConvertField"));
 		}
 	};
 

@@ -3403,6 +3403,12 @@
 	"dontAutoComputeFn": {
 		"message": "Désactiver la génération du nom affiché"
 	},
+	"autoConvertField": {
+		"message": "Activer la convertion de ce champ"
+	},
+	"dontAutoConvertField": {
+		"message": "Désactiver la convertion de ce champ"
+	},
 	"customLabel": {
 		"message": "Divers"
 	},
@@ -4440,6 +4446,12 @@
 	},
 	"fieldsButtonLabel": {
 		"message": "Définir comme défaut"
+	},
+	"renameFieldsLabel": {
+		"message": "Modifier"
+	},
+	"renameFieldsAccesskey": {
+		"message": "M"
 	},
 	"preferDisplayNameCheckBoxLabel": {
 		"message": "Toujours préférer le nom à afficher plutôt que l’en-tête de message"
@@ -5968,5 +5980,26 @@
 	},
 	"allAddressBooks": {
 		"message": "Tous les carnets d’adresses"
+	},
+	"selectedLabel": {
+		"message": "Sélectionné"
+	},
+	"conversionWarn": {
+		"message": "Il est possible de forcer la convertion de certains champs lors de leur saisie."
+	},
+	"convertToLabel": {
+		"message": "Convertir en"
+	},
+	"wdw_cardbookConfigurationEditFieldTitle": {
+		"message": "Choisir une fonction de convertion"
+	},
+	"uppercaseLabel": {
+		"message": "Majuscule"
+	},
+	"lowercaseLabel": {
+		"message": "Minuscule"
+	},
+	"capitalizationLabel": {
+		"message": "Capitalisation"
 	}
 }

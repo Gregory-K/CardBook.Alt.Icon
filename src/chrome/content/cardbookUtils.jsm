@@ -1447,7 +1447,7 @@ var cardbookUtils = {
 		return "";
 	},
 
-	getEditionFields: function() {
+	getEditionFieldsList: function() {
 		let tmpArray = [];
 		tmpArray.push([cardbookRepository.extension.localeData.localizeMessage("addressbookHeader"), "addressbook"]);
 		tmpArray.push([cardbookRepository.extension.localeData.localizeMessage("categoriesHeader"), "categories"]);
@@ -1489,6 +1489,61 @@ var cardbookUtils = {
 		tmpArray.push([cardbookRepository.extension.localeData.localizeMessage("keyTabLabel"), "key"]);
 		cardbookRepository.cardbookUtils.sortMultipleArrayByString(tmpArray,0,1);
 		return tmpArray;
+	},
+
+	getEditionFields: function() {
+		let prefFields = [];
+		prefFields = cardbookRepository.cardbookPreferences.getEditionFields();
+		let editionFields = [];
+		editionFields = cardbookRepository.cardbookUtils.getEditionFieldsList();
+		let result = [];
+		for (let field of editionFields) {
+			let fieldLabel = field[0];
+			let fieldCode = field[1];
+			if (prefFields == "allFields") {
+				result.push([true, fieldLabel, fieldCode, "", ""]);
+			} else {
+				if (prefFields[fieldCode]) {
+					if (prefFields[fieldCode].function != "") {
+						let convertFuntion = prefFields[fieldCode].function;
+						let convertLabel = cardbookRepository.extension.localeData.localizeMessage(`${convertFuntion}Label`);
+						result.push([prefFields[fieldCode].displayed, fieldLabel, fieldCode, convertLabel, convertFuntion]);
+					} else {
+						result.push([prefFields[fieldCode].displayed, fieldLabel,fieldCode, "", ""]);
+					}
+				} else {
+					result.push([false, fieldLabel, fieldCode, "", ""]);
+				}
+			}
+		}
+		return result;
+	},
+
+	setEditionFields: function(aEditionFields) {
+		let result = {};
+		for (let field of aEditionFields) {
+			if (field[0] == "allFields") {
+				result = "allFields";
+				break;
+			} else {
+				result[field[2]] = { displayed: field[0], function: field[4] };
+			}
+		}
+		cardbookRepository.cardbookPreferences.setEditionFields(JSON.stringify(result));
+	},
+
+	convertField: function(aFunction, aValue) {
+		switch(aFunction) {
+			case "lowercase":
+				return aValue.toLowerCase();
+				break;
+			case "uppercase":
+				return aValue.toUpperCase();
+				break;
+			case "capitalization":
+				return aValue.charAt(0).toUpperCase() + aValue.substr(1).toLowerCase();
+				break;
+		};
 	},
 
 	getDataForUpdatingFile: async function(aList, aMediaConversion) {

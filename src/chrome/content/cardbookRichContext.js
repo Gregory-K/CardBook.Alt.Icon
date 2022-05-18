@@ -78,7 +78,7 @@ if ("undefined" == typeof(cardbookRichContext)) {
 		// don't have found a better way to add a contextual menu to a html:textarea or html:input
 		fireBasicFieldContext: function(aEvent) {
 			var textbox = aEvent.target;
-			if (!textbox.getAttribute('fieldName')) {
+			if (!textbox.getAttribute('data-field-name')) {
 				return;
 			}
 			aEvent.stopImmediatePropagation();
@@ -89,16 +89,16 @@ if ("undefined" == typeof(cardbookRichContext)) {
 
 			var menuItem = document.createXULElement("menuitem");
 			menuItem.setAttribute("id", 'cardbookCopyFieldValue::' + textbox.id);
-			if (textbox.getAttribute('fieldLabel')) {
-				var fieldLabel = textbox.getAttribute('fieldLabel');
+			if (textbox.getAttribute('data-field-label')) {
+				var fieldLabel = textbox.getAttribute('data-field-label');
 			} else {
-				var fieldLabel = cardbookRepository.extension.localeData.localizeMessage(textbox.getAttribute('fieldName') + "Label");
+				var fieldLabel = cardbookRepository.extension.localeData.localizeMessage(textbox.getAttribute('data-field-name') + "Label");
 			}
 			var message = cardbookRepository.extension.localeData.localizeMessage("copyFieldValue", [fieldLabel]);
 			menuItem.addEventListener("command", async function(aEvent) {
 					var tmpArray = this.id.split('::');
 					var textbox1 = document.getElementById(tmpArray[1]);
-					var fieldName = textbox1.getAttribute('fieldName');
+					var fieldName = textbox1.getAttribute('data-field-name');
 					if (cardbookRepository.dateFields.includes(fieldName)) {
 						await wdw_cardbook.copyFieldValue(fieldName, fieldLabel, "", "");
 					} else if (cardbookRepository.newFields.includes(fieldName)) {

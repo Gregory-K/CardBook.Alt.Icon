@@ -17,7 +17,6 @@ if ("undefined" == typeof(wdw_cardbook)) {
 		currentValue : "",
 		currentFirstVisibleRow : 0,
 		currentLastVisibleRow : 0,
-		currentAccountId : "",
 		cutAndPaste : "",
 		cardbookrefresh : false,
 		writeButtonFired : false,
@@ -161,7 +160,7 @@ if ("undefined" == typeof(wdw_cardbook)) {
 
 		canDropOnContactBox: function (aEvent) {
 			if (cardbookRepository.cardbookSearchMode != "SEARCH" && cardbookRepository.cardbookComplexSearchMode != "SEARCH") {
-				var myDirPrefId = cardbookRepository.cardbookUtils.getAccountId(wdw_cardbook.currentAccountId);
+				var myDirPrefId = cardbookRepository.cardbookUtils.getAccountId(cardbookRepository.currentAccountId);
 				if (cardbookRepository.cardbookPreferences.getEnabled(myDirPrefId) && !cardbookRepository.cardbookPreferences.getReadOnly(myDirPrefId)) {
 					aEvent.preventDefault();
 				}
@@ -230,7 +229,7 @@ if ("undefined" == typeof(wdw_cardbook)) {
 			}
 			if (show) {
 				document.getElementById('searchRemoteHbox').hidden = false;
-				if (cardbookRepository.cardbookUtils.getAccountId(wdw_cardbook.currentAccountId) != aDirPrefId) {
+				if (cardbookRepository.cardbookUtils.getAccountId(cardbookRepository.currentAccountId) != aDirPrefId) {
 					if (cardbookRepository.cardbookDisplayCards[aDirPrefId].cards.length != 0) {
 						document.getElementById('searchRemoteTextbox').value = cardbookRepository.cardbookPreferences.getLastSearch(aDirPrefId);
 					} else {
@@ -268,19 +267,24 @@ if ("undefined" == typeof(wdw_cardbook)) {
 		},
 		
 		displayCard: async function (aCard) {
-			if (wdw_cardbook.displayCardId == "Y") {
-				return;
+			try {
+				if (wdw_cardbook.displayCardId == "Y") {
+					return;
+				}
+				wdw_cardbook.displayCardId = "Y";
+				wdw_cardbook.clearCard();
+				await cardbookWindowUtils.displayCard(aCard, true);
+				let panesView = cardbookRepository.cardbookPreferences.getStringPref("extensions.cardbook.panesView");
+				let aParent = document.getElementById('categories' + panesView + 'Row');
+				cardbookElementTools.addCategoriesRow(aParent, cardbookRepository.cardbookUtils.sortArrayByString(aCard.categories,1));
+				document.getElementById('vcardTextBox').value = await cardbookRepository.cardbookUtils.cardToVcardData(aCard, false);
+				document.getElementById('vcardTextBox').setAttribute('readonly', 'true');
+				cardbookWindowUtils.adjustFields();
+				wdw_cardbook.displayCardId = "N";
 			}
-			wdw_cardbook.displayCardId = "Y";
-			wdw_cardbook.clearCard();
-			await cardbookWindowUtils.displayCard(aCard, true);
-			let panesView = cardbookRepository.cardbookPreferences.getStringPref("extensions.cardbook.panesView");
-			let aParent = document.getElementById('categories' + panesView + 'Row');
-			cardbookElementTools.addCategoriesRow(aParent, cardbookRepository.cardbookUtils.sortArrayByString(aCard.categories,1));
-			document.getElementById('vcardTextBox').value = await cardbookRepository.cardbookUtils.cardToVcardData(aCard, false);
-			document.getElementById('vcardTextBox').setAttribute('readonly', 'true');
-			cardbookWindowUtils.adjustFields();
-			wdw_cardbook.displayCardId = "N";
+			catch (e) {
+				wdw_cardbook.displayCardId = "N";
+			}
 		},
 		
 		selectAccountOrCatInNoSearch: async function (aForceRefresh) {
@@ -299,7 +303,7 @@ if ("undefined" == typeof(wdw_cardbook)) {
 				var myDirPrefId = myTree.view.getCellText(0, myTree.columns.getNamedColumn('accountRoot'));
 			}
 			if (!aForceRefresh) {
-				if (wdw_cardbook.currentAccountId == myAccountId) {
+				if (cardbookRepository.currentAccountId == myAccountId) {
 					return;
 				}
 			}
@@ -312,7 +316,7 @@ if ("undefined" == typeof(wdw_cardbook)) {
 		},
 
 		setCurrentAccountId: function (aAccountOrCat) {
-			wdw_cardbook.currentAccountId = aAccountOrCat;
+			cardbookRepository.currentAccountId = aAccountOrCat;
 			var myDirPrefId = cardbookRepository.cardbookUtils.getAccountId(aAccountOrCat);
 			cardbookRepository.cardbookPreferences.setStringPref("extensions.cardbook.accountShown", myDirPrefId);
 		},
@@ -337,7 +341,7 @@ if ("undefined" == typeof(wdw_cardbook)) {
 			cardbookTreeUtils.setSelectedAccount(aAccountOrCat, wdw_cardbook.currentFirstVisibleRow, wdw_cardbook.currentLastVisibleRow);
 
 			// for the columns
-			if (wdw_cardbook.currentAccountId == aAccountOrCat) {
+			if (cardbookRepository.currentAccountId == aAccountOrCat) {
 				return;
 			}
 			wdw_cardbook.setCurrentAccountId(aAccountOrCat);
@@ -401,7 +405,7 @@ if ("undefined" == typeof(wdw_cardbook)) {
 			wdw_cardbook.refreshAccountsInDirTree();
 			var found = false;
 			for (account of cardbookDirTree.visibleData) {
-				if (account[4] == wdw_cardbook.currentAccountId) {
+				if (account[4] == cardbookRepository.currentAccountId) {
 					found = true;
 					break;
 				}
@@ -1389,7 +1393,7 @@ if ("undefined" == typeof(wdw_cardbook)) {
 			let listOfSelectedCard = [];
 			if (document.commandDispatcher.focusedElement) {
 				if (document.commandDispatcher.focusedElement.id == "accountsOrCatsTree") {
-					if (cardbookRepository.cardbookUtils.getAccountId(wdw_cardbook.currentAccountId) != wdw_cardbook.currentAccountId) {
+					if (cardbookRepository.cardbookUtils.getAccountId(cardbookRepository.currentAccountId) != cardbookRepository.currentAccountId) {
 						listOfSelectedCard = cardbookWindowUtils.getCardsFromAccountsOrCats();
 					}
 				} else if (document.commandDispatcher.focusedElement.id == "cardsTree") {
@@ -1865,7 +1869,7 @@ if ("undefined" == typeof(wdw_cardbook)) {
 		dragCards: async function (aEvent) {
 			var aTargetObject = aEvent.target;
 			if (aTargetObject.id == "cardsTreeChildren" || aTargetObject.id == "rightPaneUpHbox1") {
-				var myTarget = wdw_cardbook.currentAccountId;
+				var myTarget = cardbookRepository.currentAccountId;
 			} else {
 				var myTree = document.getElementById('accountsOrCatsTree');
 				var cell = myTree.getCellAt(aEvent.clientX, aEvent.clientY);
@@ -2049,7 +2053,7 @@ if ("undefined" == typeof(wdw_cardbook)) {
 			document.getElementById('cardbookSearchInput').setAttribute('tabindex', '1');
 			document.getElementById('cardsTree').setAttribute('tabindex', '2');
 			wdw_cardbook.setNoComplexSearchMode();
-			wdw_cardbook.currentAccountId = "";
+			cardbookRepository.currentAccountId = "";
 			cardbookRepository.cardbookSearchMode = "SEARCH";
 		},
 
@@ -3092,10 +3096,12 @@ if ("undefined" == typeof(wdw_cardbook)) {
 					var myPGNextNumber = cardbookRepository.cardbookTypes.rebuildAllPGs(myOutCard);
 					cardbookRepository.cardbookUtils.addEventstoCard(myOutCard, [ [ dateString, dateLabel, datePref ] ], myPGNextNumber, dateFormat);
 				} else if (cardbookRepository.currentCopiedEntryName.startsWith("org.")) {
-					var myIndex = cardbookRepository.currentCopiedEntryName.split('.')[1];
-					var node = "org::org";
+					let orgStructure = cardbookRepository.cardbookPreferences.getStringPref("extensions.cardbook.orgStructure");
+					let allOrg = cardbookRepository.cardbookUtils.unescapeArray(cardbookRepository.cardbookUtils.escapeString(orgStructure).split(";"));
+					let index = allOrg.indexOf(cardbookRepository.currentCopiedEntryName.split('.')[1]);
+					let node = "org::org";
 					let orgArray = cardbookRepository.cardbookUtils.escapeString(cardbookRepository.currentCopiedEntryValue).split("::");
-					for (let j = 0; j <= myIndex; j++) {
+					for (let j = 0; j <= index; j++) {
 						node = node + "::" + orgArray[j];
 					}
 					cardbookRepository.addOrgToCard(myOutCard, node);
@@ -3859,7 +3865,7 @@ if ("undefined" == typeof(wdw_cardbook)) {
 						var mySyncCondition = true;
 					} else {
 						var myDirPredId = cardbookRepository.cardbookUtils.getAccountId(aParams);
-						var myCurrentDirPredId = cardbookRepository.cardbookUtils.getAccountId(wdw_cardbook.currentAccountId);
+						var myCurrentDirPredId = cardbookRepository.cardbookUtils.getAccountId(cardbookRepository.currentAccountId);
 						var mySyncCondition = (myCurrentDirPredId == myDirPredId);
 					}
 				} else {
@@ -3874,7 +3880,7 @@ if ("undefined" == typeof(wdw_cardbook)) {
 			} else if (aParams && aParams.startsWith("force::")) {
 				myAccountId = aParams.replace("force::", "");
 			} else {
-				myAccountId = wdw_cardbook.currentAccountId;
+				myAccountId = cardbookRepository.currentAccountId;
 
 				// if it does not exist anymore, take the previous one
 				if (!(cardbookRepository.cardbookDisplayCards[myAccountId])) {

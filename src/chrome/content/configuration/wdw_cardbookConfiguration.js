@@ -101,7 +101,29 @@ var wdw_cardbookConfiguration = {
 	URLPhoneUserOld: "",
 	autocompleteRestrictSearchFields: "",
 	customListsFields: ['kindCustom', 'memberCustom'],
+	updateOperations: {},
 	
+	addProgressBar: function () {
+		let lTimerBulkOperation = Components.classes["@mozilla.org/timer;1"].createInstance(Components.interfaces.nsITimer);
+		lTimerBulkOperation.initWithCallback({ notify: function(lTimerBulkOperation) {
+				let close = true;
+				if (wdw_cardbookConfiguration.updateOperations.total != wdw_cardbookConfiguration.updateOperations.done) {
+					if (!(document.getElementById("UpdateProgressmeter"))) {
+						let progressmeterBox = document.getElementById("progressmeterBox");
+						cardbookElementTools.addHTMLPROGRESS(progressmeterBox, "UpdateProgressmeter", {flex: "1"});
+					}
+					let value = Math.round(wdw_cardbookConfiguration.updateOperations.done / wdw_cardbookConfiguration.updateOperations.total * 100);
+					document.getElementById("UpdateProgressmeter").value = value;
+					close = false;
+				}
+				if (close) {
+					cardbookElementTools.deleteRows('progressmeterBox');
+					lTimerBulkOperation.cancel();
+				}
+			}
+			}, 1000, Components.interfaces.nsITimer.TYPE_REPEATING_SLACK);
+	},
+
 	customFieldCheck: function (aTextBox) {
 		let value = aTextBox.value.trim();
 		if (value == "") {
@@ -177,6 +199,8 @@ var wdw_cardbookConfiguration = {
 				wdw_cardbookConfiguration.selectCustomFields();
 			} else if (table.id == "orgTreeTable") {
 				wdw_cardbookConfiguration.selectOrg();
+			} else if (table.id == "fieldsTreeTable") {
+				wdw_cardbookConfiguration.selectField();
 			}
 		}
 	},
@@ -200,6 +224,8 @@ var wdw_cardbookConfiguration = {
 				wdw_cardbookConfiguration.renameCustomFields();
 			} else if (tableName == "orgTreeTable") {
 				wdw_cardbookConfiguration.renameOrg();
+			} else if (tableName == "fieldsTreeTable") {
+				wdw_cardbookConfiguration.renameField();
 			}
 		} else {
 			if (tableName == "accountsVCardsTable") {
@@ -478,6 +504,20 @@ var wdw_cardbookConfiguration = {
 		wdw_cardbookConfiguration.preferenceChanged('autocompleteRestrictSearch');
 	},
 
+	validateAutocompleteRestrictSearchFieldsAsync: async function () {
+		wdw_cardbookConfiguration.updateOperations.total = Object.keys(cardbookRepository.cardbookCards).length;
+		wdw_cardbookConfiguration.updateOperations.done = 0;
+		Services.tm.currentThread.dispatch({ run: async function() {
+			for (let j in cardbookRepository.cardbookCards) {
+				let myCard = cardbookRepository.cardbookCards[j];
+				cardbookRepository.addCardToShortSearch(myCard);
+				wdw_cardbookConfiguration.updateOperations.done++;
+			}
+		}}, Components.interfaces.nsIEventTarget.DISPATCH_NORMAL);
+
+		wdw_cardbookConfiguration.addProgressBar();
+	},
+
 	validateAutocompleteRestrictSearchFields: function () {
 		if (document.getElementById('autocompletionCheckBox').checked && document.getElementById('autocompleteRestrictSearchCheckBox').checked) {
 			if ((wdw_cardbookConfiguration.autocompleteRestrictSearchFields != cardbookRepository.autocompleteRestrictSearchFields.join('|')) ||
@@ -486,10 +526,8 @@ var wdw_cardbookConfiguration = {
 				cardbookRepository.autocompleteRestrictSearch = document.getElementById('autocompleteRestrictSearchCheckBox').checked;
 				cardbookRepository.autocompleteRestrictSearchFields = wdw_cardbookConfiguration.autocompleteRestrictSearchFields.split('|');
 				cardbookRepository.cardbookCardShortSearch = {};
-				for (let j in cardbookRepository.cardbookCards) {
-					let myCard = cardbookRepository.cardbookCards[j];
-					cardbookRepository.addCardToShortSearch(myCard);
-				}
+
+				wdw_cardbookConfiguration.validateAutocompleteRestrictSearchFieldsAsync();
 			} else {
 				cardbookRepository.autocompleteRestrictSearch = document.getElementById('autocompleteRestrictSearchCheckBox').checked;
 			}
@@ -509,18 +547,27 @@ var wdw_cardbookConfiguration = {
 		let newCheck = document.getElementById('preferEmailPrefCheckBox').checked;
 		if (newCheck !== wdw_cardbookConfiguration.preferEmailPrefOld) {
 			cardbookRepository.preferEmailPref = newCheck;
-			for (let j in cardbookRepository.cardbookCards) {
-				let card = cardbookRepository.cardbookCards[j];
-				if (!card.isAList) {
-					let newEmails = cardbookRepository.cardbookUtils.getPrefAddressFromCard(card, "email", newCheck);
-					if (newEmails.join(',') != card.emails.join(',')) {
-						let tmpCard = new cardbookCardParser();
-						cardbookRepository.cardbookUtils.cloneCard(card, tmpCard);
-						cardbookRepository.saveCardFromMove(card, tmpCard, null, false);
-					}
-				}
-			}
+			wdw_cardbookConfiguration.preferEmailPrefOld = newCheck;
 			cardbookRepository.cardbookPreferences.setBoolPref("extensions.cardbook.preferEmailPref", newCheck);
+
+			wdw_cardbookConfiguration.updateOperations.total = Object.keys(cardbookRepository.cardbookCards).length;
+			wdw_cardbookConfiguration.updateOperations.done = 0;
+			Services.tm.currentThread.dispatch({ run: async function() {
+				for (let j in cardbookRepository.cardbookCards) {
+					let card = cardbookRepository.cardbookCards[j];
+					if (!card.isAList) {
+						let newEmails = cardbookRepository.cardbookUtils.getPrefAddressFromCard(card, "email", newCheck);
+						if (newEmails.join(',') != card.emails.join(',')) {
+							let tmpCard = new cardbookCardParser();
+							cardbookRepository.cardbookUtils.cloneCard(card, tmpCard);
+							cardbookRepository.saveCardFromMove(card, tmpCard, null, false);
+						}
+					}
+					wdw_cardbookConfiguration.updateOperations.done++;
+				}
+			}}, Components.interfaces.nsIEventTarget.DISPATCH_NORMAL);
+	
+			wdw_cardbookConfiguration.addProgressBar();
 		}
 	},
 
@@ -676,31 +723,59 @@ var wdw_cardbookConfiguration = {
 		}
 	},
 
-	loadFields: function () {
-		let tmpArray = [];
-		tmpArray = cardbookRepository.cardbookUtils.getEditionFields();
-		wdw_cardbookConfiguration.allFields = [];
-		let fields = cardbookRepository.cardbookPreferences.getStringPref("extensions.cardbook.fieldsNameList");
-		let pref = cardbookRepository.cardbookUtils.unescapeArray(cardbookRepository.cardbookUtils.escapeString(fields).split(";"));
-		for (let field of tmpArray) {
-			if ( (pref.includes(field[1])) || (pref == "allFields") ) {
-				wdw_cardbookConfiguration.allFields.push([true, field[0], field[1]]);
+	selectField: function() {
+		let btnEdit = document.getElementById("renameFieldsLabel");
+		// note and street are textarea fields
+		let disabledFields = [ "addressbook", "categories", "fn",  "key", "gender", "bday", "anniversary", "deathdate", "country", "email", "tel", "adr", "impp", "url", "event", "note", "street", "list"];
+		let currentIndex = wdw_cardbookConfiguration.getTableCurrentIndex("fieldsTreeTable");
+		if (wdw_cardbookConfiguration.allFields.length && currentIndex) {
+			if (disabledFields.includes(wdw_cardbookConfiguration.allFields[currentIndex][2])) {
+				btnEdit.disabled = true;
 			} else {
-				wdw_cardbookConfiguration.allFields.push([false, field[0], field[1]]);
+				btnEdit.disabled = false;
 			}
+		} else {
+			btnEdit.disabled = true;
 		}
+	},
+
+	loadFields: function () {
+		wdw_cardbookConfiguration.allFields = [];
+		wdw_cardbookConfiguration.allFields = cardbookRepository.cardbookUtils.getEditionFields();
 		wdw_cardbookConfiguration.changeFieldsMainCheckbox();
 	},
 	
 	displayFields: function () {
-		let headers = [];
-		let data = wdw_cardbookConfiguration.allFields.map(x => [ x[0], x[1] ]);
+		let headers = [ "selected", "fields", "convertTo" ];
+		let data = wdw_cardbookConfiguration.allFields.map(x => [ x[0], x[1], x[3] ]);
 		let dataParameters = [];
 		dataParameters[0] = {"events": [ [ "click", wdw_cardbookConfiguration.enableOrDisableCheckbox ] ] };
-		cardbookElementTools.addTreeTable("fieldsTreeTable", headers, data, dataParameters);
+		let dataId = 1;
+		cardbookElementTools.addTreeTable("fieldsTreeTable", headers, data, dataParameters, null, null, dataId);
 		wdw_cardbookConfiguration.changeFieldsMainCheckbox();
 	},
 	
+	renameField: function () {
+		let currentIndex = wdw_cardbookConfiguration.getTableCurrentIndex("fieldsTreeTable");
+		let btnEdit = document.getElementById("renameFieldsLabel");
+		if (wdw_cardbookConfiguration.allFields.length && currentIndex && !btnEdit.disabled) {
+			let enabled = wdw_cardbookConfiguration.allFields[currentIndex][0];
+			let label = wdw_cardbookConfiguration.allFields[currentIndex][1];
+			let field = wdw_cardbookConfiguration.allFields[currentIndex][2];
+			let convertionLabel = wdw_cardbookConfiguration.allFields[currentIndex][3];
+			let convertion = wdw_cardbookConfiguration.allFields[currentIndex][4];
+			let myArgs = {enabled: enabled, field: field, label:label, convertion: convertion, convertionLabel: convertionLabel, typeAction: ""};
+			let mail3PaneWindow = Services.wm.getMostRecentWindow("mail:3pane");
+			mail3PaneWindow.openDialog("chrome://cardbook/content/configuration/wdw_cardbookConfigurationEditField.xhtml", "", cardbookRepository.modalWindowParams, myArgs);
+			if (myArgs.typeAction == "SAVE") {
+				wdw_cardbookConfiguration.allFields[currentIndex][3] = myArgs.convertionLabel;
+				wdw_cardbookConfiguration.allFields[currentIndex][4] = myArgs.convertion;
+				wdw_cardbookConfiguration.sortTable("fieldsTreeTable");
+				wdw_cardbookConfiguration.preferenceChanged('fields');
+			}
+		}
+	},
+
 	changeFieldsMainCheckbox: function () {
 		let totalChecked = 0;
 		for (let field of wdw_cardbookConfiguration.allFields) {
@@ -724,7 +799,7 @@ var wdw_cardbookConfiguration = {
 		}
 		let tmpArray = [];
 		for (let field of wdw_cardbookConfiguration.allFields) {
-			tmpArray.push([myState, field[1], field[2]]);
+			tmpArray.push([myState, field[1], field[2], field[3], field[4]]);
 		}
 
 		wdw_cardbookConfiguration.allFields = JSON.parse(JSON.stringify(tmpArray));
@@ -733,41 +808,30 @@ var wdw_cardbookConfiguration = {
 	},
 	
 	validateFields: function () {
-		let checkbox = document.getElementById('fieldsCheckbox');
-		if (checkbox.getAttribute('checked') == "true") {
-			cardbookRepository.cardbookPreferences.setStringPref("extensions.cardbook.fieldsNameList", "allFields");
-		} else {
-			let tmpArray = [];
-			for (let field of wdw_cardbookConfiguration.allFields) {
-				if (field[0]) {
-					tmpArray.push(cardbookRepository.cardbookUtils.escapeStringSemiColon(field[2]));
-				}
-			}
-			cardbookRepository.cardbookPreferences.setStringPref("extensions.cardbook.fieldsNameList", cardbookRepository.cardbookUtils.unescapeStringSemiColon(tmpArray.join(";")));
-		}
+		cardbookRepository.cardbookUtils.setEditionFields(wdw_cardbookConfiguration.allFields);
 	},
 
 	validateFieldsFromOrgOrCustom: function (aOldField, aNewField) {
-		let fields = cardbookRepository.cardbookPreferences.getStringPref("extensions.cardbook.fieldsNameList").split(";");
-		if (fields[0] == "allFields") {
+		let fields = JSON.parse(JSON.stringify(wdw_cardbookConfiguration.allFields));
+
+		if (fields[0][0] == "allFields") {
 			return;
 		} else if (aOldField || aNewField) {
-			if (aOldField) {
-				aOldField = cardbookRepository.cardbookUtils.escapeStringSemiColon(aOldField);
-				let i = 0;
-				while (i < fields.length) {
-					if (fields[i] === aOldField) {
-						fields.splice(i, 1);
-					} else {
-						++i;
+			if (aOldField && !aNewField) {
+				fields = fields.filter( x => x[2] != aOldField);
+				cardbookRepository.cardbookUtils.setEditionFields(fields);
+			} else if (aNewField && !aOldField) {
+				fields.push([true, aNewField.replace(/^org\./, ""), aNewField])
+				cardbookRepository.cardbookUtils.setEditionFields(fields);
+			} else {
+				for (let i = 0; i < fields.length; i++) {
+					if (fields[i][2] == aOldField) {
+						fields[i][2] = aNewField;
+						break;
 					}
 				}
+				cardbookRepository.cardbookUtils.setEditionFields(fields);
 			}
-			if (aNewField) {
-				aNewField = cardbookRepository.cardbookUtils.escapeStringSemiColon(aNewField);
-				fields.push(aNewField);
-			}
-			cardbookRepository.cardbookPreferences.setStringPref("extensions.cardbook.fieldsNameList", fields.join(";"));
 			// need to reload the edition fields
 			wdw_cardbookConfiguration.loadFields();
 			wdw_cardbookConfiguration.sortTable("fieldsTreeTable");
@@ -1871,7 +1935,7 @@ var wdw_cardbookConfiguration = {
 				}
 				wdw_cardbookConfiguration.allCustomFields[type] = JSON.parse(JSON.stringify(result));
 				wdw_cardbookConfiguration.sortTable("customFieldsTable");
-				if (!already) {
+				if (already) {
 					wdw_cardbookConfiguration.preferenceChanged('customFields', code, myArgs.code);
 				} else {
 					wdw_cardbookConfiguration.preferenceChanged('customFields');

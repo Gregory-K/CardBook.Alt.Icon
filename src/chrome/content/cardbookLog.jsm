@@ -24,7 +24,6 @@ var cardbookLog = {
 		} else {
 			cardbookRepository.statusInformation.push([cardbookLog.getTime() + " : " + aLogLine, "Normal"]);
 		}
-		// Services.console.logStringMessage(cardbookLog.getTime() + " : " + aLogLine.toSource());
 	},
 
 	updateStatusProgressInformationWithDebug1: function(aLogLine, aResponse) {

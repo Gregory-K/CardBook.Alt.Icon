@@ -3403,6 +3403,12 @@
 	"dontAutoComputeFn": {
 		"message": "표시 이름 생성 비활성화"
 	},
+	"autoConvertField": {
+		"message": "??Enable the convertion of this field??"
+	},
+	"dontAutoConvertField": {
+		"message": "??Disable the convertion of this field??"
+	},
 	"customLabel": {
 		"message": "사용자 정의"
 	},
@@ -4440,6 +4446,12 @@
 	},
 	"fieldsButtonLabel": {
 		"message": "기본값으로 설정"
+	},
+	"renameFieldsLabel": {
+		"message": "편집"
+	},
+	"renameFieldsAccesskey": {
+		"message": "E"
 	},
 	"preferDisplayNameCheckBoxLabel": {
 		"message": "메시지 헤더에는 항상 표시 이름을 우선"
@@ -5968,5 +5980,26 @@
 	},
 	"allAddressBooks": {
 		"message": "모든 주소록"
+	},
+	"selectedLabel": {
+		"message": "선택"
+	},
+	"conversionWarn": {
+		"message": "??It is possible to force the convertion of some fields while providing them.??"
+	},
+	"convertToLabel": {
+		"message": "변환 하기"
+	},
+	"wdw_cardbookConfigurationEditFieldTitle": {
+		"message": "??Choose a convertion function??"
+	},
+	"uppercaseLabel": {
+		"message": "??Uppercase??"
+	},
+	"lowercaseLabel": {
+		"message": "??Lowercase??"
+	},
+	"capitalizationLabel": {
+		"message": "??Capitalization??"
 	}
 }

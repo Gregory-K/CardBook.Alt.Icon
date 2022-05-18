@@ -3403,6 +3403,12 @@
 	"dontAutoComputeFn": {
 		"message": "??Disable the generation of the display name??"
 	},
+	"autoConvertField": {
+		"message": "??Enable the convertion of this field??"
+	},
+	"dontAutoConvertField": {
+		"message": "??Disable the convertion of this field??"
+	},
 	"customLabel": {
 		"message": "Khusus"
 	},
@@ -4440,6 +4446,12 @@
 	},
 	"fieldsButtonLabel": {
 		"message": "Setel menjadi Baku"
+	},
+	"renameFieldsLabel": {
+		"message": "Ubah"
+	},
+	"renameFieldsAccesskey": {
+		"message": "h"
 	},
 	"preferDisplayNameCheckBoxLabel": {
 		"message": "Selalu pilih nama tampilan daripada nama pada header pesan"
@@ -5968,5 +5980,26 @@
 	},
 	"allAddressBooks": {
 		"message": "Semua Buku Alamat"
+	},
+	"selectedLabel": {
+		"message": "Dipilih"
+	},
+	"conversionWarn": {
+		"message": "??It is possible to force the convertion of some fields while providing them.??"
+	},
+	"convertToLabel": {
+		"message": "Konversikan Ke"
+	},
+	"wdw_cardbookConfigurationEditFieldTitle": {
+		"message": "??Choose a convertion function??"
+	},
+	"uppercaseLabel": {
+		"message": "??Uppercase??"
+	},
+	"lowercaseLabel": {
+		"message": "??Lowercase??"
+	},
+	"capitalizationLabel": {
+		"message": "??Capitalization??"
 	}
 }

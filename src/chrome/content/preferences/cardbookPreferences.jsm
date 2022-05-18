@@ -668,6 +668,26 @@ var cardbookPreferences = {
 		}
 	},
 
+	getEditionFields: function () {
+		try {
+			let fields = this.getStringPref(this.prefCardBookRoot + "fieldsNameList");
+			if (fields == "allFields") {
+				return fields;
+			} else {
+				return JSON.parse(fields);
+			}
+		}
+		catch(e) {
+			return "allFields";
+		}
+	},
+
+	setEditionFields: function (aValue) {
+		if (aValue) {
+			this.setStringPref(this.prefCardBookRoot + "fieldsNameList", aValue);
+		}
+	},
+
 	delAccount: function (aDirPrefId) {
 		try {
 			cardbookPreferences.delBranch(this.prefCardBookData + aDirPrefId);

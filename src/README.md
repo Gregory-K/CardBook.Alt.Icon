@@ -5,7 +5,7 @@ This is a **fork** of [**CardBook**](https://gitlab.com/CardBook/CardBook), a [T
 **CardBook Alt.Icon** simply provides an **alternative** main **icon** more aligned with Thunderbird's toolbar icon design.
 
 Version:  
-**75.0.1**  
+**75.4.1**  
 Icon Variation (sub-release):  
 %sub_release%  
 Compatibility:  

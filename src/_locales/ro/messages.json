@@ -167,11 +167,11 @@
 	"ValidatingEmailFailedLabel": {
 		"message": "Este necesară o adresă de e-mail validă"
 	},
-	"ValidationFailedOffLine": {
-		"message": "Momentan ești offline."
-	},
 	"ValidationFailedLabel": {
 		"message": "Validarea a esuat"
+	},
+	"ValidationFailedOffLine": {
+		"message": "Momentan ești offline."
 	},
 	"ValidationOKLabel": {
 		"message": "Validarea a reușit"
@@ -3403,6 +3403,12 @@
 	"dontAutoComputeFn": {
 		"message": "Dezactivează generarea numelui afișat"
 	},
+	"autoConvertField": {
+		"message": "??Enable the convertion of this field??"
+	},
+	"dontAutoConvertField": {
+		"message": "??Disable the convertion of this field??"
+	},
 	"customLabel": {
 		"message": "Personalizat"
 	},
@@ -4440,6 +4446,12 @@
 	},
 	"fieldsButtonLabel": {
 		"message": "Setează ca implicit"
+	},
+	"renameFieldsLabel": {
+		"message": "Editează"
+	},
+	"renameFieldsAccesskey": {
+		"message": "E"
 	},
 	"preferDisplayNameCheckBoxLabel": {
 		"message": "Prefer întotdeauna afișarea numelui deasupra antetului mesajului"
@@ -5968,5 +5980,26 @@
 	},
 	"allAddressBooks": {
 		"message": "Toate agendele de contacte"
+	},
+	"selectedLabel": {
+		"message": "Selectat"
+	},
+	"conversionWarn": {
+		"message": "??It is possible to force the convertion of some fields while providing them.??"
+	},
+	"convertToLabel": {
+		"message": "Convertește în"
+	},
+	"wdw_cardbookConfigurationEditFieldTitle": {
+		"message": "??Choose a convertion function??"
+	},
+	"uppercaseLabel": {
+		"message": "??Uppercase??"
+	},
+	"lowercaseLabel": {
+		"message": "??Lowercase??"
+	},
+	"capitalizationLabel": {
+		"message": "??Capitalization??"
 	}
 }

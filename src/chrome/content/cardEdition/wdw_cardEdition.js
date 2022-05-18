@@ -669,28 +669,33 @@ if ("undefined" == typeof(wdw_cardEdition)) {
 		},
 
 		setFieldsAsDefault: function () {
-			let tmpArray = [];
-			for (var i = 0; i < wdw_cardEdition.editionFields.length; i++) {
-				tmpArray.push(cardbookRepository.cardbookUtils.escapeStringSemiColon(wdw_cardEdition.editionFields[i]));
-			}
-			cardbookRepository.cardbookPreferences.setStringPref("extensions.cardbook.fieldsNameList", cardbookRepository.cardbookUtils.unescapeStringSemiColon(tmpArray.join(";")));
+			cardbookRepository.cardbookUtils.setEditionFields(wdw_cardEdition.editionFields);
 			document.getElementById('fieldsMenupopup').hidePopup();
 		},
 
-		loadFieldSelector: function () {
-			let fieldList = [];
-			fieldList = cardbookRepository.cardbookUtils.getEditionFields();
+		checkEditionFields: function (aField) {
+			if (wdw_cardEdition.editionFields[0][0] == "allFields") {
+				return true;
+			}
+			for (let field of wdw_cardEdition.editionFields) {
+				if (field[2] == aField) {
+					return field[0];
+				}
+			}
+			return false;
+		},
 
+		loadFieldSelector: function () {
 			cardbookElementTools.deleteRows('fieldsMenupopup');
 
 			let listRows = document.getElementById('fieldsMenupopup');
-			for (let field of fieldList) {
+			for (let field of wdw_cardEdition.editionFields) {
 				let item = document.createXULElement("menuitem");
 				item.setAttribute("class", "menuitem-iconic cardbook-item");
-				item.setAttribute("label", field[0]);
-				item.setAttribute("value", field[1]);
+				item.setAttribute("label", field[1]);
+				item.setAttribute("value", field[2]);
 				item.setAttribute("type", "checkbox");
-				if (wdw_cardEdition.editionFields.includes(field[1]) || wdw_cardEdition.editionFields[0] == "allFields") {
+				if (field[0]) {
 					item.setAttribute("checked", "true");
 				}
 				listRows.appendChild(item);
@@ -707,13 +712,16 @@ if ("undefined" == typeof(wdw_cardEdition)) {
 		},
 
 		changeEditionFields: function () {
-			wdw_cardEdition.editionFields = [];
 			let myMenupopup = document.getElementById('fieldsMenupopup');
-			let itemsList = myMenupopup.querySelectorAll("menuitem.cardbook-item[checked]");
+			let itemsList = myMenupopup.querySelectorAll("menuitem.cardbook-item");
 
-			let listRows = document.getElementById('fieldsMenupopup');
 			for (let item of itemsList) {
-				wdw_cardEdition.editionFields.push(item.getAttribute("value"));
+				for (let i = 0; i < wdw_cardEdition.editionFields.length; i++) {
+					if (item.getAttribute("value") == wdw_cardEdition.editionFields[i][2]) {
+						wdw_cardEdition.editionFields[i][0] = item.getAttribute("checked") == "true";
+						break;
+					}
+				}
 			}
 			let readonly = cardbookRepository.cardbookPreferences.getReadOnly(wdw_cardEdition.workingCard.dirPrefId);
 			cardbookWindowUtils.display40(wdw_cardEdition.workingCard.version, readonly);
@@ -731,35 +739,32 @@ if ("undefined" == typeof(wdw_cardEdition)) {
 					return;
 			}
 
-			function isElementInPref(element) {
-				return (wdw_cardEdition.editionFields.includes(element) || wdw_cardEdition.editionFields[0] == "allFields");
-			}
-			if (isElementInPref("addressbook") && window.arguments[0].editionMode != "EditTemplate") {
+			if (wdw_cardEdition.checkEditionFields("addressbook") && window.arguments[0].editionMode != "EditTemplate") {
 				document.getElementById('addressbookMenulistReadWriteGroupbox').removeAttribute('hidden');
 			} else {
 				document.getElementById('addressbookMenulistReadWriteGroupbox').setAttribute('hidden', 'true');
 			}
-			if (isElementInPref("categories") || wdw_cardEdition.workingCard.categories.length != 0) {
+			if (wdw_cardEdition.checkEditionFields("categories") || wdw_cardEdition.workingCard.categories.length != 0) {
 				document.getElementById('categoriesReadWriteGroupbox').removeAttribute('hidden');
 			} else {
 				document.getElementById('categoriesReadWriteGroupbox').setAttribute('hidden', 'true');
 			}
-			if (isElementInPref("note") || wdw_cardEdition.workingCard.note) {
+			if (wdw_cardEdition.checkEditionFields("note") || wdw_cardEdition.workingCard.note) {
 				document.getElementById('noteTab').removeAttribute('hidden');
 			} else {
 				document.getElementById('noteTab').setAttribute('hidden', 'true');
 			}
-			if (isElementInPref("list") && window.arguments[0].editionMode != "EditTemplate") {
+			if (wdw_cardEdition.checkEditionFields("list") && window.arguments[0].editionMode != "EditTemplate") {
 				document.getElementById('listTab').removeAttribute('hidden');
 			} else {
 				document.getElementById('listTab').setAttribute('hidden', 'true');
 			}
-			if (isElementInPref("key") && window.arguments[0].editionMode != "EditTemplate") {
+			if (wdw_cardEdition.checkEditionFields("key") && window.arguments[0].editionMode != "EditTemplate") {
 				document.getElementById('keyTab').removeAttribute('hidden');
 			} else {
 				document.getElementById('keyTab').setAttribute('hidden', 'true');
 			}
-			if (isElementInPref("fn") || wdw_cardEdition.workingCard.fn) {
+			if (wdw_cardEdition.checkEditionFields("fn") || wdw_cardEdition.workingCard.fn) {
 				document.getElementById('fnGroupbox').removeAttribute('hidden');
 			} else {
 				document.getElementById('fnGroupbox').setAttribute('hidden', 'true');
@@ -770,7 +775,7 @@ if ("undefined" == typeof(wdw_cardEdition)) {
 					// already done
 					continue;
 				}
-				if (isElementInPref(field) || wdw_cardEdition.workingCard[field]) {
+				if (wdw_cardEdition.checkEditionFields(field) || wdw_cardEdition.workingCard[field]) {
 					document.getElementById(field + 'Row').removeAttribute('hidden');
 				} else {
 					document.getElementById(field + 'Row').setAttribute('hidden', 'true');
@@ -788,14 +793,14 @@ if ("undefined" == typeof(wdw_cardEdition)) {
 			}
 			if (!wdw_cardEdition.workingCard.isAList) {
 				for (let field of cardbookRepository.multilineFields) {
-					if (isElementInPref(field) || document.getElementById(field + '_0_valueBox').value) {
+					if (wdw_cardEdition.checkEditionFields(field) || document.getElementById(field + '_0_valueBox').value) {
 						document.getElementById(field + 'Groupbox').removeAttribute('hidden');
 					} else {
 						document.getElementById(field + 'Groupbox').setAttribute('hidden', 'true');
 					}
 				}
 				for (let field of ['event']) {
-					if (isElementInPref(field) || document.getElementById(field + '_0_valueBox').value || document.getElementById(field + '_0_valueDateBox').value) {
+					if (wdw_cardEdition.checkEditionFields(field) || document.getElementById(field + '_0_valueBox').value || document.getElementById(field + '_0_valueDateBox').value) {
 						document.getElementById(field + 'Groupbox').removeAttribute('hidden');
 					} else {
 						document.getElementById(field + 'Groupbox').setAttribute('hidden', 'true');
@@ -804,7 +809,7 @@ if ("undefined" == typeof(wdw_cardEdition)) {
 			}
 			for (let type of ['personal', 'org']) {
 				for (let i = 0; i < cardbookRepository.customFields[type].length; i++) {
-					if (isElementInPref(cardbookRepository.customFields[type][i][0]) || document.getElementById('customField' + i + type + 'TextBox').value) {
+					if (wdw_cardEdition.checkEditionFields(cardbookRepository.customFields[type][i][0]) || document.getElementById('customField' + i + type + 'TextBox').value) {
 						document.getElementById('customField' + i + type + 'Row').removeAttribute('hidden');
 					} else {
 						document.getElementById('customField' + i + type + 'Row').setAttribute('hidden', 'true');
@@ -815,21 +820,21 @@ if ("undefined" == typeof(wdw_cardEdition)) {
 			if (orgStructure) {
 				let myOrgStructure = cardbookRepository.cardbookUtils.unescapeArray(cardbookRepository.cardbookUtils.escapeString(orgStructure).split(";"));
 				for (let i = 0; i < myOrgStructure.length; i++) {
-					if (isElementInPref('org.' + myOrgStructure[i]) || document.getElementById('orgTextBox_' + i).value) {
+					if (wdw_cardEdition.checkEditionFields('org.' + myOrgStructure[i]) || document.getElementById('orgTextBox_' + i).value) {
 						document.getElementById('orgRow_' + i).removeAttribute('hidden');
 					} else {
 						document.getElementById('orgRow_' + i).setAttribute('hidden', 'true');
 					}
 				}
 			} else {
-				if (isElementInPref('org') || document.getElementById('orgTextBox_0').value) {
+				if (wdw_cardEdition.checkEditionFields('org') || document.getElementById('orgTextBox_0').value) {
 					document.getElementById('orgRow_0').removeAttribute('hidden');
 				} else {
 					document.getElementById('orgRow_0').setAttribute('hidden', 'true');
 				}
 			}
 			for (let field of ['title', 'role']) {
-				if (isElementInPref(field) || wdw_cardEdition.workingCard[field]) {
+				if (wdw_cardEdition.checkEditionFields(field) || wdw_cardEdition.workingCard[field]) {
 					document.getElementById(field + 'Row').removeAttribute('hidden');
 				} else {
 					document.getElementById(field + 'Row').setAttribute('hidden', 'true');
@@ -844,7 +849,7 @@ if ("undefined" == typeof(wdw_cardEdition)) {
 						break;
 					}
 				}
-				if (isElementInPref(field) || found) {
+				if (wdw_cardEdition.checkEditionFields(field) || found) {
 					document.getElementById(field + 'Row').removeAttribute('hidden');
 				} else {
 					document.getElementById(field + 'Row').setAttribute('hidden', 'true');
@@ -855,12 +860,76 @@ if ("undefined" == typeof(wdw_cardEdition)) {
 			wdw_cardEdition.showPane('generalTabPanel');
 		},
 
-		loadHelpTab: function () {
-			var orgStructure = cardbookRepository.cardbookPreferences.getStringPref("extensions.cardbook.orgStructure");
-			if (orgStructure != "") {
-				var allOrg = cardbookRepository.cardbookUtils.unescapeArray(cardbookRepository.cardbookUtils.escapeString(orgStructure).split(";"));
+		setConvertButtons: function () {
+			let forceHide = false;
+			switch(window.arguments[0].editionMode) {
+				case "ViewResult":
+				case "ViewResultHideCreate":
+				case "ViewContact":
+				case "ViewList":
+					forceHide = true;
+			}
+			let itemsList = document.getElementById("rightPaneDownHbox1").querySelectorAll("button.cardbookProcessClass");
+			for (let item of itemsList) {
+				if (forceHide) {
+					item.setAttribute('hidden', 'true');
+				} else {
+					let code = item.id.replace("ProcessButton", "");
+					for (let field of wdw_cardEdition.editionFields) {
+						if (field[0] == "allFields") {
+							item.setAttribute('hidden', 'true');
+							break;
+						} else if (code == field[2]) {
+							if (field[3] != "") {
+								item.removeAttribute('hidden');
+							} else {
+								item.setAttribute('hidden', 'true');
+							}
+							break;
+						}
+					}
+				}
+			}
+		},
+
+		setConvertFunction: function (aEvent) {
+			let button = aEvent.target;
+			if (!button.hasAttribute('autoConvertField')) {
+				button.setAttribute('autoConvertField', 'true');
+				button.setAttribute('tooltiptext', cardbookRepository.extension.localeData.localizeMessage("dontAutoConvertField"));
 			} else {
-				var allOrg = [];
+				button.removeAttribute('autoConvertField');
+				button.setAttribute('tooltiptext', cardbookRepository.extension.localeData.localizeMessage("autoConvertField"));
+			}
+		},
+
+		onInputField: function (aEvent) {
+			let textbox = aEvent.target;
+			let field = textbox.getAttribute('data-field-name');
+			let button = document.getElementById(`${field}ProcessButton`);
+			if (!button.hidden && button.hasAttribute("autoConvertField")) {
+				let tmpArray = wdw_cardEdition.editionFields.filter(x => x[2] == field);
+				let convertionFunction = tmpArray[0][4];
+				let value = cardbookRepository.cardbookUtils.convertField(convertionFunction, textbox.value);
+				textbox.value = value;
+			}
+			let orgStructure = cardbookRepository.cardbookPreferences.getStringPref("extensions.cardbook.orgStructure");
+			let allOrg = [];
+			if (orgStructure != "") {
+				allOrg = cardbookRepository.cardbookUtils.unescapeArray(cardbookRepository.cardbookUtils.escapeString(orgStructure).split(";"));
+			}
+			if ([ 'lastname', 'firstname', 'othername', 'prefixname', 'suffixname', 'nickname' ].includes(field) ||
+				(allOrg.length == 0 && cardbookRepository.allColumns.org.includes(field)) ||
+				(allOrg.length != 0 && allOrg.includes(field.replace(/^org\./, "")))) {
+				wdw_cardEdition.setDisplayName();
+			}
+		},
+
+		loadHelpTab: function () {
+			let orgStructure = cardbookRepository.cardbookPreferences.getStringPref("extensions.cardbook.orgStructure");
+			let allOrg = [];
+			if (orgStructure != "") {
+				allOrg = cardbookRepository.cardbookUtils.unescapeArray(cardbookRepository.cardbookUtils.escapeString(orgStructure).split(";"));
 			}
 			document.getElementById('formulaMemberLabel1').value = "{{1}} : " + cardbookRepository.extension.localeData.localizeMessage("prefixnameLabel");
 			document.getElementById('formulaMemberLabel2').value = "{{2}} : " + cardbookRepository.extension.localeData.localizeMessage("firstnameLabel");
@@ -895,12 +964,7 @@ if ("undefined" == typeof(wdw_cardEdition)) {
 		},
 
 		setEditionFields: function () {
-			let fields = cardbookRepository.cardbookPreferences.getStringPref("extensions.cardbook.fieldsNameList");
-			if (fields) {
-				wdw_cardEdition.editionFields = cardbookRepository.cardbookUtils.unescapeArray(cardbookRepository.cardbookUtils.escapeString(fields).split(";"));
-			} else {
-				wdw_cardEdition.editionFields = ["allFields"];
-			}
+			wdw_cardEdition.editionFields = cardbookRepository.cardbookUtils.getEditionFields();
 		},
 
 		loadDefaultVersion: function () {
@@ -1003,6 +1067,7 @@ if ("undefined" == typeof(wdw_cardEdition)) {
 			document.getElementById('firstnameTextBox').value = tmpValue;
 			document.getElementById('lastnameTextBox').focus();
 			document.getElementById('lastnameTextBox').dispatchEvent(new Event('input'));
+			document.getElementById('firstnameTextBox').dispatchEvent(new Event('input'));
 		},
 
 		autoComputeFn: function (aButton, aForce) {
@@ -1287,6 +1352,7 @@ if ("undefined" == typeof(wdw_cardEdition)) {
 			wdw_cardEdition.loadDateFormatLabels();
 			wdw_cardEdition.loadEditionFields();
 			wdw_cardEdition.loadFieldSelector();
+			wdw_cardEdition.setConvertButtons()
 			
 			wdw_cardEdition.cardRegion = await cardbookRepository.cardbookUtils.getCardRegion(wdw_cardEdition.workingCard);
 			
@@ -1510,7 +1576,7 @@ if ("undefined" == typeof(wdw_cardEdition)) {
 			if (cardbookRepository.cardbookSearchMode == "SEARCH") {
 				return cardbookRepository.cardbookSearchValue;
 			} else {
-				return cardbookRepository.cardbookPreferences.getStringPref("extensions.cardbook.accountShown");
+				return cardbookRepository.currentAccountId;
 			}
 		},
 
@@ -1520,7 +1586,7 @@ if ("undefined" == typeof(wdw_cardEdition)) {
 		},
 
 		changePreviousNext: function () {
-			var myCurrentAccountId = wdw_cardEdition.getCurrentAccountId();
+			let myCurrentAccountId = wdw_cardEdition.getCurrentAccountId();
 			wdw_cardEdition.cancelPreviousNext();
 			switch(window.arguments[0].editionMode) {
 				case "ViewResult":
@@ -1531,41 +1597,48 @@ if ("undefined" == typeof(wdw_cardEdition)) {
 				case "EditTemplate":
 					return;
 			}
-			for (var i = 0; i < cardbookRepository.cardbookDisplayCards[myCurrentAccountId].cards.length; i++) {
-				let card = cardbookRepository.cardbookDisplayCards[myCurrentAccountId].cards[i];
-				if (card.cbid == window.arguments[0].cardIn.cbid) {
-					if (i == 0 && i != cardbookRepository.cardbookDisplayCards[myCurrentAccountId].cards.length - 1) {
-						document.getElementById('previousEditButton').setAttribute('hidden', 'true');
-						document.getElementById('nextEditButton').removeAttribute('hidden');
-					} else if (i == 0 && i == cardbookRepository.cardbookDisplayCards[myCurrentAccountId].cards.length - 1) {
-						wdw_cardEdition.cancelPreviousNext();
-					} else if (i == cardbookRepository.cardbookDisplayCards[myCurrentAccountId].cards.length - 1) {
-						document.getElementById('previousEditButton').removeAttribute('hidden');
-						document.getElementById('nextEditButton').setAttribute('hidden', 'true');
-					} else {
-						document.getElementById('previousEditButton').removeAttribute('hidden');
-						document.getElementById('nextEditButton').removeAttribute('hidden');
-					}
-					break;
-				};
+			if (cardbookRepository.cardbookDisplayCards[myCurrentAccountId]) {
+				for (var i = 0; i < cardbookRepository.cardbookDisplayCards[myCurrentAccountId].cards.length; i++) {
+					let card = cardbookRepository.cardbookDisplayCards[myCurrentAccountId].cards[i];
+					if (card.cbid == window.arguments[0].cardIn.cbid) {
+						if (i == 0 && i != cardbookRepository.cardbookDisplayCards[myCurrentAccountId].cards.length - 1) {
+							document.getElementById('previousEditButton').setAttribute('hidden', 'true');
+							document.getElementById('nextEditButton').removeAttribute('hidden');
+						} else if (i == 0 && i == cardbookRepository.cardbookDisplayCards[myCurrentAccountId].cards.length - 1) {
+							wdw_cardEdition.cancelPreviousNext();
+						} else if (i == cardbookRepository.cardbookDisplayCards[myCurrentAccountId].cards.length - 1) {
+							document.getElementById('previousEditButton').removeAttribute('hidden');
+							document.getElementById('nextEditButton').setAttribute('hidden', 'true');
+						} else {
+							document.getElementById('previousEditButton').removeAttribute('hidden');
+							document.getElementById('nextEditButton').removeAttribute('hidden');
+						}
+						break;
+					};
+				}
+			} else {
+				document.getElementById('previousEditButton').setAttribute('hidden', 'true');
+				document.getElementById('nextEditButton').setAttribute('hidden', 'true');
 			}
 		},
 
 		changeContactFromOrder: async function (aOrder) {
-			var myCurrentAccountId = wdw_cardEdition.getCurrentAccountId();
+			let myCurrentAccountId = wdw_cardEdition.getCurrentAccountId();
 			window.arguments[0].cardEditionAction = "SAVE";
 			wdw_cardEdition.saveFinal(false);
 			window.arguments[0].cardEditionAction = "";
-			for (var i = 0; i < cardbookRepository.cardbookDisplayCards[myCurrentAccountId].cards.length; i++) {
-				let card = cardbookRepository.cardbookDisplayCards[myCurrentAccountId].cards[i];
-				if (card.cbid == window.arguments[0].cardIn.cbid) {
-					if (aOrder == "next") {
-						window.arguments[0].cardIn = cardbookRepository.cardbookDisplayCards[myCurrentAccountId].cards[i+1];
-					} else {
-						window.arguments[0].cardIn = cardbookRepository.cardbookDisplayCards[myCurrentAccountId].cards[i-1];
-					}
-					break;
-				};
+			if (cardbookRepository.cardbookDisplayCards[myCurrentAccountId]) {
+				for (var i = 0; i < cardbookRepository.cardbookDisplayCards[myCurrentAccountId].cards.length; i++) {
+					let card = cardbookRepository.cardbookDisplayCards[myCurrentAccountId].cards[i];
+					if (card.cbid == window.arguments[0].cardIn.cbid) {
+						if (aOrder == "next") {
+							window.arguments[0].cardIn = cardbookRepository.cardbookDisplayCards[myCurrentAccountId].cards[i+1];
+						} else {
+							window.arguments[0].cardIn = cardbookRepository.cardbookDisplayCards[myCurrentAccountId].cards[i-1];
+						}
+						break;
+					};
+				}
 			}
 			if (window.arguments[0].cardIn.isAList) {
 				var myType = "List";

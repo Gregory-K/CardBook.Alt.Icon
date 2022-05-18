@@ -1257,6 +1257,7 @@ if ("undefined" == typeof(wdw_addressbooksAdd)) {
 							}
 							myFile.create(Components.interfaces.nsIFile.NORMAL_FILE_TYPE, 420);
 						}
+						cardbookRepository.cardbookServerCardSyncTotal[myAccount.dirPrefId]++;
 						cardbookRepository.cardbookSynchronization.loadFile(myFile, myAccount.dirPrefId, myAccount.dirPrefId, "NOIMPORTFILE", "");
 						cardbookRepository.cardbookSynchronization.waitForLoadFinished(myAccount.dirPrefId, myAccount.name, false, true);
 					} else if (myAccount.type === "DIRECTORY") {

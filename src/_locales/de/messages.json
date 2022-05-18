@@ -3403,6 +3403,12 @@
 	"dontAutoComputeFn": {
 		"message": "Erstellung des Anzeigenamens ausschalten"
 	},
+	"autoConvertField": {
+		"message": "Konvertierung dieses Feldes einschalten"
+	},
+	"dontAutoConvertField": {
+		"message": "Konvertierung dieses Feldes ausschalten"
+	},
 	"customLabel": {
 		"message": "Benutzerdef"
 	},
@@ -4440,6 +4446,12 @@
 	},
 	"fieldsButtonLabel": {
 		"message": "Als Standard festlegen"
+	},
+	"renameFieldsLabel": {
+		"message": "Bearbeiten"
+	},
+	"renameFieldsAccesskey": {
+		"message": "B"
 	},
 	"preferDisplayNameCheckBoxLabel": {
 		"message": "Immer Anzeigename statt der Angabe im Nachrichtenkopf verwenden"
@@ -5968,5 +5980,26 @@
 	},
 	"allAddressBooks": {
 		"message": "Alle Adressbücher"
+	},
+	"selectedLabel": {
+		"message": "Ausgewählt"
+	},
+	"conversionWarn": {
+		"message": "Es ist möglich, die Konvertierung einiger Felder zu erzwingen, während sie bereitgestellt werden."
+	},
+	"convertToLabel": {
+		"message": "Umwandeln in"
+	},
+	"wdw_cardbookConfigurationEditFieldTitle": {
+		"message": "Konvertierungsfunktion auswählen"
+	},
+	"uppercaseLabel": {
+		"message": "Großbuchstaben"
+	},
+	"lowercaseLabel": {
+		"message": "Kleinbuchstaben"
+	},
+	"capitalizationLabel": {
+		"message": "Großschreibung"
 	}
 }

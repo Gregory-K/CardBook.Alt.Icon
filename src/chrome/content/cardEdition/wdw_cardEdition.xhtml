@@ -166,7 +166,7 @@
 			<vbox id="fnGroupbox">
 				<label id="fnLabel" class="header">__MSG_fnLabel__</label>
 				<hbox flex="1" class="input-container">
-					<button type="checkbox" id="autoComputeFnButton" class="cardbookAutoComputeFnClass" oncommand="wdw_cardEdition.autoComputeFn(this);"/>
+					<button type="checkbox" id="autoComputeFnButton" class="cardbookProcessFnClass" oncommand="wdw_cardEdition.autoComputeFn(this);"/>
 					<html:input id="fnTextBox" flex="1"/>
 					<checkbox id="preferDisplayNameCheckBox" label="__MSG_preferDisplayNameCheckBoxLabel__" oncommand="wdw_cardEdition.savePreferDisplayName();"/>
 				</hbox>
@@ -184,8 +184,9 @@
 							</html:td>
 							<html:td>
 								<hbox flex="1" align="center">
-									<html:input id="lastnameTextBox" oninput="wdw_cardEdition.setDisplayName();"/>
+									<html:input id="lastnameTextBox" data-field-name="lastname" oninput="wdw_cardEdition.onInputField(event);"/>
 									<button type="checkbox" id="cardbookSwitchButtonDown" class="cardbookSwitchButtonDownClass" tooltiptext="__MSG_cardbookSwitchButtonTooltip__" oncommand="wdw_cardEdition.switchLastnameAndFirstname();"/>
+									<button type="checkbox" id="lastnameProcessButton" class="cardbookProcessClass" autoConvertField="true" oncommand="wdw_cardEdition.setConvertFunction(event);"/>
 								</hbox>
 							</html:td>
 						</html:tr>
@@ -195,8 +196,9 @@
 							</html:td>
 							<html:td>
 								<hbox flex="1" align="center">
-									<html:input id="firstnameTextBox" oninput="wdw_cardEdition.setDisplayName();"/>
+									<html:input id="firstnameTextBox" data-field-name="firstname" oninput="wdw_cardEdition.onInputField(event);"/>
 									<button type="checkbox" id="cardbookSwitchButtonUp" class="cardbookSwitchButtonUpClass" tooltiptext="__MSG_cardbookSwitchButtonTooltip__" oncommand="wdw_cardEdition.switchLastnameAndFirstname();"/>
+									<button type="checkbox" id="firstnameProcessButton" class="cardbookProcessClass" autoConvertField="true" oncommand="wdw_cardEdition.setConvertFunction(event);"/>
 								</hbox>
 							</html:td>
 						</html:tr>
@@ -205,7 +207,8 @@
 								<label id="othernameLabel" value="__MSG_othernameLabel__" control="othernameTextBox" class="header"/>
 							</html:td>
 							<html:td>
-								<html:input id="othernameTextBox" oninput="wdw_cardEdition.setDisplayName();"/>
+								<html:input id="othernameTextBox" data-field-name="othername" oninput="wdw_cardEdition.onInputField(event);"/>
+								<button type="checkbox" id="othernameProcessButton" class="cardbookProcessClass" autoConvertField="true" oncommand="wdw_cardEdition.setConvertFunction(event);"/>
 							</html:td>
 						</html:tr>
 						<html:tr id="prefixnameRow">
@@ -213,7 +216,8 @@
 								<label id="prefixnameLabel" value="__MSG_prefixnameLabel__" control="prefixnameTextBox" class="header"/>
 							</html:td>
 							<html:td>
-								<html:input id="prefixnameTextBox" oninput="wdw_cardEdition.setDisplayName();"/>
+								<html:input id="prefixnameTextBox" data-field-name="prefixname" oninput="wdw_cardEdition.onInputField(event);"/>
+								<button type="checkbox" id="prefixnameProcessButton" class="cardbookProcessClass" autoConvertField="true" oncommand="wdw_cardEdition.setConvertFunction(event);"/>
 							</html:td>
 						</html:tr>
 						<html:tr id="suffixnameRow">
@@ -221,7 +225,8 @@
 								<label id="suffixnameLabel" value="__MSG_suffixnameLabel__" control="suffixnameTextBox" class="header"/>
 							</html:td>
 							<html:td>
-								<html:input id="suffixnameTextBox" oninput="wdw_cardEdition.setDisplayName();"/>
+								<html:input id="suffixnameTextBox" data-field-name="suffixname" oninput="wdw_cardEdition.onInputField(event);"/>
+								<button type="checkbox" id="suffixnameProcessButton" class="cardbookProcessClass" autoConvertField="true" oncommand="wdw_cardEdition.setConvertFunction(event);"/>
 							</html:td>
 						</html:tr>
 						<html:tr id="nicknameRow">
@@ -229,7 +234,8 @@
 								<label id="nicknameLabel" value="__MSG_nicknameLabel__" control="nicknameTextBox" class="header"/>
 							</html:td>
 							<html:td>
-								<html:input id="nicknameTextBox" oninput="wdw_cardEdition.setDisplayName();"/>
+								<html:input id="nicknameTextBox" data-field-name="nickname" oninput="wdw_cardEdition.onInputField(event);"/>
+								<button type="checkbox" id="nicknameProcessButton" class="cardbookProcessClass" autoConvertField="true" oncommand="wdw_cardEdition.setConvertFunction(event);"/>
 							</html:td>
 						</html:tr>
 						<html:tr id="genderRow1">
@@ -273,7 +279,8 @@
 								<label id="birthplaceLabel" value="__MSG_birthplaceLabel__" control="birthplaceTextBox" class="header"/>
 							</html:td>
 							<html:td>
-								<html:input id="birthplaceTextBox"/>
+								<html:input id="birthplaceTextBox" data-field-name="birthplace" oninput="wdw_cardEdition.onInputField(event);"/>
+								<button type="checkbox" id="birthplaceProcessButton" class="cardbookProcessClass" autoConvertField="true" oncommand="wdw_cardEdition.setConvertFunction(event);"/>
 							</html:td>
 						</html:tr>
 						<html:tr id="deathdateRow1">
@@ -297,7 +304,8 @@
 								<label id="deathplaceLabel" value="__MSG_deathplaceLabel__" control="deathplaceTextBox" class="header"/>
 							</html:td>
 							<html:td>
-								<html:input id="deathplaceTextBox"/>
+								<html:input id="deathplaceTextBox" data-field-name="deathplace" oninput="wdw_cardEdition.onInputField(event);"/>
+								<button type="checkbox" id="deathplaceProcessButton" class="cardbookProcessClass" autoConvertField="true" oncommand="wdw_cardEdition.setConvertFunction(event);"/>
 							</html:td>
 						</html:tr>
 						<html:tr id="anniversaryRow1">
@@ -386,7 +394,8 @@
 											<label value="__MSG_postOfficeLabel__" control="postOfficeTextBox" class="header"/>
 										</html:td>
 										<html:td>
-											<html:input id="postOfficeTextBox" placeholder="__MSG_deprecatedLabel__"/>
+											<html:input id="postOfficeTextBox" data-field-name="postOffice" placeholder="__MSG_deprecatedLabel__" oninput="wdw_cardEdition.onInputField(event);"/>
+											<button type="checkbox" id="postOfficeProcessButton" class="cardbookProcessClass" autoConvertField="true" oncommand="wdw_cardEdition.setConvertFunction(event);"/>
 										</html:td>
 									</html:tr>
 									<html:tr id="extendedAddrRow">
@@ -394,7 +403,8 @@
 											<label value="__MSG_extendedAddrLabel__" control="extendedAddrTextBox" class="header"/>
 										</html:td>
 										<html:td>
-											<html:input id="extendedAddrTextBox" placeholder="__MSG_deprecatedLabel__"/>
+											<html:input id="extendedAddrTextBox" data-field-name="extendedAddr" placeholder="__MSG_deprecatedLabel__" oninput="wdw_cardEdition.onInputField(event);"/>
+											<button type="checkbox" id="extendedAddrProcessButton" class="cardbookProcessClass" autoConvertField="true" oncommand="wdw_cardEdition.setConvertFunction(event);"/>
 										</html:td>
 									</html:tr>
 									<html:tr id="streetRow">
@@ -402,7 +412,8 @@
 											<label value="__MSG_streetLabel__" control="streetTextBox" class="header"/>
 										</html:td>
 										<html:td>
-											<html:textarea id="streetTextBox"/>
+											<html:textarea id="streetTextBox" data-field-name="street" oninput="wdw_cardEdition.onInputField(event);"/>
+											<button type="checkbox" id="streetProcessButton" class="cardbookProcessClass" autoConvertField="true" oncommand="wdw_cardEdition.setConvertFunction(event);"/>
 										</html:td>
 									</html:tr>
 									<html:tr id="localityRow">
@@ -410,7 +421,8 @@
 											<label value="__MSG_localityLabel__" control="localityTextBox" class="header"/>
 										</html:td>
 										<html:td>
-											<html:input id="localityTextBox" type="autocomplete" autocompletesearch="form-history" autocompletesearchparam="localityTextBox" class="padded"/>
+											<html:input id="localityTextBox" data-field-name="locality" type="autocomplete" autocompletesearch="form-history" autocompletesearchparam="localityTextBox" class="padded" oninput="wdw_cardEdition.onInputField(event);"/>
+											<button type="checkbox" id="localityProcessButton" class="cardbookProcessClass" autoConvertField="true" oncommand="wdw_cardEdition.setConvertFunction(event);"/>
 										</html:td>
 									</html:tr>
 									<html:tr id="regionRow">
@@ -418,7 +430,8 @@
 											<label value="__MSG_regionLabel__" control="regionTextBox" class="header"/>
 										</html:td>
 										<html:td>
-											<html:input id="regionTextBox" type="autocomplete" autocompletesearch="form-history" autocompletesearchparam="regionTextBox" class="padded"/>
+											<html:input id="regionTextBox" data-field-name="region" type="autocomplete" autocompletesearch="form-history" autocompletesearchparam="regionTextBox" class="padded" oninput="wdw_cardEdition.onInputField(event);"/>
+											<button type="checkbox" id="regionProcessButton" class="cardbookProcessClass" autoConvertField="true" oncommand="wdw_cardEdition.setConvertFunction(event);"/>
 										</html:td>
 									</html:tr>
 									<html:tr id="postalCodeRow">
@@ -426,7 +439,8 @@
 											<label value="__MSG_postalCodeLabel__" control="postalCodeTextBox" class="header"/>
 										</html:td>
 										<html:td>
-											<html:input id="postalCodeTextBox" type="autocomplete" autocompletesearch="form-history" autocompletesearchparam="postalCodeTextBox" class="padded"/>
+											<html:input id="postalCodeTextBox" data-field-name="postalCode" type="autocomplete" autocompletesearch="form-history" autocompletesearchparam="postalCodeTextBox" class="padded" oninput="wdw_cardEdition.onInputField(event);"/>
+											<button type="checkbox" id="postalCodeProcessButton" class="cardbookProcessClass" autoConvertField="true" oncommand="wdw_cardEdition.setConvertFunction(event);"/>
 										</html:td>
 									</html:tr>
 									<html:tr id="countryRow">

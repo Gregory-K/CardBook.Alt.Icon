@@ -1,10 +1,4 @@
-#fieldsTable td:first-child {
-	min-width: 250px;
-	max-width: 250px;
-}
-
-#fieldsTable td:nth-child(2n),
-#fieldsTable td:nth-child(3n) {
-	min-width: 100px;
-	max-width: 100px;
+#fieldsTable td {
+	min-width: 150px;
+	max-width: 150px;
 }

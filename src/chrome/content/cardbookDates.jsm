@@ -20,6 +20,7 @@ var cardbookDates = {
 					case 18:
 					case 19:
 					case 20:
+					case 24:
 						myFieldValue = cardbookDates.getCorrectDatetime(myFieldValue);
 						var myDate = new Date(Date.parse(myFieldValue));
 						if (isNaN(myDate)) {
@@ -61,6 +62,7 @@ var cardbookDates = {
 					case 18:
 					case 19:
 					case 20:
+					case 24:
 						myFieldValue = cardbookDates.getCorrectDatetime(myFieldValue);
 						return cardbookDates.getFormattedDateTimeForDateTimeString(myFieldValue, cardbookRepository.dateDisplayedFormat);
 						break;

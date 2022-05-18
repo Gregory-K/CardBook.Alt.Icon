@@ -167,11 +167,11 @@
 	"ValidatingEmailFailedLabel": {
 		"message": "Vnesite veljaven e-poštni naslov"
 	},
-	"ValidationFailedOffLine": {
-		"message": "Trenutno ste brez povezave."
-	},
 	"ValidationFailedLabel": {
 		"message": "Preverjanje veljavnosti je spodletelo"
+	},
+	"ValidationFailedOffLine": {
+		"message": "Trenutno ste brez povezave."
 	},
 	"ValidationOKLabel": {
 		"message": "Veljavnost je v redu"
@@ -3403,6 +3403,12 @@
 	"dontAutoComputeFn": {
 		"message": "??Disable the generation of the display name??"
 	},
+	"autoConvertField": {
+		"message": "??Enable the convertion of this field??"
+	},
+	"dontAutoConvertField": {
+		"message": "??Disable the convertion of this field??"
+	},
 	"customLabel": {
 		"message": "Po meri"
 	},
@@ -4440,6 +4446,12 @@
 	},
 	"fieldsButtonLabel": {
 		"message": "Nastavi kot privzeto"
+	},
+	"renameFieldsLabel": {
+		"message": "Uredi"
+	},
+	"renameFieldsAccesskey": {
+		"message": "U"
 	},
 	"preferDisplayNameCheckBoxLabel": {
 		"message": "Vedno daj prednost prikaznemu imenu namesto glavi sporočila"
@@ -5968,5 +5980,26 @@
 	},
 	"allAddressBooks": {
 		"message": "Vsi imeniki"
+	},
+	"selectedLabel": {
+		"message": "Izbrano"
+	},
+	"conversionWarn": {
+		"message": "??It is possible to force the convertion of some fields while providing them.??"
+	},
+	"convertToLabel": {
+		"message": "Pretvori v"
+	},
+	"wdw_cardbookConfigurationEditFieldTitle": {
+		"message": "??Choose a convertion function??"
+	},
+	"uppercaseLabel": {
+		"message": "??Uppercase??"
+	},
+	"lowercaseLabel": {
+		"message": "??Lowercase??"
+	},
+	"capitalizationLabel": {
+		"message": "??Capitalization??"
 	}
 }

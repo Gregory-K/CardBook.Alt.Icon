@@ -3242,7 +3242,7 @@
 		"message": "يختلف عدد الأعمدة المحددة عن عدد الأعمدة في الملف. سيتم تجاهل الأعمدة غير المحددة أو غير الضرورية. استمر؟"
 	},
 	"toUpperCase": {
-		"message": "تحويل إلى أحرف كبيرة"
+		"message": "تحويل إرف كبيرةلى أح"
 	},
 	"toLowerCase": {
 		"message": "تحويل إلى أحرف صغيرة"
@@ -3402,6 +3402,12 @@
 	},
 	"dontAutoComputeFn": {
 		"message": "تعطيل توليد اسم العرض"
+	},
+	"autoConvertField": {
+		"message": "??Enable the convertion of this field??"
+	},
+	"dontAutoConvertField": {
+		"message": "??Disable the convertion of this field??"
 	},
 	"customLabel": {
 		"message": "مخصص"
@@ -4440,6 +4446,12 @@
 	},
 	"fieldsButtonLabel": {
 		"message": "تعيين كافتراضي"
+	},
+	"renameFieldsLabel": {
+		"message": "تعديل"
+	},
+	"renameFieldsAccesskey": {
+		"message": "E"
 	},
 	"preferDisplayNameCheckBoxLabel": {
 		"message": "فضِّل دائمًا اسم العرض على ترويسة الرسالة"
@@ -5968,5 +5980,26 @@
 	},
 	"allAddressBooks": {
 		"message": "كل دفاتر العناوين"
+	},
+	"selectedLabel": {
+		"message": "محدد"
+	},
+	"conversionWarn": {
+		"message": "??It is possible to force the convertion of some fields while providing them.??"
+	},
+	"convertToLabel": {
+		"message": "حوّل إلى"
+	},
+	"wdw_cardbookConfigurationEditFieldTitle": {
+		"message": "??Choose a convertion function??"
+	},
+	"uppercaseLabel": {
+		"message": "??Uppercase??"
+	},
+	"lowercaseLabel": {
+		"message": "??Lowercase??"
+	},
+	"capitalizationLabel": {
+		"message": "??Capitalization??"
 	}
 }

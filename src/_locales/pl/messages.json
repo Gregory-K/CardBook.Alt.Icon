@@ -167,11 +167,11 @@
 	"ValidatingEmailFailedLabel": {
 		"message": "Wymagany jest prawidłowy adres e-mail"
 	},
-	"ValidationFailedOffLine": {
-		"message": "Pracujesz teraz w trybie offline."
-	},
 	"ValidationFailedLabel": {
 		"message": "Weryfikacja zakończyła się niepowodzeniem"
+	},
+	"ValidationFailedOffLine": {
+		"message": "Pracujesz teraz w trybie offline."
 	},
 	"ValidationOKLabel": {
 		"message": "Weryfikacja przebiegła pomyślnie"
@@ -3403,6 +3403,12 @@
 	"dontAutoComputeFn": {
 		"message": "Wyłącz generowanie wyświetlanej nazwy"
 	},
+	"autoConvertField": {
+		"message": "??Enable the convertion of this field??"
+	},
+	"dontAutoConvertField": {
+		"message": "??Disable the convertion of this field??"
+	},
 	"customLabel": {
 		"message": "Informacja"
 	},
@@ -4440,6 +4446,12 @@
 	},
 	"fieldsButtonLabel": {
 		"message": "Ustaw jako domyślną"
+	},
+	"renameFieldsLabel": {
+		"message": "Edytuj"
+	},
+	"renameFieldsAccesskey": {
+		"message": "E"
 	},
 	"preferDisplayNameCheckBoxLabel": {
 		"message": "Używaj nazwy kontaktu z książki adresowej zamiast nazwy podanej w wiadomości"
@@ -5968,5 +5980,26 @@
 	},
 	"allAddressBooks": {
 		"message": "Wszystkie książki adresowe"
+	},
+	"selectedLabel": {
+		"message": "Wybrano"
+	},
+	"conversionWarn": {
+		"message": "??It is possible to force the convertion of some fields while providing them.??"
+	},
+	"convertToLabel": {
+		"message": "Zamień na"
+	},
+	"wdw_cardbookConfigurationEditFieldTitle": {
+		"message": "??Choose a convertion function??"
+	},
+	"uppercaseLabel": {
+		"message": "??Uppercase??"
+	},
+	"lowercaseLabel": {
+		"message": "??Lowercase??"
+	},
+	"capitalizationLabel": {
+		"message": "??Capitalization??"
 	}
 }

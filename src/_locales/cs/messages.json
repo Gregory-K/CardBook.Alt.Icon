@@ -3403,6 +3403,12 @@
 	"dontAutoComputeFn": {
 		"message": "Zakázat generování zobrazovaného jména"
 	},
+	"autoConvertField": {
+		"message": "Povolit konverzi tohoto pole"
+	},
+	"dontAutoConvertField": {
+		"message": "Zakázat konverzi tohoto pole"
+	},
 	"customLabel": {
 		"message": "Položka"
 	},
@@ -4440,6 +4446,12 @@
 	},
 	"fieldsButtonLabel": {
 		"message": "Nastavit jako výchozí"
+	},
+	"renameFieldsLabel": {
+		"message": "Upravit"
+	},
+	"renameFieldsAccesskey": {
+		"message": "U"
 	},
 	"preferDisplayNameCheckBoxLabel": {
 		"message": "Vždy upřednostnit zobrazované jméno před hlavičkou zprávy"
@@ -5968,5 +5980,26 @@
 	},
 	"allAddressBooks": {
 		"message": "Všechny složky kontaktů"
+	},
+	"selectedLabel": {
+		"message": "Vybráno"
+	},
+	"conversionWarn": {
+		"message": "Je možné vynutit konverzi některých polí při jejich poskytování."
+	},
+	"convertToLabel": {
+		"message": "Převést na"
+	},
+	"wdw_cardbookConfigurationEditFieldTitle": {
+		"message": "Vyberte konverzní funkci"
+	},
+	"uppercaseLabel": {
+		"message": "Velká písmena"
+	},
+	"lowercaseLabel": {
+		"message": "Malá písmena"
+	},
+	"capitalizationLabel": {
+		"message": "Velká první písmena"
 	}
 }

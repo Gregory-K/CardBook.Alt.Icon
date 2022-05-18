@@ -167,11 +167,11 @@
 	"ValidatingEmailFailedLabel": {
 		"message": "Geçerli bir e-posta adresi gerekiyor"
 	},
-	"ValidationFailedOffLine": {
-		"message": "Şu an çevrimdışısınız."
-	},
 	"ValidationFailedLabel": {
 		"message": "Doğrulanamadı"
+	},
+	"ValidationFailedOffLine": {
+		"message": "Şu an çevrimdışısınız."
 	},
 	"ValidationOKLabel": {
 		"message": "Doğrulandı"
@@ -3403,6 +3403,12 @@
 	"dontAutoComputeFn": {
 		"message": "Görünen ismi üretmeyi kapat"
 	},
+	"autoConvertField": {
+		"message": "??Enable the convertion of this field??"
+	},
+	"dontAutoConvertField": {
+		"message": "??Disable the convertion of this field??"
+	},
 	"customLabel": {
 		"message": "Özel"
 	},
@@ -4440,6 +4446,12 @@
 	},
 	"fieldsButtonLabel": {
 		"message": "Varsayılan Yap"
+	},
+	"renameFieldsLabel": {
+		"message": "Düzenle"
+	},
+	"renameFieldsAccesskey": {
+		"message": "D"
 	},
 	"preferDisplayNameCheckBoxLabel": {
 		"message": "Her zaman görünen ismi mesaj başlığına tercih et"
@@ -5968,5 +5980,26 @@
 	},
 	"allAddressBooks": {
 		"message": "Tüm Adres Defterleri"
+	},
+	"selectedLabel": {
+		"message": "Seçildi"
+	},
+	"conversionWarn": {
+		"message": "??It is possible to force the convertion of some fields while providing them.??"
+	},
+	"convertToLabel": {
+		"message": "Dönüştür"
+	},
+	"wdw_cardbookConfigurationEditFieldTitle": {
+		"message": "??Choose a convertion function??"
+	},
+	"uppercaseLabel": {
+		"message": "??Uppercase??"
+	},
+	"lowercaseLabel": {
+		"message": "??Lowercase??"
+	},
+	"capitalizationLabel": {
+		"message": "??Capitalization??"
 	}
 }

@@ -3403,6 +3403,12 @@
 	"dontAutoComputeFn": {
 		"message": "Να μη δημιουργείται όνομα προβολής"
 	},
+	"autoConvertField": {
+		"message": "??Enable the convertion of this field??"
+	},
+	"dontAutoConvertField": {
+		"message": "??Disable the convertion of this field??"
+	},
 	"customLabel": {
 		"message": "Προσαρμοσμένη"
 	},
@@ -4440,6 +4446,12 @@
 	},
 	"fieldsButtonLabel": {
 		"message": "Ορισμός ως προεπιλογή"
+	},
+	"renameFieldsLabel": {
+		"message": "Επεξεργασία"
+	},
+	"renameFieldsAccesskey": {
+		"message": "Ε"
 	},
 	"preferDisplayNameCheckBoxLabel": {
 		"message": "Να προτιμάται πάντα το όνομα εμφάνισης αντί της επικεφαλίδας μηνύματος"
@@ -5968,5 +5980,26 @@
 	},
 	"allAddressBooks": {
 		"message": "Όλα τα ευρετήρια"
+	},
+	"selectedLabel": {
+		"message": "Επιλεγμένο"
+	},
+	"conversionWarn": {
+		"message": "??It is possible to force the convertion of some fields while providing them.??"
+	},
+	"convertToLabel": {
+		"message": "Μετατροπή σε"
+	},
+	"wdw_cardbookConfigurationEditFieldTitle": {
+		"message": "??Choose a convertion function??"
+	},
+	"uppercaseLabel": {
+		"message": "??Uppercase??"
+	},
+	"lowercaseLabel": {
+		"message": "??Lowercase??"
+	},
+	"capitalizationLabel": {
+		"message": "??Capitalization??"
 	}
 }

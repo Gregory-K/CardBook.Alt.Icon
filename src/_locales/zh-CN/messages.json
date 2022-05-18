@@ -167,11 +167,11 @@
 	"ValidatingEmailFailedLabel": {
 		"message": "需要有效的电子邮件地址"
 	},
-	"ValidationFailedOffLine": {
-		"message": "您当前处于脱机状态。"
-	},
 	"ValidationFailedLabel": {
 		"message": "验证失败"
+	},
+	"ValidationFailedOffLine": {
+		"message": "您当前处于脱机状态。"
 	},
 	"ValidationOKLabel": {
 		"message": "验证成功"
@@ -3403,6 +3403,12 @@
 	"dontAutoComputeFn": {
 		"message": "禁用显示名称的生成"
 	},
+	"autoConvertField": {
+		"message": "启用此字段的转换"
+	},
+	"dontAutoConvertField": {
+		"message": "禁用此字段的转换"
+	},
 	"customLabel": {
 		"message": "自定义"
 	},
@@ -4440,6 +4446,12 @@
 	},
 	"fieldsButtonLabel": {
 		"message": "设为默认"
+	},
+	"renameFieldsLabel": {
+		"message": "编辑"
+	},
+	"renameFieldsAccesskey": {
+		"message": "E"
 	},
 	"preferDisplayNameCheckBoxLabel": {
 		"message": "一律在邮件标题上方显示姓名"
@@ -5968,5 +5980,26 @@
 	},
 	"allAddressBooks": {
 		"message": "所有通讯录"
+	},
+	"selectedLabel": {
+		"message": "已选定"
+	},
+	"conversionWarn": {
+		"message": "可以在提供某些字段的同时强制转换。"
+	},
+	"convertToLabel": {
+		"message": "转换到"
+	},
+	"wdw_cardbookConfigurationEditFieldTitle": {
+		"message": "选择转换功能"
+	},
+	"uppercaseLabel": {
+		"message": "大写"
+	},
+	"lowercaseLabel": {
+		"message": "小写"
+	},
+	"capitalizationLabel": {
+		"message": "大写"
 	}
 }

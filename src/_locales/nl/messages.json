@@ -3403,6 +3403,12 @@
 	"dontAutoComputeFn": {
 		"message": "Genereren van getoonde naam uit zetten"
 	},
+	"autoConvertField": {
+		"message": "Converteren van deze rubriek toestaan"
+	},
+	"dontAutoConvertField": {
+		"message": "Converteren van deze rubriek niet toestaan"
+	},
 	"customLabel": {
 		"message": "Overig"
 	},
@@ -4440,6 +4446,12 @@
 	},
 	"fieldsButtonLabel": {
 		"message": "Als standaard instellen"
+	},
+	"renameFieldsLabel": {
+		"message": "Bewerken"
+	},
+	"renameFieldsAccesskey": {
+		"message": "B"
 	},
 	"preferDisplayNameCheckBoxLabel": {
 		"message": "Altijd weergavenaam boven berichtkop verkiezen"
@@ -5968,5 +5980,26 @@
 	},
 	"allAddressBooks": {
 		"message": "Alle adresboeken"
+	},
+	"selectedLabel": {
+		"message": "Geselecteerd"
+	},
+	"conversionWarn": {
+		"message": "Het is mogelijk om bepaalde rubrieken te converteren tijdens het invullen."
+	},
+	"convertToLabel": {
+		"message": "Converteren naar"
+	},
+	"wdw_cardbookConfigurationEditFieldTitle": {
+		"message": "Kies een conversiefunctie"
+	},
+	"uppercaseLabel": {
+		"message": "Hoofdletters"
+	},
+	"lowercaseLabel": {
+		"message": "Kleineletters"
+	},
+	"capitalizationLabel": {
+		"message": "Beginnen met hoofdletter"
 	}
 }

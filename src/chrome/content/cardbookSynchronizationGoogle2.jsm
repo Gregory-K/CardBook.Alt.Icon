@@ -1250,30 +1250,18 @@ var cardbookSynchronizationGoogle2 = {
 		}
 		GoogleContact.names = [];                                                          
 		let name = {};
-		let setFn = false;
-		if (aCard.lastname) {
-			name.familyName = aCard.lastname;
-			setFn = true;
-		}
-		if (aCard.firstname) {
-			name.givenName = aCard.firstname;
-			setFn = true;
-		}
-		if (aCard.prefixname) {
-			name.honorificPrefix = aCard.prefixname;
-			setFn = true;
-		}
-		if (aCard.suffixname) {
-			name.honorificSuffix = aCard.suffixname;
-			setFn = true;
-		}
-		if (aCard.othername) {
-			name.middleName = aCard.othername;
-			setFn = true;
-		}
-		if (setFn == true) {
+		name.familyName = aCard.lastname;
+		name.givenName = aCard.firstname;
+		name.honorificPrefix = aCard.prefixname;
+		name.honorificSuffix = aCard.suffixname;
+		name.middleName = aCard.othername;
+		let isN = aCard.lastname || aCard.firstname || aCard.prefixname || aCard.suffixname || aCard.othername;
+		if (isN || aCard.org == "") {
 			name.displayName = aCard.fn;
 			name.unstructuredName = aCard.fn;
+			if (!isN) {
+				name.givenName = aCard.fn;
+			}
 		}
 		GoogleContact.names.push(name);
 

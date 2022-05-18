@@ -286,6 +286,7 @@ var cardbookRepository = {
 	cardbookSearchValue: "",
 	cardbookComplexSearchMode: "NOSEARCH",
 	cardbookComplexSearchPrefId: "",
+	currentAccountId: "",
 	// used to copy and paste 
 	currentCopiedEntry: [],
 	currentCopiedEntryValue: "",
@@ -510,11 +511,25 @@ var cardbookRepository = {
 		if (!fieldsUpdate1) {
 			let fields = cardbookRepository.cardbookPreferences.getStringPref("extensions.cardbook.fieldsNameList");
 			if (fields != "allFields") {
-				let prefs = cardbookRepository.cardbookUtils.unescapeArray(cardbookRepository.cardbookUtils.escapeString(fields).split(";"));
+				let prefs = cardbookRepository.cardbookUtils.escapeString(fields).split(";");
 				prefs = prefs.concat(cardbookRepository.adrElements);
-				cardbookRepository.cardbookPreferences.setStringPref("extensions.cardbook.fieldsNameList", cardbookRepository.cardbookUtils.unescapeStringSemiColon(prefs.join(";")));
+				cardbookRepository.cardbookPreferences.setStringPref("extensions.cardbook.fieldsNameList", prefs.join(";"));
 			}
 			cardbookRepository.cardbookPreferences.setBoolPref("extensions.cardbook.fieldsNameListUpdate1", true);
+		}
+		let fieldsUpdate2 = cardbookRepository.cardbookPreferences.getBoolPref("extensions.cardbook.fieldsNameListUpdate2", false);
+		if (!fieldsUpdate2) {
+			let fields = cardbookRepository.cardbookPreferences.getStringPref("extensions.cardbook.fieldsNameList");
+			let prefs = cardbookRepository.cardbookUtils.escapeString(fields).split(";");
+			prefs = cardbookRepository.cardbookUtils.unescapeArray(prefs);
+			if (prefs[0] != "allFields") {
+				let result = {};
+				for (let pref of prefs) {
+					result[pref] = { displayed: true, function: "" };
+				}
+				cardbookRepository.cardbookPreferences.setStringPref("extensions.cardbook.fieldsNameList", JSON.stringify(result));
+			}
+			cardbookRepository.cardbookPreferences.setBoolPref("extensions.cardbook.fieldsNameListUpdate2", true);
 		}
 	},
 
@@ -2362,6 +2377,7 @@ var cardbookRepository = {
 			case "CARDDAV":
 			case "GOOGLE":
 			case "GOOGLE2":
+			case "GOOGLE3":
 			case "OFFICE365":
 			case "YAHOO":
 				return "remote";

@@ -18,8 +18,9 @@
 	list-style-image: url("chrome://cardbook/content/skin/small-icons/arrow-down.svg");
 }
 
-.cardbookAutoComputeFnClass {
-	/* Override button appearance */
+.cardbookProcessFnClass,
+.cardbookProcessClass {
+		/* Override button appearance */
 	-moz-appearance: none;
 	min-width: 20px;
 	margin-block: 0;
@@ -32,7 +33,8 @@
 	-moz-context-properties: fill;
 	fill: currentColor;
 }
-.cardbookAutoComputeFnClass[autoComputeFn="true"] {
+.cardbookProcessFnClass[autoComputeFn="true"],
+.cardbookProcessClass[autoConvertField="true"] {
 	list-style-image: url("chrome://cardbook/content/skin/icons/computeOK.svg");
 }
 

@@ -48,9 +48,12 @@
 					<html:div id="cardbookContactButtonsBox" class="fullline justifyCenter">
 						<button id="email" label="__MSG_emailLabel__" class="cardbookContactButtons" oncommand="wdw_formatData.setData(this);" visuallyselected="true"/>
 						<button id="tel" label="__MSG_telLabel__" class="cardbookContactButtons" oncommand="wdw_formatData.setData(this);"/>
+						<button id="fields" label="__MSG_fieldsLabel__" class="cardbookContactButtons" oncommand="wdw_formatData.setData(this);"/>
 					</html:div>
 					<html:div id="noLinesFoundDescVbox" class="hidden">
 						<label id="noLinesFoundDesc"/>
+					</html:div>
+					<html:div id="fieldsBox" class="flex-grow-x alignCenter justifyCenter hidden">
 					</html:div>
 					<html:div id="recordsHbox" class="flex-grow-y alignLeft hidden">
 						<html:table id="fieldsTable"/>

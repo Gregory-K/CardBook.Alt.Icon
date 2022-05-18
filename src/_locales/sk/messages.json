@@ -167,11 +167,11 @@
 	"ValidatingEmailFailedLabel": {
 		"message": "Vyžaduje sa platná e-mailová adresa"
 	},
-	"ValidationFailedOffLine": {
-		"message": "Momentálne ste v režime offline."
-	},
 	"ValidationFailedLabel": {
 		"message": "Overenie zlyhalo"
+	},
+	"ValidationFailedOffLine": {
+		"message": "Momentálne ste v režime offline."
 	},
 	"ValidationOKLabel": {
 		"message": "Overenie úspešné"
@@ -3403,6 +3403,12 @@
 	"dontAutoComputeFn": {
 		"message": "Zakázať generovanie zobrazovaného mena"
 	},
+	"autoConvertField": {
+		"message": "Povoliť konverziu tohto poľa"
+	},
+	"dontAutoConvertField": {
+		"message": "Zakázať konverziu tohto poľa"
+	},
 	"customLabel": {
 		"message": "Vlastné"
 	},
@@ -4440,6 +4446,12 @@
 	},
 	"fieldsButtonLabel": {
 		"message": "Nastaviť ako predvolené"
+	},
+	"renameFieldsLabel": {
+		"message": "Upraviť"
+	},
+	"renameFieldsAccesskey": {
+		"message": "U"
 	},
 	"preferDisplayNameCheckBoxLabel": {
 		"message": "Vždy použiť zobrazované meno namiesto mena z hlavičky správy"
@@ -5968,5 +5980,26 @@
 	},
 	"allAddressBooks": {
 		"message": "Všetky adresáre kontaktov"
+	},
+	"selectedLabel": {
+		"message": "Zvolené"
+	},
+	"conversionWarn": {
+		"message": "Pri poskytovaní niektorých polí je možné vynútiť ich konverziu."
+	},
+	"convertToLabel": {
+		"message": "Konvertovať na"
+	},
+	"wdw_cardbookConfigurationEditFieldTitle": {
+		"message": "Vyberte si funkciu konverzie"
+	},
+	"uppercaseLabel": {
+		"message": "Veľké písmená"
+	},
+	"lowercaseLabel": {
+		"message": "Malé písmená"
+	},
+	"capitalizationLabel": {
+		"message": "Kapitálky"
 	}
 }

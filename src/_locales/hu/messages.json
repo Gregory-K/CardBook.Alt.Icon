@@ -82,7 +82,7 @@
 		"message": "Kategória eltávolítása"
 	},
 	"convertCategoryFromAccountsOrCats": {
-		"message": "A kategória konvertálása a listára"
+		"message": "A kategória átalakítása a listára"
 	},
 	"editNodeFromAccountsOrCats": {
 		"message": "Csomópont szerkesztése"
@@ -3403,6 +3403,12 @@
 	"dontAutoComputeFn": {
 		"message": "Megjelenített név létrehozásának letiltása"
 	},
+	"autoConvertField": {
+		"message": "Mezőátalakítás engedélyezése"
+	},
+	"dontAutoConvertField": {
+		"message": "Mezőátalakítás letiltása"
+	},
 	"customLabel": {
 		"message": "Egyéb"
 	},
@@ -4440,6 +4446,12 @@
 	},
 	"fieldsButtonLabel": {
 		"message": "Legyen ez az alapértelmezett"
+	},
+	"renameFieldsLabel": {
+		"message": "Szerkesztés…"
+	},
+	"renameFieldsAccesskey": {
+		"message": "z"
 	},
 	"preferDisplayNameCheckBoxLabel": {
 		"message": "A megjelenítendő név használata az üzenetfejlécben levő helyett"
@@ -5968,5 +5980,26 @@
 	},
 	"allAddressBooks": {
 		"message": "Minden címjegyzék"
+	},
+	"selectedLabel": {
+		"message": "Kiválasztva"
+	},
+	"conversionWarn": {
+		"message": "Lehetőség van egyes mezők átalakítása kikényszerítésére, miközben megadja azokat."
+	},
+	"convertToLabel": {
+		"message": "Konvertálás"
+	},
+	"wdw_cardbookConfigurationEditFieldTitle": {
+		"message": "Átalakítási függvény kijelölése"
+	},
+	"uppercaseLabel": {
+		"message": "Nagybetű"
+	},
+	"lowercaseLabel": {
+		"message": "Kisbetű"
+	},
+	"capitalizationLabel": {
+		"message": "Nagybetűs írás"
 	}
 }

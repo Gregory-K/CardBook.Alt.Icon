@@ -3398,10 +3398,16 @@
 		"message": "A"
 	},
 	"autoComputeFn": {
-		"message": "Activar la generación del nombre mostrado"
+		"message": "Habilitar la generación del nombre mostrado"
 	},
 	"dontAutoComputeFn": {
-		"message": "Desactivar la generación del nombre mostrado"
+		"message": "Deshabilitar la generación del nombre mostrado"
+	},
+	"autoConvertField": {
+		"message": "Habilitar la conversión de este campo"
+	},
+	"dontAutoConvertField": {
+		"message": "Deshabilitar la conversión de este campo"
 	},
 	"customLabel": {
 		"message": "Personalizado"
@@ -4440,6 +4446,12 @@
 	},
 	"fieldsButtonLabel": {
 		"message": "Establecer como predeterminado"
+	},
+	"renameFieldsLabel": {
+		"message": "Editar"
+	},
+	"renameFieldsAccesskey": {
+		"message": "E"
 	},
 	"preferDisplayNameCheckBoxLabel": {
 		"message": "Preferir siempre el nombre mostrado al de la cabecera del mensaje"
@@ -5968,5 +5980,26 @@
 	},
 	"allAddressBooks": {
 		"message": "Todas las libretas de direcciones"
+	},
+	"selectedLabel": {
+		"message": "Seleccionado"
+	},
+	"conversionWarn": {
+		"message": "Es posible forzar la conversión de algunos campos mientras los proporciona."
+	},
+	"convertToLabel": {
+		"message": "Convertir en"
+	},
+	"wdw_cardbookConfigurationEditFieldTitle": {
+		"message": "Elija una función de conversión"
+	},
+	"uppercaseLabel": {
+		"message": "Mayúsculas"
+	},
+	"lowercaseLabel": {
+		"message": "Minúsculas"
+	},
+	"capitalizationLabel": {
+		"message": "Primera letra en mayúsculas"
 	}
 }

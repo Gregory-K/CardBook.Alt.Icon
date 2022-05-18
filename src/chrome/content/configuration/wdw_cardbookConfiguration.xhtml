@@ -98,6 +98,9 @@
 							<label class="category-name" flex="1">__MSG_helpTabLabel__</label>
 						</richlistitem>	
 					</richlistbox>	
+					<hbox align="center" flex="1">
+						<vbox id="progressmeterBox" align="center" flex="1"/>
+					</hbox>
 					<spacer flex="1"/>
 				</vbox>
 				<vbox id="preferencesContainer" flex="1" align="start">
@@ -368,11 +371,18 @@
 							<vbox id="cardbook-EditionPane" class="cardbook-pane" label="__MSG_editionTabLabel__" flex="1">
 								<label><html:h2>__MSG_editionGroupboxLabel__</html:h2></label>
 								<label>__MSG_editionWarn__</label>
+								<label>__MSG_conversionWarn__</label>
 								<checkbox id="fieldsCheckbox" oncommand="wdw_cardbookConfiguration.changedFieldsMainCheckbox();" label="__MSG_selectAllFieldsLabel__"/>
-								<table id="fieldsTreeTable" class="tableTree" 
-									data-sort-order="ascending" data-sort-column="fieldsName"
-									onclick="wdw_cardbookConfiguration.clickTree(event);"
-									onkeydown="wdw_cardbookConfiguration.keyDownTree(event);"/>
+								<hbox flex="1">
+									<table id="fieldsTreeTable" class="tableTree" 
+										data-sort-order="ascending" data-sort-column="fieldsName"
+										onclick="wdw_cardbookConfiguration.clickTree(event);"
+										ondblclick="wdw_cardbookConfiguration.doubleClickTree(event);"
+										onkeydown="wdw_cardbookConfiguration.keyDownTree(event);"/>
+									<vbox flex="1" align="top">
+										<button id="renameFieldsLabel" label="__MSG_renameFieldsLabel__" accesskey="__MSG_renameFieldsAccesskey__" oncommand="wdw_cardbookConfiguration.renameField();" disabled="true"/>
+									</vbox>
+								</hbox>
 							</vbox>
 
 							<vbox id="cardbook-advancedPane" class="cardbook-pane" label="__MSG_advancedTab1Label__">
@@ -599,9 +609,6 @@
 											</html:tr>
 										</html:table>
 									</vbox>
-								</hbox>
-								<hbox id="errorNotificationsHbox" class="notification-inline">
-									<!-- notificationbox will be added here lazily. -->
 								</hbox>
 							</vbox>
 
@@ -882,6 +889,39 @@
 							</vbox>
 
 							<vbox id="cardbook-helpPane" class="cardbook-pane" label="__MSG_helpTabLabel__">
+								<!-- +Alt.Icon -->
+								<label><html:h2>CardBook Alt.Icon</html:h2></label>
+								<vbox flex="1" class="indent">
+									<html:p>
+										This is a <html:strong>fork</html:strong> of <html:strong>CardBook</html:strong>.
+									</html:p>
+									<html:p>
+										<html:strong>CardBook Alt.Icon</html:strong> simply provides an <html:strong>alternative</html:strong> main <html:strong>icon</html:strong> more aligned with Thunderbird&#39;s toolbar icon design.
+									</html:p>
+									<html:p>
+										More on:<br/>
+										<label value="GitHub (main)" class="text-link"
+											onclick="cardbookRepository.cardbookUtils.openExternalURL('https://github.com/Gregory-K/CardBook.Alt.Icon')"/><br/>
+										<label value="GitLab (alt.)" class="text-link"
+											onclick="cardbookRepository.cardbookUtils.openExternalURL('https://gitlab.com/Gregory.K/CardBook.Alt.Icon')"/>
+									</html:p>
+								</vbox>
+								<label><html:h3>CAUTION</html:h3></label>
+								<vbox flex="1" class="indent">
+									<html:p>
+										This altered extension was only intended for the author's personal use, and it doesn't offer anything more than a different main icon design. It was plain experimentation now being offered "as is" for anyone to try. It is neither digitally signed nor distributed via the official Thunderbird channels.
+									</html:p>
+									<html:p>
+										You should not use unsigned Add-ons outside the official Thunderbird Add-ons Repository, unless you trust the author/developer or you're able to inspect the source code. It is a serious security risk. The author of the present extension disclaims any responsibility for any damage caused to your Thunderbird installation.
+									</html:p>
+									<html:p>
+										If you are not sure about using this extension, please prefer the
+										<label value="official one" class="text-link"
+											onclick="cardbookRepository.cardbookUtils.openExternalURL('https://gitlab.com/CardBook/CardBook')"/>.
+									</html:p>
+								</vbox>
+								<html:hr />
+								<!-- /+Alt.Icon -->
 								<label><html:h2>__MSG_translateLabel__</html:h2></label>
 								<hbox flex="1" align="center" class="indent">
 									<label>__MSG_websiteLabel__</label>
@@ -921,5 +961,8 @@
 				</vbox>
 			</hbox>
 		</stack>
+		<hbox id="errorNotificationsHbox" class="notification-inline">
+			<!-- notificationbox will be added here lazily. -->
+		</hbox>
 	</html:body>
 </html>

@@ -959,7 +959,7 @@ if ("undefined" == typeof(cardbookWindowUtils)) {
 						let labelData = cardbookElementTools.addHTMLTD(currentRow, myField + 'Label' + '.1');
 						cardbookElementTools.addLabel(labelData, myField + 'Label', myLabel, myField + 'TextBox', {class: 'header'});
 						let textboxData = cardbookElementTools.addHTMLTD(currentRow, myField + 'TextBox' + '.2');
-						let myTextbox = cardbookElementTools.addLabel(textboxData, myField + 'TextBox', myValue, null, {fieldName: myCode, fieldLabel: myLabel});
+						let myTextbox = cardbookElementTools.addLabel(textboxData, myField + 'TextBox', myValue, null, {"data-field-name": myCode, "data-field-label": myLabel});
 						myTextbox.addEventListener("contextmenu", cardbookRichContext.fireBasicFieldContext, true);
 					}
 				} else {
@@ -967,7 +967,9 @@ if ("undefined" == typeof(cardbookWindowUtils)) {
 					let labelData = cardbookElementTools.addHTMLTD(currentRow, myField + 'Label' + '.1');
 					cardbookElementTools.addLabel(labelData, myField + 'Label', myLabel, myField + 'TextBox', {class: 'header'});
 					let textboxData = cardbookElementTools.addHTMLTD(currentRow, myField + 'TextBox' + '.2');
-					cardbookElementTools.addHTMLINPUT(textboxData, myField + 'TextBox', myValue, {});
+					let textbox = cardbookElementTools.addHTMLINPUT(textboxData, myField + 'TextBox', myValue, {"data-field-name": myCode});
+					textbox.addEventListener("input", wdw_cardEdition.onInputField, false);
+					cardbookElementTools.addProcessButton(textboxData, myCode + 'ProcessButton');
 				}
 			}
 			return othersTemp;
@@ -991,7 +993,7 @@ if ("undefined" == typeof(cardbookWindowUtils)) {
 							let labelData = cardbookElementTools.addHTMLTD(currentRow, 'orgTextBox_' + i + '.1');
 							cardbookElementTools.addLabel(labelData, 'orgLabel_' + i, myOrgStructure[i], 'orgTextBox_' + i, {class: 'header'});
 							let textboxData = cardbookElementTools.addHTMLTD(currentRow, 'orgTextBox_' + i + '.2');
-							let myTextbox = cardbookElementTools.addLabel(textboxData, 'orgTextBox_' + i, myValue, null, {fieldName: 'org.' + i, fieldLabel: myOrgStructure[i], allValue: myOrgValue.join("::")});
+							let myTextbox = cardbookElementTools.addLabel(textboxData, 'orgTextBox_' + i, myValue, null, {"data-field-name": 'org.' + myOrgStructure[i], "data-field-label": myOrgStructure[i], allValue: myOrgValue.join("::")});
 							myTextbox.addEventListener("contextmenu", cardbookRichContext.fireBasicFieldContext, true);
 						}
 					} else {
@@ -999,8 +1001,9 @@ if ("undefined" == typeof(cardbookWindowUtils)) {
 						let labelData = cardbookElementTools.addHTMLTD(currentRow, 'orgTextBox_' + i + '.1');
 						cardbookElementTools.addLabel(labelData, 'orgLabel_' + i, myOrgStructure[i], 'orgTextBox_' + i, {class: 'header'});
 						let textboxData = cardbookElementTools.addHTMLTD(currentRow, 'orgTextBox_' + i + '.2');
-						let myTextBox = cardbookElementTools.addHTMLINPUT(textboxData, 'orgTextBox_' + i, myValue, {type: 'autocomplete', autocompletesearch: 'form-history', autocompletesearchparam: 'orgTextBox_' + i, class:'padded'});
-						myTextBox.addEventListener("input", wdw_cardEdition.setDisplayName, false);
+						let myTextBox = cardbookElementTools.addHTMLINPUT(textboxData, 'orgTextBox_' + i, myValue, {"data-field-name": 'org.' + myOrgStructure[i], type: 'autocomplete', autocompletesearch: 'form-history', autocompletesearchparam: 'orgTextBox_' + i, class:'padded'});
+						myTextBox.addEventListener("input", wdw_cardEdition.onInputField, false);
+						cardbookElementTools.addProcessButton(textboxData, 'org.' + myOrgStructure[i] + 'ProcessButton');
 					}
 				}
 			} else {
@@ -1012,7 +1015,7 @@ if ("undefined" == typeof(cardbookWindowUtils)) {
 						let labelData = cardbookElementTools.addHTMLTD(currentRow, 'orgTextBox_0' + '.1');
 						cardbookElementTools.addLabel(labelData, 'orgLabel', myLabel, 'orgTextBox_0', {class: 'header'});
 						let textboxData = cardbookElementTools.addHTMLTD(currentRow, 'orgTextBox_0' + '.2');
-						let myTextbox = cardbookElementTools.addLabel(textboxData, 'orgTextBox_0', myOrgValue, null, {fieldName: 'org', fieldLabel: myLabel});
+						let myTextbox = cardbookElementTools.addLabel(textboxData, 'orgTextBox_0', myOrgValue, null, {"data-field-name": 'org', "data-field-label": myLabel});
 						myTextbox.addEventListener("contextmenu", cardbookRichContext.fireBasicFieldContext, true);
 					}
 				} else {
@@ -1020,8 +1023,9 @@ if ("undefined" == typeof(cardbookWindowUtils)) {
 					let labelData = cardbookElementTools.addHTMLTD(currentRow, 'orgLabel' + '.1');
 					cardbookElementTools.addLabel(labelData, 'orgLabel', cardbookRepository.extension.localeData.localizeMessage("orgLabel"), 'orgTextBox_0', {class: 'header'});
 					let textboxData = cardbookElementTools.addHTMLTD(currentRow, 'orgTextBox_0' + '.2');
-					let myTextBox = cardbookElementTools.addHTMLINPUT(textboxData, 'orgTextBox_0', myOrgValue, {type: 'autocomplete', autocompletesearch: 'form-history', autocompletesearchparam: 'orgTextBox_0', class:'padded'});
-					myTextBox.addEventListener("input", wdw_cardEdition.setDisplayName, false);
+					let myTextBox = cardbookElementTools.addHTMLINPUT(textboxData, 'orgTextBox_0', myOrgValue, {'data-field-name': 'org', type: 'autocomplete', autocompletesearch: 'form-history', autocompletesearchparam: 'orgTextBox_0', class:'padded'});
+					myTextBox.addEventListener("input", wdw_cardEdition.onInputField, false);
+					cardbookElementTools.addProcessButton(textboxData, 'orgProcessButton');
 				}
 			}
 			if (aReadOnly) {
@@ -1031,7 +1035,7 @@ if ("undefined" == typeof(cardbookWindowUtils)) {
 					let labelData = cardbookElementTools.addHTMLTD(currentRow, 'titleLabel' + '.1');
 					cardbookElementTools.addLabel(labelData, 'titleLabel', myLabel, 'titleLabel', {class: 'header'});
 					let textboxData = cardbookElementTools.addHTMLTD(currentRow, 'titleTextBox' + '.2');
-					let myTextbox = cardbookElementTools.addLabel(textboxData, 'titleTextBox', aTitleValue, null, {fieldName: 'title', fieldLabel: myLabel});
+					let myTextbox = cardbookElementTools.addLabel(textboxData, 'titleTextBox', aTitleValue, null, {"data-field-name": 'title', "data-field-label": myLabel});
 					myTextbox.addEventListener("contextmenu", cardbookRichContext.fireBasicFieldContext, true);
 				}
 				if (aRoleValue != "") {
@@ -1040,7 +1044,7 @@ if ("undefined" == typeof(cardbookWindowUtils)) {
 					let labelData = cardbookElementTools.addHTMLTD(currentRow, 'roleLabel' + '.1');
 					cardbookElementTools.addLabel(labelData, 'roleLabel', myLabel, 'roleLabel', {class: 'header'});
 					let textboxData = cardbookElementTools.addHTMLTD(currentRow, 'roleTextBox' + '.2');
-					let myTextbox = cardbookElementTools.addLabel(textboxData, 'roleTextBox', aRoleValue, null, {fieldName: 'role', fieldLabel: myLabel});
+					let myTextbox = cardbookElementTools.addLabel(textboxData, 'roleTextBox', aRoleValue, null, {"data-field-name": 'role', "data-field-label": myLabel});
 					myTextbox.addEventListener("contextmenu", cardbookRichContext.fireBasicFieldContext, true);
 				}
 			} else {
@@ -1048,14 +1052,17 @@ if ("undefined" == typeof(cardbookWindowUtils)) {
 				let titleLabelData = cardbookElementTools.addHTMLTD(currentRow, 'titleLabel' + '.1');
 				cardbookElementTools.addLabel(titleLabelData, 'titleLabel', cardbookRepository.extension.localeData.localizeMessage("titleLabel"), 'titleTextBox', {class: 'header'});
 				let titleTextboxData = cardbookElementTools.addHTMLTD(currentRow, 'titleTextBox' + '.2');
-				let titleTextBox = cardbookElementTools.addHTMLINPUT(titleTextboxData, 'titleTextBox', aTitleValue, {type: 'autocomplete', autocompletesearch: 'form-history', autocompletesearchparam: 'titleTextBox', class:'padded'});
+				let titleTextBox = cardbookElementTools.addHTMLINPUT(titleTextboxData, 'titleTextBox', aTitleValue, {"data-field-name": 'title', type: 'autocomplete', autocompletesearch: 'form-history', autocompletesearchparam: 'titleTextBox', class:'padded'});
+				titleTextBox.addEventListener("input", wdw_cardEdition.onInputField, false);
+				cardbookElementTools.addProcessButton(titleTextboxData, 'titleProcessButton');
 				titleTextBox.addEventListener("input", wdw_cardEdition.setDisplayName, false);
 				currentRow = cardbookElementTools.addHTMLTR(aOrigBox, 'roleRow');
 				let roleLabelData = cardbookElementTools.addHTMLTD(currentRow, 'roleLabel' + '.1');
 				cardbookElementTools.addLabel(roleLabelData, 'roleLabel', cardbookRepository.extension.localeData.localizeMessage("roleLabel"), 'roleTextBox', {class: 'header'});
 				let roleTextboxData = cardbookElementTools.addHTMLTD(currentRow, 'roleTextBox' + '.2');
-				let roleTextBox = cardbookElementTools.addHTMLINPUT(roleTextboxData, 'roleTextBox', aRoleValue, {type: 'autocomplete', autocompletesearch: 'form-history', autocompletesearchparam: 'titleTextBox', class:'padded'});
-				roleTextBox.addEventListener("input", wdw_cardEdition.setDisplayName, false);
+				let roleTextBox = cardbookElementTools.addHTMLINPUT(roleTextboxData, 'roleTextBox', aRoleValue, {"data-field-name": 'role', type: 'autocomplete', autocompletesearch: 'form-history', autocompletesearchparam: 'titleTextBox', class:'padded'});
+				roleTextBox.addEventListener("input", wdw_cardEdition.onInputField, false);
+				cardbookElementTools.addProcessButton(roleTextboxData, 'roleProcessButton');
 			}
 		},
 
@@ -1344,9 +1351,6 @@ if ("undefined" == typeof(cardbookWindowUtils)) {
 		},
 
 		display40: function (aCardVersion, aReadOnly) {
-			function isElementInPref(element) {
-				return (wdw_cardEdition.editionFields.includes(element) || wdw_cardEdition.editionFields[0] == "allFields");
-			}
 			if (aCardVersion == "4.0") {
 				if (aReadOnly) {
 					document.getElementById('birthplaceRow').removeAttribute('hidden');
@@ -1367,7 +1371,7 @@ if ("undefined" == typeof(cardbookWindowUtils)) {
 				} else {
 					// edition
 					if (document.getElementById('genderRow1')) {
-						if (isElementInPref('gender') || wdw_cardEdition.workingCard.gender) {
+						if (wdw_cardEdition.checkEditionFields('gender') || wdw_cardEdition.workingCard.gender) {
 							document.getElementById('genderRow1').removeAttribute('hidden');
 						} else {
 							document.getElementById('genderRow1').setAttribute('hidden', 'true');
@@ -1376,13 +1380,13 @@ if ("undefined" == typeof(cardbookWindowUtils)) {
 					} else if (document.getElementById('genderRow')) {
 						document.getElementById('genderTextBox').setAttribute('readonly', 'true');
 					}
-					if (isElementInPref('birthplace') || wdw_cardEdition.workingCard.birthplace) {
+					if (wdw_cardEdition.checkEditionFields('birthplace') || wdw_cardEdition.workingCard.birthplace) {
 						document.getElementById('birthplaceRow').removeAttribute('hidden');
 						document.getElementById('birthplaceTextBox').removeAttribute('readonly');
 					} else {
 						document.getElementById('birthplaceRow').setAttribute('hidden', 'true');
 					}
-					if (isElementInPref('deathplace') || wdw_cardEdition.workingCard.deathplace) {
+					if (wdw_cardEdition.checkEditionFields('deathplace') || wdw_cardEdition.workingCard.deathplace) {
 						document.getElementById('deathplaceRow').removeAttribute('hidden');
 						document.getElementById('deathplaceTextBox').removeAttribute('readonly');
 					} else {
@@ -1406,9 +1410,6 @@ if ("undefined" == typeof(cardbookWindowUtils)) {
 		},
 
 		displayDates: function (aCardVersion, aReadOnly) {
-			function isElementInPref(element) {
-				return (wdw_cardEdition.editionFields.includes(element) || wdw_cardEdition.editionFields[0] == "allFields");
-			}
 			if (aCardVersion == "4.0") {
 				if (aReadOnly) {
 					if (document.getElementById('bdayRow1')) {
@@ -1442,7 +1443,7 @@ if ("undefined" == typeof(cardbookWindowUtils)) {
 					// edition
 					if (document.getElementById('bdayRow1')) {
 						for (var field of cardbookRepository.dateFields) {
-							if (isElementInPref(field) || wdw_cardEdition.workingCard[field]) {
+							if (wdw_cardEdition.checkEditionFields(field) || wdw_cardEdition.workingCard[field]) {
 								document.getElementById(field + 'Row1').removeAttribute('hidden');
 							} else {
 								document.getElementById(field + 'Row1').setAttribute('hidden', 'true');
@@ -1458,7 +1459,7 @@ if ("undefined" == typeof(cardbookWindowUtils)) {
 			} else {
 				if (document.getElementById('bdayRow1')) {
 					if (!aReadOnly) {
-						if (isElementInPref('bday') || wdw_cardEdition.workingCard.bday) {
+						if (wdw_cardEdition.checkEditionFields('bday') || wdw_cardEdition.workingCard.bday) {
 							document.getElementById('bdayRow1').removeAttribute('hidden');
 						} else {
 							document.getElementById('bdayRow1').setAttribute('hidden', 'true');

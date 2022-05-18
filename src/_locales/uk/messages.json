@@ -167,11 +167,11 @@
 	"ValidatingEmailFailedLabel": {
 		"message": "Необхідна дійсна адреса е-пошти"
 	},
-	"ValidationFailedOffLine": {
-		"message": "Ви в автономному режимі."
-	},
 	"ValidationFailedLabel": {
 		"message": "Перевірка не вдалася"
+	},
+	"ValidationFailedOffLine": {
+		"message": "Ви в автономному режимі."
 	},
 	"ValidationOKLabel": {
 		"message": "Перевірка гаразд"
@@ -3403,6 +3403,12 @@
 	"dontAutoComputeFn": {
 		"message": "??Disable the generation of the display name??"
 	},
+	"autoConvertField": {
+		"message": "??Enable the convertion of this field??"
+	},
+	"dontAutoConvertField": {
+		"message": "??Disable the convertion of this field??"
+	},
 	"customLabel": {
 		"message": "Власна"
 	},
@@ -4440,6 +4446,12 @@
 	},
 	"fieldsButtonLabel": {
 		"message": "Встановити типовим"
+	},
+	"renameFieldsLabel": {
+		"message": "Змінити"
+	},
+	"renameFieldsAccesskey": {
+		"message": "З"
 	},
 	"selectAllFieldsLabel": {
 		"message": "Вибрати все"
@@ -5968,5 +5980,26 @@
 	},
 	"allAddressBooks": {
 		"message": "Усі адресні книги"
+	},
+	"selectedLabel": {
+		"message": "Вибрано"
+	},
+	"conversionWarn": {
+		"message": "??It is possible to force the convertion of some fields while providing them.??"
+	},
+	"convertToLabel": {
+		"message": "Перетворити на"
+	},
+	"wdw_cardbookConfigurationEditFieldTitle": {
+		"message": "??Choose a convertion function??"
+	},
+	"uppercaseLabel": {
+		"message": "??Uppercase??"
+	},
+	"lowercaseLabel": {
+		"message": "??Lowercase??"
+	},
+	"capitalizationLabel": {
+		"message": "??Capitalization??"
 	}
 }

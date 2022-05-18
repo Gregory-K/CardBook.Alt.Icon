@@ -167,11 +167,11 @@
 	"ValidatingEmailFailedLabel": {
 		"message": "É necessário um e-mail válido"
 	},
-	"ValidationFailedOffLine": {
-		"message": "Estás correntemente offline."
-	},
 	"ValidationFailedLabel": {
 		"message": "Validação falhou"
+	},
+	"ValidationFailedOffLine": {
+		"message": "Estás correntemente offline."
 	},
 	"ValidationOKLabel": {
 		"message": "Validação OK"
@@ -3403,6 +3403,12 @@
 	"dontAutoComputeFn": {
 		"message": "Desativar a geração do nome mostrado"
 	},
+	"autoConvertField": {
+		"message": "Ativar a conversão neste campo"
+	},
+	"dontAutoConvertField": {
+		"message": "Desativar a conversão neste campo"
+	},
 	"customLabel": {
 		"message": "Personalizado"
 	},
@@ -4440,6 +4446,12 @@
 	},
 	"fieldsButtonLabel": {
 		"message": "Definir como predefinido"
+	},
+	"renameFieldsLabel": {
+		"message": "Editar"
+	},
+	"renameFieldsAccesskey": {
+		"message": "E"
 	},
 	"preferDisplayNameCheckBoxLabel": {
 		"message": "Preferir sempre mostrar o nome em vez do cabeçalho da mensagem"
@@ -5968,5 +5980,26 @@
 	},
 	"allAddressBooks": {
 		"message": "Todos os livros de endereços"
+	},
+	"selectedLabel": {
+		"message": "Selecionado"
+	},
+	"conversionWarn": {
+		"message": "É possível forçar a conversão de alguns campos ao fornecê-los."
+	},
+	"convertToLabel": {
+		"message": "Converter para"
+	},
+	"wdw_cardbookConfigurationEditFieldTitle": {
+		"message": "Escolhe uma função de conversão"
+	},
+	"uppercaseLabel": {
+		"message": "Maiúsculas"
+	},
+	"lowercaseLabel": {
+		"message": "Minúsculas"
+	},
+	"capitalizationLabel": {
+		"message": "Capitalização"
 	}
 }
