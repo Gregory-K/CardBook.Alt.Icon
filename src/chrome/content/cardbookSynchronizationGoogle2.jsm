@@ -26,26 +26,87 @@ var cardbookSynchronizationGoogle2 = {
 		wizard.addEventListener("load", function onloadListener() {
 			var browser = wizard.document.getElementById("browser");
 			var url = cardbookSynchronizationGoogle2.getGoogleOAuthURLForGooglePeople(aConnection.connUser, aConnection.connType);
-			MailE10SUtils.loadURI(browser, url);
-			cardbookRepository.lTimerNewRefreshTokenAll[aConnection.connPrefId] = Components.classes["@mozilla.org/timer;1"].createInstance(Components.interfaces.nsITimer);
-			var lTimerCheckTitle = cardbookRepository.lTimerNewRefreshTokenAll[aConnection.connPrefId];
-			lTimerCheckTitle.initWithCallback({ notify: function(lTimerCheckTitle) {
-						var title = browser.contentTitle;
-						if (title && title.indexOf(cardbookRepository.cardbookOAuthData[aConnection.connType].REDIRECT_TITLE) === 0) {
-							var myCode = title.substring(cardbookRepository.cardbookOAuthData[aConnection.connType].REDIRECT_TITLE.length);
-							cardbookRepository.cardbookUtils.formatStringForOutput("googleNewRefreshTokenOK", [aConnection.connDescription, myCode]);
-							var connection = {connUser: "", connType: aConnection.connType, connUrl: cardbookRepository.cardbookOAuthData[aConnection.connType].TOKEN_REQUEST_URL, connPrefId: aConnection.connPrefId, connDescription: aConnection.connDescription};
-							cardbookSynchronizationGoogle2.getNewRefreshTokenForGooglePeople(connection, myCode, function callback(aResponse) {
-																									wizard.close();
-																									cardbookRepository.cardbookPasswordManager.rememberPassword(aConnection.connUser, cardbookRepository.cardbookOAuthData[aConnection.connType].AUTH_PREFIX_CONTACTS, aResponse.refresh_token, true);
-																									if (aCallback) {
-																										aCallback(aConnection, aFollowAction);
-																									}
-																									});
-							lTimerCheckTitle.cancel();
-						}
+			var reporterListener = {
+				QueryInterface: function(aIID) {
+					if (aIID.equals(Components.interfaces.nsIWebProgressListener)   ||
+					aIID.equals(Components.interfaces.nsISupportsWeakReference) ||
+					aIID.equals(Components.interfaces.nsISupports)) {
+						return this;
 					}
-					}, 1000, Components.interfaces.nsITimer.TYPE_REPEATING_SLACK);
+					throw Components.results.NS_NOINTERFACE;
+				},
+				onStateChange: function(/*in nsIWebProgress*/ aWebProgress,
+										/*in nsIRequest*/ aRequest,
+										/*in unsigned long*/ aStateFlags,
+										/*in nsresult*/ aStatus) {
+				},
+				onProgressChange: function(/*in nsIWebProgress*/ aWebProgress,
+											/*in nsIRequest*/ aRequest,
+											/*in long*/ aCurSelfProgress,
+											/*in long */aMaxSelfProgress,
+											/*in long */aCurTotalProgress,
+											/*in long */aMaxTotalProgress) {
+				},
+				onLocationChange: function(/*in nsIWebProgress*/ aWebProgress,
+											/*in nsIRequest*/ aRequest,
+											/*in nsIURI*/ aLocation) {
+				},
+				onStatusChange: function(/*in nsIWebProgress*/ aWebProgress,
+											/*in nsIRequest*/ aRequest,
+											/*in nsresult*/ aStatus,
+											/*in wstring*/ aMessage) {
+				},
+				onSecurityChange: function(/*in nsIWebProgress*/ aWebProgress,
+											/*in nsIRequest*/ aRequest,
+											/*in unsigned long*/ aState) {
+				}
+			};
+			browser.addProgressListener(reporterListener, Components.interfaces.nsIWebProgress.NOTIFY_ALL);
+			MailE10SUtils.loadURI(browser, url);
+
+			function loaded(aWindow, aWebProgress) {
+				this._listener = {
+					window: aWindow,
+					webProgress: aWebProgress,
+
+					QueryInterface: ChromeUtils.generateQI(["nsIWebProgressListener", "nsISupportsWeakReference"]),
+
+					_checkForRedirect(url) {
+						let redirectURL = cardbookRepository.cardbookOAuthData[aConnection.connType].REDIRECT_URI;
+						if (!url.startsWith(redirectURL)) {
+							return;
+						}
+						let params = new URLSearchParams(url.split("?", 2)[1]);
+						if (params.has("code")) {
+							let code = params.get("code");
+							cardbookRepository.cardbookUtils.formatStringForOutput("googleNewRefreshTokenOK", [aConnection.connDescription, code]);
+							var connection = {connUser: "", connType: aConnection.connType, connUrl: cardbookRepository.cardbookOAuthData[aConnection.connType].TOKEN_REQUEST_URL, connPrefId: aConnection.connPrefId, connDescription: aConnection.connDescription};
+							cardbookSynchronizationGoogle2.getNewRefreshTokenForGooglePeople(connection, code, function callback(aResponse) {
+								wizard.close();
+								cardbookRepository.cardbookPasswordManager.rememberPassword(aConnection.connUser, cardbookRepository.cardbookOAuthData[aConnection.connType].AUTH_PREFIX_CONTACTS, aResponse.refresh_token, true);
+								if (aCallback) {
+									aCallback(aConnection, aFollowAction);
+								}
+							});
+						}
+					},
+
+					onStateChange(aWebProgress, aRequest, aStateFlags, aStatus) {
+						const wpl = Components.interfaces.nsIWebProgressListener;
+						if (aStateFlags & (wpl.STATE_START | wpl.STATE_IS_NETWORK)) {
+							this._checkForRedirect(aRequest.name);
+						}
+					},
+					onLocationChange(aWebProgress, aRequest, aLocation) {
+						this._checkForRedirect(aLocation.spec);
+					},
+					onProgressChange() {},
+					onStatusChange() {},
+					onSecurityChange() {},
+				};
+				aWebProgress.addProgressListener(this._listener, Components.interfaces.nsIWebProgress.NOTIFY_ALL);
+			};
+			loaded(wizard.document.getElementById("wdw_newToken"), browser.webProgress);
 		});
 	},
 
@@ -70,7 +131,6 @@ var cardbookSynchronizationGoogle2 = {
 					cardbookRepository.cardbookUtils.formatStringForOutput("synchronizationFailed", [aConnection.connDescription, "getNewRefreshTokenForGooglePeople", aConnection.connUrl, status], "Error");
 					cardbookRepository.cardbookServerSyncResponse[aConnection.connPrefId]++;
 				}
-				cardbookRepository.lTimerNewRefreshTokenAll[aConnection.connPrefId].cancel();
 				cardbookRepository.cardbookRefreshTokenResponse[aConnection.connPrefId]++;
 			}
 		};

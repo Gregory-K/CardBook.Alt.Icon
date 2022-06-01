@@ -92,8 +92,11 @@ if ("undefined" == typeof(cardbookBirthdaysUtils)) {
 				}
 			}
 
-			var calICalendar = Components.interfaces.calICalendar;
-			aCalendar.getItems(calICalendar.ITEM_FILTER_TYPE_EVENT, 0, null, null, getListener);
+			let filter = 0;
+			filter |= aCalendar.ITEM_FILTER_TYPE_EVENT | aCalendar.ITEM_FILTER_CLASS_OCCURRENCES;
+			let startDate = cal.createDateTime();
+			let endDate = cal.dtz.jsDateToDateTime(new Date(new Date().setFullYear(new Date().getFullYear() + 1)));
+			aCalendar.getItems(filter, 0, startDate, endDate, getListener);
 		},
 
 		syncBirthdays: function (aCalendar, aItems) {

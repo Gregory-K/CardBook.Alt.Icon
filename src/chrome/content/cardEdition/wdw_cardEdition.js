@@ -273,10 +273,9 @@ if ("undefined" == typeof(wdw_cardEdition)) {
 		},
 
 		setSelectedCardsForList: function (aTree, aListOfUid) {
-			var myTreeName = aTree.id.replace("Tree", "");
 			for (let i = 0; i < aTree.view.rowCount; i++) {
 				for (let j = 0; j < aListOfUid.length; j++) {
-					if (aTree.view.getCellText(i, aTree.columns.getNamedColumn(myTreeName + 'Uid')) == aListOfUid[j]) {
+					if (aTree.view.getCellText(i, aTree.columns.getNamedColumn(aTree.id + 'Uid')) == aListOfUid[j]) {
 						aTree.view.selection.rangedSelect(i,i,true);
 						break;
 					}

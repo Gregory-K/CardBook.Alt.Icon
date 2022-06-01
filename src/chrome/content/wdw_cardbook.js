@@ -1198,7 +1198,7 @@ if ("undefined" == typeof(wdw_cardbook)) {
 												length++
 											}
 										}
-										var myActionId = cardbookActions.startAction(myTopic, null, null, length);
+										var myActionId = cardbookActions.startAction(myTopic, null, null, dataArray.length);
 										wdw_cardbook.bulkOperation(myActionId);
 										var dataLength = dataArray.length
 										for (var i = 0; i < dataLength; i++) {
@@ -1598,7 +1598,7 @@ if ("undefined" == typeof(wdw_cardbook)) {
 				} else {
 					result.notEmptyResults.push(MailServices.headerParser.makeMimeAddress(aListOfSelectedMails[0], aListOfSelectedMails[1]));
 				}
-			// possbility to send email to nobody for the write button
+			// possibility to send email to nobody for the write button
 			} else {
 				await notifyTools.notifyBackground({query: "cardbook.emailCards", compFields: compFields});
 				return;
@@ -3856,7 +3856,7 @@ if ("undefined" == typeof(wdw_cardbook)) {
 				return;
 			// no need to refresh cards for others syncing dirprefid
 			} else if (cardbookRepository.cardbookSearchMode == "SEARCH") {
-				var mySyncCondition = false;
+				var mySyncCondition = true;
 			} else if (cardbookRepository.cardbookComplexSearchMode == "SEARCH") {
 				var mySyncCondition = true;
 			} else {
@@ -3909,7 +3909,6 @@ if ("undefined" == typeof(wdw_cardbook)) {
 
 			// for search mode the reselection is done inside their functions
 			if (mySyncCondition) {
-
 				// select cards back
 				if (listOfSelectedCard.length == 1) {
 					if (cardbookRepository.cardbookCards[listOfSelectedCard[0].cbid]) {

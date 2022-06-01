@@ -419,8 +419,8 @@ if ("undefined" == typeof(wdw_mergeCards)) {
 						wdw_mergeCards.createCustomLabel(aRow, prefixRow + 'Label', cardbookRepository.customFields[i][j][1]);
 						var selected = true;
 						for (let k = 0; k < listOfCards.length; k++) {
-							var customValue = cardbookRepository.cardbookUtils.getCardValueByField(listOfCards[k], cardbookRepository.customFields[i][j][0], false);
-							if (customValue != "") {
+							var customValue = cardbookRepository.cardbookUtils.getCardValueByField(listOfCards[k], cardbookRepository.customFields[i][j][0], false)[0];
+							if (customValue) {
 								wdw_mergeCards.createCheckBox1(aRow, prefixRow + 'Checkbox' + k, selected);
 								wdw_mergeCards.createTextBox(aRow, prefixRow + 'Textbox' + k, customValue, selected, false);
 								selected = false;

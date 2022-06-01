@@ -5,7 +5,9 @@ if ("undefined" == typeof(wdw_logEdition)) {
 	var wdw_bulkOperation = {
 		
 		lTimerBulkOperation: {},
-		
+		numberOfLoop: 0,
+		maxNumberOfLoop: 2,
+
 		load: function () {
 			i18n.updateDocument({ extension: cardbookRepository.extension });
 
@@ -33,9 +35,11 @@ if ("undefined" == typeof(wdw_logEdition)) {
 								let value = Math.round(done / totalEstimated * 100);
 								document.getElementById("bulkProgressmeter_" + actionId).value = value;
 								close = false;
+								wdw_bulkOperation.numberOfLoop = 0;
 							}
 						}
-						if (close) {
+						wdw_bulkOperation.numberOfLoop++;
+						if (close && wdw_bulkOperation.numberOfLoop == wdw_bulkOperation.maxNumberOfLoop) {
 							wdw_bulkOperation.cancel();
 						}
 					}

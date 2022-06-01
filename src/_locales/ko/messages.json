@@ -3404,10 +3404,10 @@
 		"message": "표시 이름 생성 비활성화"
 	},
 	"autoConvertField": {
-		"message": "??Enable the convertion of this field??"
+		"message": "이 필드 변환 활성화"
 	},
 	"dontAutoConvertField": {
-		"message": "??Disable the convertion of this field??"
+		"message": "이 필드 변환 비활성화"
 	},
 	"customLabel": {
 		"message": "사용자 정의"
@@ -5985,21 +5985,21 @@
 		"message": "선택"
 	},
 	"conversionWarn": {
-		"message": "??It is possible to force the convertion of some fields while providing them.??"
+		"message": "일부 필드는 입력 중에도 강제로 변환할 수 있습니다."
 	},
 	"convertToLabel": {
 		"message": "변환 하기"
 	},
 	"wdw_cardbookConfigurationEditFieldTitle": {
-		"message": "??Choose a convertion function??"
+		"message": "변환 함수 선택"
 	},
 	"uppercaseLabel": {
-		"message": "??Uppercase??"
+		"message": "대문자"
 	},
 	"lowercaseLabel": {
-		"message": "??Lowercase??"
+		"message": "소문자"
 	},
 	"capitalizationLabel": {
-		"message": "??Capitalization??"
+		"message": "대문자화"
 	}
 }

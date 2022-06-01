@@ -20,13 +20,12 @@ if ("undefined" == typeof(wdw_newToken)) {
 			} else {
 				document.getElementById('scopeURL').hidden = true;
 			}
-	},
+		},
 
 		closeKO: function () {
 			cardbookRepository.cardbookRefreshTokenError[window.arguments[0].dirPrefId]++;
 			cardbookRepository.cardbookRefreshTokenResponse[window.arguments[0].dirPrefId]++;
 			cardbookRepository.cardbookServerSyncResponse[window.arguments[0].dirPrefId]++;
-			cardbookRepository.lTimerNewRefreshTokenAll[window.arguments[0].dirPrefId].cancel();
 			close();
 		}
 	};
