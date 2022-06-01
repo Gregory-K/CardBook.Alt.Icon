@@ -2025,13 +2025,13 @@ if ("undefined" == typeof(wdw_cardbook)) {
 		displayBirthdayList: function() {
 			if (cardbookRepository.cardbookBirthdayPopup == 0) {
 				cardbookRepository.cardbookBirthdayPopup++;
-				var MyWindows = Services.wm.getMostRecentWindow("mail:3pane").openDialog("chrome://cardbook/content/birthdays/wdw_birthdayList.xhtml", "", cardbookRepository.modalWindowParams);
+				var MyWindows = Services.wm.getMostRecentWindow("mail:3pane").openDialog("chrome://cardbook/content/birthdays/wdw_birthdayList.xhtml", "", cardbookRepository.windowParams);
 				cardbookRepository.cardbookBirthdayPopup--;
 			}
 		},
 	
 		displaySyncList: function() {
-			var MyWindows = Services.wm.getMostRecentWindow("mail:3pane").openDialog("chrome://cardbook/content/birthdays/wdw_birthdaySync.xhtml", "", cardbookRepository.modalWindowParams);
+			var MyWindows = Services.wm.getMostRecentWindow("mail:3pane").openDialog("chrome://cardbook/content/birthdays/wdw_birthdaySync.xhtml", "", cardbookRepository.windowParams);
 		},
 
 		setSyncControl: function () {
@@ -3856,7 +3856,7 @@ if ("undefined" == typeof(wdw_cardbook)) {
 				return;
 			// no need to refresh cards for others syncing dirprefid
 			} else if (cardbookRepository.cardbookSearchMode == "SEARCH") {
-				var mySyncCondition = true;
+				var mySyncCondition = false;
 			} else if (cardbookRepository.cardbookComplexSearchMode == "SEARCH") {
 				var mySyncCondition = true;
 			} else {
@@ -3909,6 +3909,7 @@ if ("undefined" == typeof(wdw_cardbook)) {
 
 			// for search mode the reselection is done inside their functions
 			if (mySyncCondition) {
+
 				// select cards back
 				if (listOfSelectedCard.length == 1) {
 					if (cardbookRepository.cardbookCards[listOfSelectedCard[0].cbid]) {

@@ -168,12 +168,7 @@ cardbookAutocompleteSearch.prototype = {
 			function comparePop(a, b) { if (a.popularity > b.popularity) {return 0} else {return 1}; };
 			this.searchResult._searchResults.sort(comparePop);
 		} else {
-			if (Services.locale.getApplicationLocale) {
-				var collator = Components.classes["@mozilla.org/intl/collation-factory;1"].getService(Components.interfaces.nsICollationFactory).CreateCollation(Services.locale.getApplicationLocale());
-			} else {
-				var collator = Components.classes["@mozilla.org/intl/collation-factory;1"].getService(Components.interfaces.nsICollationFactory).CreateCollation();
-			}
-			function compareFn(a, b) { return collator.compareString(0, a.fn, b.fn); };
+			function compareFn(a, b) { return a.fn.localeCompare(b.fn); };
 			this.searchResult._searchResults.sort(compareFn);
 		}
 	},

@@ -30,16 +30,6 @@ Services.scriptloader.loadSubScript("chrome://cardbook/content/cardbookSynchro.j
 Services.scriptloader.loadSubScript("chrome://cardbook/content/contactsSidebar/ovl_cardbookContactsSidebarMain.js", window, "UTF-8");
 
 function onLoad(wasAlreadyOpen) {
-	// contact sidebar
-	// usefull at startup if the contact sidebar is already open
-	if (!document.getElementById("sidebar-box").hidden) {
-		if ("undefined" == typeof(setTimeout)) {
-			var { setTimeout } = ChromeUtils.import("resource://gre/modules/Timer.jsm");
-		}
-		setTimeout(toggleAddressPicker, 0, false);
-		setTimeout(toggleAddressPicker, 0, false);
-	}
-
 	// autocompletion, buttons and menus
 	WL.injectCSS("chrome://cardbook/content/skin/cardbookAutocomplete.css");
 	WL.injectCSS("chrome://cardbook/content/skin/cardbookComposeMsg.css");

@@ -189,19 +189,22 @@ var cardbookUtils = {
 	},
 
 	sortCardsTreeArrayByString: function (aArray, aIndex, aInvert) {
-		if (Services.locale.getApplicationLocale) {
-			var collator = Components.classes["@mozilla.org/intl/collation-factory;1"].getService(Components.interfaces.nsICollationFactory).CreateCollation(Services.locale.getApplicationLocale());
-		} else {
-			var collator = Components.classes["@mozilla.org/intl/collation-factory;1"].getService(Components.interfaces.nsICollationFactory).CreateCollation();
-		}
-		function compare1(a, b) { return collator.compareString(0, a[aIndex], b[aIndex])*aInvert; };
-		function compare2(a, b) { return collator.compareString(0, a, b)*aInvert; };
-		function compare3(a, b) { return collator.compareString(0, cardbookUtils.getName(a), cardbookUtils.getName(b))*aInvert; };
+		function compare1(a, b) { return a[aIndex].localeCompare(b[aIndex])*aInvert; };
+		function compare2(a, b) { return a.localeCompare(b)*aInvert; };
+		function compare3(a, b) { return cardbookUtils.getName(a).localeCompare(cardbookUtils.getName(b))*aInvert; };
 		function compare4(a, b) { return ((a.isAList === b.isAList)? 0 : a.isAList? -1 : 1)*aInvert; };
-		function compare5(a, b) { return collator.compareString(0, cardbookUtils.getCardValueByField(a, aIndex, false), cardbookUtils.getCardValueByField(b, aIndex, false))*aInvert; };
-		function compare6(a, b) { return collator.compareString(0, cardbookRepository.cardbookGenderLookup[a.gender], cardbookRepository.cardbookGenderLookup[b.gender])*aInvert; };
+		function compare5(a, b) {
+			let aValue = cardbookUtils.getCardValueByField(a, aIndex, false);
+			let bValue = cardbookUtils.getCardValueByField(b, aIndex, false);
+			if (aValue.length && bValue.length) {
+				return aValue.join().localeCompare(bValue.join())*aInvert;
+			} else {
+				return aValue.length || bValue.length;
+			}
+		};
+		function compare6(a, b) { return cardbookRepository.cardbookGenderLookup[a.gender].localeCompare(cardbookRepository.cardbookGenderLookup[b.gender])*aInvert; };
 		function compare7(a, b) { return (cardbookRepository.cardbookDates.getDateForCompare(a, aIndex)*aInvert > cardbookRepository.cardbookDates.getDateForCompare(b, aIndex)*aInvert); };
-		function compare8(a, b) { return (cardbookUtils.getCardValueByField(a, aIndex, false) - cardbookUtils.getCardValueByField(b, aIndex, false))*aInvert; };
+		function compare8(a, b) { return (cardbookUtils.getCardValueByField(a, aIndex, false)[0] - cardbookUtils.getCardValueByField(b, aIndex, false)[0])*aInvert; };
 		if (aIndex != -1) {
 			if (aIndex == "name") {
 				return aArray.sort(compare3);
@@ -224,22 +227,12 @@ var cardbookUtils = {
 	},
 
 	sortMultipleArrayByString: function (aArray, aIndex, aInvert) {
-		if (Services.locale.getApplicationLocale) {
-			var collator = Components.classes["@mozilla.org/intl/collation-factory;1"].getService(Components.interfaces.nsICollationFactory).CreateCollation(Services.locale.getApplicationLocale());
-		} else {
-			var collator = Components.classes["@mozilla.org/intl/collation-factory;1"].getService(Components.interfaces.nsICollationFactory).CreateCollation();
-		}
-		function compare(a, b) { return collator.compareString(0, a[aIndex], b[aIndex])*aInvert; };
+		function compare(a, b) { return a[aIndex].localeCompare(b[aIndex])*aInvert; };
 		return aArray.sort(compare);
 	},
 
 	sortArrayByString: function (aArray, aInvert) {
-		if (Services.locale.getApplicationLocale) {
-			var collator = Components.classes["@mozilla.org/intl/collation-factory;1"].getService(Components.interfaces.nsICollationFactory).CreateCollation(Services.locale.getApplicationLocale());
-		} else {
-			var collator = Components.classes["@mozilla.org/intl/collation-factory;1"].getService(Components.interfaces.nsICollationFactory).CreateCollation();
-		}
-		function compare(a, b) { return collator.compareString(0, a, b)*aInvert; };
+		function compare(a, b) { return a.localeCompare(b)*aInvert; };
 		return aArray.sort(compare);
 	},
 

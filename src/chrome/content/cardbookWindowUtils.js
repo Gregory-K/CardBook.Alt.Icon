@@ -546,7 +546,8 @@ if ("undefined" == typeof(cardbookWindowUtils)) {
 							var menuItem = document.createXULElement("menuitem");
 							menuItem.setAttribute("id", account[4]);
 							menuItem.addEventListener("command", function(aEvent) {
-									aCallback(this.id, this.parentNode.triggerNode);
+									let headerField = aEvent.currentTarget.parentNode.parentNode.parentNode.headerField;
+									aCallback(this.id, headerField.emailAddress, headerField.displayName);
 									aEvent.stopPropagation();
 								}, false);
 							menuItem.setAttribute("label", account[0]);

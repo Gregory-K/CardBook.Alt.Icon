@@ -15,12 +15,10 @@ if ("undefined" == typeof(cardbookBirthdaysUtils)) {
 		
 		getCalendars: function () {
 			var myCalendar = cardbookRepository.cardbookPreferences.getStringPref("extensions.cardbook.calendarsNameList");
-			var calendarManager = Components.classes["@mozilla.org/calendar/manager;1"].getService(Components.interfaces.calICalendarManager);
-			var lCalendars = calendarManager.getCalendars({});
-
-			for (var i = 0; i < lCalendars.length; i++) {
-				if (myCalendar.includes(lCalendars[i].id)) {
-					cardbookBirthdaysUtils.lCalendarList.push(lCalendars[i]);
+			let cals = cal.manager.getCalendars();
+			for (let calendar of cals) {
+				if (myCalendar.includes(calendar.id)) {
+					cardbookBirthdaysUtils.lCalendarList.push(calendar);
 				}
 			}
 		},
@@ -69,34 +67,19 @@ if ("undefined" == typeof(cardbookBirthdaysUtils)) {
 			cardbookBirthdaysUtils.getCalendarItems(aCalendar);
 		},
 
-		getCalendarItems: function (aCalendar) {
-			// prepare Listener
-			var getListener = {
-				mCalendar : aCalendar,
-				mItems : [],
-				mStatus : true,
-				onGetResult: function(aCalendar, aStatus, aItemType, aDetail, aItems) {
-					if (!Components.isSuccessCode(aStatus)) {
-						this.mStatus = false;
-					} else {
-						this.mItems = this.mItems.concat(aItems);
-					}
-				},
-				onOperationComplete: function (aCalendar, aStatus, aOperationType, aId, aDetail) {
-					cardbookRepository.cardbookLog.updateStatusProgressInformationWithDebug2(this.mCalendar.name + " : debug mode : aStatus : " + this.mStatus);
-					if (this.mStatus) {
-						cardbookBirthdaysUtils.syncBirthdays(this.mCalendar, this.mItems);
-					} else {
-						cardbookBirthdaysUtils.lBirthdaySyncResult.push([this.mCalendar.name, 0, cardbookBirthdaysUtils.lBirthdayList.length, 0, this.mCalendar.id]);
-					}
-				}
-			}
-
+		getCalendarItems: async function (aCalendar) {
 			let filter = 0;
 			filter |= aCalendar.ITEM_FILTER_TYPE_EVENT | aCalendar.ITEM_FILTER_CLASS_OCCURRENCES;
 			let startDate = cal.createDateTime();
 			let endDate = cal.dtz.jsDateToDateTime(new Date(new Date().setFullYear(new Date().getFullYear() + 1)));
-			aCalendar.getItems(filter, 0, startDate, endDate, getListener);
+			let iterator = cal.iterate.streamValues(
+				aCalendar.getItems(filter, 0, startDate, endDate)
+			);
+			let allItems = [];
+			for await (let items of iterator) {
+				allItems = allItems.concat(items);
+			}		
+			cardbookBirthdaysUtils.syncBirthdays(aCalendar, allItems);
 		},
 
 		syncBirthdays: function (aCalendar, aItems) {
@@ -160,7 +143,7 @@ if ("undefined" == typeof(cardbookBirthdaysUtils)) {
 			}
 		},
 
-		addNewCalendarEntry: function (aCalendar2, aBirthdayId, aBirthdayName, aBirthdayAge, aDate, aNextDate, aBirthdayTitle) {
+		addNewCalendarEntry: async function (aCalendar, aBirthdayId, aBirthdayName, aBirthdayAge, aDate, aNextDate, aBirthdayTitle) {
 			// Strategy is to create iCalString and create Event from that string
 			var iCalString = "BEGIN:VCALENDAR\n";
 			iCalString += "BEGIN:VEVENT\n";
@@ -232,25 +215,15 @@ if ("undefined" == typeof(cardbookBirthdaysUtils)) {
 			event.title = aBirthdayTitle;
 			event.id = aBirthdayId;
 
-			// prepare Listener
-			var addListener = {
-				mBirthdayId : aBirthdayId,
-				mBirthdayName : aBirthdayName,
-				mCalendar : aCalendar2,
-				onOperationComplete: function (aCalendar, aStatus, aOperationType, aId, aDetail) {
-					cardbookRepository.cardbookLog.updateStatusProgressInformationWithDebug2(this.mCalendar.name + " : debug mode : created operation finished : " + this.mBirthdayId + " : " + this.mBirthdayName);
-					if (aStatus == 0) {
-						cardbookRepository.cardbookUtils.formatStringForOutput("syncListCreatedEntry", [this.mCalendar.name, this.mBirthdayName]);
-						cardbookBirthdaysUtils.lBirthdaySyncResult.push([this.mCalendar.name, 0, 0, 1, this.mCalendar.id]);
-					} else {
-						cardbookRepository.cardbookUtils.formatStringForOutput("syncListErrorEntry", [this.mCalendar.name, this.mBirthdayName], "Error");
-						cardbookBirthdaysUtils.lBirthdaySyncResult.push([this.mCalendar.name, 0, 1, 0, this.mCalendar.id]);
-					}
-				}
-			}
-
 			// add Item to Calendar
-			aCalendar2.addItem(event, addListener);
+			let item = await aCalendar.addItem(event);
+			if (item) {
+				cardbookRepository.cardbookUtils.formatStringForOutput("syncListCreatedEntry", [aCalendar.name, this.mBirthdayName]);
+				cardbookBirthdaysUtils.lBirthdaySyncResult.push([aCalendar.name, 0, 0, 1, aCalendar.id]);
+			} else {
+				cardbookRepository.cardbookUtils.formatStringForOutput("syncListErrorEntry", [aCalendar.name, this.mBirthdayName], "Error");
+				cardbookBirthdaysUtils.lBirthdaySyncResult.push([aCalendar.name, 0, 1, 0, aCalendar.id]);
+			}
 		},
 
 		getEventName: function (aEventTitle, aDisplayName, aAge, aYear, aName, aEventType) {

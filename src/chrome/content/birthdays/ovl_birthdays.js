@@ -50,13 +50,13 @@ if ("undefined" == typeof(ovl_birthdays)) {
 		displayBirthdayList: function() {
 			if (cardbookRepository.cardbookBirthdayPopup == 0) {
 				cardbookRepository.cardbookBirthdayPopup++;
-				Services.wm.getMostRecentWindow("mail:3pane").openDialog("chrome://cardbook/content/birthdays/wdw_birthdayList.xhtml", "", cardbookRepository.modalWindowParams);
+				Services.wm.getMostRecentWindow("mail:3pane").openDialog("chrome://cardbook/content/birthdays/wdw_birthdayList.xhtml", "", cardbookRepository.windowParams);
 				cardbookRepository.cardbookBirthdayPopup--;
 			}
 		},
 	
 		displaySyncList: function() {
-			Services.wm.getMostRecentWindow("mail:3pane").openDialog("chrome://cardbook/content/birthdays/wdw_birthdaySync.xhtml", "", cardbookRepository.modalWindowParams);
+			Services.wm.getMostRecentWindow("mail:3pane").openDialog("chrome://cardbook/content/birthdays/wdw_birthdaySync.xhtml", "", cardbookRepository.windowParams);
 		},
 	
 		onShowPopup: function() {

@@ -22,11 +22,9 @@ if ("undefined" == typeof(ovl_cardbookMailContacts)) {
 		},
 
 		refreshBlueStars: function() {
-			var nodes = document.querySelectorAll("mail-emailaddress");
+			var nodes = document.querySelectorAll("li.header-recipient");
 			for (let node of nodes) {
-				if (node.getAttribute('emailAddress')) {
-					UpdateEmailNodeDetails(node.getAttribute('emailAddress'), node);
-				}
+				node.updateRecipient();
 			}
 		},
 		
@@ -38,21 +36,19 @@ if ("undefined" == typeof(ovl_cardbookMailContacts)) {
 			return cardbookRepository.isEmailRegistered(aEmail, ovl_cardbookMailContacts.getIdentityKey());
 		},
 
-		addToCardBook: function(aDirPrefId, aEmailNode) {
+		addToCardBook: function(aDirPrefId, aEmailAddress, aDisplayName) {
 			try {
-				var myNewCard = new cardbookCardParser();
+				let myNewCard = new cardbookCardParser();
 				myNewCard.dirPrefId = aDirPrefId;
-				var myEmailNode = aEmailNode.closest("mail-emailaddress");
-				var myEmail = myEmailNode.getAttribute('emailAddress');
-				myNewCard.email.push([[myEmail], [], "", []]);
-				myNewCard.fn = myEmailNode.getAttribute('displayName');
+				myNewCard.email.push([[aEmailAddress], [], "", []]);
+				myNewCard.fn = aDisplayName;
 				if (myNewCard.fn == "") {
-					myNewCard.fn = myEmail.substr(0, myEmail.indexOf("@")).replace("."," ").replace("_"," ");
+					myNewCard.fn = myEmail.substr(0, aEmailAddress.indexOf("@")).replace("."," ").replace("_"," ");
 				}
-				var myDisplayNameArray = myNewCard.fn.split(" ");
+				let myDisplayNameArray = myNewCard.fn.split(" ");
 				if (myDisplayNameArray.length > 1) {
 					myNewCard.lastname = myDisplayNameArray[myDisplayNameArray.length - 1];
-					var removed = myDisplayNameArray.splice(myDisplayNameArray.length - 1, 1);
+					let removed = myDisplayNameArray.splice(myDisplayNameArray.length - 1, 1);
 					myNewCard.firstname = myDisplayNameArray.join(" ");
 				}
 				cardbookWindowUtils.openEditionWindow(myNewCard, "AddEmail");
@@ -78,37 +74,22 @@ if ("undefined" == typeof(ovl_cardbookMailContacts)) {
 			}
 		},
 
-		editOrViewContact: function(aEmailNode) {
-			var myEmailNode = aEmailNode.closest("mail-emailaddress");
-			var myEmail = myEmailNode.getAttribute('emailAddress');
-			var isEmailRegistered = ovl_cardbookMailContacts.isEmailRegistered(myEmail);
-	
-			if (isEmailRegistered) {
-				var myCard = cardbookRepository.cardbookUtils.getCardFromEmail(myEmail);
-				var myOutCard = new cardbookCardParser();
-				cardbookRepository.cardbookUtils.cloneCard(myCard, myOutCard);
-				if (myOutCard.isAList) {
-					var myType = "List";
-				} else {
-					var myType = "Contact";
-				}
-				if (cardbookRepository.cardbookPreferences.getReadOnly(myCard.dirPrefId)) {
-					cardbookWindowUtils.openEditionWindow(myOutCard, "View" + myType);
-				} else {
-					cardbookWindowUtils.openEditionWindow(myOutCard, "Edit" + myType);
-				}
+		editOrViewContact: function(aCard) {
+			let myOutCard = new cardbookCardParser();
+			cardbookRepository.cardbookUtils.cloneCard(aCard, myOutCard);
+			let type = "Contact";
+			if (myOutCard.isAList) {
+				type = "List";
+			}
+			if (cardbookRepository.cardbookPreferences.getReadOnly(myOutCard.dirPrefId)) {
+				cardbookWindowUtils.openEditionWindow(myOutCard, "View" + type);
+			} else {
+				cardbookWindowUtils.openEditionWindow(myOutCard, "Edit" + type);
 			}
 		},
 
-		deleteContact: function(emailAddressNode) {
-			emailAddressNode = emailAddressNode.closest("mail-emailaddress");
-			var myEmail = emailAddressNode.getAttribute('emailAddress');
-			var isEmailRegistered = ovl_cardbookMailContacts.isEmailRegistered(myEmail);
-	
-			if (isEmailRegistered) {
-				var myCard = cardbookRepository.cardbookUtils.getCardFromEmail(myEmail);
-				wdw_cardbook.deleteCardsAndValidate([myCard]);
-			}
+		deleteContact: function(aCard) {
+			wdw_cardbook.deleteCardsAndValidate([aCard]);
 		},
 
 		hideOldAddressbook: function (aExclusive) {
@@ -160,29 +141,40 @@ if ("undefined" == typeof(ovl_cardbookMailContacts)) {
 	};
 };
 
-// for the contact menu popup
-// setupEmailAddressPopup
 (function() {
 	// Keep a reference to the original function.
-	ovl_cardbookMailContacts.origFunctions.setupEmailAddressPopup = setupEmailAddressPopup;
+	ovl_cardbookMailContacts.origFunctions.addToAddressBook = customElements.get("header-recipient").prototype.addToAddressBook;
 	
 	// Override a function.
-	setupEmailAddressPopup = function() {
+	// addToAddressBook
+	customElements.get("header-recipient").prototype.addToAddressBook = function() {
+		let account = cardbookRepository.cardbookUtils.getFirstAvailableAccount();
+		if (account != "-1") {
+			ovl_cardbookMailContacts.addToCardBook(account, this.emailAddress, this.displayName);
+		} else {
+			ovl_cardbookMailContacts.origFunctions.addToAddressBook.apply(null, arguments);
+		}
+	};
+})();
 
+
+(function() {
+	// Keep a reference to the original function.
+	ovl_cardbookMailContacts.origFunctions.openEmailAddressPopup = gMessageHeader.openEmailAddressPopup;
+	
+	// Override a function.
+	// gMessageHeader.openEmailAddressPopup
+	gMessageHeader.openEmailAddressPopup = function() {
 		// Execute original function.
-		var rv = ovl_cardbookMailContacts.origFunctions.setupEmailAddressPopup.apply(null, arguments);
+		var rv = ovl_cardbookMailContacts.origFunctions.openEmailAddressPopup.apply(null, arguments);
 		
 		// Execute some action afterwards.
 		var exclusive = cardbookRepository.cardbookPreferences.getBoolPref("extensions.cardbook.exclusive");
 		ovl_cardbookMailContacts.hideOldAddressbook(exclusive);
 
-		var myEmailNode = arguments[0].closest("mail-emailaddress");
-		var myEmail = myEmailNode.getAttribute('emailAddress');
-		var isEmailRegistered = ovl_cardbookMailContacts.isEmailRegistered(myEmail);
-		ovl_cardbookMailContacts.hideOrShowNewAddressbook(isEmailRegistered);
-
-		if (isEmailRegistered) {
-			var myCard = cardbookRepository.cardbookUtils.getCardFromEmail(myEmail);
+		if (arguments[1].cardDetails.card && arguments[1].cardDetails.card.cbid) {
+			ovl_cardbookMailContacts.hideOrShowNewAddressbook(true);
+			let  myCard = arguments[1].cardDetails.card;
 			document.getElementById("editInCardBookMenu").setAttribute("cardbookId", myCard.dirPrefId+"::"+myCard.uid);
 			if (cardbookRepository.cardbookPreferences.getReadOnly(myCard.dirPrefId)) {
 				document.getElementById('editInCardBookMenu').label=cardbookRepository.extension.localeData.localizeMessage("viewInCardBookMenuLabel");
@@ -191,11 +183,20 @@ if ("undefined" == typeof(ovl_cardbookMailContacts)) {
 			}
 			
 			cardbookWindowUtils.addCardToIMPPMenuSubMenu(myCard, 'IMPPCardsMenuPopup');
+
+			if (arguments[1].cardDetails.standardCard) {
+				document.getElementById("addToAddressBookItem").hidden = true;
+				document.getElementById("editContactItem").hidden = !arguments[1].cardDetails.standardCard || arguments[1].cardDetails.book?.readOnly;
+				document.getElementById("viewContactItem").hidden = !arguments[1].cardDetails.standardCard || !arguments[1].cardDetails.book?.readOnly;
+			} else {
+				document.getElementById("addToAddressBookItem").hidden = false;
+				document.getElementById("editContactItem").hidden = true;
+				document.getElementById("viewContactItem").hidden = true;
+			}
 		} else {
+			ovl_cardbookMailContacts.hideOrShowNewAddressbook(false);
 			cardbookWindowUtils.addCardToIMPPMenuSubMenu(null, 'IMPPCardsMenuPopup');
 		}
-		var emailAddressPlaceHolder = document.getElementById("emailAddressPlaceHolder");
-		emailAddressPlaceHolder.setAttribute("label", MailServices.headerParser.makeMimeAddress(myEmailNode.getAttribute("displayName"), myEmailNode.getAttribute('emailAddress')));
 
 		if (document.documentElement.getAttribute("windowtype") == "mail:messageWindow") {
 			document.getElementById('findEmailsFromEmailMessenger').setAttribute('hidden', 'true');
@@ -214,70 +215,56 @@ if ("undefined" == typeof(ovl_cardbookMailContacts)) {
 		// return the original result
 		return rv;
 	};
-
-})();
-
-// for the yellow star
-// UpdateEmailNodeDetails
-(function() {
-	// Keep a reference to the original function.
-	ovl_cardbookMailContacts.origFunctions.UpdateEmailNodeDetails = UpdateEmailNodeDetails;
-
-	// Override a function.
-	UpdateEmailNodeDetails = function() {
-
-		// one case where the standard function did not work
-		var rv = "";
-		try {
-			rv = ovl_cardbookMailContacts.origFunctions.UpdateEmailNodeDetails.apply(null, arguments);
-		} catch (e) {}
-
-		// Execute some action afterwards.
-		var exclusive = cardbookRepository.cardbookPreferences.getBoolPref("extensions.cardbook.exclusive");
-		var showCondensedAddresses = cardbookRepository.cardbookPreferences.getBoolPref("mail.showCondensedAddresses");
-		var myEmailAddress = arguments[1].getAttribute("emailAddress");
-		var isEmailRegistered = ovl_cardbookMailContacts.isEmailRegistered(myEmailAddress);
-		if (showCondensedAddresses) {
-			if (exclusive) {
-				arguments[1].setAddressBookState(!!isEmailRegistered);
-			} else if (isEmailRegistered) {
-				arguments[1].setAddressBookState(!!isEmailRegistered);
-			}
-		} else {
-			if (exclusive) {
-				arguments[1].setAddressBookState(!!isEmailRegistered);
-			} else if (isEmailRegistered) {
-				arguments[1].setAddressBookState(!!isEmailRegistered);
-			}
-		}
-		return rv;
-	};
-
 })();
 
 (function() {
 	// Keep a reference to the original function.
-	ovl_cardbookMailContacts.origFunctions.onClickStar = customElements.get("mail-emailaddress").prototype.onClickStar;
+	ovl_cardbookMailContacts.origFunctions.showContactEdit = gMessageHeader.showContactEdit;
 	
 	// Override a function.
-	// onClickStar
-	customElements.get("mail-emailaddress").prototype.onClickStar = function() {
-		if (this.hasCard) {
-			if (ovl_cardbookMailContacts.isEmailRegistered(this.getAttribute('emailAddress'))) {
-				ovl_cardbookMailContacts.editOrViewContact(this);
-			} else {
-				var rv = ovl_cardbookMailContacts.origFunctions.onClickStar.apply(null, arguments);
-			}
+	// gMessageHeader.showContactEdit
+	gMessageHeader.showContactEdit = function() {
+		let event = arguments[0];
+		if (event.currentTarget.parentNode.headerField.cardDetails.standardCard) {
+			gMessageHeader.editContact(event.currentTarget.parentNode.headerField, "standardCard");
 		} else {
-			var myAccount = cardbookRepository.cardbookUtils.getFirstAvailableAccount();
-			if (myAccount != "-1") {
-				ovl_cardbookMailContacts.addToCardBook(myAccount, this);
-			} else {
-				var rv = ovl_cardbookMailContacts.origFunctions.onClickStar.apply(null, arguments);
-			}
+			gMessageHeader.editContact(event.currentTarget.parentNode.headerField);
 		}
 	};
+})();
 
+(function() {
+	// Keep a reference to the original function.
+	ovl_cardbookMailContacts.origFunctions.editContact = gMessageHeader.editContact;
+	
+	// Override a function.
+	// gMessageHeader.editContact
+	gMessageHeader.editContact = function() {
+		if (arguments[1] == "standardCard") {
+			arguments[0].cardDetails.card = arguments[0].cardDetails.standardCard;
+			ovl_cardbookMailContacts.origFunctions.editContact(arguments[0]);
+		} else if (arguments[0].cardDetails.card.cbid) {
+			ovl_cardbookMailContacts.editOrViewContact(arguments[0].cardDetails.card);
+		} else {
+			ovl_cardbookMailContacts.origFunctions.editContact(arguments[0]);
+		}
+	};
+})();
+
+(function() {
+	// Keep a reference to the original function.
+	ovl_cardbookMailContacts.origFunctions.addContact = gMessageHeader.addContact;
+	
+	// Override a function.
+	// gMessageHeader.addContact
+	gMessageHeader.addContact = function() {
+		let element = arguments[0].currentTarget.parentNode.headerField;
+		let card = Components.classes["@mozilla.org/addressbook/cardproperty;1"].createInstance(Components.interfaces.nsIAbCard);
+		card.displayName = element.displayName;
+		card.primaryEmail = element.emailAddress;
+		let addressBook = MailServices.ab.getDirectory("jsaddrbook://abook.sqlite");
+		addressBook.addCard(card);
+	};
 })();
 
 

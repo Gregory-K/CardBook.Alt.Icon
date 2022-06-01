@@ -19,14 +19,14 @@ GitHub (main) - https://github.com/Gregory-K/CardBook.Alt.Icon
 GitLab (alt.) - https://gitlab.com/Gregory.K/CardBook.Alt.Icon
 
 Version:  
-**75.5.1**  
+**80.5.1 (pre-release)**  
 Compatibility:  
-91.0a1 <= Thunderbird version >= 91.*
+102.0a1 <= Thunderbird version >= 102.*
 
 
 ## Install / Update
 
-Download the latest .xpi [release from GitHub](https://github.com/Gregory-K/CardBook.Alt.Icon/releases) and install it manually into Thunderbird.  
+Download the latest "pre-release" .xpi [release from GitHub](https://github.com/Gregory-K/CardBook.Alt.Icon/releases) and install it manually into Thunderbird.  
 _(drag 'n drop OR "gear menu > Install Add-on From File...")_
 
 Repeat for updates.  

@@ -47,7 +47,7 @@ var ovl_list = {
 					isMailingList = listNames.length > 0 && MailServices.ab.mailListNameExists(listNames[0].name);
 				}
 				if (isValidAddress(address.emailAddress) || isMailingList || address.emailInput.classList.contains("news-input")) {
-					address.classList.toggle("error", false);
+					address.classList.remove("invalid-address");
 					gSendLocked = false;
 					// break;
 				}
@@ -112,21 +112,19 @@ var ovl_list = {
 		
 		// Execute some action afterwards.
 		ovl_list.mailListNameExists();
-
 	};
 
 })();
 
-// calculateHeaderHeight
+// onRecipientsChanged
 (function() {
 	// Keep a reference to the original function.
-	ovl_list.origFunctions.calculateHeaderHeight = calculateHeaderHeight;
+	ovl_list.origFunctions.onRecipientsChanged = onRecipientsChanged;
 	
 	// Override a function.
-	calculateHeaderHeight = function() {
+	onRecipientsChanged = function() {
 		// Execute original function.
-		var rv = ovl_list.origFunctions.calculateHeaderHeight.apply(null, arguments);
-		
+		var rv = ovl_list.origFunctions.onRecipientsChanged.apply(null, arguments);
 		// Execute some action afterwards.
 		// the function customElements.get("mail-address-pill").prototype.updatePillStatus is async
 		// with no way to update it

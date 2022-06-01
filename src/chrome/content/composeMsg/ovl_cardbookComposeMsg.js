@@ -5,7 +5,8 @@ var ovl_cardbookComposeMsg = {
 	origFunctions: {},
 
 	GenericSendMessage: function() {
-		if (gSendFormat == Components.interfaces.nsIMsgCompSendFormat.AskUser) {
+		if (gMsgCompose.compFields.deliveryFormat == Components.interfaces.nsIMsgCompSendFormat.Auto ||
+			gMsgCompose.compFields.deliveryFormat == Components.interfaces.nsIMsgCompSendFormat.Unset) {
 			let myFields = gMsgCompose.compFields;
 			let allHtml = true;
 			let allPlain = true;
@@ -29,10 +30,10 @@ var ovl_cardbookComposeMsg = {
 				}
 			}
 			if (allPlain) {
-				gSendFormat = Components.interfaces.nsIMsgCompSendFormat.PlainText;
+				gMsgCompose.compFields.deliveryFormat = Components.interfaces.nsIMsgCompSendFormat.PlainText;
 			}
 			if (allHtml) {
-				gSendFormat = Components.interfaces.nsIMsgCompSendFormat.HTML;
+				gMsgCompose.compFields.deliveryFormat = Components.interfaces.nsIMsgCompSendFormat.HTML;
 			}
 		}
 	},
@@ -89,11 +90,11 @@ var ovl_cardbookComposeMsg = {
 
 		// functions
 		GenericSendMessage = ovl_cardbookComposeMsg.origFunctions.GenericSendMessage;
-		toggleAddressPicker = ovl_cardbookComposeMsg.origFunctions.toggleAddressPicker;
+		setContactsSidebarVisibility = ovl_cardbookComposeMsg.origFunctions.setContactsSidebarVisibility;
 
 		expandRecipients = ovl_list.origFunctions.expandRecipients;
 		updateSendLock = ovl_list.origFunctions.updateSendLock;
-		calculateHeaderHeight = ovl_list.origFunctions.calculateHeaderHeight;
+		onRecipientsChanged = ovl_list.origFunctions.onRecipientsChanged;
 	},
 
 	loadMsg: function () {

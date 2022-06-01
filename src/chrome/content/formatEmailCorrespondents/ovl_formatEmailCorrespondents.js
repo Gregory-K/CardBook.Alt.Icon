@@ -244,7 +244,6 @@ var myFormatObserver = {
 };
 myFormatObserver.register();
 
-// for displaying the undo and redo
 // DisplayNameUtils.formatDisplayName
 (function() {
 	// for the standalone window, does not exist
@@ -255,7 +254,6 @@ myFormatObserver.register();
 		// Override a function.
 		DisplayNameUtils.formatDisplayName = function() {
 			
-			var showCondensedAddresses = cardbookRepository.cardbookPreferences.getBoolPref("mail.showCondensedAddresses");
 			var exclusive = cardbookRepository.cardbookPreferences.getBoolPref("extensions.cardbook.exclusive");
 			var myCardBookResult = {};
 			myCardBookResult = ovl_formatEmailCorrespondents.getCardBookDisplayNameFromEmail(arguments[0], arguments[1]);
@@ -265,6 +263,7 @@ myFormatObserver.register();
 				if (exclusive) {
 					let displayName = null;
 					var identity = ovl_formatEmailCorrespondents.getIdentityForEmail(arguments[0]);
+					var gMessengerBundle = Services.strings.createBundle("chrome://messenger/locale/messenger.properties");
 					if (identity) {
 						try {
 							displayName = gMessengerBundle.GetStringFromName("header" + aContext + "FieldMe");
@@ -280,6 +279,42 @@ myFormatObserver.register();
 				} else {
 					return ovl_formatEmailCorrespondents.origFunctions.formatDisplayName.apply(null, arguments);
 				}
+			}
+		};
+	}
+})();
+
+// DisplayNameUtils.getCardForEmail
+(function() {
+	// for the standalone window, does not exist
+	if ("undefined" != typeof(DisplayNameUtils.getCardForEmail)) {
+		// Keep a reference to the original function.
+		ovl_formatEmailCorrespondents.origFunctions.getCardForEmail = DisplayNameUtils.getCardForEmail;
+		
+		// Override a function.
+		DisplayNameUtils.getCardForEmail = function() {
+			// let exclusive = cardbookRepository.cardbookPreferences.getBoolPref("extensions.cardbook.exclusive");
+			// let standardRV = ovl_formatEmailCorrespondents.origFunctions.getCardForEmail.apply(null, arguments);
+			// let card = cardbookRepository.cardbookUtils.getCardFromEmail(arguments[0]);
+			// if (exclusive) {
+			// 	if (card) {
+			// 		return  { book: null, card: card };
+			// 	} else {
+			// 		return { book: null, card: null };
+			// 	}
+			// } else {
+			// 	if (card) {
+			// 		return  { book: null, card: card };
+			// 	} else {
+			// 		return ovl_formatEmailCorrespondents.origFunctions.getCardForEmail.apply(null, arguments);
+			// 	}
+			// }
+			let standardRV = ovl_formatEmailCorrespondents.origFunctions.getCardForEmail.apply(null, arguments);
+			let card = cardbookRepository.cardbookUtils.getCardFromEmail(arguments[0]);
+			if (card) {
+				return  { book: standardRV.book, card: card, standardCard: standardRV.card};
+			} else {
+				return standardRV;
 			}
 		};
 	}

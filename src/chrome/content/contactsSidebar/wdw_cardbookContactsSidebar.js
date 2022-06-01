@@ -399,8 +399,8 @@ if ("undefined" == typeof(wdw_cardbookContactsSidebar)) {
 		},
 
 		addEmails: function (aType) {
-			var listOfEmails = wdw_cardbookContactsSidebar.getSelectedEmails();
-			parent.awAddRecipientsArray(aType, listOfEmails);
+			let listOfEmails = wdw_cardbookContactsSidebar.getSelectedEmails();
+			parent.addressRowAddRecipientsArray(parent.document.querySelector(`.address-row[data-recipienttype="${aType}"]`), listOfEmails);
 		},
 
 		startDrag: function (aEvent) {
@@ -623,7 +623,7 @@ if ("undefined" == typeof(wdw_cardbookContactsSidebar)) {
 			document.getElementById("abContextMenuButton").hidden=false;
 			cardBookSideBarObserver.register();
 			cardBookSideBarPrefObserver.register();
-			document.title = parent.document.getElementById("sidebar-title").value;
+			document.title = parent.document.getElementById("contactsTitle").value;
 			wdw_cardbookContactsSidebar.loadAB();
 		},
 		

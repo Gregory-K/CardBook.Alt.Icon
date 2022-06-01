@@ -16,9 +16,7 @@ function syncAllBirthdays () {
 };
 
 function do_close () {
-	if (lTimerSync) {
-		lTimerSync.cancel();
-	}
+	lTimerSync.cancel();
 	close();
 };
 

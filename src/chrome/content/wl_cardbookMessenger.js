@@ -138,22 +138,13 @@ function onLoad(wasAlreadyOpen) {
 			oncommand="ovl_cardbook.open();"/>
 	</commandset>
 
-	<toolbar id="tabbar-toolbar" shouldExist="true">
-		<toolbarbutton id="cardbookTabButton"
-			appendto="tabbar-toolbar"
-			class="toolbarbutton-1"
-			title="__MSG_cardbookTabButtonLabel__"
-			tooltiptext="__MSG_cardbookTabButtonTooltip__"
-			command="cardbookTabButtonOpen"/>
-	</toolbar>
-
 	<menupopup id="emailAddressPopup">
 		<menuseparator id="editCardBookSeparator" insertafter="viewContactItem"/>
 		<menu id="addToCardBookMenu" label="__MSG_addToCardBookMenuLabel__" accesskey="__MSG_addToCardBookMenuAccesskey__" insertafter="editCardBookSeparator">
 			<menupopup id="addToCardBookMenuPopup" onpopupshowing="ovl_cardbookMailContacts.addToCardBookMenuSubMenu(this.id, ovl_cardbookMailContacts.addToCardBook)"/>
 		</menu>
-		<menuitem id="editInCardBookMenu" label="__MSG_editInCardBookMenuLabel__" accesskey="__MSG_editInCardBookMenuAccesskey__" insertafter="addToCardBookMenu" onclick="ovl_cardbookMailContacts.editOrViewContact(this.parentNode.triggerNode);"/>
-		<menuitem id="deleteInCardBookMenu" label="__MSG_deleteInCardBookMenuLabel__" accesskey="__MSG_deleteInCardBookMenuAccesskey__" insertafter="editInCardBookMenu" onclick="ovl_cardbookMailContacts.deleteContact(this.parentNode.triggerNode);"/>
+		<menuitem id="editInCardBookMenu" label="__MSG_editInCardBookMenuLabel__" accesskey="__MSG_editInCardBookMenuAccesskey__" insertafter="addToCardBookMenu" onclick="ovl_cardbookMailContacts.editOrViewContact(event.currentTarget.parentNode.headerField.cardDetails.card);"/>
+		<menuitem id="deleteInCardBookMenu" label="__MSG_deleteInCardBookMenuLabel__" accesskey="__MSG_deleteInCardBookMenuAccesskey__" insertafter="editInCardBookMenu" onclick="ovl_cardbookMailContacts.deleteContact(event.currentTarget.parentNode.headerField.cardDetails.card);"/>
 		<menuseparator id="IMPPCardBookSeparator" insertafter="deleteInCardBookMenu"/>
 		<menu id="IMPPCards" label="__MSG_IMPPMenuLabel__" accesskey="__MSG_IMPPMenuAccesskey__" insertafter="IMPPCardBookSeparator">
 			<menupopup id="IMPPCardsMenuPopup"/>

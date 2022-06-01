@@ -60,6 +60,7 @@ var cardbookTabType = {
 			type: "cardbookTab",
 			maxTabs: 1,
 			openTab: function(aTab, aArgs) {
+				aTab.tabNode.setIcon("chrome://cardbook/content/skin/cardbook.svg");
 				aTab.title = aArgs["title"];
 				ovl_cardbookLayout.orientPanes();
 			},
@@ -282,12 +283,15 @@ var ovl_cardbook = {
 		myFormatObserver.unregister();
 
 		// functions
-		setupEmailAddressPopup = ovl_cardbookMailContacts.origFunctions.setupEmailAddressPopup;
-		UpdateEmailNodeDetails = ovl_cardbookMailContacts.origFunctions.UpdateEmailNodeDetails;
-		customElements.get("mail-emailaddress").prototype.onClickStar = ovl_cardbookMailContacts.origFunctions.onClickStar;
+		customElements.get("header-recipient").prototype.addToAddressBook = ovl_cardbookMailContacts.origFunctions.addToAddressBook;
+		gMessageHeader.openEmailAddressPopup = ovl_cardbookMailContacts.origFunctions.openEmailAddressPopup;
+		gMessageHeader.showContactEdit = ovl_cardbookMailContacts.origFunctions.showContactEdit;
+		gMessageHeader.editContact = ovl_cardbookMailContacts.origFunctions.editContact;
+		gMessageHeader.addContact = ovl_cardbookMailContacts.origFunctions.addContact;
 		fillMailContextMenu = ovl_cardbookMailContacts.origFunctions.fillMailContextMenu;
 
 		DisplayNameUtils.formatDisplayName = ovl_formatEmailCorrespondents.origFunctions.formatDisplayName;
+		DisplayNameUtils.getCardForEmail = ovl_formatEmailCorrespondents.origFunctions.getCardForEmail;
 
 		InitViewLayoutStyleMenu = ovl_cardbookLayout.origFunctions.InitViewLayoutStyleMenu;
 		InitEditMessagesMenu = ovl_cardbookLayout.origFunctions.InitEditMessagesMenu;
@@ -328,3 +332,5 @@ var ovl_cardbook = {
 		tabmail.openTab('cardbook', {title: cardbookRepository.extension.localeData.localizeMessage("cardbookTitle")});
 	}
 };
+
+

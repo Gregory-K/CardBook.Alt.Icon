@@ -68,6 +68,7 @@ Preferences.addAll([
 
 var { MailServices } = ChromeUtils.import("resource:///modules/MailServices.jsm");
 var { Services } = ChromeUtils.import("resource://gre/modules/Services.jsm");
+var { cal } = ChromeUtils.import("resource:///modules/calendar/calUtils.jsm");
 
 var { XPCOMUtils } = ChromeUtils.import("resource://gre/modules/XPCOMUtils.jsm");
 var { cardbookRepository } = ChromeUtils.import("chrome://cardbook/content/cardbookRepository.js");
@@ -978,11 +979,9 @@ var wdw_cardbookConfiguration = {
 	loadCalendars: function () {
 		let pref = cardbookRepository.cardbookPreferences.getStringPref("extensions.cardbook.calendarsNameList");
 		let tmpArray = [];
-		let calendarManager = Components.classes["@mozilla.org/calendar/manager;1"].getService(Components.interfaces.calICalendarManager);
-		let calendars = calendarManager.getCalendars({});
-		for (let prop in calendars) {
-			let cal = calendars[prop];
-			tmpArray.push([cal.name, cal.id]);
+		let cals = cal.manager.getCalendars();
+		for (let calendar of cals) {
+			tmpArray.push([calendar.name, calendar.id]);
 		}
 		cardbookRepository.cardbookUtils.sortMultipleArrayByString(tmpArray,0,1);
 		wdw_cardbookConfiguration.allCalendars = [];

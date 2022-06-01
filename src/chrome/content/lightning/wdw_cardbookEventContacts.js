@@ -1,7 +1,8 @@
 if ("undefined" == typeof(wdw_cardbookEventContacts)) {
 	var { Services } = ChromeUtils.import("resource://gre/modules/Services.jsm");
 	var { cardbookRepository } = ChromeUtils.import("chrome://cardbook/content/cardbookRepository.js");
-
+	var { cal } = ChromeUtils.import("resource:///modules/calendar/calUtils.jsm");
+	
 	var wdw_cardbookEventContacts = {
 		allEvents: [],
 		emailArray: [],
@@ -197,28 +198,6 @@ if ("undefined" == typeof(wdw_cardbookEventContacts)) {
 			}
 		},
 		
-		addItemsFromCalendar: function (aCalendar, aAddItemsInternalFunc) {
-			var refreshListener = {
-				QueryInterface: ChromeUtils.generateQI([Components.interfaces.calIOperationListener]),
-				mEventArray: [],
-				onOperationComplete: function (aCalendar, aStatus, aOperationType, aId, aDateTime) {
-					var refreshTreeInternalFunc = function() {
-						aAddItemsInternalFunc(refreshListener.mEventArray);
-					};
-					setTimeout(refreshTreeInternalFunc, 0);
-				},
-				
-				onGetResult: function (aCalendar, aStatus, aItemType, aDetail, aItems) {
-					refreshListener.mEventArray = refreshListener.mEventArray.concat(aItems);
-				}
-			};
-			
-			let filter = 0;
-			filter |= aCalendar.ITEM_FILTER_TYPE_EVENT;
-			
-			aCalendar.getItems(filter, 0, null, null, refreshListener);
-		},
-
 		addItemsFromCompositeCalendarInternal: function (eventArray) {
 			wdw_cardbookEventContacts.allEvents = wdw_cardbookEventContacts.allEvents.concat(eventArray);
 
@@ -241,12 +220,22 @@ if ("undefined" == typeof(wdw_cardbookEventContacts)) {
 			wdw_cardbookEventContacts.sortTable("eventsTable");
 		},
 
-		loadEvents: function () {
+		loadEvents: async function () {
 			wdw_cardbookEventContacts.allEvents = [];
-			let cals = cal.getCalendarManager().getCalendars({});
+			let cals = cal.manager.getCalendars();
 			for (let calendar of cals) {
 				if (!calendar.getProperty("disabled")) {
-					wdw_cardbookEventContacts.addItemsFromCalendar(calendar, wdw_cardbookEventContacts.addItemsFromCompositeCalendarInternal);
+					let filter = 0;
+					filter |= calendar.ITEM_FILTER_TYPE_EVENT;
+					let iterator = cal.iterate.streamValues(
+						calendar.getItems(filter, 0, null, null)
+					);
+					
+					let allItems = [];
+					for await (let items of iterator) {
+						allItems = allItems.concat(items);
+					}		
+					wdw_cardbookEventContacts.addItemsFromCompositeCalendarInternal(allItems);
 				}
 			}
 		},
