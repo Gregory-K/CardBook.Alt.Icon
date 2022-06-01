@@ -23,6 +23,8 @@ Version:
 Compatibility:  
 91.0a1 <= Thunderbird version >= 91.*
 
+For Thunderbird version >= **102** visit the ['**T102**'](https://github.com/Gregory-K/CardBook.Alt.Icon/tree/T102) branch.  
+
 
 ## Install / Update
 
