@@ -2031,6 +2031,14 @@
 			}
 		}
 	},
+	"cardsImagesExportedUndo": {
+		"message": "Bilder wurden in das Verzeichnis $P1$ exportiert",
+        "placeholders": {
+            "P1": {
+                "content": "$1"
+            }
+        }
+	},
 	"undoActionDoneUndo": {
 		"message": "Rückgängigmachen abgeschlossen ($P1$)",
 		"placeholders": {
@@ -2270,6 +2278,17 @@
 				"content": "$2"
 			}
 		}
+	},
+	"exportImagesToDirMessagePF": {
+		"message": "$P1$ Bild wurde in das Verzeichnis $P2$ exportiert;$P1$ Bilder wurden in das Verzeichnis $P2$ exportiert",
+        "placeholders": {
+            "P1": {
+                "content": "$1"
+            },
+            "P2": {
+                "content": "$2"
+            }
+        }
 	},
 	"exportCardToDirMessagePF": {
 		"message": "$P1$ Kontakt wurde in das Verzeichnis $P2$ exportiert;$P1$ Kontakte wurden in das Verzeichnis $P2$ exportiert",
@@ -3223,7 +3242,7 @@
 	"importfoundColumnsGroupboxLabel": {
 		"message": "Kopfspalte"
 	},
-	"importblankColumn": {
+	"importBlankColumn": {
 		"message": "Leere Spalte"
 	},
 	"importNoTypeLabel": {
@@ -5524,11 +5543,20 @@
 	"pasteEntryLabel": {
 		"message": "Eintrag einfügen"
 	},
+	"exportsMenu": {
+		"message": "Exporte"
+	},
+	"exportCardImagesLabel": {
+		"message": "Exportieren Bilder"
+	},
 	"exportCardToFileLabel": {
 		"message": "Exportieren in eine Datei"
 	},
 	"exportCardToDirLabel": {
 		"message": "Exportieren in ein Verzeichnis"
+	},
+	"importsMenu": {
+		"message": "Importe"
 	},
 	"importCardFromFileLabel": {
 		"message": "Importieren aus einer Datei"

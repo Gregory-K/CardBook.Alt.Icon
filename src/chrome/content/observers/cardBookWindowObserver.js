@@ -60,6 +60,8 @@ var cardBookWindowObserver = {
 			case "cardbook.syncFisnished":
 				wdw_cardbook.setSearchRemoteHboxOnSyncFinished(aData);
 			case "cardbook.syncRunning":
+				wdw_cardbook.refreshWindow(aData);
+				break;
 			case "cardbook.cardCreated":
 			case "cardbook.cardEdited":
 			case "cardbook.cardModified":
@@ -89,7 +91,7 @@ var cardBookWindowObserver = {
 			case "cardbook.nodeDeleted":
 			case "cardbook.nodeRenamed":
 			case "cardbook.cardsFormatted":
-					wdw_cardbook.refreshWindow(aData);
+				wdw_cardbook.refreshWindow(aData||":::forceCard");
 				break;
 		}
 	}

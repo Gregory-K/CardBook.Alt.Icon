@@ -68,28 +68,32 @@ var cardbookIDBCard = {
 
 	// add or override the contact to the cache
 	addCard: async function(aDirPrefName, aCard, aMode) {
-		var storedCard = cardbookIndexedDB.encryptionEnabled ? (await cardbookEncryptor.encryptCard(aCard)) : aCard;
-		var db = cardbookRepository.cardbookDatabase.db;
-		var transaction = db.transaction(["cards"], "readwrite");
-		var store = transaction.objectStore("cards");
-		var cursorRequest = store.put(storedCard);
-		cursorRequest.onsuccess = function(e) {
-			if (cardbookIndexedDB.encryptionEnabled) {
-				cardbookRepository.cardbookLog.updateStatusProgressInformationWithDebug2(aDirPrefName + " : debug mode : Contact " + aCard.fn + " written to encrypted DB");
-			} else {
-				cardbookRepository.cardbookLog.updateStatusProgressInformationWithDebug2(aDirPrefName + " : debug mode : Contact " + aCard.fn + " written to DB");
-			}
-			if (aMode) {
-				cardbookActions.fetchCryptoActivity(aMode);
-			}
-		};
-		
-		cursorRequest.onerror = function(e) {
-			if (aMode) {
-				cardbookActions.fetchCryptoActivity(aMode);
-			}
+		try {
+			var storedCard = cardbookIndexedDB.encryptionEnabled ? (await cardbookEncryptor.encryptCard(aCard)) : aCard;
+			var db = cardbookRepository.cardbookDatabase.db;
+			var transaction = db.transaction(["cards"], "readwrite");
+			var store = transaction.objectStore("cards");
+			var cursorRequest = store.put(storedCard);
+			cursorRequest.onsuccess = function(e) {
+				if (cardbookIndexedDB.encryptionEnabled) {
+					cardbookRepository.cardbookLog.updateStatusProgressInformationWithDebug2(aDirPrefName + " : debug mode : Contact " + aCard.fn + " written to encrypted DB");
+				} else {
+					cardbookRepository.cardbookLog.updateStatusProgressInformationWithDebug2(aDirPrefName + " : debug mode : Contact " + aCard.fn + " written to DB");
+				}
+				if (aMode) {
+					cardbookActions.fetchCryptoActivity(aMode);
+				}
+			};
+			
+			cursorRequest.onerror = function(e) {
+				if (aMode) {
+					cardbookActions.fetchCryptoActivity(aMode);
+				}
+				cardbookRepository.cardbookDatabase.onerror(e);
+			};
+		} catch(e) {
 			cardbookRepository.cardbookDatabase.onerror(e);
-		};
+		}
 	},
 
 	// delete the contact
@@ -129,10 +133,7 @@ var cardbookIDBCard = {
 				resolve();
 			};
 			
-			cursorRequest.onerror = function(e) {
-				reject();
-				cardbookRepository.cardbookDatabase.onerror(e);
-			};
+			cursorRequest.onerror = cardbookRepository.cardbookDatabase.onerror;
 		});
 	},
 	
@@ -155,9 +156,7 @@ var cardbookIDBCard = {
 			cardbookRepository.cardbookServerCardSyncTotal[aDirPrefId] = countRequest.result;
 		};
 
-		countRequest.onerror = function(e) {
-			cardbookRepository.cardbookDatabase.onerror(e);
-		};
+		countRequest.onerror = cardbookRepository.cardbookDatabase.onerror;
 
 		const handleCard = async card => {
 			try {
@@ -192,9 +191,7 @@ var cardbookIDBCard = {
 			}
 		};
 
-		cursorRequest.onerror = function(e) {
-			cardbookRepository.cardbookDatabase.onerror(e);
-		};
+		cursorRequest.onerror = cardbookRepository.cardbookDatabase.onerror;
 	},
 
 	// when all contacts were loaded from the cache

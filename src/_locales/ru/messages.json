@@ -2047,6 +2047,14 @@
 			}
 		}
 	},
+	"cardsImagesExportedUndo": {
+		"message": "Изображения экспортированы в папку «$P1$»",
+        "placeholders": {
+            "P1": {
+                "content": "$1"
+            }
+        }
+	},
 	"undoActionDoneUndo": {
 		"message": "Отменено ($P1$)",
 		"placeholders": {
@@ -2270,6 +2278,17 @@
 				"content": "$2"
 			}
 		}
+	},
+	"exportImagesToDirMessagePF": {
+		"message": "$P1$ изображение экспортировано в папку «$P2$»;$P1$ изображения экспортированы в папку «$P2$»;$P1$ изображений экспортированы в папку «$P2$»",
+        "placeholders": {
+            "P1": {
+                "content": "$1"
+            },
+            "P2": {
+                "content": "$2"
+            }
+        }
 	},
 	"exportCardToDirMessagePF": {
 		"message": "$P1$ контакт экспортирован в папку «$P2$»;$P1$ контакта экспортировано в папку «$P2$»;$P1$ контактов экспортировано в папку «$P2$»",
@@ -3223,7 +3242,7 @@
 	"importfoundColumnsGroupboxLabel": {
 		"message": "Заголовок столбца"
 	},
-	"importblankColumn": {
+	"importBlankColumn": {
 		"message": "Пустой столбец"
 	},
 	"importNoTypeLabel": {
@@ -5524,11 +5543,20 @@
 	"pasteEntryLabel": {
 		"message": "Вставить значение"
 	},
+	"exportsMenu": {
+		"message": "Экспорт"
+	},
+	"exportCardImagesLabel": {
+		"message": "Экспорт изображений"
+	},
 	"exportCardToFileLabel": {
 		"message": "Экспортировать в файл"
 	},
 	"exportCardToDirLabel": {
 		"message": "Экспортировать в каталог"
+	},
+	"importsMenu": {
+		"message": "Импорт"
 	},
 	"importCardFromFileLabel": {
 		"message": "Импортировать контакт из файла"

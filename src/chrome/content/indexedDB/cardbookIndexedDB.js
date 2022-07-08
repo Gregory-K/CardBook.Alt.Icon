@@ -23,9 +23,7 @@ var cardbookIndexedDB = {
 			}
 		};
 
-		cursorRequest.onerror = function(e) {
-			cardbookRepository.cardbookDatabase.onerror(e);
-		};
+		cursorRequest.onerror = cardbookRepository.cardbookDatabase.onerror;
 
 		// categories
 		var db = cardbookRepository.cardbookCatDatabase.db;
@@ -42,9 +40,7 @@ var cardbookIndexedDB = {
 			}
 		};
 
-		cursorRequest.onerror = function(e) {
-			cardbookRepository.cardbookCatDatabase.onerror(e);
-		};
+		cursorRequest.onerror = cardbookRepository.cardbookCatDatabase.onerror;
 
 		// images
 		for (let media of cardbookRepository.allColumns.media) {
@@ -62,9 +58,7 @@ var cardbookIndexedDB = {
 				}
 			};
 	
-			cursorRequest.onerror = function(e) {
-				cardbookRepository.cardbookCatDatabase.onerror(e);
-			};
+			cursorRequest.onerror = cardbookRepository.cardbookImageDatabase.onerror;
 		}
 	},
 

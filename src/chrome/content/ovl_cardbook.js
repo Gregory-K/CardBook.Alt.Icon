@@ -284,6 +284,7 @@ var ovl_cardbook = {
 
 		// functions
 		customElements.get("header-recipient").prototype.addToAddressBook = ovl_cardbookMailContacts.origFunctions.addToAddressBook;
+		customElements.get("header-recipient").prototype._updateAvatar = ovl_cardbookMailContacts.origFunctions._updateAvatar;
 		gMessageHeader.openEmailAddressPopup = ovl_cardbookMailContacts.origFunctions.openEmailAddressPopup;
 		gMessageHeader.showContactEdit = ovl_cardbookMailContacts.origFunctions.showContactEdit;
 		gMessageHeader.editContact = ovl_cardbookMailContacts.origFunctions.editContact;

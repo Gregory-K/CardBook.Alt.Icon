@@ -2047,6 +2047,14 @@
             }
         }
 	},
+	"cardsImagesExportedUndo": {
+		"message": "??Images exported to directory $P1$??",
+        "placeholders": {
+            "P1": {
+                "content": "$1"
+            }
+        }
+	},
 	"undoActionDoneUndo": {
 		"message": "Anulare terminată ($P1$)",
         "placeholders": {
@@ -2262,6 +2270,17 @@
 	},
 	"cardsFormattedUndo": {
 		"message": "$P1$ : Contacte formatate ($P2$)",
+        "placeholders": {
+            "P1": {
+                "content": "$1"
+            },
+            "P2": {
+                "content": "$2"
+            }
+        }
+	},
+	"exportImagesToDirMessagePF": {
+		"message": "??$P1$ image exported into the directory $P2$;$P1$ images exported into the directory $P2$??",
         "placeholders": {
             "P1": {
                 "content": "$1"
@@ -3223,7 +3242,7 @@
 	"importfoundColumnsGroupboxLabel": {
 		"message": "Coloane antet"
 	},
-	"importblankColumn": {
+	"importBlankColumn": {
 		"message": "Coloană goală"
 	},
 	"importNoTypeLabel": {
@@ -3404,10 +3423,10 @@
 		"message": "Dezactivează generarea numelui afișat"
 	},
 	"autoConvertField": {
-		"message": "??Enable the convertion of this field??"
+		"message": "??Enable the conversion of this field??"
 	},
 	"dontAutoConvertField": {
-		"message": "??Disable the convertion of this field??"
+		"message": "??Disable the conversion of this field??"
 	},
 	"customLabel": {
 		"message": "Personalizat"
@@ -5524,11 +5543,20 @@
 	"pasteEntryLabel": {
 		"message": "Lipeşte înregistrarea"
 	},
+	"exportsMenu": {
+		"message": "??Exports??"
+	},
+	"exportCardImagesLabel": {
+		"message": "??Export images??"
+	},
 	"exportCardToFileLabel": {
 		"message": "Exportă agenda într-un fișier"
 	},
 	"exportCardToDirLabel": {
 		"message": "Exportă agenda într-un director"
+	},
+	"importsMenu": {
+		"message": "??Imports??"
 	},
 	"importCardFromFileLabel": {
 		"message": "Importă contacte dintr-un fișier"
@@ -5991,7 +6019,7 @@
 		"message": "Convertește în"
 	},
 	"wdw_cardbookConfigurationEditFieldTitle": {
-		"message": "??Choose a convertion function??"
+		"message": "??Choose a conversion function??"
 	},
 	"uppercaseLabel": {
 		"message": "??Uppercase??"

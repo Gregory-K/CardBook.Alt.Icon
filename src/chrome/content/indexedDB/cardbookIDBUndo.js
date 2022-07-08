@@ -32,9 +32,7 @@ var cardbookIDBUndo = {
 			cardbookRepository.cardbookUtils.notifyObservers("undoDBOpen");
 		};
 
-		request.onerror = function(e) {
-			cardbookRepository.cardbookActionsDatabase.onerror(e);
-		};
+		request.onerror = cardbookRepository.cardbookActionsDatabase.onerror;
 	},
 
 	// check if the card is in a wrong encryption state
@@ -92,58 +90,63 @@ var cardbookIDBUndo = {
 			} else {
 				var keyRange = IDBKeyRange.lowerBound(aUndoId);
 			}
-			var cursorDeleteRequest = store.delete(keyRange);
-			cursorDeleteRequest.onsuccess = function(e) {
-				if (cardbookIndexedDB.encryptionEnabled) {
-					if (aExactId) {
-						cardbookRepository.cardbookLog.updateStatusProgressInformationWithDebug2("debug mode : undo " + aUndoId + " deleted from encrypted undoDB");
-					} else {
-						cardbookRepository.cardbookLog.updateStatusProgressInformationWithDebug2("debug mode : undos more than " + aUndoId + " deleted from encrypted undoDB");
-					}
-				} else {
-					if (aExactId) {
-						cardbookRepository.cardbookLog.updateStatusProgressInformationWithDebug2("debug mode : undo " + aUndoId + " deleted from undoDB");
-					} else {
-						cardbookRepository.cardbookLog.updateStatusProgressInformationWithDebug2("debug mode : undos more than " + aUndoId + " deleted from undoDB");
-					}
-				}
-
-				var cursorAddRequest = store.put(storedItem);
-				cursorAddRequest.onsuccess = function(e) {
-					cardbookRepository.currentUndoId = aUndoId;
-					cardbookActions.saveCurrentUndoId();
+			try {
+				var cursorDeleteRequest = store.delete(keyRange);
+				cursorDeleteRequest.onsuccess = function(e) {
 					if (cardbookIndexedDB.encryptionEnabled) {
-						cardbookRepository.cardbookLog.updateStatusProgressInformationWithDebug2("debug mode : undo " + aUndoId + " written to encrypted undoDB");
+						if (aExactId) {
+							cardbookRepository.cardbookLog.updateStatusProgressInformationWithDebug2("debug mode : undo " + aUndoId + " deleted from encrypted undoDB");
+						} else {
+							cardbookRepository.cardbookLog.updateStatusProgressInformationWithDebug2("debug mode : undos more than " + aUndoId + " deleted from encrypted undoDB");
+						}
 					} else {
-						cardbookRepository.cardbookLog.updateStatusProgressInformationWithDebug2("debug mode : undo " + aUndoId + " written to undoDB");
+						if (aExactId) {
+							cardbookRepository.cardbookLog.updateStatusProgressInformationWithDebug2("debug mode : undo " + aUndoId + " deleted from undoDB");
+						} else {
+							cardbookRepository.cardbookLog.updateStatusProgressInformationWithDebug2("debug mode : undos more than " + aUndoId + " deleted from undoDB");
+						}
 					}
-					var maxUndoChanges = cardbookRepository.cardbookPreferences.getStringPref("extensions.cardbook.maxUndoChanges");
-					var undoIdToDelete = aUndoId - maxUndoChanges;
-					if (undoIdToDelete > 0) {
-						cardbookIDBUndo.removeUndoItem(undoIdToDelete);
+					try {
+						var cursorAddRequest = store.put(storedItem);
+						cursorAddRequest.onsuccess = function(e) {
+							cardbookRepository.currentUndoId = aUndoId;
+							cardbookActions.saveCurrentUndoId();
+							if (cardbookIndexedDB.encryptionEnabled) {
+								cardbookRepository.cardbookLog.updateStatusProgressInformationWithDebug2("debug mode : undo " + aUndoId + " written to encrypted undoDB");
+							} else {
+								cardbookRepository.cardbookLog.updateStatusProgressInformationWithDebug2("debug mode : undo " + aUndoId + " written to undoDB");
+							}
+							var maxUndoChanges = cardbookRepository.cardbookPreferences.getStringPref("extensions.cardbook.maxUndoChanges");
+							var undoIdToDelete = aUndoId - maxUndoChanges;
+							if (undoIdToDelete > 0) {
+								cardbookIDBUndo.removeUndoItem(undoIdToDelete);
+							}
+							if (aMode) {
+								cardbookActions.fetchCryptoActivity(aMode);
+							}
+							resolve();
+						};
+						
+						cursorAddRequest.onerror = function(e) {
+							if (aMode) {
+								cardbookActions.fetchCryptoActivity(aMode);
+							}
+							cardbookRepository.cardbookActionsDatabase.onerror(e);
+						};
+					} catch(e) {
+						cardbookRepository.cardbookActionsDatabase.onerror(e);
 					}
-					if (aMode) {
-						cardbookActions.fetchCryptoActivity(aMode);
-					}
-					resolve();
 				};
-				
-				cursorAddRequest.onerror = function(e) {
+
+				cursorDeleteRequest.onerror = function(e) {
 					if (aMode) {
 						cardbookActions.fetchCryptoActivity(aMode);
 					}
 					cardbookRepository.cardbookActionsDatabase.onerror(e);
-					reject();
 				};
-			};
-
-			cursorDeleteRequest.onerror = function(e) {
-				if (aMode) {
-					cardbookActions.fetchCryptoActivity(aMode);
-				}
+			} catch(e) {
 				cardbookRepository.cardbookActionsDatabase.onerror(e);
-				reject();
-			};
+			}
 		});
 	},
 
@@ -187,7 +190,7 @@ var cardbookIDBUndo = {
 		cursorRequest.onsuccess = async function(e) {
 			var result = e.target.result;
 			if (result && result.length != 0) {
-				for (var item of result) {
+				for (let item of result) {
 					handleItem(item);
 				}
 			} else {
@@ -199,9 +202,7 @@ var cardbookIDBUndo = {
 			}
 		};
 		
-		cursorRequest.onerror = function(e) {
-			cardbookRepository.cardbookActionsDatabase.onerror(e);
-		};
+		cursorRequest.onerror = cardbookRepository.cardbookActionsDatabase.onerror;
 	},
 
 	// do the undo action
@@ -290,9 +291,7 @@ var cardbookIDBUndo = {
 			}
 		};
 
-		cursorRequest.onerror = function(e) {
-			cardbookRepository.cardbookActionsDatabase.onerror(e);
-		};
+		cursorRequest.onerror = cardbookRepository.cardbookActionsDatabase.onerror;
 	},
 
 	// do the redo action
@@ -379,9 +378,7 @@ var cardbookIDBUndo = {
 			}
 		};
 
-		cursorRequest.onerror = function(e) {
-			cardbookRepository.cardbookActionsDatabase.onerror(e);
-		};
+		cursorRequest.onerror = cardbookRepository.cardbookActionsDatabase.onerror;
 	},
 
 	encryptUndos: async function() {

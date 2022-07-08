@@ -195,7 +195,10 @@ if ("undefined" == typeof(wdw_findDuplicates)) {
 				var dirname = cardbookRepository.cardbookPreferences.getName(myOutCard.dirPrefId);
 				var image = {};
 				await cardbookIDBImage.getImage(j, dirname, wdw_findDuplicates.gResults[aLineNumber][0].dirPrefId+"::"+wdw_findDuplicates.gResults[aLineNumber][0].uid, wdw_findDuplicates.gResults[aLineNumber][0].fn)
-					.then(imageFound => { image = imageFound })
+					.then(imageFound => {
+						if (imageFound && imageFound.content && imageFound.extension) {
+							image = imageFound;
+			 			}})
 					.catch( () => {} );
 				if (image.content && image.content != "") {
 					myOutCard[j].value = image.content;
@@ -205,9 +208,11 @@ if ("undefined" == typeof(wdw_findDuplicates)) {
 					for (var k = 1; k < wdw_findDuplicates.gResults[aLineNumber].length; k++) {
 						await cardbookIDBImage.getImage(j, dirname, wdw_findDuplicates.gResults[aLineNumber][k].dirPrefId+"::"+wdw_findDuplicates.gResults[aLineNumber][k].uid, wdw_findDuplicates.gResults[aLineNumber][k][j].fn)
 							.then(image => {
-								myOutCard[j].value = image.content;
-								myOutCard[j].extension = image.extension;
-								out = true;
+								if (image && image.content && image.extension) {
+									myOutCard[j].value = image.content;
+									myOutCard[j].extension = image.extension;
+									out = true;
+								}
 							})
 							.catch( () => { } );
 						if (out == true) {
@@ -552,9 +557,9 @@ if ("undefined" == typeof(wdw_findDuplicates)) {
 			wdw_findDuplicates.load();
 		},
 
-		preload: function () {
+		preload: async function () {
 			cardbookRepository.cardbookDuplicateIndex = {};
-			cardbookDuplicate.loadDuplicate();
+			await cardbookDuplicate.loadDuplicate();
 		},
 
 		load: async function () {

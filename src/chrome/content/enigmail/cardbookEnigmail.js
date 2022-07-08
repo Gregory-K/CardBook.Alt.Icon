@@ -187,7 +187,7 @@ var cardbookEnigmail = {
 		}
 	},
 
-	searchForThKeyEdit: function (aListOfSelectedEmails) {
+	searchForThKeyEdit: async function (aListOfSelectedEmails) {
 		for (let email of aListOfSelectedEmails) {
 			email = email.trim().toLowerCase();
 			if (EnigmailFuncs.stringLooksLikeEmailAddress(email)) {
@@ -195,8 +195,7 @@ var cardbookEnigmail = {
 				for (let key of keyList) {
 					let keyIdArray = [ "0x" + key.keyId ];
 					let exitCodeObj = {};
-					let errorMsgObj = {};
-					let keyData = EnigmailKeyRing.extractKey(0, keyIdArray, null, exitCodeObj, errorMsgObj);
+					let keyData = await EnigmailKeyRing.extractPublicKeys(keyIdArray, null, null, exitCodeObj, {});
 					if (exitCodeObj.value === 0) {
 						wdw_cardEdition.addKeyToEdit(keyData);
 					}

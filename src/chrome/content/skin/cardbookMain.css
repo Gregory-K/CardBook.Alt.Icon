@@ -191,44 +191,6 @@ treecol#cardIcon.cardIconHeader .treecol-sortdirection {
     width: 60%;
 }
 
-.cardbookAdd {
-	list-style-image: url("chrome://cardbook/content/skin/small-icons/add.svg");
-	-moz-context-properties: fill;
-	fill: currentColor;
-}
-.cardbookDelete {
-	list-style-image: url("chrome://cardbook/content/skin/small-icons/delete.svg");
-	-moz-context-properties: fill;
-	fill: currentColor;
-}
-.cardbookUp {
-	list-style-image: url("chrome://cardbook/content/skin/small-icons/arrow-up.svg");
-	-moz-context-properties: fill;
-	fill: currentColor;
-}
-.cardbookDown {
-	list-style-image: url("chrome://cardbook/content/skin/small-icons/arrow-down.svg");
-	-moz-context-properties: fill;
-	fill: currentColor;
-}
-.cardbookLink {
-	list-style-image: url("chrome://cardbook/content/skin/small-icons/link.svg");
-	-moz-context-properties: fill;
-	fill: currentColor;
-}
-.cardbookValidated {
-	list-style-image: url("chrome://cardbook/content/skin/small-icons/validated.svg");
-	-moz-context-properties: fill;
-	fill: currentColor;
-}
-.cardbookNotValidated {
-	list-style-image: url("chrome://cardbook/content/skin/small-icons/notvalidated.svg");
-	-moz-context-properties: fill;
-	fill: currentColor;
-}
-
-
-
 .box {
 	display: flex;
 }

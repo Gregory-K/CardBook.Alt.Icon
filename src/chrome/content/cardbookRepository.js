@@ -875,7 +875,7 @@ var cardbookRepository = {
 			for (var dirPrefId in cardbookRepository.cardbookComplexSearch) {
 				if (cardbookRepository.cardbookDisplayCards[dirPrefId].cards.length != 0) {
 					for (let card of cardbookRepository.cardbookDisplayCards[aDirPrefId].cards) {
-						cardbookRepository.removeCardFromDisplayAndCat(card, dirPrefId, false);
+						cardbookRepository.removeCardFromDisplayAndCat(card, dirPrefId);
 					}
 				}
 			}
@@ -1008,11 +1008,11 @@ var cardbookRepository = {
 			cardbookRepository.removeCardFromLongSearch(aCard);
 			cardbookRepository.removeCardFromShortSearch(aCard);
 			cardbookRepository.removeCardFromEmails(aCard);
-			cardbookRepository.removeCardFromDisplayAndCat(aCard, aCard.dirPrefId, aCacheDeletion);
+			cardbookRepository.removeCardFromDisplayAndCat(aCard, aCard.dirPrefId);
 			cardbookRepository.removeCardFromOrg(aCard, aCard.dirPrefId);
 			for (var dirPrefId in cardbookRepository.cardbookComplexSearch) {
 				if (cardbookRepository.cardbookPreferences.getEnabled(dirPrefId)) {
-					cardbookRepository.removeCardFromDisplayAndCat(aCard, dirPrefId, false);
+					cardbookRepository.removeCardFromDisplayAndCat(aCard, dirPrefId);
 				}
 			}
 			if (aCacheDeletion) {
@@ -1133,23 +1133,19 @@ var cardbookRepository = {
 			var myDirPrefIdUrl = cardbookRepository.cardbookPreferences.getUrl(aCard.dirPrefId);
 			var myDirPrefIdDBCached = cardbookRepository.cardbookPreferences.getDBCached(aCard.dirPrefId);
 
-			var mediaAdded = false;
 			for (let media of cardbookRepository.allColumns.media) {
-				var addMedia = aAddCardToCache || (aCard[media].value && aCard[media].value != "") || (aCard[media].localURI && aCard[media].localURI != "");
-				if (addMedia) {
+				if (aAddCardToCache) {
 					await cardbookRepository.cardbookUtils.cachePutMediaCard(aCard, media);
-					mediaAdded = true;
 				}
 			}
 			cardbookRepository.cardbookUtils.setCacheURIFromCard(aCard, myDirPrefIdType);
 			
-			let addCard = aAddCardToCache || mediaAdded;
 			if (myDirPrefIdType == "DIRECTORY") {
 				if (aAddCardToCache) {
 					var myFile = Components.classes["@mozilla.org/file/local;1"].createInstance(Components.interfaces.nsIFile);
 					myFile.initWithPath(myDirPrefIdUrl);
 					myFile.append(aCard.cacheuri);
-					await cardbookRepository.cardbookSynchronization.writeCardsToFile(myFile.path, [aCard], true);
+					await cardbookRepository.cardbookSynchronization.writeCardsToFile(myFile.path, [aCard]);
 					cardbookRepository.cardbookLog.updateStatusProgressInformationWithDebug2(myDirPrefIdName + " : debug mode : Contact " + aCard.fn + " written to directory");
 				}
 			} else if (myDirPrefIdType != "FILE") {
@@ -1159,8 +1155,8 @@ var cardbookRepository = {
 					cardbookRepository.cardbookFileCacheCards[aCard.dirPrefId] = {};
 					cardbookRepository.cardbookFileCacheCards[aCard.dirPrefId][aCard.cacheuri] = aCard;
 				}
-				if (myDirPrefIdDBCached && addCard) {
-					cardbookIDBCard.addCard(myDirPrefIdName, aCard);
+				if (myDirPrefIdDBCached && aAddCardToCache) {
+						cardbookIDBCard.addCard(myDirPrefIdName, aCard);
 				}
 			}
 		}	catch(e) {
@@ -1202,10 +1198,8 @@ var cardbookRepository = {
 					myFile.remove(true);
 					cardbookRepository.cardbookLog.updateStatusProgressInformationWithDebug2(myDirPrefIdName + " : debug mode : Contact " + aCard.fn + " deleted from directory");
 				}
-			} else {
-				if (myDirPrefIdDBCached) {
-					 cardbookIDBCard.removeCard(myDirPrefIdName, aCard);
-				}
+			} else if (myDirPrefIdDBCached) {
+				cardbookIDBCard.removeCard(myDirPrefIdName, aCard);
 				if (cardbookRepository.cardbookFileCacheCards[aCard.dirPrefId][aCard.cacheuri]) {
 					delete cardbookRepository.cardbookFileCacheCards[aCard.dirPrefId][aCard.cacheuri];
 				}
@@ -1287,7 +1281,7 @@ var cardbookRepository = {
 		}
 	},
 		
-	removeCardFromDisplayAndCat: function(aCard, aDirPrefId, aCacheDeletion) {
+	removeCardFromDisplayAndCat: function(aCard, aDirPrefId) {
 		if (cardbookRepository.cardbookDisplayCards[aDirPrefId]) {
 			let ABType = cardbookRepository.cardbookPreferences.getType(aDirPrefId);
 			cardbookRepository.cardbookDisplayCards[aDirPrefId].cards = cardbookRepository.cardbookDisplayCards[aDirPrefId].cards.filter(child => child.dirPrefId + child.uid != aCard.dirPrefId + aCard.uid);
@@ -2035,12 +2029,7 @@ var cardbookRepository = {
 				if (aActionId && cardbookRepository.currentAction[aActionId]) {
 					await cardbookRepository.addCardToAction(aActionId, "oldCards", myCard);
 				}
-				if (myDirPrefIdType === "FILE") {
-					await cardbookRepository.removeCardFromRepository(myCard, false);
-					cardbookRepository.cardbookUtils.nullifyTagModification(aNewCard);
-					cardbookRepository.cardbookUtils.nullifyEtag(aNewCard);
-					await cardbookRepository.addCardToRepository(aNewCard, true);
-				} else if (myDirPrefIdType === "DIRECTORY" || myDirPrefIdType === "LOCALDB") {
+				if (myDirPrefIdType === "FILE" || myDirPrefIdType === "DIRECTORY" || myDirPrefIdType === "LOCALDB") {
 					await cardbookRepository.removeCardFromRepository(myCard, true);
 					cardbookRepository.cardbookUtils.nullifyTagModification(aNewCard);
 					cardbookRepository.cardbookUtils.nullifyEtag(aNewCard);
@@ -2062,9 +2051,7 @@ var cardbookRepository = {
 				}
 				var myDirPrefIdName = cardbookRepository.cardbookPreferences.getName(myCard.dirPrefId);
 				var myDirPrefIdType = cardbookRepository.cardbookPreferences.getType(myCard.dirPrefId);
-				if (myDirPrefIdType === "FILE") {
-					await cardbookRepository.removeCardFromRepository(myCard, false);
-				} else if (myDirPrefIdType === "DIRECTORY" || myDirPrefIdType === "LOCALDB") {
+				if (myDirPrefIdType === "FILE" || myDirPrefIdType === "DIRECTORY" || myDirPrefIdType === "LOCALDB") {
 					await cardbookRepository.removeCardFromRepository(myCard, true);
 				} else {
 					if (myCard.created) {
@@ -2127,9 +2114,7 @@ var cardbookRepository = {
 				}
 				var myDirPrefIdName = cardbookRepository.cardbookPreferences.getName(myDirPrefId);
 				var myDirPrefIdType = cardbookRepository.cardbookPreferences.getType(myDirPrefId);
-				if (myDirPrefIdType === "FILE") {
-					await cardbookRepository.removeCardFromRepository(card, false);
-				} else if (myDirPrefIdType === "DIRECTORY" || myDirPrefIdType === "LOCALDB") {
+				if (myDirPrefIdType === "FILE" || myDirPrefIdType === "DIRECTORY" || myDirPrefIdType === "LOCALDB") {
 					await cardbookRepository.removeCardFromRepository(card, true);
 				} else {
 					if (card.created) {
@@ -2168,9 +2153,7 @@ var cardbookRepository = {
 					}
 					var myDirPrefIdName = cardbookRepository.cardbookPreferences.getName(myDirPrefId);
 					var myDirPrefIdType = cardbookRepository.cardbookPreferences.getType(myDirPrefId);
-					if (myDirPrefIdType === "FILE") {
-						await cardbookRepository.removeCardFromRepository(card, false);
-					} else if (myDirPrefIdType === "DIRECTORY" || myDirPrefIdType === "LOCALDB") {
+					if (myDirPrefIdType === "FILE" || myDirPrefIdType === "DIRECTORY" || myDirPrefIdType === "LOCALDB") {
 						await cardbookRepository.removeCardFromRepository(card, true);
 					} else {
 						if (card.created) {
@@ -2216,7 +2199,7 @@ var cardbookRepository = {
 			if (cardbookRepository.cardbookPreferences.getType(listOfFilesToRewrite[i]) === "FILE" && !cardbookRepository.cardbookPreferences.getReadOnly(listOfFilesToRewrite[i])) {
 				let myArray = JSON.parse(JSON.stringify(cardbookRepository.cardbookDisplayCards[listOfFilesToRewrite[i]].cards));
 				cardbookRepository.cardbookUtils.sortCardsTreeArrayByString(myArray, "uid", 1);
-				await cardbookRepository.cardbookSynchronization.writeCardsToFile(cardbookRepository.cardbookPreferences.getUrl(listOfFilesToRewrite[i]), myArray, true);
+				await cardbookRepository.cardbookSynchronization.writeCardsToFile(cardbookRepository.cardbookPreferences.getUrl(listOfFilesToRewrite[i]), myArray);
 			}
 		}
 	},

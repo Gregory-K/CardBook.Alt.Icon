@@ -390,7 +390,7 @@ function onLoadDialog () {
 		document.getElementById('includePrefCheckBox').hidden = true;
 		document.getElementById('lineHeaderCheckBox').setAttribute('checked', true);
 		document.getElementById('fieldDelimiterTextBox').value = window.arguments[0].columnSeparator;
-		blankColumn = cardbookRepository.extension.localeData.localizeMessage(window.arguments[0].mode + "blankColumn");
+		blankColumn = cardbookRepository.extension.localeData.localizeMessage("importBlankColumn");
 		cardbookeditlists.availableColumnsTable.push(["blank", blankColumn]);
 	}
 	
@@ -413,11 +413,12 @@ function onAcceptDialog () {
 	if (window.arguments[0].columnSeparator == "") {
 		window.arguments[0].columnSeparator = ";";
 	}
-	window.arguments[0].action = "SAVE";
 	if (window.arguments[0].mode == "import") {
-		if (!validateImportColumns()) {
-			return;
+		if (validateImportColumns()) {
+			window.arguments[0].action = "SAVE";
 		}
+	} else {
+		window.arguments[0].action = "SAVE";
 	}
 	onCancelDialog();
 };

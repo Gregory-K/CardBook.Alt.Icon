@@ -51,7 +51,8 @@ var { Services } = ChromeUtils.import("resource://gre/modules/Services.jsm");
 
 var { XPCOMUtils } = ChromeUtils.import("resource://gre/modules/XPCOMUtils.jsm");
 var { cardbookRepository } = ChromeUtils.import("chrome://cardbook/content/cardbookRepository.js");
-// for the quickfilter bar
+
+// for the quickfilter bar and the filters
 var { QuickFilterManager } = ChromeUtils.import("resource:///modules/QuickFilterManager.jsm");
 Services.scriptloader.loadSubScript("chrome://cardbook/content/filters/ovl_filters.js", window, "UTF-8");
 // Services.scriptloader.loadSubScript("chrome://messenger/content/quickFilterBar.js", window, "UTF-8");
@@ -90,6 +91,15 @@ function onLoad(wasAlreadyOpen) {
 	<key id="CardBookKey" key="__MSG_cardbookMenuItemKey__" modifiers="accel, shift" oncommand="ovl_cardbook.open();" insertafter="key_fullZoomReduce"/>
 	<key id="CardBookNewContactKey" key="__MSG_newCardBookCardMenuKey__" modifiers="accel, shift" oncommand="wdw_cardbook.newKey();" insertafter="key_fullZoomReduce"/>
 	<key id="CardBookMenuKey" keycode="VK_F9" oncommand="wdw_cardbook.F9Key();" insertafter="key_fullZoomReduce"/>
+
+	<div id="spacesToolbarAddonsContainer">
+		<button id="cardbookButton"
+					title="CardBook"
+					class="spaces-toolbar-button"
+					oncommand="ovl_cardbook.open()">
+			<img src="" alt="" />
+		</button>
+	</div>
 
 	<menupopup id="menu_NewPopup">
 		<menuitem id="newCardBookCardMenu" label="__MSG_newCardBookCardMenuLabel__" accesskey="__MSG_newCardBookCardMenuAccesskey__"
@@ -140,23 +150,23 @@ function onLoad(wasAlreadyOpen) {
 
 	<menupopup id="emailAddressPopup">
 		<menuseparator id="editCardBookSeparator" insertafter="viewContactItem"/>
-		<menu id="addToCardBookMenu" label="__MSG_addToCardBookMenuLabel__" accesskey="__MSG_addToCardBookMenuAccesskey__" insertafter="editCardBookSeparator">
+		<menu id="addToCardBookMenu" class="menuitem-iconic" label="__MSG_addToCardBookMenuLabel__" accesskey="__MSG_addToCardBookMenuAccesskey__" insertafter="editCardBookSeparator">
 			<menupopup id="addToCardBookMenuPopup" onpopupshowing="ovl_cardbookMailContacts.addToCardBookMenuSubMenu(this.id, ovl_cardbookMailContacts.addToCardBook)"/>
 		</menu>
-		<menuitem id="editInCardBookMenu" label="__MSG_editInCardBookMenuLabel__" accesskey="__MSG_editInCardBookMenuAccesskey__" insertafter="addToCardBookMenu" onclick="ovl_cardbookMailContacts.editOrViewContact(event.currentTarget.parentNode.headerField.cardDetails.card);"/>
-		<menuitem id="deleteInCardBookMenu" label="__MSG_deleteInCardBookMenuLabel__" accesskey="__MSG_deleteInCardBookMenuAccesskey__" insertafter="editInCardBookMenu" onclick="ovl_cardbookMailContacts.deleteContact(event.currentTarget.parentNode.headerField.cardDetails.card);"/>
+		<menuitem id="editInCardBookMenu" class="menuitem-iconic" label="__MSG_editInCardBookMenuLabel__" accesskey="__MSG_editInCardBookMenuAccesskey__" insertafter="addToCardBookMenu" onclick="ovl_cardbookMailContacts.editOrViewContact(event.currentTarget.parentNode.headerField.cardDetails.card);"/>
+		<menuitem id="deleteInCardBookMenu" class="menuitem-iconic" label="__MSG_deleteInCardBookMenuLabel__" accesskey="__MSG_deleteInCardBookMenuAccesskey__" insertafter="editInCardBookMenu" onclick="ovl_cardbookMailContacts.deleteContact(event.currentTarget.parentNode.headerField.cardDetails.card);"/>
 		<menuseparator id="IMPPCardBookSeparator" insertafter="deleteInCardBookMenu"/>
-		<menu id="IMPPCards" label="__MSG_IMPPMenuLabel__" accesskey="__MSG_IMPPMenuAccesskey__" insertafter="IMPPCardBookSeparator">
+		<menu id="IMPPCards" class="menuitem-iconic" label="__MSG_IMPPMenuLabel__" accesskey="__MSG_IMPPMenuAccesskey__" insertafter="IMPPCardBookSeparator">
 			<menupopup id="IMPPCardsMenuPopup"/>
 		</menu>
 		<menuseparator id="findCardBookSeparator1" insertafter="IMPPCards"/>
-		<menuitem id="findEmailsFromEmailMessenger" label="__MSG_findEmailsFromEmailMessengerLabel__" accesskey="__MSG_findEmailsFromEmailMessengerAccesskey__"
+		<menuitem id="findEmailsFromEmailMessenger" class="menuitem-iconic" label="__MSG_findEmailsFromEmailMessengerLabel__" accesskey="__MSG_findEmailsFromEmailMessengerAccesskey__"
 			oncommand="ovl_cardbookFindEmails.findEmailsFromEmail(this.parentNode.triggerNode);" insertafter="findCardBookSeparator1"/>
-		<menuitem id="findAllEmailsFromContactMessenger" label="__MSG_findAllEmailsFromContactMessengerLabel__" accesskey="__MSG_findAllEmailsFromContactMessengerAccesskey__"
+		<menuitem id="findAllEmailsFromContactMessenger" class="menuitem-iconic" label="__MSG_findAllEmailsFromContactMessengerLabel__" accesskey="__MSG_findAllEmailsFromContactMessengerAccesskey__"
 			oncommand="ovl_cardbookFindEmails.findAllEmailsFromContact(this.parentNode.triggerNode);" insertafter="findEmailsFromEmailMessenger"/>
-		<menuitem id="findEventsFromEmailMessenger" label="__MSG_findEventsFromEmailMessengerLabel__" accesskey="__MSG_findEventsFromEmailMessengerAccesskey__"
+		<menuitem id="findEventsFromEmailMessenger" class="menuitem-iconic" label="__MSG_findEventsFromEmailMessengerLabel__" accesskey="__MSG_findEventsFromEmailMessengerAccesskey__"
 			oncommand="ovl_cardbookFindEvents.findEventsFromEmail(this.parentNode.triggerNode);" insertafter="findAllEmailsFromContactMessenger"/>
-		<menuitem id="findAllEventsFromContactMessenger" label="__MSG_findAllEventsFromContactMessengerLabel__" accesskey="__MSG_findAllEventsFromContactMessengerAccesskey__"
+		<menuitem id="findAllEventsFromContactMessenger" class="menuitem-iconic" label="__MSG_findAllEventsFromContactMessengerLabel__" accesskey="__MSG_findAllEventsFromContactMessengerAccesskey__"
 			oncommand="ovl_cardbookFindEvents.findAllEventsFromContact(this.parentNode.triggerNode);" insertafter="findEventsFromEmailMessenger"/>
 		<menuseparator id="findCardBookSeparator2" insertafter="findAllEventsFromContactMessenger"/>
 	</menupopup>
@@ -357,11 +367,20 @@ function onLoad(wasAlreadyOpen) {
 									<menuseparator/>
 									<menuitem id="cardbookAccountMenuPrint" label="__MSG_cardbookToolbarPrintButtonLabel__" oncommand="wdw_cardbook.printFromAccountsOrCats();"/>
 									<menuseparator/>
-									<menuitem id="cardbookAccountMenuExportToFile" label="__MSG_exportCardToFileLabel__" oncommand="wdw_cardbook.exportCardsFromAccountsOrCats(this);"/>
-									<menuitem id="cardbookAccountMenuExportToDir" label="__MSG_exportCardToDirLabel__" oncommand="wdw_cardbook.exportCardsFromAccountsOrCats(this);"/>
+									<menu id="cardbookAccountMenuExports" label="__MSG_exportsMenu__">
+										<menupopup id="cardbookAccountMenuExportsMenuPopup">
+											<menuitem id="cardbookAccountMenuExportToFile" label="__MSG_exportCardToFileLabel__" oncommand="wdw_cardbook.exportCardsFromAccountsOrCats(this);"/>
+											<menuitem id="cardbookAccountMenuExportToDir" label="__MSG_exportCardToDirLabel__" oncommand="wdw_cardbook.exportCardsFromAccountsOrCats(this);"/>
+											<menuitem id="cardbookAccountMenuExportImages" label="__MSG_exportCardImagesLabel__" oncommand="wdw_cardbook.exportCardsFromAccountsOrCats(this);"/>
+										</menupopup>
+									</menu>
 									<menuseparator/>
-									<menuitem id="cardbookAccountMenuImportFromFile" label="__MSG_importCardFromFileLabel__" oncommand="wdw_cardbook.importCardsFromFile();"/>
-									<menuitem id="cardbookAccountMenuImportFromDir" label="__MSG_importCardFromDirLabel__" oncommand="wdw_cardbook.importCardsFromDir();"/>
+									<menu id="cardbookAccountMenuImports" label="__MSG_importsMenu__">
+										<menupopup id="cardbookAccountMenuImportsMenuPopup">
+											<menuitem id="cardbookAccountMenuImportFromFile" label="__MSG_importCardFromFileLabel__" oncommand="wdw_cardbook.importCardsFromFile();"/>
+											<menuitem id="cardbookAccountMenuImportFromDir" label="__MSG_importCardFromDirLabel__" oncommand="wdw_cardbook.importCardsFromDir();"/>
+										</menupopup>
+									</menu>
 								</menupopup>
 							</menu>
 							<menu id="cardbookContactsMenu" label="__MSG_cardbookContactsMenuLabel__">
@@ -403,8 +422,13 @@ function onLoad(wasAlreadyOpen) {
 									<menuitem id="cardbookContactsMenuDuplicateCards" label="__MSG_duplicateCardFromCardsLabel__" oncommand="wdw_cardbook.duplicateCards();"/>
 									<menuitem id="cardbookContactsMenuMergeCards" label="__MSG_mergeCardsFromCardsLabel__" oncommand="wdw_cardbook.mergeCards();"/>
 									<menuseparator/>
-									<menuitem id="cardbookContactsMenuExportCardsToFile" label="__MSG_exportCardToFileLabel__" oncommand="wdw_cardbook.exportCardsFromCards(this);"/>
-									<menuitem id="cardbookContactsMenuExportCardsToDir" label="__MSG_exportCardToDirLabel__" oncommand="wdw_cardbook.exportCardsFromCards(this);"/>
+									<menu id="cardbookContactsMenuExports" label="__MSG_exportsMenu__">
+										<menupopup id="cardbookContactsMenuExportsMenuPopup">
+											<menuitem id="cardbookContactsMenuExportCardsToFile" label="__MSG_exportCardToFileLabel__" oncommand="wdw_cardbook.exportCardsFromCards(this);"/>
+											<menuitem id="cardbookContactsMenuExportCardsToDir" label="__MSG_exportCardToDirLabel__" oncommand="wdw_cardbook.exportCardsFromCards(this);"/>
+											<menuitem id="cardbookContactsMenuExportCardsImages" label="__MSG_exportCardImagesLabel__" oncommand="wdw_cardbook.exportCardsFromCards(this);"/>
+										</menupopup>
+									</menu>
 								</menupopup>
 							</menu>
 							<menu id="cardbookToolsMenu" label="__MSG_cardbookToolsMenuLabel__">
@@ -429,7 +453,7 @@ function onLoad(wasAlreadyOpen) {
 						class="toolbaritem-noline chromeclass-toolbar-additional">
 						<search-textbox id="cardbookSearchInput"
 							class="searchBox"
-							oncommand="wdw_cardbook.startSearch();"/>
+							oncommand="wdw_cardbook.onStartSearch();"/>
 					</toolbaritem>
 					<toolbarbutton id="cardbookToolbarComplexSearch"
 						label="__MSG_cardbookToolbarComplexSearchLabel__"
@@ -554,13 +578,22 @@ function onLoad(wasAlreadyOpen) {
 					</menupopup>
 				</menu>
 				<menuseparator/>
-				<menuitem id="printFromAccountsOrCats" label="__MSG_cardbookToolbarPrintButtonLabel__" oncommand="wdw_cardbook.printFromAccountsOrCats();"/>
+				<menuitem id="printFromAccountsOrCats" label="__MSG_cardbookToolbarPrintButtonLabel__" oncommand="wdw_cardbook.printCards();"/>
 				<menuseparator/>
-				<menuitem id="exportCardsToFileFromAccountsOrCats" label="__MSG_exportCardToFileLabel__" oncommand="wdw_cardbook.exportCardsFromAccountsOrCats(this);"/>
-				<menuitem id="exportCardsToDirFromAccountsOrCats" label="__MSG_exportCardToDirLabel__" oncommand="wdw_cardbook.exportCardsFromAccountsOrCats(this);"/>
+				<menu id="exportsFromAccountsOrCatsMenu" label="__MSG_exportsMenu__">
+					<menupopup id="exportsFromAccountsOrCatsMenuPopup">
+						<menuitem id="exportCardsToFileFromAccountsOrCats" label="__MSG_exportCardToFileLabel__" oncommand="wdw_cardbook.exportCardsFromAccountsOrCats(this);"/>
+						<menuitem id="exportCardsToDirFromAccountsOrCats" label="__MSG_exportCardToDirLabel__" oncommand="wdw_cardbook.exportCardsFromAccountsOrCats(this);"/>
+						<menuitem id="exportCardsImagesFromAccountsOrCats" label="__MSG_exportCardImagesLabel__" oncommand="wdw_cardbook.exportCardsFromAccountsOrCats(this);"/>
+					</menupopup>
+				</menu>
 				<menuseparator/>
-				<menuitem id="importCardsFromFileFromAccountsOrCats" label="__MSG_importCardFromFileLabel__" oncommand="wdw_cardbook.importCardsFromFile();"/>
-				<menuitem id="importCardsFromDirFromAccountsOrCats" label="__MSG_importCardFromDirLabel__" oncommand="wdw_cardbook.importCardsFromDir();"/>
+				<menu id="importsFromAccountsOrCatsMenu" label="__MSG_importsMenu__">
+					<menupopup id="importsFromAccountsOrCatsMenuPopup">
+						<menuitem id="importCardsFromFileFromAccountsOrCats" label="__MSG_importCardFromFileLabel__" oncommand="wdw_cardbook.importCardsFromFile();"/>
+						<menuitem id="importCardsFromDirFromAccountsOrCats" label="__MSG_importCardFromDirLabel__" oncommand="wdw_cardbook.importCardsFromDir();"/>
+					</menupopup>
+				</menu>
 			</menupopup>
 	
 			<menupopup id="cardsTreeContextMenu" onpopupshowing="return wdw_cardbook.cardsTreeContextShowing(event);">
@@ -617,8 +650,13 @@ function onLoad(wasAlreadyOpen) {
 				<menuseparator/>
 				<menuitem id="printFromCards" label="__MSG_cardbookToolbarPrintButtonLabel__" oncommand="wdw_cardbook.printCards();"/>
 				<menuseparator/>
-				<menuitem id="exportCardsToFileFromCards" label="__MSG_exportCardToFileLabel__" oncommand="wdw_cardbook.exportCardsFromCards(this);"/>
-				<menuitem id="exportCardsToDirFromCards" label="__MSG_exportCardToDirLabel__" oncommand="wdw_cardbook.exportCardsFromCards(this);"/>
+				<menu id="exportsFromCardsMenu" label="__MSG_exportsMenu__">
+					<menupopup id="exportsFromCardsMenuPopup">
+						<menuitem id="exportCardsToFileFromCards" label="__MSG_exportCardToFileLabel__" oncommand="wdw_cardbook.exportCardsFromCards(this);"/>
+						<menuitem id="exportCardsToDirFromCards" label="__MSG_exportCardToDirLabel__" oncommand="wdw_cardbook.exportCardsFromCards(this);"/>
+						<menuitem id="exportCardsImagesFromCards" label="__MSG_exportCardImagesLabel__" oncommand="wdw_cardbook.exportCardsFromCards(this);"/>
+					</menupopup>
+				</menu>
 			</menupopup>
 			
 			<menupopup id="imageCardContextMenu">

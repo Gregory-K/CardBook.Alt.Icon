@@ -66,28 +66,32 @@ var cardbookIDBCat = {
 
 	// add or override the category to the cache
 	addCategory: async function(aDirPrefName, aCategory, aMode) {
-		var storedCategory = cardbookIndexedDB.encryptionEnabled ? (await cardbookEncryptor.encryptCategory(aCategory)) : aCategory;
-		var db = cardbookRepository.cardbookCatDatabase.db;
-		var transaction = db.transaction(["categories"], "readwrite");
-		var store = transaction.objectStore("categories");
-		var cursorRequest = store.put(storedCategory);
-		cursorRequest.onsuccess = function(e) {
-			if (cardbookIndexedDB.encryptionEnabled) {
-				cardbookRepository.cardbookLog.updateStatusProgressInformationWithDebug2(aDirPrefName + " : debug mode : Category " + aCategory.name + " written to encrypted CatDB");
-			} else {
-				cardbookRepository.cardbookLog.updateStatusProgressInformationWithDebug2(aDirPrefName + " : debug mode : Category " + aCategory.name + " written to CatDB");
-			}
-			if (aMode) {
-				cardbookActions.fetchCryptoActivity(aMode);
-			}
-		};
-		
-		cursorRequest.onerror = function(e) {
-			if (aMode) {
-				cardbookActions.fetchCryptoActivity(aMode);
-			}
+		try {
+			var storedCategory = cardbookIndexedDB.encryptionEnabled ? (await cardbookEncryptor.encryptCategory(aCategory)) : aCategory;
+			var db = cardbookRepository.cardbookCatDatabase.db;
+			var transaction = db.transaction(["categories"], "readwrite");
+			var store = transaction.objectStore("categories");
+			var cursorRequest = store.put(storedCategory);
+			cursorRequest.onsuccess = function(e) {
+				if (cardbookIndexedDB.encryptionEnabled) {
+					cardbookRepository.cardbookLog.updateStatusProgressInformationWithDebug2(aDirPrefName + " : debug mode : Category " + aCategory.name + " written to encrypted CatDB");
+				} else {
+					cardbookRepository.cardbookLog.updateStatusProgressInformationWithDebug2(aDirPrefName + " : debug mode : Category " + aCategory.name + " written to CatDB");
+				}
+				if (aMode) {
+					cardbookActions.fetchCryptoActivity(aMode);
+				}
+			};
+			
+			cursorRequest.onerror = function(e) {
+				if (aMode) {
+					cardbookActions.fetchCryptoActivity(aMode);
+				}
+				cardbookRepository.cardbookCatDatabase.onerror(e);
+			};
+		} catch(e) {
 			cardbookRepository.cardbookCatDatabase.onerror(e);
-		};
+		}
 	},
 
 	// delete the category
@@ -146,9 +150,7 @@ var cardbookIDBCat = {
 			cardbookRepository.cardbookServerCatSyncTotal[aDirPrefId] = countRequest.result;
 		};
 
-		countRequest.onerror = function(e) {
-			cardbookRepository.cardbookCatDatabase.onerror(e);
-		};
+		countRequest.onerror = cardbookRepository.cardbookCatDatabase.onerror;
 
 		const handleCategory = async category => {
 			try {
@@ -181,9 +183,7 @@ var cardbookIDBCat = {
 			}
 		};
 
-		cursorRequest.onerror = function(e) {
-			cardbookRepository.cardbookCatDatabase.onerror(e);
-		};
+		cursorRequest.onerror = cardbookRepository.cardbookCatDatabase.onerror;
 	},
 
 	// when all categories were loaded from the cache

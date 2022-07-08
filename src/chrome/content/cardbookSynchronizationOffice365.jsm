@@ -1001,7 +1001,7 @@ var cardbookSynchronizationOffice365 = {
 	},
 	
 	parseCardToOffice365UpdateContact: function (aCard) {
-		console.debug(aCard);
+		// console.debug(aCard);
 		function addItemField(aField, aEWSField) {
 			if (aCard[aField]) {
 				Office365Contact = cardbookSynchronizationOffice365.addEntry(Office365Contact, "SetItemField", [], false);
@@ -1380,12 +1380,12 @@ var cardbookSynchronizationOffice365 = {
 		Office365Contact = cardbookSynchronizationOffice365.addEntry(Office365Contact, "Updates", [], true);
 		Office365Contact = cardbookSynchronizationOffice365.addEntry(Office365Contact, "ItemChange", [], true);
 
-		console.debug(Office365Contact);
+		// console.debug(Office365Contact);
 		return Office365Contact;
 	},
 
 	parseCardToOffice365UpdateDistributionList: function (aCard) {
-		console.debug(aCard);
+		// console.debug(aCard);
 		function addItemField(aField, aEWSField) {
 			if (aCard[aField]) {
 				Office365DistributionList = cardbookSynchronizationOffice365.addEntry(Office365DistributionList, "SetItemField", [], false);
@@ -1507,12 +1507,12 @@ var cardbookSynchronizationOffice365 = {
 		Office365DistributionList = cardbookSynchronizationOffice365.addEntry(Office365DistributionList, "Updates", [], true);
 		Office365DistributionList = cardbookSynchronizationOffice365.addEntry(Office365DistributionList, "ItemChange", [], true);
 
-		console.debug(Office365DistributionList);
+		// console.debug(Office365DistributionList);
 		return Office365DistributionList;
 	},
 
 	parseCardToOffice365CreateContact: function (aCard) {
-		console.debug(aCard);
+		// console.debug(aCard);
 
 		let dateFormat = cardbookRepository.getDateFormat(aCard.dirPrefId, aCard.version);
 		let Office365Contact = "";
@@ -1735,12 +1735,12 @@ var cardbookSynchronizationOffice365 = {
 
 		Office365Contact = cardbookSynchronizationOffice365.addEntry(Office365Contact, "Contact", [], true);
 
-		console.debug(Office365Contact);
+		// console.debug(Office365Contact);
 		return Office365Contact;
 	},
 
 	parseCardToOffice365CreateDistributionList: function (aCard) {
-		console.debug(aCard);
+		// console.debug(aCard);
 		let Office365DistributionList = "";
 		Office365DistributionList = cardbookSynchronizationOffice365.addEntry(Office365DistributionList, "DistributionList", [], false);
 		Office365DistributionList = cardbookSynchronizationOffice365.addContent(Office365DistributionList, "DisplayName", [], aCard.fn);
@@ -1801,12 +1801,12 @@ var cardbookSynchronizationOffice365 = {
 		}
 
 		Office365DistributionList = cardbookSynchronizationOffice365.addEntry(Office365DistributionList, "DistributionList", [], true);
-		console.debug(Office365DistributionList);
+		// console.debug(Office365DistributionList);
 		return Office365DistributionList;
 	},
 
 	parseOffice365ContactToCard: function (aOffice365Contact, aDirPrefId) {
-		console.debug(aOffice365Contact);
+		// console.debug(aOffice365Contact);
 		let itemId = aOffice365Contact.getElementsByTagNameNS(cardbookSynchronizationOffice365.nsTypes, "ItemId")[0];
 		let uid = itemId.getAttribute("Id");
 		let etag = itemId.getAttribute("ChangeKey");
@@ -2065,7 +2065,7 @@ var cardbookSynchronizationOffice365 = {
 		}
 
 		cardbookRepository.cardbookUtils.setCalculatedFields(aCard);
-		console.debug(aCard);
+		// console.debug(aCard);
 		return aCard;
 	},
 

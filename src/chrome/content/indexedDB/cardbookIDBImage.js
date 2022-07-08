@@ -69,11 +69,13 @@ var cardbookIDBImage = {
 								let imageFile = Components.classes["@mozilla.org/file/local;1"].createInstance(Components.interfaces.nsIFile);
 								imageFile.initWithPath(imageFilePath);
 								if (imageFile.exists() && imageFile.isFile()) {
-									let base64 = await cardbookRepository.cardbookUtils.getImageFromURI("", "", "file://" + imageFile.path);
-									let filenameArray = imageFile.leafName.split(".");
-									let uid = filenameArray[0];
-									let extension =  filenameArray[filenameArray.length-1];
-									cardbookIDBImage.addImage( "photo", "Migration", {cbid: name+"::"+uid, dirPrefId: name, extension: extension, content: base64});
+									try {
+										let [ base64, extension ] = await cardbookRepository.cardbookUtils.getImageFromURI("", "", "", "file://" + imageFile.path);
+										let filenameArray = imageFile.leafName.split(".");
+										let uid = filenameArray[0];
+										let extension1 =  extension || filenameArray[filenameArray.length-1];
+										await cardbookIDBImage.addImage( "photo", "Migration", {cbid: name+"::"+uid, dirPrefId: name, extension: extension1, content: base64});
+									} catch (e) {}
 								}
 							}
 						}
@@ -102,7 +104,7 @@ var cardbookIDBImage = {
 				if ('encrypted' in aImage) {
 					aImage = await cardbookEncryptor.decryptImage(aImage);
 				}
-				cardbookIDBImage.addImage(aDB, aDirPrefName, aImage);
+				await cardbookIDBImage.addImage(aDB, aDirPrefName, aImage);
 			} else {
 				if ('encrypted' in aImage) {
 					aImage = await cardbookEncryptor.decryptImage(aImage);
@@ -117,33 +119,42 @@ var cardbookIDBImage = {
 	},
 
 	// add or override the image to the cache
-	addImage: async function(aDB, aDirPrefName, aImage, aCardName, aCallback, aMode) {
-		var storedImage = cardbookIndexedDB.encryptionEnabled ? (await cardbookEncryptor.encryptImage(aImage)) : aImage;
- 		var db = cardbookRepository.cardbookImageDatabase.db;
-		var transaction = db.transaction([aDB], "readwrite");
-		var store = transaction.objectStore(aDB);
-		var cursorRequest = store.put(storedImage);
-		cursorRequest.onsuccess = function(e) {
-			if (cardbookIndexedDB.encryptionEnabled) {
-				cardbookRepository.cardbookLog.updateStatusProgressInformationWithDebug2(aDirPrefName + " : debug mode : Image for " + aCardName + " written to encrypted ImageDB (" + aDB + ")");
-			} else {
-				cardbookRepository.cardbookLog.updateStatusProgressInformationWithDebug2(aDirPrefName + " : debug mode : Image for " + aCardName + " written to ImageDB (" + aDB + ")");
-			}
-			if (aMode) {
-				cardbookActions.fetchCryptoActivity(aMode);
-			}
-			if (aCallback) {
-				aCallback;
-			}
-		};
-		
-		cursorRequest.onerror = function(e) {
-			if (aMode) {
-				cardbookActions.fetchCryptoActivity(aMode);
-			}
-			cardbookRepository.cardbookImageDatabase.onerror(e);
-		};
- 	},
+	addImage: async function(aDB, aDirPrefName, aImage, aCardName, aMode) {
+		try {
+			var storedImage = cardbookIndexedDB.encryptionEnabled ? (await cardbookEncryptor.encryptImage(aImage)) : aImage;
+			let result = new Promise( function(resolve, reject) {
+				try {
+					var db = cardbookRepository.cardbookImageDatabase.db;
+					var transaction = db.transaction([aDB], "readwrite");
+					var store = transaction.objectStore(aDB);
+					var cursorRequest = store.put(storedImage);
+					cursorRequest.onsuccess = function(e) {
+						if (cardbookIndexedDB.encryptionEnabled) {
+							cardbookRepository.cardbookLog.updateStatusProgressInformationWithDebug2(aDirPrefName + " : debug mode : Image for " + aCardName + " written to encrypted ImageDB (" + aDB + ")");
+						} else {
+							cardbookRepository.cardbookLog.updateStatusProgressInformationWithDebug2(aDirPrefName + " : debug mode : Image for " + aCardName + " written to ImageDB (" + aDB + ")");
+						}
+						if (aMode) {
+							cardbookActions.fetchCryptoActivity(aMode);
+						}
+						resolve();
+					};
+					
+					cursorRequest.onerror = function(e) {
+						if (aMode) {
+							cardbookActions.fetchCryptoActivity(aMode);
+						}
+						cardbookRepository.cardbookImageDatabase.onerror(e);
+						reject();
+					};
+				} catch(e) {
+					cardbookRepository.cardbookImageDatabase.onerror(e);
+					reject();
+				}
+			});
+			let dummy = await result;
+		} catch(e) {}
+	},
 
 	// delete the image
 	removeImage: async function(aDB, aDirPrefName, aImage, aCardName) {
@@ -162,7 +173,7 @@ var cardbookIDBImage = {
 			};
 			cursorRequest.onerror = function(e) {
 				reject();
-				cardbookRepository.cardbookImageDatabase.onerror;
+				cardbookRepository.cardbookImageDatabase.onerror(e);
 			};
 		});
 	},
@@ -179,12 +190,12 @@ var cardbookIDBImage = {
 					let image = await cardbookIDBImage.checkImage(aDB, aDirPrefName, result, aCardName);
 					resolve(image);
 				} else {
-					reject();
+					resolve();
 				}
 			};
 			cursorRequest.onerror = function(e) {
-				cardbookRepository.cardbookImageDatabase.onerror;
-				reject();
+				cardbookRepository.cardbookImageDatabase.onerror(e);
+				resolve();
 			};
 		});
 	},
@@ -198,7 +209,7 @@ var cardbookIDBImage = {
 				imagesTransaction.objectStore(media),
 				async image => {
 					try {
-						cardbookIDBImage.addImage(media, cardbookRepository.cardbookPreferences.getName(image.dirPrefId), image, "unknown", null, "encryption");
+						await cardbookIDBImage.addImage(media, cardbookRepository.cardbookPreferences.getName(image.dirPrefId), image, "unknown", "encryption");
 					}
 					catch(e) {
 						cardbookRepository.cardbookLog.updateStatusProgressInformation("debug mode : Encryption failed e : " + e, "Error");
@@ -220,7 +231,7 @@ var cardbookIDBImage = {
 				async image => {
 					try {
 						image = await cardbookEncryptor.decryptImage(image);
-						cardbookIDBImage.addImage(media, cardbookRepository.cardbookPreferences.getName(image.dirPrefId), image, "unknown", null, "decryption");
+						await cardbookIDBImage.addImage(media, cardbookRepository.cardbookPreferences.getName(image.dirPrefId), image, "unknown", "decryption");
 					}
 					catch(e) {
 						cardbookActions.fetchCryptoActivity("decryption");
@@ -243,7 +254,7 @@ var cardbookIDBImage = {
 				async image => {
 					try {
 						image = await cardbookEncryptor.decryptCard(image);
-						cardbookIDBImage.addImage(media, cardbookRepository.cardbookPreferences.getName(image.dirPrefId), image, "unknown", null, "encryption");
+						await cardbookIDBImage.addImage(media, cardbookRepository.cardbookPreferences.getName(image.dirPrefId), image, "unknown", "encryption");
 					}
 					catch(e) {
 						cardbookActions.fetchCryptoActivity("encryption");

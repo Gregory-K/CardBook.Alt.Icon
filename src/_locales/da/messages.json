@@ -2047,6 +2047,14 @@
             }
         }
 	},
+	"cardsImagesExportedUndo": {
+		"message": "Billeder eksporteret til katalog $P1$",
+        "placeholders": {
+            "P1": {
+                "content": "$1"
+            }
+        }
+	},
 	"undoActionDoneUndo": {
 		"message": "Fortryd udført ($P1$)",
         "placeholders": {
@@ -2262,6 +2270,17 @@
 	},
 	"cardsFormattedUndo": {
 		"message": "$P1$ : Kontakter formateret ($P2$)",
+        "placeholders": {
+            "P1": {
+                "content": "$1"
+            },
+            "P2": {
+                "content": "$2"
+            }
+        }
+	},
+	"exportImagesToDirMessagePF": {
+		"message": "$P1$ billede eksporteret ind i kataloget $P2$;$P1$ billeder eksporteret ind i kataloget $P2$",
         "placeholders": {
             "P1": {
                 "content": "$1"
@@ -3223,7 +3242,7 @@
 	"importfoundColumnsGroupboxLabel": {
 		"message": "Overskriftkolonne"
 	},
-	"importblankColumn": {
+	"importBlankColumn": {
 		"message": "Tom kolonne"
 	},
 	"importNoTypeLabel": {
@@ -5524,11 +5543,20 @@
 	"pasteEntryLabel": {
 		"message": "Indsæt indgang"
 	},
+	"exportsMenu": {
+		"message": "Eksporteringer"
+	},
+	"exportCardImagesLabel": {
+		"message": "Eksportér billeder"
+	},
 	"exportCardToFileLabel": {
 		"message": "Eksporter til en fil"
 	},
 	"exportCardToDirLabel": {
 		"message": "Eksporter til et katalog"
+	},
+	"importsMenu": {
+		"message": "Importeringer"
 	},
 	"importCardFromFileLabel": {
 		"message": "Importer kontakter fra en fil"
@@ -5985,7 +6013,7 @@
 		"message": "Valgte"
 	},
 	"conversionWarn": {
-		"message": "Det er muligt at gennemtvinge konverteringen af nogle felter men de bliver skaffet."
+		"message": "Det er muligt at gennemtvinge konverteringen af nogle felter mens de bliver skaffet."
 	},
 	"convertToLabel": {
 		"message": "Konverter til"

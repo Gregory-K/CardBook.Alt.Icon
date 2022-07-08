@@ -166,20 +166,25 @@ if ("undefined" == typeof(wdw_imageEdition)) {
 		},
 
 		addImageCard: async function (aFileOrURL) {
-			if (aFileOrURL) {
-				let URI;
-				if (aFileOrURL instanceof Components.interfaces.nsIFile) {
-					URI = "file://" + aFileOrURL.path;
-				} else {
-					URI = aFileOrURL;
+			try {
+				if (aFileOrURL) {
+					let URI;
+					if (aFileOrURL instanceof Components.interfaces.nsIFile) {
+						URI = "file://" + aFileOrURL.path;
+					} else {
+						URI = aFileOrURL;
+					}
+					let dirname = cardbookRepository.cardbookPreferences.getName(wdw_cardEdition.workingCard.dirPrefId);
+					let [ base64, extension ] = await cardbookRepository.cardbookUtils.getImageFromURI(wdw_cardEdition.workingCard.dirPrefId, wdw_cardEdition.workingCard.fn, dirname, URI);
+					var extension1 = extension || cardbookRepository.cardbookUtils.getFileNameExtension(URI);
+					if (!extension1) {
+						return;
+					}
+					wdw_imageEdition.resizeImageCard({extension: extension1, content: base64}, true);
 				}
-				var myExtension = cardbookRepository.cardbookUtils.getFileNameExtension(URI);
-				if (!myExtension) {
-					return;
-				}
-				let dirname = cardbookRepository.cardbookPreferences.getName(wdw_cardEdition.workingCard.dirPrefId);
-				let base64 = await cardbookRepository.cardbookUtils.getImageFromURI(wdw_cardEdition.workingCard.fn, dirname, URI);
-				wdw_imageEdition.resizeImageCard({extension: myExtension, content: base64}, true);
+			}
+			catch (e) {
+				cardbookRepository.cardbookLog.updateStatusProgressInformation("wdw_imageEdition.addImageCard error : " + e, "Error");
 			}
 		},
 

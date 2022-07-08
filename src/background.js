@@ -33,10 +33,10 @@ async function main() {
 	messenger.WindowListener.registerWindow("chrome://messenger/content/messengercompose/messengercompose.xhtml", "chrome://cardbook/content/composeMsg/wl_composeMsg.js");
 	
 	// // support for filter messages
-	messenger.WindowListener.registerWindow("chrome://messenger/content/FilterEditor.xhtml", "chrome://cardbook/content/filters/wl_cardbookFilterAction.js");
-	messenger.WindowListener.registerWindow("chrome://messenger/content/SearchDialog.xhtml", "chrome://cardbook/content/filters/wl_cardbookFilterAction.js");
-	messenger.WindowListener.registerWindow("chrome://messenger/content/mailViewSetup.xhtml", "chrome://cardbook/content/filters/wl_cardbookFilterAction.js");
-	messenger.WindowListener.registerWindow("chrome://messenger/content/virtualFolderProperties.xhtml", "chrome://cardbook/content/filters/wl_cardbookFilterAction.js");
+	messenger.DomContentScript.registerWindow("chrome://messenger/content/FilterEditor.xhtml", "chrome://cardbook/content/filters/cardbookFilterAction.js");
+	messenger.DomContentScript.registerWindow("chrome://messenger/content/SearchDialog.xhtml", "chrome://cardbook/content/filters/cardbookFilterAction.js");
+	messenger.DomContentScript.registerWindow("chrome://messenger/content/mailViewSetup.xhtml", "chrome://cardbook/content/filters/cardbookFilterAction.js");
+	messenger.DomContentScript.registerWindow("chrome://messenger/content/virtualFolderProperties.xhtml", "chrome://cardbook/content/filters/cardbookFilterAction.js");
 
 	messenger.WindowListener.startListening();
 

@@ -43,7 +43,7 @@ if ("undefined" == typeof(ovl_cardbookMailContacts)) {
 				myNewCard.email.push([[aEmailAddress], [], "", []]);
 				myNewCard.fn = aDisplayName;
 				if (myNewCard.fn == "") {
-					myNewCard.fn = myEmail.substr(0, aEmailAddress.indexOf("@")).replace("."," ").replace("_"," ");
+					myNewCard.fn = aEmailAddress.substr(0, aEmailAddress.indexOf("@")).replace("."," ").replace("_"," ");
 				}
 				let myDisplayNameArray = myNewCard.fn.split(" ");
 				if (myDisplayNameArray.length > 1) {
@@ -99,7 +99,7 @@ if ("undefined" == typeof(ovl_cardbookMailContacts)) {
 				document.getElementById("viewContactItem").setAttribute("hidden", true);
 				document.getElementById("editCardBookSeparator").setAttribute("hidden", true);
 			} else {
-				document.getElementById("editCardBookSeparator").setAttribute("hidden", false);
+				document.getElementById("editCardBookSeparator").removeAttribute("hidden");
 			}
 		},
 		
@@ -157,6 +157,53 @@ if ("undefined" == typeof(ovl_cardbookMailContacts)) {
 	};
 })();
 
+(function() {
+	// Keep a reference to the original function.
+	ovl_cardbookMailContacts.origFunctions._updateAvatar = customElements.get("header-recipient").prototype._updateAvatar;
+	
+	// Override a function.
+	// _updateAvatar
+	customElements.get("header-recipient").prototype._updateAvatar = async function() {
+		this.avatar.replaceChildren();
+
+		if (!this.cardDetails.card) {
+			this._createAvatarPlaceholder();
+			return;
+		}
+
+		// We have a card, so let's try to fetch the image.
+		let card = this.cardDetails.card;
+		if (card.cbid) {
+			let image = await cardbookIDBImage.getImage("photo", "", card.cbid, card.fn);
+			if (image && image.content && image.extension) {
+				let file = Services.dirsvc.get("ProfD", Components.interfaces.nsIFile);
+				file.append("Photos");
+				file.append(card.uid + "." + image.extension);
+				await cardbookRepository.cardbookUtils.writeContentToFile(file.path, atob(image.content), "NOUTF8");
+				var photoURL = Services.io.newFileURI(file).spec;
+			} else {
+				return
+			}
+		} else {
+			var photoURL = card.photoURL;
+		}
+		if (photoURL) {
+			let img = document.createElement("img");
+				document.l10n.setAttributes(img, "message-header-recipient-avatar", {
+				address: this.emailAddress,
+				});
+			// TODO: We should fetch a dynamically generated smaller version of the
+			// uploaded picture to avoid loading large images that will only be used
+			// in smaller format.
+			img.src = photoURL;
+			this.avatar.appendChild(img);
+			this.avatar.classList.add("has-avatar");
+		} else {
+			this._createAvatarPlaceholder();
+		}
+	};
+})();
+
 
 (function() {
 	// Keep a reference to the original function.
@@ -166,11 +213,10 @@ if ("undefined" == typeof(ovl_cardbookMailContacts)) {
 	// gMessageHeader.openEmailAddressPopup
 	gMessageHeader.openEmailAddressPopup = function() {
 		// Execute original function.
-		var rv = ovl_cardbookMailContacts.origFunctions.openEmailAddressPopup.apply(null, arguments);
+		let rv = ovl_cardbookMailContacts.origFunctions.openEmailAddressPopup.apply(null, arguments);
 		
 		// Execute some action afterwards.
-		var exclusive = cardbookRepository.cardbookPreferences.getBoolPref("extensions.cardbook.exclusive");
-		ovl_cardbookMailContacts.hideOldAddressbook(exclusive);
+		let exclusive = cardbookRepository.cardbookPreferences.getBoolPref("extensions.cardbook.exclusive");
 
 		if (arguments[1].cardDetails.card && arguments[1].cardDetails.card.cbid) {
 			ovl_cardbookMailContacts.hideOrShowNewAddressbook(true);
@@ -197,6 +243,7 @@ if ("undefined" == typeof(ovl_cardbookMailContacts)) {
 			ovl_cardbookMailContacts.hideOrShowNewAddressbook(false);
 			cardbookWindowUtils.addCardToIMPPMenuSubMenu(null, 'IMPPCardsMenuPopup');
 		}
+		ovl_cardbookMailContacts.hideOldAddressbook(exclusive);
 
 		if (document.documentElement.getAttribute("windowtype") == "mail:messageWindow") {
 			document.getElementById('findEmailsFromEmailMessenger').setAttribute('hidden', 'true');

@@ -2047,6 +2047,14 @@
 			}
 		}
 	},
+	"cardsImagesExportedUndo": {
+		"message": "Képek exportálva a(z) $P1$ könyvtárba",
+        "placeholders": {
+            "P1": {
+                "content": "$1"
+            }
+        }
+	},
 	"undoActionDoneUndo": {
 		"message": "Visszavonása kész ($P1$)",
 		"placeholders": {
@@ -2270,6 +2278,17 @@
 				"content": "$2"
 			}
 		}
+	},
+	"exportImagesToDirMessagePF": {
+		"message": "$P1$ kép exportálva a(z) $P2$ könyvtárba;$P1$ kép exportálva a(z) $P2$ könyvtárba",
+        "placeholders": {
+            "P1": {
+                "content": "$1"
+            },
+            "P2": {
+                "content": "$2"
+            }
+        }
 	},
 	"exportCardToDirMessagePF": {
 		"message": "$P1$ névjegy exportálva a(z) $P2$ könyvtárba;$P1$ névjegy exportálva a(z) $P2$ könyvtárba",
@@ -3223,7 +3242,7 @@
 	"importfoundColumnsGroupboxLabel": {
 		"message": "Oszlop fejléc"
 	},
-	"importblankColumn": {
+	"importBlankColumn": {
 		"message": "Üres oszlop"
 	},
 	"importNoTypeLabel": {
@@ -5524,11 +5543,20 @@
 	"pasteEntryLabel": {
 		"message": "Mező beillesztése"
 	},
+	"exportsMenu": {
+		"message": "Exportálások"
+	},
+	"exportCardImagesLabel": {
+		"message": "Képek exportálása"
+	},
 	"exportCardToFileLabel": {
 		"message": "Fájl mentése"
 	},
 	"exportCardToDirLabel": {
 		"message": "Mappa mentése"
+	},
+	"importsMenu": {
+		"message": "Importálások"
 	},
 	"importCardFromFileLabel": {
 		"message": "Megnyitás és mentés fájlból"

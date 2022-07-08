@@ -26,13 +26,13 @@ if ("undefined" == typeof(cardbookDuplicate)) {
 			if (cacheDir.exists()) {
 				var params = {};
 				params["showError"] = true;
-				cardbookRepository.cardbookUtils.readContentFromFile(cacheDir.path, cardbookDuplicate.loadDuplicateAsync, params);
+				cardbookRepository.cardbookUtils.readContentFromFile(cacheDir.path, cardbookDuplicate.loadDuplicateNext, params);
 			} else {
 				wdw_findDuplicates.load();
 			}
 		},
 
-		loadDuplicateAsync: function (aContent) {
+		loadDuplicateNext: function (aContent) {
 			var re = /[\n\u0085\u2028\u2029]|\r\n?/;
 			var fileContentArray = aContent.split(re);
 			for (var i = 0; i < fileContentArray.length; i++) {

@@ -196,11 +196,7 @@ var cardbookUtils = {
 		function compare5(a, b) {
 			let aValue = cardbookUtils.getCardValueByField(a, aIndex, false);
 			let bValue = cardbookUtils.getCardValueByField(b, aIndex, false);
-			if (aValue.length && bValue.length) {
-				return aValue.join().localeCompare(bValue.join())*aInvert;
-			} else {
-				return aValue.length || bValue.length;
-			}
+			return aValue.join().localeCompare(bValue.join())*aInvert;
 		};
 		function compare6(a, b) { return cardbookRepository.cardbookGenderLookup[a.gender].localeCompare(cardbookRepository.cardbookGenderLookup[b.gender])*aInvert; };
 		function compare7(a, b) { return (cardbookRepository.cardbookDates.getDateForCompare(a, aIndex)*aInvert > cardbookRepository.cardbookDates.getDateForCompare(b, aIndex)*aInvert); };
@@ -509,7 +505,7 @@ var cardbookUtils = {
 		return lTemp;
 	},
 	
-	cardToVcardData: async function (vCard, aMediaConversion) {
+	cardToVcardData: async function (vCard, aMediaFromDB = true) {
 		if (vCard.uid == "") {
 			return "";
 		}
@@ -572,12 +568,12 @@ var cardbookUtils = {
 
 		for (let media of cardbookRepository.allColumns.media) {
 			// always convert
-			await cardbookUtils.cacheGetMediaCard(vCard, media, true)
-				.then( content => {
-					vCardData = this.appendToVcardData3(vCardData, media.toUpperCase(), content);
-				}).catch( () => {} );
+			let content = await cardbookUtils.cacheGetMediaCard(vCard, media, aMediaFromDB);
+			if (content.length) {
+				vCardData = this.appendToVcardData3(vCardData, media.toUpperCase(), content);
+			}
 		}
-		
+
 		if (cardbookRepository.cardbookPreferences.getType(vCard.dirPrefId) == "GOOGLE") {
 			vCardData = this.appendToVcardData2(vCardData,"X-CATEGORIES",false,this.unescapeArrayComma(this.escapeArrayComma(vCard.categories)).join(","));
 		}
@@ -593,13 +589,13 @@ var cardbookUtils = {
 		var myTempCard = new cardbookCardParser();
 		cardbookUtils.cloneCard(aCard, myTempCard);
 		myTempCard.rev = "";
-		var cardContent = await cardbookUtils.cardToVcardData(myTempCard, true);
+		var cardContent = await cardbookUtils.cardToVcardData(myTempCard);
 		myTempCard = null;
 		return cardContent;
 	},
 
 	getvCardForServer: async function(aCard) {
-		return await cardbookUtils.cardToVcardData(aCard, true);
+		return await cardbookUtils.cardToVcardData(aCard);
 	},
 
 	addCardFromDisplayAndEmail: async function (aDirPrefId, aDisplayName, aEmail, aCategory, aActionId) {
@@ -638,39 +634,69 @@ var cardbookUtils = {
 		}
 	},
 
-	getImageFromURI: function (aCardName, aDirname, aImageURI) {
+	getImageFromURI: function (aDirPrefId, aCardName, aDirname, aImageURI) {
 		return new Promise((resolve, reject) => {
-			cardbookRepository.cardbookUtils.formatStringForOutput("serverCardGettingImage", [aDirname, aCardName]);
-			let xhr = new XMLHttpRequest();
-			xhr.responseType = "arraybuffer";
-			
-			xhr.onload = function () {
-				if (xhr.status === 200) {
-					cardbookRepository.cardbookUtils.formatStringForOutput("serverCardGetImageOK", [aDirname, aCardName]);
-					let uInt8Array = new Uint8Array(this.response);
-					let i = uInt8Array.length;
-					let binaryString = new Array(i);
-					while (i--) {
-						binaryString[i] = String.fromCharCode(uInt8Array[i]);
+			if (aImageURI.startsWith("http")) {
+				let listener_getimage = {
+					onDAVQueryComplete: function(status, response, askCertificate, etag, reportLength, contentType) {
+						if (status > 199 && status < 400) {
+							let extension = cardbookRepository.cardbookUtils.getFileExtension(aImageURI);
+							if (extension == "" && contentType) {
+								extension = contentType.replace(/^image\//, "").toLowerCase();
+							}
+							cardbookRepository.cardbookUtils.formatStringForOutput("serverCardGetImageOK", [aDirname, aCardName]);
+							let binary = ""
+							for (i = 0; i < response.length; i++) {
+								binary += String.fromCharCode(response.charCodeAt(i) & 0xff);
+							}
+							let base64 = btoa(binary);
+							resolve([base64, extension]);
+						} else {
+							cardbookRepository.cardbookUtils.formatStringForOutput("serverCardGetImageFailed", [aDirname, aCardName, aImageURI, status]);
+							reject();
+						}
 					}
-					let data = binaryString.join('');
-					let base64 = btoa(data);
-					resolve(base64);
-				} else {
+				};
+				let aImageConnection = {connPrefId: aDirPrefId, connUrl: aImageURI, connDescription: aDirname};
+				let request = new cardbookWebDAV(aImageConnection, listener_getimage);
+				cardbookRepository.cardbookUtils.formatStringForOutput("serverCardGettingImage", [aDirname, aCardName]);
+				request.getimage();
+			} else {
+				cardbookRepository.cardbookUtils.formatStringForOutput("serverCardGettingImage", [aDirname, aCardName]);
+				let xhr = new XMLHttpRequest();
+				xhr.responseType = "arraybuffer";
+				xhr.onload = function () {
+					if (xhr.status === 200) {
+						let extension = cardbookRepository.cardbookUtils.getFileExtension(aImageURI);
+						if (extension == "" && xhr.channel && xhr.channel.contentType) {
+							extension = xhr.channel.contentType.replace(/^image\//, "").toLowerCase();
+						}
+						cardbookRepository.cardbookUtils.formatStringForOutput("serverCardGetImageOK", [aDirname, aCardName]);
+						let uInt8Array = new Uint8Array(this.response);
+						let i = uInt8Array.length;
+						let binaryString = new Array(i);
+						while (i--) {
+							binaryString[i] = String.fromCharCode(uInt8Array[i]);
+						}
+						let data = binaryString.join('');
+						let base64 = btoa(data);
+						resolve([base64, extension]);
+					} else {
+						cardbookRepository.cardbookUtils.formatStringForOutput("serverCardGetImageFailed", [aDirname, aCardName, aImageURI, xhr.status]);
+						reject();
+					}
+				};
+				xhr.onerror = function () {
 					cardbookRepository.cardbookUtils.formatStringForOutput("serverCardGetImageFailed", [aDirname, aCardName, aImageURI, xhr.status]);
 					reject();
-				}
-			};
-			xhr.onerror = function () {
-				cardbookRepository.cardbookUtils.formatStringForOutput("serverCardGetImageFailed", [aDirname, aCardName, aImageURI, xhr.status]);
-				reject();
-			};
-			xhr.ontimeout = function () {
-				cardbookRepository.cardbookUtils.formatStringForOutput("serverCardGetImageFailed", [aDirname, aCardName, aImageURI, xhr.status]);
-				reject();
-			};
-			xhr.open("GET", aImageURI, true);
-			xhr.send();
+				};
+				xhr.ontimeout = function () {
+					cardbookRepository.cardbookUtils.formatStringForOutput("serverCardGetImageFailed", [aDirname, aCardName, aImageURI, xhr.status]);
+					reject();
+				};
+				xhr.open("GET", aImageURI, true);
+				xhr.send();
+			}
 		});
 	},
 
@@ -1385,10 +1411,10 @@ var cardbookUtils = {
 	},
 
 	getTemplate: function (aFieldList) {
-		var myFieldArray = aFieldList.split('|');
-		var result = [];
-		for (var i = 0; i < myFieldArray.length; i++) {
-			result.push([myFieldArray[i], cardbookRepository.cardbookUtils.getTranslatedField(myFieldArray[i])]);
+		let fields = aFieldList.split('|');
+		let result = [];
+		for (let field of fields) {
+			result.push([field, cardbookRepository.cardbookUtils.getTranslatedField(field)]);
 		}
 		return result;
 	},
@@ -1435,7 +1461,7 @@ var cardbookUtils = {
 			}
 		}
 		if ("blank" == aField) {
-			return cardbookRepository.extension.localeData.localizeMessage(window.arguments[0].mode + "blankColumn");
+			return cardbookRepository.extension.localeData.localizeMessage("importBlankColumn");
 		}
 		return "";
 	},
@@ -1539,15 +1565,15 @@ var cardbookUtils = {
 		};
 	},
 
-	getDataForUpdatingFile: async function(aList, aMediaConversion) {
+	getDataForUpdatingFile: async function(aList) {
 		var dataForExport = "";
 		var k = 0;
 		for (var i = 0; i < aList.length; i++) {
 			if (k === 0) {
-				dataForExport = await cardbookUtils.cardToVcardData(aList[i], aMediaConversion);
+				dataForExport = await cardbookUtils.cardToVcardData(aList[i]);
 				k = 1;
 			} else {
-				dataForExport = dataForExport + "\r\n" + await cardbookUtils.cardToVcardData(aList[i], aMediaConversion);
+				dataForExport = dataForExport + "\r\n" + await cardbookUtils.cardToVcardData(aList[i]);
 			}
 		}
 		return dataForExport;
@@ -1728,36 +1754,28 @@ var cardbookUtils = {
 		return cardbookRepository.cardbookPreferences.getName(aPrefId);
 	},
 
-	getFreeFileName: function(aDirName, aName, aId, aExtension) {
-		var myFile = Components.classes["@mozilla.org/file/local;1"].createInstance(Components.interfaces.nsIFile);
-		myFile.initWithPath(aDirName);
-		myFile.append(aName.replace(/([\\\/\:\*\?\"\<\>\|]+)/g, '-') + aExtension);
-		if (myFile.exists()) {
-			var i = 0;
-			while (i < 100) {
-				var myFile = Components.classes["@mozilla.org/file/local;1"].createInstance(Components.interfaces.nsIFile);
-				myFile.initWithPath(aDirName);
-				myFile.append(aName.replace(/([\\\/\:\*\?\"\<\>\|]+)/g, '-') + "." + i + aExtension);
-				if (!(myFile.exists())) {
-					return myFile.leafName;
-				}
-				i++;
-			}
-			return aId + aExtension;
-		} else {
-			return myFile.leafName;
+	getFormattedFileName: function(aName) {
+		return aName.replace(/([\\\/\:\*\?\"\<\>\|]+)/g, '-');
+	},
+
+	getFileNameForCard: function(aDirName, aName, aExtension) {
+		try {
+			let file = Components.classes["@mozilla.org/file/local;1"].createInstance(Components.interfaces.nsIFile);
+			file.initWithPath(aDirName);
+			file.append(cardbookUtils.getFormattedFileName(aName) + aExtension);
+			file.createUnique(Components.interfaces.nsIFile.NORMAL_FILE_TYPE, 420);
+			return file.leafName;
+		}
+		catch (e) {
+			return "";
 		}
 	},
 
-	getFileNameForCard: function(aDirName, aName, aId) {
-		return cardbookUtils.getFreeFileName(aDirName, aName, aId.replace(/^urn:uuid:/i, ""), ".vcf");
-	},
-
-	getFileNameForCard2: function(aCard, aListOfName, aExtension) {
+	getFileNameForCard2: function(aCard, aListOfNames, aExtension) {
 		let i = 1;
-		let name = aCard.fn.replace(/([\\\/\:\*\?\"\<\>\|]+)/g, '-') + "." + aExtension;
-		while (aListOfName.includes(name) && i < 100) {
-			name = aCard.fn.replace(/([\\\/\:\*\?\"\<\>\|]+)/g, '-') + i + "." + aExtension;
+		let name = cardbookUtils.getFormattedFileName(aCard.fn) + aExtension;
+		while (aListOfNames.includes(name) && i < 100) {
+			name = cardbookUtils.getFormattedFileName(aCard.fn) + i + aExtension;
 			i++;
 		}
 		return name;
@@ -1766,8 +1784,8 @@ var cardbookUtils = {
 	getFileNameFromUrl: function(aUrl) {
 		let cleanUrl = cardbookRepository.cardbookSynchronization.getSlashedUrl(aUrl).slice(0, -1);
 		let keyArray = cleanUrl.split("/");
-		let key = decodeURIComponent(keyArray[keyArray.length - 1]);
-		return key.replace(/^urn:uuid:/i, "").replace(/([\\\/\:\*\?\"\<\>\|]+)/g, '-');
+		let key = decodeURIComponent(keyArray[keyArray.length - 1]).replace(/^urn:uuid:/i, "");
+		return cardbookUtils.getFormattedFileName(key);
 	},
 
 	setCacheURIFromCard: function(aCard, aPrefIdType) {
@@ -1775,7 +1793,7 @@ var cardbookUtils = {
 			return;
 		} else if (aPrefIdType === "DIRECTORY") {
 			let myDirPrefIdUrl = cardbookRepository.cardbookPreferences.getUrl(aCard.dirPrefId);
-			aCard.cacheuri = cardbookUtils.getFileNameForCard(myDirPrefIdUrl, aCard.fn, aCard.uid);
+			aCard.cacheuri = cardbookUtils.getFileNameForCard(myDirPrefIdUrl, aCard.fn, ".vcf");
 		} else {
 			if (aCard.cardurl) {
 				if (aPrefIdType == "OFFICE365") {
@@ -2333,62 +2351,55 @@ var cardbookUtils = {
 				id = cardbookRepository.cardbookServerValidation[aDirPrefId][url].id;
 				serverUrl = cardbookRepository.cardbookServerValidation[aDirPrefId][url].url;
 			}
-			if (cardbookRepository.cardbookServerValidation[aDirPrefId][url].displayName) {
-					aTargetArray.push([type, serverUrl, cardbookRepository.cardbookServerValidation[aDirPrefId].user, cardbookRepository.cardbookServerValidation[aDirPrefId][url].displayName,
-								version, "", id, false]);
-			} else {
-				aTargetArray.push([type, serverUrl, cardbookRepository.cardbookServerValidation[aDirPrefId].user, cardbookRepository.cardbookServerValidation[aDirPrefId].user,
-								version, "", id, false]);
-			}
+
+			let displayname = cardbookRepository.cardbookServerValidation[aDirPrefId][url].displayName || cardbookRepository.cardbookServerValidation[aDirPrefId].user;
+			let readOnly = cardbookRepository.cardbookServerValidation[aDirPrefId][url].readOnly || false;
+
+			aTargetArray.push([type, serverUrl, cardbookRepository.cardbookServerValidation[aDirPrefId].user, displayname,
+								version, "", id, false, readOnly]);
 		}
 		return aTargetArray;
 	},
 
-	cacheGetMediaCard: async function(aCard, aType, aMediaConversion) {
+	cacheGetMediaCard: async function(aCard, aType, aMediaFromDB = true) {
 		return new Promise( async function(resolve, reject) {
 			var result = [];
-			if (aMediaConversion) {
-				if (aCard[aType].value) {
+			if (aCard[aType].value) {
+				if (aCard.version === "4.0") {
+					if (aCard[aType].extension != "") {
+						let myExtension = cardbookRepository.cardbookUtils.formatExtension(aCard[aType].extension, aCard[aType].version);
+						result.push(":data:image/" + myExtension + ";base64," + aCard[aType].value);
+					} else {
+						result.push(":base64," + aCard[aType].value);
+					}
+				} else if (aCard.version === "3.0") {
+					if (aCard[aType].extension != "") {
+						let myExtension = cardbookRepository.cardbookUtils.formatExtension(aCard[aType].extension, aCard[aType].version);
+						result.push(";ENCODING=B;TYPE=" + myExtension + ":" + aCard[aType].value);
+					} else {
+						result.push(";ENCODING=B:" + aCard[aType].value);
+					}
+				}
+			} else if (aMediaFromDB) {
+				let dirname = cardbookRepository.cardbookPreferences.getName(aCard.dirPrefId);
+				let image = await cardbookIDBImage.getImage(aType, dirname, aCard.cbid, aCard.fn);
+				if (image && image.content && image.extension) {
+					let extension = image.extension || aCard[aType].extension;
 					if (aCard.version === "4.0") {
-						if (aCard[aType].extension != "") {
-							let myExtension = cardbookRepository.cardbookUtils.formatExtension(aCard[aType].extension, aCard[aType].version);
-							result.push(":data:image/" + myExtension + ";base64," + aCard[aType].value);
+						if (extension) {
+							let extension1 = cardbookRepository.cardbookUtils.formatExtension(extension, aCard.version);
+							result.push(":data:image/" + extension1 + ";base64," + image.content);
 						} else {
-							result.push(":base64," + aCard[aType].value);
+							result.push(":base64," + image.content);
 						}
 					} else if (aCard.version === "3.0") {
-						if (aCard[aType].extension != "") {
-							let myExtension = cardbookRepository.cardbookUtils.formatExtension(aCard[aType].extension, aCard[aType].version);
-							result.push(";ENCODING=B;TYPE=" + myExtension + ":" + aCard[aType].value);
+						if (extension) {
+							let extension1 = cardbookRepository.cardbookUtils.formatExtension(extension, aCard.version);
+							result.push(";ENCODING=B;TYPE=" + extension1 + ":" + image.content);
 						} else {
-							result.push(";ENCODING=B:" + aCard[aType].value);
+							result.push(";ENCODING=B:" + image.content);
 						}
 					}
-				} else {
-					let dirname = cardbookRepository.cardbookPreferences.getName(aCard.dirPrefId);
-					await cardbookIDBImage.getImage(aType, dirname, aCard.cbid, aCard.fn)
-					.then( image => {
-						if (image) {
-							if (aCard.version === "4.0") {
-								if (aCard[aType].extension != "") {
-									let myExtension = cardbookRepository.cardbookUtils.formatExtension(aCard[aType].extension, aCard.version);
-									result.push(":data:image/" + myExtension + ";base64," + image.content);
-								} else {
-									result.push(":base64," + image.content);
-								}
-							} else if (aCard.version === "3.0") {
-								if (aCard[aType].extension != "") {
-									let myExtension = cardbookRepository.cardbookUtils.formatExtension(aCard[aType].extension, aCard.version);
-									result.push(";ENCODING=B;TYPE=" + myExtension + ":" + image.content);
-								} else {
-									result.push(";ENCODING=B:" + image.content);
-								}
-							}
-						} else {
-							reject([]);
-						}
-					})
-					.catch( () => { reject([]); });
 				}
 			}
 			resolve(result);
@@ -2399,34 +2410,30 @@ var cardbookUtils = {
 		try {
 			var myPrefName = cardbookUtils.getPrefNameFromPrefId(aCard.dirPrefId);
 			if (aCard[aField].value != "") {
-				cardbookIDBImage.addImage( aField, myPrefName, 
+				await cardbookIDBImage.addImage( aField, myPrefName, 
 											{cbid: aCard.dirPrefId+"::"+aCard.uid, dirPrefId: aCard.dirPrefId, extension: aCard[aField].extension, content: aCard[aField].value},
-											aCard.fn, function () {
-												aCard[aField].value = "";
-											});
+											aCard.fn);
+				aCard[aField].value = "";
 			} else if (aCard[aField].localURI) {
 				let imageFile = Components.classes["@mozilla.org/file/local;1"].createInstance(Components.interfaces.nsIFile);
 				imageFile.initWithPath(aCard[aField].localURI.replace("file://", ""));
 				if (imageFile.exists() && imageFile.isFile()) {
-					let base64 = await cardbookRepository.cardbookUtils.getImageFromURI(aCard.fn, myPrefName, "file://" + imageFile.path);
+					let [ base64, extension ] = await cardbookRepository.cardbookUtils.getImageFromURI(aCard.dirPrefId, aCard.fn, myPrefName, "file://" + imageFile.path);
 					let filenameArray = imageFile.leafName.split(".");
-					let uid = filenameArray[0];
-					let extension =  filenameArray[filenameArray.length-1];
-					cardbookIDBImage.addImage( aField, myPrefName,
-												{cbid: aCard.dirPrefId+"::"+aCard.uid, dirPrefId: aCard.dirPrefId, extension: aCard[aField].extension, content: base64},
-												aCard.fn, function () {
-													aCard[aField].localURI = null;
-												});
+					let extension1 = extension || filenameArray[filenameArray.length-1];
+					await cardbookIDBImage.addImage( aField, myPrefName,
+												{cbid: aCard.dirPrefId+"::"+aCard.uid, dirPrefId: aCard.dirPrefId, extension: extension1, content: base64},
+												aCard.fn);
+					aCard[aField].localURI = "";
 				} else {
-					aCard[aField].localURI = null;
+					aCard[aField].localURI = "";
 				}
 			} else if (aCard[aField].URI != "") {
-				let base64 = await cardbookRepository.cardbookUtils.getImageFromURI(aCard.fn, myPrefName, aCard[aField].URI);
+				let [ base64, extension ] = await cardbookRepository.cardbookUtils.getImageFromURI(aCard.dirPrefId, aCard.fn, myPrefName, aCard[aField].URI);
 				let filenameArray = aCard[aField].URI.split(".");
-				let uid = filenameArray[0];
-				let extension =  filenameArray[filenameArray.length-1];
-				cardbookIDBImage.addImage( aField, myPrefName,
-											{cbid: aCard.dirPrefId+"::"+aCard.uid, dirPrefId: aCard.dirPrefId, extension: aCard[aField].extension, content: base64},
+				let extension1 = extension || filenameArray[filenameArray.length-1];
+				await cardbookIDBImage.addImage( aField, myPrefName,
+											{cbid: aCard.dirPrefId+"::"+aCard.uid, dirPrefId: aCard.dirPrefId, extension: extension1, content: base64},
 											aCard.fn);
 			}
 		}
@@ -2442,16 +2449,18 @@ var cardbookUtils = {
 			for (let media of cardbookRepository.allColumns.media) {
 				if (aCard[media].value == "") {
 					if (aCard[media].URI && aCard[media].URI != "") {
-						let base64 = await cardbookRepository.cardbookUtils.getImageFromURI(aCard.fn, dirname, aCard[media].URI);
+						let [ base64, extension ]  = await cardbookRepository.cardbookUtils.getImageFromURI(aCard.dirPrefId, aCard.fn, dirname, aCard[media].URI);
 						let filenameArray = aCard[media].URI.split(".");
 						let uid = filenameArray[0];
-						let extension =  filenameArray[filenameArray.length-1];
+						let extension1 = extension || filenameArray[filenameArray.length-1];
 						aCard[media].value = base64;
-						aCard[media].extension = extension;
+						aCard[media].extension = extension1;
 					} else {
 						await cardbookIDBImage.getImage(media, dirname, aCard.cbid, aCard.fn)
 							.then( image => {
-								aCard[media].value = image.content;
+								if (image && image.content && image.extension) {
+									aCard[media].value = image.content;
+								}
 							})
 							.catch( () => {} );
 					}
@@ -2486,18 +2495,17 @@ var cardbookUtils = {
 		}
 	},
 
-	readContentFromFile: function (aFilePath, aCallback, aParams) {
-		let win = Services.wm.getMostRecentWindow("mail:3pane", true);
-		let result = win.IOUtils.readUTF8(aFilePath);
-
-		result.then(data => {
-			aCallback(data, aParams);
-		}).catch( () => {
+	readContentFromFile: async function (aFilePath, aCallback, aParams) {
+		try {
+			let win = Services.wm.getMostRecentWindow("mail:3pane", true);
+			let result = await win.IOUtils.readUTF8(aFilePath);
+			await aCallback(result, aParams);
+		} catch(e) {
 			if (aParams.showError) {
 				cardbookRepository.cardbookLog.updateStatusProgressInformation("cardbookUtils.readContentFromFile error : filename : " + aFilePath, "Error");
 			}
 			aCallback("", aParams);
-		});
+		};
 	},
 
 	notifyObservers: function (aTopic, aParam) {
