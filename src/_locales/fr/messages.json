@@ -2047,6 +2047,14 @@
             }
         }
 	},
+	"cardsImagesExportedUndo": {
+		"message": "Images exportése vers le répertoire $P1$",
+        "placeholders": {
+            "P1": {
+                "content": "$1"
+            }
+        }
+	},
 	"undoActionDoneUndo": {
 		"message": "Action annulée ($P1$)",
         "placeholders": {
@@ -2262,6 +2270,17 @@
 	},
 	"cardsFormattedUndo": {
 		"message": "$P1$ : Contacts formatés ($P2$)",
+        "placeholders": {
+            "P1": {
+                "content": "$1"
+            },
+            "P2": {
+                "content": "$2"
+            }
+        }
+	},
+	"exportImagesToDirMessagePF": {
+		"message": "$P1$ image exportée vers le répertoire $P2$;$P1$ images exportées vers le répertoire $P2$",
         "placeholders": {
             "P1": {
                 "content": "$1"
@@ -3223,7 +3242,7 @@
 	"importfoundColumnsGroupboxLabel": {
 		"message": "Colonne d'en-tête"
 	},
-	"importblankColumn": {
+	"importBlankColumn": {
 		"message": "Colonne vide"
 	},
 	"importNoTypeLabel": {
@@ -5524,11 +5543,20 @@
 	"pasteEntryLabel": {
 		"message": "Coller l'élément"
 	},
+	"exportsMenu": {
+		"message": "Exports"
+	},
+	"exportCardImagesLabel": {
+		"message": "Exporter les images"
+	},
 	"exportCardToFileLabel": {
 		"message": "Exporter vers un fichier"
 	},
 	"exportCardToDirLabel": {
 		"message": "Exporter vers un répertoire"
+	},
+	"importsMenu": {
+		"message": "Imports"
 	},
 	"importCardFromFileLabel": {
 		"message": "Importer des contacts depuis un fichier"

@@ -2047,6 +2047,14 @@
             }
         }
 	},
+	"cardsImagesExportedUndo": {
+		"message": "已导出图片到目录 $P1$",
+        "placeholders": {
+            "P1": {
+                "content": "$1"
+            }
+        }
+	},
 	"undoActionDoneUndo": {
 		"message": "完成撤销 ($P1$)",
         "placeholders": {
@@ -2262,6 +2270,17 @@
 	},
 	"cardsFormattedUndo": {
 		"message": "$P1$ : 已格式化联系人 ($P2$)",
+        "placeholders": {
+            "P1": {
+                "content": "$1"
+            },
+            "P2": {
+                "content": "$2"
+            }
+        }
+	},
+	"exportImagesToDirMessagePF": {
+		"message": "$P1$ 图像导出到目录 $P2$;$P1$ 图像导出到目录 $P2$",
         "placeholders": {
             "P1": {
                 "content": "$1"
@@ -3223,7 +3242,7 @@
 	"importfoundColumnsGroupboxLabel": {
 		"message": "标题列"
 	},
-	"importblankColumn": {
+	"importBlankColumn": {
 		"message": "空列"
 	},
 	"importNoTypeLabel": {
@@ -5524,11 +5543,20 @@
 	"pasteEntryLabel": {
 		"message": "粘贴项"
 	},
+	"exportsMenu": {
+		"message": "导出"
+	},
+	"exportCardImagesLabel": {
+		"message": "导出图像"
+	},
 	"exportCardToFileLabel": {
 		"message": "导出到文件"
 	},
 	"exportCardToDirLabel": {
 		"message": "导出到目录"
+	},
+	"importsMenu": {
+		"message": "导入"
 	},
 	"importCardFromFileLabel": {
 		"message": "从文件导入联系人"

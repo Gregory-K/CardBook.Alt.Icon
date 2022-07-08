@@ -100,11 +100,13 @@ var cardbookMigrate = {
 			var photoURI = aABCard.getProperty("PhotoURI", "");
 			var photoType = aABCard.getProperty("PhotoType", "");
 			if (photoType == "file" || photoType == "web") {
-				let base64 = await cardbookRepository.cardbookUtils.getImageFromURI(myCard.fn, "import standard AB", photoURI);
-				if (base64) {
-					myCard.photo.value = base64;
-					myCard.photo.extension = cardbookRepository.cardbookUtils.getFileExtension(photoURI);
-				}
+				try {
+					let [ base64, extension ] = await cardbookRepository.cardbookUtils.getImageFromURI(myCard.dirPrefId, myCard.fn, "import standard AB", photoURI);
+					if (base64) {
+						myCard.photo.value = base64;
+						myCard.photo.extension = extension || cardbookRepository.cardbookUtils.getFileExtension(photoURI);
+					}
+				} catch (e) {}
 			}
 			cardbookMigrate.getNotNullFn(myCard, aABCard);
 			

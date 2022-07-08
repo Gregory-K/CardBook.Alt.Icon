@@ -2047,6 +2047,14 @@
             }
         }
 	},
+	"cardsImagesExportedUndo": {
+		"message": "Obrázky exportovány do adresáře $P1$",
+        "placeholders": {
+            "P1": {
+                "content": "$1"
+            }
+        }
+	},
 	"undoActionDoneUndo": {
 		"message": "Zpět hotovo ($P1$)",
         "placeholders": {
@@ -2262,6 +2270,17 @@
 	},
 	"cardsFormattedUndo": {
 		"message": "$P1$ : Kontakty zformátovány ($P2$)",
+        "placeholders": {
+            "P1": {
+                "content": "$1"
+            },
+            "P2": {
+                "content": "$2"
+            }
+        }
+	},
+	"exportImagesToDirMessagePF": {
+		"message": "$P1$ obrázek exportován do adresáře $P2$;$P1$ obrázky exportovány do adresáře $P2$;$P1$ obrázků exportováno do adresáře $P2$",
         "placeholders": {
             "P1": {
                 "content": "$1"
@@ -3223,7 +3242,7 @@
 	"importfoundColumnsGroupboxLabel": {
 		"message": "Sloupec hlavičky"
 	},
-	"importblankColumn": {
+	"importBlankColumn": {
 		"message": "Prázdný sloupec"
 	},
 	"importNoTypeLabel": {
@@ -5524,11 +5543,20 @@
 	"pasteEntryLabel": {
 		"message": "Vložit záznam"
 	},
+	"exportsMenu": {
+		"message": "Exporty"
+	},
+	"exportCardImagesLabel": {
+		"message": "Exportovat obrázky"
+	},
 	"exportCardToFileLabel": {
 		"message": "Exportovat do souboru"
 	},
 	"exportCardToDirLabel": {
 		"message": "Exportovat do adresáře"
+	},
+	"importsMenu": {
+		"message": "Importy"
 	},
 	"importCardFromFileLabel": {
 		"message": "Importovat kontakty ze souboru"

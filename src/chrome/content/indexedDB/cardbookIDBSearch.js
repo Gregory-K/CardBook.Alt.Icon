@@ -92,18 +92,20 @@ var cardbookIDBSearch = {
 
 	// add or override the search to the cache
 	addSearch: function(aSearch) {
-		var db = cardbookRepository.cardbookSearchDatabase.db;
-		var transaction = db.transaction(["search"], "readwrite");
-		var store = transaction.objectStore("search");
-		var cursorRequest = store.put(aSearch);
+		try {
+			var db = cardbookRepository.cardbookSearchDatabase.db;
+			var transaction = db.transaction(["search"], "readwrite");
+			var store = transaction.objectStore("search");
+			var cursorRequest = store.put(aSearch);
 
-		cursorRequest.onsuccess = function(e) {
-			cardbookRepository.cardbookLog.updateStatusProgressInformationWithDebug2("debug mode : Search " + aSearch.dirPrefId + " written to searchDB");
-		};
+			cursorRequest.onsuccess = function(e) {
+				cardbookRepository.cardbookLog.updateStatusProgressInformationWithDebug2("debug mode : Search " + aSearch.dirPrefId + " written to searchDB");
+			};
 
-		cursorRequest.onerror = function(e) {
+			cursorRequest.onerror = cardbookRepository.cardbookSearchDatabase.onerror;
+		} catch(e) {
 			cardbookRepository.cardbookSearchDatabase.onerror(e);
-		};
+		}
 	},
 
 	// delete the search
@@ -117,9 +119,7 @@ var cardbookIDBSearch = {
 		cursorDelete.onsuccess = async function(e) {
 			cardbookRepository.cardbookLog.updateStatusProgressInformationWithDebug2("debug mode : Search " + aDirPrefId + " deleted from searchDB");
 		};
-		cursorDelete.onerror = function(e) {
-			cardbookRepository.cardbookSearchDatabase.onerror(e);
-		};
+		cursorDelete.onerror = cardbookRepository.cardbookSearchDatabase.onerror;
 	},
 
 	// once the DB is open, this is the second step 
@@ -149,9 +149,7 @@ var cardbookIDBSearch = {
 			}
 		};
 
-		cursorRequest.onerror = function(e) {
-			cardbookRepository.cardbookSearchDatabase.onerror(e);
-		};
+		cursorRequest.onerror = cardbookRepository.cardbookSearchDatabase.onerror;
 
 		transaction.oncomplete = function() {
 			aCallBack(aDirPrefId);

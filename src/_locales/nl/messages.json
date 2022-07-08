@@ -2047,6 +2047,14 @@
 			}
 		}
 	},
+	"cardsImagesExportedUndo": {
+		"message": "Afbeeldingen geëxporteerd naar de map $P1$",
+		"placeholders": {
+			"P1": {
+				"content": "$1"
+			}
+		}
+	},
 	"undoActionDoneUndo": {
 		"message": "Herstel uitgevoerd ($P1$)",
 		"placeholders": {
@@ -2262,6 +2270,17 @@
 	},
 	"cardsFormattedUndo": {
 		"message": "$P1$ : Geformatteerde contactpersonen ($P2$)",
+		"placeholders": {
+			"P1": {
+				"content": "$1"
+			},
+			"P2": {
+				"content": "$2"
+			}
+		}
+	},
+	"exportImagesToDirMessagePF": {
+		"message": "$P1$ afbeelding geëxporteerd naar de map $P2$;$P1$ afbeeldingen geëxporteerd naar de map $P2$",
 		"placeholders": {
 			"P1": {
 				"content": "$1"
@@ -2516,13 +2535,13 @@
 		"message": "Geslacht"
 	},
 	"bdayLabel": {
-		"message": "Geboortedatum"
+		"message": "Verjaardag"
 	},
 	"birthplaceLabel": {
 		"message": "Geboorteplaats"
 	},
 	"anniversaryLabel": {
-		"message": "Verjaardag"
+		"message": "Jubileum"
 	},
 	"deathdateLabel": {
 		"message": "Overlijdensdatum"
@@ -2660,7 +2679,7 @@
 		"message": "Bevestigen"
 	},
 	"birthdaysListWindowLabel": {
-		"message": "Lijst van geboortedata (Totaal : $P1$)",
+		"message": "Lijst van verjaardagen (totaal: $P1$)",
 		"placeholders": {
 			"P1": {
 				"content": "$1"
@@ -2668,7 +2687,7 @@
 		}
 	},
 	"syncListWindowLabelRunning": {
-		"message": "Synchronisatie van geboortedata bezig… ($P1$/$P2$)",
+		"message": "Synchronisatie van verjaardagen bezig… ($P1$/$P2$)",
 		"placeholders": {
 			"P1": {
 				"content": "$1"
@@ -2679,7 +2698,7 @@
 		}
 	},
 	"syncListWindowLabelEnded": {
-		"message": "Synchronisatie van geboortedata beëindigd ($P1$/$P2$)",
+		"message": "Synchronisatie van verjaardagen beëindigd ($P1$/$P2$)",
 		"placeholders": {
 			"P1": {
 				"content": "$1"
@@ -2690,7 +2709,7 @@
 		}
 	},
 	"syncListWindowLabelFailed": {
-		"message": "Synchronisatie van geboortedata mislukt"
+		"message": "Synchronisatie van verjaardagen mislukt"
 	},
 	"syncListExistingEntry": {
 		"message": "$P1$ : Gebeurtenis komt al voor in Lightning : $P2$",
@@ -2726,7 +2745,7 @@
 		}
 	},
 	"noBirthdaysFoundMessage": {
-		"message": "Geen geboortedata gevonden tot $P1$",
+		"message": "Geen gebeurtenis gevonden tot $P1$",
 		"placeholders": {
 			"P1": {
 				"content": "$1"
@@ -2742,10 +2761,10 @@
 		}
 	},
 	"eventEntryTitleMessage": {
-		"message": "Geboortedatum van %1$S"
+		"message": "Verjaardag van %1$S"
 	},
 	"anniversaryCategory": {
-		"message": "Cliënten"
+		"message": "Jubileum"
 	},
 	"calendarNotFoundTitle": {
 		"message": "Verjaardagsherinnering - synchronisatie met Lightning afgebroken"
@@ -3223,7 +3242,7 @@
 	"importfoundColumnsGroupboxLabel": {
 		"message": "Kopregel"
 	},
-	"importblankColumn": {
+	"importBlankColumn": {
 		"message": "Lege kolom"
 	},
 	"importNoTypeLabel": {
@@ -4100,7 +4119,7 @@
 		"message": "E-mail"
 	},
 	"birthdaylistTabLabel": {
-		"message": "Geboortedata"
+		"message": "Verjaardagen"
 	},
 	"helpTabLabel": {
 		"message": "Help"
@@ -4877,7 +4896,7 @@
 		"message": "V"
 	},
 	"birthdayListWarn": {
-		"message": "Let op: geboortedata worden uitsluitend in CardBook adresboeken gezocht."
+		"message": "Let op: gebeurtenissen worden uitsluitend in CardBook adresboeken gezocht."
 	},
 	"generalGroupboxLabel": {
 		"message": "Algemeen"
@@ -4892,13 +4911,13 @@
 		"message": "Zoeken naar:"
 	},
 	"bday.conf.label": {
-		"message": "Geboortedatum"
+		"message": "Verjaardag"
 	},
 	"bday.conf.accesskey": {
-		"message": "G"
+		"message": "B"
 	},
 	"anniversary.conf.label": {
-		"message": "Verjaardag (uitsluitend voor vCard 4.0)"
+		"message": "Jubileum (uitsluitend voor vCard 4.0)"
 	},
 	"anniversary.conf.accesskey": {
 		"message": "V"
@@ -5018,7 +5037,7 @@
 		"message": "Herinnering(en) tot x uren voor gebeurtenis (Voorbeeld: 4,+1):"
 	},
 	"calendarEntryAlarmTooltip": {
-		"message": "Stel het aantal uren in vóór de verjaardag waarop Lightning een herinnering moet geven. Indien leeg, dan wordt er geen herinnering gegeven. Als er meerdere alarmeringen gewenst zijn, dan kunnen ze worden gescheiden door komma's."
+		"message": "Stel het aantal uren in vóór de gebeurtenis waarop Lightning een herinnering moet geven. Indien leeg, dan wordt er geen herinnering gegeven. Als er meerdere alarmeringen gewenst zijn, dan kunnen ze worden gescheiden door komma's."
 	},
 	"calendarEntryAlarmAccesskey": {
 		"message": "H"
@@ -5186,10 +5205,10 @@
 		"message": "Tools"
 	},
 	"cardbookToolsMenuBirthdayListLabel": {
-		"message": "Bekijk geboortedata-lijst"
+		"message": "Bekijk verjaardagen lijst"
 	},
 	"cardbookToolsMenuSyncLightningLabel": {
-		"message": "Geboortedata toevoegen aan agenda"
+		"message": "Verjaardagen toevoegen aan agenda"
 	},
 	"cardbookToolsMenuFindAllDuplicatesLabel": {
 		"message": "Zoek overeenkomende contactpersonen in alle adresboeken"
@@ -5524,11 +5543,20 @@
 	"pasteEntryLabel": {
 		"message": "Overnemen entry"
 	},
+	"exportsMenu": {
+		"message": "Geëxporteerd"
+	},
+	"exportCardImagesLabel": {
+		"message": "Exporteren van afbeeldingen"
+	},
 	"exportCardToFileLabel": {
 		"message": "Exporteer naar een bestand"
 	},
 	"exportCardToDirLabel": {
 		"message": "Exporteer naar een map"
+	},
+	"importsMenu": {
+		"message": "Geïmporteerd"
 	},
 	"importCardFromFileLabel": {
 		"message": "Importeer contactpersoon van een bestand"

@@ -120,35 +120,37 @@ var cardbookIDBMailPop = {
 
 	// add or override the mail popularity to the cache
 	addMailPop: async function(aMailPop, aMode) {
-		if (aMailPop.count == "0") {
-			return
-		}
-		aMailPop.email = aMailPop.email.toLowerCase();
-		aMailPop.count = parseInt(aMailPop.count);
-		if (!aMailPop.mailPopId) {
-			aMailPop.mailPopId = cardbookIDBMailPop.getMailPopId();
-		}
-		var db = cardbookRepository.cardbookMailPopDatabase.db;
-		var storedMailPop = cardbookIndexedDB.encryptionEnabled ? (await cardbookEncryptor.encryptMailPop(aMailPop)) : aMailPop;
-		var transaction = db.transaction(["mailPop"], "readwrite");
-		var store = transaction.objectStore("mailPop");
-		var cursorRequest = store.put(storedMailPop);
-
-		cursorRequest.onsuccess = function(e) {
-			cardbookIDBMailPop.addMailPopToIndex(aMailPop);
-			if (cardbookIndexedDB.encryptionEnabled) {
-				cardbookRepository.cardbookLog.updateStatusProgressInformationWithDebug2("debug mode : Mail popularity " + aMailPop.email + " written to encrypted MailPopDB");
-			} else {
-				cardbookRepository.cardbookLog.updateStatusProgressInformationWithDebug2("debug mode : Mail popularity " + aMailPop.email + " written to MailPopDB");
+		try {
+			if (aMailPop.count == "0") {
+				return
 			}
-			if (aMode) {
-				cardbookActions.fetchCryptoActivity(aMode);
+			aMailPop.email = aMailPop.email.toLowerCase();
+			aMailPop.count = parseInt(aMailPop.count);
+			if (!aMailPop.mailPopId) {
+				aMailPop.mailPopId = cardbookIDBMailPop.getMailPopId();
 			}
-		};
+			var db = cardbookRepository.cardbookMailPopDatabase.db;
+			var storedMailPop = cardbookIndexedDB.encryptionEnabled ? (await cardbookEncryptor.encryptMailPop(aMailPop)) : aMailPop;
+			var transaction = db.transaction(["mailPop"], "readwrite");
+			var store = transaction.objectStore("mailPop");
+			var cursorRequest = store.put(storedMailPop);
 
-		cursorRequest.onerror = function(e) {
+			cursorRequest.onsuccess = function(e) {
+				cardbookIDBMailPop.addMailPopToIndex(aMailPop);
+				if (cardbookIndexedDB.encryptionEnabled) {
+					cardbookRepository.cardbookLog.updateStatusProgressInformationWithDebug2("debug mode : Mail popularity " + aMailPop.email + " written to encrypted MailPopDB");
+				} else {
+					cardbookRepository.cardbookLog.updateStatusProgressInformationWithDebug2("debug mode : Mail popularity " + aMailPop.email + " written to MailPopDB");
+				}
+				if (aMode) {
+					cardbookActions.fetchCryptoActivity(aMode);
+				}
+			};
+
+			cursorRequest.onerror = cardbookRepository.cardbookMailPopDatabase.onerror;
+		} catch(e) {
 			cardbookRepository.cardbookMailPopDatabase.onerror(e);
-		};
+		}
 	},
 
 	// delete the mail popularity
@@ -174,9 +176,7 @@ var cardbookIDBMailPop = {
 				cardbookRepository.cardbookLog.updateStatusProgressInformationWithDebug2("debug mode : Mail popularity " + aEmail + " deleted from MailPopDB");
 			}
 		};
-		cursorDelete.onerror = function(e) {
-			cardbookRepository.cardbookMailPopDatabase.onerror(e);
-		};
+		cursorDelete.onerror = cardbookRepository.cardbookMailPopDatabase.onerror;
 	},
 
 	// once the DB is open, this is the second step 
@@ -204,9 +204,7 @@ var cardbookIDBMailPop = {
 			}
 		};
 
-		cursorRequest.onerror = function(e) {
-			cardbookRepository.cardbookMailPopDatabase.onerror(e);
-		};
+		cursorRequest.onerror = cardbookRepository.cardbookMailPopDatabase.onerror;
 	},
 
 	getMailPopId: function() {

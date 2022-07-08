@@ -348,7 +348,9 @@ if ("undefined" == typeof(wdw_mergeCards)) {
 					let dirname = cardbookRepository.cardbookPreferences.getName(card.dirPrefId);
 					await cardbookIDBImage.getImage(aField, dirname, card.cbid, card.fn)
 						.then( image => {
-							result = true;
+							if (image && image.content && image.extension) {
+								result = true;
+							}
 						})
 						.catch( () => { } );
 				}
@@ -381,9 +383,14 @@ if ("undefined" == typeof(wdw_mergeCards)) {
 						} else {
 							await cardbookIDBImage.getImage(i, dirname, listOfCards[j].cbid, listOfCards[j].fn)
 							.then( image => {
-								wdw_mergeCards.createCheckBox1(aRow, i + 'Checkbox' + j, selected);
-								wdw_mergeCards.createImageBox(aRow, i + 'Textbox' + j, image.content, image.extension, selected, false);
-								selected = false;
+								if (image && image.content && image.extension) {
+									wdw_mergeCards.createCheckBox1(aRow, i + 'Checkbox' + j, selected);
+									wdw_mergeCards.createImageBox(aRow, i + 'Textbox' + j, image.content, image.extension, selected, false);
+									selected = false;
+								} else {
+									wdw_mergeCards.createHbox(aRow, true);
+									wdw_mergeCards.createHbox(aRow, true);
+								}
 							}).catch( () => {
 								wdw_mergeCards.createHbox(aRow, true);
 								wdw_mergeCards.createHbox(aRow, true);

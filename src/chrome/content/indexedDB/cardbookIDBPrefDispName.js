@@ -88,31 +88,33 @@ var cardbookIDBPrefDispName = {
 
 	// add or override the prefer display name to the cache
 	addPrefDispName: async function(aPrefDispName, aMode) {
-		aPrefDispName.email = aPrefDispName.email.toLowerCase();
-		if (!aPrefDispName.mailPopId) {
-			aPrefDispName.prefDispNameId = cardbookIDBPrefDispName.getPrefDispNameId();
-		}
-		var db = cardbookRepository.cardbookPrefDispNameDatabase.db;
-		var storedPrefDispName = cardbookIndexedDB.encryptionEnabled ? (await cardbookEncryptor.encryptPrefDispName(aPrefDispName)) : aPrefDispName;
-		var transaction = db.transaction(["prefDispName"], "readwrite");
-		var store = transaction.objectStore("prefDispName");
-		var cursorRequest = store.put(storedPrefDispName);
-
-		cursorRequest.onsuccess = function(e) {
-			cardbookIDBPrefDispName.addPrefDispNameToIndex(aPrefDispName);
-			if (cardbookIndexedDB.encryptionEnabled) {
-				cardbookRepository.cardbookLog.updateStatusProgressInformationWithDebug2("debug mode : Prefer display name " + aPrefDispName + " written to encrypted PrefDispNameDB");
-			} else {
-				cardbookRepository.cardbookLog.updateStatusProgressInformationWithDebug2("debug mode : Prefer display name " + aPrefDispName + " written to PrefDispNameDB");
+		try {
+			aPrefDispName.email = aPrefDispName.email.toLowerCase();
+			if (!aPrefDispName.mailPopId) {
+				aPrefDispName.prefDispNameId = cardbookIDBPrefDispName.getPrefDispNameId();
 			}
-			if (aMode) {
-				cardbookActions.fetchCryptoActivity(aMode);
-			}
-		};
+			var db = cardbookRepository.cardbookPrefDispNameDatabase.db;
+			var storedPrefDispName = cardbookIndexedDB.encryptionEnabled ? (await cardbookEncryptor.encryptPrefDispName(aPrefDispName)) : aPrefDispName;
+			var transaction = db.transaction(["prefDispName"], "readwrite");
+			var store = transaction.objectStore("prefDispName");
+			var cursorRequest = store.put(storedPrefDispName);
 
-		cursorRequest.onerror = function(e) {
+			cursorRequest.onsuccess = function(e) {
+				cardbookIDBPrefDispName.addPrefDispNameToIndex(aPrefDispName);
+				if (cardbookIndexedDB.encryptionEnabled) {
+					cardbookRepository.cardbookLog.updateStatusProgressInformationWithDebug2("debug mode : Prefer display name " + aPrefDispName + " written to encrypted PrefDispNameDB");
+				} else {
+					cardbookRepository.cardbookLog.updateStatusProgressInformationWithDebug2("debug mode : Prefer display name " + aPrefDispName + " written to PrefDispNameDB");
+				}
+				if (aMode) {
+					cardbookActions.fetchCryptoActivity(aMode);
+				}
+			};
+
+			cursorRequest.onerror = cardbookRepository.cardbookPrefDispNameDatabase.onerror;
+		} catch(e) {
 			cardbookRepository.cardbookPrefDispNameDatabase.onerror(e);
-		};
+		}
 	},
 
 	// delete the prefer display name
@@ -142,9 +144,7 @@ var cardbookIDBPrefDispName = {
 				cardbookRepository.cardbookLog.updateStatusProgressInformationWithDebug2("debug mode : Prefer display name " + aEmail + " deleted from PrefDispNameDB");
 			}
 		};
-		cursorDelete.onerror = function(e) {
-			cardbookRepository.cardbookPrefDispNameDatabase.onerror(e);
-		};
+		cursorDelete.onerror = cardbookRepository.cardbookPrefDispNameDatabase.onerror;
 	},
 
 	// once the DB is open, this is the second step 
@@ -176,9 +176,7 @@ var cardbookIDBPrefDispName = {
 			}
 		};
 
-		cursorRequest.onerror = function(e) {
-			cardbookRepository.cardbookPrefDispNameDatabase.onerror(e);
-		};
+		cursorRequest.onerror = cardbookRepository.cardbookPrefDispNameDatabase.onerror;
 	},
 
 	getPrefDispNameId: function() {

@@ -2047,6 +2047,14 @@
             }
         }
 	},
+	"cardsImagesExportedUndo": {
+		"message": "Imagens exportadas para a diretoria $P1$",
+        "placeholders": {
+            "P1": {
+                "content": "$1"
+            }
+        }
+	},
 	"undoActionDoneUndo": {
 		"message": "Desfazer feito ($P1$)",
         "placeholders": {
@@ -2262,6 +2270,17 @@
 	},
 	"cardsFormattedUndo": {
 		"message": "$P1$ : Contactos formatados ($P2$)",
+        "placeholders": {
+            "P1": {
+                "content": "$1"
+            },
+            "P2": {
+                "content": "$2"
+            }
+        }
+	},
+	"exportImagesToDirMessagePF": {
+		"message": "$P1$ imagem exportada para a diretoria $P2$;$P1$ imagens exportadas para a diretoria $P2$",
         "placeholders": {
             "P1": {
                 "content": "$1"
@@ -3223,7 +3242,7 @@
 	"importfoundColumnsGroupboxLabel": {
 		"message": "Cabeçalho da Coluna"
 	},
-	"importblankColumn": {
+	"importBlankColumn": {
 		"message": "Coluna vazia"
 	},
 	"importNoTypeLabel": {
@@ -3404,10 +3423,10 @@
 		"message": "Desativar a geração do nome mostrado"
 	},
 	"autoConvertField": {
-		"message": "Ativar a conversão neste campo"
+		"message": "Ativar a conversão deste campo"
 	},
 	"dontAutoConvertField": {
-		"message": "Desativar a conversão neste campo"
+		"message": "Desativar a conversão deste campo"
 	},
 	"customLabel": {
 		"message": "Personalizado"
@@ -5524,11 +5543,20 @@
 	"pasteEntryLabel": {
 		"message": "Colar Entrada"
 	},
+	"exportsMenu": {
+		"message": "Exporta"
+	},
+	"exportCardImagesLabel": {
+		"message": "Exportar imagens"
+	},
 	"exportCardToFileLabel": {
 		"message": "Exportar para Ficheiro"
 	},
 	"exportCardToDirLabel": {
 		"message": "Exportar para Diretoria"
+	},
+	"importsMenu": {
+		"message": "Importa"
 	},
 	"importCardFromFileLabel": {
 		"message": "Importar Contactos de um Ficheiro"

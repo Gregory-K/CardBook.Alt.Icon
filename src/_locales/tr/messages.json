@@ -2047,6 +2047,14 @@
 			}
 		}
 	},
+	"cardsImagesExportedUndo": {
+		"message": "Resimler şu klasöre aktarıldı $P1$",
+        "placeholders": {
+            "P1": {
+                "content": "$1"
+            }
+        }
+	},
 	"undoActionDoneUndo": {
 		"message": "Geri alma tamamlandı ($P1$)",
 		"placeholders": {
@@ -2270,6 +2278,17 @@
 				"content": "$2"
 			}
 		}
+	},
+	"exportImagesToDirMessagePF": {
+		"message": "$P1$ resim şu klasöre çıkarıldı $P2$;$P1$ resimler şu klasöre çıkarıldı $P2$",
+        "placeholders": {
+            "P1": {
+                "content": "$1"
+            },
+            "P2": {
+                "content": "$2"
+            }
+        }
 	},
 	"exportCardToDirMessagePF": {
 		"message": "$P1$ kişi şu klasöre çıkarıldı $P2$;$P1$ kişi şu klasöre çıkarıldı $P2$",
@@ -3223,7 +3242,7 @@
 	"importfoundColumnsGroupboxLabel": {
 		"message": "Başlık Sütunu"
 	},
-	"importblankColumn": {
+	"importBlankColumn": {
 		"message": "Boş Sütun"
 	},
 	"importNoTypeLabel": {
@@ -3404,10 +3423,10 @@
 		"message": "Görünen ismi üretmeyi kapat"
 	},
 	"autoConvertField": {
-		"message": "??Enable the convertion of this field??"
+		"message": "Bu alanın dönüştürülmesini aç"
 	},
 	"dontAutoConvertField": {
-		"message": "??Disable the convertion of this field??"
+		"message": "Bu alanın dönüştürülmesini kapat"
 	},
 	"customLabel": {
 		"message": "Özel"
@@ -5524,11 +5543,20 @@
 	"pasteEntryLabel": {
 		"message": "Girişi Yapıştır"
 	},
+	"exportsMenu": {
+		"message": "Dışa Aktarmalar"
+	},
+	"exportCardImagesLabel": {
+		"message": "Resimleri dışa aktar"
+	},
 	"exportCardToFileLabel": {
 		"message": "Dışa Aktar: Dosyaya"
 	},
 	"exportCardToDirLabel": {
 		"message": "Dışa Aktar: Klasöre"
+	},
+	"importsMenu": {
+		"message": "İçe Aktarmalar"
 	},
 	"importCardFromFileLabel": {
 		"message": "Kişileri Dosyadan İçe Aktar"
@@ -5985,21 +6013,21 @@
 		"message": "Seçildi"
 	},
 	"conversionWarn": {
-		"message": "??It is possible to force the convertion of some fields while providing them.??"
+		"message": "Bazı bilgileri temin ederken onları dönüştürmeye zorlamak mümkündür."
 	},
 	"convertToLabel": {
 		"message": "Dönüştür"
 	},
 	"wdw_cardbookConfigurationEditFieldTitle": {
-		"message": "??Choose a convertion function??"
+		"message": "Dönüştürme fonksiyonunu seç"
 	},
 	"uppercaseLabel": {
-		"message": "??Uppercase??"
+		"message": "Büyük harf"
 	},
 	"lowercaseLabel": {
-		"message": "??Lowercase??"
+		"message": "Küçük harf"
 	},
 	"capitalizationLabel": {
-		"message": "??Capitalization??"
+		"message": "Büyük/Küçük Harf"
 	}
 }

@@ -2047,6 +2047,14 @@
             }
         }
 	},
+	"cardsImagesExportedUndo": {
+		"message": "??Images exported to directory $P1$??",
+        "placeholders": {
+            "P1": {
+                "content": "$1"
+            }
+        }
+	},
 	"undoActionDoneUndo": {
 		"message": "Cofnij wykonane ($P1$)",
         "placeholders": {
@@ -2262,6 +2270,17 @@
 	},
 	"cardsFormattedUndo": {
 		"message": "??$P1$ : Contacts formatted ($P2$)??",
+        "placeholders": {
+            "P1": {
+                "content": "$1"
+            },
+            "P2": {
+                "content": "$2"
+            }
+        }
+	},
+	"exportImagesToDirMessagePF": {
+		"message": "??$P1$ image exported into the directory $P2$;$P1$ images exported into the directory $P2$??",
         "placeholders": {
             "P1": {
                 "content": "$1"
@@ -3223,7 +3242,7 @@
 	"importfoundColumnsGroupboxLabel": {
 		"message": "Kolumna nagłówków"
 	},
-	"importblankColumn": {
+	"importBlankColumn": {
 		"message": "Pusta kolumna"
 	},
 	"importNoTypeLabel": {
@@ -3404,10 +3423,10 @@
 		"message": "Wyłącz generowanie wyświetlanej nazwy"
 	},
 	"autoConvertField": {
-		"message": "??Enable the convertion of this field??"
+		"message": "??Enable the conversion of this field??"
 	},
 	"dontAutoConvertField": {
-		"message": "??Disable the convertion of this field??"
+		"message": "??Disable the conversion of this field??"
 	},
 	"customLabel": {
 		"message": "Informacja"
@@ -5524,11 +5543,20 @@
 	"pasteEntryLabel": {
 		"message": "Wklej pozycję"
 	},
+	"exportsMenu": {
+		"message": "??Exports??"
+	},
+	"exportCardImagesLabel": {
+		"message": "??Export images??"
+	},
 	"exportCardToFileLabel": {
 		"message": "Eksportuj do pliku"
 	},
 	"exportCardToDirLabel": {
 		"message": "Eksportuj do katalogu"
+	},
+	"importsMenu": {
+		"message": "??Imports??"
 	},
 	"importCardFromFileLabel": {
 		"message": "Importuj wizytówkę z pliku"
@@ -5991,7 +6019,7 @@
 		"message": "Zamień na"
 	},
 	"wdw_cardbookConfigurationEditFieldTitle": {
-		"message": "??Choose a convertion function??"
+		"message": "??Choose a conversion function??"
 	},
 	"uppercaseLabel": {
 		"message": "??Uppercase??"

@@ -1514,6 +1514,7 @@ if ("undefined" == typeof(wdw_cardEdition)) {
 						if (customValue) {
 							othersTemp1.push(cardbookRepository.customFields[i][j][0] + ":" + customValue);
 						}
+
 					}
 				}
 			}
@@ -1679,9 +1680,9 @@ if ("undefined" == typeof(wdw_cardEdition)) {
 				// no change, no save
 				if (window.arguments[0].editionMode != "ViewResult" && window.arguments[0].editionMode != "ViewResultHideCreate") {
 					cardbookRepository.cardbookUtils.sortArrayByString(window.arguments[0].cardIn.categories,1)
-					var cardin = await cardbookRepository.cardbookUtils.cardToVcardData(window.arguments[0].cardIn, true);
+					var cardin = await cardbookRepository.cardbookUtils.cardToVcardData(window.arguments[0].cardIn);
 					cardbookRepository.cardbookUtils.sortArrayByString(myOutCard.categories,1)
-					var cardout = await cardbookRepository.cardbookUtils.cardToVcardData(myOutCard, true);
+					var cardout = await cardbookRepository.cardbookUtils.cardToVcardData(myOutCard, false);
 					if (cardin == cardout && window.arguments[0].cardIn.dirPrefId == myOutCard.dirPrefId) {
 						if (aClose) {
 							wdw_cardEdition.cancel();

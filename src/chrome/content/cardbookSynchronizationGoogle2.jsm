@@ -1299,7 +1299,7 @@ var cardbookSynchronizationGoogle2 = {
 	},
 
 	parseCardToGoogleContact: async function (aCard) {
-		console.debug(aCard);
+		// console.debug(aCard);
 		let dateFormat = cardbookRepository.getDateFormat(aCard.dirPrefId, aCard.version);
 		let GoogleContact = {};
 		// no need for created contacts
@@ -1540,12 +1540,12 @@ var cardbookSynchronizationGoogle2 = {
 				GoogleContact.imClients.push(imClient);
 			}
 		}
-		console.debug(GoogleContact);
+		// console.debug(GoogleContact);
 		return GoogleContact;
 	},
 
 	parseGoogleContactToCard: function (aGoogleContact, aDirPrefId) {
-		console.debug(aGoogleContact);
+		// console.debug(aGoogleContact);
 		let tmpArray = aGoogleContact.resourceName.split("/");
 		let uid = tmpArray[tmpArray.length - 1];
 		let ABType = cardbookRepository.cardbookPreferences.getType(aDirPrefId);
@@ -1648,7 +1648,7 @@ var cardbookSynchronizationGoogle2 = {
 			for (let photo of aGoogleContact.photos) {
 				if (!photo.url.includes("___________")) {
 					let value = photo.url;
-					let extension = cardbookRepository.cardbookUtils.getFileNameExtension(value);
+					let extension = cardbookRepository.cardbookUtils.getFileExtension(value);
 					aCard.photo = {types: [], value: "", URI: value, extension: extension, attachmentId: ""};
 					break;
 				}
@@ -1815,7 +1815,7 @@ var cardbookSynchronizationGoogle2 = {
 				[aCard.org, aCard.title, aCard.role]);
 		}
 		cardbookRepository.cardbookUtils.setCalculatedFields(aCard);
-		console.debug(aCard);
+		// console.debug(aCard);
 		return aCard;
 	},
 

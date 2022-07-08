@@ -179,6 +179,7 @@ if ("undefined" == typeof(cardbookActions)) {
 						break;
 					case "cardsExportedToFile":
 					case "cardsExportedToDir":
+					case "cardsImagesExported":
 					case "cardsPasted":
 					case "cardsDragged":
 					case "linePasted":
@@ -219,6 +220,7 @@ if ("undefined" == typeof(cardbookActions)) {
 					case "cardsImportedFromDir":
 					case "cardsExportedToFile":
 					case "cardsExportedToDir":
+					case "cardsImagesExported":
 					case "undoActionDone":
 					case "redoActionDone":
 					case "cardCreated":
@@ -278,6 +280,9 @@ if ("undefined" == typeof(cardbookActions)) {
 					case "cardsExportedToFile":
 						cardbookRepository.cardbookSynchronization.finishExportToFile(aFinishParams.window, aFinishParams.length, aFinishParams.name);
 						break;
+					case "cardsImagesExported":
+						cardbookRepository.cardbookSynchronization.finishExportImages(aFinishParams.window, cardbookRepository.currentAction[aActionId].totalCards, aFinishParams.name);
+						break;
 				}
 			}
 		},
@@ -304,12 +309,12 @@ if ("undefined" == typeof(cardbookActions)) {
 				if (myAction.files.length > 0) {
 					cardbookActions.addActivityFromUndo(aActionId);
 					if (myAction.actionCode != "undoActionDone" && myAction.actionCode != "redoActionDone"  && myAction.actionCode != "syncMyPhoneExplorer"
-						&& myAction.actionCode != "cardsExportedToFile" && myAction.actionCode != "cardsExportedToDir"
+						&& myAction.actionCode != "cardsExportedToFile" && myAction.actionCode != "cardsExportedToDir" && myAction.actionCode != "cardsImagesExported"
 						&& myAction.doneCards != 0) {
 						await cardbookActions.addUndoCardsAction(myAction.actionCode, myAction.message, myAction.oldCards, myAction.newCards, myAction.oldCats, myAction.newCats);
 					}
 					if (myAction.refresh != "") {
-						cardbookRepository.cardbookUtils.notifyObservers(myAction.actionCode, "force::" + myAction.refresh);
+						cardbookRepository.cardbookUtils.notifyObservers(myAction.actionCode, "forceAccount::" + myAction.refresh);
 					} else {
 						cardbookRepository.cardbookUtils.notifyObservers(myAction.actionCode);
 					}
@@ -318,10 +323,11 @@ if ("undefined" == typeof(cardbookActions)) {
 						cardbookRepository.cardbookSynchronization.syncAccounts(myAction.files);
 					}
 				} else if (aForceRefresh == true) {
-					cardbookRepository.cardbookUtils.notifyObservers(myAction.actionCode, "force::" + myAction.refresh);
+					cardbookRepository.cardbookUtils.notifyObservers(myAction.actionCode, "forceAccount::" + myAction.refresh);
 				}
+				cardbookRepository.currentAction[aActionId] = null;
+				cardbookActions.setUndoAndRedoMenuAndButton();
 			}
 		}
-
 	};
 };

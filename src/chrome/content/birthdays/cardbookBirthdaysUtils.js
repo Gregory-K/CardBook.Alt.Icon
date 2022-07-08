@@ -108,7 +108,7 @@ if ("undefined" == typeof(cardbookBirthdaysUtils)) {
 				var lBirthdayName = cardbookBirthdaysUtils.lBirthdayList[i][7];
 
 				var lBirthdayDate = new Date();
-				lBirthdayDate.setDate(date_of_today.getUTCDate()+parseInt(ldaysUntilNextBirthday));
+				lBirthdayDate.setDate(date_of_today.getDate()+parseInt(ldaysUntilNextBirthday));
 
 				// generate Date as Ical compatible text string
 				var lYear = lBirthdayDate.getUTCFullYear();
@@ -291,7 +291,7 @@ if ("undefined" == typeof(cardbookBirthdaysUtils)) {
 			var lDateOfBirth = cardbookRepository.cardbookDates.convertDateStringToDateUTC(aDateOfBirth, aDateFormat);
 
 			var leventEntryTitle = cardbookRepository.cardbookPreferences.getStringPref("extensions.cardbook.eventEntryTitle");
-			endDate.setUTCDate(date_of_today.getUTCDate()+parseInt(aNumberOfDays));
+			endDate.setUTCDate(date_of_today.getDate()+parseInt(aNumberOfDays));
 			while (dateRef < endDate) {
 				lnextBirthday = this.calcDateOfNextBirthday(dateRef,lDateOfBirth);
 				ldaysUntilNextBirthday = this.daysBetween(lnextBirthday, date_of_today);

@@ -2047,6 +2047,14 @@
 			}
 		}
 	},
+	"cardsImagesExportedUndo": {
+		"message": "디렉토리 $P1$ 로 이미지를 내보냈습니다",
+        "placeholders": {
+            "P1": {
+                "content": "$1"
+            }
+        }
+	},
 	"undoActionDoneUndo": {
 		"message": "실행 취소 완료 ($P1$)",
 		"placeholders": {
@@ -2270,6 +2278,17 @@
 				"content": "$2"
 			}
 		}
+	},
+	"exportImagesToDirMessagePF": {
+		"message": "디렉토리 $P2$ 로 $P1$개의 이미지를 내보냈습니다",
+        "placeholders": {
+            "P1": {
+                "content": "$1"
+            },
+            "P2": {
+                "content": "$2"
+            }
+        }
 	},
 	"exportCardToDirMessagePF": {
 		"message": "$P1$개의 연락처를 디렉토리 $P2$ 로 내보냈습니다",
@@ -3223,7 +3242,7 @@
 	"importfoundColumnsGroupboxLabel": {
 		"message": "헤더 열"
 	},
-	"importblankColumn": {
+	"importBlankColumn": {
 		"message": "빈 열"
 	},
 	"importNoTypeLabel": {
@@ -5524,11 +5543,20 @@
 	"pasteEntryLabel": {
 		"message": "항목 붙여넣기"
 	},
+	"exportsMenu": {
+		"message": "내보내기"
+	},
+	"exportCardImagesLabel": {
+		"message": "이미지 내보내기"
+	},
 	"exportCardToFileLabel": {
 		"message": "파일로 내보내기"
 	},
 	"exportCardToDirLabel": {
 		"message": "디렉토리로 내보내기"
+	},
+	"importsMenu": {
+		"message": "가져오기"
 	},
 	"importCardFromFileLabel": {
 		"message": "파일에서 연락처 가져 오기"

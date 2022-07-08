@@ -1,3 +1,12 @@
+var { cardbookRepository } = ChromeUtils.import("chrome://cardbook/content/cardbookRepository.js");
+cardbookRepository.cardbookCatDatabase.db.close();
+cardbookRepository.cardbookDatabase.db.close();
+cardbookRepository.cardbookActionsDatabase.db.close();
+cardbookRepository.cardbookMailPopDatabase.db.close();
+cardbookRepository.cardbookPrefDispNameDatabase.db.close();
+cardbookRepository.cardbookSearchDatabase.db.close();
+cardbookRepository.cardbookImageDatabase.db.close();
+
 let JSMs = [
 	"chrome://cardbook/content/addressbooksconfiguration/wdw_addressbooksAdd.js",
 	"chrome://cardbook/content/addressbooksconfiguration/wdw_addressbooksEdit.js",

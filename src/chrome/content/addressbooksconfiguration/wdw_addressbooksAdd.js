@@ -78,9 +78,9 @@ if ("undefined" == typeof(wdw_addressbooksAdd)) {
 		loadStandardAddressBooks: function () {
 			for (let addrbook of MailServices.ab.directories) {
 				if (addrbook.dirPrefId == "ldap_2.servers.history") {
-					wdw_addressbooksAdd.gAccountsFound.push(["STANDARD", "", "", addrbook.dirName, cardbookRepository.supportedVersion, "", addrbook.dirPrefId, true]);
+					wdw_addressbooksAdd.gAccountsFound.push(["STANDARD", "", "", addrbook.dirName, cardbookRepository.supportedVersion, "", addrbook.dirPrefId, true, false]);
 				} else {
-					wdw_addressbooksAdd.gAccountsFound.push(["STANDARD", "", "", addrbook.dirName, cardbookRepository.supportedVersion, "", addrbook.dirPrefId, false]);
+					wdw_addressbooksAdd.gAccountsFound.push(["STANDARD", "", "", addrbook.dirName, cardbookRepository.supportedVersion, "", addrbook.dirPrefId, false, false]);
 				}
 			}
 		},
@@ -302,6 +302,7 @@ if ("undefined" == typeof(wdw_addressbooksAdd)) {
 																cardbookRepository.supportedVersion,
 																"",
 																"",
+																false,
 																false]);
 					break;
 				case "createDirectory":
@@ -312,6 +313,7 @@ if ("undefined" == typeof(wdw_addressbooksAdd)) {
 																cardbookRepository.supportedVersion,
 																"CREATEDIRECTORY",
 																"",
+																false,
 																false]);
 					break;
 				case "createFile":
@@ -322,6 +324,7 @@ if ("undefined" == typeof(wdw_addressbooksAdd)) {
 																cardbookRepository.supportedVersion,
 																"CREATEFILE",
 																"",
+																false,
 																false]);
 					break;
 				case "openDirectory":
@@ -332,6 +335,7 @@ if ("undefined" == typeof(wdw_addressbooksAdd)) {
 																cardbookRepository.supportedVersion,
 																"OPENDIRECTORY",
 																"",
+																false,
 																false]);
 					break;
 				case "openFile":
@@ -342,6 +346,7 @@ if ("undefined" == typeof(wdw_addressbooksAdd)) {
 																cardbookRepository.supportedVersion,
 																"OPENFILE",
 																"",
+																false,
 																false]);
 					break;
 			}
@@ -774,6 +779,7 @@ if ("undefined" == typeof(wdw_addressbooksAdd)) {
 								cardbookRepository.cardbookOAuthData[aType].VCARD_VERSIONS,
 								"",
 								"",
+								false,
 								false]);
 							wdw_addressbooksAdd.setResultsFlags(2, aValidationButton, aNotification);
 							wdw_addressbooksAdd.gValidateURL = true;
@@ -814,7 +820,7 @@ if ("undefined" == typeof(wdw_addressbooksAdd)) {
 			wdw_addressbooksAdd.checkRequired();
 		},
 
-		createBoxesForNames: function (aType, aURL, aName, aVersionList, aUsername, aActionType, aSourceDirPrefId, aSourceCollected) {
+		createBoxesForNames: function (aType, aURL, aName, aVersionList, aUsername, aActionType, aSourceDirPrefId, aSourceCollected, aReadOnly) {
 			let table = document.getElementById('namesTable');
 			let aId = table.rows.length - 1;
 			let aRow = cardbookElementTools.addHTMLTR(table, 'namesRow' + aId);
@@ -829,6 +835,7 @@ if ("undefined" == typeof(wdw_addressbooksAdd)) {
 			checkbox.setAttribute('actionType', aActionType);
 			checkbox.setAttribute('sourceDirPrefId', aSourceDirPrefId);
 			checkbox.setAttribute('sourceCollected', aSourceCollected.toString());
+			checkbox.setAttribute('readOnly', aReadOnly.toString());
 			checkbox.setAttribute("aria-labelledby", "namesPageSelectedLabel");
 			checkbox.addEventListener("command", function() {
 					let textbox = document.getElementById('namesTextbox' + this.id.replace("namesCheckbox",""));
@@ -903,7 +910,8 @@ if ("undefined" == typeof(wdw_addressbooksAdd)) {
 			}
 			for (let myAccountFound of wdw_addressbooksAdd.gAccountsFound) {
 				wdw_addressbooksAdd.createBoxesForNames(myAccountFound[0], myAccountFound[1], myAccountFound[3],
-													myAccountFound[4], myAccountFound[2], myAccountFound[5], myAccountFound[6], myAccountFound[7]);
+													myAccountFound[4], myAccountFound[2], myAccountFound[5], myAccountFound[6],
+													myAccountFound[7], myAccountFound[8]);
 			}
 			wdw_addressbooksAdd.checkNamesLinesRequired();
 		},
@@ -1160,6 +1168,7 @@ if ("undefined" == typeof(wdw_addressbooksAdd)) {
 						var aAddressbookActionType = aCheckbox.getAttribute('actionType');
 						var aAddressbookSourceDirPrefId = aCheckbox.getAttribute('sourceDirPrefId');
 						var aAddressbookSourceCollected = (aCheckbox.getAttribute('sourceCollected') == 'true');
+						var aAddressbookReadOnly = (aCheckbox.getAttribute('readOnly') == 'true');
 	
 						if (cardbookRepository.cardbookUtils.isMyAccountRemote(myType)) {
 							// the discover should be redone at every sync
@@ -1167,19 +1176,18 @@ if ("undefined" == typeof(wdw_addressbooksAdd)) {
 								let connection = cardbookRepository.supportedConnections.filter(connection => connection.id == myType);
 								aAddressbookURL = connection[0].url;
 							}
-							let aReadonly = false;
 							if (myType == 'GOOGLE3' || aAddressbookUsername == "") {
-								aReadonly = true;
+								aAddressbookReadOnly = true;
 							}
 							wdw_addressbooksAdd.gFinishParams.push({type: aAddressbookValidationType, url: aAddressbookURL, name: aAddressbookName, username: aAddressbookUsername, color: aAddressbookColor,
-																	vcard: aAddressbookVCard, readonly: aReadonly, dirPrefId: aAddressbookId, sourceDirPrefId: aAddressbookSourceDirPrefId,
+																	vcard: aAddressbookVCard, readonly: aAddressbookReadOnly, dirPrefId: aAddressbookId, sourceDirPrefId: aAddressbookSourceDirPrefId,
 																	DBcached: aAddressbookDBCached, firstAction: false});
 						} else if (myType == "LOCALDB") {
-							wdw_addressbooksAdd.gFinishParams.push({type: aAddressbookValidationType, name: aAddressbookName, username: "", color: aAddressbookColor, vcard: aAddressbookVCard, readonly: false, dirPrefId: aAddressbookId,
+							wdw_addressbooksAdd.gFinishParams.push({type: aAddressbookValidationType, name: aAddressbookName, username: "", color: aAddressbookColor, vcard: aAddressbookVCard, readonly: aAddressbookReadOnly, dirPrefId: aAddressbookId,
 																		DBcached: true, firstAction: false});
 						} else if (myType == "FILE" || myType == "DIRECTORY") {
 							wdw_addressbooksAdd.gFinishParams.push({type: aAddressbookValidationType, actionType: aAddressbookActionType, file: wdw_addressbooksAdd.gFile, name: aAddressbookName, username: "",
-																	color: aAddressbookColor, vcard: aAddressbookVCard, readonly: false, dirPrefId: aAddressbookId, DBcached: false, firstAction: false});
+																	color: aAddressbookColor, vcard: aAddressbookVCard, readonly: aAddressbookReadOnly, dirPrefId: aAddressbookId, DBcached: false, firstAction: false});
 						} else if (myType == "STANDARD") {
 							if (window.arguments[0].action == "first") {
 								var aFirstAction = true;
@@ -1187,7 +1195,7 @@ if ("undefined" == typeof(wdw_addressbooksAdd)) {
 								var aFirstAction = false;
 							}
 							wdw_addressbooksAdd.gFinishParams.push({type: "STANDARD", sourceDirPrefId: aAddressbookSourceDirPrefId,
-																name: aAddressbookName, username: "", color: aAddressbookColor, vcard: aAddressbookVCard, readonly: false,
+																name: aAddressbookName, username: "", color: aAddressbookColor, vcard: aAddressbookVCard, readonly: aAddressbookReadOnly,
 																dirPrefId: aAddressbookId, collected: aAddressbookSourceCollected,
 																DBcached: true, firstAction: aFirstAction});
 						}

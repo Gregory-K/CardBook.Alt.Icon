@@ -849,7 +849,6 @@ if ("undefined" == typeof(cardbookWindowUtils)) {
 					} else {
 						if (field == "impp") {
 							cardbookRepository.cardbookTypes.loadIMPPs(aCard[field]);
-							cardbookRepository.cardbookUtils.sortMultipleArrayByString(aCard[field],1,1);
 						}
 						cardbookWindowUtils.constructDynamicRows(field, aCard[field], aCard.version);
 					}

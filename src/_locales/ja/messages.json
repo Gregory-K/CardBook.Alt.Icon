@@ -2047,6 +2047,14 @@
             }
         }
 	},
+	"cardsImagesExportedUndo": {
+		"message": "??Images exported to directory $P1$??",
+        "placeholders": {
+            "P1": {
+                "content": "$1"
+            }
+        }
+	},
 	"undoActionDoneUndo": {
 		"message": "取り消しを完了しました（$P1$）",
         "placeholders": {
@@ -2262,6 +2270,17 @@
 	},
 	"cardsFormattedUndo": {
 		"message": "$P1$ : フォーマットした連絡先 ($P2$)",
+        "placeholders": {
+            "P1": {
+                "content": "$1"
+            },
+            "P2": {
+                "content": "$2"
+            }
+        }
+	},
+	"exportImagesToDirMessagePF": {
+		"message": "??$P1$ image exported into the directory $P2$;$P1$ images exported into the directory $P2$??",
         "placeholders": {
             "P1": {
                 "content": "$1"
@@ -3223,7 +3242,7 @@
 	"importfoundColumnsGroupboxLabel": {
 		"message": "ヘッダー列"
 	},
-	"importblankColumn": {
+	"importBlankColumn": {
 		"message": "空の列"
 	},
 	"importNoTypeLabel": {
@@ -5524,11 +5543,20 @@
 	"pasteEntryLabel": {
 		"message": "項目を貼り付け"
 	},
+	"exportsMenu": {
+		"message": "??Exports??"
+	},
+	"exportCardImagesLabel": {
+		"message": "??Export images??"
+	},
 	"exportCardToFileLabel": {
 		"message": "ファイルにエクスポート"
 	},
 	"exportCardToDirLabel": {
 		"message": "ディレクトリにエクスポート"
+	},
+	"importsMenu": {
+		"message": "??Imports??"
 	},
 	"importCardFromFileLabel": {
 		"message": "ファイルから連絡先をインポート"
@@ -5991,7 +6019,7 @@
 		"message": "変換"
 	},
 	"wdw_cardbookConfigurationEditFieldTitle": {
-		"message": "??Choose a convertion function??"
+		"message": "??Choose a conversion function??"
 	},
 	"uppercaseLabel": {
 		"message": "??Uppercase??"

@@ -465,7 +465,9 @@ if ("undefined" == typeof(cardbookWebDAV)) {
 				}
 			}
 			if (this.target && this.target.onDAVQueryComplete) {
-				this.target.onDAVQueryComplete(status, response, this.askCertificate, aChannel.getResponseHeader("ETag"), this.reportLength);
+				let etag = aChannel.getResponseHeader("ETag");
+				let contentType = aChannel.getResponseHeader("content-type");
+				this.target.onDAVQueryComplete(status, response, this.askCertificate, etag, this.reportLength, contentType);
 			}
 		},
 
@@ -476,7 +478,10 @@ if ("undefined" == typeof(cardbookWebDAV)) {
 					headers.accept = parameters.accept;
 				}
 				this.sendHTTPRequest(operation, null, headers);
-			} else if (operation == "GETIMAGE" || operation == "GETKEY") {
+			} else if (operation == "GETIMAGE") {
+				let headers = {"responsetype" : "arraybuffer"};
+				this.sendHTTPRequest("GET", null, headers, null, null, true);
+			} else if (operation == "GETKEY") {
 				let headers = {};
 				this.sendHTTPRequest("GET", null, headers, null, null, true);
 			} else if (operation == "GETCONTACTS") {

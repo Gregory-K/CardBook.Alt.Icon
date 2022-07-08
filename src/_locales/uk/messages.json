@@ -2047,6 +2047,14 @@
             }
         }
 	},
+	"cardsImagesExportedUndo": {
+		"message": "??Images exported to directory $P1$??",
+        "placeholders": {
+            "P1": {
+                "content": "$1"
+            }
+        }
+	},
 	"undoActionDoneUndo": {
 		"message": "??Undo done ($P1$)??",
         "placeholders": {
@@ -2262,6 +2270,17 @@
 	},
 	"cardsFormattedUndo": {
 		"message": "??$P1$ : Contacts formatted ($P2$)??",
+        "placeholders": {
+            "P1": {
+                "content": "$1"
+            },
+            "P2": {
+                "content": "$2"
+            }
+        }
+	},
+	"exportImagesToDirMessagePF": {
+		"message": "??$P1$ image exported into the directory $P2$;$P1$ images exported into the directory $P2$??",
         "placeholders": {
             "P1": {
                 "content": "$1"
@@ -3223,7 +3242,7 @@
 	"importfoundColumnsGroupboxLabel": {
 		"message": "Колонка заголовка"
 	},
-	"importblankColumn": {
+	"importBlankColumn": {
 		"message": "Порожній стовпчик"
 	},
 	"importNoTypeLabel": {
@@ -3404,10 +3423,10 @@
 		"message": "??Disable the generation of the display name??"
 	},
 	"autoConvertField": {
-		"message": "??Enable the convertion of this field??"
+		"message": "??Enable the conversion of this field??"
 	},
 	"dontAutoConvertField": {
-		"message": "??Disable the convertion of this field??"
+		"message": "??Disable the conversion of this field??"
 	},
 	"customLabel": {
 		"message": "Власна"
@@ -5524,11 +5543,20 @@
 	"pasteEntryLabel": {
 		"message": "Вставити введення"
 	},
+	"exportsMenu": {
+		"message": "??Exports??"
+	},
+	"exportCardImagesLabel": {
+		"message": "??Export images??"
+	},
 	"exportCardToFileLabel": {
 		"message": "Експорт у файл"
 	},
 	"exportCardToDirLabel": {
 		"message": "Експортувати в каталог"
+	},
+	"importsMenu": {
+		"message": "??Imports??"
 	},
 	"importCardFromFileLabel": {
 		"message": "Імпортувати контакти з файлу"
@@ -5991,7 +6019,7 @@
 		"message": "Перетворити на"
 	},
 	"wdw_cardbookConfigurationEditFieldTitle": {
-		"message": "??Choose a convertion function??"
+		"message": "??Choose a conversion function??"
 	},
 	"uppercaseLabel": {
 		"message": "??Uppercase??"
