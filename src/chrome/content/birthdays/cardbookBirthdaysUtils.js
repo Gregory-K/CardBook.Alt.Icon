@@ -324,7 +324,8 @@ if ("undefined" == typeof(cardbookBirthdaysUtils)) {
 			}
 		},
 	
-		loadBirthdays: function (lnumberOfDays) {
+		loadBirthdays: function (aNumberOfDays) {
+			aNumberOfDays = (aNumberOfDays > 365) ? 365 : aNumberOfDays;
 			var myContact = cardbookRepository.cardbookPreferences.getStringPref("extensions.cardbook.addressBooksNameList");
 			var useOnlyEmail = cardbookRepository.cardbookPreferences.getBoolPref("extensions.cardbook.useOnlyEmail");
 			var search = {};
@@ -353,7 +354,7 @@ if ("undefined" == typeof(cardbookBirthdaysUtils)) {
 							var isDate = cardbookRepository.cardbookDates.convertDateStringToDateUTC(myFieldValue, dateFormat);
 							if (isDate != "WRONGDATE") {
 								listOfEmail = cardbookRepository.cardbookUtils.getMimeEmailsFromCards([myCard], useOnlyEmail);
-								cardbookBirthdaysUtils.getAllBirthdaysByName(dateFormat, myFieldValue, myCard.fn, lnumberOfDays, myFieldValue, listOfEmail, myDirPrefId, name, fieldType[field]);
+								cardbookBirthdaysUtils.getAllBirthdaysByName(dateFormat, myFieldValue, myCard.fn, aNumberOfDays, myFieldValue, listOfEmail, myDirPrefId, name, fieldType[field]);
 							} else {
 								cardbookRepository.cardbookUtils.formatStringForOutput("dateEntry1Wrong", [myDirPrefName, myCard.fn, myFieldValue, dateFormat], "Warning");
 							}
@@ -365,7 +366,7 @@ if ("undefined" == typeof(cardbookBirthdaysUtils)) {
 							var isDate = cardbookRepository.cardbookDates.convertDateStringToDateUTC(myEvents.result[j][0], dateFormat);
 							if (isDate != "WRONGDATE") {
 								listOfEmail = cardbookRepository.cardbookUtils.getMimeEmailsFromCards([myCard], useOnlyEmail);
-								cardbookBirthdaysUtils.getAllBirthdaysByName(dateFormat, myEvents.result[j][0], myCard.fn, lnumberOfDays, myEvents.result[j][0], listOfEmail, myDirPrefId, name, myEvents.result[j][1]);
+								cardbookBirthdaysUtils.getAllBirthdaysByName(dateFormat, myEvents.result[j][0], myCard.fn, aNumberOfDays, myEvents.result[j][0], listOfEmail, myDirPrefId, name, myEvents.result[j][1]);
 							} else {
 								cardbookRepository.cardbookUtils.formatStringForOutput("dateEntry1Wrong", [myDirPrefName, myCard.fn, myEvents.result[j][0], dateFormat], "Warning");
 							}

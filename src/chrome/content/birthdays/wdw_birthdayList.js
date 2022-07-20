@@ -147,6 +147,7 @@ if ("undefined" == typeof(wdw_birthdayList)) {
 			let noneFound = document.getElementById("noneFound");
 			let resulTable = document.getElementById("birthdayListTable");
 			let maxDaysUntilNextBirthday = cardbookRepository.cardbookPreferences.getStringPref("extensions.cardbook.numberOfDaysForSearching");
+			maxDaysUntilNextBirthday = (maxDaysUntilNextBirthday > 365) ? 365 : maxDaysUntilNextBirthday;
 
 			// if there are no birthdays in the configured timespan
 			if (cardbookBirthdaysUtils.lBirthdayList.length == 0) {
@@ -172,7 +173,7 @@ if ("undefined" == typeof(wdw_birthdayList)) {
 		},
 	
 		displaySyncList: function() {
-			Services.wm.getMostRecentWindow("mail:3pane").openDialog("chrome://cardbook/content/birthdays/wdw_birthdaySync.xhtml", "", cardbookRepository.modalWindowParams);
+			Services.wm.getMostRecentWindow("mail:3pane").openDialog("chrome://cardbook/content/birthdays/wdw_birthdaySync.xhtml", "", cardbookRepository.windowParams);
 		},
 
 		buttonShowing: function () {

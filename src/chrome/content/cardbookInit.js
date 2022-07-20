@@ -86,7 +86,7 @@ var cardbookInit = {
 		prefs.setCharPref("periodicPopupIime", "08:00");
 		prefs.setBoolPref("showPopupEvenIfNoBirthday", true);
 		prefs.setBoolPref("syncWithLightningOnStartup", false);
-		prefs.setCharPref("numberOfDaysForWriting", "366");
+		prefs.setCharPref("numberOfDaysForWriting", "365");
 		// localized
 		prefs.setCharPref("eventEntryTitle", cardbookRepository.extension.localeData.localizeMessage("eventEntryTitleMessage"));
 		prefs.setCharPref("calendarEntryCategories", cardbookRepository.extension.localeData.localizeMessage("anniversaryCategory"));
@@ -104,7 +104,7 @@ var cardbookInit = {
 		prefs.setCharPref("accountShown", "");
 		prefs.setCharPref("uncategorizedCards", "");
 		prefs.setCharPref("categoryColors", "");
-		prefs.setCharPref("addonVersion", "76.3.1");
+		prefs.setCharPref("addonVersion", "76.4.1");
 		prefs.setCharPref("defaultRegion", "NOTSET");
 
 		prefs.setBoolPref("localDataEncryption", false);
