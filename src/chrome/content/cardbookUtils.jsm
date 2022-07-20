@@ -657,7 +657,7 @@ var cardbookUtils = {
 						}
 					}
 				};
-				let aImageConnection = {connPrefId: aDirPrefId, connUrl: aImageURI, connDescription: aDirname};
+				let aImageConnection = {connPrefId: aDirPrefId, connUrl: aImageURI, connDescription: aDirname, accessToken: "NOACCESSTOKEN"};
 				let request = new cardbookWebDAV(aImageConnection, listener_getimage);
 				cardbookRepository.cardbookUtils.formatStringForOutput("serverCardGettingImage", [aDirname, aCardName]);
 				request.getimage();

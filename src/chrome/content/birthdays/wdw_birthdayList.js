@@ -147,6 +147,7 @@ if ("undefined" == typeof(wdw_birthdayList)) {
 			let noneFound = document.getElementById("noneFound");
 			let resulTable = document.getElementById("birthdayListTable");
 			let maxDaysUntilNextBirthday = cardbookRepository.cardbookPreferences.getStringPref("extensions.cardbook.numberOfDaysForSearching");
+			maxDaysUntilNextBirthday = (maxDaysUntilNextBirthday > 365) ? 365 : maxDaysUntilNextBirthday;
 
 			// if there are no birthdays in the configured timespan
 			if (cardbookBirthdaysUtils.lBirthdayList.length == 0) {
