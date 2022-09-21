@@ -78,7 +78,7 @@ if ("undefined" == typeof(ovl_cardbookMailContacts)) {
 			}
 		},
 
-		editOrViewContact: function(aEmailNode) {
+		editOrViewContact: async function(aEmailNode) {
 			var myEmailNode = aEmailNode.closest("mail-emailaddress");
 			var myEmail = myEmailNode.getAttribute('emailAddress');
 			var isEmailRegistered = ovl_cardbookMailContacts.isEmailRegistered(myEmail);
@@ -86,7 +86,7 @@ if ("undefined" == typeof(ovl_cardbookMailContacts)) {
 			if (isEmailRegistered) {
 				var myCard = cardbookRepository.cardbookUtils.getCardFromEmail(myEmail);
 				var myOutCard = new cardbookCardParser();
-				cardbookRepository.cardbookUtils.cloneCard(myCard, myOutCard);
+				await cardbookRepository.cardbookUtils.cloneCard(myCard, myOutCard);
 				if (myOutCard.isAList) {
 					var myType = "List";
 				} else {

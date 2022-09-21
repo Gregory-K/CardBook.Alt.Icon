@@ -66,11 +66,11 @@
 :root[lwt-tree] #cardsTree {
 	-moz-appearance: none;
 }
-#rightPaneDownHbox1 {
+#rightPaneDownHbox2 {
 	color: WindowText;
 	background-color: ButtonFace;
  }
-:root[lwt-tree] #rightPaneDownHbox1 {
+:root[lwt-tree] #rightPaneDownHbox2 {
 	background-color: var(--toolbar-bgcolor);
 	color: var(--toolbar-color);
 }
@@ -80,7 +80,7 @@
 	background-color: -moz-Dialog;
 }
 
-#rightPaneDownHbox1 {
+#rightPaneDownHbox2 {
 	overflow: auto;
 }
 

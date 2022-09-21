@@ -5544,7 +5544,7 @@
 		"message": "Overnemen entry"
 	},
 	"exportsMenu": {
-		"message": "Geëxporteerd"
+		"message": "Exporteren"
 	},
 	"exportCardImagesLabel": {
 		"message": "Exporteren van afbeeldingen"
@@ -5556,7 +5556,7 @@
 		"message": "Exporteer naar een map"
 	},
 	"importsMenu": {
-		"message": "Geïmporteerd"
+		"message": "Importeren"
 	},
 	"importCardFromFileLabel": {
 		"message": "Importeer contactpersoon van een bestand"

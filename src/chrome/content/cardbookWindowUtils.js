@@ -2456,16 +2456,16 @@ if ("undefined" == typeof(cardbookWindowUtils)) {
 			}
 		},
 
-		editCardFromList: function (aEvent) {
+		editCardFromList: async function (aEvent) {
 			let element = document.elementFromPoint(aEvent.clientX, aEvent.clientY);
 			let cbid = element.id.split('_')[1];
-			cardbookWindowUtils.editCardFromCard(cardbookRepository.cardbookCards[cbid]);
+			await cardbookWindowUtils.editCardFromCard(cardbookRepository.cardbookCards[cbid]);
 		},
 
-		editCardFromCard: function (aCard) {
+		editCardFromCard: async function (aCard) {
 			if (aCard) {
 				var myOutCard = new cardbookCardParser();
-				cardbookRepository.cardbookUtils.cloneCard(aCard, myOutCard);
+				await cardbookRepository.cardbookUtils.cloneCard(aCard, myOutCard);
 				if (myOutCard.isAList) {
 					var myType = "List";
 				} else {

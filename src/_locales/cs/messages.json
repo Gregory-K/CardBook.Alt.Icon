@@ -5544,7 +5544,7 @@
 		"message": "Vložit záznam"
 	},
 	"exportsMenu": {
-		"message": "Exporty"
+		"message": "Exportovat"
 	},
 	"exportCardImagesLabel": {
 		"message": "Exportovat obrázky"
@@ -5556,7 +5556,7 @@
 		"message": "Exportovat do adresáře"
 	},
 	"importsMenu": {
-		"message": "Importy"
+		"message": "Importovat"
 	},
 	"importCardFromFileLabel": {
 		"message": "Importovat kontakty ze souboru"

@@ -53,7 +53,7 @@ if ("undefined" == typeof(cardbookCollection)) {
 						let myCard = cardbookRepository.cardbookUtils.getCardFromEmail(address.email);
 						if (myCard.fn.toLowerCase() == address.email.toLowerCase() && address.name.toLowerCase() != address.email.toLowerCase()) {
 							let myNewCard = new cardbookCardParser();
-							cardbookRepository.cardbookUtils.cloneCard(myCard, myNewCard);
+							await cardbookRepository.cardbookUtils.cloneCard(myCard, myNewCard);
 							myNewCard.fn = address.name;
 							await cardbookRepository.saveCardFromUpdate(myCard, myNewCard, myActionId, true);
 						}

@@ -5544,7 +5544,7 @@
 		"message": "Pegar entrada"
 	},
 	"exportsMenu": {
-		"message": "Exportaciones"
+		"message": "Exportar"
 	},
 	"exportCardImagesLabel": {
 		"message": "Exportar imágenes"
@@ -5556,7 +5556,7 @@
 		"message": "Exportar a un directorio"
 	},
 	"importsMenu": {
-		"message": "Importaciones"
+		"message": "Importar"
 	},
 	"importCardFromFileLabel": {
 		"message": "Importar contactos desde un archivo"

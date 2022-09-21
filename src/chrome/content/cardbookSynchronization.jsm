@@ -1149,7 +1149,7 @@ var cardbookSynchronization = {
 							// Google requires a fresh uid
 							if (aPrefIdType == "GOOGLE") {
 								let myNewCard = new cardbookCardParser();
-								cardbookRepository.cardbookUtils.cloneCard(aCard, myNewCard);
+								await cardbookRepository.cardbookUtils.cloneCard(aCard, myNewCard);
 								cardbookRepository.cardbookUtils.setCardUUID(myNewCard);
 								await cardbookRepository.removeCardFromRepository(aCard, true);
 								await cardbookRepository.addCardToRepository(myNewCard, true);
@@ -1185,7 +1185,7 @@ var cardbookSynchronization = {
 		if (cardbookRepository.cardbookFileCacheCards[aCardConnection.connPrefId] && cardbookRepository.cardbookFileCacheCards[aCardConnection.connPrefId][aFileName]) {
 			var myCacheCard = cardbookRepository.cardbookFileCacheCards[aCardConnection.connPrefId][aFileName];
 			var myServerCard = new cardbookCardParser();
-			cardbookRepository.cardbookUtils.cloneCard(myCacheCard, myServerCard);
+			await cardbookRepository.cardbookUtils.cloneCard(myCacheCard, myServerCard);
 			cardbookRepository.cardbookUtils.addEtag(myServerCard, aEtag);
 			if (myCacheCard.etag == aEtag) {
 				if (myCacheCard.deleted) {
@@ -2630,7 +2630,7 @@ var cardbookSynchronization = {
 			var myTargetPrefIdName = cardbookRepository.cardbookPreferences.getName(myTargetPrefId);
 
 			var aNewCard = new cardbookCardParser();
-			cardbookRepository.cardbookUtils.cloneCard(aCard, aNewCard);
+			await cardbookRepository.cardbookUtils.cloneCard(aCard, aNewCard);
 			aNewCard.dirPrefId = myTargetPrefId;
 
 			// conversion ?

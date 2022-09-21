@@ -804,7 +804,7 @@ function onLoad(wasAlreadyOpen) {
 
 					<splitter id="resultsSplitter" collapse="after" orient="vertical" persist="state orient" class="cardbookHorizontalSplitterClass"/>
 
-					<hbox id="rightPaneDownHbox1" context="" persist="width height collapsed" class="cardbookBackgroundColorClass">
+					<hbox id="rightPaneDownHbox2" context="" persist="width height collapsed" class="cardbookBackgroundColorClass">
 						<vbox flex="1">
 							<vbox>
 								<hbox id="cardbookContactButtonsBox">
@@ -1062,7 +1062,7 @@ function onLoad(wasAlreadyOpen) {
 													<label id="photoExtensionTextBox" hidden="true"/>
 												</html:td>
 												<html:td>
-													<label id="photoURITextBox"/>
+													<html:textarea id="photoURITextBox"/>
 												</html:td>
 												<html:td>
 													<label id="photoAttachmentIdTextBox" hidden="true"/>

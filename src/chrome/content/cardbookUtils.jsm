@@ -598,7 +598,7 @@ var cardbookUtils = {
 
 	getvCardForEmail: async function(aCard) {
 		var myTempCard = new cardbookCardParser();
-		cardbookUtils.cloneCard(aCard, myTempCard);
+		await cardbookUtils.cloneCard(aCard, myTempCard);
 		myTempCard.rev = "";
 		var cardContent = await cardbookUtils.cardToVcardData(myTempCard);
 		myTempCard = null;
@@ -668,7 +668,12 @@ var cardbookUtils = {
 						}
 					}
 				};
-				let aImageConnection = {connPrefId: aDirPrefId, connUrl: aImageURI, connDescription: aDirname, accessToken: "NOACCESSTOKEN"};
+				let aImageConnection = {connPrefId: aDirPrefId, connUrl: aImageURI, connDescription: aDirname};
+				if (cardbookRepository.cardbookPreferences.getType(aDirPrefId).startsWith("GOOGLE")) {
+					aImageConnection.accessToken = "NOACCESSTOKEN";
+				} else {
+					aImageConnection.connUser = cardbookRepository.cardbookPreferences.getUser(aDirPrefId);
+				}
 				let request = new cardbookWebDAV(aImageConnection, listener_getimage);
 				cardbookRepository.cardbookUtils.formatStringForOutput("serverCardGettingImage", [aDirname, aCardName]);
 				request.getimage();
@@ -968,7 +973,7 @@ var cardbookUtils = {
 		targetCategory.deleted = sourceCategory.deleted;
 	},
 
-	cloneCard: function(sourceCard, targetCard) {
+	cloneCard: async function(sourceCard, targetCard) {
 		targetCard.dirPrefId = sourceCard.dirPrefId;
 		targetCard.cardurl = sourceCard.cardurl;
 		targetCard.etag = sourceCard.etag;
@@ -1010,6 +1015,7 @@ var cardbookUtils = {
 		targetCard.member = JSON.parse(JSON.stringify(sourceCard.member));
 		targetCard.kind = sourceCard.kind;
 
+		await cardbookRepository.cardbookUtils.changeMediaFromFileToContent(sourceCard);
 		for (let media of cardbookRepository.allColumns.media) {
 			targetCard[media] = JSON.parse(JSON.stringify(sourceCard[media]));
 		}

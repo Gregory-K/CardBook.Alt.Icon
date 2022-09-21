@@ -100,7 +100,7 @@ if ("undefined" == typeof(wdw_templateEdition)) {
 					} else if (fileContentArray[i].toUpperCase().startsWith("END:VCARD")) {
 						cardContent = cardContent + "\r\n" + fileContentArray[i];
 						let myTempCard = new cardbookCardParser();
-						wdw_cardEdition.calculateResult(myTempCard);
+						await wdw_cardEdition.calculateResult(myTempCard);
 
 						let myTemplateCard = new cardbookCardParser(cardContent, "", "", myTempCard.dirPrefId);
 						if (myTemplateCard.isAList != myTempCard.isAList || myTempCard.isAList) {
@@ -176,7 +176,7 @@ if ("undefined" == typeof(wdw_templateEdition)) {
 							}
 						}
 
-						wdw_cardEdition.cloneCard(myTempCard, wdw_cardEdition.workingCard);
+						await wdw_cardEdition.cloneCard(myTempCard, wdw_cardEdition.workingCard);
 						await wdw_cardEdition.displayCard(wdw_cardEdition.workingCard);
 						myTempCard = null;
 						

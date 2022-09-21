@@ -206,6 +206,23 @@ if ("undefined" == typeof(cardbookCardParser)) {
 							myPGArray = vCardDataArrayHeaderKey.toUpperCase().split(".");
 							myPGName = myPGArray[0];
 							myPGField = myPGArray[1];
+							// Apple ITEM1.X-ABLABEL:_$!<HomePage>!$_
+							// Apple ITEM1.X-ABLABEL:_$!<Anniversary>!$_
+							if (vCardDataArrayTrailer.startsWith("_$!<") && vCardDataArrayTrailer.endsWith(">!$_")) {
+								let translatedValue = "";
+								let value = vCardDataArrayTrailer.replace("_$!<", "").replace(">!$_", "");
+								try {
+									translatedValue = cardbookRepository.extension.localeData.localizeMessage(`${value}Type`);
+								} catch (e) {}
+								if (!translatedValue) {
+									try {
+										translatedValue = cardbookRepository.extension.localeData.localizeMessage(`${value}Label`);
+									} catch (e) {}
+								}
+								if (translatedValue) {
+									vCardDataArrayTrailer = translatedValue;
+								}
+							}
 							if (cardbookRepository.multilineFields.indexOf(myPGField.toLowerCase()) >= 0) {
 								vCardDataArrayHeaderKey = myPGField;
 							} else {

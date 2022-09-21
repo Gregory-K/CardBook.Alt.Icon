@@ -5544,7 +5544,7 @@
 		"message": "Mező beillesztése"
 	},
 	"exportsMenu": {
-		"message": "Exportálások"
+		"message": "Exportálás"
 	},
 	"exportCardImagesLabel": {
 		"message": "Képek exportálása"
@@ -5556,7 +5556,7 @@
 		"message": "Mappa mentése"
 	},
 	"importsMenu": {
-		"message": "Importálások"
+		"message": "Importálás"
 	},
 	"importCardFromFileLabel": {
 		"message": "Megnyitás és mentés fájlból"

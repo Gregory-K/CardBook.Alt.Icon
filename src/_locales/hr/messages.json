@@ -159,10 +159,10 @@
 		"message": "Neispravan URL"
 	},
 	"ValidatingLoginLabel": {
-		"message": "??Your login??"
+		"message": "Vaša prijava"
 	},
 	"ValidatingEmailLabel": {
-		"message": "??Your existing email address??"
+		"message": "Vaša postojeća adresa e-pošte"
 	},
 	"ValidatingEmailFailedLabel": {
 		"message": "Potrebna je ispravna e-adresa"
@@ -5544,7 +5544,7 @@
 		"message": "Zalijepi unos"
 	},
 	"exportsMenu": {
-		"message": "??Exports??"
+		"message": "Izvezi"
 	},
 	"exportCardImagesLabel": {
 		"message": "??Export images??"
@@ -5556,7 +5556,7 @@
 		"message": "Prebaci u imenik"
 	},
 	"importsMenu": {
-		"message": "??Imports??"
+		"message": "Uvezi"
 	},
 	"importCardFromFileLabel": {
 		"message": "Unesi kontakte iz dosjea"

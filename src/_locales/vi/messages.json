@@ -5544,7 +5544,7 @@
 		"message": "Dán nhập"
 	},
 	"exportsMenu": {
-		"message": "??Exports??"
+		"message": "Xuất"
 	},
 	"exportCardImagesLabel": {
 		"message": "??Export images??"
@@ -5556,7 +5556,7 @@
 		"message": "Xuất khẩu vào một thư mục"
 	},
 	"importsMenu": {
-		"message": "??Imports??"
+		"message": "Nhập"
 	},
 	"importCardFromFileLabel": {
 		"message": "Nhập địa chỉ liên hệ từ tệp"

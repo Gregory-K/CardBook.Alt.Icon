@@ -28,7 +28,7 @@ function convertVCards () {
 
 		for (let card of cardbookRepository.cardbookDisplayCards[window.arguments[0].dirPrefId].cards) {
 			let myTempCard = new cardbookCardParser();
-			cardbookRepository.cardbookUtils.cloneCard(card, myTempCard);
+			await cardbookRepository.cardbookUtils.cloneCard(card, myTempCard);
 			if (cardbookRepository.cardbookUtils.convertVCard(myTempCard, myTargetName, myTargetVersion, myNewDateFormat, myNewDateFormat)) {
 				await cardbookRepository.saveCardFromUpdate(card, myTempCard, myActionId, false);
 				counter++;
@@ -258,7 +258,7 @@ function showPane (paneID) {
 		return;
 	}
 	
-	let tabnodes = document.getElementById("rightPaneDownHbox1").querySelectorAll(".cardbookTab");
+	let tabnodes = document.getElementById("rightPaneDownHbox2").querySelectorAll(".cardbookTab");
 	for (let node of tabnodes) {
 		if (node.id != paneID) {
 			node.setAttribute("hidden", "true");

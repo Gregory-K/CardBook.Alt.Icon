@@ -5544,7 +5544,7 @@
 		"message": "Įdėti lauką"
 	},
 	"exportsMenu": {
-		"message": "??Exports??"
+		"message": "Eksportuoti"
 	},
 	"exportCardImagesLabel": {
 		"message": "??Export images??"
@@ -5556,7 +5556,7 @@
 		"message": "Eksportuoti į katalogą"
 	},
 	"importsMenu": {
-		"message": "??Imports??"
+		"message": "Importuoti"
 	},
 	"importCardFromFileLabel": {
 		"message": "Importuoti kontaktus iš failo"

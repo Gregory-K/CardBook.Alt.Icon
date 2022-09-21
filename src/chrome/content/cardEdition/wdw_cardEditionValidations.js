@@ -2,7 +2,7 @@ if ("undefined" == typeof(wdw_cardEditionValidations)) {
 	
 	var wdw_cardEditionValidations = {
 		
-		validateOffice365: function () {
+		validateOffice365: async function () {
 			let dirPrefId = document.getElementById('addressbookMenulist').value;
 			let ABType = cardbookRepository.cardbookPreferences.getType(dirPrefId);
 
@@ -127,7 +127,7 @@ if ("undefined" == typeof(wdw_cardEditionValidations)) {
 			}
 
 			let aCard = new cardbookCardParser();
-			wdw_cardEdition.cloneCard(wdw_cardEdition.workingCard, aCard);
+			await wdw_cardEdition.cloneCard(wdw_cardEdition.workingCard, aCard);
 			for (let field of cardbookRepository.multilineFields) {
 				aCard[field] = cardbookWindowUtils.getAllTypes(field, true);
 			}
