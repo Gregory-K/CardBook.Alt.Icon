@@ -18,7 +18,7 @@
 	list-style-image: url("chrome://cardbook/content/skin/icons/locked.svg");
 }
 .cardbookTreeClass treechildren::-moz-tree-image(accountStatusCheckbox, syncing) {
-	list-style-image: url("chrome://cardbook/content/skin/icons/synchronize.svg");
+	list-style-image: url("chrome://cardbook/content/skin/icons/syncing.svg");
 }
 
 .cardbookTreeChildrenConfigClass treechildren::-moz-tree-image(accountsRestrictionsEnabled),

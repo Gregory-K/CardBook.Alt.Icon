@@ -868,7 +868,7 @@ if ("undefined" == typeof(wdw_cardEdition)) {
 				case "ViewList":
 					forceHide = true;
 			}
-			let itemsList = document.getElementById("rightPaneDownHbox1").querySelectorAll("button.cardbookProcessClass");
+			let itemsList = document.getElementById("rightPaneDownHbox2").querySelectorAll("button.cardbookProcessClass");
 			for (let item of itemsList) {
 				if (forceHide) {
 					item.setAttribute('hidden', 'true');
@@ -1018,13 +1018,13 @@ if ("undefined" == typeof(wdw_cardEdition)) {
 			if (window.arguments[0].editionMode == "AddEmail") {
 				wdw_cardEdition.workingCard = null;
 				wdw_cardEdition.workingCard = new cardbookCardParser();
-				wdw_cardEdition.cloneCard(window.arguments[0].cardIn, wdw_cardEdition.workingCard);
+				await wdw_cardEdition.cloneCard(window.arguments[0].cardIn, wdw_cardEdition.workingCard);
 			}
 			wdw_cardEdition.loadDefaultVersion();
 
 			// keep the current changes
 			var myOutCard = new cardbookCardParser();
-			wdw_cardEdition.calculateResult(myOutCard);
+			await wdw_cardEdition.calculateResult(myOutCard);
 			// convertion if AB changed
 			var myTargetName = cardbookRepository.cardbookPreferences.getName(myOutCard.dirPrefId);
 			var myTargetVersion = cardbookRepository.cardbookPreferences.getVCardVersion(myOutCard.dirPrefId);
@@ -1034,7 +1034,7 @@ if ("undefined" == typeof(wdw_cardEdition)) {
 				cardbookRepository.writePossibleCustomFields();
 			}
 			
-			wdw_cardEdition.cloneCard(myOutCard, wdw_cardEdition.workingCard);
+			await wdw_cardEdition.cloneCard(myOutCard, wdw_cardEdition.workingCard);
 			myOutCard = null;
 			wdw_cardEdition.workingCard.dirPrefId = document.getElementById('addressbookMenulist').value;
 
@@ -1048,14 +1048,14 @@ if ("undefined" == typeof(wdw_cardEdition)) {
 			if (myUid) {
 				wdw_cardEdition.workingCard = null;
 				wdw_cardEdition.workingCard = new cardbookCardParser();
-				wdw_cardEdition.cloneCard(cardbookRepository.cardbookCards[myDirPrefId+"::"+myUid], wdw_cardEdition.workingCard);
+				await wdw_cardEdition.cloneCard(cardbookRepository.cardbookCards[myDirPrefId+"::"+myUid], wdw_cardEdition.workingCard);
 				if (window.arguments[0].editionMode == "AddEmail" ) {
 					wdw_cardEdition.workingCard.email.push(wdw_cardEdition.emailToAdd);
 				}
 			} else {
 				wdw_cardEdition.workingCard = null;
 				wdw_cardEdition.workingCard = new cardbookCardParser();
-				wdw_cardEdition.cloneCard(window.arguments[0].cardIn, wdw_cardEdition.workingCard);
+				await wdw_cardEdition.cloneCard(window.arguments[0].cardIn, wdw_cardEdition.workingCard);
 			}
 			await wdw_cardEdition.displayCard(wdw_cardEdition.workingCard);
 		},
@@ -1229,10 +1229,10 @@ if ("undefined" == typeof(wdw_cardEdition)) {
 			await cardbookElementTools.loadCountries(countryPopup, countryList, countryList.value, true, false);
 		},
 
-		cloneCard: function (aSourceCard, aTargetCard) {
+		cloneCard: async function (aSourceCard, aTargetCard) {
 			// we need to keep the list flag as the normal cloneCard function may not find this information
 			// for new cards
-			cardbookRepository.cardbookUtils.cloneCard(aSourceCard, aTargetCard);
+			await cardbookRepository.cardbookUtils.cloneCard(aSourceCard, aTargetCard);
 			aTargetCard.isAList = aSourceCard.isAList;
 		},
 
@@ -1312,7 +1312,7 @@ if ("undefined" == typeof(wdw_cardEdition)) {
 				return;
 			}
 			
-			let tabnodes = document.getElementById("rightPaneDownHbox1").querySelectorAll(".cardbookTab");
+			let tabnodes = document.getElementById("rightPaneDownHbox2").querySelectorAll(".cardbookTab");
 			for (let node of tabnodes) {
 				if (node.id != paneID) {
 					node.setAttribute("hidden", "true");
@@ -1331,7 +1331,7 @@ if ("undefined" == typeof(wdw_cardEdition)) {
 
 			wdw_cardEdition.workingCard = {};
 			wdw_cardEdition.workingCard = new cardbookCardParser();
-			wdw_cardEdition.cloneCard(window.arguments[0].cardIn, wdw_cardEdition.workingCard);
+			await wdw_cardEdition.cloneCard(window.arguments[0].cardIn, wdw_cardEdition.workingCard);
 
 			wdw_cardEdition.loadEditionMode();
 			wdw_cardEdition.setEditionFields();
@@ -1447,8 +1447,8 @@ if ("undefined" == typeof(wdw_cardEdition)) {
 			}
 		},
 
-		calculateResult: function (aCard) {
-			wdw_cardEdition.cloneCard(wdw_cardEdition.workingCard, aCard);
+		calculateResult: async function (aCard) {
+			await wdw_cardEdition.cloneCard(wdw_cardEdition.workingCard, aCard);
 			aCard.dirPrefId = document.getElementById('addressbookMenulist').value;
 			let ABType = cardbookRepository.cardbookPreferences.getType(aCard.dirPrefId);
 
@@ -1653,8 +1653,8 @@ if ("undefined" == typeof(wdw_cardEdition)) {
 			await wdw_cardEdition.load();
 		},
 
-		validate: function () {
-			if (wdw_cardEditionValidations.validateOffice365() &&
+		validate: async function () {
+			if (await wdw_cardEditionValidations.validateOffice365() &&
 				wdw_cardEditionValidations.validateMailPopularity() &&
 				wdw_cardEditionValidations.validateDateFields() &&
 				wdw_cardEditionValidations.validateEvents() &&
@@ -1668,9 +1668,9 @@ if ("undefined" == typeof(wdw_cardEdition)) {
 		},
 
 		saveFinal: async function (aClose = true) {
-			if (wdw_cardEdition.validate()) {
+			if (await wdw_cardEdition.validate()) {
 				var myOutCard = new cardbookCardParser();
-				wdw_cardEdition.calculateResult(myOutCard);
+				await wdw_cardEdition.calculateResult(myOutCard);
 
 				wdw_cardEdition.saveMailPopularity();
 
@@ -1698,7 +1698,7 @@ if ("undefined" == typeof(wdw_cardEdition)) {
 				window.arguments[0].cardOut = myOutCard;
 
 				if (window.arguments[0].editionMode == "AddEmail") {
-					wdw_cardEdition.cloneCard(window.arguments[0].cardOut, window.arguments[0].cardIn);
+					await wdw_cardEdition.cloneCard(window.arguments[0].cardOut, window.arguments[0].cardIn);
 				}
 
 				if (window.arguments[0].editionCallback) {

@@ -94,12 +94,19 @@ function onLoad(wasAlreadyOpen) {
 
 	<div id="spacesToolbarAddonsContainer">
 		<button id="cardbookButton"
-					title="CardBook"
+					title="__MSG_cardbookTitle__"
+					tooltiptext="__MSG_cardbookTitle__"
 					class="spaces-toolbar-button"
 					oncommand="ovl_cardbook.open()">
 			<img src="" alt="" />
 		</button>
 	</div>
+	<menupopup id="spacesButtonMenuPopup">
+		<menuitem id="spacesPopupButtonCardBook" label="__MSG_cardbookMenuItemLabel__" accesskey="__MSG_cardbookMenuItemAccesskey__"
+			class="menuitem-iconic spaces-popup-menuitem"
+			key="CardBookKey"
+			insertafter="spacesPopupButtonChat" oncommand="ovl_cardbook.open();"/>
+	</menupopup>
 
 	<menupopup id="menu_NewPopup">
 		<menuitem id="newCardBookCardMenu" label="__MSG_newCardBookCardMenuLabel__" accesskey="__MSG_newCardBookCardMenuAccesskey__"
@@ -346,8 +353,9 @@ function onLoad(wasAlreadyOpen) {
 						mode="dialog"
 						class="toolbarbutton-1"/>
 					<toolbarbutton id="cardbookToolbarAppMenuButton"
-						title="__MSG_cardbookToolbarAppMenuButtonLabel__"
+						label="__MSG_cardbookToolbarAppMenuButtonLabel__"
 						tooltiptext="__MSG_cardbookToolbarAppMenuButtonTooltip__"
+						badged="true"
 						class="toolbarbutton-1 button-appmenu"
 						mode="dialog"
 						type="menu">
@@ -475,6 +483,7 @@ function onLoad(wasAlreadyOpen) {
 						class="toolbarbutton-1"/>
 					<toolbarbutton id="cardbookToolbarThMenuButton"
 						type="menu"
+						badged="true"
 						class="toolbarbutton-1 button-appmenu"
 						label="__MSG_cardbookToolbarThMenuButtonLabel__"
 						mode="dialog"
@@ -805,7 +814,7 @@ function onLoad(wasAlreadyOpen) {
 
 					<splitter id="resultsSplitter" collapse="after" orient="vertical" persist="state orient" class="cardbookHorizontalSplitterClass"/>
 
-					<hbox id="rightPaneDownHbox1" context="" persist="width height collapsed" class="cardbookBackgroundColorClass">
+					<hbox id="rightPaneDownHbox2" context="" persist="width height collapsed" class="cardbookBackgroundColorClass">
 						<vbox flex="1">
 							<vbox>
 								<hbox id="cardbookContactButtonsBox">
@@ -1063,7 +1072,7 @@ function onLoad(wasAlreadyOpen) {
 													<label id="photoExtensionTextBox" hidden="true"/>
 												</html:td>
 												<html:td>
-													<label id="photoURITextBox"/>
+													<html:textarea id="photoURITextBox"/>
 												</html:td>
 												<html:td>
 													<label id="photoAttachmentIdTextBox" hidden="true"/>

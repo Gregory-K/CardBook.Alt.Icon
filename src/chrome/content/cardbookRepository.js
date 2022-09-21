@@ -1438,10 +1438,9 @@ var cardbookRepository = {
 	removeCardsFromCategory: async function(aDirPrefId, aCategoryName) {
 		if (cardbookRepository.cardbookDisplayCards[aDirPrefId+"::categories::"+aCategoryName]) {
 			var myCards = JSON.parse(JSON.stringify(cardbookRepository.cardbookDisplayCards[aDirPrefId+"::categories::"+aCategoryName].cards));
-			var length = myCards.length;
 			for (let card of myCards) {
 				var myOutCard = new cardbookCardParser();
-				cardbookRepository.cardbookUtils.cloneCard(card, myOutCard);
+				await cardbookRepository.cardbookUtils.cloneCard(card, myOutCard);
 				cardbookRepository.removeCategoryFromCard(myOutCard, aCategoryName);
 				cardbookRepository.cardbookUtils.setCalculatedFields(myOutCard);
 				await cardbookRepository.cardbookUtils.changeMediaFromFileToContent(myOutCard);
@@ -1884,7 +1883,7 @@ var cardbookRepository = {
 	addCardToAction: async function (aActionId, aType, aCard) {
 		let action = cardbookRepository.currentAction[aActionId];
 		let tempCard = new cardbookCardParser();
-		cardbookRepository.cardbookUtils.cloneCard(aCard, tempCard);
+		await cardbookRepository.cardbookUtils.cloneCard(aCard, tempCard);
 		tempCard.cacheuri = aCard.cacheuri;
 		await cardbookRepository.cardbookUtils.changeMediaFromFileToContent(tempCard);
 		action[aType].push(tempCard);

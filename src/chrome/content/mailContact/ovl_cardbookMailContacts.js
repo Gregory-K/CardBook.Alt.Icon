@@ -74,9 +74,9 @@ if ("undefined" == typeof(ovl_cardbookMailContacts)) {
 			}
 		},
 
-		editOrViewContact: function(aCard) {
+		editOrViewContact: async function(aCard) {
 			let myOutCard = new cardbookCardParser();
-			cardbookRepository.cardbookUtils.cloneCard(aCard, myOutCard);
+			await cardbookRepository.cardbookUtils.cloneCard(aCard, myOutCard);
 			let type = "Contact";
 			if (myOutCard.isAList) {
 				type = "List";
@@ -286,12 +286,12 @@ if ("undefined" == typeof(ovl_cardbookMailContacts)) {
 	
 	// Override a function.
 	// gMessageHeader.editContact
-	gMessageHeader.editContact = function() {
+	gMessageHeader.editContact = async function() {
 		if (arguments[1] == "standardCard") {
 			arguments[0].cardDetails.card = arguments[0].cardDetails.standardCard;
 			ovl_cardbookMailContacts.origFunctions.editContact(arguments[0]);
 		} else if (arguments[0].cardDetails.card.cbid) {
-			ovl_cardbookMailContacts.editOrViewContact(arguments[0].cardDetails.card);
+			await ovl_cardbookMailContacts.editOrViewContact(arguments[0].cardDetails.card);
 		} else {
 			ovl_cardbookMailContacts.origFunctions.editContact(arguments[0]);
 		}

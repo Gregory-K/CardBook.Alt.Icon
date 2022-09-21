@@ -497,12 +497,12 @@ if ("undefined" == typeof(wdw_cardbookContactsSidebar)) {
 			wdw_cardbookContactsSidebar.search();
 		},
 
-		editCard: function () {
+		editCard: async function () {
 			var listOfUid = wdw_cardbookContactsSidebar.getSelectedCards();
 			if (listOfUid[0][0] === "CARDCARDBOOK" || listOfUid[0][0] === "LISTCARDBOOK") {
 				var myCard = listOfUid[0][1];
 				var myOutCard = new cardbookCardParser();
-				cardbookRepository.cardbookUtils.cloneCard(myCard, myOutCard);
+				await cardbookRepository.cardbookUtils.cloneCard(myCard, myOutCard);
 				if (myOutCard.isAList) {
 					var myType = "List";
 				} else {

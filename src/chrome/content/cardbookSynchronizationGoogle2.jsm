@@ -807,7 +807,7 @@ var cardbookSynchronizationGoogle2 = {
 		if (cardbookRepository.cardbookFileCacheCards[aCardConnection.connPrefId] && cardbookRepository.cardbookFileCacheCards[aCardConnection.connPrefId][aUrl]) {
 			var myCacheCard = cardbookRepository.cardbookFileCacheCards[aCardConnection.connPrefId][aUrl];
 			var myServerCard = new cardbookCardParser();
-			cardbookRepository.cardbookUtils.cloneCard(myCacheCard, myServerCard);
+			await cardbookRepository.cardbookUtils.cloneCard(myCacheCard, myServerCard);
 			cardbookRepository.cardbookUtils.addEtag(myServerCard, aEtag);
 			if (myCacheCard.etag == aEtag) {
 				if (myCacheCard.deleted) {

@@ -546,8 +546,14 @@ if ("undefined" == typeof(cardbookWindowUtils)) {
 							var menuItem = document.createXULElement("menuitem");
 							menuItem.setAttribute("id", account[4]);
 							menuItem.addEventListener("command", function(aEvent) {
-									let headerField = aEvent.currentTarget.parentNode.parentNode.parentNode.headerField;
-									aCallback(this.id, headerField.emailAddress, headerField.displayName);
+									// run from email header nodes or from context menu
+									if (gContextMenu && gContextMenu.linkURL) {
+										// 7 for mailto:
+										aCallback(this.id, gContextMenu.linkURL.substr(7));
+									} else {
+										let headerField = aEvent.currentTarget.parentNode.parentNode.parentNode.headerField;
+										aCallback(this.id, headerField.emailAddress, headerField.displayName);
+									}
 									aEvent.stopPropagation();
 								}, false);
 							menuItem.setAttribute("label", account[0]);
@@ -2457,16 +2463,16 @@ if ("undefined" == typeof(cardbookWindowUtils)) {
 			}
 		},
 
-		editCardFromList: function (aEvent) {
+		editCardFromList: async function (aEvent) {
 			let element = document.elementFromPoint(aEvent.clientX, aEvent.clientY);
 			let cbid = element.id.split('_')[1];
-			cardbookWindowUtils.editCardFromCard(cardbookRepository.cardbookCards[cbid]);
+			await cardbookWindowUtils.editCardFromCard(cardbookRepository.cardbookCards[cbid]);
 		},
 
-		editCardFromCard: function (aCard) {
+		editCardFromCard: async function (aCard) {
 			if (aCard) {
 				var myOutCard = new cardbookCardParser();
-				cardbookRepository.cardbookUtils.cloneCard(aCard, myOutCard);
+				await cardbookRepository.cardbookUtils.cloneCard(aCard, myOutCard);
 				if (myOutCard.isAList) {
 					var myType = "List";
 				} else {

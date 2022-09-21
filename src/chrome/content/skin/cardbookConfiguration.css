@@ -26,13 +26,28 @@
 	background-position-x: right 8px;
 }
 
+#category-cardbook-generalPane > .category-icon,
+#category-cardbook-CardBookPane > .category-icon,
+#category-cardbook-EditionPane > .category-icon,
+#category-cardbook-advancedPane > .category-icon,
+#category-cardbook-IMPPPane > .category-icon,
+#category-cardbook-customFieldsPane > .category-icon,
+#category-cardbook-listsPane > .category-icon,
+#category-cardbook-syncPane > .category-icon,
+#category-cardbook-emailPane > .category-icon,
+#category-cardbook-birthdaylistPane > .category-icon,
+#category-cardbook-helpPane > .category-icon {
+	-moz-context-properties: fill, stroke, stroke-opacity;
+	fill: color-mix(in srgb, currentColor 20%, transparent);
+	stroke: currentColor;
+}
 
 /* Preference tabs */
 #category-cardbook-generalPane > .category-icon {
-	list-style-image: url("chrome://cardbook/content/skin/icons/general.svg");
+	list-style-image: url("chrome://cardbook/content/skin/icons/prefs.svg");
 }
 #category-cardbook-CardBookPane > .category-icon {
-	list-style-image: url("chrome://cardbook/content/skin/icons/display.svg");
+	list-style-image: url("chrome://cardbook/content/skin/icons/tab.svg");
 }
 #category-cardbook-EditionPane > .category-icon {
 	list-style-image: url("chrome://cardbook/content/skin/icons/edit.svg");
@@ -44,10 +59,10 @@
 	list-style-image: url("chrome://cardbook/content/skin/icons/chat.svg");
 }
 #category-cardbook-customFieldsPane > .category-icon {
-	list-style-image: url("chrome://cardbook/content/skin/icons/link.svg");
+	list-style-image: url("chrome://cardbook/content/skin/icons/custom.svg");
 }
 #category-cardbook-listsPane > .category-icon {
-	list-style-image: url("chrome://cardbook/content/skin/icons/addlist.svg");
+	list-style-image: url("chrome://cardbook/content/skin/icons/list.svg");
 }
 #category-cardbook-syncPane > .category-icon {
 	list-style-image: url("chrome://cardbook/content/skin/icons/synchronize.svg");

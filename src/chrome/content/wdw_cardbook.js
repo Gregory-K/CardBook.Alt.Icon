@@ -68,7 +68,7 @@ if ("undefined" == typeof(wdw_cardbook)) {
 				return;
 			}
 			
-			let tabnodes = document.getElementById("rightPaneDownHbox1").querySelectorAll(".cardbookTab");
+			let tabnodes = document.getElementById("rightPaneDownHbox2").querySelectorAll(".cardbookTab");
 			for (let node of tabnodes) {
 				if (node.id != paneID) {
 					node.setAttribute("hidden", "true");
@@ -501,10 +501,10 @@ if ("undefined" == typeof(wdw_cardbook)) {
 			cardbookWindowUtils.openEditionWindow(aCard, aEditionMode);
 		},
 
-		editCard: function () {
+		editCard: async function () {
 			let listOfSelectedCard = cardbookWindowUtils.getCardsFromCards();
 			if (listOfSelectedCard.length == 1) {
-				cardbookWindowUtils.editCardFromCard(listOfSelectedCard[0]);
+				await cardbookWindowUtils.editCardFromCard(listOfSelectedCard[0]);
 			}
 		},
 
@@ -545,7 +545,7 @@ if ("undefined" == typeof(wdw_cardbook)) {
 					continue;
 				}
 				var myOutCard = new cardbookCardParser();
-				cardbookRepository.cardbookUtils.cloneCard(myCard, myOutCard);
+				await cardbookRepository.cardbookUtils.cloneCard(myCard, myOutCard);
 				myOutCard.fn = myOutCard.fn + " " + cardbookRepository.extension.localeData.localizeMessage("fnDuplicatedMessage");
 				myOutCard.cardurl = "";
 				myOutCard.etag = "0";
@@ -655,7 +655,7 @@ if ("undefined" == typeof(wdw_cardbook)) {
 				for (var i = 0; i < myCards.length; i++) {
 					var myCard = myCards[i];
 					var myOutCard = new cardbookCardParser();
-					cardbookRepository.cardbookUtils.cloneCard(myCard, myOutCard);
+					await cardbookRepository.cardbookUtils.cloneCard(myCard, myOutCard);
 					var myFn = myOutCard.fn;
 					cardbookRepository.cardbookUtils.getDisplayedName(myOutCard, myOutCard.dirPrefId,
 														[myOutCard.prefixname, myOutCard.firstname, myOutCard.othername, myOutCard.lastname, myOutCard.suffixname, myOutCard.nickname],
@@ -1421,7 +1421,7 @@ if ("undefined" == typeof(wdw_cardbook)) {
 		chooseActionCardsTree: async function () {
 			var preferEmailEdition = cardbookRepository.cardbookPreferences.getBoolPref("extensions.cardbook.preferEmailEdition");
 			if (preferEmailEdition) {
-				wdw_cardbook.editCard();
+				await wdw_cardbook.editCard();
 			} else {
 				await wdw_cardbook.emailCardsFromAction("to");
 			}
@@ -2567,7 +2567,7 @@ if ("undefined" == typeof(wdw_cardbook)) {
 						continue;
 					}
 					let myOutCard = new cardbookCardParser();
-					cardbookRepository.cardbookUtils.cloneCard(myCard, myOutCard);
+					await cardbookRepository.cardbookUtils.cloneCard(myCard, myOutCard);
 					cardbookRepository.addCategoryToCard(myOutCard, aCategory);
 					await cardbookRepository.saveCardFromUpdate(myCard, myOutCard, myActionId, false);
 				}
@@ -2598,7 +2598,7 @@ if ("undefined" == typeof(wdw_cardbook)) {
 						continue;
 					}
 					let myOutCard = new cardbookCardParser();
-					cardbookRepository.cardbookUtils.cloneCard(myCard, myOutCard);
+					await cardbookRepository.cardbookUtils.cloneCard(myCard, myOutCard);
 					cardbookRepository.removeCategoryFromCard(myOutCard, aCategoryName);
 					await cardbookRepository.saveCardFromUpdate(myCard, myOutCard, myActionId, true);
 				}
@@ -2670,7 +2670,7 @@ if ("undefined" == typeof(wdw_cardbook)) {
 									continue;
 								}
 								var myOutCard = new cardbookCardParser();
-								cardbookRepository.cardbookUtils.cloneCard(myCard, myOutCard);
+								await cardbookRepository.cardbookUtils.cloneCard(myCard, myOutCard);
 								if (aNodeType == "categories") {
 									cardbookRepository.renameCategoryFromCard(myOutCard, aNodeName, myNewNodeName);
 								} else if (aNodeType == "org") {
@@ -2747,7 +2747,7 @@ if ("undefined" == typeof(wdw_cardbook)) {
 							continue;
 						}
 						var myOutCard = new cardbookCardParser();
-						cardbookRepository.cardbookUtils.cloneCard(myCard, myOutCard);
+						await cardbookRepository.cardbookUtils.cloneCard(myCard, myOutCard);
 						if (aNodeType == "categories") {
 							cardbookRepository.removeCategoryFromCard(myOutCard, aNodeName);
 						} else if (aNodeType == "org") {
@@ -2927,7 +2927,7 @@ if ("undefined" == typeof(wdw_cardbook)) {
 					myDirPrefIds[myCard.dirPrefId].members.push("urn:uuid:" + myCard.uid);
 
 					var myOutCard = new cardbookCardParser();
-					cardbookRepository.cardbookUtils.cloneCard(myCard, myOutCard);
+					await cardbookRepository.cardbookUtils.cloneCard(myCard, myOutCard);
 					if (aNodeType == "categories") {
 						cardbookRepository.removeCategoryFromCard(myOutCard, aNodeName);
 					}
@@ -2962,7 +2962,7 @@ if ("undefined" == typeof(wdw_cardbook)) {
 							if (cardbookRepository.cardbookCards[myCard.dirPrefId+"::"+uid]) {
 								var myTargetCard = cardbookRepository.cardbookCards[myCard.dirPrefId+"::"+uid];
 								var myOutCard = new cardbookCardParser();
-								cardbookRepository.cardbookUtils.cloneCard(myTargetCard, myOutCard);
+								await cardbookRepository.cardbookUtils.cloneCard(myTargetCard, myOutCard);
 								cardbookRepository.addCategoryToCard(myOutCard, myCategoryName);
 								await cardbookRepository.saveCardFromUpdate(myTargetCard, myOutCard, myActionId, true);
 								cardbookRepository.cardbookUtils.formatStringForOutput("cardAddedToCategory", [myDirPrefIdName, myOutCard.fn, myCategoryName]);
@@ -2979,7 +2979,7 @@ if ("undefined" == typeof(wdw_cardbook)) {
 									if (cardbookRepository.cardbookCards[myCard.dirPrefId+"::"+trailer.replace("urn:uuid:", "")]) {
 										var myTargetCard = cardbookRepository.cardbookCards[myCard.dirPrefId+"::"+trailer.replace("urn:uuid:", "")];
 										var myOutCard = new cardbookCardParser();
-										cardbookRepository.cardbookUtils.cloneCard(myTargetCard, myOutCard);
+										await cardbookRepository.cardbookUtils.cloneCard(myTargetCard, myOutCard);
 										cardbookRepository.addCategoryToCard(myOutCard, myCategoryName);
 										await cardbookRepository.saveCardFromUpdate(myTargetCard, myOutCard, myActionId, true);
 										cardbookRepository.cardbookUtils.formatStringForOutput("cardAddedToCategory", [myDirPrefIdName, myOutCard.fn, myCategoryName]);
@@ -3098,7 +3098,7 @@ if ("undefined" == typeof(wdw_cardbook)) {
 					continue;
 				}
 				let myOutCard = new cardbookCardParser();
-				cardbookRepository.cardbookUtils.cloneCard(myCard, myOutCard);
+				await cardbookRepository.cardbookUtils.cloneCard(myCard, myOutCard);
 				if (cardbookRepository.multilineFields.includes(cardbookRepository.currentCopiedEntryName)) {
 					myOutCard[cardbookRepository.currentCopiedEntryName].push(JSON.parse(cardbookRepository.currentCopiedEntryValue));
 				} else if (cardbookRepository.dateFields.includes(cardbookRepository.currentCopiedEntryName)) {

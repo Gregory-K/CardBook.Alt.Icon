@@ -24,6 +24,13 @@
 #cardbookToolbarForwardButton {
 	list-style-image: url("chrome://cardbook/content/skin/icons/goforward.svg");
 }
+#cardbookToolbarAppMenuButton {
+	list-style-image: url("chrome://cardbook/content/skin/icons/app-menu.svg");
+}
+#cardbookToolbarThMenuButton {
+	list-style-image: url("chrome://cardbook/content/skin/icons/app-menu.svg");
+}
+
 #cardbookToolbarComplexSearch {
 	list-style-image: url("chrome://cardbook/content/skin/icons/search.svg");
 }

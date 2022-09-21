@@ -560,7 +560,7 @@ var wdw_cardbookConfiguration = {
 						let newEmails = cardbookRepository.cardbookUtils.getPrefAddressFromCard(card, "email", newCheck);
 						if (newEmails.join(',') != card.emails.join(',')) {
 							let tmpCard = new cardbookCardParser();
-							cardbookRepository.cardbookUtils.cloneCard(card, tmpCard);
+							await cardbookRepository.cardbookUtils.cloneCard(card, tmpCard);
 							cardbookRepository.saveCardFromMove(card, tmpCard, null, false);
 						}
 					}

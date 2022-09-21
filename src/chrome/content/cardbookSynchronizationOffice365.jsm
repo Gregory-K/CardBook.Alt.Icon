@@ -164,7 +164,7 @@ var cardbookSynchronizationOffice365 = {
 		if (cardbookRepository.cardbookFileCacheCards[aCardConnection.connPrefId] && cardbookRepository.cardbookFileCacheCards[aCardConnection.connPrefId][aUrl]) {
 			var myCacheCard = cardbookRepository.cardbookFileCacheCards[aCardConnection.connPrefId][aUrl];
 			var myServerCard = new cardbookCardParser();
-			cardbookRepository.cardbookUtils.cloneCard(myCacheCard, myServerCard);
+			await cardbookRepository.cardbookUtils.cloneCard(myCacheCard, myServerCard);
 			cardbookRepository.cardbookUtils.addEtag(myServerCard, aEtag);
 			if (myCacheCard.etag == aEtag) {
 				if (myCacheCard.deleted) {
@@ -649,7 +649,7 @@ var cardbookSynchronizationOffice365 = {
 						let etag = contact[0].getAttribute("ChangeKey");
 						cardbookRepository.cardbookUtils.formatStringForOutput("serverCardUpdatedOnServerWithEtag", [aConnection.connDescription, aCard.fn, etag]);
 						let newCard = new cardbookCardParser();
-						cardbookRepository.cardbookUtils.cloneCard(aCard, newCard);
+						await cardbookRepository.cardbookUtils.cloneCard(aCard, newCard);
 						cardbookRepository.cardbookUtils.addEtag(newCard, etag);
 						cardbookRepository.cardbookUtils.nullifyTagModification(newCard);
 						cardbookRepository.cardbookServerCardSyncDone[aConnection.connPrefId]++;
@@ -716,7 +716,7 @@ var cardbookSynchronizationOffice365 = {
 						let etag = contact[0].getAttribute("ChangeKey");
 						await cardbookRepository.cardbookUtils.changeMediaFromFileToContent(aCard);
 						let newCard = new cardbookCardParser();
-						cardbookRepository.cardbookUtils.cloneCard(aCard, newCard);
+						await cardbookRepository.cardbookUtils.cloneCard(aCard, newCard);
 						newCard.uid = uid;
 						newCard.cardurl = uid;
 						cardbookRepository.cardbookUtils.addEtag(newCard, etag);

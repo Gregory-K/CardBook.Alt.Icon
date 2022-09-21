@@ -173,7 +173,7 @@ if ("undefined" == typeof(wdw_birthdayList)) {
 		},
 	
 		displaySyncList: function() {
-			Services.wm.getMostRecentWindow("mail:3pane").openDialog("chrome://cardbook/content/birthdays/wdw_birthdaySync.xhtml", "", cardbookRepository.windowParams);
+			Services.wm.getMostRecentWindow("mail:3pane").openDialog("chrome://cardbook/content/birthdays/wdw_birthdaySync.xhtml", "", cardbookRepository.modalWindowParams);
 		},
 
 		buttonShowing: function () {

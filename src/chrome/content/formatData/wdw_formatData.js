@@ -418,7 +418,7 @@ if ("undefined" == typeof(wdw_formatData)) {
 				let id = this.id.replace(/.format$/, "");
                 let textbox = document.getElementById(id + '.value');
                 let sourceTextbox = document.getElementById(id + '.sourceValue');
-				if (sourceTextbox.value != textbox.value || !textbox.value) {
+				if (!textbox.value) {
 					return
 				}
 
@@ -449,10 +449,6 @@ if ("undefined" == typeof(wdw_formatData)) {
 				let id = this.id.replace(/.format$/, "");
                 let textbox = document.getElementById(id + '.value');
                 let sourceTextbox = document.getElementById(id + '.sourceValue');
-				if (sourceTextbox.value != textbox.value) {
-					return
-				}
-
 				let valuetype = textbox.getAttribute('valuetype');
 				let validatedValue = wdw_formatData.getNewFormat(id, textbox.value, valuetype);
                 if (validatedValue) {
@@ -482,7 +478,7 @@ if ("undefined" == typeof(wdw_formatData)) {
                 let textbox = document.getElementById(id + '.value');
                 let sourceTextbox = document.getElementById(id + '.sourceValue');
                 textbox.value = sourceTextbox.value;
-                textbox.dispatchEvent(new Event('input'));
+				textbox.removeAttribute("class");
 				this.setAttribute('disabled', 'true');
             };
 			aButton.addEventListener("click", fireButton, false);
@@ -548,7 +544,7 @@ if ("undefined" == typeof(wdw_formatData)) {
 						continue;
 					}
 					let myOutCard = new cardbookCardParser();
-					cardbookRepository.cardbookUtils.cloneCard(myCard, myOutCard);
+					await cardbookRepository.cardbookUtils.cloneCard(myCard, myOutCard);
 					let deleted = 0;
 					for (let line of results[id]) {
 						let index = line[0] - deleted;

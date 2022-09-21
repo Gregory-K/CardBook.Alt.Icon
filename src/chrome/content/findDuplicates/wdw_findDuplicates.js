@@ -291,7 +291,7 @@ if ("undefined" == typeof(wdw_findDuplicates)) {
 
 			for (let card of wdw_findDuplicates.gResults[aLineNumber]) {
 				let newCard = new cardbookCardParser();
-				cardbookRepository.cardbookUtils.cloneCard(card, newCard);
+				await cardbookRepository.cardbookUtils.cloneCard(card, newCard);
 				cardbookRepository.addCategoryToCard(newCard, aSourceCat);
 				await cardbookRepository.saveCardFromUpdate(card, newCard, aActionId, true);
 			}
