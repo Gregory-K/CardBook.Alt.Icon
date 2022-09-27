@@ -5,35 +5,26 @@ if ("undefined" == typeof(ovl_cardbookFindEvents)) {
 	var ovl_cardbookFindEvents = {
 
 		findEventsFromEmail: function(emailAddressNode) {
-			var myEmailNode = emailAddressNode.closest("mail-emailaddress");
-			var myEmail = myEmailNode.getAttribute('emailAddress');
-			if (ovl_cardbookMailContacts) {
-				var isEmailRegistered = cardbookRepository.isEmailRegistered(myEmail, ovl_cardbookMailContacts.getIdentityKey());
-			} else {
-				var isEmailRegistered = cardbookRepository.isEmailRegistered(myEmail);
-			}
-			if (isEmailRegistered) {
-				var myCard = cardbookRepository.cardbookUtils.getCardFromEmail(myEmail);
-				ovl_cardbookFindEvents.findEvents(null, [myEmail], myCard.fn);
-			} else {
-				var myDisplayName = myEmailNode.getAttribute('displayName');
-				ovl_cardbookFindEvents.findEvents(null, [myEmail], myDisplayName);
-			}
+			let email = ovl_cardbookMailContacts.getEmailFromEmailAddressNode(emailAddressNode);
+			let displayname = ovl_cardbookMailContacts.getEmailFromEmailAddressNode(emailAddressNode);
+			ovl_cardbookFindEvents.findEvents(null, [email], displayname);
 		},
 
 		findAllEventsFromContact: function(emailAddressNode) {
-			var myEmailNode = emailAddressNode.closest("mail-emailaddress");
-			var myEmail = myEmailNode.getAttribute('emailAddress');
+			let email = ovl_cardbookMailContacts.getEmailFromEmailAddressNode(emailAddressNode);
+			let displayname = ovl_cardbookMailContacts.getEmailFromEmailAddressNode(emailAddressNode);
 			if (ovl_cardbookMailContacts) {
-				var isEmailRegistered = cardbookRepository.isEmailRegistered(myEmail, ovl_cardbookMailContacts.getIdentityKey());
+				var isEmailRegistered = cardbookRepository.isEmailRegistered(email, ovl_cardbookMailContacts.getIdentityKey());
 			} else {
-				var isEmailRegistered = cardbookRepository.isEmailRegistered(myEmail);
+				var isEmailRegistered = cardbookRepository.isEmailRegistered(email);
 			}
 	
 			if (isEmailRegistered) {
-				var myCard = cardbookRepository.cardbookUtils.getCardFromEmail(myEmail);
-				ovl_cardbookFindEvents.findEvents(myCard, null, myCard.fn);
-			}
+				let card = cardbookRepository.cardbookUtils.getCardFromEmail(email);
+				ovl_cardbookFindEvents.findEvents(card, null, card.fn);
+			} else {
+				ovl_cardbookFindEvents.findEvents(null, [email], displayname);
+			}	
 		},
 
 		findEvents: function (aCard, aListOfSelectedEmails, aDisplayName) {

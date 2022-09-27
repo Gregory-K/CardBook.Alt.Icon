@@ -58,12 +58,14 @@ async function main() {
 				break;
 			case "cardbook.clipboardSetImage":
 				// info.type is png, jpg, etc...
+				// setImageData only accepts png and jpeg
+				let imageType = (info.type.toLowerCase() == "jpg") ? "jpeg" : info.type.toLowerCase();
 				const byteCharacters = atob(info.b64);
 				const byteNumbers = new Uint8Array(byteCharacters.length);
 				for (let i = 0; i < byteCharacters.length; i++) {
 					byteNumbers[i] = byteCharacters.charCodeAt(i);
 				}
-				await browser.clipboard.setImageData(byteNumbers.buffer, info.type);
+				await browser.clipboard.setImageData(byteNumbers.buffer, imageType);
 				// does not work
 				// const byteCharacters = atob(info.b64);
 				// const byteNumbers = new Array(byteCharacters.length);

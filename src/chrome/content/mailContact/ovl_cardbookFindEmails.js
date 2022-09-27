@@ -7,24 +7,24 @@ if ("undefined" == typeof(ovl_cardbookFindEmails)) {
 	var ovl_cardbookFindEmails = {
 
 		findEmailsFromEmail: function(emailAddressNode) {
-			var myEmailNode = emailAddressNode.closest("mail-emailaddress");
-			var myEmail = myEmailNode.getAttribute('emailAddress');
-			ovl_cardbookFindEmails.findEmails(null, [myEmail]);
+			let email = ovl_cardbookMailContacts.getEmailFromEmailAddressNode(emailAddressNode);
+			ovl_cardbookFindEmails.findEmails(null, [email]);
 		},
 
 		findAllEmailsFromContact: function(emailAddressNode) {
-			var myEmailNode = emailAddressNode.closest("mail-emailaddress");
-			var myEmail = myEmailNode.getAttribute('emailAddress');
+			let email = ovl_cardbookMailContacts.getEmailFromEmailAddressNode(emailAddressNode);
 			if (ovl_cardbookMailContacts) {
-				var isEmailRegistered = cardbookRepository.isEmailRegistered(myEmail, ovl_cardbookMailContacts.getIdentityKey());
+				var isEmailRegistered = cardbookRepository.isEmailRegistered(email, ovl_cardbookMailContacts.getIdentityKey());
 			} else {
-				var isEmailRegistered = cardbookRepository.isEmailRegistered(myEmail);
+				var isEmailRegistered = cardbookRepository.isEmailRegistered(email);
 			}
 	
 			if (isEmailRegistered) {
-				var myCard = cardbookRepository.cardbookUtils.getCardFromEmail(myEmail);
+				var myCard = cardbookRepository.cardbookUtils.getCardFromEmail(email);
 				ovl_cardbookFindEmails.findEmails([myCard], null);
-			}
+			} else {
+				ovl_cardbookFindEmails.findEmails(null, [email]);
+			}	
 		},
 
 		findEmails: function (aListOfSelectedCard, aListOfSelectedEmails) {

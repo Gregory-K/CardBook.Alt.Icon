@@ -18,7 +18,6 @@ if ("undefined" == typeof(wdw_cardbook)) {
 		currentFirstVisibleRow : 0,
 		currentLastVisibleRow : 0,
 		cutAndPaste : "",
-		cardbookrefresh : false,
 		writeButtonFired : false,
 		displayCardDetail: false,
 		displayCardEtag: 0,
@@ -819,7 +818,7 @@ if ("undefined" == typeof(wdw_cardbook)) {
 				} else {
 					wdw_cardbook.bulkOperation(myActionId);
 					await cardbookRepository.cardbookSynchronization.writeCardsToFile(aFile.path, aListOfSelectedCard, myActionId, aListOfSelectedCard.length);
-					cardbookRepository.cardbookSynchronization.finishExportToFile(window, aListOfSelectedCard.length, aFile.leafName);
+					cardbookActions.endAsyncAction(myActionId, {window: window, length: aListOfSelectedCard.length, name: aFile.leafName});
 				}
 			}
 			catch (e) {
@@ -3896,7 +3895,7 @@ if ("undefined" == typeof(wdw_cardbook)) {
 			if (!document.getElementById('accountsOrCatsTree')) {
 				return;
 			} else if (cardbookRepository.cardbookSearchMode == "SEARCH") {
-				var mySyncCondition = true;
+				var mySyncCondition = false;
 			} else if (cardbookRepository.cardbookComplexSearchMode == "SEARCH") {
 				var mySyncCondition = true;
 			} else {
@@ -3946,6 +3945,10 @@ if ("undefined" == typeof(wdw_cardbook)) {
 			
 			// select account back
 			await wdw_cardbook.selectAccountOrCat(myAccountId, listOfSelectedCard);
+
+			if (cardbookRepository.cardbookSearchMode == "SEARCH") {
+				await wdw_cardbook.startSearch();
+			}
 
 			// for search mode the reselection is done inside their functions
 			if (mySyncCondition) {

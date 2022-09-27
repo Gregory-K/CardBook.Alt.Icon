@@ -50,34 +50,6 @@ if ("undefined" == typeof(cardbookPrint)) {
 			return myDisplayedTypes;
 		},
 
-		addStyle: function (aAllDirPrefId) {
-			cardbookPrint.openTag("style", 'type="text/css" id="sheet"', "");
-			cardbookPrint.result = cardbookPrint.result + "\r\n";
-			cardbookPrint.indentation = cardbookPrint.indentation + "   ";
-			cardbookPrint.result = cardbookPrint.result + cardbookPrint.indentation + ".vCard { border: 1px solid black; box-shadow: 3px 3px 3px grey; margin-bottom: 10px; padding: 0; }";
-			for (let dirPrefId of aAllDirPrefId) {
-				cardbookPrint.result = cardbookPrint.result + cardbookPrint.indentation + ".cardTitle_" + dirPrefId + " { padding-left: 10%; background: " + cardbookRepository.cardbookPreferences.getColor(dirPrefId) + "; font-weight: bold; }";
-			}
-			cardbookPrint.result = cardbookPrint.result + cardbookPrint.indentation + ".table { text-align: left; word-wrap: break-word; vertical-align: top; }";
-			cardbookPrint.result = cardbookPrint.result + cardbookPrint.indentation + ".datavalue { width: 100%; white-space: pre-wrap; word-wrap: break-word; }";
-			cardbookPrint.result = cardbookPrint.result + cardbookPrint.indentation + ".typevalue { white-space: nowrap; }";
-			cardbookPrint.result = cardbookPrint.result + cardbookPrint.indentation + ".dummyvalue { min-width: 10px; }";
-			cardbookPrint.result = cardbookPrint.result + cardbookPrint.indentation + ".titlevalue { white-space: nowrap; font-weight: bold; }";
-			cardbookPrint.result = cardbookPrint.result + cardbookPrint.indentation + ".print_preview_category { border: thin solid; display: inline; padding: 0 0.25em; }";
-			var styles = [];
-			for (let category in cardbookRepository.cardbookNodeColors) {
-				var categoryCleanName = cardbookRepository.cardbookUtils.formatCategoryForCss(category);
-				var color = cardbookRepository.cardbookNodeColors[category];
-				if (!color) {
-					continue;
-				}
-				var oppositeColor = cardbookRepository.getTextColorFromBackgroundColor(color);
-				cardbookPrint.result = cardbookPrint.result + cardbookPrint.indentation + ".print_preview_category_" + categoryCleanName + "{ color: " + oppositeColor + "; background-color: " + color + "; }";
-			}
-			cardbookPrint.indentation = cardbookPrint.indentation.replace("   ", "");
-			cardbookPrint.closeTag("style", true);
-		},
-
 		attachHeaderNode: function (document, child, headerNode, headerKey) {
 			if (child.querySelector(".keyheader") || child.querySelector(".key") || child.querySelector(".value")) {
 				if (headerNode && cardbookPrint.options.headers && cardbookPrint.options.fieldNames) {
@@ -99,9 +71,6 @@ if ("undefined" == typeof(cardbookPrint)) {
 			let templateProperty = document.getElementById("list-item-labelprefproperties");
 			let itemPropertyNode = templateProperty.content.cloneNode(true);
 			if (propValue) {
-				if (propKey) {
-					itemPropertyNode.querySelector(".key").textContent = propKey;
-				}
 				if (propPref) {
 					// test to change 
 					// itemPropertyNode.querySelector(".pref").classlist.add("pref");
@@ -109,6 +78,12 @@ if ("undefined" == typeof(cardbookPrint)) {
 				}
 				if (propType) {
 					itemPropertyNode.querySelector(".type").textContent = propType;
+				}
+				if (!cardbookPrint.options.fieldNames) {
+					let key = itemPropertyNode.querySelector(".key");
+					key.remove();
+				} else {
+					itemPropertyNode.querySelector(".key").textContent = propKey;
 				}
 				itemPropertyNode.querySelector(".value").textContent = propValue;
 				itemNode.appendChild(itemPropertyNode);
@@ -319,6 +294,8 @@ if ("undefined" == typeof(cardbookPrint)) {
 				}
 
 				listContainer.appendChild(itemNode);
+				console.debug(listContainer)
+				console.debug(listContainer.innerHTML)
 			}
 		}
 	};

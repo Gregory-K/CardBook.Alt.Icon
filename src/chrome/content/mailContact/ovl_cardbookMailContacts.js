@@ -7,6 +7,31 @@ if ("undefined" == typeof(ovl_cardbookMailContacts)) {
 		knownContacts: false,
 		origFunctions: {},
 
+		getDisplayNameFromEmailAddressNode: function(emailAddressNode) {
+			let fullAddress = "";
+			if (emailAddressNode && emailAddressNode.email && emailAddressNode.email.title) {
+				fullAddress = emailAddressNode.email.title;
+			} else if (emailAddressNode && emailAddressNode.textContent) {
+				fullAddress = emailAddressNode.textContent;
+			}
+			let address = MailServices.headerParser.parseEncodedHeaderW(fullAddress)[0];
+			return address.name;
+		},
+
+		getEmailFromEmailAddressNode: function(emailAddressNode) {
+			let fullAddress = "";
+			if (emailAddressNode && emailAddressNode.email && emailAddressNode.email.title) {
+				fullAddress = emailAddressNode.email.title;
+			} else if (emailAddressNode && emailAddressNode.textContent) {
+				fullAddress = emailAddressNode.textContent;
+			}
+			let address = MailServices.headerParser.parseEncodedHeaderW(fullAddress)[0];
+			if (address.email.includes("@")) {
+				return address.email.toLowerCase();
+			}
+			return "";
+		},
+
 		getIdentityKey: function() {
 			var result = "";
 			if (gFolderDisplay && gFolderDisplay.selectedCount == 1) {
@@ -164,6 +189,15 @@ if ("undefined" == typeof(ovl_cardbookMailContacts)) {
 	// Override a function.
 	// _updateAvatar
 	customElements.get("header-recipient").prototype._updateAvatar = async function() {
+		// update blue icons node for the from node
+		// change in Thunderbird 102.3.0
+		if ("undefined" == typeof(DisplayNameUtils.getCardForEmail)) {
+			let cardDetails = ovl_formatEmailCorrespondents.getCardForEmail(this.emailAddress);
+			this.cardDetails = cardDetails;
+			let hasCard = this.cardDetails.card;
+			this.abIndicator.classList.toggle("in-address-book", hasCard);
+		}
+
 		this.avatar.replaceChildren();
 
 		if (!this.cardDetails.card) {
@@ -201,9 +235,26 @@ if ("undefined" == typeof(ovl_cardbookMailContacts)) {
 		} else {
 			this._createAvatarPlaceholder();
 		}
+
+		// update blue icons node for others nodes
+		// change in Thunderbird 102.3.0
+		if ("undefined" == typeof(DisplayNameUtils.getCardForEmail)) {
+			setTimeout(function(){ 
+				let nodes = document.getElementById("msgHeaderView").querySelectorAll(".header-recipient");
+					for (let node of nodes) {
+						if (node.getAttribute("data-header-name") != "from") {
+							let cardDetails = ovl_formatEmailCorrespondents.getCardForEmail(node.emailAddress);
+							node.cardDetails = cardDetails;
+							let hasCard = node.cardDetails.card;
+							node.abIndicator.classList.toggle("in-address-book", hasCard);
+						}
+					}
+			}, 200);
+		}
+
+
 	};
 })();
-
 
 (function() {
 	// Keep a reference to the original function.
@@ -211,13 +262,12 @@ if ("undefined" == typeof(ovl_cardbookMailContacts)) {
 	
 	// Override a function.
 	// gMessageHeader.openEmailAddressPopup
-	gMessageHeader.openEmailAddressPopup = function() {
+	gMessageHeader.openEmailAddressPopup = async function() {
 		// Execute original function.
-		let rv = ovl_cardbookMailContacts.origFunctions.openEmailAddressPopup.apply(null, arguments);
-		
+		let rv = await ovl_cardbookMailContacts.origFunctions.openEmailAddressPopup.apply(null, arguments);
+
 		// Execute some action afterwards.
 		let exclusive = cardbookRepository.cardbookPreferences.getBoolPref("extensions.cardbook.exclusive");
-
 		if (arguments[1].cardDetails.card && arguments[1].cardDetails.card.cbid) {
 			ovl_cardbookMailContacts.hideOrShowNewAddressbook(true);
 			let  myCard = arguments[1].cardDetails.card;

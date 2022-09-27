@@ -168,13 +168,13 @@ function onLoad(wasAlreadyOpen) {
 		</menu>
 		<menuseparator id="findCardBookSeparator1" insertafter="IMPPCards"/>
 		<menuitem id="findEmailsFromEmailMessenger" class="menuitem-iconic" label="__MSG_findEmailsFromEmailMessengerLabel__" accesskey="__MSG_findEmailsFromEmailMessengerAccesskey__"
-			oncommand="ovl_cardbookFindEmails.findEmailsFromEmail(this.parentNode.triggerNode);" insertafter="findCardBookSeparator1"/>
+			oncommand="ovl_cardbookFindEmails.findEmailsFromEmail(event.currentTarget.parentNode.headerField);" insertafter="findCardBookSeparator1"/>
 		<menuitem id="findAllEmailsFromContactMessenger" class="menuitem-iconic" label="__MSG_findAllEmailsFromContactMessengerLabel__" accesskey="__MSG_findAllEmailsFromContactMessengerAccesskey__"
-			oncommand="ovl_cardbookFindEmails.findAllEmailsFromContact(this.parentNode.triggerNode);" insertafter="findEmailsFromEmailMessenger"/>
+			oncommand="ovl_cardbookFindEmails.findAllEmailsFromContact(event.currentTarget.parentNode.headerField);" insertafter="findEmailsFromEmailMessenger"/>
 		<menuitem id="findEventsFromEmailMessenger" class="menuitem-iconic" label="__MSG_findEventsFromEmailMessengerLabel__" accesskey="__MSG_findEventsFromEmailMessengerAccesskey__"
-			oncommand="ovl_cardbookFindEvents.findEventsFromEmail(this.parentNode.triggerNode);" insertafter="findAllEmailsFromContactMessenger"/>
+			oncommand="ovl_cardbookFindEvents.findEventsFromEmail(event.currentTarget.parentNode.headerField);" insertafter="findAllEmailsFromContactMessenger"/>
 		<menuitem id="findAllEventsFromContactMessenger" class="menuitem-iconic" label="__MSG_findAllEventsFromContactMessengerLabel__" accesskey="__MSG_findAllEventsFromContactMessengerAccesskey__"
-			oncommand="ovl_cardbookFindEvents.findAllEventsFromContact(this.parentNode.triggerNode);" insertafter="findEventsFromEmailMessenger"/>
+			oncommand="ovl_cardbookFindEvents.findAllEventsFromContact(event.currentTarget.parentNode.headerField);" insertafter="findEventsFromEmailMessenger"/>
 		<menuseparator id="findCardBookSeparator2" insertafter="findAllEventsFromContactMessenger"/>
 	</menupopup>
 

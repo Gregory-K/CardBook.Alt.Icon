@@ -294,8 +294,8 @@ if ("undefined" == typeof(cardbookActions)) {
 				lTimerActions.initWithCallback({ notify: function(lTimerActions) {
 					var myAction = cardbookRepository.currentAction[aActionId];
 					if (myAction.totalCards == myAction.doneCards && myAction.totalCats == myAction.doneCats) {
-						cardbookActions.endAction(aActionId, null, aFinishParams);
 						cardbookActions.alertAction(aActionId, aFinishParams);
+						cardbookActions.endAction(aActionId, null, aFinishParams);
 						lTimerActions.cancel();
 					}
 				}

@@ -5544,7 +5544,7 @@
 		"message": "Girişi Yapıştır"
 	},
 	"exportsMenu": {
-		"message": "Dışa Aktarmalar"
+		"message": "Dışa aktar"
 	},
 	"exportCardImagesLabel": {
 		"message": "Resimleri dışa aktar"
@@ -5556,7 +5556,7 @@
 		"message": "Dışa Aktar: Klasöre"
 	},
 	"importsMenu": {
-		"message": "İçe Aktarmalar"
+		"message": "İçe aktar"
 	},
 	"importCardFromFileLabel": {
 		"message": "Kişileri Dosyadan İçe Aktar"

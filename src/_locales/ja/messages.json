@@ -5544,7 +5544,7 @@
 		"message": "項目を貼り付け"
 	},
 	"exportsMenu": {
-		"message": "??Exports??"
+		"message": "エクスポート"
 	},
 	"exportCardImagesLabel": {
 		"message": "??Export images??"
@@ -5556,7 +5556,7 @@
 		"message": "ディレクトリにエクスポート"
 	},
 	"importsMenu": {
-		"message": "??Imports??"
+		"message": "ファイルからインポート"
 	},
 	"importCardFromFileLabel": {
 		"message": "ファイルから連絡先をインポート"

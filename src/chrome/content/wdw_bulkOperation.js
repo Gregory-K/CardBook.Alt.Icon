@@ -23,7 +23,6 @@ if ("undefined" == typeof(wdw_logEdition)) {
 								let total = cardbookRepository.currentAction[actionId].totalCards;
 								let done = cardbookRepository.currentAction[actionId].doneCards;
 								let message = cardbookRepository.currentAction[actionId].message;
-								// console.log("test : " + message + " : " + done + " / " + total)
 								if (!(document.getElementById("bulkProgressmeter_" + actionId))) {
 									let currentRow = cardbookElementTools.addHTMLTR(table, 'bulkOperationRow_' + actionId);
 									let labelData = cardbookElementTools.addHTMLTD(currentRow, 'bulkOperationRowLabel_' + actionId + '.1');

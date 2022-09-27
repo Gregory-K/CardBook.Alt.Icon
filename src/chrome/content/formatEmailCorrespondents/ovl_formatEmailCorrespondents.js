@@ -7,6 +7,27 @@ if ("undefined" == typeof(ovl_formatEmailCorrespondents)) {
 	var ovl_formatEmailCorrespondents = {
 		origFunctions: {},
 
+		// function DisplayNameUtils.getCardForEmail available < Thunderbird 102.3.0
+		// function ovl_formatEmailCorrespondents.getCardForEmail available >= Thunderbird 102.3.0
+		getCardForEmail: function(aEmail) {
+			var standardRV = { book: null, card: null};
+			for (let ab of MailServices.ab.directories) {
+				try {
+					var card = ab.cardForEmailAddress(aEmail);
+					if (card) {
+						standardRV.book = ab;
+						standardRV.card = card;
+					}
+				} catch (ex) {}
+			}
+			let CBcard = cardbookRepository.cardbookUtils.getCardFromEmail(aEmail);
+			if (CBcard) {
+				return  { book: standardRV.book, card: CBcard, standardCard: standardRV.card};
+			} else {
+				return standardRV;
+			}
+		},
+
 		getIdentityForEmail: function(aEmail) {
 			let emailAddress = aEmail.toLowerCase();
 			for (let identity of MailServices.accounts.allIdentities) {
@@ -86,7 +107,11 @@ if ("undefined" == typeof(ovl_formatEmailCorrespondents)) {
 						}
 					} else {
 						if (!myCardBookResult.found) {
-							var card = DisplayNameUtils.getCardForEmail(address.email).card;
+							// change in Thunderbird 102.3.0
+							let card = ("undefined" != typeof(DisplayNameUtils.getCardForEmail))
+								? DisplayNameUtils.getCardForEmail(address.email).card
+								: ovl_formatEmailCorrespondents.getCardForEmail(address.email).card;
+							// var card = DisplayNameUtils.getCardForEmail(address.email).card;
 							var displayName = null;
 							if (card) {
 								if (card.getProperty("PreferDisplayName", "1") == "1") {
@@ -284,6 +309,8 @@ myFormatObserver.register();
 	}
 })();
 
+// function DisplayNameUtils.getCardForEmail available < Thunderbird 102.3.0
+// function ovl_formatEmailCorrespondents.getCardForEmail available >= Thunderbird 102.3.0
 // DisplayNameUtils.getCardForEmail
 (function() {
 	// for the standalone window, does not exist
@@ -293,22 +320,6 @@ myFormatObserver.register();
 		
 		// Override a function.
 		DisplayNameUtils.getCardForEmail = function() {
-			// let exclusive = cardbookRepository.cardbookPreferences.getBoolPref("extensions.cardbook.exclusive");
-			// let standardRV = ovl_formatEmailCorrespondents.origFunctions.getCardForEmail.apply(null, arguments);
-			// let card = cardbookRepository.cardbookUtils.getCardFromEmail(arguments[0]);
-			// if (exclusive) {
-			// 	if (card) {
-			// 		return  { book: null, card: card };
-			// 	} else {
-			// 		return { book: null, card: null };
-			// 	}
-			// } else {
-			// 	if (card) {
-			// 		return  { book: null, card: card };
-			// 	} else {
-			// 		return ovl_formatEmailCorrespondents.origFunctions.getCardForEmail.apply(null, arguments);
-			// 	}
-			// }
 			let standardRV = ovl_formatEmailCorrespondents.origFunctions.getCardForEmail.apply(null, arguments);
 			let card = cardbookRepository.cardbookUtils.getCardFromEmail(arguments[0]);
 			if (card) {
