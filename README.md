@@ -24,9 +24,18 @@ Compatibility:
 102.0a1 <= Thunderbird version >= 102.*
 
 
+## Branches
+
+['**T102**'](https://github.com/Gregory-K/CardBook.Alt.Icon/tree/T102) (current):  
+102.0a1 <= Thunderbird version >= 102.*
+
+['**T91**'](https://github.com/Gregory-K/CardBook.Alt.Icon/tree/T91):  
+91.0a1 <= Thunderbird version >= 91.*
+
+
 ## Install / Update
 
-Download the latest (T102 branch) .xpi [release from GitHub](https://github.com/Gregory-K/CardBook.Alt.Icon/releases) and install it manually into Thunderbird.  
+Download the latest (version mentioned above) .xpi [release from GitHub](https://github.com/Gregory-K/CardBook.Alt.Icon/releases) and install it manually into Thunderbird.  
 _(drag 'n drop OR "gear menu > Install Add-on From File...")_
 
 Repeat for updates.  
