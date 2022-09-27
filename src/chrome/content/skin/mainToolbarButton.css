@@ -1,6 +1,5 @@
-.icon-holder[type="cardbookTab"],
-.tabmail-tab[type="cardbookTab"] {
-	list-style-image: url("chrome://cardbook/content/skin/cardbook.svg");
+#cardbookButton img {
+	content: url("chrome://cardbook/content/skin/cardbook.svg");
 }
 
 #cardbookMenuItem {
@@ -8,10 +7,6 @@
 }
 
 #qfb-cardbook {
-	list-style-image: url("chrome://cardbook/content/skin/cardbook.svg");
-}
-
-#cardbookTabButton {
 	list-style-image: url("chrome://cardbook/content/skin/cardbook.svg");
 }
 

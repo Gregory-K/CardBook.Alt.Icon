@@ -29,26 +29,12 @@
 	"browser_action": {
 		"default_label": "__MSG_cardbookToolbarButtonLabel__",
 		"default_title": "__MSG_cardbookToolbarButtonTooltip__",
-		"default_icon": "chrome/content/skin/cardbook.svg",
-		"theme_icons": [
-			{
-				"light": "chrome/content/skin/cardbook_w.svg",
-				"dark": "chrome/content/skin/cardbook_b.svg",
-				"size": 32
-			}
-		]
+		"default_icon": "chrome/content/skin/cardbook.svg"
 	},
 	"compose_action": {
 		"default_label": "__MSG_cardbookToolbarButtonLabel__",
 		"default_title": "__MSG_cardbookToolbarButtonTooltip__",
-		"default_icon": "chrome/content/skin/cardbook.svg",
-		"theme_icons": [
-			{
-				"light": "chrome/content/skin/cardbook_w.svg",
-				"dark": "chrome/content/skin/cardbook_b.svg",
-				"size": 32
-			}
-		]
+		"default_icon": "chrome/content/skin/cardbook.svg"
 	},
 	"experiment_apis": {
 		"WindowListener": {
