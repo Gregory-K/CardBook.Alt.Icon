@@ -127,7 +127,7 @@
 		"message": "Inga dubbletter av kontakter har hittats."
 	},
 	"noDataAvailable": {
-		"message": "Ingen data tillgänglig."
+		"message": "Inga data tillgänglig."
 	},
 	"targetCategoryLabel": {
 		"message": "resultat"
@@ -204,7 +204,7 @@
 		}
 	},
 	"customFieldsErrorCHAR": {
-		"message": "Anpassat fältnamn kan inte innehålla brytande specialtecken som komma, semikolon, kolon eller punkt: $P1$",
+		"message": "Anpassat fältnamn kan inte innehålla specialtecken som komma, semikolon, kolon eller punkt: $P1$",
 		"placeholders": {
 			"P1": {
 				"content": "$1"
@@ -226,7 +226,7 @@
 		}
 	},
 	"notAllContactsLoadedFromFile": {
-		"message": "$P1$ : alla kontakter laddades inte från fil: $P2$ fel uppstod.",
+		"message": "$P1$ : Alla kontakter laddades inte från fil: $P2$ fel uppstod.",
 		"placeholders": {
 			"P1": {
 				"content": "$1"
@@ -324,7 +324,7 @@
 		}
 	},
 	"synchroCardsDeletedOnDisk": {
-		"message": "$P1$ : Kontakter raderade från disk : $P2$",
+		"message": "$P1$ : Kontakter raderade lokalt : $P2$",
 		"placeholders": {
 			"P1": {
 				"content": "$1"
@@ -335,7 +335,7 @@
 		}
 	},
 	"synchroCardsDeletedOnDiskUpdatedOnServer": {
-		"message": "$P1$ : Kontakter raderade på disk och uppdaterade på server : $P2$",
+		"message": "$P1$ : Kontakter raderade lokalt och uppdaterade på server : $P2$",
 		"placeholders": {
 			"P1": {
 				"content": "$1"
@@ -346,7 +346,7 @@
 		}
 	},
 	"synchroCardsNewOnDisk": {
-		"message": "$P1$ : Nya kontakter på disk : $P2$",
+		"message": "$P1$ : Nya kontakter lokalt : $P2$",
 		"placeholders": {
 			"P1": {
 				"content": "$1"
@@ -357,7 +357,7 @@
 		}
 	},
 	"synchroCardsUpdatedOnDisk": {
-		"message": "$P1$ : Kontakter uppdaterade på disk : $P2$",
+		"message": "$P1$ : Kontakter uppdaterade lokalt : $P2$",
 		"placeholders": {
 			"P1": {
 				"content": "$1"
@@ -379,7 +379,7 @@
 		}
 	},
 	"synchroCardsUpdatedOnDiskDeletedOnServer": {
-		"message": "$P1$ : Kontakter uppdaterade på disk och raderade från server : $P2$",
+		"message": "$P1$ : Kontakter uppdaterade lokalt och raderade från server : $P2$",
 		"placeholders": {
 			"P1": {
 				"content": "$1"
@@ -390,7 +390,7 @@
 		}
 	},
 	"synchroCategoriesUpToDate": {
-		"message": "$P1$ : kategorier uppdaterade : $P2$",
+		"message": "$P1$ : Kategorier uppdaterade : $P2$",
 		"placeholders": {
 			"P1": {
 				"content": "$1"
@@ -456,7 +456,7 @@
 		}
 	},
 	"synchroCategoriesNewOnDisk": {
-		"message": "??$P1$ : Categories new locally : $P2$??",
+		"message": "$P1$ : Nya kategorier lokalt : $P2$",
 		"placeholders": {
 			"P1": {
 				"content": "$1"
@@ -467,7 +467,7 @@
 		}
 	},
 	"synchroCategoriesUpdatedOnDisk": {
-		"message": "??$P1$ : Categories updated locally : $P2$??",
+		"message": "$P1$ : Uppdaterade kategorier lokalt : $P2$",
 		"placeholders": {
 			"P1": {
 				"content": "$1"
@@ -478,7 +478,7 @@
 		}
 	},
 	"synchroCategoriesUpdatedOnBoth": {
-		"message": "??$P1$ : Categories updated locally and on server : $P2$??",
+		"message": "$P1$ : Kategorier uppdaterade lokalt och på server : $P2$",
 		"placeholders": {
 			"P1": {
 				"content": "$1"
@@ -489,7 +489,7 @@
 		}
 	},
 	"synchroCategoriesUpdatedOnDiskDeletedOnServer": {
-		"message": "??$P1$ : Categories updated locally and deleted from server : $P2$??",
+		"message": "$P1$ : Kategorier uppdaterade lokalt och raderade från server : $P2$",
 		"placeholders": {
 			"P1": {
 				"content": "$1"
@@ -552,7 +552,7 @@
 		}
 	},
 	"synchroDBFinishedResult": {
-		"message": "??$P1$ : Local database opened, contacts result :??",
+		"message": "$P1$ : Lokal databas öppnad, kontakt-resultat:",
 		"placeholders": {
 			"P1": {
 				"content": "$1"
@@ -582,7 +582,7 @@
 		}
 	},
 	"synchroDirFinishedResult": {
-		"message": "$P1$ : Kontaktkatalog öppnad, Resultat :",
+		"message": "$P1$ : Kontaktkatalog öppnad, resultat :",
 		"placeholders": {
 			"P1": {
 				"content": "$1"
@@ -612,7 +612,7 @@
 		}
 	},
 	"synchroFileFinishedResult": {
-		"message": "$P1$ : Kontakter öppnades från fil, Resultat :",
+		"message": "$P1$ : Kontakter öppnades från fil, resultat :",
 		"placeholders": {
 			"P1": {
 				"content": "$1"
@@ -642,7 +642,7 @@
 		}
 	},
 	"synchroForcedToResync": {
-		"message": "$P1$ : Vi är tvingade att synka om det här kontot",
+		"message": "$P1$ : Detta konto behöver synkroniseras på nytt",
 		"placeholders": {
 			"P1": {
 				"content": "$1"
@@ -653,7 +653,7 @@
 		"message": "All synckronisering är klar"
 	},
 	"discoveryRunning": {
-		"message": "$P1$ : Adressbok automatisk upptäckt körning",
+		"message": "$P1$ : Automatisk upptäckt av adressbok körs",
 		"placeholders": {
 			"P1": {
 				"content": "$1"
@@ -683,7 +683,7 @@
 		}
 	},
 	"importFinishedResult": {
-		"message": "$P1$ : Kontakt importering klar, resultat :",
+		"message": "$P1$ : Import av kontakter klar, resultat :",
 		"placeholders": {
 			"P1": {
 				"content": "$1"
@@ -713,10 +713,10 @@
 		}
 	},
 	"importAllFinished": {
-		"message": "All importering klar"
+		"message": "Alla importer klara"
 	},
 	"cardDeletedOnDisk": {
-		"message": "$P1$ : Kontakter $P2$ raderade från disk",
+		"message": "$P1$ : Kontakt $P2$ raderade lokalt",
 		"placeholders": {
 			"P1": {
 				"content": "$1"
@@ -771,7 +771,7 @@
 		}
 	},
 	"cardUpdatedOnServer": {
-		"message": "$P1$ : Kontakten $P2$ uppdaterad på server (etag hittad : $P3$, etag i cache : $P4$)",
+		"message": "$P1$ : Kontakten $P2$ uppdaterad på server (etag hittad: $P3$, etag i cache: $P4$)",
 		"placeholders": {
 			"P1": {
 				"content": "$1"
@@ -900,7 +900,7 @@
 		}
 	},
 	"serverCardDeleteFailed": {
-		"message": "$P1$ : Kontakten $P2$ kunde inte raderas från server (webbadress : $P3$, status : $P4$)",
+		"message": "$P1$ : Kontakten $P2$ kunde inte raderas från server (webbadress: $P3$, status: $P4$)",
 		"placeholders": {
 			"P1": {
 				"content": "$1"
@@ -928,7 +928,7 @@
 		}
 	},
 	"serverCardUpdatedOnServerWithEtag": {
-		"message": "$P1$ : Kontakten $P2$ uppdaterad på servern (etag : $P3$)",
+		"message": "$P1$ : Kontakten $P2$ uppdaterad på servern (etag: $P3$)",
 		"placeholders": {
 			"P1": {
 				"content": "$1"
@@ -953,7 +953,7 @@
 		}
 	},
 	"serverCardUpdateFailed": {
-		"message": "$P1$ : Kontakten $P2$ misslyckades med att uppdateras på servern (webbadress : $P3$, status : $P4$)",
+		"message": "$P1$ : Kontakten $P2$ misslyckades med att uppdateras på servern (webbadress: $P3$, status: $P4$)",
 		"placeholders": {
 			"P1": {
 				"content": "$1"
@@ -981,7 +981,7 @@
 		}
 	},
 	"serverCardCreatedOnServerWithEtag": {
-		"message": "$P1$ : Kontakten $P2$ skapad på servern (etag : $P3$)",
+		"message": "$P1$ : Kontakten $P2$ skapad på servern (etag: $P3$)",
 		"placeholders": {
 			"P1": {
 				"content": "$1"
@@ -1006,7 +1006,7 @@
 		}
 	},
 	"serverCardCreateFailed": {
-		"message": "$P1$ : Kontakten $P2$ misslyckades med att skapas på servern (webbadress : $P3$, status : $P4$)",
+		"message": "$P1$ : Kontakten $P2$ misslyckades med att skapas på servern (webbadress: $P3$, status: $P4$)",
 		"placeholders": {
 			"P1": {
 				"content": "$1"
@@ -1034,7 +1034,7 @@
 		}
 	},
 	"serverCardGetImageFailed": {
-		"message": "$P1$ : Bilden hämtades inte för kontakt $P2$ (webbadress : $P3$, status : $P4$)",
+		"message": "$P1$ : Bilden hämtades inte för kontakt $P2$ (webbadress: $P3$, status: $P4$)",
 		"placeholders": {
 			"P1": {
 				"content": "$1"
@@ -1073,7 +1073,7 @@
 		}
 	},
 	"serverCardGetKeyFailed": {
-		"message": "??$P1$ : Key failed to be downloaded for contact $P2$ (url : $P3$, status : $P4$)??",
+		"message": "$P1$ : Nyckeln hämtades inte för kontakt $P2$ (webbadress: $P3$, status: $P4$)",
 		"placeholders": {
 			"P1": {
 				"content": "$1"
@@ -1090,7 +1090,7 @@
 		}
 	},
 	"serverCardGetKeyOK": {
-		"message": "??$P1$ : Key downloaded for contact $P2$??",
+		"message": "$P1$ : Nyckel hämtad för kontakt $P2$",
 		"placeholders": {
 			"P1": {
 				"content": "$1"
@@ -1101,7 +1101,7 @@
 		}
 	},
 	"serverCardGettingKey": {
-		"message": "??$P1$ : Key downloading for contact $P2$ …??",
+		"message": "$P1$ : Nyckel hämtas för kontakt $P2$ …",
 		"placeholders": {
 			"P1": {
 				"content": "$1"
@@ -1123,7 +1123,7 @@
 		}
 	},
 	"serverCardGetFailed": {
-		"message": "$P1$ : Det gick inte att ladda ner från servern (webbadress : $P2$, status : $P3$)",
+		"message": "$P1$ : Det gick inte att ladda ner från servern (webbadress: $P2$, status: $P3$)",
 		"placeholders": {
 			"P1": {
 				"content": "$1"
@@ -1137,7 +1137,7 @@
 		}
 	},
 	"serverSendingGetLabels": {
-		"message": "??$P1$ : sending contact labels obtention request …??",
+		"message": "$P1$ : skickar förfrågan om att få kontaktetiketter …",
 		"placeholders": {
 			"P1": {
 				"content": "$1"
@@ -1145,7 +1145,7 @@
 		}
 	},
 	"serverGetLabelsOK": {
-		"message": "??$P1$ : labels obtained??",
+		"message": "$P1$ : etiketter erhållna",
 		"placeholders": {
 			"P1": {
 				"content": "$1"
@@ -1153,7 +1153,7 @@
 		}
 	},
 	"serverGetLabelsFailed": {
-		"message": "??$P1$ : labels failed to be obtained from server (url : $P2$, status : $P3$)??",
+		"message": "$P1$ : etiketter gick inte att hämta från servern (webbadress: $P2$, status: $P3$)",
 		"placeholders": {
 			"P1": {
 				"content": "$1"
@@ -1167,7 +1167,7 @@
 		}
 	},
 	"serverSendingGetCardLabels": {
-		"message": "??$P1$ : Contact $P2$ : sending contact labels obtention request …??",
+		"message": "$P1$ : Kontakt $P2$ : skickar förfrågan om att få kontaktetiketter …",
 		"placeholders": {
 			"P1": {
 				"content": "$1"
@@ -1178,7 +1178,7 @@
 		}
 	},
 	"serverGetCardLabelsOK": {
-		"message": "??$P1$ : Contact $P2$ : labels obtained??",
+		"message": "$P1$ : Kontakt $P2$ : etiketter erhållna",
 		"placeholders": {
 			"P1": {
 				"content": "$1"
@@ -1189,7 +1189,7 @@
 		}
 	},
 	"serverGetCardLabelsFailed": {
-		"message": "??$P1$ : Contact $P2$ : labels failed to be obtained from server (url : $P3$, status : $P4$)??",
+		"message": "$P1$ : Kontakt $P2$ : det gick inte att hämta etiketter från servern (webbadress: $P3$, status: $P4$)",
 		"placeholders": {
 			"P1": {
 				"content": "$1"
@@ -1206,7 +1206,7 @@
 		}
 	},
 	"serverSendingPutLabels": {
-		"message": "??$P1$ : sending contact labels update request …??",
+		"message": "$P1$ : skickar uppdateringsbegäran för kontaktetiketter …",
 		"placeholders": {
 			"P1": {
 				"content": "$1"
@@ -1214,7 +1214,7 @@
 		}
 	},
 	"serverPutLabelsOK": {
-		"message": "??$P1$ : labels updated??",
+		"message": "$P1$ : etiketter uppdaterade",
 		"placeholders": {
 			"P1": {
 				"content": "$1"
@@ -1222,7 +1222,7 @@
 		}
 	},
 	"serverPutLabelsFailed": {
-		"message": "??$P1$ : labels failed to be updated on server (url : $P2$, status : $P3$)??",
+		"message": "$P1$ : etiketter kunde inte uppdateras på servern (webblänk: $P2$, status: $P3$)",
 		"placeholders": {
 			"P1": {
 				"content": "$1"
@@ -1236,7 +1236,7 @@
 		}
 	},
 	"serverSendingPutCardLabels": {
-		"message": "??$P1$ : Contact $P2$ : sending contact labels update request …??",
+		"message": "$P1$ : Kontakt $P2$ : skicka förfrågan om uppdatering av kontaktetiketter …",
 		"placeholders": {
 			"P1": {
 				"content": "$1"
@@ -1247,7 +1247,7 @@
 		}
 	},
 	"serverPutCardLabelsOK": {
-		"message": "??$P1$ : Contact $P2$ : labels updated??",
+		"message": "$P1$ : Kontakt $P2$ : etiketter uppdaterade",
 		"placeholders": {
 			"P1": {
 				"content": "$1"
@@ -1258,7 +1258,7 @@
 		}
 	},
 	"serverPutCardLabelsFailed": {
-		"message": "??$P1$ : Contact $P2$ : labels failed to be updated on server (url : $P3$, status : $P4$)??",
+		"message": "$P1$ : Kontakta $P2$ : etiketter kunde inte uppdateras på servern (webbadress: $P3$, status: $P4$)",
 		"placeholders": {
 			"P1": {
 				"content": "$1"
@@ -1275,7 +1275,7 @@
 		}
 	},
 	"categoryDeletedOnDisk": {
-		"message": "??$P1$ : Category $P2$ deleted locally??",
+		"message": "$P1$ : Kategori $P2$ borttagen lokalt",
 		"placeholders": {
 			"P1": {
 				"content": "$1"
@@ -1286,7 +1286,7 @@
 		}
 	},
 	"categoryUpdatedOnDisk": {
-		"message": "??$P1$ : Category $P2$ updated locally??",
+		"message": "$P1$ : Kategori $P2$ uppdaterades lokalt",
 		"placeholders": {
 			"P1": {
 				"content": "$1"
@@ -1297,7 +1297,7 @@
 		}
 	},
 	"categoryAlreadyGetFromCache": {
-		"message": "??$P1$ : Category $P2$ already retrieved from cache??",
+		"message": "$P1$ : Kategori $P2$ har redan hämtats från cache",
 		"placeholders": {
 			"P1": {
 				"content": "$1"
@@ -1308,7 +1308,7 @@
 		}
 	},
 	"categoryDeletedOnDiskUpdatedOnServer": {
-		"message": "??$P1$ : Category $P2$ deleted locally and updated on server??",
+		"message": "$P1$ : Kategori $P2$ raderad lokalt och uppdaterad på servern",
 		"placeholders": {
 			"P1": {
 				"content": "$1"
@@ -1319,7 +1319,7 @@
 		}
 	},
 	"categoryUpdatedOnBoth": {
-		"message": "??$P1$ : Category $P2$ updated locally and on server??",
+		"message": "$P1$ : Kategori $P2$ uppdaterades lokalt och på servern",
 		"placeholders": {
 			"P1": {
 				"content": "$1"
@@ -1330,7 +1330,7 @@
 		}
 	},
 	"categoryUpdatedOnServer": {
-		"message": "??$P1$ : Category $P2$ updated on server (etag found : $P3$, etag in cache : $P4$)??",
+		"message": "$P1$ : Kategori $P2$ uppdaterad på servern (etag hittad: $P3$, etag i cache: $P4$)",
 		"placeholders": {
 			"P1": {
 				"content": "$1"
@@ -1347,7 +1347,7 @@
 		}
 	},
 	"categoryNewOnServer": {
-		"message": "??$P1$ : Found a new category on server??",
+		"message": "$P1$ : Hittade en ny kategori på servern",
 		"placeholders": {
 			"P1": {
 				"content": "$1"
@@ -1355,7 +1355,7 @@
 		}
 	},
 	"categoryLoadedFromCacheDB": {
-		"message": "??$P1$ : Category $P2$ loaded from cache (IndexedDB)??",
+		"message": "$P1$ : Kategori $P2$ laddad från cache (IndexedDB)",
 		"placeholders": {
 			"P1": {
 				"content": "$1"
@@ -1366,7 +1366,7 @@
 		}
 	},
 	"categoryNewOnDisk": {
-		"message": "??$P1$ : Category $P2$ new locally??",
+		"message": "$P1$ : Kategori $P2$ ny lokalt",
 		"placeholders": {
 			"P1": {
 				"content": "$1"
@@ -1377,7 +1377,7 @@
 		}
 	},
 	"categoryUpdatedOnDiskDeletedOnServer": {
-		"message": "??$P1$ : Category $P2$ updated locally and deleted from server??",
+		"message": "$P1$ : Kategori $P2$ uppdaterades lokalt och togs bort från servern",
 		"placeholders": {
 			"P1": {
 				"content": "$1"
@@ -1388,7 +1388,7 @@
 		}
 	},
 	"categoryDeletedOnServer": {
-		"message": "??$P1$ : Category $P2$ deleted from server??",
+		"message": "$P1$ : Kategori $P2$ raderad från servern",
 		"placeholders": {
 			"P1": {
 				"content": "$1"
@@ -1399,7 +1399,7 @@
 		}
 	},
 	"categoryAskUserTitle": {
-		"message": "Förändringskonflikt på kategorin"
+		"message": "Förändringskonflikt för kategorin"
 	},
 	"categorykeepAskUserLabel": {
 		"message": "Behåll kategorin"
@@ -1414,7 +1414,7 @@
 		"message": "Föredra ändringen från servern"
 	},
 	"serverCategoryDeletedFromServer": {
-		"message": "??$P1$ : Category $P2$ deleted from server??",
+		"message": "$P1$ : Kategori $P2$ raderad från servern",
 		"placeholders": {
 			"P1": {
 				"content": "$1"
@@ -1425,7 +1425,7 @@
 		}
 	},
 	"serverCategoryNotExistServer": {
-		"message": "??$P1$ : Category $P2$ does not exist on server??",
+		"message": "$P1$ : Kategori $P2$ finns inte på servern",
 		"placeholders": {
 			"P1": {
 				"content": "$1"
@@ -1436,7 +1436,7 @@
 		}
 	},
 	"serverCategoryDeleteFailed": {
-		"message": "??$P1$ : Category $P2$ failed to be deleted from server (url : $P3$, status : $P4$)??",
+		"message": "$P1$ : Kategori $P2$ kunde inte tas bort från servern (webbadress: $P3$, status: $P4$)",
 		"placeholders": {
 			"P1": {
 				"content": "$1"
@@ -1453,7 +1453,7 @@
 		}
 	},
 	"serverCategorySendingDeletion": {
-		"message": "??$P1$ : Category $P2$ : sending deletion requests …??",
+		"message": "$P1$ : Kategori $P2$ : skickar begäran om radering …",
 		"placeholders": {
 			"P1": {
 				"content": "$1"
@@ -1464,7 +1464,7 @@
 		}
 	},
 	"serverCategoryUpdatedOnServerWithEtag": {
-		"message": "??$P1$ : Category $P2$ updated on server (etag : $P3$)??",
+		"message": "$P1$ : Kategori $P2$ uppdaterad på servern (etag: $P3$)",
 		"placeholders": {
 			"P1": {
 				"content": "$1"
@@ -1478,7 +1478,7 @@
 		}
 	},
 	"serverCategoryUpdatedOnServerWithoutEtag": {
-		"message": "??$P1$ : Category $P2$ updated on server (no etag in response)??",
+		"message": "$P1$ : Kategori $P2$ uppdaterades på servern (ingen etag som svar)",
 		"placeholders": {
 			"P1": {
 				"content": "$1"
@@ -1489,7 +1489,7 @@
 		}
 	},
 	"serverCategoryUpdateFailed": {
-		"message": "??$P1$ : Category $P2$ failed to be updated on server (url : $P3$, status : $P4$)??",
+		"message": "$P1$ : Kategori $P2$ kunde inte uppdateras på servern (webbadress: $P3$, status: $P4$)",
 		"placeholders": {
 			"P1": {
 				"content": "$1"
@@ -1506,7 +1506,7 @@
 		}
 	},
 	"serverCategorySendingUpdate": {
-		"message": "??$P1$ : Category $P2$ : sending update requests …??",
+		"message": "$P1$ : Kategori $P2$ : skickar uppdateringsbegäran …",
 		"placeholders": {
 			"P1": {
 				"content": "$1"
@@ -1517,7 +1517,7 @@
 		}
 	},
 	"serverCategoryCreatedOnServerWithEtag": {
-		"message": "??$P1$ : Category $P2$ created on server (etag : $P3$)??",
+		"message": "$P1$ : Kategori $P2$ skapad på servern (etag: $P3$)",
 		"placeholders": {
 			"P1": {
 				"content": "$1"
@@ -1531,7 +1531,7 @@
 		}
 	},
 	"serverCategoryCreatedOnServerWithoutEtag": {
-		"message": "??$P1$ : Category $P2$ created on server (no etag in response)??",
+		"message": "$P1$ : Kategori $P2$ skapad på servern (ingen etag i svar)",
 		"placeholders": {
 			"P1": {
 				"content": "$1"
@@ -1542,7 +1542,7 @@
 		}
 	},
 	"serverCategoryCreateFailed": {
-		"message": "??$P1$ : Category $P2$ failed to be created on server (url : $P3$, status : $P4$)??",
+		"message": "$P1$ : Kategori $P2$ kunde inte skapas på servern (webbadress: $P3$, status: $P4$)",
 		"placeholders": {
 			"P1": {
 				"content": "$1"
@@ -1559,7 +1559,7 @@
 		}
 	},
 	"serverCategorySendingCreate": {
-		"message": "??$P1$ : Category $P2$ : sending create requests …??",
+		"message": "$P1$ : Kategori $P2$ : skickar förfrågan att skapa …",
 		"placeholders": {
 			"P1": {
 				"content": "$1"
@@ -1570,7 +1570,7 @@
 		}
 	},
 	"synchronizationSearchingCategories": {
-		"message": "??$P1$ : Searching categories …??",
+		"message": "$P1$ : Söker efter kategorier …",
 		"placeholders": {
 			"P1": {
 				"content": "$1"
@@ -1578,7 +1578,7 @@
 		}
 	},
 	"synchronizationFailed": {
-		"message": "$P1$ : Synkroniseringen misslyckades (steg : $P2$, webbadress : $P3$, status : $P4$)",
+		"message": "$P1$ : Synkroniseringen misslyckades (steg: $P2$, webbadress: $P3$, status: $P4$)",
 		"placeholders": {
 			"P1": {
 				"content": "$1"
@@ -1603,7 +1603,7 @@
 		}
 	},
 	"synchronizationSearchingCards": {
-		"message": "$P1$ : söker kontakter …",
+		"message": "$P1$ : Söker efter kontakter …",
 		"placeholders": {
 			"P1": {
 				"content": "$1"
@@ -1699,7 +1699,7 @@
 		}
 	},
 	"googleNewRefreshTokenOK": {
-		"message": "$P1$ : Mottagde en behörighetskod : $P2$ …",
+		"message": "$P1$ : Tog emot en behörighetskod : $P2$ …",
 		"placeholders": {
 			"P1": {
 				"content": "$1"
@@ -1765,7 +1765,7 @@
 		}
 	},
 	"yahooNewRefreshTokenOK": {
-		"message": "$P1$ : Mottagde en behörighetskod : $P2$ …",
+		"message": "$P1$ : Tog emot en behörighetskod : $P2$ …",
 		"placeholders": {
 			"P1": {
 				"content": "$1"
@@ -1798,7 +1798,7 @@
 		}
 	},
 	"periodicSyncDeleting": {
-		"message": "$P1$ : Radera periodisk synkroniseringsprocess (identifiering : $P2$)",
+		"message": "$P1$ : Radera periodisk synkronisering (id : $P2$)",
 		"placeholders": {
 			"P1": {
 				"content": "$1"
@@ -1809,7 +1809,7 @@
 		}
 	},
 	"periodicSyncSetting": {
-		"message": "$P1$ : Ställ in periodisk synkroniseringsprocess (intervall : $P2$ ms, identifiering : $P3$)",
+		"message": "$P1$ : Ställ in periodisk synkronisering (intervall : $P2$ ms, id : $P3$)",
 		"placeholders": {
 			"P1": {
 				"content": "$1"
@@ -1823,7 +1823,7 @@
 		}
 	},
 	"periodicSyncSyncing": {
-		"message": "$P1$ : Synkronisering på grund av periodisk synkronisering …",
+		"message": "$P1$ : Synkroniserar utifrån schemalagd synkronisering …",
 		"placeholders": {
 			"P1": {
 				"content": "$1"
@@ -1893,7 +1893,7 @@
 		}
 	},
 	"addressbookDeleted": {
-		"message": "$P1$ : Adressbok stängd",
+		"message": "$P1$ : Adressbok borttagen",
 		"placeholders": {
 			"P1": {
 				"content": "$1"
@@ -1999,7 +1999,7 @@
 		}
 	},
 	"cardsConverted": {
-		"message": "??$P1$ : contacts converted into $P2$ : $P3$??",
+		"message": "$P1$ : kontakter konverterade till $P2$ : $P3$",
 		"placeholders": {
 			"P1": {
 				"content": "$1"
@@ -2016,7 +2016,7 @@
 		"message": "vCard konverterade"
 	},
 	"cardsImportedFromFileUndo": {
-		"message": "??File $P1$ imported??",
+		"message": "Fil $P1$ importerad",
 		"placeholders": {
 			"P1": {
 				"content": "$1"
@@ -2024,7 +2024,7 @@
 		}
 	},
 	"cardsImportedFromDirUndo": {
-		"message": "??Directory $P1$ imported??",
+		"message": "Katalog $P1$ importerad",
 		"placeholders": {
 			"P1": {
 				"content": "$1"
@@ -2032,7 +2032,7 @@
 		}
 	},
 	"cardsExportedToFileUndo": {
-		"message": "??Contacts exported to file $P1$??",
+		"message": "Kontakter exporterade till fil $P1$",
 		"placeholders": {
 			"P1": {
 				"content": "$1"
@@ -2040,7 +2040,7 @@
 		}
 	},
 	"cardsExportedToDirUndo": {
-		"message": "??Contacts exported to directory $P1$??",
+		"message": "Kontakter exporterade till katalog $P1$",
 		"placeholders": {
 			"P1": {
 				"content": "$1"
@@ -2048,7 +2048,7 @@
 		}
 	},
 	"cardsImagesExportedUndo": {
-		"message": "??Images exported to directory $P1$??",
+		"message": "Bilder exporterade till katalog $P1$",
 		"placeholders": {
 			"P1": {
 				"content": "$1"
@@ -2056,7 +2056,7 @@
 		}
 	},
 	"undoActionDoneUndo": {
-		"message": "??Undo done ($P1$)??",
+		"message": "Ångra gjort ($P1$)",
 		"placeholders": {
 			"P1": {
 				"content": "$1"
@@ -2064,7 +2064,7 @@
 		}
 	},
 	"redoActionDoneUndo": {
-		"message": "??Redo done ($P1$)??",
+		"message": "Gör om redan genomfört ($P1$)",
 		"placeholders": {
 			"P1": {
 				"content": "$1"
@@ -2088,13 +2088,13 @@
 		}
 	},
 	"outgoingEmailCollectedUndo": {
-		"message": "??Outgoing email collected??"
+		"message": "Utgående e-post insamlad"
 	},
 	"emailCollectedByFilterUndo": {
-		"message": "??Emails collected by filter??"
+		"message": "E-post insamlad av filter"
 	},
 	"emailDeletedByFilterUndo": {
-		"message": "??Emails deleted by filter??"
+		"message": "E-post borttagna av filter"
 	},
 	"cardsMergedUndo": {
 		"message": "Kontakter sammanfogade"
@@ -2103,7 +2103,7 @@
 		"message": "Kontakter duplicerade"
 	},
 	"displayNameGenerated": {
-		"message": "??$P1$ : contacts having their display names regenerated : $P2$??",
+		"message": "$P1$ : kontakter har fått visningsnamn omskapade : $P2$",
 		"placeholders": {
 			"P1": {
 				"content": "$1"
@@ -2139,7 +2139,7 @@
 		"message": "Kontakter inklistrade"
 	},
 	"cardsDraggedUndo": {
-		"message": "??Contacts dragged??"
+		"message": "Drag och släpp med kontakt"
 	},
 	"categoryCreated": {
 		"message": "$P1$ : Kategori $P2$ skapad",
@@ -2161,7 +2161,7 @@
 		}
 	},
 	"categorySelectedUndo": {
-		"message": "??Category $P1$ selected??",
+		"message": "Kategori $P1$ vald",
 		"placeholders": {
 			"P1": {
 				"content": "$1"
@@ -2169,7 +2169,7 @@
 		}
 	},
 	"categoryUnselectedUndo": {
-		"message": "??Category $P1$ unselected??",
+		"message": "Kategori $P1$ bortvald",
 		"placeholders": {
 			"P1": {
 				"content": "$1"
@@ -2177,7 +2177,7 @@
 		}
 	},
 	"categoryRenamed": {
-		"message": "??$P1$ : Category $P2$ renamed??",
+		"message": "$P1$ : Kategori $P2$ döptes om",
 		"placeholders": {
 			"P1": {
 				"content": "$1"
@@ -2188,7 +2188,7 @@
 		}
 	},
 	"categoryRenamedUndo": {
-		"message": "??Category $P1$ renamed??",
+		"message": "Kategori $P1$ döptes om",
 		"placeholders": {
 			"P1": {
 				"content": "$1"
@@ -2215,7 +2215,7 @@
 		}
 	},
 	"categoryConvertedToListUndo": {
-		"message": "??Category $P1$ converted to list??",
+		"message": "Kategori $P1$ har konverterats till lista",
 		"placeholders": {
 			"P1": {
 				"content": "$1"
@@ -2223,7 +2223,7 @@
 		}
 	},
 	"listConvertedToCategoryUndo": {
-		"message": "??List $P1$ converted to category??",
+		"message": "Lista $P1$ har konverterats till kategori",
 		"placeholders": {
 			"P1": {
 				"content": "$1"
@@ -2234,7 +2234,7 @@
 		"message": "Raden inklistrad"
 	},
 	"nodeRenamedUndo": {
-		"message": "??Node $P1$ renamed??",
+		"message": "Nod $P1$ omdöpt",
 		"placeholders": {
 			"P1": {
 				"content": "$1"
@@ -2242,7 +2242,7 @@
 		}
 	},
 	"nodeDeleted": {
-		"message": "??$P1$ : Node $P2$ deleted??",
+		"message": "$P1$ : Nod $P2$ borttagen",
 		"placeholders": {
 			"P1": {
 				"content": "$1"
@@ -2253,7 +2253,7 @@
 		}
 	},
 	"nodeDeletedUndo": {
-		"message": "??Node $P1$ deleted??",
+		"message": "Nod $P1$ raderad",
 		"placeholders": {
 			"P1": {
 				"content": "$1"
@@ -2261,7 +2261,7 @@
 		}
 	},
 	"listCreatedFromNodeUndo": {
-		"message": "??List $P1$ created from node??",
+		"message": "Lista $P1$ skapad från nod",
 		"placeholders": {
 			"P1": {
 				"content": "$1"
@@ -2269,7 +2269,7 @@
 		}
 	},
 	"cardsFormattedUndo": {
-		"message": "??$P1$ : Contacts formatted ($P2$)??",
+		"message": "$P1$ : Kontakter formaterade ($P2$)",
 		"placeholders": {
 			"P1": {
 				"content": "$1"
@@ -2280,7 +2280,7 @@
 		}
 	},
 	"exportImagesToDirMessagePF": {
-		"message": "??$P1$ image exported into the directory $P2$;$P1$ images exported into the directory $P2$??",
+		"message": "$P1$ bild exporterades till katalogen $P2$;$P1$ bilder exporterades till katalogen $P2$",
 		"placeholders": {
 			"P1": {
 				"content": "$1"
@@ -2313,7 +2313,7 @@
 		}
 	},
 	"importCardFromDirMessagePF": {
-		"message": "??$P1$ contact imported from the directory $P2$;$P1$ contacts imported from the directory $P2$??",
+		"message": "$P1$ kontakt importerad från katalogen $P2$;$P1$ kontakter importerade från katalogen $P2$",
 		"placeholders": {
 			"P1": {
 				"content": "$1"
@@ -2324,7 +2324,7 @@
 		}
 	},
 	"importCardFromFileMessagePF": {
-		"message": "??$P1$ contact imported from the file $P2$;$P1$ contacts imported from the file $P2$??",
+		"message": "$P1$ kontakt importerad från filen $P2$;$P1$ kontakter importerade från filen $P2$",
 		"placeholders": {
 			"P1": {
 				"content": "$1"
@@ -2341,7 +2341,7 @@
 		"message": "Det är förbjudet att importera till samma katalog"
 	},
 	"clipboardWrong": {
-		"message": "Data i urklippet är inte importerbart"
+		"message": "Kan inte importera urklipp-data"
 	},
 	"clipboardEmpty": {
 		"message": "Urklippet är tomt"
@@ -2622,7 +2622,7 @@
 		"message": "Mailer"
 	},
 	"tzLabel": {
-		"message": "TZ"
+		"message": "Tidszon"
 	},
 	"geoLabel": {
 		"message": "Geo"
@@ -2822,7 +2822,7 @@
 		}
 	},
 	"dateEntry1Wrong": {
-		"message": "??$P1$ : Contact $P2$ has a date field value ($P3$) that does not match the date format of the address book ($P4$)??",
+		"message": "$P1$ : Kontakten $P2$ har ett datumfältvärde ($P3$) som inte matchar datumformatet för adressboken ($P4$)",
 		"placeholders": {
 			"P1": {
 				"content": "$1"
@@ -2839,7 +2839,7 @@
 		}
 	},
 	"dateEntry2Wrong": {
-		"message": "??Date field value ($P1$) does not match the date format of the address book ($P2$)??",
+		"message": "Datumfältets värde ($P1$) matchar inte datumformatet för adressboken ($P2$)",
 		"placeholders": {
 			"P1": {
 				"content": "$1"
@@ -2850,7 +2850,7 @@
 		}
 	},
 	"invalidOffice365Field": {
-		"message": "??$P1$ can't be synced (value: $P2$)??",
+		"message": "$P1$ kan inte synkroniseras (värde: $P2$)",
 		"placeholders": {
 			"P1": {
 				"content": "$1"
@@ -2864,16 +2864,16 @@
 		"message": "Inte mer än 3 e-postadresser kan synkroniseras"
 	},
 	"invalidOffice365Impp": {
-		"message": "Endast en IM-adress kan synkroniseras"
+		"message": "Max en IM-adress kan synkroniseras"
 	},
 	"invalidOffice365Adr": {
-		"message": "Inte mer än 3 fysiska adresser kan synkroniseras"
+		"message": "Max 3 fysiska adresser kan synkroniseras"
 	},
 	"invalidOffice365Tel": {
 		"message": "Max 17 telefonnummer kan synkroniseras"
 	},
 	"invalidOffice365EmptyType": {
-		"message": "??Empty types are not allowed in the element $P1$??",
+		"message": "Tomma typer är inte tillåtna i elementet $P1$",
 		"placeholders": {
 			"P1": {
 				"content": "$1"
@@ -2881,7 +2881,7 @@
 		}
 	},
 	"invalidOffice365Type": {
-		"message": "??Too many $P2$ types in the element $P1$ (max allowed: $P3$)??",
+		"message": "För många $P2$ typer i elementet $P1$ (max tillåtet: $P3$)",
 		"placeholders": {
 			"P1": {
 				"content": "$1"
@@ -2895,7 +2895,7 @@
 		}
 	},
 	"invalidOffice365Member": {
-		"message": "??You cannot add an email that does not belong to one contact of your address book ($P1$)??",
+		"message": "Du kan inte lägga till ett e-postmeddelande som inte tillhör en kontakt i din adressbok ($P1$)",
 		"placeholders": {
 			"P1": {
 				"content": "$1"
@@ -2979,7 +2979,7 @@
 		"message": "Assistent"
 	},
 	"callbacktype": {
-		"message": "Callback"
+		"message": "Återuppringning"
 	},
 	"carphonetype": {
 		"message": "Bil"
@@ -3036,13 +3036,23 @@
 		"message": "Jami"
 	},
 	"addToAddressbook": {
-		"message": "Lägg till i den här adressboken"
+		"message": "Lägg till i denna adressbok"
 	},
 	"wdw_cardEditionViewResultTitle": {
-		"message": "Resultatändring av kontakt"
+		"message": "Resultat efter ändrad kontakt: $P1$",
+        "placeholders": {
+            "P1": {
+                "content": "$1"
+            }
+        }
 	},
 	"wdw_cardEditionViewResultHideCreateTitle": {
-		"message": "Resultatändring av kontakt"
+		"message": "Resultat efter ändrad kontakt: $P1$",
+        "placeholders": {
+            "P1": {
+                "content": "$1"
+            }
+        }
 	},
 	"wdw_cardEditionAddEmailTitle": {
 		"message": "Registrera en ny e-postadress"
@@ -3054,22 +3064,52 @@
 		"message": "Ny lista"
 	},
 	"wdw_cardEditionEditContactTitle": {
-		"message": "Redigera kontakt"
+		"message": "Redigera kontakt: $P1$",
+        "placeholders": {
+            "P1": {
+                "content": "$1"
+            }
+        }
 	},
 	"wdw_cardEditionEditListTitle": {
-		"message": "Redigera lista"
+		"message": "Redigera lista: $P1$",
+        "placeholders": {
+            "P1": {
+                "content": "$1"
+            }
+        }
 	},
 	"wdw_cardEditionAddLineTitle": {
-		"message": "Redigera kontakt"
+		"message": "Redigera kontakt: $P1$",
+        "placeholders": {
+            "P1": {
+                "content": "$1"
+            }
+        }
 	},
 	"wdw_cardEditionViewContactTitle": {
-		"message": "Visa kontakt"
+		"message": "Visa kontakt: $P1$",
+        "placeholders": {
+            "P1": {
+                "content": "$1"
+            }
+        }
 	},
 	"wdw_cardEditionViewListTitle": {
-		"message": "Visa lista"
+		"message": "Visa lista: $P1$",
+        "placeholders": {
+            "P1": {
+                "content": "$1"
+            }
+        }
 	},
 	"wdw_cardEditionEditTemplateTitle": {
-		"message": "Redigera mall"
+		"message": "Redigera mall: $P1$",
+        "placeholders": {
+            "P1": {
+                "content": "$1"
+            }
+        }
 	},
 	"wdw_cardbookPrintTitleLong": {
 		"message": "Förhandsgranska $P1$ - Kontakter - Thunderbird",
@@ -3108,6 +3148,9 @@
 	},
 	"eventGroupboxLabel": {
 		"message": "Händelser"
+	},
+	"tzGroupboxLabel": {
+		"message": "Tidszon"
 	},
 	"noteGroupboxLabel": {
 		"message": "Anteckningar"
@@ -3162,7 +3205,7 @@
 		}
 	},
 	"nodeDeletionsConfirmMessagePF": {
-		"message": "??Are you sure you want to delete the node $P2$ which contains one contact?;Are you sure you want to delete the node $P2$ which contains $P1$ contacts???",
+		"message": "Är du säker på att du vill ta bort nod $P2$ som innehåller en kontakt? Är du säker du vill ta bort nod $P2$ som innehåller $P1$ kontakter?",
 		"placeholders": {
 			"P1": {
 				"content": "$1"
@@ -3173,7 +3216,7 @@
 		}
 	},
 	"accountDeletionConfirmMessage": {
-		"message": "Är du säker på att du vill radera adressboken $P1$ från Kontakter repository?",
+		"message": "Är du säker på att du vill radera adressboken $P1$ från CardBook-arkivet?",
 		"placeholders": {
 			"P1": {
 				"content": "$1"
@@ -3181,7 +3224,7 @@
 		}
 	},
 	"accountDeletionDiscoveryConfirmMessage": {
-		"message": "Adressboken $P1$ verkar ha tagits bort från din server, vill du ta bort den från ditt Kontoförteckning?",
+		"message": "Adressboken $P1$ verkar ha tagits bort från din server. Vill du ta bort den från CardBook-arkivet?",
 		"placeholders": {
 			"P1": {
 				"content": "$1"
@@ -3252,7 +3295,7 @@
 		"message": "Kolonner separator"
 	},
 	"includePrefLabel": {
-		"message": "??Include preferences??"
+		"message": "Inkludera inställningar"
 	},
 	"lineHeaderLabel": {
 		"message": "Första raden som rubrik"
@@ -3295,10 +3338,10 @@
 		"message": "Lägg till en ny kategori"
 	},
 	"wdw_cardbookRenameFieldEditCatTitle": {
-		"message": "Kategorier redaktör"
+		"message": "Redigera kategori"
 	},
 	"wdw_cardbookRenameFieldEditNodeTitle": {
-		"message": "??Edit Node??"
+		"message": "Redigera nod"
 	},
 	"wdw_cardbookRenameFieldEditTypeLabel": {
 		"message": "Typ:"
@@ -3374,7 +3417,7 @@
 		"message": "(kopia)"
 	},
 	"allMailAccounts": {
-		"message": "Alla Mejl konton"
+		"message": "Alla mejlkonton"
 	},
 	"includeLabel": {
 		"message": "Inkludera"
@@ -3386,7 +3429,7 @@
 		"message": "Skapa ett nytt meddelande"
 	},
 	"doNotShowAnymore": {
-		"message": "Varna mig inte när jag försöker skicka till kontakter utan mejladress."
+		"message": "Varna mig inte när jag försöker skicka mejl till kontakter utan mejladress."
 	},
 	"emptyEmailsCardConfirmMessage": {
 		"message": "Den här kontakten har inte någon mejladress: $P1$",
@@ -3417,16 +3460,16 @@
 		"message": "Å"
 	},
 	"autoComputeFn": {
-		"message": "??Enable the generation of the display name??"
+		"message": "Aktivera generering av visningsnamn"
 	},
 	"dontAutoComputeFn": {
-		"message": "??Disable the generation of the display name??"
+		"message": "Inaktivera generering av visningsnamn"
 	},
 	"autoConvertField": {
-		"message": "??Enable the conversion of this field??"
+		"message": "Aktivera konvertering av detta fält"
 	},
 	"dontAutoConvertField": {
-		"message": "??Disable the conversion of this field??"
+		"message": "Inaktivera konvertering av detta fält"
 	},
 	"customLabel": {
 		"message": "Anpassat"
@@ -3440,7 +3483,7 @@
 		}
 	},
 	"allAccountsLabel": {
-		"message": "Alla Adressböcker"
+		"message": "Alla adressböcker"
 	},
 	"enabledAccountsLabel": {
 		"message": "Aktiva Adressböcker"
@@ -3481,7 +3524,7 @@
 		}
 	},
 	"warnDescription": {
-		"message": "??CardBook would like to access your $P1$ account to retrieve contacts. Credentials and contact data are only transferred between your computer and Google, no third party sites are involved.??",
+		"message": "CardBook vill komma åt ditt $P1$ -konto för att hämta kontakter. Användaruppgifter och kontaktuppgifter överförs endast mellan din dator och Google, inga webbplatser från tredje part är involverade.",
 		"placeholders": {
 			"P1": {
 				"content": "$1"
@@ -3538,13 +3581,13 @@
 		"message": "Alla kontakter"
 	},
 	"keyDescription": {
-		"message": "??Encryption key??"
+		"message": "Krypteringsnyckel"
 	},
 	"encryptionStarted": {
-		"message": "??Starting encryption??"
+		"message": "Startar kryptering"
 	},
 	"encryptionProcessed": {
-		"message": "??Items encrypted: $P1$/$P2$??",
+		"message": "Krypterade poster: $P1$/$P2$",
 		"placeholders": {
 			"P1": {
 				"content": "$1"
@@ -3555,13 +3598,13 @@
 		}
 	},
 	"encryptionFinished": {
-		"message": "??Encryption finished??"
+		"message": "Krypteringen är klar"
 	},
 	"decryptionStarted": {
-		"message": "??Starting decryption??"
+		"message": "Startar dekryptering"
 	},
 	"decryptionProcessed": {
-		"message": "??Items decrypted: $P1$/$P2$??",
+		"message": "Krypterade poster: $P1$/$P2$",
 		"placeholders": {
 			"P1": {
 				"content": "$1"
@@ -3572,7 +3615,7 @@
 		}
 	},
 	"decryptionFinished": {
-		"message": "??Decryption finished??"
+		"message": "Dekrypteringen är klar"
 	},
 	"menu_undo.long.label": {
 		"message": "Ångra - $P1$",
@@ -3717,7 +3760,7 @@
 		"message": "Till CardBook…"
 	},
 	"cardbookABPaneItemLabel": {
-		"message": "Adressbok Pane"
+		"message": "Adressbokspanelen"
 	},
 	"cardbookABPaneItemAccesskey": {
 		"message": "A"
@@ -3741,10 +3784,10 @@
 		"message": "Lägg till ny adressbok"
 	},
 	"welcomePage.description": {
-		"message": "??It seems that this is the first time CardBook has been run. CardBook will attempt to collect contacts from Thunderbird’s standard address books and remote address books.??"
+		"message": "Det verkar som om detta är första gången CardBook körs. CardBook kommer att försöka samla kontakter från Thunderbirds standardadressböcker och fjärradressböcker."
 	},
 	"initialPage.description": {
-		"message": "Är adressboken lokal eller online ? :"
+		"message": "Plats för adressboken :"
 	},
 	"initialPage.computer.label": {
 		"message": "Lokal"
@@ -3759,10 +3802,10 @@
 		"message": "Söker i befintliga adressböcker"
 	},
 	"initialPage.find.label": {
-		"message": "??Search for remote address books??"
+		"message": "Sök efter fjärradressböcker"
 	},
 	"localPage.type.description": {
-		"message": "Vad är det för typ av lokal adressbok ? :"
+		"message": "Typ av lokal adressbok :"
 	},
 	"localPage.type.label": {
 		"message": "Typ"
@@ -3831,7 +3874,7 @@
 		"message": "Anslutning"
 	},
 	"remotePage.url.description": {
-		"message": "För CardDAV, ange URL'en till din online adressbok. Du kan prova att ange en del av URL'n (t.ex : http(s)://carddav.example.org). Lämna tomt om du ansluter till en Google adressbok."
+		"message": "För CardDAV, ange URL:en till din online-adressbok. Du kan prova att ange en del av URL (t.ex : https://carddav.example.org). Lämna fältet tomt om du ansluter till en Google-adressbok."
 	},
 	"remotePage.url.label": {
 		"message": "URL:"
@@ -3900,16 +3943,16 @@
 		"message": "Namn"
 	},
 	"namesPage.name.description": {
-		"message": "Flera adressböker hittades. Välj vilka du vill använda och namnge dem :"
+		"message": "Flera adressböcker hittade. Välj vilka du vill använda och namnge dem :"
 	},
 	"findPage.name1.description": {
-		"message": "??No remote address books found.??"
+		"message": "Hittade inga fjärradressböcker."
 	},
 	"findPage.name2.description": {
-		"message": "??One remote address book found. Validate remote address book to add:??"
+		"message": "En fjärradressbok hittades. Bekräfta att du vill lägga till den:"
 	},
 	"findPage.name3.description": {
-		"message": "??Multiple remote address books found. Validate remote address books to add:??"
+		"message": "Flera fjärradressböcker hittades. Välj de fjärradressböcker som ska läggas till:"
 	},
 	"finishPage.description": {
 		"message": "Din nya adressbok är nu klar för användning."
@@ -3918,7 +3961,7 @@
 		"message": "Dina nya adressböcker är nu klara för användning."
 	},
 	"wdw_addressbooksEditTitle": {
-		"message": "Adressboks inställningar"
+		"message": "Adressboks-inställningar"
 	},
 	"colorLabel": {
 		"message": "Färg:"
@@ -3930,7 +3973,7 @@
 		"message": "N"
 	},
 	"nodesLabel": {
-		"message": "??Nodes:??"
+		"message": "Noder:"
 	},
 	"categoriesNodeLabel": {
 		"message": "Grupper"
@@ -3960,16 +4003,16 @@
 		"message": "Arbeta nedkopplad"
 	},
 	"autoSyncGroupboxLabel": {
-		"message": "Periodisk synkning"
+		"message": "Periodisk synkronisering"
 	},
 	"autoSyncLabel": {
-		"message": "Aktivera periodisk synkning"
+		"message": "Aktivera periodisk synkronisering"
 	},
 	"autoSyncAccesskey": {
 		"message": "p"
 	},
 	"autoSyncIntervalLabel": {
-		"message": "Intervall för periodisk synkning (minuter):"
+		"message": "Intervall för periodisk synkroisering (minuter):"
 	},
 	"autoSyncIntervalAccesskey": {
 		"message": "I"
@@ -3993,7 +4036,7 @@
 		"message": "i"
 	},
 	"applyToABButtonLabel": {
-		"message": "??Apply to…??"
+		"message": "Använd på …"
 	},
 	"applyToABButtonAccesskey": {
 		"message": "A"
@@ -4053,7 +4096,7 @@
 		"message": "Körs…"
 	},
 	"wdw_cardbookConfigurationAddCustomFieldTitle": {
-		"message": "Custom Fields redigerare"
+		"message": "Redigera anpassade fält"
 	},
 	"customFieldCodeLabel": {
 		"message": "Fältnamn:"
@@ -4113,7 +4156,7 @@
 		"message": "Listor"
 	},
 	"syncTabLabel": {
-		"message": "Synk."
+		"message": "Synkronisering"
 	},
 	"emailTabLabel": {
 		"message": "Mejl"
@@ -4143,7 +4186,7 @@
 		"message": "S"
 	},
 	"autocompleteProposeConcatEmailsLabel": {
-		"message": "Föreslå sammanlänka mailadresser den per kontakt"
+		"message": "Föreslå sammanfogade mejladresser per kontakt"
 	},
 	"autocompleteProposeConcatEmailsAccesskey": {
 		"message": "s"
@@ -4155,19 +4198,19 @@
 		"message": "d"
 	},
 	"autocompleteShowEmailTypeLabel": {
-		"message": "??Show email type??"
+		"message": "Visa e-posttyp"
 	},
 	"autocompleteShowEmailTypeAccesskey": {
 		"message": "e"
 	},
 	"autocompleteShowPopularityLabel": {
-		"message": "??Show popularity??"
+		"message": "Visa popularitet"
 	},
 	"autocompleteShowPopularityAccesskey": {
 		"message": "y"
 	},
 	"autocompleteWithColorLabel": {
-		"message": "Använd Adressboksfärg"
+		"message": "Använd färg på adressboken"
 	},
 	"autocompleteWithColorAccesskey": {
 		"message": "f"
@@ -4191,7 +4234,7 @@
 		"message": "s"
 	},
 	"useColorLabel": {
-		"message": "Använd adressboksfärgen som"
+		"message": "Använd adressbokens färg för:"
 	},
 	"useColorBackgroundLabel": {
 		"message": "Bakgrundsfärg"
@@ -4449,19 +4492,19 @@
 		"message": "x"
 	},
 	"defaultRegionLabel": {
-		"message": "??Default Region:??"
+		"message": "Förvald region:"
 	},
 	"defaultRegionAccesskey": {
 		"message": "D"
 	},
 	"defaultRegionTooltip": {
-		"message": "??Default region for addresses and formatting phone numbers.??"
+		"message": "Förvald region för adresser och formatering av telefonnummer."
 	},
 	"editionGroupboxLabel": {
 		"message": "Välj fält att visa"
 	},
 	"editionWarn": {
-		"message": "??When editing a contact, CardBook will display by default only those selected fields.??"
+		"message": "När du redigerar en kontakt visas CardBook som standard endast de valda fälten."
 	},
 	"fieldsButtonLabel": {
 		"message": "Ange som standard"
@@ -4602,7 +4645,7 @@
 		"message": "F"
 	},
 	"preferIMPPPrefWarn": {
-		"message": "Om ingen adress är markerad, så kommer alla adresser att användas"
+		"message": "Om ingen adress är markerad, så kommer en av alla adresser föreslås"
 	},
 	"IMPPCodeHeaderLabel": {
 		"message": "Kod"
@@ -4638,10 +4681,10 @@
 		"message": "i"
 	},
 	"URLPhoneGroupboxLabel": {
-		"message": "??URL opening for soft phones??"
+		"message": "Webbadress för mjukvarutelefon (Soft Phone)"
 	},
 	"URLPhoneGroupboxWarn": {
-		"message": "??This section applies if you have selected the url protocol for phone. The URL should contain {{1}}, referring to the phone number.??"
+		"message": "Detta avsnitt gäller om du har valt URL-protokollet för telefon. URL ska innehålla {{1}}, med hänvisning till telefonnumret."
 	},
 	"URLPhoneURLLabel": {
 		"message": "Webbadress:"
@@ -4671,10 +4714,10 @@
 		"message": "Kryptering"
 	},
 	"encryptionExplanation": {
-		"message": "??CardBook may encrypt your local data. For this purpose, it will use a secret key stored in the Password Manager. If you loose this key, the recovery of your local data is impossible. For a complete protection, activating the Thunderbird master password feature is recommended.??"
+		"message": "CardBook kan kryptera din lokala data. För detta ändamål kommer den att använda en hemlig nyckel som lagras i lösenordshanteraren. Om du förlorar denna nyckel, är återställning av din lokala data omöjligt. För ett komplett skydd rekommenderas att aktivera Thunderbird huvudlösenord."
 	},
 	"localDataEncryptionEnabledLabel": {
-		"message": "??Encrypt locally cached cards??"
+		"message": "Kryptera lokalt cachade kort"
 	},
 	"localDataEncryptionEnabledAccesskey": {
 		"message": "E"
@@ -4752,10 +4795,10 @@
 		"message": "t"
 	},
 	"syncGroupboxLabel": {
-		"message": "Synk."
+		"message": "Synkronisering"
 	},
 	"syncWarn": {
-		"message": "Synkronisering överför dina ändringar till servern, och tvärt om"
+		"message": "Synkronisering överför dina ändringar till servern, och tvärt om."
 	},
 	"syncAfterChangeLabel": {
 		"message": "Synkronisera efter ändringar"
@@ -4764,7 +4807,7 @@
 		"message": "c"
 	},
 	"initialSyncLabel": {
-		"message": "Kör ssynkronisering när Thunderbird startar"
+		"message": "Kör synkronisering när Thunderbird startar"
 	},
 	"initialSyncAccesskey": {
 		"message": "K"
@@ -4797,13 +4840,13 @@
 		"message": "a"
 	},
 	"maxModifsPushedLabel": {
-		"message": "Maximalt antal ändringar som tryckts per synkronisering:"
+		"message": "Maximalt antal förändringar per synkronisering:"
 	},
 	"maxModifsPushedAccesskey": {
 		"message": "M"
 	},
 	"requestsGroupboxLabel": {
-		"message": "Förfrågningar"
+		"message": "Anslutningar"
 	},
 	"requestsTimeoutLabel": {
 		"message": "Avbrott (sekunder):"
@@ -4812,7 +4855,7 @@
 		"message": "A"
 	},
 	"multigetLabel": {
-		"message": "För GET-förfrågningar, gruppkontakter av:"
+		"message": "För GET-anslutning, gruppera kontakter i antal om :"
 	},
 	"multigetAccesskey": {
 		"message": "G"
@@ -4845,7 +4888,7 @@
 		"message": "Om ingen adress är markerad, skicka till kontaktens alla adresser."
 	},
 	"warnEmptyEmailsLabel": {
-		"message": "Varna mig om jag försöker skicka till en kontakt utan mejladress"
+		"message": "Varna mig om jag försöker skicka mejl till en kontakt utan mejladress"
 	},
 	"warnEmptyEmailsAccesskey": {
 		"message": "W"
@@ -4896,7 +4939,7 @@
 		"message": "T"
 	},
 	"birthdayListWarn": {
-		"message": "Årsdagen söks endast i Kontakter adressböcker."
+		"message": "Årsdagen söks endast i CardBook-adressböcker."
 	},
 	"generalGroupboxLabel": {
 		"message": "Allmänt"
@@ -4905,7 +4948,7 @@
 		"message": "Adressböcker"
 	},
 	"selectAllABsLabel": {
-		"message": "Markera allt"
+		"message": "Välj alla"
 	},
 	"searchForLabel": {
 		"message": "Sök efter:"
@@ -5001,7 +5044,7 @@
 		"message": "L"
 	},
 	"calendarEntryTitleLabel": {
-		"message": "Titel för kalenderhändelse:"
+		"message": "Kalenderhändelsens rubrik:"
 	},
 	"calendarEntryTitleTooltip": {
 		"message": "Mall titel för kalenderhändelsen. Den ska innehålla två platshållare &#37;S, respektive ersatt med namn och ålder. Om fältet är tomt används ett standardmeddelande."
@@ -5034,10 +5077,10 @@
 		"message": "y"
 	},
 	"calendarEntryAlarmLabel": {
-		"message": "Larm till s dagar före kalenderhändelse (till exempel: 4,+1):"
+		"message": "Larm n timmar före kalenderhändelse (till exempel: 4,+1):"
 	},
 	"calendarEntryAlarmTooltip": {
-		"message": "Ange hur många dagar före årsdagen Lightning larm ska påminna dig. Utan datum. Om fältet är tomt skulle det inte vara något alarm."
+		"message": "Ange hur många timmar före årsdagen Lightning larm ska påminna dig. Om fältet är tomt kommer inget larm. Om du vill ha flera larm, ange larmen i en kommaseparerad lista."
 	},
 	"calendarEntryAlarmAccesskey": {
 		"message": "s"
@@ -5046,7 +5089,7 @@
 		"message": "kategori(er) för kalenderhändelse:"
 	},
 	"calendarEntryCategoriesTooltip": {
-		"message": "En eller flera kategorier, kommaseparerade. Om fältet är tomt skulle det inte finnas någon kategori."
+		"message": "En eller flera kategorier, kommaseparerade. Om fältet är tomt finns det ingen kategori."
 	},
 	"calendarEntryCategoriesAccesskey": {
 		"message": "g"
@@ -5169,7 +5212,7 @@
 		"message": "Aktivera eller Avaktivera synkronisering och sökning av adressböcker."
 	},
 	"colorAccountsTooltip": {
-		"message": "Färga adressbokssökresultat (använd när du har flera adressböcker)."
+		"message": "Färga sökresultatet (använd när du söker i flera adressböcker)."
 	},
 	"readonlyAccountsTooltip": {
 		"message": "Ställ in om adressboken skall vara skrivskyddad eller inte."
@@ -5307,13 +5350,13 @@
 		"message": "Ångra"
 	},
 	"cardbookToolbarBackButtonTooltip": {
-		"message": "??Go back one action??"
+		"message": "Gå tillbaka ett steg"
 	},
 	"cardbookToolbarForwardButtonLabel": {
 		"message": "Gör om"
 	},
 	"cardbookToolbarForwardButtonTooltip": {
-		"message": "??Go forward one action??"
+		"message": "Gå vidare ett steg"
 	},
 	"cardbookToolbarAppMenuButtonLabel": {
 		"message": "CardBook meny"
@@ -5352,10 +5395,10 @@
 		"message": "Visa Thunderbird Menyn"
 	},
 	"cardbookToolbarABMenuLabel": {
-		"message": "??Address Books View??"
+		"message": "Visa adressböcker"
 	},
 	"cardbookToolbarABMenuTooltip": {
-		"message": "??Filter how address books are displayed??"
+		"message": "Filtrera hur adressböcker visas"
 	},
 	"generalTabLabel": {
 		"message": "Allmänt"
@@ -5469,7 +5512,7 @@
 		"message": "Hitta nycklar online"
 	},
 	"importKeyFromCards.label": {
-		"message": "??Import into OpenPGP Key Manager??"
+		"message": "Importera till OpenPGP Key Manager"
 	},
 	"searchForOnlineKeyTreeLabel": {
 		"message": "Hitta nycklar online"
@@ -5478,7 +5521,7 @@
 		"message": "Hitta nycklar online"
 	},
 	"searchForThKeyEditButton.tooltip": {
-		"message": "??Search for keys in OpenPGP key manager??"
+		"message": "Sök efter nycklar i OpenPGP Key Manager"
 	},
 	"searchForLocalKeyEditButton.tooltip": {
 		"message": "Importera från en fil"
@@ -5520,7 +5563,7 @@
 		"message": "Lokalisera kontakt"
 	},
 	"openURLCardFromCardsLabel": {
-		"message": "Öppna URLs från kontakt"
+		"message": "Öppna URL:er"
 	},
 	"cutCardFromAccountsOrCatsLabel": {
 		"message": "Klipp ut"
@@ -5568,7 +5611,7 @@
 		"message": "Formatera kontaktdata"
 	},
 	"findDuplicatesFromAccountsOrCatsLabel": {
-		"message": "Hitta dubblettkontakt"
+		"message": "Hitta dubbletter av kontakter"
 	},
 	"generateFnFromAccountsOrCatsLabel": {
 		"message": "Generera visningsnamn"
@@ -5577,7 +5620,7 @@
 		"message": "Slå ihop kontakter"
 	},
 	"duplicateCardFromCardsLabel": {
-		"message": "Duplisera kontakt"
+		"message": "Skapa dubblett av kontakt"
 	},
 	"convertListToCategoryFromCardsLabel": {
 		"message": "Konvertera lista till grupp"
@@ -5640,31 +5683,31 @@
 		"message": "N"
 	},
 	"adrFormulaExplanation": {
-		"message": "Det är möjligt att anpassa hur Kontakter formaterar adresserna. Detta görs med block som innesluts innom “()”. ??In these blocks there might be many parts delimited by “|”.??"
+		"message": "Det är möjligt att anpassa hur CardBook skapar adresser. Denna formel består av block inneslutna av \"()\". I dessa block kan det finnas flera delar avgränsade med \"|\"."
 	},
 	"fnFormulaExplanation": {
-		"message": "Man kan få CardBook till att generera Visningsnamn. Detta görs med block som innesluts innom “()”. ??In these blocks there might be many parts delimited by “|”.??"
+		"message": "Det är möjligt att anpassa hur CardBook genererar ett visningsnamn. Denna formel består av block inneslutna av \"()\". I dessa block kan det finnas flera delar avgränsade med \"|\"."
 	},
 	"templateFormulaExplanation": {
-		"message": "??It is possible to define templates with pre-defined fields. For example one may define a template with the email ”({{2}}).({{4}})@mycompany.org”. Once applied to a contact that has ”John” and ”Doe” as given name and family name, an email ”john.doe@mycompany.org” will be added to the contact.??"
+		"message": "Det är möjligt att definiera mallar med fördefinierade fält. Till exempel kan man definiera en mall med e-postmeddelandet ”({{2}}).({{4}})@mycompany. rg”. Om det appliceras ”John” och ”Doe” som förnamn och efternamn kommer e-postadressen ”john.doe@mycompany.org” att läggas till i kontakten."
 	},
 	"formulaExplanation1": {
-		"message": "??({{1}}|{{2}}) : If {{1}} is empty, then the block will be replaced by {{2}}.??"
+		"message": "({{1}}|{{2}}) : Om {{1}} är tomt kommer blocket att ersättas av {{2}}."
 	},
 	"formulaExplanation2": {
-		"message": "??({{1}}|{{2}}|{{3}}) : If {{1}} equals {{2}}, then the block will be replaced by {{3}}.??"
+		"message": "({{1}}|{{2}}|{{3}}) : Om {{1}} är lika med {{2}} så kommer blocket att ersättas med {{3}}."
 	},
 	"formulaExplanation3": {
-		"message": "??({{1}}|{{2}}|{{3}}|{{4}}) : If {{1}} equals {{2}}, then the block will be replaced by {{3}}, else by {{4}}.??"
+		"message": "({{1}}|{{2}}|{{3}}|{{4}}) : Om {{1}} är lika med {{2}} så kommer blocket att ersättas med {{3}}, annars ersätts det av {{4}}."
 	},
 	"formulaExplanation4": {
-		"message": "??({{1}}|*|{{2}}|{{3}}|{{4}}) : If {{1}} includes {{2}}, then the block will be replaced by {{3}}, else by {{4}}.??"
+		"message": "({{1}}|{{2}}|{{3}}|{{4}}) : Om {{1}} innehåller {{2}} så kommer blocket att ersättas med {{3}}, annars ersätts det av {{4}}."
 	},
 	"formulaExplanation5": {
-		"message": "??({{1}}|^|{{2}}|{{3}}|{{4}}) : If {{1}} starts with {{2}}, then the block will be replaced by {{3}}, else by {{4}}.??"
+		"message": "({{1}}|{{2}}|{{3}}|{{4}}) : Om {{1}} börjar med {{2}} så kommer blocket att ersättas med {{3}}, annars ersätts det av {{4}}."
 	},
 	"formulaExplanation6": {
-		"message": "??({{1}}|$|{{2}}|{{3}}|{{4}}) : If {{1}} ends with {{2}}, then the block will be replaced by {{3}}, else by {{4}}.??"
+		"message": "({{1}}|{{2}}|{{3}}|{{4}}) : Om {{1}} avslutas med {{2}} så kommer blocket att ersättas med {{3}}, annars ersätts det av {{4}}."
 	},
 	"settingsTitlelabel": {
 		"message": "Layout"
@@ -5907,13 +5950,13 @@
 		"message": "Konvertera vCards"
 	},
 	"convertVCardsTooltip": {
-		"message": "??The vCard version of some contacts is different from the vCard version of your address book, this button may convert these vCards??"
+		"message": "vCard-versionen hos vissa kontakter skiljer sig från vCard-versionen i din adressbok och denna knapp kanske konvertera dessa vCard"
 	},
 	"convertVCardsAccesskey": {
 		"message": "C"
 	},
 	"wdw_findDuplicatesTitle": {
-		"message": "Dubblett kontakter ($P1$)",
+		"message": "Duplicera kontakter ($P1$)",
 		"placeholders": {
 			"P1": {
 				"content": "$1"
@@ -5921,7 +5964,7 @@
 		}
 	},
 	"wdw_formatDataTitle": {
-		"message": "??Format contacts data ($P1$)??",
+		"message": "Formatera kontaktdata($P1$)",
 		"placeholders": {
 			"P1": {
 				"content": "$1"
@@ -6013,7 +6056,7 @@
 		"message": "Vald"
 	},
 	"conversionWarn": {
-		"message": "??It is possible to force the convertion of some fields while providing them.??"
+		"message": "Det går att tvinga konvertera vissa fält i samband med att du anger dem."
 	},
 	"convertToLabel": {
 		"message": "Konvertera till"

@@ -355,9 +355,7 @@ function onLoad(wasAlreadyOpen) {
 					<toolbarbutton id="cardbookToolbarAppMenuButton"
 						label="__MSG_cardbookToolbarAppMenuButtonLabel__"
 						tooltiptext="__MSG_cardbookToolbarAppMenuButtonTooltip__"
-						badged="true"
 						class="toolbarbutton-1 button-appmenu"
-						mode="dialog"
 						type="menu">
 						<menupopup id="cardbook-menupopup">
 							<menu id="cardbookAccountMenu" label="__MSG_cardbookAccountMenuLabel__">
@@ -551,6 +549,10 @@ function onLoad(wasAlreadyOpen) {
 	
 			<menupopup id="eventTreeContextMenu" onpopupshowing="wdw_cardbook.eventTreeContextShowing();">
 				<menuitem id="copyeventTree" oncommand="wdw_cardbook.copyEntryFromTree();"/>
+			</menupopup>
+	
+			<menupopup id="tzTreeContextMenu" onpopupshowing="wdw_cardbook.tzTreeContextShowing();">
+				<menuitem id="copytzTree" oncommand="wdw_cardbook.copyEntryFromTree();"/>
 			</menupopup>
 	
 			<menupopup id="accountsOrCatsTreeContextMenu" onpopupshowing="wdw_cardbook.accountsOrCatsTreeContextShowing();">
@@ -1016,14 +1018,6 @@ function onLoad(wasAlreadyOpen) {
 													<label id="mailerTextBox"/>
 												</html:td>
 											</html:tr>
-											<html:tr id="geoRow">
-												<html:td>
-													<label id="geoLabel" value="__MSG_geoLabel__" control="geoTextBox" class="header"/>
-												</html:td>
-												<html:td>
-													<label id="geoTextBox"/>
-												</html:td>
-											</html:tr>
 											<html:tr id="sortstringRow">
 												<html:td>
 													<label id="sortstringLabel" value="__MSG_sortstringLabel__" control="sortstringTextBox" class="header"/>
@@ -1038,14 +1032,6 @@ function onLoad(wasAlreadyOpen) {
 												</html:td>
 												<html:td>
 													<label id="class1TextBox"/>
-												</html:td>
-											</html:tr>
-											<html:tr id="tzRow">
-												<html:td>
-													<label id="tzLabel" value="__MSG_tzLabel__" control="tzTextBox" class="header"/>
-												</html:td>
-												<html:td>
-													<label id="tzTextBox"/>
 												</html:td>
 											</html:tr>
 											<html:tr id="agentRow">

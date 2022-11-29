@@ -486,7 +486,8 @@ if ("undefined" == typeof(wdw_cardEdition)) {
 		},
 
 		loadEditionMode: function () {
-			document.title = cardbookRepository.extension.localeData.localizeMessage("wdw_cardEdition" + window.arguments[0].editionMode + "Title");
+			let titleString = "wdw_cardEdition" + window.arguments[0].editionMode + "Title";
+			document.title = cardbookRepository.extension.localeData.localizeMessage(titleString, [window.arguments[0].cardIn.fn]);
 			if (window.arguments[0].editionMode == "ViewResult") {
 				document.getElementById('addressbookMenulistReadWriteGroupbox').removeAttribute('hidden');
 				document.getElementById('addressbookMenulist').disabled = false;
@@ -730,7 +731,6 @@ if ("undefined" == typeof(wdw_cardEdition)) {
 
 		loadEditionFields: function () {
 			switch(window.arguments[0].editionMode) {
-				case "ViewResult":
 				case "ViewResultHideCreate":
 				case "ViewContact":
 				case "ViewList":
@@ -800,6 +800,16 @@ if ("undefined" == typeof(wdw_cardEdition)) {
 				}
 				for (let field of ['event']) {
 					if (wdw_cardEdition.checkEditionFields(field) || document.getElementById(field + '_0_valueBox').value || document.getElementById(field + '_0_valueDateBox').value) {
+						document.getElementById(field + 'Groupbox').removeAttribute('hidden');
+					} else {
+						document.getElementById(field + 'Groupbox').setAttribute('hidden', 'true');
+					}
+				}
+				for (let field of ['tz']) {
+					let ABType = cardbookRepository.cardbookPreferences.getType(wdw_cardEdition.workingCard.dirPrefId);
+					if (ABType.startsWith("GOOGLE") || ABType == "APPLE" || ABType == "OFFICE365" || ABType == "YAHOO") {
+						document.getElementById(field + 'Groupbox').setAttribute('hidden', 'true');
+					} else if (wdw_cardEdition.checkEditionFields(field) || document.getElementById(field + '_0_menulistTz').value || document.getElementById(field + '_0_menulistTz').value) {
 						document.getElementById(field + 'Groupbox').removeAttribute('hidden');
 					} else {
 						document.getElementById(field + 'Groupbox').setAttribute('hidden', 'true');
@@ -1149,6 +1159,11 @@ if ("undefined" == typeof(wdw_cardEdition)) {
 					break;
 				}
 			}
+
+			wdw_cardEdition.loadDateFormatLabels();
+			wdw_cardEdition.loadEditionFields();
+			wdw_cardEdition.loadFieldSelector();
+			wdw_cardEdition.setConvertButtons()
 		},
 
 		clearCard: function () {
@@ -1348,10 +1363,6 @@ if ("undefined" == typeof(wdw_cardEdition)) {
 			wdw_cardEdition.loadCssRules();
 			wdw_cardEdition.loadDefaultVersion();
 			await wdw_cardEdition.displayCard(wdw_cardEdition.workingCard);
-			wdw_cardEdition.loadDateFormatLabels();
-			wdw_cardEdition.loadEditionFields();
-			wdw_cardEdition.loadFieldSelector();
-			wdw_cardEdition.setConvertButtons()
 			
 			wdw_cardEdition.cardRegion = await cardbookRepository.cardbookUtils.getCardRegion(wdw_cardEdition.workingCard);
 			
@@ -1497,6 +1508,7 @@ if ("undefined" == typeof(wdw_cardEdition)) {
 			for (let field of cardbookRepository.multilineFields) {
 				aCard[field] = cardbookWindowUtils.getAllTypes(field, true);
 			}
+			aCard.tz = cardbookWindowUtils.getAllTz(true);
 
 			var keys = cardbookWindowUtils.getAllKeys(true);
 			var re = /[\n\u0085\u2028\u2029]|\r\n?/g;

@@ -46,8 +46,8 @@ if ("undefined" == typeof(cardbookCardParser)) {
 			this.impp = [];
 			this.url = [];
 			this.mailer = "";
-			this.tz = "";
-			this.geo = "";
+			this.tz = [];
+			this.geo = [];
 			this.title = "";
 			this.role = "";
 			this.agent = "";
@@ -417,10 +417,22 @@ if ("undefined" == typeof(cardbookCardParser)) {
 								this.mailer = vCardDataArrayTrailer;
 								break;
 							case "TZ":
-								this.tz = vCardDataArrayTrailer;
+								if (vCardDataArrayTrailer) {
+									vCardDataArrayTrailerArray = [];
+									vCardDataArrayHeaderOptionArray = [];
+									vCardDataArrayHeaderOptionArray = cardbookRepository.cardbookUtils.formatTypes(cardbookRepository.cardbookUtils.escapeString(vCardDataArrayHeaderOption).split(";"));
+									vCardDataArrayTrailerArray = cardbookRepository.cardbookUtils.escapeString(vCardDataArrayTrailer).split(";");
+									this.tz.push([cardbookRepository.cardbookUtils.unescapeArray(vCardDataArrayTrailerArray), cardbookRepository.cardbookUtils.unescapeArray(vCardDataArrayHeaderOptionArray)]);
+								}
 								break;
 							case "GEO":
-								this.geo = vCardDataArrayTrailer;
+								if (vCardDataArrayTrailer) {
+									vCardDataArrayTrailerArray = [];
+									vCardDataArrayHeaderOptionArray = [];
+									vCardDataArrayHeaderOptionArray = cardbookRepository.cardbookUtils.formatTypes(cardbookRepository.cardbookUtils.escapeString(vCardDataArrayHeaderOption).split(";"));
+									vCardDataArrayTrailerArray = cardbookRepository.cardbookUtils.escapeString(vCardDataArrayTrailer).split(";");
+									this.geo.push([cardbookRepository.cardbookUtils.unescapeArray(vCardDataArrayTrailerArray), cardbookRepository.cardbookUtils.unescapeArray(vCardDataArrayHeaderOptionArray)]);
+								}
 								break;
 							case "AGENT":
 								if (vCardDataArrayHeaderOption) {

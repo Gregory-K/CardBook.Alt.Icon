@@ -1,7 +1,45 @@
 var { Services } = ChromeUtils.import("resource://gre/modules/Services.jsm");
+var { PromptUtils } = ChromeUtils.import("resource://gre/modules/SharedPromptUtils.jsm");
 
 var EXPORTED_SYMBOLS = ["cardbookPasswordManager"];
 var cardbookPasswordManager = {
+
+	askPassword: function (aTitle, aText, aUsername, aPassword, aRememberText, aCheck) {
+		try {
+			let args = {
+				promptType: "promptUserAndPass",
+				title: aTitle,
+				text: aText,
+				user: aUsername.value,
+				pass: aPassword.value,
+				checkLabel: aRememberText,
+				checked: aCheck.value,
+				ok: false,
+			};
+
+			let propBag = PromptUtils.objectToPropBag(args);
+			Services.ww.openWindow(
+				Services.ww.activeWindow,
+				"chrome://global/content/commonDialog.xhtml",
+				"_blank",
+				"centerscreen,chrome,modal,titlebar",
+				propBag
+			);
+			PromptUtils.propBagToObject(propBag, args);
+
+			// Did user click Ok or Cancel?
+			let ok = args.ok;
+			if (ok) {
+				aCheck.value = args.checked;
+				aUsername.value = args.user;
+				aPassword.value = args.pass;
+			}
+			return ok;
+		}
+		catch (e) {
+			return false;
+		}
+	},
 
 	getRootUrl: function (aUrl) {
 		try {
@@ -36,11 +74,14 @@ var cardbookPasswordManager = {
 			var myTitle = cardbookRepository.extension.localeData.localizeMessage("wdw_passwordMissingTitle");
 			var commonStrBundle = Services.strings.createBundle("chrome://global/locale/commonDialogs.properties");
 			var myText = commonStrBundle.formatStringFromName("EnterPasswordFor", [aUsername, myUrl], 2);
+			var myUsername = {value: aUsername};
 			var myPassword = {value: ""};
 			var myRememberText = cardbookRepository.extension.localeData.localizeMessage("rememberPassword");
 			var check = {value: false};
-			var prompter = Services.ww.getNewPrompter(null);
-			if (prompter.promptPassword(myTitle, myText, myPassword, myRememberText, check)) {
+			// test var prompter = Services.ww.getNewPrompter(null);
+			// test if (prompter.promptPassword(myTitle, myText, myPassword, myRememberText, check)) {
+			if (cardbookPasswordManager.askPassword(myTitle, myText, myUsername, myPassword, myRememberText, check)) {
+				console.log("test myPassword.value : " + myPassword.value)
 				cardbookPasswordManager.rememberPassword(aUsername, myUrl, myPassword.value, check.value);
 				return myPassword.value;
 			}
@@ -53,11 +94,14 @@ var cardbookPasswordManager = {
 		var myTitle = cardbookRepository.extension.localeData.localizeMessage("wdw_passwordWrongTitle");
 		var commonStrBundle = Services.strings.createBundle("chrome://global/locale/commonDialogs.properties");
 		var myText = commonStrBundle.formatStringFromName("EnterPasswordFor", [aUsername, myUrl], 2);
+		var myUsername = {value: aUsername};
 		var myPassword = {value: ""};
 		var myRememberText = cardbookRepository.extension.localeData.localizeMessage("rememberPassword");
 		var check = {value: false};
 		var prompter = Services.ww.getNewPrompter(null);
-		if (prompter.promptPassword(myTitle, myText, myPassword, myRememberText, check)) {
+		//test if (prompter.promptPassword(myTitle, myText, myPassword, myRememberText, check)) {
+		if (cardbookPasswordManager.askPassword(myTitle, myText, myUsername, myPassword, myRememberText, check)) {
+			console.log("test myPassword.value : " + myPassword.value)
 			cardbookPasswordManager.rememberPassword(aUsername, myUrl, myPassword.value, check.value);
 			return myPassword.value;
 		}

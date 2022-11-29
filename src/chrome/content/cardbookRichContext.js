@@ -103,7 +103,7 @@ if ("undefined" == typeof(cardbookRichContext)) {
 						await wdw_cardbook.copyFieldValue(fieldName, fieldLabel, "", "");
 					} else if (cardbookRepository.newFields.includes(fieldName)) {
 						await wdw_cardbook.copyFieldValue(fieldName, fieldLabel, "", "");
-					} else if (fieldName.startsWith("X-") || fieldName == 'org') {
+					} else if (fieldName.startsWith("X-") || fieldName == 'org' || fieldName == 'tz') {
 						await wdw_cardbook.copyFieldValue(fieldName, fieldLabel, "", textbox1.value);
 					} else if (fieldName.startsWith("org.")) {
 						await wdw_cardbook.copyFieldValue(fieldName, fieldLabel, "", textbox1.value, textbox1.getAttribute('allValue'));

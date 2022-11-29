@@ -3039,10 +3039,20 @@
 		"message": "添加到通讯录"
 	},
 	"wdw_cardEditionViewResultTitle": {
-		"message": "修改联系人结果"
+		"message": "修改联系人结果: $P1$",
+        "placeholders": {
+            "P1": {
+                "content": "$1"
+            }
+        }
 	},
 	"wdw_cardEditionViewResultHideCreateTitle": {
-		"message": "修改联系人结果"
+		"message": "修改联系人结果: $P1$",
+        "placeholders": {
+            "P1": {
+                "content": "$1"
+            }
+        }
 	},
 	"wdw_cardEditionAddEmailTitle": {
 		"message": "注册新邮件地址"
@@ -3054,22 +3064,52 @@
 		"message": "新建邮件列表"
 	},
 	"wdw_cardEditionEditContactTitle": {
-		"message": "编辑联系人"
+		"message": "编辑联系人: $P1$",
+        "placeholders": {
+            "P1": {
+                "content": "$1"
+            }
+        }
 	},
 	"wdw_cardEditionEditListTitle": {
-		"message": "编辑列表"
+		"message": "编辑列表: $P1$",
+        "placeholders": {
+            "P1": {
+                "content": "$1"
+            }
+        }
 	},
 	"wdw_cardEditionAddLineTitle": {
-		"message": "编辑联系人"
+		"message": "编辑联系人: $P1$",
+        "placeholders": {
+            "P1": {
+                "content": "$1"
+            }
+        }
 	},
 	"wdw_cardEditionViewContactTitle": {
-		"message": "查看联系人"
+		"message": "查看联系人: $P1$",
+        "placeholders": {
+            "P1": {
+                "content": "$1"
+            }
+        }
 	},
 	"wdw_cardEditionViewListTitle": {
-		"message": "查看列表"
+		"message": "查看列表: $P1$",
+        "placeholders": {
+            "P1": {
+                "content": "$1"
+            }
+        }
 	},
 	"wdw_cardEditionEditTemplateTitle": {
-		"message": "编辑模板"
+		"message": "编辑模板: $P1$",
+        "placeholders": {
+            "P1": {
+                "content": "$1"
+            }
+        }
 	},
 	"wdw_cardbookPrintTitleLong": {
 		"message": "打印预览 $P1$ - CardBook - Thunderbird",
@@ -3108,6 +3148,9 @@
 	},
 	"eventGroupboxLabel": {
 		"message": "事件"
+	},
+	"tzGroupboxLabel": {
+		"message": "时区"
 	},
 	"noteGroupboxLabel": {
 		"message": "备注"

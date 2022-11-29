@@ -3039,10 +3039,20 @@
 		"message": "Προσθέστε σε αυτό το βιβλίο διευθύνσεων"
 	},
 	"wdw_cardEditionViewResultTitle": {
-		"message": "Επακόλουθη τροποποίηση επαφής"
+		"message": "Επακόλουθη τροποποίηση επαφής: $P1$",
+        "placeholders": {
+            "P1": {
+                "content": "$1"
+            }
+        }
 	},
 	"wdw_cardEditionViewResultHideCreateTitle": {
-		"message": "Επακόλουθη τροποποίηση επαφής"
+		"message": "Επακόλουθη τροποποίηση επαφής: $P1$",
+        "placeholders": {
+            "P1": {
+                "content": "$1"
+            }
+        }
 	},
 	"wdw_cardEditionAddEmailTitle": {
 		"message": "Καταχωρίστε μια νέα διεύθυνση ηλεκτρονικού ταχυδρομείου"
@@ -3054,22 +3064,52 @@
 		"message": "Νέα λίστα"
 	},
 	"wdw_cardEditionEditContactTitle": {
-		"message": "Επεξεργασία επαφή"
+		"message": "Επεξεργασία επαφή: $P1$",
+        "placeholders": {
+            "P1": {
+                "content": "$1"
+            }
+        }
 	},
 	"wdw_cardEditionEditListTitle": {
-		"message": "Επεξεργασία λίστα"
+		"message": "Επεξεργασία λίστα: $P1$",
+        "placeholders": {
+            "P1": {
+                "content": "$1"
+            }
+        }
 	},
 	"wdw_cardEditionAddLineTitle": {
-		"message": "Επεξεργασία επαφή"
+		"message": "Επεξεργασία επαφή: $P1$",
+        "placeholders": {
+            "P1": {
+                "content": "$1"
+            }
+        }
 	},
 	"wdw_cardEditionViewContactTitle": {
-		"message": "Προβολή επαφή"
+		"message": "Προβολή επαφή: $P1$",
+        "placeholders": {
+            "P1": {
+                "content": "$1"
+            }
+        }
 	},
 	"wdw_cardEditionViewListTitle": {
-		"message": "Προβολή λίστα"
+		"message": "Προβολή λίστα: $P1$",
+        "placeholders": {
+            "P1": {
+                "content": "$1"
+            }
+        }
 	},
 	"wdw_cardEditionEditTemplateTitle": {
-		"message": "Επεξεργασία πρότυπου"
+		"message": "Επεξεργασία πρότυπου: $P1$",
+        "placeholders": {
+            "P1": {
+                "content": "$1"
+            }
+        }
 	},
 	"wdw_cardbookPrintTitleLong": {
 		"message": "Προεπισκόπηση εκτύπωσης – $P1$ – Επαφές – Thunderbird",
@@ -3108,6 +3148,9 @@
 	},
 	"eventGroupboxLabel": {
 		"message": "Συμβάντα"
+	},
+	"tzGroupboxLabel": {
+		"message": "Ζώνη ώρας"
 	},
 	"noteGroupboxLabel": {
 		"message": "Σημειώσεις"

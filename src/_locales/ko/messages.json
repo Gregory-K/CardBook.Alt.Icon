@@ -3039,10 +3039,20 @@
 		"message": "다음 주소록에 추가"
 	},
 	"wdw_cardEditionViewResultTitle": {
-		"message": "결과 연락처 수정"
+		"message": "결과 연락처 수정: $P1$",
+        "placeholders": {
+            "P1": {
+                "content": "$1"
+            }
+        }
 	},
 	"wdw_cardEditionViewResultHideCreateTitle": {
-		"message": "결과 연락처 수정"
+		"message": "결과 연락처 수정: $P1$",
+        "placeholders": {
+            "P1": {
+                "content": "$1"
+            }
+        }
 	},
 	"wdw_cardEditionAddEmailTitle": {
 		"message": "새 이메일 주소 등록"
@@ -3054,22 +3064,52 @@
 		"message": "새 메일링 목록"
 	},
 	"wdw_cardEditionEditContactTitle": {
-		"message": "연락처 편집"
+		"message": "연락처 편집: $P1$",
+        "placeholders": {
+            "P1": {
+                "content": "$1"
+            }
+        }
 	},
 	"wdw_cardEditionEditListTitle": {
-		"message": "목록 수정"
+		"message": "목록 수정: $P1$",
+        "placeholders": {
+            "P1": {
+                "content": "$1"
+            }
+        }
 	},
 	"wdw_cardEditionAddLineTitle": {
-		"message": "연락처 편집"
+		"message": "연락처 편집: $P1$",
+        "placeholders": {
+            "P1": {
+                "content": "$1"
+            }
+        }
 	},
 	"wdw_cardEditionViewContactTitle": {
-		"message": "연락처보기"
+		"message": "연락처보기: $P1$",
+        "placeholders": {
+            "P1": {
+                "content": "$1"
+            }
+        }
 	},
 	"wdw_cardEditionViewListTitle": {
-		"message": "목록보기"
+		"message": "목록보기: $P1$",
+        "placeholders": {
+            "P1": {
+                "content": "$1"
+            }
+        }
 	},
 	"wdw_cardEditionEditTemplateTitle": {
-		"message": "템플릿 편집"
+		"message": "템플릿 편집: $P1$",
+        "placeholders": {
+            "P1": {
+                "content": "$1"
+            }
+        }
 	},
 	"wdw_cardbookPrintTitleLong": {
 		"message": "$P1$ - 인쇄 미리보기 – CardBook - Thunderbird",
@@ -3108,6 +3148,9 @@
 	},
 	"eventGroupboxLabel": {
 		"message": "이벤트"
+	},
+	"tzGroupboxLabel": {
+		"message": "시간대"
 	},
 	"noteGroupboxLabel": {
 		"message": "메모"

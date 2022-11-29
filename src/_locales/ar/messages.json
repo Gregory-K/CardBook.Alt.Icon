@@ -159,10 +159,10 @@
 		"message": "مسار غير صحيح"
 	},
 	"ValidatingLoginLabel": {
-		"message": "??Your login??"
+		"message": "اسم المستخدم الخاص بك"
 	},
 	"ValidatingEmailLabel": {
-		"message": "??Your existing email address??"
+		"message": "عنوان بريدك الإلكتروني الحالي"
 	},
 	"ValidatingEmailFailedLabel": {
 		"message": "مطلوب بريد إلكتروني صالح"
@@ -2048,7 +2048,7 @@
         }
 	},
 	"cardsImagesExportedUndo": {
-		"message": "??Images exported to directory $P1$??",
+		"message": "تم تصدير الصور إلى الدليل $P1$",
         "placeholders": {
             "P1": {
                 "content": "$1"
@@ -2280,7 +2280,7 @@
         }
 	},
 	"exportImagesToDirMessagePF": {
-		"message": "??$P1$ image exported into the directory $P2$;$P1$ images exported into the directory $P2$??",
+		"message": "$P1$ صورة تم تصديرها لهذا المجلد $P2$;$P1$ صورتين تم تصديرهم لهذا المجلد $P2$;$P1$ صورة تم تصديرها لهذا المجلد $P2$",
         "placeholders": {
             "P1": {
                 "content": "$1"
@@ -3039,10 +3039,20 @@
 		"message": "أضف إلى دفتر العناوين هذا"
 	},
 	"wdw_cardEditionViewResultTitle": {
-		"message": "نتيجة تعديلات جهة الإتصال"
+		"message": "نتيجة تعديلات جهة الإتصال: $P1$",
+        "placeholders": {
+            "P1": {
+                "content": "$1"
+            }
+        }
 	},
 	"wdw_cardEditionViewResultHideCreateTitle": {
-		"message": "نتيجة تعديلات جهة الإتصال"
+		"message": "نتيجة تعديلات جهة الإتصال: $P1$",
+        "placeholders": {
+            "P1": {
+                "content": "$1"
+            }
+        }
 	},
 	"wdw_cardEditionAddEmailTitle": {
 		"message": "سجل عنوان بريد إلكتروني جديد"
@@ -3054,22 +3064,52 @@
 		"message": "قائمة بريدية جديدة"
 	},
 	"wdw_cardEditionEditContactTitle": {
-		"message": "عدل جهة الإتصال"
+		"message": "عدل جهة الإتصال: $P1$",
+        "placeholders": {
+            "P1": {
+                "content": "$1"
+            }
+        }
 	},
 	"wdw_cardEditionEditListTitle": {
-		"message": "عدل القائمة"
+		"message": "عدل القائمة: $P1$",
+        "placeholders": {
+            "P1": {
+                "content": "$1"
+            }
+        }
 	},
 	"wdw_cardEditionAddLineTitle": {
-		"message": "عدل جهة الإتصال"
+		"message": "عدل جهة الإتصال: $P1$",
+        "placeholders": {
+            "P1": {
+                "content": "$1"
+            }
+        }
 	},
 	"wdw_cardEditionViewContactTitle": {
-		"message": "عرض جهة الإتصال"
+		"message": "عرض جهة الإتصال: $P1$",
+        "placeholders": {
+            "P1": {
+                "content": "$1"
+            }
+        }
 	},
 	"wdw_cardEditionViewListTitle": {
-		"message": "عرض القائمة"
+		"message": "عرض القائمة: $P1$",
+        "placeholders": {
+            "P1": {
+                "content": "$1"
+            }
+        }
 	},
 	"wdw_cardEditionEditTemplateTitle": {
-		"message": "حرر القالب"
+		"message": "حرر القالب: $P1$",
+        "placeholders": {
+            "P1": {
+                "content": "$1"
+            }
+        }
 	},
 	"wdw_cardbookPrintTitleLong": {
 		"message": "معاينة الطباعة لـ$P1$ - CardBook - Thunderbird",
@@ -3108,6 +3148,9 @@
 	},
 	"eventGroupboxLabel": {
 		"message": "الأحداث"
+	},
+	"tzGroupboxLabel": {
+		"message": "المنطقة الزمنية"
 	},
 	"noteGroupboxLabel": {
 		"message": "ملاحظات"
@@ -3423,10 +3466,10 @@
 		"message": "تعطيل توليد اسم العرض"
 	},
 	"autoConvertField": {
-		"message": "??Enable the conversion of this field??"
+		"message": "مكن التحويل لهذا الحقل"
 	},
 	"dontAutoConvertField": {
-		"message": "??Disable the conversion of this field??"
+		"message": "عطل التحويل لهذا الحقل"
 	},
 	"customLabel": {
 		"message": "مخصص"
@@ -5547,7 +5590,7 @@
 		"message": "صدّر"
 	},
 	"exportCardImagesLabel": {
-		"message": "??Export images??"
+		"message": "تصدير الصور"
 	},
 	"exportCardToFileLabel": {
 		"message": "تصدير إلى ملف"
@@ -5877,7 +5920,7 @@
 		"message": "A"
 	},
 	"buttonAppendEmailsToListLabel": {
-		"message": "??Add email addresses??"
+		"message": "أضِف عنوانين البريد الإلكتروني"
 	},
 	"buttonRemoveFromListLabel": {
 		"message": "إزالة"
@@ -6013,21 +6056,21 @@
 		"message": "محدد"
 	},
 	"conversionWarn": {
-		"message": "??It is possible to force the convertion of some fields while providing them.??"
+		"message": "من الممكن فرض تحويل بعض الحقول مع توفيرها."
 	},
 	"convertToLabel": {
 		"message": "حوّل إلى"
 	},
 	"wdw_cardbookConfigurationEditFieldTitle": {
-		"message": "??Choose a conversion function??"
+		"message": "اختر وظيفة التحويل"
 	},
 	"uppercaseLabel": {
-		"message": "??Uppercase??"
+		"message": "أحرف كبيرة"
 	},
 	"lowercaseLabel": {
-		"message": "??Lowercase??"
+		"message": "أحرف صغيرة"
 	},
 	"capitalizationLabel": {
-		"message": "??Capitalization??"
+		"message": "الرسملة"
 	}
 }

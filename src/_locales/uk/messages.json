@@ -3039,10 +3039,20 @@
 		"message": "Додати до цієї адресної книги"
 	},
 	"wdw_cardEditionViewResultTitle": {
-		"message": "Результати модифікації контактів"
+		"message": "Результати модифікації контактів: $P1$",
+        "placeholders": {
+            "P1": {
+                "content": "$1"
+            }
+        }
 	},
 	"wdw_cardEditionViewResultHideCreateTitle": {
-		"message": "Результати модифікації контактів"
+		"message": "Результати модифікації контактів: $P1$",
+        "placeholders": {
+            "P1": {
+                "content": "$1"
+            }
+        }
 	},
 	"wdw_cardEditionAddEmailTitle": {
 		"message": "Зареєструйте нову електронну адресу"
@@ -3054,22 +3064,52 @@
 		"message": "Новий список розсилки"
 	},
 	"wdw_cardEditionEditContactTitle": {
-		"message": "Змінити контакт"
+		"message": "Змінити контакт: $P1$",
+        "placeholders": {
+            "P1": {
+                "content": "$1"
+            }
+        }
 	},
 	"wdw_cardEditionEditListTitle": {
-		"message": "Змінити список"
+		"message": "Змінити список: $P1$",
+        "placeholders": {
+            "P1": {
+                "content": "$1"
+            }
+        }
 	},
 	"wdw_cardEditionAddLineTitle": {
-		"message": "Змінити контакт"
+		"message": "Змінити контакт: $P1$",
+        "placeholders": {
+            "P1": {
+                "content": "$1"
+            }
+        }
 	},
 	"wdw_cardEditionViewContactTitle": {
-		"message": "Переглянути контакт"
+		"message": "Переглянути контакт: $P1$",
+        "placeholders": {
+            "P1": {
+                "content": "$1"
+            }
+        }
 	},
 	"wdw_cardEditionViewListTitle": {
-		"message": "Переглянути список"
+		"message": "Переглянути список: $P1$",
+        "placeholders": {
+            "P1": {
+                "content": "$1"
+            }
+        }
 	},
 	"wdw_cardEditionEditTemplateTitle": {
-		"message": "Змінити шаблон"
+		"message": "Змінити шаблон: $P1$",
+        "placeholders": {
+            "P1": {
+                "content": "$1"
+            }
+        }
 	},
 	"wdw_cardbookPrintTitleLong": {
 		"message": "Попередній перегляд $P1$ - Контакти - Thunderbird",
@@ -3108,6 +3148,9 @@
 	},
 	"eventGroupboxLabel": {
 		"message": "Події"
+	},
+	"tzGroupboxLabel": {
+		"message": "Часовий пояс"
 	},
 	"noteGroupboxLabel": {
 		"message": "Примітки"

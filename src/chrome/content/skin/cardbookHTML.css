@@ -1,0 +1,50 @@
+/* vertical alignment */
+.vbox {
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+}
+
+.vbox.centered {
+    justify-content: center;
+}
+
+.vbox .separator,
+.vbox .spacer {
+    height: 10px;
+}
+
+.hbox {
+    display: flex;
+    flex-direction: row;
+}
+
+.hbox .spacer {
+    width: 10px;
+}
+  
+.hbox.centered {
+    align-items: center;
+}
+
+/* <div class="hbox centered input-container">
+class indent
+class notification-inline
+test */
+
+html|fieldset > vbox {
+    vertical-align:top
+}
+
+fieldset[orient="horizontal"] > vbox,
+fieldset[orient="horizontal"] > checkbox {
+    display: inline-block;
+}
+
+.indent {
+	margin-inline-start: 22px;
+}
+
+select {
+    min-height: 26px;
+}

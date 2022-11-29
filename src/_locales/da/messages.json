@@ -3039,10 +3039,20 @@
 		"message": "Tilføj til denne adressebog"
 	},
 	"wdw_cardEditionViewResultTitle": {
-		"message": "Resulterende kontaktændring"
+		"message": "Resulterende kontaktændring: $P1$",
+        "placeholders": {
+            "P1": {
+                "content": "$1"
+            }
+        }
 	},
 	"wdw_cardEditionViewResultHideCreateTitle": {
-		"message": "Resulterende kontaktændring"
+		"message": "Resulterende kontaktændring: $P1$",
+        "placeholders": {
+            "P1": {
+                "content": "$1"
+            }
+        }
 	},
 	"wdw_cardEditionAddEmailTitle": {
 		"message": "Registrer en ny e-mailadresse"
@@ -3054,22 +3064,52 @@
 		"message": "Ny postliste"
 	},
 	"wdw_cardEditionEditContactTitle": {
-		"message": "Rediger kontakt"
+		"message": "Rediger kontakt: $P1$",
+        "placeholders": {
+            "P1": {
+                "content": "$1"
+            }
+        }
 	},
 	"wdw_cardEditionEditListTitle": {
-		"message": "Rediger liste"
+		"message": "Rediger liste: $P1$",
+        "placeholders": {
+            "P1": {
+                "content": "$1"
+            }
+        }
 	},
 	"wdw_cardEditionAddLineTitle": {
-		"message": "Rediger kontakt"
+		"message": "Rediger kontakt: $P1$",
+        "placeholders": {
+            "P1": {
+                "content": "$1"
+            }
+        }
 	},
 	"wdw_cardEditionViewContactTitle": {
-		"message": "Vis kontakt"
+		"message": "Vis kontakt: $P1$",
+        "placeholders": {
+            "P1": {
+                "content": "$1"
+            }
+        }
 	},
 	"wdw_cardEditionViewListTitle": {
-		"message": "Vis liste"
+		"message": "Vis liste: $P1$",
+        "placeholders": {
+            "P1": {
+                "content": "$1"
+            }
+        }
 	},
 	"wdw_cardEditionEditTemplateTitle": {
-		"message": "Rediger skabelon"
+		"message": "Rediger skabelon: $P1$",
+        "placeholders": {
+            "P1": {
+                "content": "$1"
+            }
+        }
 	},
 	"wdw_cardbookPrintTitleLong": {
 		"message": "Udskriftsforhåndsvisning af $P1$ - CardBook - Thunderbird",
@@ -3108,6 +3148,9 @@
 	},
 	"eventGroupboxLabel": {
 		"message": "Begivenheder"
+	},
+	"tzGroupboxLabel": {
+		"message": "Tidszone"
 	},
 	"noteGroupboxLabel": {
 		"message": "Noter"

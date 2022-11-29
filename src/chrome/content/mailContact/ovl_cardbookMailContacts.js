@@ -194,7 +194,8 @@ if ("undefined" == typeof(ovl_cardbookMailContacts)) {
 		if ("undefined" == typeof(DisplayNameUtils.getCardForEmail)) {
 			let cardDetails = ovl_formatEmailCorrespondents.getCardForEmail(this.emailAddress);
 			this.cardDetails = cardDetails;
-			let hasCard = this.cardDetails.card;
+			let exclusive = cardbookRepository.cardbookPreferences.getBoolPref("extensions.cardbook.exclusive");
+			let hasCard = (this.cardDetails.card && this.cardDetails.card.cbid) || (!exclusive && this.cardDetails.card) ;
 			this.abIndicator.classList.toggle("in-address-book", hasCard);
 		}
 
@@ -202,57 +203,67 @@ if ("undefined" == typeof(ovl_cardbookMailContacts)) {
 
 		if (!this.cardDetails.card) {
 			this._createAvatarPlaceholder();
-			return;
+		} else {
+			// We have a card, so let's try to fetch the image.
+			let card = this.cardDetails.card;
+			if (card.cbid) {
+				let image = await cardbookIDBImage.getImage("photo", "", card.cbid, card.fn);
+				if (image && image.content && image.extension) {
+					let file = Services.dirsvc.get("ProfD", Components.interfaces.nsIFile);
+					file.append("Photos");
+					file.append(card.uid + "." + image.extension);
+					await cardbookRepository.cardbookUtils.writeContentToFile(file.path, atob(image.content), "NOUTF8");
+					var photoURL = Services.io.newFileURI(file).spec;
+				} else {
+					var photoURL = "";
+				}
+			} else {
+				var photoURL = card.photoURL;
+			}
+			if (photoURL) {
+				let img = document.createElement("img");
+					document.l10n.setAttributes(img, "message-header-recipient-avatar", {
+					address: this.emailAddress,
+					});
+				// TODO: We should fetch a dynamically generated smaller version of the
+				// uploaded picture to avoid loading large images that will only be used
+				// in smaller format.
+				img.src = photoURL;
+				this.avatar.appendChild(img);
+				this.avatar.classList.add("has-avatar");
+			} else {
+				this._createAvatarPlaceholder();
+			}
 		}
 
-		// We have a card, so let's try to fetch the image.
-		let card = this.cardDetails.card;
-		if (card.cbid) {
-			let image = await cardbookIDBImage.getImage("photo", "", card.cbid, card.fn);
-			if (image && image.content && image.extension) {
-				let file = Services.dirsvc.get("ProfD", Components.interfaces.nsIFile);
-				file.append("Photos");
-				file.append(card.uid + "." + image.extension);
-				await cardbookRepository.cardbookUtils.writeContentToFile(file.path, atob(image.content), "NOUTF8");
-				var photoURL = Services.io.newFileURI(file).spec;
-			} else {
-				return
+		function colorAvatars() {
+			let nodes = document.getElementById("msgHeaderView").querySelectorAll(".header-recipient");
+			let exclusive = cardbookRepository.cardbookPreferences.getBoolPref("extensions.cardbook.exclusive");
+			for (let node of nodes) {
+				if (node.getAttribute("data-header-name") != "from") {
+					let cardDetails = ovl_formatEmailCorrespondents.getCardForEmail(node.emailAddress);
+					node.cardDetails = cardDetails;
+					let hasCard = (node.cardDetails.card && node.cardDetails.card.cbid) || (!exclusive && node.cardDetails.card);
+					node.abIndicator.classList.toggle("in-address-book", hasCard);
+				}
 			}
-		} else {
-			var photoURL = card.photoURL;
-		}
-		if (photoURL) {
-			let img = document.createElement("img");
-				document.l10n.setAttributes(img, "message-header-recipient-avatar", {
-				address: this.emailAddress,
-				});
-			// TODO: We should fetch a dynamically generated smaller version of the
-			// uploaded picture to avoid loading large images that will only be used
-			// in smaller format.
-			img.src = photoURL;
-			this.avatar.appendChild(img);
-			this.avatar.classList.add("has-avatar");
-		} else {
-			this._createAvatarPlaceholder();
 		}
 
 		// update blue icons node for others nodes
 		// change in Thunderbird 102.3.0
 		if ("undefined" == typeof(DisplayNameUtils.getCardForEmail)) {
 			setTimeout(function(){ 
-				let nodes = document.getElementById("msgHeaderView").querySelectorAll(".header-recipient");
-					for (let node of nodes) {
-						if (node.getAttribute("data-header-name") != "from") {
-							let cardDetails = ovl_formatEmailCorrespondents.getCardForEmail(node.emailAddress);
-							node.cardDetails = cardDetails;
-							let hasCard = node.cardDetails.card;
-							node.abIndicator.classList.toggle("in-address-book", hasCard);
-						}
-					}
+				colorAvatars();
+
+				// update the MORE button
+				let button = document.querySelector("button.show-more-recipients");
+				if (button) {
+					button.addEventListener("click", event => {
+						colorAvatars();
+					});
+				}
 			}, 200);
 		}
-
-
 	};
 })();
 
@@ -270,7 +281,7 @@ if ("undefined" == typeof(ovl_cardbookMailContacts)) {
 		let exclusive = cardbookRepository.cardbookPreferences.getBoolPref("extensions.cardbook.exclusive");
 		if (arguments[1].cardDetails.card && arguments[1].cardDetails.card.cbid) {
 			ovl_cardbookMailContacts.hideOrShowNewAddressbook(true);
-			let  myCard = arguments[1].cardDetails.card;
+			let myCard = arguments[1].cardDetails.card;
 			document.getElementById("editInCardBookMenu").setAttribute("cardbookId", myCard.dirPrefId+"::"+myCard.uid);
 			if (cardbookRepository.cardbookPreferences.getReadOnly(myCard.dirPrefId)) {
 				document.getElementById('editInCardBookMenu').label=cardbookRepository.extension.localeData.localizeMessage("viewInCardBookMenuLabel");

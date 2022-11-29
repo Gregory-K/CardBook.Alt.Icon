@@ -3039,10 +3039,20 @@
 		"message": "Añadir esta libreta de direcciones"
 	},
 	"wdw_cardEditionViewResultTitle": {
-		"message": "Modificación de contacto resultante"
+		"message": "Modificación de contacto resultante: $P1$",
+        "placeholders": {
+            "P1": {
+                "content": "$1"
+            }
+        }
 	},
 	"wdw_cardEditionViewResultHideCreateTitle": {
-		"message": "Modificación de contacto resultante"
+		"message": "Modificación de contacto resultante: $P1$",
+        "placeholders": {
+            "P1": {
+                "content": "$1"
+            }
+        }
 	},
 	"wdw_cardEditionAddEmailTitle": {
 		"message": "Registrar una nueva dirección de correo electrónico"
@@ -3054,22 +3064,52 @@
 		"message": "Nueva lista de correo"
 	},
 	"wdw_cardEditionEditContactTitle": {
-		"message": "Editar el contacto"
+		"message": "Editar el contacto: $P1$",
+        "placeholders": {
+            "P1": {
+                "content": "$1"
+            }
+        }
 	},
 	"wdw_cardEditionEditListTitle": {
-		"message": "Editar la lista"
+		"message": "Editar la lista: $P1$",
+        "placeholders": {
+            "P1": {
+                "content": "$1"
+            }
+        }
 	},
 	"wdw_cardEditionAddLineTitle": {
-		"message": "Editar el contacto"
+		"message": "Editar el contacto: $P1$",
+        "placeholders": {
+            "P1": {
+                "content": "$1"
+            }
+        }
 	},
 	"wdw_cardEditionViewContactTitle": {
-		"message": "Ver el contacto"
+		"message": "Ver el contacto: $P1$",
+        "placeholders": {
+            "P1": {
+                "content": "$1"
+            }
+        }
 	},
 	"wdw_cardEditionViewListTitle": {
-		"message": "Ver la lista"
+		"message": "Ver la lista: $P1$",
+        "placeholders": {
+            "P1": {
+                "content": "$1"
+            }
+        }
 	},
 	"wdw_cardEditionEditTemplateTitle": {
-		"message": "Editar plantilla"
+		"message": "Editar la plantilla: $P1$",
+        "placeholders": {
+            "P1": {
+                "content": "$1"
+            }
+        }
 	},
 	"wdw_cardbookPrintTitleLong": {
 		"message": "Vista previa de impresión de $P1$ - CardBook - Thunderbird",
@@ -3108,6 +3148,9 @@
 	},
 	"eventGroupboxLabel": {
 		"message": "Eventos"
+	},
+	"tzGroupboxLabel": {
+		"message": "Zona horaria"
 	},
 	"noteGroupboxLabel": {
 		"message": "Notas"

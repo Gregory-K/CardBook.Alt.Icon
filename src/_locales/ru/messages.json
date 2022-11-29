@@ -3039,10 +3039,20 @@
 		"message": "Добавить в эту адресную книгу"
 	},
 	"wdw_cardEditionViewResultTitle": {
-		"message": "Итоговое изменение контакта"
+		"message": "Итоговое изменение контакта: $P1$",
+        "placeholders": {
+            "P1": {
+                "content": "$1"
+            }
+        }
 	},
 	"wdw_cardEditionViewResultHideCreateTitle": {
-		"message": "Итоговое изменение контакта"
+		"message": "Итоговое изменение контакта: $P1$",
+        "placeholders": {
+            "P1": {
+                "content": "$1"
+            }
+        }
 	},
 	"wdw_cardEditionAddEmailTitle": {
 		"message": "Регистрация нового адреса email"
@@ -3054,22 +3064,52 @@
 		"message": "Создание нового списка рассылки"
 	},
 	"wdw_cardEditionEditContactTitle": {
-		"message": "Изменить контакт"
+		"message": "Изменить контакт: $P1$",
+        "placeholders": {
+            "P1": {
+                "content": "$1"
+            }
+        }
 	},
 	"wdw_cardEditionEditListTitle": {
-		"message": "Изменить список"
+		"message": "Изменить список: $P1$",
+        "placeholders": {
+            "P1": {
+                "content": "$1"
+            }
+        }
 	},
 	"wdw_cardEditionAddLineTitle": {
-		"message": "Изменить контакт"
+		"message": "Изменить контакт: $P1$",
+        "placeholders": {
+            "P1": {
+                "content": "$1"
+            }
+        }
 	},
 	"wdw_cardEditionViewContactTitle": {
-		"message": "Просмотр существующего контакта"
+		"message": "Просмотр существующего контакта: $P1$",
+        "placeholders": {
+            "P1": {
+                "content": "$1"
+            }
+        }
 	},
 	"wdw_cardEditionViewListTitle": {
-		"message": "Просмотр списка"
+		"message": "Просмотр списка: $P1$",
+        "placeholders": {
+            "P1": {
+                "content": "$1"
+            }
+        }
 	},
 	"wdw_cardEditionEditTemplateTitle": {
-		"message": "Редактировать шаблон"
+		"message": "Редактировать шаблон: $P1$",
+        "placeholders": {
+            "P1": {
+                "content": "$1"
+            }
+        }
 	},
 	"wdw_cardbookPrintTitleLong": {
 		"message": "Предварительный просмотр печати - $P1$ - CardBook - Thunderbird",
@@ -3108,6 +3148,9 @@
 	},
 	"eventGroupboxLabel": {
 		"message": "События"
+	},
+	"tzGroupboxLabel": {
+		"message": "Часовой пояс"
 	},
 	"noteGroupboxLabel": {
 		"message": "Заметка"

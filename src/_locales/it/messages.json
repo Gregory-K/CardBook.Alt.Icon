@@ -2622,7 +2622,7 @@
 		"message": "Mailer"
 	},
 	"tzLabel": {
-		"message": "TZ"
+		"message": "Fuso orario"
 	},
 	"geoLabel": {
 		"message": "Geo"
@@ -3039,10 +3039,20 @@
 		"message": "Aggiungi a questa rubrica"
 	},
 	"wdw_cardEditionViewResultTitle": {
-		"message": "Modifica contatto risultante"
+		"message": "Modifica contatto risultante: $P1$",
+        "placeholders": {
+            "P1": {
+                "content": "$1"
+            }
+        }
 	},
 	"wdw_cardEditionViewResultHideCreateTitle": {
-		"message": "Modifica contatto risultante"
+		"message": "Modifica contatto risultante: $P1$",
+        "placeholders": {
+            "P1": {
+                "content": "$1"
+            }
+        }
 	},
 	"wdw_cardEditionAddEmailTitle": {
 		"message": "Registra un nuovo indirizzo email"
@@ -3054,22 +3064,52 @@
 		"message": "Crea una nuova lista"
 	},
 	"wdw_cardEditionEditContactTitle": {
-		"message": "Modifica contatto"
+		"message": "Modifica contatto: $P1$",
+        "placeholders": {
+            "P1": {
+                "content": "$1"
+            }
+        }
 	},
 	"wdw_cardEditionEditListTitle": {
-		"message": "Modifica lista"
+		"message": "Modifica lista: $P1$",
+        "placeholders": {
+            "P1": {
+                "content": "$1"
+            }
+        }
 	},
 	"wdw_cardEditionAddLineTitle": {
-		"message": "Modifica contatto"
+		"message": "Modifica contatto: $P1$",
+        "placeholders": {
+            "P1": {
+                "content": "$1"
+            }
+        }
 	},
 	"wdw_cardEditionViewContactTitle": {
-		"message": "Consulta contatto"
+		"message": "Consulta contatto: $P1$",
+        "placeholders": {
+            "P1": {
+                "content": "$1"
+            }
+        }
 	},
 	"wdw_cardEditionViewListTitle": {
-		"message": "Mostra lista"
+		"message": "Mostra lista: $P1$",
+        "placeholders": {
+            "P1": {
+                "content": "$1"
+            }
+        }
 	},
 	"wdw_cardEditionEditTemplateTitle": {
-		"message": "Modifica modello"
+		"message": "Modifica modello: $P1$",
+        "placeholders": {
+            "P1": {
+                "content": "$1"
+            }
+        }
 	},
 	"wdw_cardbookPrintTitleLong": {
 		"message": "Anteprima di stampa di $P1$ - CardBook - Thunderbird",
@@ -3108,6 +3148,9 @@
 	},
 	"eventGroupboxLabel": {
 		"message": "Eventi"
+	},
+	"tzGroupboxLabel": {
+		"message": "Fuso orario"
 	},
 	"noteGroupboxLabel": {
 		"message": "Note"

@@ -2622,7 +2622,7 @@
 		"message": "Mailer"
 	},
 	"tzLabel": {
-		"message": "Tz"
+		"message": "Fuseau horaire"
 	},
 	"geoLabel": {
 		"message": "Geo"
@@ -3039,10 +3039,20 @@
 		"message": "Ajouter à ce carnet d'adresses"
 	},
 	"wdw_cardEditionViewResultTitle": {
-		"message": "Modifier le contact résultat"
+		"message": "Modifier le contact résultat : $P1$",
+        "placeholders": {
+            "P1": {
+                "content": "$1"
+            }
+        }
 	},
 	"wdw_cardEditionViewResultHideCreateTitle": {
-		"message": "Modifier le contact résultat"
+		"message": "Modifier le contact résultat : $P1$",
+        "placeholders": {
+            "P1": {
+                "content": "$1"
+            }
+        }
 	},
 	"wdw_cardEditionAddEmailTitle": {
 		"message": "Enregistrer une nouvelle adresse email"
@@ -3054,22 +3064,52 @@
 		"message": "Créer une nouvelle liste de diffusion"
 	},
 	"wdw_cardEditionEditContactTitle": {
-		"message": "Modifier le contact"
+		"message": "Modifier le contact : $P1$",
+        "placeholders": {
+            "P1": {
+                "content": "$1"
+            }
+        }
 	},
 	"wdw_cardEditionEditListTitle": {
-		"message": "Modifier la liste"
+		"message": "Modifier la liste : $P1$",
+        "placeholders": {
+            "P1": {
+                "content": "$1"
+            }
+        }
 	},
 	"wdw_cardEditionAddLineTitle": {
-		"message": "Modifier le contact"
+		"message": "Modifier le contact : $P1$",
+        "placeholders": {
+            "P1": {
+                "content": "$1"
+            }
+        }
 	},
 	"wdw_cardEditionViewContactTitle": {
-		"message": "Consulter le contact"
+		"message": "Consulter le contact : $P1$",
+        "placeholders": {
+            "P1": {
+                "content": "$1"
+            }
+        }
 	},
 	"wdw_cardEditionViewListTitle": {
-		"message": "Consulter la liste"
+		"message": "Consulter la liste : $P1$",
+        "placeholders": {
+            "P1": {
+                "content": "$1"
+            }
+        }
 	},
 	"wdw_cardEditionEditTemplateTitle": {
-		"message": "Modifier le modèle"
+		"message": "Modifier le modèle : $P1$",
+        "placeholders": {
+            "P1": {
+                "content": "$1"
+            }
+        }
 	},
 	"wdw_cardbookPrintTitleLong": {
 		"message": "Aperçu avant impression de $P1$ - CardBook - Thunderbird",
@@ -3108,6 +3148,9 @@
 	},
 	"eventGroupboxLabel": {
 		"message": "Évènements"
+	},
+	"tzGroupboxLabel": {
+		"message": "Fuseau horaire"
 	},
 	"noteGroupboxLabel": {
 		"message": "Notes"

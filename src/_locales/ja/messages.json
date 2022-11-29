@@ -3039,10 +3039,20 @@
 		"message": "このアドレス帳に追加する"
 	},
 	"wdw_cardEditionViewResultTitle": {
-		"message": "結果の連絡先変更"
+		"message": "結果の連絡先変更: $P1$",
+        "placeholders": {
+            "P1": {
+                "content": "$1"
+            }
+        }
 	},
 	"wdw_cardEditionViewResultHideCreateTitle": {
-		"message": "結果の連絡先変更"
+		"message": "結果の連絡先変更: $P1$",
+        "placeholders": {
+            "P1": {
+                "content": "$1"
+            }
+        }
 	},
 	"wdw_cardEditionAddEmailTitle": {
 		"message": "新しいメールアドレスを登録する"
@@ -3054,22 +3064,52 @@
 		"message": "新しいリスト"
 	},
 	"wdw_cardEditionEditContactTitle": {
-		"message": "編集連絡先"
+		"message": "編集連絡先: $P1$",
+        "placeholders": {
+            "P1": {
+                "content": "$1"
+            }
+        }
 	},
 	"wdw_cardEditionEditListTitle": {
-		"message": "編集リスト"
+		"message": "編集リスト: $P1$",
+        "placeholders": {
+            "P1": {
+                "content": "$1"
+            }
+        }
 	},
 	"wdw_cardEditionAddLineTitle": {
-		"message": "編集連絡先"
+		"message": "編集連絡先: $P1$",
+        "placeholders": {
+            "P1": {
+                "content": "$1"
+            }
+        }
 	},
 	"wdw_cardEditionViewContactTitle": {
-		"message": "表示連絡先"
+		"message": "表示連絡先: $P1$",
+        "placeholders": {
+            "P1": {
+                "content": "$1"
+            }
+        }
 	},
 	"wdw_cardEditionViewListTitle": {
-		"message": "表示リスト"
+		"message": "表示リスト: $P1$",
+        "placeholders": {
+            "P1": {
+                "content": "$1"
+            }
+        }
 	},
 	"wdw_cardEditionEditTemplateTitle": {
-		"message": "テンプレートを編集"
+		"message": "テンプレートを編集: $P1$",
+        "placeholders": {
+            "P1": {
+                "content": "$1"
+            }
+        }
 	},
 	"wdw_cardbookPrintTitleLong": {
 		"message": "$P1$の印刷プレビュー - CardBook - Thunderbird",
@@ -3108,6 +3148,9 @@
 	},
 	"eventGroupboxLabel": {
 		"message": "予定"
+	},
+	"tzGroupboxLabel": {
+		"message": "タイムゾーン"
 	},
 	"noteGroupboxLabel": {
 		"message": "メモ"

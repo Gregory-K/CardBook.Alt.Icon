@@ -3,7 +3,7 @@
 		"message": "CardBook"
 	},
 	"extDesc": {
-		"message": "vCard Adressbuch"
+		"message": "vCard-Adressbuch"
 	},
 	"browserActionTitle": {
 		"message": "CardBook",
@@ -130,7 +130,7 @@
 		"message": "Keine Daten vorhanden."
 	},
 	"targetCategoryLabel": {
-		"message": "Ergebnisse anzeigen"
+		"message": "Ergebnisse"
 	},
 	"sourceCategoryLabel": {
 		"message": "Quelle"
@@ -2031,13 +2031,29 @@
 			}
 		}
 	},
+	"cardsExportedToFileUndo": {
+		"message": "Kontakte in Datei $P1$ exportiert",
+		"placeholders": {
+			"P1": {
+				"content": "$1"
+			}
+		}
+	},
+	"cardsExportedToDirUndo": {
+		"message": "Kontakte in das Verzeichnis $P1$ exportiert",
+		"placeholders": {
+			"P1": {
+				"content": "$1"
+			}
+		}
+	},
 	"cardsImagesExportedUndo": {
 		"message": "Bilder wurden in das Verzeichnis $P1$ exportiert",
-        "placeholders": {
-            "P1": {
-                "content": "$1"
-            }
-        }
+		"placeholders": {
+			"P1": {
+				"content": "$1"
+			}
+		}
 	},
 	"undoActionDoneUndo": {
 		"message": "Rückgängigmachen abgeschlossen ($P1$)",
@@ -2049,22 +2065,6 @@
 	},
 	"redoActionDoneUndo": {
 		"message": "Wiederherstellen abgeschlossen ($P1$)",
-		"placeholders": {
-			"P1": {
-				"content": "$1"
-			}
-		}
-	},
-	"cardsExportedToFileUndo": {
-		"message": "Kontakte in Datei $P1$ exportiert",
-		"placeholders": {
-			"P1": {
-				"content": "$1"
-			}
-		}
-	},
-	"cardsExportedToDirUndo": {
-		"message": "Kontakte in das Verzeichnis $P1$ exportiert",
 		"placeholders": {
 			"P1": {
 				"content": "$1"
@@ -2281,14 +2281,14 @@
 	},
 	"exportImagesToDirMessagePF": {
 		"message": "$P1$ Bild wurde in das Verzeichnis $P2$ exportiert;$P1$ Bilder wurden in das Verzeichnis $P2$ exportiert",
-        "placeholders": {
-            "P1": {
-                "content": "$1"
-            },
-            "P2": {
-                "content": "$2"
-            }
-        }
+		"placeholders": {
+			"P1": {
+				"content": "$1"
+			},
+			"P2": {
+				"content": "$2"
+			}
+		}
 	},
 	"exportCardToDirMessagePF": {
 		"message": "$P1$ Kontakt wurde in das Verzeichnis $P2$ exportiert;$P1$ Kontakte wurden in das Verzeichnis $P2$ exportiert",
@@ -2789,7 +2789,7 @@
 		}
 	},
 	"errorAttachingFile": {
-		"message": "Attaching vCard : Die Datei zum Anhängen der vCard kann nicht erstellt werden : $P1$ ($P2$)",
+		"message": "vCard anhängen : Die Datei zum Anhängen der vCard kann nicht erstellt werden: $P1$ ($P2$)",
 		"placeholders": {
 			"P1": {
 				"content": "$1"
@@ -2800,7 +2800,7 @@
 		}
 	},
 	"errorInfiniteLoopRecursion": {
-		"message": "Lists : Nicht beendbare Rekursion in Listen : $P1$",
+		"message": "Listen : Endlosschleifenrekursion für Listen: $P1$",
 		"placeholders": {
 			"P1": {
 				"content": "$1"
@@ -2808,7 +2808,7 @@
 		}
 	},
 	"WRONG_VERSION": {
-		"message": "Nur vCards Version 3.0 oder 4.0 werden unterstützt"
+		"message": "Nur vCards der Version 3.0 oder 4.0 werden unterstützt"
 	},
 	"unableToParseResponse": {
 		"message": "$P1$: Konnte die Antwort von Server nicht parsen. Fehlerhafte Zeile: $P2$",
@@ -2881,7 +2881,7 @@
 		}
 	},
 	"invalidOffice365Type": {
-		"message": "$P1$ : zu viel Typ $P2$ (maximal erlaubt: $P3$)",
+		"message": "$P1$ : Zu viele $P2$-Typen (maximal erlaubt: $P3$)",
 		"placeholders": {
 			"P1": {
 				"content": "$1"
@@ -3039,10 +3039,20 @@
 		"message": "Zu diesem Adressbuch hinzufügen"
 	},
 	"wdw_cardEditionViewResultTitle": {
-		"message": "Bearbeitung des resultierenden Kontakts"
+		"message": "Bearbeitung des resultierenden Kontakts: $P1$",
+        "placeholders": {
+            "P1": {
+                "content": "$1"
+            }
+        }
 	},
 	"wdw_cardEditionViewResultHideCreateTitle": {
-		"message": "Bearbeitung des resultierenden Kontakts"
+		"message": "Bearbeitung des resultierenden Kontakts: $P1$",
+        "placeholders": {
+            "P1": {
+                "content": "$1"
+            }
+        }
 	},
 	"wdw_cardEditionAddEmailTitle": {
 		"message": "Neue E-Mail-Adresse hinzufügen"
@@ -3054,22 +3064,52 @@
 		"message": "Neue Verteilerliste erstellen"
 	},
 	"wdw_cardEditionEditContactTitle": {
-		"message": "Kontakt bearbeiten"
+		"message": "Kontakt bearbeiten: $P1$",
+        "placeholders": {
+            "P1": {
+                "content": "$1"
+            }
+        }
 	},
 	"wdw_cardEditionEditListTitle": {
-		"message": "Liste bearbeiten"
+		"message": "Liste bearbeiten: $P1$",
+        "placeholders": {
+            "P1": {
+                "content": "$1"
+            }
+        }
 	},
 	"wdw_cardEditionAddLineTitle": {
-		"message": "Kontakt bearbeiten"
+		"message": "Kontakt bearbeiten: $P1$",
+        "placeholders": {
+            "P1": {
+                "content": "$1"
+            }
+        }
 	},
 	"wdw_cardEditionViewContactTitle": {
-		"message": "Kontakt anzeigen"
+		"message": "Kontakt anzeigen: $P1$",
+        "placeholders": {
+            "P1": {
+                "content": "$1"
+            }
+        }
 	},
 	"wdw_cardEditionViewListTitle": {
-		"message": "Liste anzeigen"
+		"message": "Liste anzeigen: $P1$",
+        "placeholders": {
+            "P1": {
+                "content": "$1"
+            }
+        }
 	},
 	"wdw_cardEditionEditTemplateTitle": {
-		"message": "Vorlage bearbeiten"
+		"message": "Vorlage bearbeiten: $P1$",
+        "placeholders": {
+            "P1": {
+                "content": "$1"
+            }
+        }
 	},
 	"wdw_cardbookPrintTitleLong": {
 		"message": "Druckvorschau von $P1$ - CardBook - Thunderbird",
@@ -3109,11 +3149,14 @@
 	"eventGroupboxLabel": {
 		"message": "Termine"
 	},
+	"tzGroupboxLabel": {
+		"message": "Zeitzone"
+	},
 	"noteGroupboxLabel": {
 		"message": "Notizen"
 	},
 	"searchTermsGroupboxLabel": {
-		"message": "Search terms"
+		"message": "Suchbegriffe"
 	},
 	"addedCardsGroupboxLabel": {
 		"message": "Ausgewählte Einträge"
@@ -3627,7 +3670,7 @@
 		"message": "Nur Nachrichten von Absendern aus dem Adressbuch auflisten"
 	},
 	"quickFilterBar.booleanMode.tooltip": {
-		"message": "Schlagwort-Filterungsmodus"
+		"message": "Schlagwort-Filtermodus"
 	},
 	"quickFilterBar.booleanModeAny.label": {
 		"message": "Eins der ausgewählten"
@@ -4095,10 +4138,10 @@
 		"message": "Anhang:"
 	},
 	"vCardLabel": {
-		"message": "vCard"
+		"message": "vCard:"
 	},
 	"CardBookTabLabel": {
-		"message": "CardBook Tab"
+		"message": "CardBook-Tab"
 	},
 	"editionTabLabel": {
 		"message": "Edition"
@@ -4512,7 +4555,7 @@
 		"message": "A"
 	},
 	"typesCategoryOffice365Label": {
-		"message": "Office365"
+		"message": "Office 365"
 	},
 	"typesCategoryOffice365Accesskey": {
 		"message": "O"
@@ -4671,7 +4714,7 @@
 		"message": "Verschlüsselung"
 	},
 	"encryptionExplanation": {
-		"message": "CardBook kann Ihre lokalen Daten verschlüsseln. Der dafür benötigte geheime Schlüssel wird im Passwort-Manager gespeichert. Wenn Sie diesen Schlüssel verlieren, ist die Wiederherstellung Ihrer lokalen Daten unmöglich. Für einen vollständigen Schutz empfiehlt es sich, Thunderbirds Masterpasswort-Funktion zu aktivieren."
+		"message": "CardBook kann Ihre lokalen Daten verschlüsseln. Der dafür benötigte geheime Schlüssel wird im Passwort-Manager gespeichert. Wenn Sie diesen Schlüssel verlieren, ist die Wiederherstellung Ihrer lokalen Daten unmöglich. Für einen vollständigen Schutz empfiehlt es sich, Thunderbirds Hauptpasswort-Funktion zu aktivieren."
 	},
 	"localDataEncryptionEnabledLabel": {
 		"message": "Lokal zwischengespeicherte Adresskarten verschlüsseln"
@@ -5004,7 +5047,7 @@
 		"message": "Titel für Termin:"
 	},
 	"calendarEntryTitleTooltip": {
-		"message": "Das Feld sollte zwei Platzhalter &#37;S für Namen und Alter enthalten. Falls leer, wird eine Standard-Nachricht verwendet."
+		"message": "Das Feld sollte zwei Platzhalter &#37;S für Namen und Alter enthalten. Falls leer, wird eine Standardnachricht verwendet."
 	},
 	"calendarEntryTitleAccesskey": {
 		"message": "T"
@@ -5037,7 +5080,7 @@
 		"message": "Erinnerung(en) n Stunden (Beispiel: 4,+1):"
 	},
 	"calendarEntryAlarmTooltip": {
-		"message": "Wieviele Stunden vor dem Geburtstag soll die Erinnerung angezeigt werden. Falls leer, keine Erinnerung. Falls Sie mehrere Erinnerungen wünschen, geben Sie diese durch Kommas getrennt ein."
+		"message": "Wie viele Stunden vor dem Geburtstag soll die Erinnerung angezeigt werden. Falls leer, gibt es keine Erinnerung. Wenn Sie mehrere Erinnerungen wünschen, geben Sie diese durch Kommas getrennt ein."
 	},
 	"calendarEntryAlarmAccesskey": {
 		"message": "E"
@@ -5448,7 +5491,7 @@
 		"message": "E-Mail-Format"
 	},
 	"PreferMailFormat.label": {
-		"message": "Folgendes Nachrichten-Format bevorzugen:"
+		"message": "Folgendes Nachrichtenformat bevorzugen:"
 	},
 	"PreferMailFormat.accesskey": {
 		"message": "B"
@@ -5544,10 +5587,10 @@
 		"message": "Eintrag einfügen"
 	},
 	"exportsMenu": {
-		"message": "Exportieren"
+		"message": "Exporte"
 	},
 	"exportCardImagesLabel": {
-		"message": "Exportieren Bilder"
+		"message": "Bilder exportieren"
 	},
 	"exportCardToFileLabel": {
 		"message": "Exportieren in eine Datei"
@@ -5556,7 +5599,7 @@
 		"message": "Exportieren in ein Verzeichnis"
 	},
 	"importsMenu": {
-		"message": "Importieren"
+		"message": "Importe"
 	},
 	"importCardFromFileLabel": {
 		"message": "Importieren aus einer Datei"

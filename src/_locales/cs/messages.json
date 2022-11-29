@@ -2622,7 +2622,7 @@
 		"message": "Mailer"
 	},
 	"tzLabel": {
-		"message": "Časová zóna"
+		"message": "Časové pásmo"
 	},
 	"geoLabel": {
 		"message": "Geo"
@@ -3039,10 +3039,20 @@
 		"message": "Přidat do tohoto adresáře"
 	},
 	"wdw_cardEditionViewResultTitle": {
-		"message": "Úprava výsledného kontaktu"
+		"message": "Úprava výsledného kontaktu: $P1$",
+        "placeholders": {
+            "P1": {
+                "content": "$1"
+            }
+        }
 	},
 	"wdw_cardEditionViewResultHideCreateTitle": {
-		"message": "Úprava výsledného kontaktu"
+		"message": "Úprava výsledného kontaktu: $P1$",
+        "placeholders": {
+            "P1": {
+                "content": "$1"
+            }
+        }
 	},
 	"wdw_cardEditionAddEmailTitle": {
 		"message": "Registrace nové e-mailové adresy"
@@ -3054,22 +3064,52 @@
 		"message": "Vytvoří novou skupinu"
 	},
 	"wdw_cardEditionEditContactTitle": {
-		"message": "Upravit kontakt"
+		"message": "Upravit kontakt: $P1$",
+        "placeholders": {
+            "P1": {
+                "content": "$1"
+            }
+        }
 	},
 	"wdw_cardEditionEditListTitle": {
-		"message": "Upravit seznam"
+		"message": "Upravit seznam: $P1$",
+        "placeholders": {
+            "P1": {
+                "content": "$1"
+            }
+        }
 	},
 	"wdw_cardEditionAddLineTitle": {
-		"message": "Upravit kontakt"
+		"message": "Upravit kontakt: $P1$",
+        "placeholders": {
+            "P1": {
+                "content": "$1"
+            }
+        }
 	},
 	"wdw_cardEditionViewContactTitle": {
-		"message": "Nahlédnutí do existujícího kontaktu"
+		"message": "Zobrazit kontakt: $P1$",
+        "placeholders": {
+            "P1": {
+                "content": "$1"
+            }
+        }
 	},
 	"wdw_cardEditionViewListTitle": {
-		"message": "Zobrazit seznam"
+		"message": "Zobrazit seznam: $P1$",
+        "placeholders": {
+            "P1": {
+                "content": "$1"
+            }
+        }
 	},
 	"wdw_cardEditionEditTemplateTitle": {
-		"message": "Upravit šablonu"
+		"message": "Upravit šablonu: $P1$",
+        "placeholders": {
+            "P1": {
+                "content": "$1"
+            }
+        }
 	},
 	"wdw_cardbookPrintTitleLong": {
 		"message": "Náhled tisku - $P1$ - CardBook - Thunderbird",
@@ -3108,6 +3148,9 @@
 	},
 	"eventGroupboxLabel": {
 		"message": "Události"
+	},
+	"tzGroupboxLabel": {
+		"message": "Časové pásmo"
 	},
 	"noteGroupboxLabel": {
 		"message": "Poznámky"
@@ -6007,7 +6050,7 @@
 		"message": "Profesní informace"
 	},
 	"allAddressBooks": {
-		"message": "Všechny složky kontaktů"
+		"message": "Všechny adresáře"
 	},
 	"selectedLabel": {
 		"message": "Vybráno"

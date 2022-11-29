@@ -2622,7 +2622,7 @@
 		"message": "Postacı"
 	},
 	"tzLabel": {
-		"message": "Zaman Dilimi"
+		"message": "Saat Dilimi"
 	},
 	"geoLabel": {
 		"message": "Geo"
@@ -3039,10 +3039,20 @@
 		"message": "Bu adres defterine ekle"
 	},
 	"wdw_cardEditionViewResultTitle": {
-		"message": "Kişi değiştirme sonucu"
+		"message": "Kişi değiştirme sonucu: $P1$",
+        "placeholders": {
+            "P1": {
+                "content": "$1"
+            }
+        }
 	},
 	"wdw_cardEditionViewResultHideCreateTitle": {
-		"message": "Kişi değiştirme sonucu"
+		"message": "Kişi değiştirme sonucu: $P1$",
+        "placeholders": {
+            "P1": {
+                "content": "$1"
+            }
+        }
 	},
 	"wdw_cardEditionAddEmailTitle": {
 		"message": "Yeni bir e-posta adresi kaydet"
@@ -3054,22 +3064,52 @@
 		"message": "Yeni Posta Listesi"
 	},
 	"wdw_cardEditionEditContactTitle": {
-		"message": "Kişiyi Düzenle"
+		"message": "Kişiyi Düzenle: $P1$",
+        "placeholders": {
+            "P1": {
+                "content": "$1"
+            }
+        }
 	},
 	"wdw_cardEditionEditListTitle": {
-		"message": "Listeyi Düzenle"
+		"message": "Listeyi Düzenle: $P1$",
+        "placeholders": {
+            "P1": {
+                "content": "$1"
+            }
+        }
 	},
 	"wdw_cardEditionAddLineTitle": {
-		"message": "Kişiyi Düzenle"
+		"message": "Kişiyi Düzenle: $P1$",
+        "placeholders": {
+            "P1": {
+                "content": "$1"
+            }
+        }
 	},
 	"wdw_cardEditionViewContactTitle": {
-		"message": "Kişiyi Gör"
+		"message": "Kişiyi Gör: $P1$",
+        "placeholders": {
+            "P1": {
+                "content": "$1"
+            }
+        }
 	},
 	"wdw_cardEditionViewListTitle": {
-		"message": "Listeyi Gör"
+		"message": "Listeyi Gör: $P1$",
+        "placeholders": {
+            "P1": {
+                "content": "$1"
+            }
+        }
 	},
 	"wdw_cardEditionEditTemplateTitle": {
-		"message": "Şablonu Düzenle"
+		"message": "Şablonu Düzenle: $P1$",
+        "placeholders": {
+            "P1": {
+                "content": "$1"
+            }
+        }
 	},
 	"wdw_cardbookPrintTitleLong": {
 		"message": "Baskı Önizleme $P1$ - CardBook - Thunderbird",
@@ -3108,6 +3148,9 @@
 	},
 	"eventGroupboxLabel": {
 		"message": "Etkinlikler"
+	},
+	"tzGroupboxLabel": {
+		"message": "Saat Dilimi"
 	},
 	"noteGroupboxLabel": {
 		"message": "Notlar"

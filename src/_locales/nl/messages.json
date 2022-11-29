@@ -3039,10 +3039,20 @@
 		"message": "Toevoegen aan dit adresboek"
 	},
 	"wdw_cardEditionViewResultTitle": {
-		"message": "Resulterende contactpersoon wijzigen"
+		"message": "Resulterende contactpersoon wijzigen: $P1$",
+        "placeholders": {
+            "P1": {
+                "content": "$1"
+            }
+        }
 	},
 	"wdw_cardEditionViewResultHideCreateTitle": {
-		"message": "Resulterende contactpersoon wijzigen"
+		"message": "Resulterende contactpersoon wijzigen: $P1$",
+        "placeholders": {
+            "P1": {
+                "content": "$1"
+            }
+        }
 	},
 	"wdw_cardEditionAddEmailTitle": {
 		"message": "Registreer een nieuw e-mailadres"
@@ -3054,22 +3064,52 @@
 		"message": "Een nieuwe lijst aanmaken"
 	},
 	"wdw_cardEditionEditContactTitle": {
-		"message": "Contact bewerken"
+		"message": "Contact bewerken: $P1$",
+        "placeholders": {
+            "P1": {
+                "content": "$1"
+            }
+        }
 	},
 	"wdw_cardEditionEditListTitle": {
-		"message": "Lijst bewerken"
+		"message": "Lijst bewerken: $P1$",
+        "placeholders": {
+            "P1": {
+                "content": "$1"
+            }
+        }
 	},
 	"wdw_cardEditionAddLineTitle": {
-		"message": "Contact bewerken"
+		"message": "Contact bewerken: $P1$",
+        "placeholders": {
+            "P1": {
+                "content": "$1"
+            }
+        }
 	},
 	"wdw_cardEditionViewContactTitle": {
-		"message": "Toon contact"
+		"message": "Toon contact: $P1$",
+        "placeholders": {
+            "P1": {
+                "content": "$1"
+            }
+        }
 	},
 	"wdw_cardEditionViewListTitle": {
-		"message": "Toon lijst"
+		"message": "Toon lijst: $P1$",
+        "placeholders": {
+            "P1": {
+                "content": "$1"
+            }
+        }
 	},
 	"wdw_cardEditionEditTemplateTitle": {
-		"message": "Sjabloon bewerken"
+		"message": "Sjabloon bewerken: $P1$",
+        "placeholders": {
+            "P1": {
+                "content": "$1"
+            }
+        }
 	},
 	"wdw_cardbookPrintTitleLong": {
 		"message": "Afdrukvoorbeeld van $P1$ - CardBook - Thunderbird",
@@ -3108,6 +3148,9 @@
 	},
 	"eventGroupboxLabel": {
 		"message": "Gebeurtenissen"
+	},
+	"tzGroupboxLabel": {
+		"message": "Tijdzone"
 	},
 	"noteGroupboxLabel": {
 		"message": "Notities"

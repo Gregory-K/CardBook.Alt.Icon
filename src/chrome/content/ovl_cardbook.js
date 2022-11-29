@@ -29,6 +29,9 @@ var cardbookTabMonitor = {
 			}
 			document.getElementById("unreadMessageCount").hidden=false;
 		}
+		// spaces
+		document.getElementById("cardbookButton").classList.remove("current");
+		document.getElementById("spacesPopupButtonCardBook").classList.remove("current");
 	},
 	onTabPersist: function() {},
 	onTabRestored: function() {},
@@ -48,6 +51,22 @@ var cardbookTabMonitor = {
 			if (document.getElementById("cardbookTabPanel")) {
 				document.getElementById("cardbookTabPanel").setAttribute("collapsed", "true");
 			}
+		}
+		// spaces
+		if (aNewTab.mode.name == "cardbook") {
+			let nodes = document.getElementById("spacesToolbar").querySelectorAll(".spaces-toolbar-button");
+			for (let node of nodes) {
+				node.classList.remove("current");
+			}
+			document.getElementById("cardbookButton").classList.add("current");
+			let menus = document.getElementById("spacesButtonMenuPopup").querySelectorAll(".spaces-popup-menuitem");
+			for (let menu of menus) {
+				menu.classList.remove("current");
+			}
+			document.getElementById("spacesPopupButtonCardBook").classList.add("current");
+		} else {
+			document.getElementById("cardbookButton").classList.remove("current");
+			document.getElementById("spacesPopupButtonCardBook").classList.remove("current");
 		}
 	}
 };

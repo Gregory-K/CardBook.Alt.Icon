@@ -724,6 +724,7 @@ if ("undefined" == typeof(wdw_cardbook)) {
 					var confirmMsg = PluralForm.get(cardsCount, cardbookRepository.extension.localeData.localizeMessage("selectedCardsDeletionConfirmMessagePF", cardsCount));
 				}
 				if (Services.prompt.confirm(window, confirmTitle, confirmMsg)) {
+					cardbookWindowUtils.setSelectedPreviousCard(listOfSelectedCard);
 					var myTopic = "cardsDeleted";
 					var myActionId = cardbookActions.startAction(myTopic, listOfSelectedCard, null, listOfSelectedCard.length);
 					wdw_cardbook.bulkOperation(myActionId);
@@ -1669,15 +1670,15 @@ if ("undefined" == typeof(wdw_cardbook)) {
 		},
 
 		localizeCards: function (aListOfSelectedCard, aListOfSelectedAddresses) {
-			var listOfAddresses = [];
+			let listOfAddresses = [];
 			if (aListOfSelectedCard) {
 				listOfAddresses = cardbookRepository.cardbookUtils.getAddressesFromCards(aListOfSelectedCard);
 			} else if (aListOfSelectedAddresses) {
 				listOfAddresses = JSON.parse(JSON.stringify(aListOfSelectedAddresses));
 			}
 			
-			var localizeEngine = cardbookRepository.cardbookPreferences.getStringPref("extensions.cardbook.localizeEngine");
-			var urlEngine = "";
+			let localizeEngine = cardbookRepository.cardbookPreferences.getStringPref("extensions.cardbook.localizeEngine");
+			let urlEngine = "";
 			if (localizeEngine === "GoogleMaps") {
 				urlEngine = "https://www.google.com/maps?q=";
 			} else if (localizeEngine === "OpenStreetMap") {
@@ -1688,13 +1689,24 @@ if ("undefined" == typeof(wdw_cardbook)) {
 				return;
 			}
 
-			for (var i = 0; i < listOfAddresses.length; i++) {
-				var url = urlEngine + cardbookRepository.cardbookUtils.undefinedToBlank(listOfAddresses[i][2]).replace(/[\n\u0085\u2028\u2029]|\r\n?/g, "+").replace(/ /g, "+") + "+"
-									+ cardbookRepository.cardbookUtils.undefinedToBlank(listOfAddresses[i][3]).replace(/[\n\u0085\u2028\u2029]|\r\n?/g, "+").replace(/ /g, "+") + "+"
-									+ cardbookRepository.cardbookUtils.undefinedToBlank(listOfAddresses[i][4]).replace(/[\n\u0085\u2028\u2029]|\r\n?/g, "+").replace(/ /g, "+") + "+"
-									+ cardbookRepository.cardbookUtils.undefinedToBlank(listOfAddresses[i][5]).replace(/[\n\u0085\u2028\u2029]|\r\n?/g, "+").replace(/ /g, "+") + "+"
-									+ cardbookRepository.cardbookUtils.undefinedToBlank(listOfAddresses[i][6]).replace(/[\n\u0085\u2028\u2029]|\r\n?/g, "+").replace(/ /g, "+");
+			function getAddressURL(address) {
+				let result = JSON.parse(JSON.stringify(address));
+				result.shift();
+				result = result.join("+").replace(/[\n\u0085\u2028\u2029]|\r\n?/g, "+").replace(/ /g, "+");
+				return result;
+			}
+
+			if (localizeEngine === "GoogleMaps") {
+				let url = urlEngine;
+				for (let address of listOfAddresses) {
+					url = url + getAddressURL(address) + "/";
+				}
 				cardbookWindowUtils.openURL(url);
+			} else {
+				for (let address of listOfAddresses) {
+					let url = urlEngine + getAddressURL(address);
+					cardbookWindowUtils.openURL(url);
+				}
 			}
 		},
 
@@ -3016,7 +3028,7 @@ if ("undefined" == typeof(wdw_cardbook)) {
 			if (aFieldName == "event") {
 				cardbookRepository.currentCopiedEntryValue = aFieldValue;
 			// multilines fields
-			} else if (cardbookRepository.multilineFields.includes(aFieldName)) {
+			} else if (cardbookRepository.multilineFields.includes(aFieldName) || aFieldName == "tz") {
 				cardbookRepository.currentCopiedEntryValue = JSON.stringify(card[aFieldName][aFieldIndex]);
 			// date fields
 			} else if (cardbookRepository.dateFields.includes(aFieldName)) {
@@ -3050,6 +3062,9 @@ if ("undefined" == typeof(wdw_cardbook)) {
 				result = card[aFieldName][aFieldIndex][0][0];
 			// custom fields and org
 			} else if (aFieldValue != "") {
+				result = aFieldValue.trim();
+			// tz
+			} else if (aFieldName == "tz") {
 				result = aFieldValue.trim();
 			// others
 			} else {
@@ -3098,7 +3113,7 @@ if ("undefined" == typeof(wdw_cardbook)) {
 				}
 				let myOutCard = new cardbookCardParser();
 				await cardbookRepository.cardbookUtils.cloneCard(myCard, myOutCard);
-				if (cardbookRepository.multilineFields.includes(cardbookRepository.currentCopiedEntryName)) {
+				if (cardbookRepository.multilineFields.includes(cardbookRepository.currentCopiedEntryName) || cardbookRepository.currentCopiedEntryName == 'tz') {
 					myOutCard[cardbookRepository.currentCopiedEntryName].push(JSON.parse(cardbookRepository.currentCopiedEntryValue));
 				} else if (cardbookRepository.dateFields.includes(cardbookRepository.currentCopiedEntryName)) {
 					var newDate = cardbookRepository.cardbookDates.convertDateStringToDateUTC(cardbookRepository.currentCopiedEntryValue, "4.0");
@@ -3664,6 +3679,10 @@ if ("undefined" == typeof(wdw_cardbook)) {
 			wdw_cardbook.setCopyLabel('event');
 		},
 
+		tzTreeContextShowing: function () {
+			wdw_cardbook.setCopyLabel('tz');
+		},
+
 		enableCardIM: function () {
 			wdw_cardbook.enableOrDisableElement(['cardbookToolbarChatButton', 'cardbookContactsMenuIMPPCards', 'IMPPCardFromCards'], false);
 			var selectedId = cardbookWindowUtils.getSelectedCardsId();
@@ -3845,6 +3864,7 @@ if ("undefined" == typeof(wdw_cardbook)) {
 								wdw_cardbook.disableCardDeletion();
 							} else {
 								wdw_cardbook.enableCardCreation();
+								wdw_cardbook.enableListCreation();
 								if (cardbookWindowUtils.getSelectedCardsCount() == 0) {
 									wdw_cardbook.disableCardDeletion();
 								} else {
@@ -3860,8 +3880,6 @@ if ("undefined" == typeof(wdw_cardbook)) {
 							}
 							if (cardbookRepository.cardbookPreferences.getType(myPrefId).startsWith("GOOGLE")) {
 								wdw_cardbook.disableListCreation();
-							} else {
-								wdw_cardbook.enableListCreation();
 							}
 						} else {
 							wdw_cardbook.disableCardCreation();

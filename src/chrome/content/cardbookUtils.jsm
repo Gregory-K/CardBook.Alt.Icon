@@ -371,6 +371,29 @@ var cardbookUtils = {
 		return lResult;
 	},
 
+	// for geo and tz
+	// GEO;VALUE=FLOAT:90.000;91.000
+	appendToVcardData4: function (vString1, vString2, vArray) {
+		if (vArray == "" || (Array.isArray(vArray) && vArray.length == 1 && vArray[0] == "")) {
+			return vString1;
+		}
+		let lResult = vString1;
+		for (let arrayLine of vArray) {
+			if (Array.isArray(arrayLine)) {
+				let line = vString2;
+				if (arrayLine[1].length) {
+					line = line + ";" + arrayLine[1].join(";");
+				}
+				line = line + ":" + arrayLine[0].join(";");
+				lResult = lResult + this.splitLine(line) + "\r\n";
+			} else {
+				let line = vString2 + ":" + arrayLine;
+				lResult = lResult + this.splitLine(line) + "\r\n";
+			}
+		}
+		return lResult;
+	},
+
 	escapeString: function (vString) {
 		return vString.replace(/\\;/g,"@ESCAPEDSEMICOLON@").replace(/\\,/g,"@ESCAPEDCOMMA@");
 	},
@@ -550,7 +573,12 @@ var cardbookUtils = {
 		vCardData = this.appendArrayToVcardData(vCardData, "URL", vCard.version, vCard.url);
 
 		vCardData = this.appendToVcardData2(vCardData,"NOTE",false,this.escapeStrings(vCard.note));
-		vCardData = this.appendToVcardData2(vCardData,"GEO",false,vCard.geo);
+		// old values
+		if (Array.isArray(vCard.geo)) {
+			vCardData = this.appendToVcardData4(vCardData, "GEO", vCard.geo);
+		} else {
+			vCardData = this.appendToVcardData4(vCardData, "GEO", [vCard.geo]);
+		}
 		vCardData = this.appendToVcardData2(vCardData,"MAILER",false,vCard.mailer);
 		
 		if (vCard.version == "4.0") {
@@ -563,7 +591,12 @@ var cardbookUtils = {
 		vCardData = this.appendToVcardData2(vCardData,"CLASS",false,vCard.class1);
 		vCardData = this.appendToVcardData2(vCardData,"REV",false,vCard.rev);
 		vCardData = this.appendToVcardData2(vCardData,"AGENT",false,vCard.agent);
-		vCardData = this.appendToVcardData2(vCardData,"TZ",false,this.escapeStrings(vCard.tz));
+		// old values
+		if (Array.isArray(vCard.tz)) {
+			vCardData = this.appendToVcardData4(vCardData, "TZ", vCard.tz);
+		} else {
+			vCardData = this.appendToVcardData4(vCardData, "TZ", [vCard.tz]);
+		}
 		vCardData = this.appendToVcardData3(vCardData,"KEY",cardbookUtils.getKeyContentForCard(vCard));
 
 		for (let media of cardbookRepository.allColumns.media) {
@@ -990,8 +1023,8 @@ var cardbookUtils = {
 		targetCard.categories = JSON.parse(JSON.stringify(sourceCard.categories));
 
 		targetCard.mailer = sourceCard.mailer;
-		targetCard.tz = sourceCard.tz;
-		targetCard.geo = sourceCard.geo;
+		targetCard.tz = JSON.parse(JSON.stringify(sourceCard.tz));
+		targetCard.geo = JSON.parse(JSON.stringify(sourceCard.geo));
 		targetCard.title = sourceCard.title;
 		targetCard.role = sourceCard.role;
 		targetCard.agent = sourceCard.agent;
@@ -1489,7 +1522,7 @@ var cardbookUtils = {
 		for (let field of cardbookRepository.multilineFields) {
 			tmpArray.push([cardbookRepository.extension.localeData.localizeMessage(field + "GroupboxLabel"), field]);
 		}
-		for (let field of ["event"]) {
+		for (let field of ["event", "tz"]) {
 			tmpArray.push([cardbookRepository.extension.localeData.localizeMessage(field + "GroupboxLabel"), field]);
 		}
 		for (let field of cardbookRepository.allColumns.org) {

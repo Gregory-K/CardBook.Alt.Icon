@@ -2622,7 +2622,7 @@
 		"message": "Người gửi thư"
 	},
 	"tzLabel": {
-		"message": "Múi Giờ"
+		"message": "Múi giờ"
 	},
 	"geoLabel": {
 		"message": "Geo"
@@ -3039,10 +3039,20 @@
 		"message": "Thêm vào sổ địa chỉ này"
 	},
 	"wdw_cardEditionViewResultTitle": {
-		"message": "Thay đổi liên hệ kết quả"
+		"message": "Thay đổi liên hệ kết quả: $P1$",
+        "placeholders": {
+            "P1": {
+                "content": "$1"
+            }
+        }
 	},
 	"wdw_cardEditionViewResultHideCreateTitle": {
-		"message": "Thay đổi liên hệ kết quả"
+		"message": "Thay đổi liên hệ kết quả: $P1$",
+        "placeholders": {
+            "P1": {
+                "content": "$1"
+            }
+        }
 	},
 	"wdw_cardEditionAddEmailTitle": {
 		"message": "Đăng ký một địa chỉ email mới"
@@ -3054,22 +3064,52 @@
 		"message": "Danh sách Mới"
 	},
 	"wdw_cardEditionEditContactTitle": {
-		"message": "Chỉnh sửa Danh bạ"
+		"message": "Chỉnh sửa Danh bạ: $P1$",
+        "placeholders": {
+            "P1": {
+                "content": "$1"
+            }
+        }
 	},
 	"wdw_cardEditionEditListTitle": {
-		"message": "Chỉnh sửa Danh sách"
+		"message": "Chỉnh sửa Danh sách: $P1$",
+        "placeholders": {
+            "P1": {
+                "content": "$1"
+            }
+        }
 	},
 	"wdw_cardEditionAddLineTitle": {
-		"message": "Chỉnh sửa Danh bạ"
+		"message": "Chỉnh sửa Danh bạ: $P1$",
+        "placeholders": {
+            "P1": {
+                "content": "$1"
+            }
+        }
 	},
 	"wdw_cardEditionViewContactTitle": {
-		"message": "Xem liên hệ"
+		"message": "Xem liên hệ: $P1$",
+        "placeholders": {
+            "P1": {
+                "content": "$1"
+            }
+        }
 	},
 	"wdw_cardEditionViewListTitle": {
-		"message": "Danh sách xem"
+		"message": "Danh sách xem: $P1$",
+        "placeholders": {
+            "P1": {
+                "content": "$1"
+            }
+        }
 	},
 	"wdw_cardEditionEditTemplateTitle": {
-		"message": "Chỉnh sửa mẫu"
+		"message": "Chỉnh sửa mẫu: $P1$",
+        "placeholders": {
+            "P1": {
+                "content": "$1"
+            }
+        }
 	},
 	"wdw_cardbookPrintTitleLong": {
 		"message": "$P1$ - Xem trước Bản in - Danh bạ - Thunderbird",
@@ -3108,6 +3148,9 @@
 	},
 	"eventGroupboxLabel": {
 		"message": "Sự kiện"
+	},
+	"tzGroupboxLabel": {
+		"message": "Múi giờ"
 	},
 	"noteGroupboxLabel": {
 		"message": "Lưu ý"

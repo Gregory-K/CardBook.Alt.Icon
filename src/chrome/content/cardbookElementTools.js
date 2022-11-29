@@ -2,6 +2,7 @@ if ("undefined" == typeof(cardbookElementTools)) {
 	var { MailServices } = ChromeUtils.import("resource:///modules/MailServices.jsm");
 	var { Services } = ChromeUtils.import("resource://gre/modules/Services.jsm");
 	var { FormHistory } = ChromeUtils.import("resource://gre/modules/FormHistory.jsm");
+	var { cal } = ChromeUtils.import("resource:///modules/calendar/calUtils.jsm");
 	var { cardbookRepository } = ChromeUtils.import("chrome://cardbook/content/cardbookRepository.js");
 
 	var cardbookElementTools = {
@@ -297,33 +298,7 @@ if ("undefined" == typeof(cardbookElementTools)) {
 
 		addKeyTextbox: function (aParent, aId, aValue, aParameters, aIndex) {
 			var aKeyTextBox = cardbookElementTools.addHTMLINPUT(aParent, aId, aValue, aParameters);
-
-			function checkKeyTextBox(event) {
-				let idArray = this.id.split('_');
-				let type = idArray[0];
-				let index = idArray[1];
-				let prevIndex = parseInt(index) - 1;
-				let nextIndex = parseInt(index) + +1;
-				document.getElementById(type + "_" + index + "_removeButton").disabled = false;
-				if (this.value == "") {
-					document.getElementById(type + "_" + index + "_addButton").disabled = true;
-				} else {
-					document.getElementById(type + "_" + index + "_addButton").disabled = false;
-				}
-				document.getElementById(type + "_" + index + "_downButton").disabled = true;
-				document.getElementById(type + "_" + index + "_upButton").disabled = true;
-				if (document.getElementById(type + "_" + prevIndex + "_addButton")) {
-					document.getElementById(type + "_" + prevIndex + "_addButton").disabled = true;
-					document.getElementById(type + "_" + prevIndex + "_downButton").disabled = false;
-					document.getElementById(type + "_" + index + "_upButton").disabled = false;
-				}
-				if (document.getElementById(type + "_" + nextIndex + "_addButton")) {
-					document.getElementById(type + "_" + index + "_addButton").disabled = true;
-					document.getElementById(type + "_" + index + "_downButton").disabled = false;
-					document.getElementById(type + "_" + nextIndex + "_upButton").disabled = false;
-				}
-			};
-			aKeyTextBox.addEventListener("input", checkKeyTextBox, false);
+			aKeyTextBox.addEventListener("input", cardbookElementTools.checkEditButton, false);
 			return aKeyTextBox;
 		},
 
@@ -347,33 +322,7 @@ if ("undefined" == typeof(cardbookElementTools)) {
 
 		addKeyTextarea: function (aParent, aId, aValue, aParameters, aIndex) {
 			var aKeyTextArea = cardbookElementTools.addHTMLTEXTAREA(aParent, aId, aValue, aParameters);
-
-			function checkKeyTextArea(event) {
-				let idArray = this.id.split('_');
-				let type = idArray[0];
-				let index = idArray[1];
-				let prevIndex = parseInt(index) - 1;
-				let nextIndex = parseInt(index) + +1;
-				document.getElementById(type + "_" + index + "_removeButton").disabled = false;
-				if (this.value == "") {
-					document.getElementById(type + "_" + index + "_addButton").disabled = true;
-				} else {
-					document.getElementById(type + "_" + index + "_addButton").disabled = false;
-				}
-				document.getElementById(type + "_" + index + "_downButton").disabled = true;
-				document.getElementById(type + "_" + index + "_upButton").disabled = true;
-				if (document.getElementById(type + "_" + prevIndex + "_addButton")) {
-					document.getElementById(type + "_" + prevIndex + "_addButton").disabled = true;
-					document.getElementById(type + "_" + prevIndex + "_downButton").disabled = false;
-					document.getElementById(type + "_" + index + "_upButton").disabled = false;
-				}
-				if (document.getElementById(type + "_" + nextIndex + "_addButton")) {
-					document.getElementById(type + "_" + index + "_addButton").disabled = true;
-					document.getElementById(type + "_" + index + "_downButton").disabled = false;
-					document.getElementById(type + "_" + nextIndex + "_upButton").disabled = false;
-				}
-			};
-			aKeyTextArea.addEventListener("input", checkKeyTextArea, false);
+			aKeyTextArea.addEventListener("input", cardbookElementTools.checkEditButton, false);
 			return aKeyTextArea;
 		},
 
@@ -842,6 +791,41 @@ if ("undefined" == typeof(cardbookElementTools)) {
 			return found;
 		},
 
+		addMenuTzlist: function (aParent, aType, aIndex, aValue, aParameters) {
+			var aMenulist = document.createXULElement('menulist');
+			aParent.appendChild(aMenulist);
+			aMenulist.setAttribute('id', aType + '_' + aIndex + '_menulistTz');
+			aMenulist.setAttribute('sizetopopup', 'none');
+			for (var prop in aParameters) {
+				aMenulist.setAttribute(prop, aParameters[prop]);
+			}
+			
+			var aMenupopup = document.createXULElement('menupopup');
+			aMenulist.appendChild(aMenupopup);
+			aMenupopup.setAttribute('id', aType + '_' + aIndex + '_menupopupTz');
+			cardbookElementTools.deleteRows(aMenupopup.id);
+			var defaultIndex = 0;
+			var nullmenuItem = aMenulist.appendItem("", "");
+			var i = 1;
+			for (let tzid of cal.timezoneService.timezoneIds) {
+				var menuItem = document.createXULElement("menuitem");
+				menuItem.setAttribute('id', aType + '_' + aIndex + '_menuitemTz_' + i);
+				menuItem.setAttribute("label", cal.timezoneService.getTimezone(tzid).displayName);
+				menuItem.setAttribute("value", tzid);
+				menuItem.setAttribute("class", "menuitem-iconic");
+				menuItem.setAttribute("type", "radio");
+				aMenupopup.appendChild(menuItem);
+				if (aValue == tzid) {
+					defaultIndex = i;
+				}
+				i++
+			}
+			aMenulist.selectedIndex = defaultIndex;
+			aMenulist.selectedItem.setAttribute("checked", "true");
+			aMenulist.addEventListener("select", cardbookElementTools.checkEditButton, false);
+			return aMenulist;
+		},
+
 		addPrefStar: function (aParent, aType, aIndex, aValue) {
 			var aPrefButton = document.createXULElement('button');
 			aParent.appendChild(aPrefButton);
@@ -1098,6 +1082,32 @@ if ("undefined" == typeof(cardbookElementTools)) {
 			aEditButton.setAttribute('tooltiptext', cardbookRepository.extension.localeData.localizeMessage(aButtonType + "EntryTooltip"));
 			// aEditButton.addEventListener("click", aFunction, false);
 			aEditButton.addEventListener("command", aFunction, false);
+		},
+
+		checkEditButton: function (event) {
+			let idArray = this.id.split('_');
+			let type = idArray[0];
+			let index = idArray[1];
+			let prevIndex = parseInt(index) - 1;
+			let nextIndex = parseInt(index) + +1;
+			document.getElementById(type + "_" + index + "_removeButton").disabled = false;
+			if (this.value == "") {
+				document.getElementById(type + "_" + index + "_addButton").disabled = true;
+			} else {
+				document.getElementById(type + "_" + index + "_addButton").disabled = false;
+			}
+			document.getElementById(type + "_" + index + "_downButton").disabled = true;
+			document.getElementById(type + "_" + index + "_upButton").disabled = true;
+			if (document.getElementById(type + "_" + prevIndex + "_addButton")) {
+				document.getElementById(type + "_" + prevIndex + "_addButton").disabled = true;
+				document.getElementById(type + "_" + prevIndex + "_downButton").disabled = false;
+				document.getElementById(type + "_" + index + "_upButton").disabled = false;
+			}
+			if (document.getElementById(type + "_" + nextIndex + "_addButton")) {
+				document.getElementById(type + "_" + index + "_addButton").disabled = true;
+				document.getElementById(type + "_" + index + "_downButton").disabled = false;
+				document.getElementById(type + "_" + nextIndex + "_upButton").disabled = false;
+			}
 		},
 
 		addProcessButton: function (aParent, aId) {

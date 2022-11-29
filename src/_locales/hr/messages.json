@@ -2622,7 +2622,7 @@
 		"message": "Pošiljatelj"
 	},
 	"tzLabel": {
-		"message": "TZ"
+		"message": "Vremenska zona"
 	},
 	"geoLabel": {
 		"message": "Geo"
@@ -3039,10 +3039,20 @@
 		"message": "Dodaj u ovaj adresar"
 	},
 	"wdw_cardEditionViewResultTitle": {
-		"message": "Posljedica izmjene kontakta"
+		"message": "Posljedica izmjene kontakta: $P1$",
+        "placeholders": {
+            "P1": {
+                "content": "$1"
+            }
+        }
 	},
 	"wdw_cardEditionViewResultHideCreateTitle": {
-		"message": "Posljedica izmjene kontakta"
+		"message": "Posljedica izmjene kontakta: $P1$",
+        "placeholders": {
+            "P1": {
+                "content": "$1"
+            }
+        }
 	},
 	"wdw_cardEditionAddEmailTitle": {
 		"message": "Registrirajte novu adresu e-pošte"
@@ -3054,22 +3064,52 @@
 		"message": "Novi popis"
 	},
 	"wdw_cardEditionEditContactTitle": {
-		"message": "Uredi kontakt"
+		"message": "Uredi kontakt: $P1$",
+        "placeholders": {
+            "P1": {
+                "content": "$1"
+            }
+        }
 	},
 	"wdw_cardEditionEditListTitle": {
-		"message": "Uredi popis"
+		"message": "Uredi popis: $P1$",
+        "placeholders": {
+            "P1": {
+                "content": "$1"
+            }
+        }
 	},
 	"wdw_cardEditionAddLineTitle": {
-		"message": "Uredi kontakt"
+		"message": "Uredi kontakt: $P1$",
+        "placeholders": {
+            "P1": {
+                "content": "$1"
+            }
+        }
 	},
 	"wdw_cardEditionViewContactTitle": {
-		"message": "Pogledaj kontakt"
+		"message": "Pogledaj kontakt: $P1$",
+        "placeholders": {
+            "P1": {
+                "content": "$1"
+            }
+        }
 	},
 	"wdw_cardEditionViewListTitle": {
-		"message": "Prikaži popis"
+		"message": "Prikaži popis: $P1$",
+        "placeholders": {
+            "P1": {
+                "content": "$1"
+            }
+        }
 	},
 	"wdw_cardEditionEditTemplateTitle": {
-		"message": "Uredi predložak"
+		"message": "Uredi predložak: $P1$",
+        "placeholders": {
+            "P1": {
+                "content": "$1"
+            }
+        }
 	},
 	"wdw_cardbookPrintTitleLong": {
 		"message": "Pregled ispisa $P1$ - Kontakti - Thunderbird",
@@ -3108,6 +3148,9 @@
 	},
 	"eventGroupboxLabel": {
 		"message": "Događaje"
+	},
+	"tzGroupboxLabel": {
+		"message": "Vremenska zona"
 	},
 	"noteGroupboxLabel": {
 		"message": "Bilješke"

@@ -82,7 +82,7 @@
 		"message": "Kategória eltávolítása"
 	},
 	"convertCategoryFromAccountsOrCats": {
-		"message": "A kategória átalakítása a listára"
+		"message": "Kategória átalakítása a listára"
 	},
 	"editNodeFromAccountsOrCats": {
 		"message": "Csomópont szerkesztése"
@@ -2049,11 +2049,11 @@
 	},
 	"cardsImagesExportedUndo": {
 		"message": "Képek exportálva a(z) $P1$ könyvtárba",
-        "placeholders": {
-            "P1": {
-                "content": "$1"
-            }
-        }
+		"placeholders": {
+			"P1": {
+				"content": "$1"
+			}
+		}
 	},
 	"undoActionDoneUndo": {
 		"message": "Visszavonása kész ($P1$)",
@@ -2281,14 +2281,14 @@
 	},
 	"exportImagesToDirMessagePF": {
 		"message": "$P1$ kép exportálva a(z) $P2$ könyvtárba;$P1$ kép exportálva a(z) $P2$ könyvtárba",
-        "placeholders": {
-            "P1": {
-                "content": "$1"
-            },
-            "P2": {
-                "content": "$2"
-            }
-        }
+		"placeholders": {
+			"P1": {
+				"content": "$1"
+			},
+			"P2": {
+				"content": "$2"
+			}
+		}
 	},
 	"exportCardToDirMessagePF": {
 		"message": "$P1$ névjegy exportálva a(z) $P2$ könyvtárba;$P1$ névjegy exportálva a(z) $P2$ könyvtárba",
@@ -2622,7 +2622,7 @@
 		"message": "Postázó"
 	},
 	"tzLabel": {
-		"message": "TZ"
+		"message": "Időzóna"
 	},
 	"geoLabel": {
 		"message": "Föld"
@@ -3039,10 +3039,20 @@
 		"message": "Névjegytár"
 	},
 	"wdw_cardEditionViewResultTitle": {
-		"message": "Az ebből eredő névjegy módosítás"
+		"message": "Névjegymódosítás eredménye: $P1$",
+		"placeholders": {
+			"P1": {
+				"content": "$1"
+			}
+		}
 	},
 	"wdw_cardEditionViewResultHideCreateTitle": {
-		"message": "Az ebből eredő névjegy módosítás"
+		"message": "Névjegymódosítás eredménye: $P1$",
+		"placeholders": {
+			"P1": {
+				"content": "$1"
+			}
+		}
 	},
 	"wdw_cardEditionAddEmailTitle": {
 		"message": "Regisztráljon új e-mail címet"
@@ -3054,22 +3064,52 @@
 		"message": "Egy új lista létrehozása"
 	},
 	"wdw_cardEditionEditContactTitle": {
-		"message": "Névjegy szerkesztés"
+		"message": "Névjegy szerkesztése: $P1$",
+		"placeholders": {
+			"P1": {
+				"content": "$1"
+			}
+		}
 	},
 	"wdw_cardEditionEditListTitle": {
-		"message": "Lista szerkesztése"
+		"message": "Lista szerkesztése: $P1$",
+		"placeholders": {
+			"P1": {
+				"content": "$1"
+			}
+		}
 	},
 	"wdw_cardEditionAddLineTitle": {
-		"message": "Névjegy szerkesztés"
+		"message": "Névjegy szerkesztése: $P1$",
+		"placeholders": {
+			"P1": {
+				"content": "$1"
+			}
+		}
 	},
 	"wdw_cardEditionViewContactTitle": {
-		"message": "Nézet névjegy"
+		"message": "Névjegy megtekintése: $P1$",
+		"placeholders": {
+			"P1": {
+				"content": "$1"
+			}
+		}
 	},
 	"wdw_cardEditionViewListTitle": {
-		"message": "Nézet lista"
+		"message": "Lista megtekintése: $P1$",
+		"placeholders": {
+			"P1": {
+				"content": "$1"
+			}
+		}
 	},
 	"wdw_cardEditionEditTemplateTitle": {
-		"message": "Sablon szerkesztése"
+		"message": "Sablon szerkesztése: $P1$",
+		"placeholders": {
+			"P1": {
+				"content": "$1"
+			}
+		}
 	},
 	"wdw_cardbookPrintTitleLong": {
 		"message": "$P1$ nyomtatási képe - Névjegyzék - Thunderbird",
@@ -3108,6 +3148,9 @@
 	},
 	"eventGroupboxLabel": {
 		"message": "Események"
+	},
+	"tzGroupboxLabel": {
+		"message": "Időzóna"
 	},
 	"noteGroupboxLabel": {
 		"message": "Jegyzetek"
@@ -5580,7 +5623,7 @@
 		"message": "Névjegy másolata"
 	},
 	"convertListToCategoryFromCardsLabel": {
-		"message": "Átalakítás listától kategóriának"
+		"message": "Lista átalakítása a kategóriába"
 	},
 	"editAccountFromAccountsOrCatsLabel": {
 		"message": "Névjegytár szerkesztése"
@@ -6016,7 +6059,7 @@
 		"message": "Lehetőség van egyes mezők átalakítása kikényszerítésére, miközben megadja azokat."
 	},
 	"convertToLabel": {
-		"message": "Konvertálás"
+		"message": "Átalakítás"
 	},
 	"wdw_cardbookConfigurationEditFieldTitle": {
 		"message": "Átalakítási függvény kijelölése"
