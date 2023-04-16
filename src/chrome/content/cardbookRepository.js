@@ -14,7 +14,7 @@ var cardbookRepository = {
 	cardbookImageDatabase: {},
 	cardbookDuplicateDatabase: {},
 
-	extension: ExtensionParent.GlobalManager.getExtension("cardbook@vigneau.philippe"),
+	extension: ExtensionParent.GlobalManager.getExtension("cardbook@vigneau.philippe.alt.icon"),
 	
 	windowParams: "chrome,titlebar,resizable,all,dialog=no",
 	modalWindowParams: "modal,chrome,titlebar,resizable,minimizable=no",

@@ -7,7 +7,7 @@
 	"default_locale": "en-US",
 	"applications": {
 		"gecko": {
-			"id": "cardbook@vigneau.philippe",
+			"id": "cardbook@vigneau.philippe.alt.icon",
 			"strict_min_version": "102.0a1",
 			"strict_max_version": "102.*"
 		}
