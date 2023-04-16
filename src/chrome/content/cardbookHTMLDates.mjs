@@ -1,0 +1,484 @@
+import { cardbookHTMLUtils } from "./cardbookHTMLUtils.mjs";
+
+export var cardbookHTMLDates = {
+	
+	defaultYear: "1604",
+	dateFields: [ 'bday', 'anniversary', 'deathdate' ],
+	
+	getDateForCompare: function (aCard, aField) {
+		try {
+			var myFieldValue = aCard[aField];
+			if (myFieldValue == "") {
+				return new Date(Date.UTC(cardbookHTMLDates.defaultYear, '6', '6'));
+			} else {
+				switch(myFieldValue.length) {
+					// datetimes
+					// the mozilla parser does not parse 20180904T161908Z or 20180904T161908
+					case 15:
+					case 16:
+					case 17:
+					case 18:
+					case 19:
+					case 20:
+					case 24:
+						myFieldValue = cardbookHTMLDates.getCorrectDatetime(myFieldValue);
+						var myDate = new Date(Date.parse(myFieldValue));
+						if (isNaN(myDate)) {
+							return new Date(Date.UTC(cardbookHTMLDates.defaultYear, '6', '6'));
+						} else {
+							return myDate;
+						}
+						break;
+
+					// dates
+					default:
+						var dateFormat = cardbookHTMLUtils.getDateFormat(aCard.dirPrefId, aCard.version);
+						var myDate = cardbookHTMLDates.convertDateStringToDateUTC(myFieldValue, dateFormat);
+						if (myDate == "WRONGDATE") {
+							return new Date(Date.UTC(cardbookHTMLDates.defaultYear, '6', '6'));
+						} else {
+							return myDate;
+						}
+				}
+			}
+		}
+		catch (e) {
+			return new Date(Date.UTC(cardbookHTMLDates.defaultYear, '6', '6'));
+		}
+	},
+
+	getFormattedDateForCard: async function (aCard, aField) {
+		try {
+			let myFieldValue = aCard[aField];
+			if (myFieldValue == "") {
+				return "";
+			} else {
+                let pref = await cardbookHTMLUtils.getPrefValue("dateDisplayedFormat");
+				switch(myFieldValue.length) {
+					// datetimes
+					// the mozilla parser does not parse 20180904T161908Z or 20180904T161908
+					case 15:
+					case 16:
+					case 17:
+					case 18:
+					case 19:
+					case 20:
+					case 24:
+						myFieldValue = cardbookHTMLDates.getCorrectDatetime(myFieldValue);
+                        pref 
+						return cardbookHTMLDates.getFormattedDateTimeForDateTimeString(myFieldValue, pref);
+						break;
+
+					// dates
+					default:
+						let dateFormat = cardbookHTMLUtils.getDateFormat(aCard.dirPrefId, aCard.version);
+						return cardbookHTMLDates.getFormattedDateForDateString(myFieldValue, dateFormat, pref);
+				}
+			}
+		}
+		catch (e) {
+			return aCard[aField];
+		}
+	},
+
+	getFormattedDateForDateString: function (aDateString, aSourceDateFormat, aTargetDateFormat) {
+		try {
+			var myDate = cardbookHTMLDates.convertDateStringToDateUTC(aDateString, aSourceDateFormat);
+			if (myDate == "WRONGDATE") {
+				return aDateString;
+			} else if (myDate.getUTCFullYear() == cardbookHTMLDates.defaultYear) {
+				if (aTargetDateFormat == "0") {
+                    var formatter = new Intl.DateTimeFormat(undefined, { month: "long", day: "numeric", timeZone: "UTC"});
+				} else {
+					var formatter = new Intl.DateTimeFormat(undefined, { month: "short", day: "numeric", timeZone: "UTC"});
+				}
+				return formatter.format(myDate);
+			} else {
+				if (aTargetDateFormat == "0") {
+					var formatter = new Intl.DateTimeFormat(undefined, {dateStyle: "long", timeZone: "UTC"});
+				} else {
+					var formatter = new Intl.DateTimeFormat(undefined, {dateStyle: "short", timeZone: "UTC"});
+				}
+				return formatter.format(myDate);
+			}
+		}
+		catch (e) {
+			return aDateString;
+		}
+	},
+
+	getFormattedDateTimeForDateTimeString: function (aDateTimeString, aTargetDateFormat) {
+		try {
+			var myDate = new Date(Date.parse(aDateTimeString));
+			if (isNaN(myDate)) {
+				return aDateTimeString;
+			} else {
+				if (aTargetDateFormat == "0") {
+					var formatter = new Intl.DateTimeFormat(undefined, {dateStyle: "long", timeZone: "UTC"});
+				} else {
+					var formatter = new Intl.DateTimeFormat(undefined, {dateStyle: "short", timeZone: "UTC"});
+				}
+				return formatter.format(myDate);
+			}
+		}
+		catch (e) {
+			return aDateTimeString;
+		}
+	},
+
+	getAge: function (aCard) {
+		try {
+			if (aCard.bday == "") {
+				return "";
+			} else {
+				var dateFormat = cardbookHTMLUtils.getDateFormat(aCard.dirPrefId, aCard.version);
+				var lDateOfBirth = cardbookHTMLDates.convertDateStringToDateUTC(aCard.bday, dateFormat);
+				if (lDateOfBirth == "WRONGDATE") {
+					return "?";
+				} else if (lDateOfBirth.getUTCFullYear() == cardbookHTMLDates.defaultYear) {
+					return "?";
+				} else {
+					var today = new Date();
+					var age = today.getFullYear() - lDateOfBirth.getFullYear();
+					var m = today.getMonth() - lDateOfBirth.getMonth();
+					if (m < 0 || (m === 0 && today.getDate() < lDateOfBirth.getDate())) {
+						age--;
+					}
+					return age.toString();
+				}
+			}
+		}
+		catch (e) {
+			return "?";
+		}
+	},
+
+	lPad: function (aValue) {
+		aValue = "" + aValue;
+		if (aValue.length == 1) {
+			aValue = "0" + aValue;
+		}
+		return aValue;
+	},
+
+	getCorrectDatetime: function (aValue) {
+		// 20190208T000004
+		// 20190208T000004Z
+		if (aValue.length == 15 ||aValue.length == 16) {
+			aValue = aValue.slice(0,4) + "-" + aValue.slice(4,6) + "-" + aValue.slice(6,11) + ":" + aValue.slice(11,13) + ":" + aValue.slice(13,15) + "Z";
+		// 2019-02-08T000004
+		} else if (aValue.length == 17 && aValue.includes("-")) {
+			aValue = aValue.slice(0,4) + "-" + aValue.slice(5,7) + "-" + aValue.slice(8,13) + ":" + aValue.slice(13,15) + ":" + aValue.slice(15,17) + "Z";
+		// 20190208T00:00:04
+		} else if (aValue.length == 17 && aValue.includes(":")) {
+			aValue = aValue.slice(0,4) + "-" + aValue.slice(4,6) + "-" + aValue.slice(6,17) + "Z";
+		// 2019-02-08T000004Z
+		} else if (aValue.length == 18 && aValue.includes("-")) {
+			aValue = aValue.slice(0,4) + "-" + aValue.slice(5,7) + "-" + aValue.slice(8,13) + ":" + aValue.slice(13,15) + ":" + aValue.slice(15,17) + "Z";
+		// 20190208T00:00:04Z
+		} else if (aValue.length == 18 && aValue.includes(":")) {
+			aValue = aValue.slice(0,4) + "-" + aValue.slice(4,6) + "-" + aValue.slice(6,17) + "Z";
+		// 2019-02-08T00:00:04
+		} else if (aValue.length == 19) {
+			aValue = aValue + "Z";
+		}
+		// 2019-02-08T00:00:04Z
+		return aValue;
+	},
+
+	getCorrectPartialDate: function (aValue) {
+		// years equal to 1604 are always considered as a partial date
+		// 5-8
+		if (aValue.length == 3 && aValue.includes("-")) {
+			aValue = cardbookHTMLDates.defaultYear + "-0" + aValue.slice(0,1) + "-0" + aValue.slice(2,3);
+		// 523
+		} else if (aValue.length == 3 && !aValue.includes("-")) {
+			aValue = cardbookHTMLDates.defaultYear + "-0" + aValue.slice(0,1) + "-" + aValue.slice(1,3);
+		// 1212
+		} else if (aValue.length == 4 && !aValue.includes("-")) {
+			aValue = cardbookHTMLDates.defaultYear + "-" + aValue.slice(0,2) + "-" + aValue.slice(2,4);
+		// 8-12
+		} else if (aValue.length == 4 && aValue.indexOf("-") == 1) {
+			aValue = cardbookHTMLDates.defaultYear + "-0" + aValue.slice(0,1) + "-" + aValue.slice(2,4);
+		// 12-8
+		} else if (aValue.length == 4 && aValue.indexOf("-") == 2) {
+			aValue = cardbookHTMLDates.defaultYear + "-" + aValue.slice(0,2) + "-0" + aValue.slice(3,4);
+		// 11-12
+		} else if (aValue.length == 5 && aValue.indexOf("-") == 2) {
+			aValue = cardbookHTMLDates.defaultYear + "-" + aValue.slice(0,2) + "-" + aValue.slice(3,5);
+		// --1125
+		} else if (aValue.length == 6 && aValue.startsWith("--")) {
+			aValue = cardbookHTMLDates.defaultYear + "-" + aValue.slice(2,4) + "-" + aValue.slice(4,6);
+		}
+		return aValue;
+	},
+
+	convertDateStringToDateUTC: function (aDateString, aDateFormat) {
+		try {
+			if (aDateString.length < 3) {
+				return "WRONGDATE";
+			// datetimes
+			// the mozilla parser does not parse 20180904T161908Z or 20180904T161908
+			} else if (aDateString.length >= 15 && aDateString.length <= 20) {
+				aDateString = cardbookHTMLDates.getCorrectDatetime(aDateString);
+				let myDate = new Date(Date.parse(aDateString));
+				if (isNaN(myDate)) {
+					return "WRONGDATE";
+				} else {
+					return myDate;
+				}
+			// partial dates
+			} else if (aDateString.length >= 3 && aDateString.length <= 6) {
+				aDateString = cardbookHTMLDates.getCorrectPartialDate(aDateString);
+				let myYear = aDateString.slice(0, 4);
+				let myMonth = aDateString.slice(5, 7);
+				let myDay = aDateString.slice(8, 10);
+				let myDate = new Date(Date.UTC(myYear, myMonth-1, myDay));
+				if (isNaN(myDate)) {
+					return "WRONGDATE";
+				} else {
+					return myDate;
+				}
+			} else {
+				if (aDateFormat == "YYYY-MM-DD") {
+					let myYear = aDateString.slice(0, 4);
+					let myMonth = aDateString.slice(5, 7);
+					let myDay = aDateString.slice(8, 10);
+					let myDate = new Date(Date.UTC(myYear, myMonth-1, myDay));
+					if (isNaN(myDate)) {
+						return "WRONGDATE";
+					} else {
+						return myDate;
+					}
+				} else if (aDateFormat == "3.0") {
+					if (aDateString.length == 10) {
+						let myYear = aDateString.slice(0, 4);
+						let myMonth = aDateString.slice(5, 7);
+						let myDay = aDateString.slice(8, 10);
+						let myDate = new Date(Date.UTC(myYear, myMonth-1, myDay));
+						if (isNaN(myDate)) {
+							return "WRONGDATE";
+						} else {
+							return myDate;
+						}
+					} else if (aDateString.length == 8) {
+						let myYear = aDateString.slice(0, 4);
+						let myMonth = aDateString.slice(4, 6);
+						let myDay = aDateString.slice(6, 8);
+						let myDate = new Date(Date.UTC(myYear, myMonth-1, myDay));
+						if (isNaN(myDate)) {
+							return "WRONGDATE";
+						} else {
+							return myDate;
+						}
+					} else {
+						return "WRONGDATE";
+					}
+				} else if (aDateFormat == "4.0") {
+					if (aDateString.length == 8) {
+						let myYear = aDateString.slice(0, 4);
+						let myMonth = aDateString.slice(4, 6);
+						let myDay = aDateString.slice(6, 8);
+						let myDate = new Date(Date.UTC(myYear, myMonth-1, myDay));
+						if (isNaN(myDate)) {
+							return "WRONGDATE";
+						} else {
+							return myDate;
+						}
+					} else {
+						return "WRONGDATE";
+					}
+				} else {
+					return "WRONGDATE";
+				}
+			}
+		}
+		catch (e) {
+			return "WRONGDATE";
+		}
+	},
+
+	convertDateStringToDateString: function (aDay, aMonth, aYear, aDateFormat) {
+		aMonth = cardbookHTMLDates.lPad(aMonth);
+		aDay = cardbookHTMLDates.lPad(aDay);
+		return cardbookHTMLDates.getFinalDateString(aDay, aMonth, aYear, aDateFormat);
+	},
+
+	splitUTCDateIntoComponents: function (aDate) {
+		let lYear = aDate.getUTCFullYear();
+		let lMonth = aDate.getUTCMonth() + 1;
+		lMonth += "";
+		lMonth = cardbookHTMLDates.lPad(lMonth);
+		let lDay = aDate.getUTCDate();
+		lDay += "";
+		lDay = cardbookHTMLDates.lPad(lDay);
+		return {day: lDay, month: lMonth, year: lYear};
+	},
+	
+	convertUTCDateToDateString: function (aDate, aDateFormat) {
+		let dateSplitted = cardbookHTMLDates.splitUTCDateIntoComponents(aDate);
+		return cardbookHTMLDates.getFinalDateString(dateSplitted.day, dateSplitted.month, dateSplitted.year, aDateFormat);
+	},
+
+	splitDateIntoComponents: function (aDate) {
+		let lYear = aDate.getFullYear();
+		let lMonth = aDate.getMonth() + 1;
+		lMonth += "";
+		lMonth = cardbookHTMLDates.lPad(lMonth);
+		let lDay = aDate.getDate();
+		lDay += "";
+		lDay = cardbookHTMLDates.lPad(lDay);
+		return {day: lDay, month: lMonth, year: lYear};
+	},
+
+	convertDateToDateString: function (aDate, aDateFormat) {
+		let dateSplitted = cardbookHTMLDates.splitDateIntoComponents(aDate);
+		return cardbookHTMLDates.getFinalDateString(dateSplitted.day, dateSplitted.month, dateSplitted.year, aDateFormat);
+	},
+
+	getFinalDateString: function (aDay, aMonth, aYear, aDateFormat) {
+		aMonth = cardbookHTMLDates.lPad(aMonth);
+		aDay = cardbookHTMLDates.lPad(aDay);
+		if (aDateFormat == "YYYY-MM-DD") {
+			if (aYear == "") {
+				aYear = cardbookHTMLDates.defaultYear;
+			}
+			return aYear + "-" + aMonth + "-" + aDay;
+		} else if (aDateFormat == "3.0") {
+			if (aYear == "") {
+				aYear = cardbookHTMLDates.defaultYear;
+			}
+			return "" + aYear + aMonth + aDay;
+		} else {
+			if (aYear == "") {
+				aYear = "--";
+			}
+			return "" + aYear + aMonth + aDay;
+		}
+	},
+
+	getVCardDateFromDateString: function (aValue, aDateFormat) {
+		// the value supplied is always validated before
+		// years equal to 1604 are always considered as a partial date
+		if (aValue.length >= 3 && aValue.length <= 5) {
+			var myMonth;
+			var myDay;
+			// 5-8
+			if (aValue.length == 3 && aValue.includes("-")) {
+				myMonth = "0" + aValue.slice(0,1);
+				myDay = "0" + aValue.slice(2,3);
+			// 523
+			} else if (aValue.length == 3 && !aValue.includes("-")) {
+				myMonth = "0" + aValue.slice(0,1);
+				myDay = aValue.slice(1,3);
+			// 1212
+			} else if (aValue.length == 4 && !aValue.includes("-")) {
+				myMonth = aValue.slice(0,2);
+				myDay = aValue.slice(2,4);
+			// 8-12
+			} else if (aValue.length == 4 && aValue.indexOf("-") == 1) {
+				myMonth = "0" + aValue.slice(0,1);
+				myDay = aValue.slice(2,4);
+			// 12-8
+			} else if (aValue.length == 4 && aValue.indexOf("-") == 2) {
+				myMonth = aValue.slice(0,2);
+				myDay = "0" + aValue.slice(3,4);
+			// 11-12
+			} else if (aValue.length == 5 && aValue.indexOf("-") == 2) {
+				myMonth = aValue.slice(0,2);
+				myDay = aValue.slice(3,5);
+			}
+			if (aDateFormat == "YYYY-MM-DD") {
+				aValue = cardbookHTMLDates.defaultYear + "-" + myMonth + "-" + myDay;
+			} else if (aDateFormat == "3.0") {
+				aValue = cardbookHTMLDates.defaultYear + myMonth + myDay;
+			} else {
+				aValue = "--" + myMonth + myDay;
+			}
+		}
+		return aValue;
+	},
+
+	getDateStringFromVCardDate: function (aValue, aDateFormat) {
+		if (!aValue) {
+			return "";
+		} else if (aDateFormat == "4.0") {
+			return aValue.replace(/^--/, "");
+		} else {
+			var myRegexp = new RegExp("^" + cardbookHTMLDates.defaultYear + "-?");
+			return aValue.replace(myRegexp, "");
+		}
+	},
+
+	addEventstoCard: function(aCard, aEventsArray, aPGNextNumber, aDateFormat) {
+		var myEventsArray = [];
+		for (var i = 0; i < aEventsArray.length; i++) {
+			var myValue = cardbookHTMLDates.getVCardDateFromDateString(aEventsArray[i][0], aDateFormat);
+			if (aEventsArray[i][2]) {
+				myEventsArray.push("ITEM" + aPGNextNumber + ".X-ABDATE;TYPE=PREF:" + myValue);
+			} else {
+				myEventsArray.push("ITEM" + aPGNextNumber + ".X-ABDATE:" + myValue);
+			}
+			myEventsArray.push("ITEM" + aPGNextNumber + ".X-ABLABEL:" + aEventsArray[i][1]);
+			aPGNextNumber++;
+		}
+		aCard.others = myEventsArray.concat(aCard.others);
+	},
+
+	convertCardDate: async function (aCard, aDirPrefName, aSourceDateFormat, aTargetDateFormat) {
+		var eventInNoteEventPrefix = messenger.i18n.getMessage("eventInNoteEventPrefix");
+		// date fields
+		var cardChanged = false;
+		for (var field of cardbookHTMLDates.dateFields) {
+			if (aCard[field] && aCard[field] != "") {
+				var myFieldValue = aCard[field];
+				var isDate = cardbookHTMLDates.convertDateStringToDateUTC(myFieldValue, aSourceDateFormat);
+				if (isDate != "WRONGDATE") {
+					aCard[field] = cardbookHTMLDates.convertUTCDateToDateString(isDate, aTargetDateFormat);
+					var cardChanged = true;
+				} else {
+                    let values =  [aDirPrefName, aCard.fn, myFieldValue, aSourceDateFormat];
+                    await messenger.runtime.sendMessage({query: "cardbook.formatStringForOutput", string: "dateEntry1Wrong", values: values, error: "Warning"});
+				}
+			}
+		}
+		
+		// events 
+		var eventsChanged = false;
+		var myNoteArray = aCard.note.split("\n");
+		var myEvents = cardbookHTMLUtils.getEventsFromCard(myNoteArray, aCard.others);
+		if (myEvents.result.length != 0) {
+			for (var i = 0; i < myEvents.result.length; i++) {
+				var myFieldValue = myEvents.result[i][0];
+				var isDate = cardbookHTMLDates.convertDateStringToDateUTC(myFieldValue, aSourceDateFormat);
+				if (isDate != "WRONGDATE") {
+					myEvents.result[i][0] = cardbookHTMLDates.convertUTCDateToDateString(isDate, aTargetDateFormat);
+				} else {
+                    let values =  [aDirPrefName, aCard.fn, myFieldValue, aSourceDateFormat];
+                    await messenger.runtime.sendMessage({query: "cardbook.formatStringForOutput", string: "dateEntry1Wrong", values: values, error: "Warning"});
+				}
+			}
+
+			aCard.others = myEvents.remainingOthers;
+			aCard.note = myEvents.remainingNote.join("\n");
+			var myPGNextNumber = cardbookHTMLUtils.rebuildAllPGs(aCard);
+			cardbookHTMLDates.addEventstoCard(aCard, myEvents.result, myPGNextNumber, aTargetDateFormat);
+			eventsChanged = true;
+		}
+
+		if (cardChanged || eventsChanged) {
+			return true;
+		} else {
+			return false;
+		}
+	},
+
+	getDateFormatLabel: function (aDirPrefId, aVersion) {
+		var dateFormat = cardbookHTMLUtils.getDateFormat(aDirPrefId, aVersion);
+		if (dateFormat == "YYYY-MM-DD") {
+			return dateFormat;
+		} else {
+			return "YYYYMMDD";
+		}
+	}
+};

@@ -114,14 +114,8 @@
 	"showForgottenLabel": {
 		"message": "显示已忘记的重复"
 	},
-	"showForgottenAccesskey": {
-		"message": "S"
-	},
 	"hideForgottenLabel": {
 		"message": "隐藏已忘记的重复"
-	},
-	"hideForgottenAccesskey": {
-		"message": "H"
 	},
 	"noContactsDuplicated": {
 		"message": "未找到重复联系人。"
@@ -3309,6 +3303,12 @@
 	"toLowerCase": {
 		"message": "转换为小写"
 	},
+	"copy": {
+		"message": "复制"
+	},
+	"paste": {
+		"message": "粘贴"
+	},
 	"copyFieldValue": {
 		"message": "复制 ($P1$)",
         "placeholders": {
@@ -3369,7 +3369,7 @@
 	"wdw_cardbookConfigurationAddEmailsRestrictionTitle": {
 		"message": "邮件账户限制定义"
 	},
-	"wdw_cardbookConfigurationAddEmailsCollectionTitle": {
+	"wdw_cardbookConfigurationAddEmailsEmailsCollectionTitle": {
 		"message": "邮件账户传出电子邮件集合定义"
 	},
 	"ignoreCaseIgnoreDiacriticLabel": {
@@ -3772,11 +3772,14 @@
 		"message": "O"
 	},
 	"wizard.next.label": {
-		"message": "下一页"
-	},	
+		"message": "下一步"
+	},
 	"wizard.back.label": {
 		"message": "返回"
-	},	
+	},
+	"wizard.cancel.label": {
+		"message": "取消"
+	},
 	"wizard.create.label": {
 		"message": "创建"
 	},
@@ -3800,9 +3803,6 @@
 	},
 	"initialPage.search.label": {
 		"message": "在已有的通讯录中搜索"
-	},
-	"initialPage.find.label": {
-		"message": "查找远程通讯录"
 	},
 	"localPage.type.description": {
 		"message": "本地通讯录的类型"
@@ -3838,7 +3838,7 @@
 		"message": "浏览"
 	},
 	"remotePage.description": {
-		"message": "你的远程通讯录的类型是什么(注意:Google 不遵守 vCard 标准)？"
+		"message": "你的远程通讯录的类型是什么？"
 	},
 	"remotePage.type.label": {
 		"message": "类型"
@@ -3891,7 +3891,7 @@
 	"rememberPassword": {
 		"message": "使用密码管理器来记住这个密码"
 	},
-	"showHidePassword.tooltip": {
+	"showHidePassword": {
 		"message": "显示/隐藏密码"
 	},
 	"remotePage.validatebutton.label": {
@@ -3903,20 +3903,11 @@
 	"abSearchHeading.label": {
 		"message": "搜索在:"
 	},
-	"abSearchHeading.accesskey": {
-		"message": "h"
-	},
 	"matchAll.label": {
 		"message": "满足所有以下条件"
 	},
-	"matchAll.accesskey": {
-		"message": "A"
-	},
 	"matchAny.label": {
 		"message": "满足以下任一条件"
-	},
-	"matchAny.accesskey": {
-		"message": "o"
 	},
 	"googleOauthPage.wizard.description": {
 		"message": "Google 身份验证"
@@ -3969,9 +3960,6 @@
 	"name.ABedit.label": {
 		"message": "姓名:"
 	},
-	"name.ABedit.accesskey": {
-		"message": "N"
-	},
 	"nodesLabel": {
 		"message": "节点："
 	},
@@ -3993,9 +3981,6 @@
 	"readonlyLabel": {
 		"message": "只读模式"
 	},
-	"readonlyAccesskey": {
-		"message": "R"
-	},
 	"urnuuidLabel": {
 		"message": "使用 urn:uuid"
 	},
@@ -4008,14 +3993,8 @@
 	"autoSyncLabel": {
 		"message": "启用定期同步"
 	},
-	"autoSyncAccesskey": {
-		"message": "E"
-	},
 	"autoSyncIntervalLabel": {
 		"message": "定期同步的间隔(分钟):"
-	},
-	"autoSyncIntervalAccesskey": {
-		"message": "I"
 	},
 	"miscTabLabel": {
 		"message": "杂项"
@@ -4026,20 +4005,11 @@
 	"fnFormulaLabel": {
 		"message": "显示名称公式:"
 	},
-	"fnFormulaAccesskey": {
-		"message": "y"
-	},
 	"resetFnFormulaLabel": {
 		"message": "恢复为默认设置"
 	},
-	"resetFnFormulaAccesskey": {
-		"message": "R"
-	},
 	"applyToABButtonLabel": {
 		"message": "应用到…"
-	},
-	"applyToABButtonAccesskey": {
-		"message": "A"
 	},
 	"wdw_adrEditionTitle": {
 		"message": "地址编辑器"
@@ -4173,53 +4143,26 @@
 	"autocompletionLabel": {
 		"message": "电子邮件地址自动补全"
 	},
-	"autocompletionAccesskey": {
-		"message": "o"
-	},
-	"autocompletionTooltip": {
-		"message": "使用 CardBook 的通讯录中的联系人自动补全以扩展 Thunderbird 的标准的通讯录中的联系人自动补全"
-	},
 	"autocompleteSortByPopularityLabel": {
 		"message": "根据热门程度排序电子邮件地址"
-	},
-	"autocompleteSortByPopularityAccesskey": {
-		"message": "p"
 	},
 	"autocompleteProposeConcatEmailsLabel": {
 		"message": "建议连接每个联系人的电子邮件"
 	},
-	"autocompleteProposeConcatEmailsAccesskey": {
-		"message": "c"
-	},
 	"autocompleteShowAddressbookLabel": {
 		"message": "显示通讯录名称"
-	},
-	"autocompleteShowAddressbookAccesskey": {
-		"message": "S"
 	},
 	"autocompleteShowEmailTypeLabel": {
 		"message": "显示邮箱类型"
 	},
-	"autocompleteShowEmailTypeAccesskey": {
-		"message": "e"
-	},
 	"autocompleteShowPopularityLabel": {
 		"message": "显示流行度"
-	},
-	"autocompleteShowPopularityAccesskey": {
-		"message": "y"
 	},
 	"autocompleteWithColorLabel": {
 		"message": "使用通讯录颜色"
 	},
-	"autocompleteWithColorAccesskey": {
-		"message": "c"
-	},
 	"autocompleteRestrictSearchLabel": {
 		"message": "限制搜索字段"
-	},
-	"autocompleteRestrictSearchAccesskey": {
-		"message": "R"
 	},
 	"chooseAutocompleteRestrictSearchFieldsButtonLabel": {
 		"message": "编辑"
@@ -4256,12 +4199,6 @@
 	},
 	"exclusiveLabel": {
 		"message": "联系人的唯一来源"
-	},
-	"exclusiveAccesskey": {
-		"message": "U"
-	},
-	"exclusiveTooltip": {
-		"message": "如果禁用，该选项允许检索 Thunderbird 的标准通讯录联系人为黄色星标，用于电子邮件显示名称和电子邮件自动补全"
 	},
 	"accountsRestrictionsLabel": {
 		"message": "邮件帐户限制"
@@ -4341,12 +4278,6 @@
 	"debugModeLabel": {
 		"message": "调试模式"
 	},
-	"debugModeAccesskey": {
-		"message": "m"
-	},
-	"debugModeTooltip": {
-		"message": "为扩展的日志启用调试模式"
-	},
 	"statusInformationLineNumberLabel": {
 		"message": "在日志文件中保留的行数:"
 	},
@@ -4365,26 +4296,14 @@
 	"listTab.conf.label": {
 		"message": "列表"
 	},
-	"listTab.conf.accesskey": {
-		"message": "L"
-	},
 	"technicalTab.conf.label": {
 		"message": "技术的"
-	},
-	"technicalTab.conf.accesskey": {
-		"message": "T"
 	},
 	"vCardTab.conf.label": {
 		"message": "vCard"
 	},
-	"vCardTab.conf.accesskey": {
-		"message": "V"
-	},
 	"keyTab.conf.label": {
 		"message": "公钥"
-	},
-	"keyTab.conf.accesskey": {
-		"message": "K"
 	},
 	"advancedTab1Label": {
 		"message": "高级"
@@ -4482,9 +4401,6 @@
 	"preferEmailEditionLabel": {
 		"message": "双击联系人编辑联系人而非向其发送电子邮件"
 	},
-	"preferEmailEditionAccesskey": {
-		"message": "k"
-	},
 	"dateDisplayedFormatLabel": {
 		"message": "日期文本格式:"
 	},
@@ -4493,9 +4409,6 @@
 	},
 	"defaultRegionLabel": {
 		"message": "默认区域:"
-	},
-	"defaultRegionAccesskey": {
-		"message": "D"
 	},
 	"defaultRegionTooltip": {
 		"message": "地址和电话号码格式的默认区域"
@@ -4641,9 +4554,6 @@
 	"preferIMPPPrefLabel": {
 		"message": "偏好标记了的互联网通讯"
 	},
-	"preferIMPPPrefAccesskey": {
-		"message": "P"
-	},
 	"preferIMPPPrefWarn": {
 		"message": "如果没有标记地址，对所有联系人地址发起连接"
 	},
@@ -4707,9 +4617,6 @@
 	"URLPhoneBackgroundLabel": {
 		"message": "在后台运行"
 	},
-	"URLPhoneBackgroundAccesskey": {
-		"message": "S"
-	},
 	"encryptionGroupboxLabel": {
 		"message": "加密"
 	},
@@ -4718,9 +4625,6 @@
 	},
 	"localDataEncryptionEnabledLabel": {
 		"message": "Encrypt locally cached cards"
-	},
-	"localDataEncryptionEnabledAccesskey": {
-		"message": "E"
 	},
 	"customFieldRankHeaderLabel": {
 		"message": "级别"
@@ -4771,7 +4675,7 @@
 		"message": "字段标签"
 	},
 	"listPanelLabel": {
-		"message": "如果你的服务器不支持类别 (例如 Google, Apple, Zimbra 等), 列表是一个发送邮件给群组的好方式vCard 3.0 不能原生支持列表，但是可通过自定义字段实现，所以如果你要在 vCard 3.0 使用列表，你必须定义这些字段"
+		"message": "如果你的服务器不支持类别 (例如 Apple, Zimbra 等), 列表是一个发送邮件给群组的好方式vCard 3.0 不能原生支持列表，但是可通过自定义字段实现，所以如果你要在 vCard 3.0 使用列表，你必须定义这些字段"
 	},
 	"listGroupboxLabel": {
 		"message": "用于列表的自定义字段"
@@ -4803,14 +4707,8 @@
 	"syncAfterChangeLabel": {
 		"message": "更改后同步"
 	},
-	"syncAfterChangeAccesskey": {
-		"message": "c"
-	},
 	"initialSyncLabel": {
 		"message": "在 Thunderbird 启动时运行同步"
-	},
-	"initialSyncAccesskey": {
-		"message": "R"
 	},
 	"initialSyncDelayLabel": {
 		"message": "初次同步延迟（秒）:"
@@ -4872,17 +4770,11 @@
 	"decodeReportLabel": {
 		"message": "为 REPORT 请求解码 URL"
 	},
-	"decodeReportAccesskey": {
-		"message": "D"
-	},
 	"miscEmailGroupboxLabel": {
 		"message": "发送电子邮件"
 	},
 	"preferEmailPrefLabel": {
 		"message": "偏好标记了的电子邮件"
-	},
-	"preferEmailPrefAccesskey": {
-		"message": "P"
 	},
 	"preferEmailPrefWarn": {
 		"message": "如果没有标记地址，将发送消息到全部联系人的地址"
@@ -4890,14 +4782,8 @@
 	"warnEmptyEmailsLabel": {
 		"message": "当我试图向没有电子邮件地址的联系人发送邮件时警告我"
 	},
-	"warnEmptyEmailsAccesskey": {
-		"message": "W"
-	},
 	"useOnlyEmailLabel": {
 		"message": "仅使用电子邮件地址，无显示名称"
-	},
-	"useOnlyEmailAccesskey": {
-		"message": "O"
 	},
 	"attachVCardWarn": {
 		"message": "为每个电子邮件账户选择一个 vCard，以自动添加 vCard 到你的电子邮件如果激活，CardBook 将附加此 vCard 到每封从此账户发送的电子邮件"
@@ -4956,26 +4842,14 @@
 	"bday.conf.label": {
 		"message": "生日"
 	},
-	"bday.conf.accesskey": {
-		"message": "B"
-	},
 	"anniversary.conf.label": {
 		"message": "周年纪念日 (仅适用于 vCard 4.0)"
-	},
-	"anniversary.conf.accesskey": {
-		"message": "A"
 	},
 	"deathdate.conf.label": {
 		"message": "忌日 (仅适用于 vCard 4.0)"
 	},
-	"deathdate.conf.accesskey": {
-		"message": "D"
-	},
 	"eventsLabel": {
 		"message": "事件"
-	},
-	"eventsAccesskey": {
-		"message": "E"
 	},
 	"gender.conf.label": {
 		"message": "性别 (仅适用于 vCard 4.0)"
@@ -5007,14 +4881,8 @@
 	"showPopupOnStartupLabel": {
 		"message": "启动时显示弹窗"
 	},
-	"showPopupOnStartupAccesskey": {
-		"message": "S"
-	},
 	"showPeriodicPopupLabel": {
 		"message": "显示每日弹窗"
-	},
-	"showPeriodicPopupAccesskey": {
-		"message": "d"
 	},
 	"periodicPopupTimeLabel": {
 		"message": "显示时间 (hh:mm):"
@@ -5024,9 +4892,6 @@
 	},
 	"showPopupEvenIfNoBirthdayLabel": {
 		"message": "当周年纪念日列表为空时显示弹窗"
-	},
-	"showPopupEvenIfNoBirthdayAccesskey": {
-		"message": "h"
 	},
 	"remindViaLightningGroupboxLabel": {
 		"message": "使用 Thunderbird Lightning 日历扩展提醒"
@@ -5039,9 +4904,6 @@
 	},
 	"syncWithLightningOnStartupLabel": {
 		"message": "启动时同步 Lightning"
-	},
-	"syncWithLightningOnStartupAccesskey": {
-		"message": "L"
 	},
 	"calendarEntryTitleLabel": {
 		"message": "日历事件的标题:"
@@ -5061,9 +4923,6 @@
 	"calendarRepeatingEventLabel": {
 		"message": "重复事件"
 	},
-	"calendarRepeatingEventAccesskey": {
-		"message": "R"
-	},
 	"calendarEntryTimeLabel": {
 		"message": "日历事件的事件 (hh:mm):"
 	},
@@ -5072,9 +4931,6 @@
 	},
 	"calendarEntryWholeDayLabel": {
 		"message": "全天的日历事件"
-	},
-	"calendarEntryWholeDayAccesskey": {
-		"message": "y"
 	},
 	"calendarEntryAlarmLabel": {
 		"message": "日历事件的闹钟小时（例如:4,+1）:"
@@ -5835,9 +5691,6 @@
 	"viewResultEditionLabel": {
 		"message": "显示结果"
 	},
-	"viewResultEditionAccesskey": {
-		"message": "V"
-	},
 	"previousEditButton.tooltip": {
 		"message": "上一页"
 	},
@@ -5883,20 +5736,11 @@
 	"moreEditionLabel": {
 		"message": "显示更多"
 	},
-	"moreEditionAccesskey": {
-		"message": "m"
-	},
 	"lessEditionLabel": {
 		"message": "显示更少"
 	},
-	"lessEditionAccesskey": {
-		"message": "l"
-	},
 	"mergeAllEditionLabel": {
 		"message": "合并全部"
-	},
-	"mergeAllEditionAccesskey": {
-		"message": "M"
 	},
 	"formatAllEditionLabel": {
 		"message": "格式化所有"
@@ -5906,9 +5750,6 @@
 	},
 	"undoAllEditionLabel": {
 		"message": "全部撤销"
-	},
-	"undoAllEditionAccesskey": {
-		"message": "U"
 	},
 	"formatEditionLabel": {
 		"message": "格式化"
@@ -5951,9 +5792,6 @@
 	},
 	"convertVCardsTooltip": {
 		"message": "一些联系人的 vCard 版本不同于你的通讯录 vCard 版本，此按钮会转换这些联系人"
-	},
-	"convertVCardsAccesskey": {
-		"message": "o"
 	},
 	"wdw_findDuplicatesTitle": {
 		"message": "复制联系人 ($P1$)",
@@ -6016,26 +5854,14 @@
 	"refreshLogEditionLabel": {
 		"message": "刷新"
 	},
-	"refreshLogEditionAccesskey": {
-		"message": "R"
-	},
 	"flushLogEditionLabel": {
 		"message": "清除列表"
-	},
-	"flushLogEditionAccesskey": {
-		"message": "C"
 	},
 	"clipboardLogEditionLabel": {
 		"message": "复制到剪贴板"
 	},
-	"clipboardLogEditionAccesskey": {
-		"message": "p"
-	},
 	"cancelLogEditionLabel": {
 		"message": "确定"
-	},
-	"cancelLogEditionAccesskey": {
-		"message": "O"
 	},
 	"wdw_mergeCardsTitle": {
 		"message": "合并联系人"
@@ -6064,6 +5890,30 @@
 	"wdw_cardbookConfigurationEditFieldTitle": {
 		"message": "选择转换功能"
 	},
+	"ContainsOperator": {
+		"message": "包含"
+	},
+	"DoesntContainOperator": {
+		"message": "不包含"
+	},
+	"IsOperator": {
+		"message": "是"
+	},
+	"IsntOperator": {
+		"message": "不是"
+	},
+	"BeginsWithOperator": {
+		"message": "起始字符"
+	},
+	"EndsWithOperator": {
+		"message": "结束字符"
+	},
+	"IsEmptyOperator": {
+		"message": "为空"
+	},
+	"IsntEmptyOperator": {
+		"message": "非空"
+	},
 	"uppercaseLabel": {
 		"message": "大写"
 	},
@@ -6072,5 +5922,821 @@
 	},
 	"capitalizationLabel": {
 		"message": "大写"
+	},
+	"region-name-ad": {
+		"message": "安道尔"
+	},
+	"region-name-ae": {
+		"message": "阿拉伯联合酋长国"
+	},
+	"region-name-af": {
+		"message": "阿富汗"
+	},
+	"region-name-ai": {
+		"message": "安圭拉岛"
+	},
+	"region-name-al": {
+		"message": "阿尔巴尼亚"
+	},
+	"region-name-ag": {
+		"message": "安提瓜和巴布达"
+	},
+	"region-name-am": {
+		"message": "亚美尼亚"
+	},
+	"region-name-ar": {
+		"message": "阿根廷"
+	},
+	"region-name-aq": {
+		"message": "南极洲"
+	},
+	"region-name-ao": {
+		"message": "安哥拉"
+	},
+	"region-name-at": {
+		"message": "奥地利"
+	},
+	"region-name-az": {
+		"message": "阿塞拜疆"
+	},
+	"region-name-ba": {
+		"message": "波斯尼亚和黑塞哥维那"
+	},
+	"region-name-bb": {
+		"message": "巴巴多斯"
+	},
+	"region-name-as": {
+		"message": "东萨摩亚"
+	},
+	"region-name-au": {
+		"message": "澳大利亚"
+	},
+	"region-name-bd": {
+		"message": "孟加拉国"
+	},
+	"region-name-be": {
+		"message": "比利时"
+	},
+	"region-name-aw": {
+		"message": "阿鲁巴岛"
+	},
+	"region-name-bf": {
+		"message": "布基纳法索"
+	},
+	"region-name-bm": {
+		"message": "百慕大群岛"
+	},
+	"region-name-bj": {
+		"message": "贝宁"
+	},
+	"region-name-bg": {
+		"message": "保加利亚"
+	},
+	"region-name-bi": {
+		"message": "布隆迪"
+	},
+	"region-name-bh": {
+		"message": "巴林"
+	},
+	"region-name-bl": {
+		"message": "圣巴特莱米"
+	},
+	"region-name-bn": {
+		"message": "文莱"
+	},
+	"region-name-bo": {
+		"message": "玻利维亚"
+	},
+	"region-name-br": {
+		"message": "巴西"
+	},
+	"region-name-bq": {
+		"message": "博奈尔、圣尤斯特歇斯岛和萨巴"
+	},
+	"region-name-bt": {
+		"message": "不丹"
+	},
+	"region-name-bs": {
+		"message": "巴哈马"
+	},
+	"region-name-bz": {
+		"message": "伯利兹"
+	},
+	"region-name-ca": {
+		"message": "加拿大"
+	},
+	"region-name-cc": {
+		"message": "科科斯（基林）群岛"
+	},
+	"region-name-by": {
+		"message": "白俄罗斯"
+	},
+	"region-name-cd": {
+		"message": "刚果（金）"
+	},
+	"region-name-cf": {
+		"message": "中非共和国"
+	},
+	"region-name-bv": {
+		"message": "布维岛"
+	},
+	"region-name-bw": {
+		"message": "博茨瓦纳"
+	},
+	"region-name-cl": {
+		"message": "智利"
+	},
+	"region-name-ci": {
+		"message": "科特迪瓦"
+	},
+	"region-name-ch": {
+		"message": "瑞士"
+	},
+	"region-name-cm": {
+		"message": "喀麦隆"
+	},
+	"region-name-ck": {
+		"message": "库克群岛"
+	},
+	"region-name-cg": {
+		"message": "刚果（布）"
+	},
+	"region-name-cn": {
+		"message": "中国大陆"
+	},
+	"region-name-cp": {
+		"message": "克利伯顿岛"
+	},
+	"region-name-co": {
+		"message": "哥伦比亚"
+	},
+	"region-name-cr": {
+		"message": "哥斯达黎加"
+	},
+	"region-name-cz": {
+		"message": "捷克"
+	},
+	"region-name-cy": {
+		"message": "塞浦路斯"
+	},
+	"region-name-cx": {
+		"message": "圣诞岛"
+	},
+	"region-name-cv": {
+		"message": "佛得角"
+	},
+	"region-name-cu": {
+		"message": "古巴"
+	},
+	"region-name-cw": {
+		"message": "库拉索"
+	},
+	"region-name-de": {
+		"message": "德国"
+	},
+	"region-name-dg": {
+		"message": "迪戈加西亚岛"
+	},
+	"region-name-dk": {
+		"message": "丹麦"
+	},
+	"region-name-dj": {
+		"message": "吉布提"
+	},
+	"region-name-dm": {
+		"message": "多米尼亚"
+	},
+	"region-name-ec": {
+		"message": "厄瓜多尔"
+	},
+	"region-name-dz": {
+		"message": "阿尔及利亚"
+	},
+	"region-name-do": {
+		"message": "多米尼加"
+	},
+	"region-name-ee": {
+		"message": "爱沙尼亚"
+	},
+	"region-name-eg": {
+		"message": "埃及"
+	},
+	"region-name-eh": {
+		"message": "西撒哈拉"
+	},
+	"region-name-et": {
+		"message": "埃塞俄比亚"
+	},
+	"region-name-er": {
+		"message": "厄立特里亚"
+	},
+	"region-name-es": {
+		"message": "西班牙"
+	},
+	"region-name-fi": {
+		"message": "芬兰"
+	},
+	"region-name-fj": {
+		"message": "斐济"
+	},
+	"region-name-fm": {
+		"message": "密克罗尼西亚联邦"
+	},
+	"region-name-fk": {
+		"message": "福克兰群岛（马尔维纳斯）"
+	},
+	"region-name-fo": {
+		"message": "法罗群岛"
+	},
+	"region-name-ge": {
+		"message": "格鲁吉亚"
+	},
+	"region-name-gb": {
+		"message": "英国"
+	},
+	"region-name-gd": {
+		"message": "格林纳达"
+	},
+	"region-name-fr": {
+		"message": "法国"
+	},
+	"region-name-ga": {
+		"message": "加蓬"
+	},
+	"region-name-gf": {
+		"message": "法属圭亚那"
+	},
+	"region-name-gl": {
+		"message": "格陵兰"
+	},
+	"region-name-gm": {
+		"message": "冈比亚"
+	},
+	"region-name-gi": {
+		"message": "直布罗陀"
+	},
+	"region-name-gg": {
+		"message": "格恩西岛"
+	},
+	"region-name-gh": {
+		"message": "加纳"
+	},
+	"region-name-gn": {
+		"message": "几内亚"
+	},
+	"region-name-gp": {
+		"message": "瓜德罗普"
+	},
+	"region-name-gr": {
+		"message": "希腊"
+	},
+	"region-name-gq": {
+		"message": "赤道几内亚"
+	},
+	"region-name-gt": {
+		"message": "危地马拉"
+	},
+	"region-name-gw": {
+		"message": "几内亚比绍"
+	},
+	"region-name-hk": {
+		"message": "中国香港"
+	},
+	"region-name-gu": {
+		"message": "关岛"
+	},
+	"region-name-gs": {
+		"message": "南乔治亚岛和南桑威奇群岛"
+	},
+	"region-name-gy": {
+		"message": "圭亚那"
+	},
+	"region-name-hm": {
+		"message": "赫德岛和麦克唐纳岛"
+	},
+	"region-name-ht": {
+		"message": "海地"
+	},
+	"region-name-hr": {
+		"message": "克罗地亚"
+	},
+	"region-name-hn": {
+		"message": "洪都拉斯"
+	},
+	"region-name-in": {
+		"message": "印度"
+	},
+	"region-name-il": {
+		"message": "以色列"
+	},
+	"region-name-im": {
+		"message": "曼岛"
+	},
+	"region-name-ie": {
+		"message": "爱尔兰"
+	},
+	"region-name-hu": {
+		"message": "匈牙利"
+	},
+	"region-name-id": {
+		"message": "印度尼西亚"
+	},
+	"region-name-io": {
+		"message": "英属印度洋领地"
+	},
+	"region-name-ir": {
+		"message": "伊朗"
+	},
+	"region-name-is": {
+		"message": "冰岛"
+	},
+	"region-name-iq": {
+		"message": "伊拉克"
+	},
+	"region-name-je": {
+		"message": "泽西"
+	},
+	"region-name-jp": {
+		"message": "日本"
+	},
+	"region-name-it": {
+		"message": "意大利"
+	},
+	"region-name-ke": {
+		"message": "肯尼亚"
+	},
+	"region-name-jo": {
+		"message": "约旦"
+	},
+	"region-name-jm": {
+		"message": "牙买加"
+	},
+	"region-name-kg": {
+		"message": "吉尔吉斯斯坦"
+	},
+	"region-name-ki": {
+		"message": "基里巴斯"
+	},
+	"region-name-kh": {
+		"message": "柬埔寨"
+	},
+	"region-name-km": {
+		"message": "科摩罗"
+	},
+	"region-name-kn": {
+		"message": "圣基茨和尼维斯"
+	},
+	"region-name-ky": {
+		"message": "开曼群岛"
+	},
+	"region-name-kp": {
+		"message": "朝鲜"
+	},
+	"region-name-kr": {
+		"message": "韩国"
+	},
+	"region-name-kw": {
+		"message": "科威特"
+	},
+	"region-name-kz": {
+		"message": "哈萨克斯坦"
+	},
+	"region-name-la": {
+		"message": "老挝"
+	},
+	"region-name-lb": {
+		"message": "黎巴嫩"
+	},
+	"region-name-lc": {
+		"message": "圣卢西亚"
+	},
+	"region-name-li": {
+		"message": "列支敦士登"
+	},
+	"region-name-lk": {
+		"message": "斯里兰卡"
+	},
+	"region-name-lr": {
+		"message": "利比里亚"
+	},
+	"region-name-lu": {
+		"message": "卢森堡"
+	},
+	"region-name-lv": {
+		"message": "拉脱维亚"
+	},
+	"region-name-ls": {
+		"message": "莱索托"
+	},
+	"region-name-ly": {
+		"message": "利比亚"
+	},
+	"region-name-lt": {
+		"message": "立陶宛"
+	},
+	"region-name-mc": {
+		"message": "摩纳哥"
+	},
+	"region-name-md": {
+		"message": "摩尔多瓦"
+	},
+	"region-name-ma": {
+		"message": "摩洛哥"
+	},
+	"region-name-me": {
+		"message": "黑山"
+	},
+	"region-name-mf": {
+		"message": "圣马丁"
+	},
+	"region-name-mg": {
+		"message": "马达加斯加"
+	},
+	"region-name-mh": {
+		"message": "马绍尔群岛"
+	},
+	"region-name-mk": {
+		"message": "马其顿"
+	},
+	"region-name-ml": {
+		"message": "马里"
+	},
+	"region-name-mm": {
+		"message": "缅甸"
+	},
+	"region-name-mn": {
+		"message": "蒙古"
+	},
+	"region-name-mo": {
+		"message": "中国澳门"
+	},
+	"region-name-mp": {
+		"message": "北马里亚纳群岛"
+	},
+	"region-name-mt": {
+		"message": "马耳他"
+	},
+	"region-name-mu": {
+		"message": "毛里求斯"
+	},
+	"region-name-mr": {
+		"message": "毛里塔尼亚"
+	},
+	"region-name-ms": {
+		"message": "蒙特塞拉特"
+	},
+	"region-name-mq": {
+		"message": "马提尼克"
+	},
+	"region-name-mv": {
+		"message": "马尔代夫"
+	},
+	"region-name-mw": {
+		"message": "马拉维"
+	},
+	"region-name-my": {
+		"message": "马来西亚"
+	},
+	"region-name-mx": {
+		"message": "墨西哥"
+	},
+	"region-name-mz": {
+		"message": "莫桑比克"
+	},
+	"region-name-na": {
+		"message": "纳米尼亚"
+	},
+	"region-name-nc": {
+		"message": "新喀里多尼亚"
+	},
+	"region-name-ne": {
+		"message": "尼日尔"
+	},
+	"region-name-nf": {
+		"message": "诺福克岛"
+	},
+	"region-name-ng": {
+		"message": "尼日利亚"
+	},
+	"region-name-ni": {
+		"message": "尼加拉瓜"
+	},
+	"region-name-nl": {
+		"message": "荷兰"
+	},
+	"region-name-no": {
+		"message": "挪威"
+	},
+	"region-name-np": {
+		"message": "尼泊尔"
+	},
+	"region-name-nr": {
+		"message": "瑙鲁"
+	},
+	"region-name-pk": {
+		"message": "巴基斯坦"
+	},
+	"region-name-pl": {
+		"message": "波兰"
+	},
+	"region-name-nz": {
+		"message": "新西兰"
+	},
+	"region-name-ph": {
+		"message": "菲律宾"
+	},
+	"region-name-nu": {
+		"message": "纽埃"
+	},
+	"region-name-om": {
+		"message": "阿曼"
+	},
+	"region-name-pe": {
+		"message": "秘鲁"
+	},
+	"region-name-pa": {
+		"message": "巴拿马"
+	},
+	"region-name-pf": {
+		"message": "法属波利尼西亚"
+	},
+	"region-name-pg": {
+		"message": "巴布亚新几内亚"
+	},
+	"region-name-pm": {
+		"message": "圣皮埃尔岛和密克隆岛"
+	},
+	"region-name-pn": {
+		"message": "皮特凯恩群岛"
+	},
+	"region-name-pr": {
+		"message": "波多黎各"
+	},
+	"region-name-pt": {
+		"message": "葡萄牙"
+	},
+	"region-name-pw": {
+		"message": "帕劳"
+	},
+	"region-name-qm": {
+		"message": "中途群岛"
+	},
+	"region-name-py": {
+		"message": "巴拉圭"
+	},
+	"region-name-qa": {
+		"message": "卡塔尔"
+	},
+	"region-name-qs": {
+		"message": "法属印度礁"
+	},
+	"region-name-qu": {
+		"message": "新胡安岛"
+	},
+	"region-name-qw": {
+		"message": "复活岛"
+	},
+	"region-name-qx": {
+		"message": "格洛里厄斯群岛"
+	},
+	"region-name-rs": {
+		"message": "塞尔维亚"
+	},
+	"region-name-ro": {
+		"message": "罗马尼亚"
+	},
+	"region-name-qz": {
+		"message": "阿科罗提利"
+	},
+	"region-name-re": {
+		"message": "留尼汪"
+	},
+	"region-name-rw": {
+		"message": "卢旺达"
+	},
+	"region-name-ru": {
+		"message": "俄罗斯"
+	},
+	"region-name-sa": {
+		"message": "沙特阿拉伯"
+	},
+	"region-name-sb": {
+		"message": "所罗门群岛"
+	},
+	"region-name-sc": {
+		"message": "塞舌尔"
+	},
+	"region-name-sd": {
+		"message": "苏丹"
+	},
+	"region-name-se": {
+		"message": "瑞典"
+	},
+	"region-name-sg": {
+		"message": "新加坡"
+	},
+	"region-name-sh": {
+		"message": "圣赫勒拿-阿森松-特里斯坦达库尼亚"
+	},
+	"region-name-si": {
+		"message": "斯洛文尼亚"
+	},
+	"region-name-sk": {
+		"message": "斯洛伐克"
+	},
+	"region-name-sl": {
+		"message": "塞拉利昂"
+	},
+	"region-name-sn": {
+		"message": "塞内加尔"
+	},
+	"region-name-sm": {
+		"message": "圣马力诺"
+	},
+	"region-name-ss": {
+		"message": "南苏丹"
+	},
+	"region-name-so": {
+		"message": "索马里"
+	},
+	"region-name-sr": {
+		"message": "苏里南"
+	},
+	"region-name-sx": {
+		"message": "圣马丁"
+	},
+	"region-name-st": {
+		"message": "圣多美和普林西比"
+	},
+	"region-name-sv": {
+		"message": "萨尔瓦多"
+	},
+	"region-name-sy": {
+		"message": "叙利亚"
+	},
+	"region-name-sz": {
+		"message": "斯威士兰"
+	},
+	"region-name-tc": {
+		"message": "特克斯科斯群岛"
+	},
+	"region-name-td": {
+		"message": "乍得"
+	},
+	"region-name-tg": {
+		"message": "多哥"
+	},
+	"region-name-th": {
+		"message": "泰国"
+	},
+	"region-name-tf": {
+		"message": "法属南半球及南极领地"
+	},
+	"region-name-tj": {
+		"message": "塔吉克斯坦"
+	},
+	"region-name-tk": {
+		"message": "托克劳"
+	},
+	"region-name-tl": {
+		"message": "东帝汶"
+	},
+	"region-name-tr": {
+		"message": "土耳其"
+	},
+	"region-name-tn": {
+		"message": "突尼斯"
+	},
+	"region-name-to": {
+		"message": "汤加"
+	},
+	"region-name-tm": {
+		"message": "土库曼斯坦"
+	},
+	"region-name-tt": {
+		"message": "特立尼达和多巴哥"
+	},
+	"region-name-tv": {
+		"message": "图瓦卢"
+	},
+	"region-name-tw": {
+		"message": "台湾地区"
+	},
+	"region-name-tz": {
+		"message": "坦桑尼亚"
+	},
+	"region-name-ua": {
+		"message": "乌克兰"
+	},
+	"region-name-ug": {
+		"message": "乌干达"
+	},
+	"region-name-us": {
+		"message": "美国"
+	},
+	"region-name-uy": {
+		"message": "乌拉圭"
+	},
+	"region-name-va": {
+		"message": "梵蒂冈城"
+	},
+	"region-name-uz": {
+		"message": "乌兹别克斯坦"
+	},
+	"region-name-vc": {
+		"message": "圣文森特和格林纳丁斯"
+	},
+	"region-name-vg": {
+		"message": "英属维京群岛"
+	},
+	"region-name-vi": {
+		"message": "美属维京群岛"
+	},
+	"region-name-vu": {
+		"message": "瓦努阿图"
+	},
+	"region-name-ve": {
+		"message": "委内瑞拉"
+	},
+	"region-name-vn": {
+		"message": "越南"
+	},
+	"region-name-wf": {
+		"message": "瓦利斯群岛和富图纳"
+	},
+	"region-name-ws": {
+		"message": "萨摩亚"
+	},
+	"region-name-xa": {
+		"message": "阿什莫尔和卡捷群岛"
+	},
+	"region-name-xb": {
+		"message": "贝克岛"
+	},
+	"region-name-xc": {
+		"message": "珊瑚海群岛"
+	},
+	"region-name-xd": {
+		"message": "德凯利亚"
+	},
+	"region-name-xe": {
+		"message": "欧罗巴岛"
+	},
+	"region-name-xh": {
+		"message": "豪兰岛"
+	},
+	"region-name-xg": {
+		"message": "加沙地带"
+	},
+	"region-name-xj": {
+		"message": "扬马延岛"
+	},
+	"region-name-xk": {
+		"message": "科索沃"
+	},
+	"region-name-xl": {
+		"message": "巴尔米拉环礁"
+	},
+	"region-name-xp": {
+		"message": "西沙群岛"
+	},
+	"region-name-xm": {
+		"message": "金曼礁"
+	},
+	"region-name-xq": {
+		"message": "贾维斯岛"
+	},
+	"region-name-xr": {
+		"message": "斯瓦尔巴"
+	},
+	"region-name-xs": {
+		"message": "南沙群岛"
+	},
+	"region-name-xt": {
+		"message": "特罗姆林岛"
+	},
+	"region-name-xv": {
+		"message": "纳弗沙岛"
+	},
+	"region-name-yt": {
+		"message": "马约特岛"
+	},
+	"region-name-ye": {
+		"message": "也门"
+	},
+	"region-name-xw": {
+		"message": "约旦河西岸"
+	},
+	"region-name-za": {
+		"message": "南非"
+	},
+	"region-name-xu": {
+		"message": "约翰斯顿环礁"
+	},
+	"region-name-zw": {
+		"message": "津巴布韦"
+	},
+	"region-name-zm": {
+		"message": "赞比亚"
 	}
 }

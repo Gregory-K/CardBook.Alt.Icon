@@ -114,14 +114,8 @@
 	"showForgottenLabel": {
 		"message": "忘れた重複を表示する"
 	},
-	"showForgottenAccesskey": {
-		"message": "S"
-	},
 	"hideForgottenLabel": {
 		"message": "忘れた重複を隠す"
-	},
-	"hideForgottenAccesskey": {
-		"message": "H"
 	},
 	"noContactsDuplicated": {
 		"message": "重複した連絡先は見つかりませんでした。"
@@ -3309,6 +3303,12 @@
 	"toLowerCase": {
 		"message": "小文字に変換"
 	},
+	"copy": {
+		"message": "コピー"
+	},
+	"paste": {
+		"message": "貼り付け"
+	},
 	"copyFieldValue": {
 		"message": "コピー ($P1$)",
         "placeholders": {
@@ -3369,7 +3369,7 @@
 	"wdw_cardbookConfigurationAddEmailsRestrictionTitle": {
 		"message": "メールアカウントの制限の定義"
 	},
-	"wdw_cardbookConfigurationAddEmailsCollectionTitle": {
+	"wdw_cardbookConfigurationAddEmailsEmailsCollectionTitle": {
 		"message": "メールアカウントごとの宛先メールアドレスの収集ルール"
 	},
 	"ignoreCaseIgnoreDiacriticLabel": {
@@ -3773,10 +3773,13 @@
 	},
 	"wizard.next.label": {
 		"message": "次へ"
-	},	
+	},
 	"wizard.back.label": {
 		"message": "戻る"
-	},	
+	},
+	"wizard.cancel.label": {
+		"message": "キャンセル"
+	},
 	"wizard.create.label": {
 		"message": "作成"
 	},
@@ -3800,9 +3803,6 @@
 	},
 	"initialPage.search.label": {
 		"message": "既存のアドレス帳を検索する"
-	},
-	"initialPage.find.label": {
-		"message": "リモートのアドレス帳を検索する"
 	},
 	"localPage.type.description": {
 		"message": "ローカルアドレス帳の種類："
@@ -3838,7 +3838,7 @@
 		"message": "参照"
 	},
 	"remotePage.description": {
-		"message": "どの種類のリモートアドレス帳を使いますか？（注意：Googleアドレス帳はvCardの標準仕様に準拠していません）"
+		"message": "どの種類のリモートアドレス帳を使いますか？"
 	},
 	"remotePage.type.label": {
 		"message": "種類"
@@ -3891,7 +3891,7 @@
 	"rememberPassword": {
 		"message": "パスワードマネージャーにこのパスワードを保存する"
 	},
-	"showHidePassword.tooltip": {
+	"showHidePassword": {
 		"message": "パスワードを表示または隠す"
 	},
 	"remotePage.validatebutton.label": {
@@ -3903,20 +3903,11 @@
 	"abSearchHeading.label": {
 		"message": "次の中からカードを検索:"
 	},
-	"abSearchHeading.accesskey": {
-		"message": "h"
-	},
 	"matchAll.label": {
 		"message": "すべての条件に一致"
 	},
-	"matchAll.accesskey": {
-		"message": "A"
-	},
 	"matchAny.label": {
 		"message": "いずれかの条件に一致"
-	},
-	"matchAny.accesskey": {
-		"message": "o"
 	},
 	"googleOauthPage.wizard.description": {
 		"message": "Google認証"
@@ -3969,9 +3960,6 @@
 	"name.ABedit.label": {
 		"message": "名："
 	},
-	"name.ABedit.accesskey": {
-		"message": "N"
-	},
 	"nodesLabel": {
 		"message": "ノード:"
 	},
@@ -3993,9 +3981,6 @@
 	"readonlyLabel": {
 		"message": "読み取り専用モード"
 	},
-	"readonlyAccesskey": {
-		"message": "R"
-	},
 	"urnuuidLabel": {
 		"message": "urn：uuidを使う"
 	},
@@ -4008,14 +3993,8 @@
 	"autoSyncLabel": {
 		"message": "定期的な同期を有効にする"
 	},
-	"autoSyncAccesskey": {
-		"message": "E"
-	},
 	"autoSyncIntervalLabel": {
 		"message": "定期的な同期の間隔（分）："
-	},
-	"autoSyncIntervalAccesskey": {
-		"message": "I"
 	},
 	"miscTabLabel": {
 		"message": "その他"
@@ -4026,20 +4005,11 @@
 	"fnFormulaLabel": {
 		"message": "表示名式："
 	},
-	"fnFormulaAccesskey": {
-		"message": "Y"
-	},
 	"resetFnFormulaLabel": {
 		"message": "デフォルトに戻す"
 	},
-	"resetFnFormulaAccesskey": {
-		"message": "R"
-	},
 	"applyToABButtonLabel": {
 		"message": "他のアドレス帳にも反映…"
-	},
-	"applyToABButtonAccesskey": {
-		"message": "A"
 	},
 	"wdw_adrEditionTitle": {
 		"message": "アドレスエディタ"
@@ -4173,53 +4143,26 @@
 	"autocompletionLabel": {
 		"message": "電子メールアドレスのオートコンプリート"
 	},
-	"autocompletionAccesskey": {
-		"message": "O"
-	},
-	"autocompletionTooltip": {
-		"message": "Thunderbird標準でのアドレス帳の連絡先による自動補完機能を拡張して、CardBookのアドレス帳の連絡先による自動補完機能を行います。"
-	},
 	"autocompleteSortByPopularityLabel": {
 		"message": "送信頻度順にメールアドレスを並べ替える"
-	},
-	"autocompleteSortByPopularityAccesskey": {
-		"message": "P"
 	},
 	"autocompleteProposeConcatEmailsLabel": {
 		"message": "連絡先ごとに連結されたメールアドレスを提案する"
 	},
-	"autocompleteProposeConcatEmailsAccesskey": {
-		"message": "C"
-	},
 	"autocompleteShowAddressbookLabel": {
 		"message": "アドレス帳の名前を表示する"
-	},
-	"autocompleteShowAddressbookAccesskey": {
-		"message": "S"
 	},
 	"autocompleteShowEmailTypeLabel": {
 		"message": "E-mailアドレスの種類を表示"
 	},
-	"autocompleteShowEmailTypeAccesskey": {
-		"message": "e"
-	},
 	"autocompleteShowPopularityLabel": {
 		"message": "使用頻度を表示"
-	},
-	"autocompleteShowPopularityAccesskey": {
-		"message": "y"
 	},
 	"autocompleteWithColorLabel": {
 		"message": "アドレス帳の色を使用する"
 	},
-	"autocompleteWithColorAccesskey": {
-		"message": "C"
-	},
 	"autocompleteRestrictSearchLabel": {
 		"message": "検索フィールドを制限する"
-	},
-	"autocompleteRestrictSearchAccesskey": {
-		"message": "R"
 	},
 	"chooseAutocompleteRestrictSearchFieldsButtonLabel": {
 		"message": "編集"
@@ -4256,12 +4199,6 @@
 	},
 	"exclusiveLabel": {
 		"message": "連絡先のソースをCardBookに限定する"
-	},
-	"exclusiveAccesskey": {
-		"message": "U"
-	},
-	"exclusiveTooltip": {
-		"message": "このオプションを無効にすると、星マークの検出、メールアドレスからの表示名の検出、およびメールアドレスの自動補完において、Thunderbird標準のアドレス帳の連絡先も使われるようになります。"
 	},
 	"accountsRestrictionsLabel": {
 		"message": "メールアカウントの制限"
@@ -4341,12 +4278,6 @@
 	"debugModeLabel": {
 		"message": "デバッグモード"
 	},
-	"debugModeAccesskey": {
-		"message": "M"
-	},
-	"debugModeTooltip": {
-		"message": "詳細なログ収集のためのデバッグモードを有効にします。"
-	},
 	"statusInformationLineNumberLabel": {
 		"message": "ログファイルに保持する行数："
 	},
@@ -4365,26 +4296,14 @@
 	"listTab.conf.label": {
 		"message": "リスト"
 	},
-	"listTab.conf.accesskey": {
-		"message": "L"
-	},
 	"technicalTab.conf.label": {
 		"message": "技術情報"
-	},
-	"technicalTab.conf.accesskey": {
-		"message": "T"
 	},
 	"vCardTab.conf.label": {
 		"message": "vCard"
 	},
-	"vCardTab.conf.accesskey": {
-		"message": "V"
-	},
 	"keyTab.conf.label": {
 		"message": "公開鍵"
-	},
-	"keyTab.conf.accesskey": {
-		"message": "K"
 	},
 	"advancedTab1Label": {
 		"message": "詳細"
@@ -4482,9 +4401,6 @@
 	"preferEmailEditionLabel": {
 		"message": "連絡先のダブルクリックで、メールを作成する代わりに連絡先を編集する"
 	},
-	"preferEmailEditionAccesskey": {
-		"message": "K"
-	},
 	"dateDisplayedFormatLabel": {
 		"message": "日付テキスト形式："
 	},
@@ -4493,9 +4409,6 @@
 	},
 	"defaultRegionLabel": {
 		"message": "既定の地域"
-	},
-	"defaultRegionAccesskey": {
-		"message": "D"
 	},
 	"defaultRegionTooltip": {
 		"message": "住所と電話番号の表示形式の規定の地域"
@@ -4641,9 +4554,6 @@
 	"preferIMPPPrefLabel": {
 		"message": "星印が付いた通話方法を優先する"
 	},
-	"preferIMPPPrefAccesskey": {
-		"message": "P"
-	},
 	"preferIMPPPrefWarn": {
 		"message": "どのアドレスにも星印が付けられていない場合、その連絡先のすべてのアドレスに対して接続が提案されます"
 	},
@@ -4707,9 +4617,6 @@
 	"URLPhoneBackgroundLabel": {
 		"message": "バックグラウンドで実行"
 	},
-	"URLPhoneBackgroundAccesskey": {
-		"message": "S"
-	},
 	"encryptionGroupboxLabel": {
 		"message": "暗号化"
 	},
@@ -4718,9 +4625,6 @@
 	},
 	"localDataEncryptionEnabledLabel": {
 		"message": "ローカルにキャッシュされた連絡先を暗号化する"
-	},
-	"localDataEncryptionEnabledAccesskey": {
-		"message": "E"
 	},
 	"customFieldRankHeaderLabel": {
 		"message": "ランク"
@@ -4771,7 +4675,7 @@
 		"message": "フィールドラベル"
 	},
 	"listPanelLabel": {
-		"message": "あなたの使用するサーバーが（Google, Apple, Zimbra等のように）カテゴリーをサポートしていない場合、グループ単位でメールを送信するにはリストを使うのがおすすめです。vCard3.0はネイティブでリストをサポートしていませんが、これはカスタムフィールドで実現できるため、vCard3.0でリストを使用する場合は、これらのフィールドを定義する必要があります。"
+		"message": "あなたの使用するサーバーが（Apple, Zimbra等のように）カテゴリーをサポートしていない場合、グループ単位でメールを送信するにはリストを使うのがおすすめです。vCard3.0はネイティブでリストをサポートしていませんが、これはカスタムフィールドで実現できるため、vCard3.0でリストを使用する場合は、これらのフィールドを定義する必要があります。"
 	},
 	"listGroupboxLabel": {
 		"message": "リスト用のカスタムフィールド"
@@ -4803,14 +4707,8 @@
 	"syncAfterChangeLabel": {
 		"message": "変更を行ったら同期する"
 	},
-	"syncAfterChangeAccesskey": {
-		"message": "C"
-	},
 	"initialSyncLabel": {
 		"message": "Thunderbirdの起動時に同期を実行する"
-	},
-	"initialSyncAccesskey": {
-		"message": "R"
 	},
 	"initialSyncDelayLabel": {
 		"message": "起動直後の同期処理を遅延させる時間（秒）："
@@ -4872,17 +4770,11 @@
 	"decodeReportLabel": {
 		"message": "REPORTリクエストのURLをデコードする"
 	},
-	"decodeReportAccesskey": {
-		"message": "D"
-	},
 	"miscEmailGroupboxLabel": {
 		"message": "メールの送信"
 	},
 	"preferEmailPrefLabel": {
 		"message": "以下の星印の付いたメールアドレスを優先する"
-	},
-	"preferEmailPrefAccesskey": {
-		"message": "P"
 	},
 	"preferEmailPrefWarn": {
 		"message": "どのアドレスにも星印が付けられていない場合、その連絡先のすべてのアドレスに対してメッセージが送信されます"
@@ -4890,14 +4782,8 @@
 	"warnEmptyEmailsLabel": {
 		"message": "メールアドレスが設定されていない連絡先宛にメールを送ろうとした場合は警告する"
 	},
-	"warnEmptyEmailsAccesskey": {
-		"message": "W"
-	},
 	"useOnlyEmailLabel": {
 		"message": "表示名を使わず、メールアドレスのみを使う"
-	},
-	"useOnlyEmailAccesskey": {
-		"message": "O"
 	},
 	"attachVCardWarn": {
 		"message": "送信メールにvCardを自動的に添付する場合、メールアカウントごとにvCardを選択して下さい。有効にすると、CardBookはそのアカウントから送信するすべてのメールにvCardを添付します。"
@@ -4956,26 +4842,14 @@
 	"bday.conf.label": {
 		"message": "誕生日"
 	},
-	"bday.conf.accesskey": {
-		"message": "B"
-	},
 	"anniversary.conf.label": {
 		"message": "記念日（vCard4.0のみ）"
-	},
-	"anniversary.conf.accesskey": {
-		"message": "A"
 	},
 	"deathdate.conf.label": {
 		"message": "死亡日（vCard4.0のみ）"
 	},
-	"deathdate.conf.accesskey": {
-		"message": "D"
-	},
 	"eventsLabel": {
 		"message": "予定"
-	},
-	"eventsAccesskey": {
-		"message": "E"
 	},
 	"gender.conf.label": {
 		"message": "性別 (vCard4.0のみ)"
@@ -5007,14 +4881,8 @@
 	"showPopupOnStartupLabel": {
 		"message": "起動時にポップアップウィンドウを表示する"
 	},
-	"showPopupOnStartupAccesskey": {
-		"message": "S"
-	},
 	"showPeriodicPopupLabel": {
 		"message": "毎日のポップアップを表示する"
-	},
-	"showPeriodicPopupAccesskey": {
-		"message": "D"
 	},
 	"periodicPopupTimeLabel": {
 		"message": "表示時間（hh:mm）："
@@ -5024,9 +4892,6 @@
 	},
 	"showPopupEvenIfNoBirthdayLabel": {
 		"message": "記念日のリストが空のときにポップアップウィンドウを表示する"
-	},
-	"showPopupEvenIfNoBirthdayAccesskey": {
-		"message": "H"
 	},
 	"remindViaLightningGroupboxLabel": {
 		"message": "Thunderbird Lightningカレンダー拡張機能経由で通知する"
@@ -5039,9 +4904,6 @@
 	},
 	"syncWithLightningOnStartupLabel": {
 		"message": "起動時にLightningと同期する"
-	},
-	"syncWithLightningOnStartupAccesskey": {
-		"message": "L"
 	},
 	"calendarEntryTitleLabel": {
 		"message": "イベントのタイトル："
@@ -5061,9 +4923,6 @@
 	"calendarRepeatingEventLabel": {
 		"message": "繰り返す予定"
 	},
-	"calendarRepeatingEventAccesskey": {
-		"message": "R"
-	},
 	"calendarEntryTimeLabel": {
 		"message": "イベントの登録時刻（hh:mm）："
 	},
@@ -5072,9 +4931,6 @@
 	},
 	"calendarEntryWholeDayLabel": {
 		"message": "1日中のイベントとして登録する"
-	},
-	"calendarEntryWholeDayAccesskey": {
-		"message": "Y"
 	},
 	"calendarEntryAlarmLabel": {
 		"message": "イベントのアラーム設定時刻（例：4,+1 ＝ 4時間前と1時間後）："
@@ -5835,9 +5691,6 @@
 	"viewResultEditionLabel": {
 		"message": "結果を表示"
 	},
-	"viewResultEditionAccesskey": {
-		"message": "V"
-	},
 	"previousEditButton.tooltip": {
 		"message": "前へ"
 	},
@@ -5883,20 +5736,11 @@
 	"moreEditionLabel": {
 		"message": "さらに表示"
 	},
-	"moreEditionAccesskey": {
-		"message": "m"
-	},
 	"lessEditionLabel": {
 		"message": "折りたたむ"
 	},
-	"lessEditionAccesskey": {
-		"message": "l"
-	},
 	"mergeAllEditionLabel": {
 		"message": "すべて統合"
-	},
-	"mergeAllEditionAccesskey": {
-		"message": "M"
 	},
 	"formatAllEditionLabel": {
 		"message": "すべてフォーマット"
@@ -5906,9 +5750,6 @@
 	},
 	"undoAllEditionLabel": {
 		"message": "すべて元に戻す"
-	},
-	"undoAllEditionAccesskey": {
-		"message": "U"
 	},
 	"formatEditionLabel": {
 		"message": "フォーマット"
@@ -5951,9 +5792,6 @@
 	},
 	"convertVCardsTooltip": {
 		"message": "いくつかの連絡先のvCardのバージョンがアドレス帳のvCardのバージョンと異なっています。このボタンはそれらのvCardを変換します。"
-	},
-	"convertVCardsAccesskey": {
-		"message": "C"
 	},
 	"wdw_findDuplicatesTitle": {
 		"message": "重複した連絡先 ($P1$)",
@@ -6016,26 +5854,14 @@
 	"refreshLogEditionLabel": {
 		"message": "リロード"
 	},
-	"refreshLogEditionAccesskey": {
-		"message": "R"
-	},
 	"flushLogEditionLabel": {
 		"message": "口グを消去"
-	},
-	"flushLogEditionAccesskey": {
-		"message": "C"
 	},
 	"clipboardLogEditionLabel": {
 		"message": "クリップボードにコピー"
 	},
-	"clipboardLogEditionAccesskey": {
-		"message": "O"
-	},
 	"cancelLogEditionLabel": {
 		"message": "OK"
-	},
-	"cancelLogEditionAccesskey": {
-		"message": "O"
 	},
 	"wdw_mergeCardsTitle": {
 		"message": "連絡先を統合する"
@@ -6064,6 +5890,30 @@
 	"wdw_cardbookConfigurationEditFieldTitle": {
 		"message": "??Choose a conversion function??"
 	},
+	"ContainsOperator": {
+		"message": "に次を含む"
+	},
+	"DoesntContainOperator": {
+		"message": "に次を含まない"
+	},
+	"IsOperator": {
+		"message": "が次と一致する"
+	},
+	"IsntOperator": {
+		"message": "が次と異なる"
+	},
+	"BeginsWithOperator": {
+		"message": "が次で始まる"
+	},
+	"EndsWithOperator": {
+		"message": "が次で終わる"
+	},
+	"IsEmptyOperator": {
+		"message": "が未設定"
+	},
+	"IsntEmptyOperator": {
+		"message": "が未設定でない"
+	},
 	"uppercaseLabel": {
 		"message": "??Uppercase??"
 	},
@@ -6072,5 +5922,821 @@
 	},
 	"capitalizationLabel": {
 		"message": "??Capitalization??"
+	},
+	"region-name-ad": {
+		"message": "アンドラ"
+	},
+	"region-name-ae": {
+		"message": "アラブ首長国連邦"
+	},
+	"region-name-af": {
+		"message": "アフガニスタン"
+	},
+	"region-name-ai": {
+		"message": "アングイラ"
+	},
+	"region-name-al": {
+		"message": "アルバニア"
+	},
+	"region-name-ag": {
+		"message": "アンティグア バーブーダ"
+	},
+	"region-name-am": {
+		"message": "アルメニア"
+	},
+	"region-name-ar": {
+		"message": "アルゼンチン"
+	},
+	"region-name-aq": {
+		"message": "南極大陸"
+	},
+	"region-name-ao": {
+		"message": "アンゴラ"
+	},
+	"region-name-at": {
+		"message": "オーストリア"
+	},
+	"region-name-az": {
+		"message": "アゼルバイジャン"
+	},
+	"region-name-ba": {
+		"message": "ボスニア ヘルツェゴヴィナ"
+	},
+	"region-name-bb": {
+		"message": "バルバドス"
+	},
+	"region-name-as": {
+		"message": "米領サモア"
+	},
+	"region-name-au": {
+		"message": "オーストラリア"
+	},
+	"region-name-bd": {
+		"message": "バングラデシュ"
+	},
+	"region-name-be": {
+		"message": "ベルギー"
+	},
+	"region-name-aw": {
+		"message": "アルバ"
+	},
+	"region-name-bf": {
+		"message": "ブルキナファソ"
+	},
+	"region-name-bm": {
+		"message": "バミューダ諸島"
+	},
+	"region-name-bj": {
+		"message": "ベニン"
+	},
+	"region-name-bg": {
+		"message": "ブルガリア"
+	},
+	"region-name-bi": {
+		"message": "ブルンジ"
+	},
+	"region-name-bh": {
+		"message": "バーレーン"
+	},
+	"region-name-bl": {
+		"message": "セント バーソロミュー"
+	},
+	"region-name-bn": {
+		"message": "ブルネイ"
+	},
+	"region-name-bo": {
+		"message": "ボリビア"
+	},
+	"region-name-br": {
+		"message": "ブラジル"
+	},
+	"region-name-bq": {
+		"message": "ボネール、シント ユースタティウス、サバ"
+	},
+	"region-name-bt": {
+		"message": "ブータン"
+	},
+	"region-name-bs": {
+		"message": "バハマ国"
+	},
+	"region-name-bz": {
+		"message": "ベリーズ"
+	},
+	"region-name-ca": {
+		"message": "カナダ"
+	},
+	"region-name-cc": {
+		"message": "ココス諸島"
+	},
+	"region-name-by": {
+		"message": "ベラルーシ"
+	},
+	"region-name-cd": {
+		"message": "コンゴ (キンシャサ)"
+	},
+	"region-name-cf": {
+		"message": "中央アフリカ共和国"
+	},
+	"region-name-bv": {
+		"message": "ブーベ島"
+	},
+	"region-name-bw": {
+		"message": "ボツワナ"
+	},
+	"region-name-cl": {
+		"message": "チリ"
+	},
+	"region-name-ci": {
+		"message": "コートジボワール"
+	},
+	"region-name-ch": {
+		"message": "スイス"
+	},
+	"region-name-cm": {
+		"message": "カメルーン"
+	},
+	"region-name-ck": {
+		"message": "クック諸島"
+	},
+	"region-name-cg": {
+		"message": "コンゴ (ブラザヴィル)"
+	},
+	"region-name-cn": {
+		"message": "中国"
+	},
+	"region-name-cp": {
+		"message": "クリッパートン島"
+	},
+	"region-name-co": {
+		"message": "コロンビア"
+	},
+	"region-name-cr": {
+		"message": "コスタ リカ"
+	},
+	"region-name-cz": {
+		"message": "チェコ共和国"
+	},
+	"region-name-cy": {
+		"message": "キプロス"
+	},
+	"region-name-cx": {
+		"message": "クリスマス島"
+	},
+	"region-name-cv": {
+		"message": "カーボベルデ"
+	},
+	"region-name-cu": {
+		"message": "キューバ"
+	},
+	"region-name-cw": {
+		"message": "キュラソー"
+	},
+	"region-name-de": {
+		"message": "ドイツ"
+	},
+	"region-name-dg": {
+		"message": "ディエゴガルシア"
+	},
+	"region-name-dk": {
+		"message": "デンマーク"
+	},
+	"region-name-dj": {
+		"message": "ジブチ"
+	},
+	"region-name-dm": {
+		"message": "ドミニカ"
+	},
+	"region-name-ec": {
+		"message": "エクアドル"
+	},
+	"region-name-dz": {
+		"message": "アルジェリア"
+	},
+	"region-name-do": {
+		"message": "ドミニカ共和国"
+	},
+	"region-name-ee": {
+		"message": "エストニア"
+	},
+	"region-name-eg": {
+		"message": "エジプト"
+	},
+	"region-name-eh": {
+		"message": "西サハラ"
+	},
+	"region-name-et": {
+		"message": "エチオピア"
+	},
+	"region-name-er": {
+		"message": "エリトリア"
+	},
+	"region-name-es": {
+		"message": "スペイン"
+	},
+	"region-name-fi": {
+		"message": "フィンランド"
+	},
+	"region-name-fj": {
+		"message": "フィジー"
+	},
+	"region-name-fm": {
+		"message": "ミクロネシア連邦"
+	},
+	"region-name-fk": {
+		"message": "フォークランド諸島 (マルビナス諸島)"
+	},
+	"region-name-fo": {
+		"message": "フェロー諸島"
+	},
+	"region-name-ge": {
+		"message": "ジョージア"
+	},
+	"region-name-gb": {
+		"message": "英国"
+	},
+	"region-name-gd": {
+		"message": "グレナダ"
+	},
+	"region-name-fr": {
+		"message": "フランス"
+	},
+	"region-name-ga": {
+		"message": "ガボン"
+	},
+	"region-name-gf": {
+		"message": "フランス領ギアナ"
+	},
+	"region-name-gl": {
+		"message": "グリーンランド"
+	},
+	"region-name-gm": {
+		"message": "ガンビア"
+	},
+	"region-name-gi": {
+		"message": "ジブラルタル"
+	},
+	"region-name-gg": {
+		"message": "ガーンジー"
+	},
+	"region-name-gh": {
+		"message": "ガーナ"
+	},
+	"region-name-gn": {
+		"message": "ギニア"
+	},
+	"region-name-gp": {
+		"message": "グアドループ"
+	},
+	"region-name-gr": {
+		"message": "ギリシャ"
+	},
+	"region-name-gq": {
+		"message": "ギニア共和国"
+	},
+	"region-name-gt": {
+		"message": "グアテマラ"
+	},
+	"region-name-gw": {
+		"message": "ギニアビサウ"
+	},
+	"region-name-hk": {
+		"message": "香港"
+	},
+	"region-name-gu": {
+		"message": "グアム"
+	},
+	"region-name-gs": {
+		"message": "南ジョージア 南サンドイッチ諸島"
+	},
+	"region-name-gy": {
+		"message": "ガイアナ"
+	},
+	"region-name-hm": {
+		"message": "ハード マクドナルド諸島"
+	},
+	"region-name-ht": {
+		"message": "ハイチ"
+	},
+	"region-name-hr": {
+		"message": "クロアチア"
+	},
+	"region-name-hn": {
+		"message": "ホンジュラス"
+	},
+	"region-name-in": {
+		"message": "インド"
+	},
+	"region-name-il": {
+		"message": "イスラエル"
+	},
+	"region-name-im": {
+		"message": "マン島"
+	},
+	"region-name-ie": {
+		"message": "アイルランド"
+	},
+	"region-name-hu": {
+		"message": "ハンガリー"
+	},
+	"region-name-id": {
+		"message": "インドネシア"
+	},
+	"region-name-io": {
+		"message": "英領インド洋地域"
+	},
+	"region-name-ir": {
+		"message": "イラン"
+	},
+	"region-name-is": {
+		"message": "アイスランド"
+	},
+	"region-name-iq": {
+		"message": "イラク"
+	},
+	"region-name-je": {
+		"message": "ジャージー島"
+	},
+	"region-name-jp": {
+		"message": "日本"
+	},
+	"region-name-it": {
+		"message": "イタリア"
+	},
+	"region-name-ke": {
+		"message": "ケニア"
+	},
+	"region-name-jo": {
+		"message": "ヨルダン"
+	},
+	"region-name-jm": {
+		"message": "ジャマイカ"
+	},
+	"region-name-kg": {
+		"message": "キルギスタン"
+	},
+	"region-name-ki": {
+		"message": "キリバス"
+	},
+	"region-name-kh": {
+		"message": "カンボジア"
+	},
+	"region-name-km": {
+		"message": "コモロ"
+	},
+	"region-name-kn": {
+		"message": "セントクリストファー ネイビス"
+	},
+	"region-name-ky": {
+		"message": "ケイマン諸島"
+	},
+	"region-name-kp": {
+		"message": "北朝鮮"
+	},
+	"region-name-kr": {
+		"message": "韓国"
+	},
+	"region-name-kw": {
+		"message": "クウェート"
+	},
+	"region-name-kz": {
+		"message": "カザフスタン"
+	},
+	"region-name-la": {
+		"message": "ラオス"
+	},
+	"region-name-lb": {
+		"message": "レバノン"
+	},
+	"region-name-lc": {
+		"message": "セントルシア"
+	},
+	"region-name-li": {
+		"message": "リヒテンシュタイン"
+	},
+	"region-name-lk": {
+		"message": "スリランカ"
+	},
+	"region-name-lr": {
+		"message": "リベリア"
+	},
+	"region-name-lu": {
+		"message": "ルクセンブルグ"
+	},
+	"region-name-lv": {
+		"message": "ラトビア"
+	},
+	"region-name-ls": {
+		"message": "レソト"
+	},
+	"region-name-ly": {
+		"message": "リビア"
+	},
+	"region-name-lt": {
+		"message": "リトアニア"
+	},
+	"region-name-mc": {
+		"message": "モナコ"
+	},
+	"region-name-md": {
+		"message": "モルドバ"
+	},
+	"region-name-ma": {
+		"message": "モロッコ"
+	},
+	"region-name-me": {
+		"message": "モンテネグロ"
+	},
+	"region-name-mf": {
+		"message": "サンマルタン"
+	},
+	"region-name-mg": {
+		"message": "マダガスカル"
+	},
+	"region-name-mh": {
+		"message": "マーシャル諸島"
+	},
+	"region-name-mk": {
+		"message": "マケドニア"
+	},
+	"region-name-ml": {
+		"message": "マリ"
+	},
+	"region-name-mm": {
+		"message": "ミャンマー (ビルマ)"
+	},
+	"region-name-mn": {
+		"message": "モンゴル"
+	},
+	"region-name-mo": {
+		"message": "マカオ"
+	},
+	"region-name-mp": {
+		"message": "北マリアナ諸島"
+	},
+	"region-name-mt": {
+		"message": "マルタ"
+	},
+	"region-name-mu": {
+		"message": "モーリシャス"
+	},
+	"region-name-mr": {
+		"message": "モーリタニア"
+	},
+	"region-name-ms": {
+		"message": "モンセラット"
+	},
+	"region-name-mq": {
+		"message": "マルティニーク島"
+	},
+	"region-name-mv": {
+		"message": "モルディブ"
+	},
+	"region-name-mw": {
+		"message": "マラウイ"
+	},
+	"region-name-my": {
+		"message": "マレーシア"
+	},
+	"region-name-mx": {
+		"message": "メキシコ"
+	},
+	"region-name-mz": {
+		"message": "モザンビーク"
+	},
+	"region-name-na": {
+		"message": "ナミビア"
+	},
+	"region-name-nc": {
+		"message": "ニューカレドニア"
+	},
+	"region-name-ne": {
+		"message": "ニジェール"
+	},
+	"region-name-nf": {
+		"message": "ノーフォーク島"
+	},
+	"region-name-ng": {
+		"message": "ナイジェリア"
+	},
+	"region-name-ni": {
+		"message": "ニカラグア"
+	},
+	"region-name-nl": {
+		"message": "オランダ"
+	},
+	"region-name-no": {
+		"message": "ノルウェー"
+	},
+	"region-name-np": {
+		"message": "ネパール"
+	},
+	"region-name-nr": {
+		"message": "ナウル"
+	},
+	"region-name-pk": {
+		"message": "パキスタン"
+	},
+	"region-name-pl": {
+		"message": "ポーランド"
+	},
+	"region-name-nz": {
+		"message": "ニュージーランド"
+	},
+	"region-name-ph": {
+		"message": "フィリピン"
+	},
+	"region-name-nu": {
+		"message": "ニウエ"
+	},
+	"region-name-om": {
+		"message": "オマーン"
+	},
+	"region-name-pe": {
+		"message": "ペルー"
+	},
+	"region-name-pa": {
+		"message": "パナマ"
+	},
+	"region-name-pf": {
+		"message": "フランス領ポリネシア"
+	},
+	"region-name-pg": {
+		"message": "パプアニューギニア"
+	},
+	"region-name-pm": {
+		"message": "サンピエール島 ミクロン島"
+	},
+	"region-name-pn": {
+		"message": "ピトケアン諸島"
+	},
+	"region-name-pr": {
+		"message": "プエルトリコ"
+	},
+	"region-name-pt": {
+		"message": "ポルトガル"
+	},
+	"region-name-pw": {
+		"message": "パラオ"
+	},
+	"region-name-qm": {
+		"message": "ミッドウェー島"
+	},
+	"region-name-py": {
+		"message": "パラグアイ"
+	},
+	"region-name-qa": {
+		"message": "カタール"
+	},
+	"region-name-qs": {
+		"message": "バサス ダ インディア"
+	},
+	"region-name-qu": {
+		"message": "フアン デ ノヴァ島"
+	},
+	"region-name-qw": {
+		"message": "ウェーク島"
+	},
+	"region-name-qx": {
+		"message": "グロリオソ諸島"
+	},
+	"region-name-rs": {
+		"message": "セルビア"
+	},
+	"region-name-ro": {
+		"message": "ルーマニア"
+	},
+	"region-name-qz": {
+		"message": "アクロティリ"
+	},
+	"region-name-re": {
+		"message": "レユニオン"
+	},
+	"region-name-rw": {
+		"message": "ルワンダ"
+	},
+	"region-name-ru": {
+		"message": "ロシア"
+	},
+	"region-name-sa": {
+		"message": "サウジアラビア"
+	},
+	"region-name-sb": {
+		"message": "ソロモン諸島"
+	},
+	"region-name-sc": {
+		"message": "セイシェル"
+	},
+	"region-name-sd": {
+		"message": "スーダン"
+	},
+	"region-name-se": {
+		"message": "スウェーデン"
+	},
+	"region-name-sg": {
+		"message": "シンガポール"
+	},
+	"region-name-sh": {
+		"message": "セントヘレナ アセンションおよびトリスタンダクーニャ"
+	},
+	"region-name-si": {
+		"message": "スロベニア"
+	},
+	"region-name-sk": {
+		"message": "スロバキア"
+	},
+	"region-name-sl": {
+		"message": "シエラレオネ"
+	},
+	"region-name-sn": {
+		"message": "セネガル"
+	},
+	"region-name-sm": {
+		"message": "サンマリノ"
+	},
+	"region-name-ss": {
+		"message": "南スーダン"
+	},
+	"region-name-so": {
+		"message": "ソマリア"
+	},
+	"region-name-sr": {
+		"message": "スリナム"
+	},
+	"region-name-sx": {
+		"message": "シント マールテン"
+	},
+	"region-name-st": {
+		"message": "サントメ プリンシペ"
+	},
+	"region-name-sv": {
+		"message": "エルサルバドル"
+	},
+	"region-name-sy": {
+		"message": "シリア"
+	},
+	"region-name-sz": {
+		"message": "スワジランド"
+	},
+	"region-name-tc": {
+		"message": "タークス諸島 カイコス諸島"
+	},
+	"region-name-td": {
+		"message": "チャド"
+	},
+	"region-name-tg": {
+		"message": "トーゴ"
+	},
+	"region-name-th": {
+		"message": "タイ"
+	},
+	"region-name-tf": {
+		"message": "フランス領南方 南極地域"
+	},
+	"region-name-tj": {
+		"message": "タジキスタン"
+	},
+	"region-name-tk": {
+		"message": "トケラウ"
+	},
+	"region-name-tl": {
+		"message": "東ティモール"
+	},
+	"region-name-tr": {
+		"message": "トルコ"
+	},
+	"region-name-tn": {
+		"message": "チュニジア"
+	},
+	"region-name-to": {
+		"message": "トンガ"
+	},
+	"region-name-tm": {
+		"message": "トルクメニスタン"
+	},
+	"region-name-tt": {
+		"message": "トリニダード トバゴ"
+	},
+	"region-name-tv": {
+		"message": "ツバル"
+	},
+	"region-name-tw": {
+		"message": "台湾"
+	},
+	"region-name-tz": {
+		"message": "タンザニア"
+	},
+	"region-name-ua": {
+		"message": "ウクライナ"
+	},
+	"region-name-ug": {
+		"message": "ウガンダ"
+	},
+	"region-name-us": {
+		"message": "アメリカ合衆国"
+	},
+	"region-name-uy": {
+		"message": "ウルグアイ"
+	},
+	"region-name-va": {
+		"message": "バチカン"
+	},
+	"region-name-uz": {
+		"message": "ウズベキスタン"
+	},
+	"region-name-vc": {
+		"message": "セントビンセントおよびグレナディーン諸島"
+	},
+	"region-name-vg": {
+		"message": "英領バージン諸島"
+	},
+	"region-name-vi": {
+		"message": "米領バージン諸島"
+	},
+	"region-name-vu": {
+		"message": "バヌアツ"
+	},
+	"region-name-ve": {
+		"message": "ベネズエラ"
+	},
+	"region-name-vn": {
+		"message": "ベトナム"
+	},
+	"region-name-wf": {
+		"message": "ワリス フテュナ諸島"
+	},
+	"region-name-ws": {
+		"message": "サモア"
+	},
+	"region-name-xa": {
+		"message": "アシュモア カルティエ諸島"
+	},
+	"region-name-xb": {
+		"message": "ベーカー島"
+	},
+	"region-name-xc": {
+		"message": "コーラル シー諸島"
+	},
+	"region-name-xd": {
+		"message": "デケリア"
+	},
+	"region-name-xe": {
+		"message": "ユローパ島"
+	},
+	"region-name-xh": {
+		"message": "ハウランド島"
+	},
+	"region-name-xg": {
+		"message": "ガザ地区"
+	},
+	"region-name-xj": {
+		"message": "ヤンマイエン島"
+	},
+	"region-name-xk": {
+		"message": "コソボ"
+	},
+	"region-name-xl": {
+		"message": "パルミラ環礁"
+	},
+	"region-name-xp": {
+		"message": "パラセル諸島"
+	},
+	"region-name-xm": {
+		"message": "キングマン岩礁"
+	},
+	"region-name-xq": {
+		"message": "ジャーヴィス島"
+	},
+	"region-name-xr": {
+		"message": "スヴァールバル諸島"
+	},
+	"region-name-xs": {
+		"message": "スプラトリー諸島"
+	},
+	"region-name-xt": {
+		"message": "トロメリン島"
+	},
+	"region-name-xv": {
+		"message": "ナヴァッサ島"
+	},
+	"region-name-yt": {
+		"message": "マヨット"
+	},
+	"region-name-ye": {
+		"message": "イエメン"
+	},
+	"region-name-xw": {
+		"message": "ヨルダン川西岸地区"
+	},
+	"region-name-za": {
+		"message": "南アフリカ"
+	},
+	"region-name-xu": {
+		"message": "ジョンストン環礁"
+	},
+	"region-name-zw": {
+		"message": "ジンバブエ"
+	},
+	"region-name-zm": {
+		"message": "ザンビア"
 	}
 }

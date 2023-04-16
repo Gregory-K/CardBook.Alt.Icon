@@ -1,29 +1,49 @@
-var { cardbookRepository } = ChromeUtils.import("chrome://cardbook/content/cardbookRepository.js");
+import { cardbookHTMLTools } from "../cardbookHTMLTools.mjs";
+import { cardbookHTMLRichContext } from "../cardbookHTMLRichContext.mjs";
+
+var enabled = false;
+var label = "";
+var field = "";
+var convertionLabel = "";
+var convertion = "";
 
 function loadConvertionFuntions () {
-	let menulist = document.getElementById('convertToMenulist');
-	let menupopup = document.getElementById('convertToMenupopup');
-	cardbookElementTools.loadConvertionFuntions(menupopup, menulist, window.arguments[0].convertion);
+	let convertToMenulist = document.getElementById('convertToMenulist');
+	cardbookHTMLTools.loadConvertionFuntions(convertToMenulist, convertion);
 };
 		
-function onLoadDialog () {
-	i18n.updateDocument({ extension: cardbookRepository.extension });
-    document.getElementById('fieldLabel').value = window.arguments[0].label;
+async function onLoadDialog () {
+	let urlParams = new URLSearchParams(window.location.search);
+	enabled = urlParams.get("enabled");
+	label = urlParams.get("label");
+	field = urlParams.get("field");
+	convertionLabel = urlParams.get("convertionLabel");
+	convertion = urlParams.get("convertion") || "capitalization";
+
+	i18n.updateDocument();
+	cardbookHTMLRichContext.loadRichContext();
+
+	// button
+	document.getElementById('cancelButton').addEventListener("click", onCancelDialog);
+	document.getElementById('validateButton').addEventListener("click", onAcceptDialog);
+
 	loadConvertionFuntions();
+    document.getElementById('fieldLabel').textContent = label;
 };
 
-function onAcceptDialog () {
-	window.arguments[0].convertion = document.getElementById('convertToMenulist').value;
-	window.arguments[0].convertionLabel = document.getElementById('convertToMenulist').label;
-	window.arguments[0].typeAction = "SAVE";
-	close();
+async function onAcceptDialog () {
+	let urlParams = {};
+	urlParams.enabled = enabled;
+	urlParams.label = label;
+	urlParams.field = field;
+	urlParams.convertion = document.getElementById('convertToMenulist').value;
+	urlParams.convertionLabel = document.getElementById("convertToMenulist").querySelector("option:checked").textContent;
+	await messenger.runtime.sendMessage({query: "cardbook.conf.saveField", urlParams: urlParams});
+	onCancelDialog();
 };
 
-function onCancelDialog () {
-	window.arguments[0].typeAction="CANCEL";
-	close();
+async function onCancelDialog () {
+	cardbookHTMLRichContext.closeWindow();
 };
 
-document.addEventListener("DOMContentLoaded", onLoadDialog);
-document.addEventListener("dialogaccept", onAcceptDialog);
-document.addEventListener("dialogcancel", onCancelDialog);
+await onLoadDialog();

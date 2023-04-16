@@ -22,7 +22,7 @@ var simpleMailRedirection = {
 	API_VERSION: 1,
 
 	version: function (id) {
-		let exclusive = cardbookRepository.cardbookPreferences.getBoolPref("extensions.cardbook.exclusive");
+		let exclusive = cardbookRepository.cardbookPrefs["exclusive"];
 		return { version: simpleMailRedirection.API_VERSION, exclusive: exclusive };
 	},
 
@@ -69,7 +69,7 @@ var simpleMailRedirection = {
 	contacts: function (search) {
 		let contacts = new Array();
 		let searchString = cardbookRepository.makeSearchString(search);
-		let searchArray = cardbookRepository.autocompleteRestrictSearch
+		let searchArray = cardbookRepository.cardbookPrefs["autocompleteRestrictSearch"]
 			? cardbookRepository.cardbookCardShortSearch
 			: cardbookRepository.cardbookCardLongSearch;
 		if (Object.keys(searchArray).length == 0) return contacts;

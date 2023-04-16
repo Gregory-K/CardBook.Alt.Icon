@@ -3,13 +3,13 @@ var cardbookTabMonitor = {
 	onTabTitleChanged: function() {},
 	onTabOpened: function(aTab) {
 		// the currentset is lost by the overlay loader
-		var currentSet = cardbookRepository.cardbookPreferences.getStringPref("extensions.cardbook.cardbookToolbar.currentset");
+		var currentSet = cardbookRepository.cardbookPrefs["cardbookToolbar.currentset"];
 		var toolbar = document.getElementById("cardbook-toolbar");
 		var toolbox = document.getElementById("cardbook-toolbox");
 		if (currentSet) {
 			toolbar.currentSet = currentSet;
 		}
-		var mode = cardbookRepository.cardbookPreferences.getStringPref("extensions.cardbook.cardbookToolbar.mode").split("::");
+		var mode = cardbookRepository.cardbookPrefs["cardbookToolbar.mode"].split("::");
 		if (mode[0]) {
 			toolbar.setAttribute("mode", mode[0]);
 			toolbox.setAttribute("mode", mode[0]);
@@ -88,7 +88,6 @@ var cardbookTabType = {
 			},
 
 			closeTab: function(aTab) {
-				cardBookWindowPrefObserver.unregister();
 				cardBookWindowObserver.unregister();
 			},
 			
@@ -210,24 +209,18 @@ var cardbookTabType = {
 };
 	
 var ovl_cardbook = {
-	openLogEdition: function () {
+	openLogEdition: async function () {
 		if (cardbookWindowUtils.getBroadcasterOnCardBook()) {
-			var windowsList = Services.wm.getEnumerator("CardBook:logEditionWindow");
-			var found = false;
-			while (windowsList.hasMoreElements()) {
-				var myWindow = windowsList.getNext();
-				myWindow.focus();
-				found = true;
-				break;
-			}
-			if (!found) {
-				var myWindow = Services.wm.getMostRecentWindow("mail:3pane").openDialog("chrome://cardbook/content/wdw_logEdition.xhtml", "", cardbookRepository.windowParams);
-			}
+			let url = "chrome/content/log/wdw_logEdition.html";
+			let params = new URLSearchParams();
+			let win = await notifyTools.notifyBackground({query: "cardbook.openWindow",
+													url: `${url}?${params.toString()}`,
+													type: "popup"});
 		}
 	},
 
 	reloadCardBookQFB: function () {
-		if (cardbookRepository.cardbookPreferences.getBoolPref("extensions.cardbook.exclusive")) {
+		if (cardbookRepository.cardbookPrefs["exclusive"]) {
 			if (document.getElementById('qfb-inaddrbook')) {
 				document.getElementById('qfb-inaddrbook').hidden = true;
 			}
@@ -263,17 +256,17 @@ var ovl_cardbook = {
 		}
 	},
 
-	load: function() {
+	load: async function() {
 		let tabmail = document.getElementById('tabmail');
 		if (tabmail) {
 			tabmail.registerTabType(cardbookTabType);
 			tabmail.registerTabMonitor(cardbookTabMonitor);
 		}
 
-		var firstRun = cardbookRepository.cardbookPreferences.getBoolPref("extensions.cardbook.firstRun");
+		var firstRun = cardbookRepository.cardbookPrefs["firstRun"];
 		if (firstRun) {
-			wdw_cardbook.addAddressbook("first");
-			cardbookRepository.cardbookPreferences.setBoolPref("extensions.cardbook.firstRun", false);
+			await wdw_cardbook.addAddressbook("first");
+			cardbookRepository.cardbookPreferences.setBoolPref("firstRun", false);
 		}
 
 		if (document.getElementById("addressBook")) {
@@ -328,7 +321,7 @@ var ovl_cardbook = {
 			tabmail.closeTab(cardbookMode.tabs[0]);
 		}
 		for (let i = tabmail.tabModes.contentTab.tabs.length - 1; i >= 0; i--) {
-			if (tabmail.tabModes.contentTab.tabs[i].title == cardbookRepository.extension.localeData.localizeMessage("cardbookPrefTitle") + " (" + cardbookRepository.addonVersion + ")") {
+			if (tabmail.tabModes.contentTab.tabs[i].title == cardbookRepository.extension.localeData.localizeMessage("cardbookPrefTitle") + " (" + cardbookRepository.cardbookPrefs["addonVersion"] + ")") {
 				tabmail.closeTab(tabmail.tabModes.contentTab.tabs[i]);
 			}
 		}

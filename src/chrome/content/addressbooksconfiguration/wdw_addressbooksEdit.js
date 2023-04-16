@@ -1,108 +1,77 @@
-var { Services } = ChromeUtils.import("resource://gre/modules/Services.jsm");
-var { cardbookRepository } = ChromeUtils.import("chrome://cardbook/content/cardbookRepository.js");
+import { cardbookNewPreferences } from "../preferences/cardbookNewPreferences.mjs";
+import { cardbookHTMLRichContext } from "../cardbookHTMLRichContext.mjs";
+import { cardbookHTMLUtils } from "../cardbookHTMLUtils.mjs";
+import { cardbookHTMLTools } from "../cardbookHTMLTools.mjs";
 
+var dirPrefId = "";
 var initialVCardVersion = "";
 var initialNodeType = "";
 
-function convertNodes () {
-	if (document.getElementById("nodeRadiogroup").value == "categories") {
-		cardbookRepository.cardbookAccountsNodes[window.arguments[0].dirPrefId] = [];
-	} else {
-		Services.tm.currentThread.dispatch({ run: function() {
-			for (let card of cardbookRepository.cardbookDisplayCards[window.arguments[0].dirPrefId].cards) {
-				cardbookRepository.addCardToOrg(card, window.arguments[0].dirPrefId);
-			}
-		}}, Components.interfaces.nsIEventTarget.DISPATCH_SYNC);
-	}
+async function convertVCards () {
+	await messenger.runtime.sendMessage({query: "cardbook.convertVCards", dirPrefId: dirPrefId, initialVCardVersion: initialVCardVersion});
+	document.getElementById("convertVCardsLabel").classList.add("hidden");
 };
 
-function convertVCards () {
-	Services.tm.currentThread.dispatch({ run: async function() {
-		let myTopic = "cardsConverted";
-		let myActionId = cardbookActions.startAction(myTopic);
-		let myTargetVersion = cardbookRepository.cardbookPreferences.getVCardVersion(window.arguments[0].dirPrefId);
-		let myTargetName = cardbookRepository.cardbookPreferences.getName(window.arguments[0].dirPrefId);
-		// the date format is no longer stored
-		let myNewDateFormat = cardbookRepository.getDateFormat(window.arguments[0].dirPrefId, initialVCardVersion);
-		let counter = 0;
-
-		for (let card of cardbookRepository.cardbookDisplayCards[window.arguments[0].dirPrefId].cards) {
-			let myTempCard = new cardbookCardParser();
-			await cardbookRepository.cardbookUtils.cloneCard(card, myTempCard);
-			if (cardbookRepository.cardbookUtils.convertVCard(myTempCard, myTargetName, myTargetVersion, myNewDateFormat, myNewDateFormat)) {
-				await cardbookRepository.saveCardFromUpdate(card, myTempCard, myActionId, false);
-				counter++;
-			}
-		}
-
-		cardbookRepository.writePossibleCustomFields();
-		deleteOldDateFormat();
-		document.getElementById("convertVCardsLabel").setAttribute('hidden', 'true');
-		cardbookRepository.cardbookUtils.formatStringForOutput(myTopic, [myTargetName, myTargetVersion, counter]);
-		await cardbookActions.endAction(myActionId);
-	}}, Components.interfaces.nsIEventTarget.DISPATCH_SYNC);
-};
-
-function loadFnFormula () {
-	document.getElementById("fnFormulaTextBox").value = cardbookRepository.cardbookPreferences.getFnFormula(window.arguments[0].dirPrefId);
-	var orgStructure = cardbookRepository.cardbookPreferences.getStringPref("extensions.cardbook.orgStructure");
+async function loadFnFormula () {
+	document.getElementById("fnFormulaTextBox").value = await cardbookNewPreferences.getFnFormula(dirPrefId);
+	let orgStructure = await cardbookHTMLUtils.getPrefValue("orgStructure");
 	if (orgStructure != "") {
-		var allOrg = cardbookRepository.cardbookUtils.unescapeArray(cardbookRepository.cardbookUtils.escapeString(orgStructure).split(";"));
+		var allOrg = cardbookHTMLUtils.unescapeArray(cardbookHTMLUtils.escapeString(orgStructure).split(";"));
 	} else {
 		var allOrg = [];
 	}
-	document.getElementById('formulaMemberLabel1').value = "{{1}} : " + cardbookRepository.extension.localeData.localizeMessage("prefixnameLabel");
-	document.getElementById('formulaMemberLabel2').value = "{{2}} : " + cardbookRepository.extension.localeData.localizeMessage("firstnameLabel");
-	document.getElementById('formulaMemberLabel3').value = "{{3}} : " + cardbookRepository.extension.localeData.localizeMessage("othernameLabel");
-	document.getElementById('formulaMemberLabel4').value = "{{4}} : " + cardbookRepository.extension.localeData.localizeMessage("lastnameLabel");
-	document.getElementById('formulaMemberLabel5').value = "{{5}} : " + cardbookRepository.extension.localeData.localizeMessage("suffixnameLabel");
-	document.getElementById('formulaMemberLabel6').value = "{{6}} : " + cardbookRepository.extension.localeData.localizeMessage("nicknameLabel");
-	document.getElementById('formulaSampleTextBox1').value = cardbookRepository.extension.localeData.localizeMessage("prefixnameLabel");
-	document.getElementById('formulaSampleTextBox2').value = cardbookRepository.extension.localeData.localizeMessage("firstnameLabel");
-	document.getElementById('formulaSampleTextBox3').value = cardbookRepository.extension.localeData.localizeMessage("othernameLabel");
-	document.getElementById('formulaSampleTextBox4').value = cardbookRepository.extension.localeData.localizeMessage("lastnameLabel");
-	document.getElementById('formulaSampleTextBox5').value = cardbookRepository.extension.localeData.localizeMessage("suffixnameLabel");
-	document.getElementById('formulaSampleTextBox6').value = cardbookRepository.extension.localeData.localizeMessage("nicknameLabel");
+	document.getElementById('formulaMemberLabel1').textContent = "{{1}} : " + messenger.i18n.getMessage("prefixnameLabel");
+	document.getElementById('formulaMemberLabel2').textContent = "{{2}} : " + messenger.i18n.getMessage("firstnameLabel");
+	document.getElementById('formulaMemberLabel3').textContent = "{{3}} : " + messenger.i18n.getMessage("othernameLabel");
+	document.getElementById('formulaMemberLabel4').textContent = "{{4}} : " + messenger.i18n.getMessage("lastnameLabel");
+	document.getElementById('formulaMemberLabel5').textContent = "{{5}} : " + messenger.i18n.getMessage("suffixnameLabel");
+	document.getElementById('formulaMemberLabel6').textContent = "{{6}} : " + messenger.i18n.getMessage("nicknameLabel");
+	document.getElementById('formulaSampleTextBox1').value = messenger.i18n.getMessage("prefixnameLabel");
+	document.getElementById('formulaSampleTextBox2').value = messenger.i18n.getMessage("firstnameLabel");
+	document.getElementById('formulaSampleTextBox3').value = messenger.i18n.getMessage("othernameLabel");
+	document.getElementById('formulaSampleTextBox4').value = messenger.i18n.getMessage("lastnameLabel");
+	document.getElementById('formulaSampleTextBox5').value = messenger.i18n.getMessage("suffixnameLabel");
+	document.getElementById('formulaSampleTextBox6').value = messenger.i18n.getMessage("nicknameLabel");
 
 	let count = 6;
 	let table = document.getElementById('formulaSampleTable');
 	if (allOrg.length == 0) {
 		count++;
-		let row = cardbookElementTools.addHTMLTR(table, 'formulaSampleTableRow.' + count);
-		let labelData = cardbookElementTools.addHTMLTD(row, 'formulaSampleTableData.' + count + '.1');
-		let label = cardbookElementTools.addLabel(labelData, 'formulaMemberLabel' + count, "{{" + count + "}} : " + cardbookRepository.extension.localeData.localizeMessage("orgLabel"), null, {});
-		let textboxData = cardbookElementTools.addHTMLTD(row, 'formulaSampleTableData.' + count + '.2', {class: "cardbook-td-input"});
-		let textbox = cardbookElementTools.addHTMLINPUT(textboxData, 'formulaSampleTextBox' + count, cardbookRepository.extension.localeData.localizeMessage("orgLabel"), {});
+		let row = cardbookHTMLTools.addHTMLTR(table, 'formulaSampleTableRow.' + count);
+		let labelData = cardbookHTMLTools.addHTMLTD(row, 'formulaSampleTableData.' + count + '.1');
+		let label = cardbookHTMLTools.addHTMLLABEL(labelData, 'formulaMemberLabel' + count, "{{" + count + "}} : " + messenger.i18n.getMessage("orgLabel"), {});
+		let textboxData = cardbookHTMLTools.addHTMLTD(row, 'formulaSampleTableData.' + count + '.2', {class: "cardbook-td-input"});
+		let textbox = cardbookHTMLTools.addHTMLINPUT(textboxData, 'formulaSampleTextBox' + count, messenger.i18n.getMessage("orgLabel"), {});
 		textbox.addEventListener("input", changeFnPreview);
 	} else {
 		for (let org of allOrg) {
 			count++;
-			let row = cardbookElementTools.addHTMLTR(table, 'formulaSampleTextRow' + count);
-			let labelData = cardbookElementTools.addHTMLTD(row, 'formulaSampleTableData.' + count + '.1');
-			let label = cardbookElementTools.addLabel(labelData, 'formulaMemberLabel' + count, "{{" + count + "}} : " + org, null, {});
-			let textboxData = cardbookElementTools.addHTMLTD(row, 'formulaSampleTableData.' + count + '.2', {class: "cardbook-td-input"});
-			let textbox = cardbookElementTools.addHTMLINPUT(textboxData, 'formulaSampleTextBox' + count, org, {});
+			let row = cardbookHTMLTools.addHTMLTR(table, 'formulaSampleTextRow' + count);
+			let labelData = cardbookHTMLTools.addHTMLTD(row, 'formulaSampleTableData.' + count + '.1');
+			let label = cardbookHTMLTools.addHTMLLABEL(labelData, 'formulaMemberLabel' + count, "{{" + count + "}} : " + org, {});
+			let textboxData = cardbookHTMLTools.addHTMLTD(row, 'formulaSampleTableData.' + count + '.2', {class: "cardbook-td-input"});
+			let textbox = cardbookHTMLTools.addHTMLINPUT(textboxData, 'formulaSampleTextBox' + count, org, {});
 			textbox.addEventListener("input", changeFnPreview);
 		}
 	}
 	count++;
-	let rowTitle = cardbookElementTools.addHTMLTR(table, 'formulaSampleTextRow' + count);
-	let labelTitleData = cardbookElementTools.addHTMLTD(rowTitle, 'formulaSampleTableData.' + count + '.1');
-	let labelTitle = cardbookElementTools.addLabel(labelTitleData, 'formulaMemberLabel' + count, "{{" + count + "}} : " + cardbookRepository.extension.localeData.localizeMessage("titleLabel"), null, {});
-	let textboxTitleData = cardbookElementTools.addHTMLTD(rowTitle, 'formulaSampleTableData.' + count + '.2', {class: "cardbook-td-input"});
-	let textboxTitle = cardbookElementTools.addHTMLINPUT(textboxTitleData, 'formulaSampleTextBox' + count, cardbookRepository.extension.localeData.localizeMessage("titleLabel"), {});
+	let rowTitle = cardbookHTMLTools.addHTMLTR(table, 'formulaSampleTextRow' + count);
+	let labelTitleData = cardbookHTMLTools.addHTMLTD(rowTitle, 'formulaSampleTableData.' + count + '.1');
+	let labelTitle = cardbookHTMLTools.addHTMLLABEL(labelTitleData, 'formulaMemberLabel' + count, "{{" + count + "}} : " + messenger.i18n.getMessage("titleLabel"), {});
+	let textboxTitleData = cardbookHTMLTools.addHTMLTD(rowTitle, 'formulaSampleTableData.' + count + '.2', {class: "cardbook-td-input"});
+	let textboxTitle = cardbookHTMLTools.addHTMLINPUT(textboxTitleData, 'formulaSampleTextBox' + count, messenger.i18n.getMessage("titleLabel"), {});
 	textboxTitle.addEventListener("input", changeFnPreview);
 	count++;
-	let rowRole = cardbookElementTools.addHTMLTR(table, 'formulaSampleTextRow' + count);
-	let labelRoleData = cardbookElementTools.addHTMLTD(rowRole, 'formulaSampleTableData.' + count + '.1');
-	let labelRole = cardbookElementTools.addLabel(labelRoleData, 'formulaMemberLabel' + count, "{{" + count + "}} : " + cardbookRepository.extension.localeData.localizeMessage("roleLabel"), null, {});
-	let textboxRoleData = cardbookElementTools.addHTMLTD(rowRole, 'formulaSampleTableData.' + count + '.2', {class: "cardbook-td-input"});
-	let textboxRole = cardbookElementTools.addHTMLINPUT(textboxRoleData, 'formulaSampleTextBox' + count, cardbookRepository.extension.localeData.localizeMessage("roleLabel"), {});
+	let rowRole = cardbookHTMLTools.addHTMLTR(table, 'formulaSampleTextRow' + count);
+	let labelRoleData = cardbookHTMLTools.addHTMLTD(rowRole, 'formulaSampleTableData.' + count + '.1');
+	let labelRole = cardbookHTMLTools.addHTMLLABEL(labelRoleData, 'formulaMemberLabel' + count, "{{" + count + "}} : " + messenger.i18n.getMessage("roleLabel"), {});
+	let textboxRoleData = cardbookHTMLTools.addHTMLTD(rowRole, 'formulaSampleTableData.' + count + '.2', {class: "cardbook-td-input"});
+	let textboxRole = cardbookHTMLTools.addHTMLINPUT(textboxRoleData, 'formulaSampleTextBox' + count, messenger.i18n.getMessage("roleLabel"), {});
 	textboxRole.addEventListener("input", changeFnPreview);
-	changeFnPreview();
+	await changeFnPreview();
 };
 
-function changeFnPreview () {
+async function changeFnPreview () {
 	let fnFormula = document.getElementById('fnFormulaTextBox').value.replace(/\\n/g, "\n").trim();
 	let fn = [];
 	let i = 1;
@@ -114,162 +83,186 @@ function changeFnPreview () {
 			break;
 		}
 	}
-	document.getElementById('fnPreviewTextBox').value = cardbookRepository.cardbookUtils.getStringFromFormula(fnFormula, fn);
+	document.getElementById('fnPreviewTextBox').value = await messenger.runtime.sendMessage({query: "cardbook.getStringFromFormula", fnFormula: fnFormula, fn: fn});
 };
 
 function populateApplyToAB () {
-	let applyToABMenupopup = document.getElementById('applyToABMenupopup');
-	let applyToABButton = document.getElementById('applyToABButton');
-	cardbookElementTools.loadAddressBooks(applyToABMenupopup, applyToABButton, "", true, true, true, false, true);
+    let ABList = document.getElementById('applyToABMenulist');
+	cardbookHTMLTools.loadAddressBooks(ABList, "", true, true, true, false, true);
 };
 
-function applyApplyToAB (aEvent) {
+async function applyApplyToAB (aEvent) {
 	if (aEvent.target && aEvent.target.value) {
-		let myDirPrefId = aEvent.target.value;
-		for (let account of cardbookRepository.cardbookAccounts) {
-			if (account[1]) {
-				if ((account[4] == myDirPrefId) || ("allAddressBooks" == myDirPrefId)) {
-					cardbookRepository.cardbookPreferences.setFnFormula(account[4], document.getElementById('fnFormulaTextBox').value);
-				}
-			}
-		}
+		let dirPrefId = aEvent.target.value;
+		let formula = document.getElementById('fnFormulaTextBox').value;
+		await messenger.runtime.sendMessage({query: "cardbook.applyFormulaToAllAB", dirPrefId: dirPrefId, formula: formula});
 	}
 };
 
-function resetFnFormula () {
-	document.getElementById('fnFormulaTextBox').value = cardbookRepository.defaultFnFormula;
-	changeFnPreview();
+async function resetFnFormula () {
+	document.getElementById('fnFormulaTextBox').value = await cardbookNewPreferences.getDefaultFnFormula();
+	await changeFnPreview();
 };
 
 function showAutoSyncInterval () {
 	if (document.getElementById('autoSyncCheckBox').checked && document.getElementById("AB-enabled-checkbox").checked) {
-		document.getElementById('autoSyncInterval').disabled = false;
+		document.getElementById('autoSyncInterval').classList.remove("disabled");
 		document.getElementById('autoSyncIntervalTextBox').disabled = false;
 	} else {
-		document.getElementById('autoSyncInterval').disabled = true;
+		document.getElementById('autoSyncInterval').classList.add("disabled");
 		document.getElementById('autoSyncIntervalTextBox').disabled = true;
 	}
 };
 
-function setupEnabledCheckbox() {
+async function setupEnabledCheckbox() {
 	let isEnabled = document.getElementById("AB-enabled-checkbox").checked;
-	let els = document.getElementsByAttribute("disable-with-AB", "true");
-	for (let i = 0; i < els.length; i++) {
-		els[i].disabled = !isEnabled || els[i].getAttribute("disable-capability") == "true";
+	let nodes = document.querySelectorAll("[disable-with-AB='true']");
+	for (let node of nodes) {
+		let disabled = !isEnabled || node.getAttribute("disable-capability") == "true";
+		if (node.tagName.toLowerCase() == "label") {
+			if (disabled) {
+				node.classList.add("disabled");
+			} else {
+				node.classList.remove("disabled");
+			}
+		} else {
+			node.disabled = disabled;
+		}
 	}
-	if (cardbookRepository.cardbookPreferences.getType(window.arguments[0].dirPrefId) == "GOOGLE3") {
+	let type = await cardbookNewPreferences.getType(dirPrefId);
+	if (type == "GOOGLE3") {
+		document.getElementById('readonlyLabel').classList.add("disabled");
 		document.getElementById('readonlyCheckBox').disabled = true;
 	}
 };
 
-function onLoadDialog () {
-	i18n.updateDocument({ extension: cardbookRepository.extension });
-	initialVCardVersion = cardbookRepository.cardbookPreferences.getVCardVersion(window.arguments[0].dirPrefId)
-	initialNodeType = cardbookRepository.cardbookPreferences.getNode(window.arguments[0].dirPrefId);
+async function onLoadDialog () {
+	let urlParams = new URLSearchParams(window.location.search);
+	dirPrefId = urlParams.get("dirPrefId");
 
-	document.getElementById("AB-enabled-checkbox").setAttribute('checked', cardbookRepository.cardbookPreferences.getEnabled(window.arguments[0].dirPrefId));
+	i18n.updateDocument();
+	cardbookHTMLRichContext.loadRichContext();
 
-	document.getElementById("nameTextBox").value = cardbookRepository.cardbookPreferences.getName(window.arguments[0].dirPrefId);
-	document.getElementById("nodeRadiogroup").value = initialNodeType;
-	document.getElementById("colorInput").value = cardbookRepository.cardbookPreferences.getColor(window.arguments[0].dirPrefId);
-	document.getElementById("typeTextBox").value = cardbookRepository.cardbookPreferences.getType(window.arguments[0].dirPrefId);
-	
-	document.getElementById("urlTextBox").value = cardbookRepository.cardbookPreferences.getUrl(window.arguments[0].dirPrefId);
-	document.getElementById("usernameTextBox").value = cardbookRepository.cardbookPreferences.getUser(window.arguments[0].dirPrefId);
-	document.getElementById("readonlyCheckBox").checked = cardbookRepository.cardbookPreferences.getReadOnly(window.arguments[0].dirPrefId);
-	document.getElementById("vCardVersionTextBox").value = initialVCardVersion;
+    // checkbox
+    document.getElementById("AB-enabled-checkbox").addEventListener("input", event => setupEnabledCheckbox());
+    document.getElementById("autoSyncCheckBox").addEventListener("input", event => showAutoSyncInterval());
+	// input
+	document.getElementById("fnFormulaTextBox").addEventListener("input", event => changeFnPreview());
+	document.getElementById("formulaSampleTextBox1").addEventListener("input", event => changeFnPreview());
+	document.getElementById("formulaSampleTextBox2").addEventListener("input", event => changeFnPreview());
+	document.getElementById("formulaSampleTextBox3").addEventListener("input", event => changeFnPreview());
+	document.getElementById("formulaSampleTextBox4").addEventListener("input", event => changeFnPreview());
+	document.getElementById("formulaSampleTextBox5").addEventListener("input", event => changeFnPreview());
+	document.getElementById("formulaSampleTextBox6").addEventListener("input", event => changeFnPreview());
+	// button
+	document.getElementById('generalTab').addEventListener("click", event => showPane('generalTabPanel'));
+	document.getElementById('syncTab').addEventListener("click", event => showPane('syncTabPanel'));
+	document.getElementById('miscTab').addEventListener("click", event => showPane('miscTabPanel'));
+	document.getElementById('convertVCardsLabel').addEventListener("click", event => convertVCards());
+	document.getElementById('resetFnFormulaButton').addEventListener("click", event => resetFnFormula());
+	document.getElementById('cancelButton').addEventListener("click", onCancelDialog);
+	document.getElementById('validateButton').addEventListener("click", onAcceptDialog);
+	// select
+	document.getElementById('applyToABMenulist').addEventListener("change", event => applyApplyToAB(event));
 
-	document.getElementById("urnuuidCheckBox").checked = cardbookRepository.cardbookPreferences.getUrnuuid(window.arguments[0].dirPrefId);
-	document.getElementById("DBCachedCheckBox").checked = cardbookRepository.cardbookPreferences.getDBCached(window.arguments[0].dirPrefId);
+    initialVCardVersion = await cardbookNewPreferences.getVCardVersion(dirPrefId);
+	initialNodeType = await cardbookNewPreferences.getNode(dirPrefId);
 
-	if (cardbookRepository.cardbookUtils.isMyAccountRemote(document.getElementById("typeTextBox").value) && cardbookRepository.cardbookPreferences.getDBCached(window.arguments[0].dirPrefId)) {
-		document.getElementById('syncTab').setAttribute("collapsed", false);
-		document.getElementById("autoSyncCheckBox").setAttribute('checked', cardbookRepository.cardbookPreferences.getAutoSyncEnabled(window.arguments[0].dirPrefId));
-		document.getElementById("autoSyncIntervalTextBox").value = cardbookRepository.cardbookPreferences.getAutoSyncInterval(window.arguments[0].dirPrefId);
+	document.getElementById("AB-enabled-checkbox").checked = await cardbookNewPreferences.getEnabled(dirPrefId);
+	document.getElementById("nameTextBox").value = await cardbookNewPreferences.getName(dirPrefId);
+
+	let useColorRadiogroup = cardbookHTMLUtils.getRadioNodes("nodeRadiogroup");
+	for (let node of useColorRadiogroup) {
+		node.checked = (node.value == initialNodeType);
+	}
+
+	document.getElementById("colorInput").value = await cardbookNewPreferences.getColor(dirPrefId);
+	document.getElementById("typeTextBox").textContent = await cardbookNewPreferences.getType(dirPrefId);
+
+	document.getElementById("urlTextBox").textContent = await cardbookNewPreferences.getUrl(dirPrefId);
+	document.getElementById("usernameTextBox").textContent = await cardbookNewPreferences.getUser(dirPrefId);
+	document.getElementById("readonlyCheckBox").checked = await cardbookNewPreferences.getReadOnly(dirPrefId);
+	document.getElementById("vCardVersionTextBox").textContent = initialVCardVersion;
+
+	document.getElementById("urnuuidCheckBox").checked = await cardbookNewPreferences.getUrnuuid(dirPrefId);
+	document.getElementById("DBCachedCheckBox").checked = await cardbookNewPreferences.getDBCached(dirPrefId);
+
+	let isRemote = await messenger.runtime.sendMessage({query: "cardbook.isMyAccountRemote", type: document.getElementById("typeTextBox").textContent});	
+	if (isRemote && document.getElementById("DBCachedCheckBox").checked) {
+		document.getElementById('syncTab').classList.remove("hidden");
+		document.getElementById("autoSyncCheckBox").checked =  await cardbookNewPreferences.getAutoSyncEnabled(dirPrefId);
+		document.getElementById("autoSyncIntervalTextBox").value = await cardbookNewPreferences.getAutoSyncInterval(dirPrefId);
 	} else {
-		document.getElementById('syncTab').setAttribute("collapsed", true);
+		document.getElementById('syncTab').classList.add("hidden");
 	}
 
 	setupEnabledCheckbox();
 	showAutoSyncInterval();
 	
 	showPane('generalTabPanel');
-	loadFnFormula();
-	searchForWrongCards();
+	await loadFnFormula();
+
+	let found = await messenger.runtime.sendMessage({query: "cardbook.searchForWrongCards", dirPrefId: dirPrefId});
+	if (found) {
+		document.getElementById("convertVCardsLabel").classList.remove("hidden");
+	}
 	populateApplyToAB();
 };
 
-function deleteOldDateFormat () {
-	try {
-		cardbookRepository.cardbookPreferences.delBranch(cardbookRepository.cardbookPreferences.prefCardBookData + window.arguments[0].dirPrefId + "." + "dateFormat");
-	}
-	catch(e) {}
-};
+async function onAcceptDialog () {
+	let prop = cardbookNewPreferences.prefCardBookData + dirPrefId + ".";
+	let interval = document.getElementById('autoSyncIntervalTextBox').value;
+	let name = document.getElementById('nameTextBox').value;
 
-function searchForWrongCards () {
-	Services.tm.currentThread.dispatch({ run: function() {
-		let myVersion = cardbookRepository.cardbookPreferences.getVCardVersion(window.arguments[0].dirPrefId);
-		for (let card of cardbookRepository.cardbookDisplayCards[window.arguments[0].dirPrefId].cards) {
-			if (card.version != myVersion) {
-				document.getElementById("convertVCardsLabel").removeAttribute('hidden');
-				break;
-			}
-		}
-		deleteOldDateFormat();
-	}}, Components.interfaces.nsIEventTarget.DISPATCH_SYNC);
-};
-
-function onAcceptDialog () {
-	var myDirPrefId = window.arguments[0].dirPrefId;
-	cardbookRepository.cardbookPreferences.setColor(myDirPrefId, document.getElementById('colorInput').value);
-	cardbookRepository.cardbookPreferences.setAutoSyncEnabled(myDirPrefId, document.getElementById('autoSyncCheckBox').checked);
-	cardbookRepository.cardbookPreferences.setAutoSyncInterval(myDirPrefId, document.getElementById('autoSyncIntervalTextBox').value);
-	cardbookRepository.cardbookPreferences.setFnFormula(myDirPrefId, document.getElementById('fnFormulaTextBox').value);
-
+	await cardbookHTMLUtils.setPrefValue(prop + "color", document.getElementById('colorInput').value);
+	await cardbookHTMLUtils.setPrefValue(prop + "autoSyncEnabled", document.getElementById('autoSyncCheckBox').checked);
+	await cardbookHTMLUtils.setPrefValue(prop + "autoSyncInterval", interval);
+	await cardbookHTMLUtils.setPrefValue(prop + "fnFormula", document.getElementById('fnFormulaTextBox').value);
+	
+	await messenger.runtime.sendMessage({query: "cardbook.removePeriodicSync", dirPrefId: dirPrefId, name: name});
 	if (document.getElementById('autoSyncCheckBox').checked) {
-		cardbookRepository.cardbookSynchronization.removePeriodicSync(myDirPrefId, document.getElementById('nameTextBox').value);
-		cardbookRepository.cardbookSynchronization.addPeriodicSync(myDirPrefId, document.getElementById('nameTextBox').value, document.getElementById('autoSyncIntervalTextBox').value);
-	} else {
-		cardbookRepository.cardbookSynchronization.removePeriodicSync(myDirPrefId, document.getElementById('nameTextBox').value);
+		await messenger.runtime.sendMessage({query: "cardbook.addPeriodicSync", dirPrefId: dirPrefId, name: name, interval: interval});
 	}
 
-	if (initialNodeType != document.getElementById('nodeRadiogroup').value) {
-		cardbookRepository.cardbookPreferences.setNode(window.arguments[0].dirPrefId, document.getElementById("nodeRadiogroup").value);
-		convertNodes();
+	let radioValue = cardbookHTMLUtils.getRadioValue("nodeRadiogroup");
+	if (initialNodeType != radioValue) {
+		await cardbookHTMLUtils.setPrefValue(prop + "node", radioValue);
+		await messenger.runtime.sendMessage({query: "cardbook.convertNodes", dirPrefId: dirPrefId, radioValue: radioValue});
 	}
 
-	window.arguments[0].serverCallback("SAVE", myDirPrefId, document.getElementById('nameTextBox').value,
-										document.getElementById('readonlyCheckBox').checked, document.getElementById('AB-enabled-checkbox').checked);
-	close();
+	let urlParams = {};
+	urlParams.dirPrefId = dirPrefId;
+	urlParams.name = document.getElementById('nameTextBox').value.trim();
+	urlParams.readonly = document.getElementById('readonlyCheckBox').checked;
+	urlParams.enabled = document.getElementById('AB-enabled-checkbox').checked;
+	await messenger.runtime.sendMessage({query: "cardbook.notifyObserver", value: "cardbook.AB.saveEditAB", params: JSON.stringify(urlParams)});
+	cardbookHTMLRichContext.closeWindow();
 };
 
-function onCancelDialog () {
-	window.arguments[0].serverCallback("CANCEL", window.arguments[0].dirPrefId);
-	close();
+async function onCancelDialog () {
+	cardbookHTMLRichContext.closeWindow();
 };
 
 function showPane (paneID) {
 	if (!paneID) {
 		return;
 	}
-	
+
 	let pane = document.getElementById(paneID);
 	if (!pane) {
 		return;
 	}
-	
-	let tabnodes = document.getElementById("rightPaneDownHbox2").querySelectorAll(".cardbookTab");
-	for (let node of tabnodes) {
-		if (node.id != paneID) {
-			node.setAttribute("hidden", "true");
-			document.getElementById(node.id.replace("Panel", "")).removeAttribute("visuallyselected");
-		} else {
+
+	for (let node of document.querySelectorAll(".tab-container section")) {
+		if (node.id == paneID) {
 			document.getElementById(node.id.replace("Panel", "")).setAttribute("visuallyselected", "true");
-			node.removeAttribute("hidden");
+			node.classList.add("active");
+		} else {
+			document.getElementById(node.id.replace("Panel", "")).removeAttribute("visuallyselected");
+			node.classList.remove("active");
 		}
 	}
 };
 
-document.addEventListener("DOMContentLoaded", onLoadDialog);
-document.addEventListener("dialogaccept", onAcceptDialog);
-document.addEventListener("dialogcancel", onCancelDialog);
+await onLoadDialog();
+

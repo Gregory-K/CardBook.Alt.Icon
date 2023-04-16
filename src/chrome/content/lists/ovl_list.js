@@ -43,7 +43,7 @@ var ovl_list = {
 			for (let address of parent.querySelectorAll(".address-pill")) {
 				let listNames = MimeParser.parseHeaderField(address.fullAddress, MimeParser.HEADER_ADDRESS);
 				let isMailingList = listNames.length > 0 && ovl_list.doesListExist(listNames[0].name);
-				if (!cardbookRepository.cardbookPreferences.getBoolPref("extensions.cardbook.exclusive") && !isMailingList) {
+				if (!cardbookRepository.cardbookPrefs["exclusive"] && !isMailingList) {
 					isMailingList = listNames.length > 0 && MailServices.ab.mailListNameExists(listNames[0].name);
 				}
 				if (isValidAddress(address.emailAddress) || isMailingList || address.emailInput.classList.contains("news-input")) {
@@ -67,7 +67,7 @@ var ovl_list = {
 				if (isEmailRegistered) {
 					address.removeAttribute("tooltiptext");
 					address.pillIndicator.hidden = true;
-				} else if (cardbookRepository.cardbookPreferences.getBoolPref("extensions.cardbook.exclusive")) {
+				} else if (cardbookRepository.cardbookPrefs["exclusive"]) {
 					address.setAttribute(
 						"tooltiptext",
 						await document.l10n.formatValue("pill-tooltip-not-in-address-book", {

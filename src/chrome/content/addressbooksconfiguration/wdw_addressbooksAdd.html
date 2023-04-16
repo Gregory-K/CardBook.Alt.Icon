@@ -1,0 +1,322 @@
+<?xml version="1.0"?>
+<!DOCTYPE html>
+
+<html id="wdw_addressbooksAddWindow">
+	<head>
+        <meta charset="UTF-8">
+		<link rel='stylesheet' type='text/css' href="chrome://global/skin/in-content/common.css">
+		<link rel='stylesheet' type='text/css' href="chrome://messenger/skin/preferences/preferences.css">
+		<link rel='stylesheet' type='text/css' href="chrome://messenger/skin/shared/themeableDialog.css">
+		<link rel='stylesheet' type='text/css' href="chrome://messenger/skin/messenger.css">
+		<!-- for the left pane -->
+		<link rel="stylesheet" type='text/css' href="chrome://messenger/skin/shared/accountManager.css"/>
+		<!-- for the small-button class -->
+		<link rel="stylesheet" type='text/css' href="chrome://messenger/skin/filterDialog.css"/>
+
+        <link rel='stylesheet' type='text/css' href="../skin/cardbookAddressBooks.css">
+		<link rel='stylesheet' type='text/css' href="../skin/cardbookAddressBooksAdd.css">
+        <link rel='stylesheet' type='text/css' href="../skin/cardbookNotifications.css">
+        <link rel='stylesheet' type='text/css' href="../skin/cardbookTableTree.css">
+        <link rel='stylesheet' type='text/css' href="../skin/cardbookMain.css">
+        <link rel='stylesheet' type='text/css' href="../skin/cardbookHTML.css">
+		<title>__MSG_wizard.title__</title>
+	</head>
+
+	<body>
+		<div class="fullContainer">
+			<div class="flex-pad-x">
+				<div class="flex-pad-y">
+					<div class="flex-grow-y alignLeft tab-container">
+						<section class="active" id="welcomePage">
+							<label>__MSG_welcomePage.description__</label>
+						</section>
+		
+						<section id="initialPage">
+							<label>__MSG_initialPage.description__</label>
+							<div class="vbox vcentered indent nowrap">
+								<label>
+									<input type="radio" id="local" value="local" name="addressbookType" checked>
+									__MSG_initialPage.computer.label__
+								</label>
+								<div class="separator"></div>
+								<label>
+									<input type="radio" id="remote" value="remote" name="addressbookType">
+									__MSG_initialPage.network.label__
+								</label>
+								<div class="separator"></div>
+								<label>
+									<input type="radio" id="standard" value="standard" name="addressbookType">
+									__MSG_initialPage.standard.label__
+								</label>
+								<div class="separator"></div>
+								<label>
+									<input type="radio" id="search" value="search" name="addressbookType">
+									__MSG_initialPage.search.label__
+								</label>
+							</div>
+						</section>
+		
+						<section id="localPage">
+							<label><h2>__MSG_localPage.type.label__</h2></label>
+							<label>__MSG_localPage.type.description__</label>
+							<div class="vbox vcentered indent nowrap">
+								<label>
+									<input type="radio" id="createDB" value="createDB" name="localPageType" checked>
+									__MSG_localPage.createDB.label__
+								</label>
+								<div class="separator"></div>
+								<label>
+									<input type="radio" id="createDirectory" value="createDirectory" name="localPageType">
+									__MSG_localPage.createDirectory.label__
+								</label>
+								<div class="separator"></div>
+								<label>
+									<input type="radio" id="createFile" value="createFile" name="localPageType">
+									__MSG_localPage.createFile.label__
+								</label>
+								<div class="separator"></div>
+								<label>
+									<input type="radio" id="openDirectory" value="openDirectory" name="localPageType">
+									__MSG_localPage.openDirectory.label__
+								</label>
+								<div class="separator"></div>
+								<label>
+									<input type="radio" id="openFile" value="openFile" name="localPageType">
+									__MSG_localPage.openFile.label__
+								</label>
+							</div>
+							<div class="separator"></div>
+							<fieldset id="localPageURIhBox">
+								<label><h2>__MSG_localPage.uri.groupbox__</h2></label>
+								<label>__MSG_localPage.uri.description__</label>
+								<div class="hbox hcentered">
+										<label id="localPageURILabel">__MSG_localPage.uri.label__</label>
+										<input id="localPageURI">
+										<button id="localPageURIButton">__MSG_localPage.uributton.label__</button>
+									</div>
+								<div class="vbox hcentered vcentered">
+									<label id="localPageURINotificationsMessage" type="OK" class="notificationMessage"></label>
+								</div>
+							</fieldset>
+						</section>
+		
+						<section id="remotePage">
+							<div class="vbox">
+								<label><h2>__MSG_remotePage.type.label__</h2></label>
+								<label>__MSG_remotePage.description__</label>
+								<select id="remotePageTypeMenulist">
+								</select>
+								<div class="separator"></div>
+								<label><h2>__MSG_remotePage.connection.label__</h2></label>
+								<label>__MSG_remotePage.url.description__</label>
+								<table id="remotePageURITable">
+									<tr>
+										<td>
+											<label id="remotePageUriLabel">__MSG_remotePage.url.label__</label>
+										</td>
+										<td class="hbox">
+											<input id="remotePageURI" required placeholder="__MSG_ValidatingURILabel__" type="text">
+											<img id="remotePageURIInfo"
+												src="chrome://messenger/skin/icons/information.svg"
+												title="__MSG_ValidatingURILabel__"
+												class="form-icon"/>
+											<img id="remotePageURIWarning"
+												src="chrome://global/skin/icons/warning.svg"
+												title="__MSG_ValidatingURIFailedLabel__"
+												class="form-icon"/>
+										</td>
+									</tr>
+								</table>
+								<div class="separator"></div>
+								<label>__MSG_remotePage.credentials.description__</label>
+								<table id="remotePageTable">
+									<tr>
+										<td>
+											<label id="remotePageUsernameLabel">__MSG_remotePage.user.label__</label>
+										</td>
+										<td class="hbox">
+											<input id="remotePageUsername" class="input-field" type="text">
+											<img id="remotePageUsernameLogin"
+												src="chrome://messenger/skin/icons/information.svg"
+												title="__MSG_ValidatingLoginLabel__"
+												class="form-icon">
+											<img id="remotePageUsernameEmail"
+												src="chrome://messenger/skin/icons/information.svg"
+												title="__MSG_ValidatingEmailLabel__"
+												class="form-icon">
+											<img id="remotePageUsernameWarning"
+												src="chrome://global/skin/icons/warning.svg"
+												title="__MSG_ValidatingEmailFailedLabel__"
+												class="form-icon">
+										</td>
+									</tr>
+									<tr>
+										<td>
+											<label id="remotePagePasswordLabel">__MSG_remotePage.password.label__</label>
+										</td>
+										<td class="hbox">
+											<input id="remotePagePassword" type="password">
+											<img id="remotePagePasswordInfo"
+												title="__MSG_showHidePassword__"
+												src="chrome://messenger/skin/icons/hidden.svg"
+												class="form-icon">
+										</td>
+									</tr>
+									<tr>
+										<td>
+										</td>
+										<td class="hbox">
+											<label id="rememberPasswordCheckboxLabel">
+												<input type="checkbox" id="rememberPasswordCheckbox" checked>
+												__MSG_rememberPassword__
+											</label>
+										</td>
+									</tr>
+								</table>
+								<div class="separator"></div>
+								<div class="fullline2 hcentered">
+									<!-- row-reverse -->
+									<div>
+										<button id="validateButton">__MSG_remotePage.validatebutton.label__</button>
+										<button id="validateGoogleButton"></button>
+									</div>
+									<div class="vleft">
+										<label id="resultNotificationsMessage" type="OK" class="notificationMessage vcentered"></label>
+									</div>
+								</div>
+							</div>
+						</section>
+		
+						<section id="searchPage">
+							<label><h2>__MSG_locationSearchPage.label__</h2></label>
+							<div class="vbox" id="searchTerms" >
+								<div class="vbox">
+									<div class="hbox">
+										<label id="addressbookMenulistLabel">__MSG_abSearchHeading.label__</label>
+										<div class="separator"></div>
+										<select id="addressbookMenulist"></select>
+									</div>
+								</div>
+								
+								<div class="hbox">
+									<div class="hbox hcentered indent">
+										<label>
+											<input type="radio" id="booleanAndInput" value="and" name="booleanAndGroup" checked>
+											__MSG_matchAll.label__
+										</label>
+										<div class="separator"></div>
+										<label>
+											<input type="radio" id="booleanOrInput" value="or" name="booleanAndGroup">
+											__MSG_matchAny.label__
+										</label>
+									</div>
+								</div>
+								<div class="separator"></div>
+								<div class="hbox">
+									<div class="vbox" id="searchTermsGroupbox"></div>
+								</div>
+							</div>
+						</section>
+		
+						<section id="searchNamePage">
+							<table>
+								<tr>
+									<td>
+										<label id="searchNamePageLabel">__MSG_namePage.name.label__</label>
+									</td>
+									<td class="hbox">
+										<input id="searchNamePageName" required>
+									</td>
+								</tr>
+							</table>
+						</section>
+		
+						<section id="namesPage">
+							<div class="vbox">
+								<div id="findPageNameDescription" class="vbox">
+									<label id="findPageName1Description">__MSG_findPage.name1.description__</label>
+									<label id="findPageName2Description" class="hidden">__MSG_findPage.name2.description__</label>
+									<label id="findPageName3Description" class="hidden">__MSG_findPage.name3.description__</label>
+								</div>
+								<div class="separator"></div>
+								<table id="findTable">
+									<tr id="findHeadersRow">
+										<td>
+											<label id="findPageValidateLabel" value="">__MSG_remotePage.validatebutton.label__</label>
+										</td>
+										<td>
+											<label id="findPageNameLabel">__MSG_namePage.name.label__</label>
+										</td>
+										<td>
+											<label id="findPageUserLabel">__MSG_remotePage.user.label__</label>
+										</td>
+										<td>
+											<label id="findPagePasswordLabel">__MSG_remotePage.password.label__</label>
+										</td>
+										<td>
+											<label id="findPageVCardVersionsLabel" class="hidden"></label>
+										</td>
+										<td>
+											<label id="findPageURLLabel" class="hidden"></label>
+										</td>
+										<td>
+											<label id="findPageABNameLabel" class="hidden"></label>
+										</td>
+									</tr>
+								</table>
+								<div class="separator"></div>
+								<div class="separator"></div>
+								<div class="separator"></div>
+								<label id="namesPageDescription">__MSG_namesPage.name.description__</label>
+								<div class="separator"></div>
+								<table id="namesTable">
+									<tr id="namesTableRow">
+										<td>
+											<label id="namesPageSelectedLabel">__MSG_namePage.selected.label__</label>
+										</td>
+										<td>
+											<label id="namesPageNameLabel">__MSG_namePage.name.label__</label>
+										</td>
+										<td>
+											<label id="namesPageColorLabel">__MSG_namePage.color.label__</label>
+										</td>
+										<td>
+											<label id="namesPageVCardVersionLabel">__MSG_namePage.vCardVersion.label__</label>
+										</td>
+										<td>
+											<label id="namesPageDBCachedLabel">__MSG_namePage.DBCached.label__</label>
+										</td>
+									</tr>
+								</table>
+								<div class="separator"></div>
+								<div class="vbox hcentered vcentered">
+									<label id="findPageNotificationsMessage" type="OK" class="notificationMessage"></label>
+								</div>
+							</div>
+						</section>
+		
+						<section id="finishPage">
+							<label id="finishPage1Description">__MSG_finishPage.description__</label>
+							<label id="finishPage2Description" class="hidden">__MSG_finishsPage.description__</label>
+						</section>
+					</div>
+					<div class="fullline1">
+						<div class="vleft">
+							<button id="back">__MSG_wizard.back.label__</button>
+						</div>
+						<div class="vright">
+							<button id="cancel">__MSG_wizard.cancel.label__</button>
+							<button id="next">__MSG_wizard.next.label__</button>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+
+		<script src="../scripts/i18n.js"></script>
+		<script type="module" src="../cardbookHTMLNotification.mjs"></script>
+		<script type="module" src="../cardbookHTMLTools.mjs"></script>
+		<script type="module" src="../cardbookHTMLUtils.mjs"></script>
+		<script type="module" src="wdw_addressbooksAdd.js"></script>
+	</body>
+</html>

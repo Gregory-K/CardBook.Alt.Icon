@@ -35,6 +35,21 @@ if ("undefined" == typeof(cardbookEncryptor)) {
 			};
 		},
 
+		decryptPrefDispName: async function (aPrefDispName) {
+			var decryptedDispName = JSON.parse(await cardbookEncryptor.decryptString(aPrefDispName.encrypted, aPrefDispName.iv));
+			return decryptedDispName;
+		},
+
+		encryptPrefDispName: async function (aPrefDispName) {
+			var [encrypted, iv] = await cardbookEncryptor.encryptString(JSON.stringify(aPrefDispName));
+			return {
+				prefDispNameId:      aPrefDispName.prefDispNameId,
+				encrypted,
+				iv,
+				encryptionVersion: this.VERSION
+			};
+		},
+
 		decryptMailPop: async function (aMailPop) {
 			var decryptedMailPop = JSON.parse(await cardbookEncryptor.decryptString(aMailPop.encrypted, aMailPop.iv));
 			return decryptedMailPop;
@@ -243,11 +258,11 @@ if ("undefined" == typeof(cardbookEncryptor)) {
 		},
 
 		saveCount: function() {
-			cardbookRepository.cardbookPreferences.setStringPref("extensions.cardbook.localDataEncryption.counter", JSON.stringify(Array.from(this.counter)));
+			cardbookRepository.cardbookPreferences.setStringPref("localDataEncryption.counter", JSON.stringify(Array.from(this.counter)));
 		},
 
 		loadCount: function() {
-			var counter = cardbookRepository.cardbookPreferences.getStringPref("extensions.cardbook.localDataEncryption.counter", "");
+			var counter = cardbookRepository.cardbookPrefs["localDataEncryption.counter"];
 			if (counter) {
 				try {
 					counter = JSON.parse(counter);

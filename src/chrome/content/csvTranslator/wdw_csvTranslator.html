@@ -1,0 +1,102 @@
+<?xml version="1.0"?>
+<!DOCTYPE html>
+
+<html id="wdw_csvTranslator">
+	<head>
+        <meta charset="UTF-8">
+		<link rel='stylesheet' type='text/css' href="chrome://messenger/skin/messenger.css">
+		<link rel='stylesheet' type='text/css' href="chrome://global/skin/in-content/common.css">
+		<link rel='stylesheet' type='text/css' href="chrome://messenger/skin/shared/themeableDialog.css">
+        <link rel='stylesheet' type='text/css' href="chrome://messenger/skin/accountSetup.css">
+
+		<link rel='stylesheet' type='text/css' href="../skin/cardbookHTML.css">
+		<link rel='stylesheet' type='text/css' href="../skin/cardbookConfiguration.css">
+        <link rel='stylesheet' type='text/css' href="../skin/cardbookTableTree.css">
+        <link rel='stylesheet' type='text/css' href="../skin/cardbookMain.css">
+        <link rel='stylesheet' type='text/css' href="../skin/wdw_csvTranslator.css">
+		<title></title>
+	</head>
+
+	<body id="wdw_csvTranslatorBody" xmlns="http://www.mozilla.org/keymaster/gatekeeper/there.is.only.xul">
+		<div class="vbox">
+			<div class="vbox hcentered">
+				<table>
+					<tr class="hcentered">
+						<td>
+							<label id="fieldDelimiterLabel" class="boldFont">__MSG_fieldDelimiterLabel__</label>
+						</td>
+						<td>
+							<input id="fieldDelimiterTextBox" size="5">
+						</td>
+					</tr>
+					<tr class="hcentered">
+						<td>
+							<label id="includePrefLabel" class="boldFont">__MSG_includePrefLabel__</label>
+						</td>
+						<td>
+							<input type="checkbox" id="includePrefCheckBox" checked="false">
+						</td>
+					</tr>
+					<tr class="hcentered">
+						<td>
+							<label id="lineHeaderLabel" class="boldFont">__MSG_lineHeaderLabel__</label>
+						</td>
+						<td>
+							<input type="checkbox" id="lineHeaderCheckBox" checked="true">
+						</td>
+					</tr>
+				</table>
+			</div>
+			<div class="separator"></div>
+			<div class="separator"></div>
+			<div class="hbox vcentered">
+				<div class="vbox hcentered">
+					<label id="availableColumnsGroupboxLabel" class="boldFont"></label>
+					<div class="separator"></div>
+					<table id="availableColumnsTable" class="tableTree" 
+						data-sort-order="ascending" data-sort-column="availableColumnsName">
+					</table>
+				</div>
+				<div id="buttonsContainer" class="vbox">
+					<button id="appendlistavailableColumnsButton">__MSG_buttonAppendToListLabel__</button>
+					<button id="deletelistaddedColumnsButton">__MSG_buttonRemoveFromListLabel__</button>
+					<button id="upAddedColumnsButton">↑</button>
+					<button id="downAddedColumnsButton">↓</button>
+					<button id="guesslistavailableColumnsButton">__MSG_buttonGuessFromListLabel__</button>
+				</div>
+				<div class="vbox hcentered">
+					<label id="addedColumnsGroupboxLabel" class="boldFont"></label>
+					<div class="separator"></div>
+					<div class="hbox">
+						<table id="addedColumnsTable" class="tableTree" 
+							data-sort-order="ascending" data-sort-column="addedColumnsName">
+                        </table>
+					</div>
+				</div>
+				<div class="vbox hcentered" id="foundColumnsVBox">
+					<label id="foundColumnsGroupboxLabel" class="boldFont"></label>
+					<div class="separator"></div>
+					<div class="hbox">
+						<table id="foundColumnsTable" class="tableTree" 
+							data-sort-order="ascending" data-sort-column="foundColumnsName">
+                        </table>
+					</div>
+				</div>
+			</div>
+			<div class="hbox fullline1">
+				<div class="hbox">
+					<button id="loadTemplateButton">__MSG_loadTemplateLabel__</button>
+					<button id="saveTemplateButton">__MSG_saveTemplateLabel__</button>
+				</div>
+				<div class="hbox">
+					<button id="cancelButton">__MSG_cancelEditionLabel__</button>
+					<button id="validateButton">__MSG_validateEditionLabel__</button>
+				</div>
+			</div>
+		</div>
+        <script src="../scripts/i18n.js"></script>
+		<script type="module" src="../cardbookHTMLTools.js"></script>
+		<script type="module" src="../cardbookHTMLUtils.js"></script>
+		<script type="module" src="../csvTranslator/wdw_csvTranslator.js"></script>
+    </body>
+</html>

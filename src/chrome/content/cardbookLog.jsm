@@ -16,7 +16,7 @@ var cardbookLog = {
 	},
 
 	updateStatusProgressInformation: function(aLogLine, aErrorType) {
-		if (cardbookRepository.statusInformation.length >= cardbookRepository.statusInformationLineNumber) {
+		if (cardbookRepository.statusInformation.length >= cardbookRepository.cardbookPrefs["statusInformationLineNumber"]) {
 			cardbookRepository.statusInformation.shift();
 		}
 		if (aErrorType) {
@@ -28,14 +28,14 @@ var cardbookLog = {
 
 	updateStatusProgressInformationWithDebug1: function(aLogLine, aResponse) {
 		if (aResponse) {
-			if (cardbookRepository.debugMode) {
+			if (cardbookRepository.cardbookPrefs["debugMode"]) {
 				cardbookLog.updateStatusProgressInformation(aLogLine + aResponse.toSource());
 			}
 		}
 	},
 
 	updateStatusProgressInformationWithDebug2: function(aLogLine) {
-		if (cardbookRepository.debugMode) {
+		if (cardbookRepository.cardbookPrefs["debugMode"]) {
 			cardbookLog.updateStatusProgressInformation(aLogLine);
 		}
 	}

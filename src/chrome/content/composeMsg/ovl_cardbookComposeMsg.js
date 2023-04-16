@@ -64,7 +64,7 @@ var ovl_cardbookComposeMsg = {
 		if (document.getElementById("key_addressbook")) {
 			document.getElementById("key_addressbook").setAttribute("key", "");
 		}
-		var exclusive = cardbookRepository.cardbookPreferences.getBoolPref("extensions.cardbook.exclusive");
+		var exclusive = cardbookRepository.cardbookPrefs["exclusive"];
 		var myPopup = document.getElementById("menu_NewPopup");
 		if (exclusive) {
 			document.getElementById('tasksMenuAddressBook').setAttribute('hidden', 'true');

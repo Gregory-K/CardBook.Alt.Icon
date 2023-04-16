@@ -71,7 +71,7 @@ cardbookAutocompleteResult.prototype = {
 			return cardbookRepository.arrayUnique(myConversion.emailResult).join(", ");
 		} else if (this.getTypeAt(aIndex) == "CB_CAT") {
 			cardbookIDBMailPop.updateMailPop(this.getEmailToUse(aIndex));
-			var useOnlyEmail = cardbookRepository.cardbookPreferences.getBoolPref("extensions.cardbook.useOnlyEmail");
+			var useOnlyEmail = cardbookRepository.cardbookPrefs["useOnlyEmail"];
 			var myDirPrefId = this.getDirPrefIdAt(aIndex);
 			var myCategory = this.getValueAt(aIndex);
 			var list = cardbookRepository.cardbookDisplayCards[myDirPrefId+"::categories::"+myCategory].cards;
@@ -256,17 +256,17 @@ cardbookAutocompleteSearch.prototype = {
 		
 		var newSearchString = cardbookRepository.makeSearchString(aSearchString);
 
-		this.sortUsePopularity = cardbookRepository.cardbookPreferences.getBoolPref("extensions.cardbook.autocompleteSortByPopularity");
-		this.showAddressbook = cardbookRepository.cardbookPreferences.getBoolPref("extensions.cardbook.autocompleteShowAddressbook");
-		this.showEmailType = cardbookRepository.cardbookPreferences.getBoolPref("extensions.cardbook.autocompleteShowEmailType");
-		this.showPopularity = cardbookRepository.cardbookPreferences.getBoolPref("extensions.cardbook.autocompleteShowPopularity");
+		this.sortUsePopularity = cardbookRepository.cardbookPrefs["autocompleteSortByPopularity"];
+		this.showAddressbook = cardbookRepository.cardbookPrefs["autocompleteShowAddressbook"];
+		this.showEmailType = cardbookRepository.cardbookPrefs["autocompleteShowEmailType"];
+		this.showPopularity = cardbookRepository.cardbookPrefs["autocompleteShowPopularity"];
 		this.showAddressbookComments = this.showAddressbook || this.showEmailType || this.showPopularity ;
-		this.useOnlyEmail = cardbookRepository.cardbookPreferences.getBoolPref("extensions.cardbook.useOnlyEmail");
-		this.proposeConcatEmails = cardbookRepository.cardbookPreferences.getBoolPref("extensions.cardbook.proposeConcatEmails");
-		this.autocompleteWithColor = cardbookRepository.cardbookPreferences.getBoolPref("extensions.cardbook.autocompleteWithColor");
-		this.useColor = cardbookRepository.useColor;
+		this.useOnlyEmail = cardbookRepository.cardbookPrefs["useOnlyEmail"];
+		this.proposeConcatEmails = cardbookRepository.cardbookPrefs["proposeConcatEmails"];
+		this.autocompleteWithColor = cardbookRepository.cardbookPrefs["autocompleteWithColor"];
+		this.useColor = cardbookRepository.cardbookPrefs["useColor"];
 
-		if (cardbookRepository.autocompleteRestrictSearch) {
+		if (cardbookRepository.cardbookPrefs["autocompleteRestrictSearch"]) {
 			var mySearchArray = cardbookRepository.cardbookCardShortSearch;
 		} else {
 			var mySearchArray = cardbookRepository.cardbookCardLongSearch;
@@ -331,8 +331,8 @@ cardbookAutocompleteSearch.prototype = {
 											}
 										}
 									} else {
-										if (cardbookRepository.cardbookNodeColors[cardbookRepository.cardbookUncategorizedCards]) {
-											myStyle = myType + "_color_category_" + cardbookRepository.cardbookUtils.formatCategoryForCss(cardbookRepository.cardbookUncategorizedCards) + "-abook";
+										if (cardbookRepository.cardbookNodeColors[cardbookRepository.cardbookPrefs["uncategorizedCards"]]) {
+											myStyle = myType + "_color_category_" + cardbookRepository.cardbookUtils.formatCategoryForCss(cardbookRepository.cardbookPrefs["uncategorizedCards"]) + "-abook";
 										} else {
 											myStyle = myType + "_color_" + myDirPrefId + "-abook";
 										}
@@ -428,7 +428,7 @@ cardbookAutocompleteSearch.prototype = {
 					var myComment = {};
 					this.addAddressbookToComment(myComment, cardbookRepository.cardbookPreferences.getName(myDirPrefId));
 					for (let category of cardbookRepository.cardbookAccountsCategories[myDirPrefId]) {
-						if (((!(this.catInclRestrictions[myDirPrefId])) && (category != cardbookRepository.cardbookUncategorizedCards)) ||
+						if (((!(this.catInclRestrictions[myDirPrefId])) && (category != cardbookRepository.cardbookPrefs["uncategorizedCards"])) ||
 								((this.catInclRestrictions[myDirPrefId]) && (this.catInclRestrictions[myDirPrefId][category]))) {
 							if (cardbookRepository.makeSearchString(category).indexOf(newSearchString) >= 0) {
 								if (this.catExclRestrictions[myDirPrefId]) {
@@ -467,7 +467,7 @@ cardbookAutocompleteSearch.prototype = {
 		var ldapSearchURIs = [];
 		
 		// add Thunderbird standard emails
-		if (!cardbookRepository.cardbookPreferences.getBoolPref("extensions.cardbook.exclusive")) {
+		if (!cardbookRepository.cardbookPrefs["exclusive"]) {
 			var myStyle = "standard-abook";
 			for (let addrbook of MailServices.ab.directories) {
 				if (cardbookRepository.verifyABRestrictions(addrbook.dirPrefId, "allAddressBooks", this.ABExclRestrictions, this.ABInclRestrictions)) {

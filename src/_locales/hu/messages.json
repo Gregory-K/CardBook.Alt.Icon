@@ -114,14 +114,8 @@
 	"showForgottenLabel": {
 		"message": "Elfelejtett másolatok megjelenítése"
 	},
-	"showForgottenAccesskey": {
-		"message": "m"
-	},
 	"hideForgottenLabel": {
 		"message": "Elrejtse az elfelejtett másolatokat"
-	},
-	"hideForgottenAccesskey": {
-		"message": "E"
 	},
 	"noContactsDuplicated": {
 		"message": "Ismétlődő névjegyek nem található."
@@ -3309,6 +3303,12 @@
 	"toLowerCase": {
 		"message": "Kisbetűs átalakítása"
 	},
+	"copy": {
+		"message": "Másolás"
+	},
+	"paste": {
+		"message": "Beillesztés"
+	},
 	"copyFieldValue": {
 		"message": "Másolás ($P1$)",
 		"placeholders": {
@@ -3369,7 +3369,7 @@
 	"wdw_cardbookConfigurationAddEmailsRestrictionTitle": {
 		"message": "Postafiók korlátozások meghatározása"
 	},
-	"wdw_cardbookConfigurationAddEmailsCollectionTitle": {
+	"wdw_cardbookConfigurationAddEmailsEmailsCollectionTitle": {
 		"message": "Postafiók kimenő üzenetek gyűjtemény meghatározása"
 	},
 	"ignoreCaseIgnoreDiacriticLabel": {
@@ -3777,6 +3777,9 @@
 	"wizard.back.label": {
 		"message": "Vissza"
 	},
+	"wizard.cancel.label": {
+		"message": "Mégse"
+	},
 	"wizard.create.label": {
 		"message": "Létrehozás"
 	},
@@ -3800,9 +3803,6 @@
 	},
 	"initialPage.search.label": {
 		"message": "Mentett kérése"
-	},
-	"initialPage.find.label": {
-		"message": "Távoli névjegytár keresése"
 	},
 	"localPage.type.description": {
 		"message": "Válassza ki a helyi névjegytár mappaformátum:"
@@ -3838,7 +3838,7 @@
 		"message": "Tallózás…"
 	},
 	"remotePage.description": {
-		"message": "Válassza ki a távoli névjegytár mappaformátum: (Vigyázat: Google végrehajtása a vCard formátum hibás.)"
+		"message": "Válassza ki a távoli névjegytár mappaformátum:"
 	},
 	"remotePage.type.label": {
 		"message": "Mappaformátum"
@@ -3891,7 +3891,7 @@
 	"rememberPassword": {
 		"message": "Jelszókezelő használata a jelszó megjegyzésére"
 	},
-	"showHidePassword.tooltip": {
+	"showHidePassword": {
 		"message": "Jelszó megjelenítése/elrejtése"
 	},
 	"remotePage.validatebutton.label": {
@@ -3903,20 +3903,11 @@
 	"abSearchHeading.label": {
 		"message": "Keresési hely:"
 	},
-	"abSearchHeading.accesskey": {
-		"message": "h"
-	},
 	"matchAll.label": {
 		"message": "A következők mind illeszkedjenek"
 	},
-	"matchAll.accesskey": {
-		"message": "m"
-	},
 	"matchAny.label": {
 		"message": "A következők bármelyike illeszkedjen"
-	},
-	"matchAny.accesskey": {
-		"message": "b"
 	},
 	"googleOauthPage.wizard.description": {
 		"message": "Google hitelesítés"
@@ -3969,9 +3960,6 @@
 	"name.ABedit.label": {
 		"message": "Név:"
 	},
-	"name.ABedit.accesskey": {
-		"message": "N"
-	},
 	"nodesLabel": {
 		"message": "Csomópont:"
 	},
@@ -3993,9 +3981,6 @@
 	"readonlyLabel": {
 		"message": "Mód: csak olvasható"
 	},
-	"readonlyAccesskey": {
-		"message": "M"
-	},
 	"urnuuidLabel": {
 		"message": "Használ urn:uuid"
 	},
@@ -4008,14 +3993,8 @@
 	"autoSyncLabel": {
 		"message": "Engedélyezze időszakos összehangolás"
 	},
-	"autoSyncAccesskey": {
-		"message": "E"
-	},
 	"autoSyncIntervalLabel": {
 		"message": "Rendszeres összehangolás időköze (perc):"
-	},
-	"autoSyncIntervalAccesskey": {
-		"message": "i"
 	},
 	"miscTabLabel": {
 		"message": "Különféle"
@@ -4026,20 +4005,11 @@
 	"fnFormulaLabel": {
 		"message": "Képlet:"
 	},
-	"fnFormulaAccesskey": {
-		"message": "P"
-	},
 	"resetFnFormulaLabel": {
 		"message": "Alapértékek visszaállítása"
 	},
-	"resetFnFormulaAccesskey": {
-		"message": "A"
-	},
 	"applyToABButtonLabel": {
 		"message": "Alkalmazása…"
-	},
-	"applyToABButtonAccesskey": {
-		"message": "A"
 	},
 	"wdw_adrEditionTitle": {
 		"message": "Cím szerkesztő"
@@ -4173,53 +4143,26 @@
 	"autocompletionLabel": {
 		"message": "E-mail címek automata kiegészítése"
 	},
-	"autocompletionAccesskey": {
-		"message": "k"
-	},
-	"autocompletionTooltip": {
-		"message": "Kiterjeszti az alapértelmezett automatikus kiegészítéséhez névjegyzéket a Thunderbird egy automatikus kiegészítéséhez kapcsolatok címjegyzékei Névjegyzék."
-	},
 	"autocompleteSortByPopularityLabel": {
 		"message": "Rendezze az e-mail címeket népszerűsége szerint"
-	},
-	"autocompleteSortByPopularityAccesskey": {
-		"message": "R"
 	},
 	"autocompleteProposeConcatEmailsLabel": {
 		"message": "Javasoljuk a kapcsolattartó e-maileket"
 	},
-	"autocompleteProposeConcatEmailsAccesskey": {
-		"message": "c"
-	},
 	"autocompleteShowAddressbookLabel": {
 		"message": "A névjegytár nevének megjelenítése"
-	},
-	"autocompleteShowAddressbookAccesskey": {
-		"message": "m"
 	},
 	"autocompleteShowEmailTypeLabel": {
 		"message": "E-mail típusának megjelenítése"
 	},
-	"autocompleteShowEmailTypeAccesskey": {
-		"message": "E"
-	},
 	"autocompleteShowPopularityLabel": {
 		"message": "Népszerűség megjelenítése"
-	},
-	"autocompleteShowPopularityAccesskey": {
-		"message": "s"
 	},
 	"autocompleteWithColorLabel": {
 		"message": "Használja a névjegytár színét"
 	},
-	"autocompleteWithColorAccesskey": {
-		"message": "n"
-	},
 	"autocompleteRestrictSearchLabel": {
 		"message": "Korlátozza a keresési mezőket"
-	},
-	"autocompleteRestrictSearchAccesskey": {
-		"message": "P"
 	},
 	"chooseAutocompleteRestrictSearchFieldsButtonLabel": {
 		"message": "Szerkesztés…"
@@ -4256,12 +4199,6 @@
 	},
 	"exclusiveLabel": {
 		"message": "Névjegyzék egyedi forrása"
-	},
-	"exclusiveAccesskey": {
-		"message": "f"
-	},
-	"exclusiveTooltip": {
-		"message": "Ha le van tiltva, ez az opció lehetővé teszi, hogy letölteni kapcsolatok Thunderbird szabvány címjegyzékek a sárga csillag, az üzenet megjelenítési nevét és az e-mail automatikus kiegészítésre."
 	},
 	"accountsRestrictionsLabel": {
 		"message": "Postafiók korlátozások"
@@ -4341,12 +4278,6 @@
 	"debugModeLabel": {
 		"message": "Hibakeresés mód"
 	},
-	"debugModeAccesskey": {
-		"message": "a"
-	},
-	"debugModeTooltip": {
-		"message": "Engedélyezze hibakeresés módban hosszabb jelentés."
-	},
 	"statusInformationLineNumberLabel": {
 		"message": "Sorok száma tartják a naplófájl:"
 	},
@@ -4365,26 +4296,14 @@
 	"listTab.conf.label": {
 		"message": "Listák"
 	},
-	"listTab.conf.accesskey": {
-		"message": "L"
-	},
 	"technicalTab.conf.label": {
 		"message": "Műszaki"
-	},
-	"technicalTab.conf.accesskey": {
-		"message": "M"
 	},
 	"vCardTab.conf.label": {
 		"message": "vCard"
 	},
-	"vCardTab.conf.accesskey": {
-		"message": "v"
-	},
 	"keyTab.conf.label": {
 		"message": "Nyilvános kulcsok"
-	},
-	"keyTab.conf.accesskey": {
-		"message": "K"
 	},
 	"advancedTab1Label": {
 		"message": "Speciális"
@@ -4482,9 +4401,6 @@
 	"preferEmailEditionLabel": {
 		"message": "Dupla kattintás a névjegyre a névjegy szerkesztés helyett üzenet írás"
 	},
-	"preferEmailEditionAccesskey": {
-		"message": "D"
-	},
 	"dateDisplayedFormatLabel": {
 		"message": "Dátumszöveg formátuma:"
 	},
@@ -4493,9 +4409,6 @@
 	},
 	"defaultRegionLabel": {
 		"message": "Alapértelmezett terület:"
-	},
-	"defaultRegionAccesskey": {
-		"message": "l"
 	},
 	"defaultRegionTooltip": {
 		"message": "Címek és telefonszámok alapértelmezett területe."
@@ -4641,9 +4554,6 @@
 	"preferIMPPPrefLabel": {
 		"message": "Az Internetes kommunikáció forma előnyben részesítése az"
 	},
-	"preferIMPPPrefAccesskey": {
-		"message": "I"
-	},
 	"preferIMPPPrefWarn": {
 		"message": "Ha nincs Internetes kommunikáció forma megjelölve a kapcsolat tartást minden címen mutatja."
 	},
@@ -4707,9 +4617,6 @@
 	"URLPhoneBackgroundLabel": {
 		"message": "Fut a háttérben"
 	},
-	"URLPhoneBackgroundAccesskey": {
-		"message": "S"
-	},
 	"encryptionGroupboxLabel": {
 		"message": "Titkosítás"
 	},
@@ -4718,9 +4625,6 @@
 	},
 	"localDataEncryptionEnabledLabel": {
 		"message": "Helyi kártyák titkosítása"
-	},
-	"localDataEncryptionEnabledAccesskey": {
-		"message": "t"
 	},
 	"customFieldRankHeaderLabel": {
 		"message": "Sorrend"
@@ -4771,7 +4675,7 @@
 		"message": "Mező címke"
 	},
 	"listPanelLabel": {
-		"message": "Ha a kiszolgáló nem támogatja a kategóriákat (például: Google, Apple, Zimbra, stb), listák egy jó módja annak, hogy küldjön e-mailt a csoportoknak. vCard 3.0 nem támogatja natívan listákat, de ez lehet elérni egyéni mezőket, így ha a használni kívánt listákat vCard 3.0, meg kell határozni ezeket a mezőket."
+		"message": "Ha a kiszolgáló nem támogatja a kategóriákat (például: Apple, Zimbra, stb), listák egy jó módja annak, hogy küldjön e-mailt a csoportoknak. vCard 3.0 nem támogatja natívan listákat, de ez lehet elérni egyéni mezőket, így ha a használni kívánt listákat vCard 3.0, meg kell határozni ezeket a mezőket."
 	},
 	"listGroupboxLabel": {
 		"message": "Listák egyéni mezők"
@@ -4803,14 +4707,8 @@
 	"syncAfterChangeLabel": {
 		"message": "Összehangolás a változások után"
 	},
-	"syncAfterChangeAccesskey": {
-		"message": "a"
-	},
 	"initialSyncLabel": {
 		"message": "Thunderbird indításkor összehangolási futtatása"
-	},
-	"initialSyncAccesskey": {
-		"message": "f"
 	},
 	"initialSyncDelayLabel": {
 		"message": "Késlelteti a kezdeti kérelmeket (másodperc):"
@@ -4872,17 +4770,11 @@
 	"decodeReportLabel": {
 		"message": "Megfejt webcímek REPORT kérdésekért"
 	},
-	"decodeReportAccesskey": {
-		"message": "M"
-	},
 	"miscEmailGroupboxLabel": {
 		"message": "Üzenet küldés"
 	},
 	"preferEmailPrefLabel": {
 		"message": "Inkább e-mail címek jelölt részesített"
-	},
-	"preferEmailPrefAccesskey": {
-		"message": "r"
 	},
 	"preferEmailPrefWarn": {
 		"message": "Ha e-mail cím nincs jelölve „PREFerált”, az üzenetet küldi, hogy minden névjegy e-mail címét."
@@ -4890,14 +4782,8 @@
 	"warnEmptyEmailsLabel": {
 		"message": "Figyelmeztessen, amikor e-mail cím nélkül üzenetet próbálok létrehozni"
 	},
-	"warnEmptyEmailsAccesskey": {
-		"message": "F"
-	},
 	"useOnlyEmailLabel": {
 		"message": "Csak az e-mail címek használata"
-	},
-	"useOnlyEmailAccesskey": {
-		"message": "C"
 	},
 	"attachVCardWarn": {
 		"message": "Ahhoz, hogy automatikusan hozzáadni egy vCard e-mailjeit, válasszon ki egy vCard az egyes postafiókhoz. Ha be van kapcsolva, névjegyzéek csatolja ezt vCard minden kimenő postafiókból."
@@ -4956,26 +4842,14 @@
 	"bday.conf.label": {
 		"message": "Születésnap"
 	},
-	"bday.conf.accesskey": {
-		"message": "S"
-	},
 	"anniversary.conf.label": {
 		"message": "Évforduló (csak vCard 4.0)"
-	},
-	"anniversary.conf.accesskey": {
-		"message": "v"
 	},
 	"deathdate.conf.label": {
 		"message": "Haláleset ideje (csak vCard 4.0)"
 	},
-	"deathdate.conf.accesskey": {
-		"message": "H"
-	},
 	"eventsLabel": {
 		"message": "Események"
-	},
-	"eventsAccesskey": {
-		"message": "E"
 	},
 	"gender.conf.label": {
 		"message": "Nem (csak vCard 4.0)"
@@ -5007,14 +4881,8 @@
 	"showPopupOnStartupLabel": {
 		"message": "Indításkor felugró ablakban megjelenítése"
 	},
-	"showPopupOnStartupAccesskey": {
-		"message": "f"
-	},
 	"showPeriodicPopupLabel": {
 		"message": "Napi felugró ablak megjelenítése"
-	},
-	"showPeriodicPopupAccesskey": {
-		"message": "a"
 	},
 	"periodicPopupTimeLabel": {
 		"message": "Idő megjelenítése (óó:pp):"
@@ -5024,9 +4892,6 @@
 	},
 	"showPopupEvenIfNoBirthdayLabel": {
 		"message": "A felugró ablakok megjelenítése amikor az évfordulók listája üres"
-	},
-	"showPopupEvenIfNoBirthdayAccesskey": {
-		"message": "ü"
 	},
 	"remindViaLightningGroupboxLabel": {
 		"message": "Thunderbird Lightning naptár kiegészítő keresztül emlékeztetés"
@@ -5039,9 +4904,6 @@
 	},
 	"syncWithLightningOnStartupLabel": {
 		"message": "Naptár összehangolása indításkor"
-	},
-	"syncWithLightningOnStartupAccesskey": {
-		"message": "i"
 	},
 	"calendarEntryTitleLabel": {
 		"message": "Naptári esemény címe:"
@@ -5061,9 +4923,6 @@
 	"calendarRepeatingEventLabel": {
 		"message": "Ismétlődő esemény"
 	},
-	"calendarRepeatingEventAccesskey": {
-		"message": "s"
-	},
 	"calendarEntryTimeLabel": {
 		"message": "Naptár esemény idő (óó:pp):"
 	},
@@ -5072,9 +4931,6 @@
 	},
 	"calendarEntryWholeDayLabel": {
 		"message": "Naptár esemény egész nap"
-	},
-	"calendarEntryWholeDayAccesskey": {
-		"message": "e"
 	},
 	"calendarEntryAlarmLabel": {
 		"message": "Riasztás(ok) sz. óráig naptári eseményekhez (Példa: 4,+1):"
@@ -5835,9 +5691,6 @@
 	"viewResultEditionLabel": {
 		"message": "Eredmény megtekintése"
 	},
-	"viewResultEditionAccesskey": {
-		"message": "r"
-	},
 	"previousEditButton.tooltip": {
 		"message": "Előző"
 	},
@@ -5883,20 +5736,11 @@
 	"moreEditionLabel": {
 		"message": "Több megjelenítése"
 	},
-	"moreEditionAccesskey": {
-		"message": "T"
-	},
 	"lessEditionLabel": {
 		"message": "Kevesebb megjelenítése"
 	},
-	"lessEditionAccesskey": {
-		"message": "K"
-	},
 	"mergeAllEditionLabel": {
 		"message": "Az összes egyesítése"
-	},
-	"mergeAllEditionAccesskey": {
-		"message": "A"
 	},
 	"formatAllEditionLabel": {
 		"message": "Az összes formázása"
@@ -5906,9 +5750,6 @@
 	},
 	"undoAllEditionLabel": {
 		"message": "Az összes visszavonása"
-	},
-	"undoAllEditionAccesskey": {
-		"message": "v"
 	},
 	"formatEditionLabel": {
 		"message": "Formátum"
@@ -5951,9 +5792,6 @@
 	},
 	"convertVCardsTooltip": {
 		"message": "Egyes névjegyek vCard verziója eltér a névjegytár vCard verziójától, ez a gomb átalakíthatja ezeket a névjegyeket."
-	},
-	"convertVCardsAccesskey": {
-		"message": "v"
 	},
 	"wdw_findDuplicatesTitle": {
 		"message": "Ismétlődő névjegyet ($P1$)",
@@ -6016,26 +5854,14 @@
 	"refreshLogEditionLabel": {
 		"message": "Frissítés"
 	},
-	"refreshLogEditionAccesskey": {
-		"message": "F"
-	},
 	"flushLogEditionLabel": {
 		"message": "Lista törlése"
-	},
-	"flushLogEditionAccesskey": {
-		"message": "L"
 	},
 	"clipboardLogEditionLabel": {
 		"message": "Másolás a vágólapra"
 	},
-	"clipboardLogEditionAccesskey": {
-		"message": "v"
-	},
 	"cancelLogEditionLabel": {
 		"message": "Rendben"
-	},
-	"cancelLogEditionAccesskey": {
-		"message": "R"
 	},
 	"wdw_mergeCardsTitle": {
 		"message": "Névjegyek egyesítése"
@@ -6064,6 +5890,30 @@
 	"wdw_cardbookConfigurationEditFieldTitle": {
 		"message": "Átalakítási függvény kijelölése"
 	},
+	"ContainsOperator": {
+		"message": "tartalmazza"
+	},
+	"DoesntContainOperator": {
+		"message": "nem tartalmazza"
+	},
+	"IsOperator": {
+		"message": "="
+	},
+	"IsntOperator": {
+		"message": "nem"
+	},
+	"BeginsWithOperator": {
+		"message": "kezdete"
+	},
+	"EndsWithOperator": {
+		"message": "vége"
+	},
+	"IsEmptyOperator": {
+		"message": "üres"
+	},
+	"IsntEmptyOperator": {
+		"message": "nem üres"
+	},
 	"uppercaseLabel": {
 		"message": "Nagybetű"
 	},
@@ -6072,5 +5922,821 @@
 	},
 	"capitalizationLabel": {
 		"message": "Nagybetűs írás"
+	},
+	"region-name-ad": {
+		"message": "Andorra"
+	},
+	"region-name-ae": {
+		"message": "Egyesült Arab Emírségek"
+	},
+	"region-name-af": {
+		"message": "Afganisztán"
+	},
+	"region-name-ai": {
+		"message": "Anguilla"
+	},
+	"region-name-al": {
+		"message": "Albánia"
+	},
+	"region-name-ag": {
+		"message": "Antigua és Barbuda"
+	},
+	"region-name-am": {
+		"message": "Örményország"
+	},
+	"region-name-ar": {
+		"message": "Argentína"
+	},
+	"region-name-aq": {
+		"message": "Antarktisz"
+	},
+	"region-name-ao": {
+		"message": "Angola"
+	},
+	"region-name-at": {
+		"message": "Ausztria"
+	},
+	"region-name-az": {
+		"message": "Azerbajdzsán"
+	},
+	"region-name-ba": {
+		"message": "Bosznia-Hercegovina"
+	},
+	"region-name-bb": {
+		"message": "Barbados"
+	},
+	"region-name-as": {
+		"message": "Amerikai Szamoa"
+	},
+	"region-name-au": {
+		"message": "Ausztrália"
+	},
+	"region-name-bd": {
+		"message": "Banglades"
+	},
+	"region-name-be": {
+		"message": "Belgium"
+	},
+	"region-name-aw": {
+		"message": "Aruba"
+	},
+	"region-name-bf": {
+		"message": "Burkina Faso"
+	},
+	"region-name-bm": {
+		"message": "Bermuda"
+	},
+	"region-name-bj": {
+		"message": "Benin"
+	},
+	"region-name-bg": {
+		"message": "Bulgária"
+	},
+	"region-name-bi": {
+		"message": "Burundi"
+	},
+	"region-name-bh": {
+		"message": "Bahrein"
+	},
+	"region-name-bl": {
+		"message": "Saint Barthélemy"
+	},
+	"region-name-bn": {
+		"message": "Brunei"
+	},
+	"region-name-bo": {
+		"message": "Bolívia"
+	},
+	"region-name-br": {
+		"message": "Brazília"
+	},
+	"region-name-bq": {
+		"message": "Bonaire, Saint Eustasius és Saba"
+	},
+	"region-name-bt": {
+		"message": "Bhután"
+	},
+	"region-name-bs": {
+		"message": "Bahamák"
+	},
+	"region-name-bz": {
+		"message": "Belize"
+	},
+	"region-name-ca": {
+		"message": "Kanada"
+	},
+	"region-name-cc": {
+		"message": "Cocos- (Keeling) szigetek"
+	},
+	"region-name-by": {
+		"message": "Fehéroroszország"
+	},
+	"region-name-cd": {
+		"message": "Kongó (Kinshasa)"
+	},
+	"region-name-cf": {
+		"message": "Közép-Afrikai Köztársaság"
+	},
+	"region-name-bv": {
+		"message": "Bouvet-sziget"
+	},
+	"region-name-bw": {
+		"message": "Botswana"
+	},
+	"region-name-cl": {
+		"message": "Chile"
+	},
+	"region-name-ci": {
+		"message": "Elefántcsontpart"
+	},
+	"region-name-ch": {
+		"message": "Svájc"
+	},
+	"region-name-cm": {
+		"message": "Kamerun"
+	},
+	"region-name-ck": {
+		"message": "Cook-szigetek"
+	},
+	"region-name-cg": {
+		"message": "Kongó (Brazzaville)"
+	},
+	"region-name-cn": {
+		"message": "Kína"
+	},
+	"region-name-cp": {
+		"message": "Clipperton sziget"
+	},
+	"region-name-co": {
+		"message": "Kolumbia"
+	},
+	"region-name-cr": {
+		"message": "Costa Rica"
+	},
+	"region-name-cz": {
+		"message": "Cseh Köztársaság"
+	},
+	"region-name-cy": {
+		"message": "Ciprus"
+	},
+	"region-name-cx": {
+		"message": "Karácsony-szigetek"
+	},
+	"region-name-cv": {
+		"message": "Zöldfoki-szigetek"
+	},
+	"region-name-cu": {
+		"message": "Kuba"
+	},
+	"region-name-cw": {
+		"message": "Curaçao"
+	},
+	"region-name-de": {
+		"message": "Németország"
+	},
+	"region-name-dg": {
+		"message": "Diego Garcia"
+	},
+	"region-name-dk": {
+		"message": "Dánia"
+	},
+	"region-name-dj": {
+		"message": "Dzsibuti"
+	},
+	"region-name-dm": {
+		"message": "Dominikai Közösség"
+	},
+	"region-name-ec": {
+		"message": "Ecuador"
+	},
+	"region-name-dz": {
+		"message": "Algéria"
+	},
+	"region-name-do": {
+		"message": "Dominikai Köztársaság"
+	},
+	"region-name-ee": {
+		"message": "Észtország"
+	},
+	"region-name-eg": {
+		"message": "Egyiptom"
+	},
+	"region-name-eh": {
+		"message": "Nyugat-Szahara"
+	},
+	"region-name-et": {
+		"message": "Etiópia"
+	},
+	"region-name-er": {
+		"message": "Eritrea"
+	},
+	"region-name-es": {
+		"message": "Spanyolország"
+	},
+	"region-name-fi": {
+		"message": "Finnország"
+	},
+	"region-name-fj": {
+		"message": "Fidzsi-szigetek"
+	},
+	"region-name-fm": {
+		"message": "Mikronézia, Államszövetség"
+	},
+	"region-name-fk": {
+		"message": "Falkland-szigetek"
+	},
+	"region-name-fo": {
+		"message": "Feröer-szigetek"
+	},
+	"region-name-ge": {
+		"message": "Grúzia"
+	},
+	"region-name-gb": {
+		"message": "Egyesült Királyság"
+	},
+	"region-name-gd": {
+		"message": "Grenada"
+	},
+	"region-name-fr": {
+		"message": "Franciaország"
+	},
+	"region-name-ga": {
+		"message": "Gabon"
+	},
+	"region-name-gf": {
+		"message": "Francia Guiana"
+	},
+	"region-name-gl": {
+		"message": "Grönland"
+	},
+	"region-name-gm": {
+		"message": "Gambia"
+	},
+	"region-name-gi": {
+		"message": "Gibraltár"
+	},
+	"region-name-gg": {
+		"message": "Guernsey"
+	},
+	"region-name-gh": {
+		"message": "Ghána"
+	},
+	"region-name-gn": {
+		"message": "Guinea"
+	},
+	"region-name-gp": {
+		"message": "Guadeloupe"
+	},
+	"region-name-gr": {
+		"message": "Görögország"
+	},
+	"region-name-gq": {
+		"message": "Egyenlítői Guinea"
+	},
+	"region-name-gt": {
+		"message": "Guatemala"
+	},
+	"region-name-gw": {
+		"message": "Guinea-Bissau"
+	},
+	"region-name-hk": {
+		"message": "Hong Kong"
+	},
+	"region-name-gu": {
+		"message": "Guam"
+	},
+	"region-name-gs": {
+		"message": "Dél-Georgia és Déli Sandwich-szigetek"
+	},
+	"region-name-gy": {
+		"message": "Guyana"
+	},
+	"region-name-hm": {
+		"message": "Heard-sziget és McDonald-szigetek"
+	},
+	"region-name-ht": {
+		"message": "Haiti"
+	},
+	"region-name-hr": {
+		"message": "Horvátország"
+	},
+	"region-name-hn": {
+		"message": "Honduras"
+	},
+	"region-name-in": {
+		"message": "India"
+	},
+	"region-name-il": {
+		"message": "Izrael"
+	},
+	"region-name-im": {
+		"message": "Man szigete"
+	},
+	"region-name-ie": {
+		"message": "Írország"
+	},
+	"region-name-hu": {
+		"message": "Magyarország"
+	},
+	"region-name-id": {
+		"message": "Indonézia"
+	},
+	"region-name-io": {
+		"message": "Britindiai óceáni terület"
+	},
+	"region-name-ir": {
+		"message": "Irán"
+	},
+	"region-name-is": {
+		"message": "Izland"
+	},
+	"region-name-iq": {
+		"message": "Irak"
+	},
+	"region-name-je": {
+		"message": "Jersey"
+	},
+	"region-name-jp": {
+		"message": "Japán"
+	},
+	"region-name-it": {
+		"message": "Olaszország"
+	},
+	"region-name-ke": {
+		"message": "Kenya"
+	},
+	"region-name-jo": {
+		"message": "Jordánia"
+	},
+	"region-name-jm": {
+		"message": "Jamaica"
+	},
+	"region-name-kg": {
+		"message": "Kirgizisztán"
+	},
+	"region-name-ki": {
+		"message": "Kiribati"
+	},
+	"region-name-kh": {
+		"message": "Kambodzsa"
+	},
+	"region-name-km": {
+		"message": "Comoro-szigetek"
+	},
+	"region-name-kn": {
+		"message": "Saint Kitts és Nevis"
+	},
+	"region-name-ky": {
+		"message": "Kajmán-szigetek"
+	},
+	"region-name-kp": {
+		"message": "Észak-Korea"
+	},
+	"region-name-kr": {
+		"message": "Dél-Korea"
+	},
+	"region-name-kw": {
+		"message": "Kuvait"
+	},
+	"region-name-kz": {
+		"message": "Kazahsztán"
+	},
+	"region-name-la": {
+		"message": "Laosz"
+	},
+	"region-name-lb": {
+		"message": "Libanon"
+	},
+	"region-name-lc": {
+		"message": "Saint Lucia"
+	},
+	"region-name-li": {
+		"message": "Liechtenstein"
+	},
+	"region-name-lk": {
+		"message": "Sri Lanka"
+	},
+	"region-name-lr": {
+		"message": "Liberia"
+	},
+	"region-name-lu": {
+		"message": "Luxemburg"
+	},
+	"region-name-lv": {
+		"message": "Lettország"
+	},
+	"region-name-ls": {
+		"message": "Lesotho"
+	},
+	"region-name-ly": {
+		"message": "Líbia"
+	},
+	"region-name-lt": {
+		"message": "Litvánia"
+	},
+	"region-name-mc": {
+		"message": "Monaco"
+	},
+	"region-name-md": {
+		"message": "Moldova"
+	},
+	"region-name-ma": {
+		"message": "Marokkó"
+	},
+	"region-name-me": {
+		"message": "Montenegró"
+	},
+	"region-name-mf": {
+		"message": "Saint Martin"
+	},
+	"region-name-mg": {
+		"message": "Madagaszkár"
+	},
+	"region-name-mh": {
+		"message": "Marshall-szigetek"
+	},
+	"region-name-mk": {
+		"message": "Macedónia"
+	},
+	"region-name-ml": {
+		"message": "Mali"
+	},
+	"region-name-mm": {
+		"message": "Myanmar"
+	},
+	"region-name-mn": {
+		"message": "Mongólia"
+	},
+	"region-name-mo": {
+		"message": "Makaó"
+	},
+	"region-name-mp": {
+		"message": "Északi Mariana-szigetek"
+	},
+	"region-name-mt": {
+		"message": "Málta"
+	},
+	"region-name-mu": {
+		"message": "Mauritius"
+	},
+	"region-name-mr": {
+		"message": "Mauritánia"
+	},
+	"region-name-ms": {
+		"message": "Montserrat"
+	},
+	"region-name-mq": {
+		"message": "Martinique"
+	},
+	"region-name-mv": {
+		"message": "Maldív-szigetek"
+	},
+	"region-name-mw": {
+		"message": "Malawi"
+	},
+	"region-name-my": {
+		"message": "Malajzia"
+	},
+	"region-name-mx": {
+		"message": "Mexikó"
+	},
+	"region-name-mz": {
+		"message": "Mozambik"
+	},
+	"region-name-na": {
+		"message": "Namíbia"
+	},
+	"region-name-nc": {
+		"message": "Új-Kaledónia"
+	},
+	"region-name-ne": {
+		"message": "Niger"
+	},
+	"region-name-nf": {
+		"message": "Norfolk-sziget"
+	},
+	"region-name-ng": {
+		"message": "Nigéria"
+	},
+	"region-name-ni": {
+		"message": "Nicaragua"
+	},
+	"region-name-nl": {
+		"message": "Hollandia"
+	},
+	"region-name-no": {
+		"message": "Norvégia"
+	},
+	"region-name-np": {
+		"message": "Nepál"
+	},
+	"region-name-nr": {
+		"message": "nauru"
+	},
+	"region-name-pk": {
+		"message": "Pakisztán"
+	},
+	"region-name-pl": {
+		"message": "Lengyelország"
+	},
+	"region-name-nz": {
+		"message": "Új-Zéland"
+	},
+	"region-name-ph": {
+		"message": "Fülöp-szigetek"
+	},
+	"region-name-nu": {
+		"message": "Niue"
+	},
+	"region-name-om": {
+		"message": "Omán"
+	},
+	"region-name-pe": {
+		"message": "Peru"
+	},
+	"region-name-pa": {
+		"message": "Panama"
+	},
+	"region-name-pf": {
+		"message": "Francia Polinézia"
+	},
+	"region-name-pg": {
+		"message": "Pápua Új-Guinea"
+	},
+	"region-name-pm": {
+		"message": "Saint Pierre és Miquelon"
+	},
+	"region-name-pn": {
+		"message": "Pitcairn-szigetek"
+	},
+	"region-name-pr": {
+		"message": "Puerto Rico"
+	},
+	"region-name-pt": {
+		"message": "Portugália"
+	},
+	"region-name-pw": {
+		"message": "Palau"
+	},
+	"region-name-qm": {
+		"message": "Midway-atoll"
+	},
+	"region-name-py": {
+		"message": "Paraguay"
+	},
+	"region-name-qa": {
+		"message": "Katar"
+	},
+	"region-name-qs": {
+		"message": "Bassas da India"
+	},
+	"region-name-qu": {
+		"message": "Juan de Nova sziget"
+	},
+	"region-name-qw": {
+		"message": "Wake-sziget"
+	},
+	"region-name-qx": {
+		"message": "Glorioso-szigetek"
+	},
+	"region-name-rs": {
+		"message": "Szerbia"
+	},
+	"region-name-ro": {
+		"message": "Románia"
+	},
+	"region-name-qz": {
+		"message": "Akrotíri"
+	},
+	"region-name-re": {
+		"message": "Reunion"
+	},
+	"region-name-rw": {
+		"message": "Ruanda"
+	},
+	"region-name-ru": {
+		"message": "Oroszország"
+	},
+	"region-name-sa": {
+		"message": "Szaúd-Arábia"
+	},
+	"region-name-sb": {
+		"message": "Salamon-szigetek"
+	},
+	"region-name-sc": {
+		"message": "Seychell-szigetek"
+	},
+	"region-name-sd": {
+		"message": "Szudán"
+	},
+	"region-name-se": {
+		"message": "Svédország"
+	},
+	"region-name-sg": {
+		"message": "Szingapúr"
+	},
+	"region-name-sh": {
+		"message": "Szent Ilona, Ascension és Tristan da Cunha"
+	},
+	"region-name-si": {
+		"message": "Szlovénia"
+	},
+	"region-name-sk": {
+		"message": "Szlovákia"
+	},
+	"region-name-sl": {
+		"message": "Sierra Leone"
+	},
+	"region-name-sn": {
+		"message": "Szenegál"
+	},
+	"region-name-sm": {
+		"message": "San Marino"
+	},
+	"region-name-ss": {
+		"message": "Dél Szudán"
+	},
+	"region-name-so": {
+		"message": "Szomália"
+	},
+	"region-name-sr": {
+		"message": "Suriname"
+	},
+	"region-name-sx": {
+		"message": "Saint Martin"
+	},
+	"region-name-st": {
+		"message": "Sao Tome és Principe"
+	},
+	"region-name-sv": {
+		"message": "El Salvador"
+	},
+	"region-name-sy": {
+		"message": "Szíria"
+	},
+	"region-name-sz": {
+		"message": "Szváziföld"
+	},
+	"region-name-tc": {
+		"message": "Turks és Caicos-szigetek"
+	},
+	"region-name-td": {
+		"message": "Csád"
+	},
+	"region-name-tg": {
+		"message": "Togo"
+	},
+	"region-name-th": {
+		"message": "Thaiföld"
+	},
+	"region-name-tf": {
+		"message": "Francia déli és antarktiszi területek"
+	},
+	"region-name-tj": {
+		"message": "Tádzsikisztán"
+	},
+	"region-name-tk": {
+		"message": "Tokelau"
+	},
+	"region-name-tl": {
+		"message": "Timor-Leste"
+	},
+	"region-name-tr": {
+		"message": "Törökország"
+	},
+	"region-name-tn": {
+		"message": "Tunézia"
+	},
+	"region-name-to": {
+		"message": "Tonga"
+	},
+	"region-name-tm": {
+		"message": "Türkmenisztán"
+	},
+	"region-name-tt": {
+		"message": "Trinidad és Tobago"
+	},
+	"region-name-tv": {
+		"message": "Tuvalu"
+	},
+	"region-name-tw": {
+		"message": "Tajvan"
+	},
+	"region-name-tz": {
+		"message": "Tanzánia"
+	},
+	"region-name-ua": {
+		"message": "Ukrajna"
+	},
+	"region-name-ug": {
+		"message": "Uganda"
+	},
+	"region-name-us": {
+		"message": "Egyesült Államok"
+	},
+	"region-name-uy": {
+		"message": "Uruguay"
+	},
+	"region-name-va": {
+		"message": "Vatikánváros"
+	},
+	"region-name-uz": {
+		"message": "Üzbegisztán"
+	},
+	"region-name-vc": {
+		"message": "Saint Vincent és Grenadine-szigetek"
+	},
+	"region-name-vg": {
+		"message": "Virgin-szigetek (brit)"
+	},
+	"region-name-vi": {
+		"message": "Virgin-szigetek (USA)"
+	},
+	"region-name-vu": {
+		"message": "Vanuatu"
+	},
+	"region-name-ve": {
+		"message": "Venezuela"
+	},
+	"region-name-vn": {
+		"message": "Vietnam"
+	},
+	"region-name-wf": {
+		"message": "Wallis és Futuna"
+	},
+	"region-name-ws": {
+		"message": "Szamoa"
+	},
+	"region-name-xa": {
+		"message": "Ashmore és Cartier szigetek"
+	},
+	"region-name-xb": {
+		"message": "Baker-sziget"
+	},
+	"region-name-xc": {
+		"message": "Korall-tengeri szigetek"
+	},
+	"region-name-xd": {
+		"message": "Dekélia"
+	},
+	"region-name-xe": {
+		"message": "Európa-sziget"
+	},
+	"region-name-xh": {
+		"message": "Howland-sziget"
+	},
+	"region-name-xg": {
+		"message": "Gázai övezet"
+	},
+	"region-name-xj": {
+		"message": "Jan Mayen-sziget"
+	},
+	"region-name-xk": {
+		"message": "Koszovó"
+	},
+	"region-name-xl": {
+		"message": "Palmyra-atoll"
+	},
+	"region-name-xp": {
+		"message": "Paracel-szigetek"
+	},
+	"region-name-xm": {
+		"message": "Kingman-zátony"
+	},
+	"region-name-xq": {
+		"message": "Jarvis-sziget"
+	},
+	"region-name-xr": {
+		"message": "Svalbard"
+	},
+	"region-name-xs": {
+		"message": "Spratly-szigetek"
+	},
+	"region-name-xt": {
+		"message": "Tromelin-sziget"
+	},
+	"region-name-xv": {
+		"message": "Navassa-sziget"
+	},
+	"region-name-yt": {
+		"message": "Mayotte"
+	},
+	"region-name-ye": {
+		"message": "Jemen"
+	},
+	"region-name-xw": {
+		"message": "Nyugati part"
+	},
+	"region-name-za": {
+		"message": "Dél-Afrikai Köztársaság"
+	},
+	"region-name-xu": {
+		"message": "Johnston atoll"
+	},
+	"region-name-zw": {
+		"message": "Zimbabwe"
+	},
+	"region-name-zm": {
+		"message": "Zambia"
 	}
 }

@@ -1,47 +1,29 @@
+import { cardbookHTMLTools } from "../cardbookHTMLTools.mjs";
+import { cardbookHTMLRichContext } from "../cardbookHTMLRichContext.mjs";
+import { cardbookHTMLUtils } from "../cardbookHTMLUtils.mjs";
+import { cardbookNewPreferences } from "../preferences/cardbookNewPreferences.mjs";
+import { PhoneNumber } from "../formautofill/phonenumberutils/PhoneNumber.mjs";
+
 if ("undefined" == typeof(wdw_formatData)) {
-	var { Services } = ChromeUtils.import("resource://gre/modules/Services.jsm");
-	var { XPCOMUtils } = ChromeUtils.import("resource://gre/modules/XPCOMUtils.jsm");
-	var { cardbookRepository } = ChromeUtils.import("chrome://cardbook/content/cardbookRepository.js");
-	XPCOMUtils.defineLazyModuleGetter(this, "PhoneNumber", "chrome://cardbook/content/formautofill/phonenumberutils/PhoneNumber.jsm");
 
 	var wdw_formatData = {
 		
+        dirPrefId: "",
+        allColumns: {},
+        adrElements: [],
+        allCustomFields: {},
         countries: [],
 		resfreshTime: 200,
 		toDo: 0,
 		rowDone: 0,
-		lines: 0,
 		scopeName: "",
 		cardsLoaded: false,
-		abort: false,
-
-		getFieldTypeValue: function () {
-			let field = document.getElementById('fieldMenulist').value;
-			if (cardbookRepository.allColumns.personal.includes(field) || cardbookRepository.allColumns.org.includes(field) || cardbookRepository.adrElements.includes(field)) {
-				return "string";
-			} else {
-				let personalCB = cardbookRepository.customFields.personal.filter(x => x[0] == field);
-				let orgCB = cardbookRepository.customFields.org.filter(x => x[0] == field);
-				if (personalCB.length || orgCB.length) {
-					return "custom";
-				} else {
-					let orgStructure = cardbookRepository.cardbookPreferences.getStringPref("extensions.cardbook.orgStructure");
-					let orgStructureArray = cardbookRepository.cardbookUtils.unescapeArray(cardbookRepository.cardbookUtils.escapeString(orgStructure).split(";"));
-					if (orgStructureArray.includes(field.replace(/^org\./, ""))) {
-						return "customOrg";
-					}
-				}
-			}
-			return "";
-		},
+		winId: 0,
+		displayId: 0,
 
 		loadCountries: async function () {
-			const loc = new Localization(["toolkit/intl/regionNames.ftl"]);
-			for (let code of cardbookRepository.countriesList) {
-				let country = await loc.formatValue("region-name-" + code);
-				wdw_formatData.countries.push([code, country]);
-			}
-			cardbookRepository.cardbookUtils.sortMultipleArrayByString(wdw_formatData.countries,1,1);
+            wdw_formatData.countries = await messenger.runtime.sendMessage({query: "cardbook.getCountries", useCodeValues: true});
+            cardbookHTMLUtils.sortMultipleArrayByString(wdw_formatData.countries,1,1);
 		},
 
 		getNewFormat: function (aId, aValue, aType, aParam) {
@@ -50,18 +32,20 @@ if ("undefined" == typeof(wdw_formatData)) {
 					let country = "";
 					if (aParam && aParam.country) {
 						country = aParam.country;
-					} else {
-						country = document.getElementById(aId + '.country.menulist').value;
+					} else if (document.getElementById(aId + '.country')) {
+					 	country = document.getElementById(aId + '.country').value;
 					}
-					let newTel = PhoneNumber.Parse(aValue, country);
+					let newTel = PhoneNumber.Parse(aValue, country.toUpperCase());
 					if (newTel && newTel.internationalFormat) {
 						return newTel.internationalFormat;
 					}
 					break;
 				case "email":
-					var atPos = aValue.lastIndexOf("@");
+					aValue = aValue.toLowerCase();
+					aValue = aValue.replace("'", "").replace('"', "");
+					let atPos = aValue.lastIndexOf("@");
 					if (atPos > 0 && atPos + 1 < aValue.length) {
-						return aValue.toLowerCase();
+						return aValue;
 					}
 					break;
 			}
@@ -70,184 +54,88 @@ if ("undefined" == typeof(wdw_formatData)) {
 		displayCardLineFields: function (aCardLine) {
             // [index, aCard.cbid, aCard.fn, field source, field modified]
 			let table = document.getElementById('fieldsTable');
-			let row = cardbookElementTools.addHTMLTR(table, `${aCardLine[0]}.row`, {"align": "center", "class": "rowCount"});
-            let fnData = cardbookElementTools.addHTMLTD(row, `${aCardLine[0]}.fnData`);
-            wdw_formatData.createLabel(fnData, `${aCardLine[0]}.fn`, aCardLine[2]);
-            let valueData = cardbookElementTools.addHTMLTD(row, `${aCardLine[0]}.valueData`);
-            wdw_formatData.createTextbox(valueData, `${aCardLine[0]}.value`, aCardLine[4], 'fields');
-            let formatData = cardbookElementTools.addHTMLTD(row, `${aCardLine[0]}.formatData`);
+			let row = cardbookHTMLTools.addHTMLTR(table, `${aCardLine[0]}.row`);
+            let fnData = cardbookHTMLTools.addHTMLTD(row, `${aCardLine[0]}.fnData`);
+            cardbookHTMLTools.addHTMLLABEL(fnData, `${aCardLine[0]}.fn`, aCardLine[2]);
+            let valueData = cardbookHTMLTools.addHTMLTD(row, `${aCardLine[0]}.valueData`);
+            wdw_formatData.createTextbox(valueData, `${aCardLine[0]}.value`, aCardLine[4], 'fields', {'valuetype': 'fields'});
+            let formatData = cardbookHTMLTools.addHTMLTD(row, `${aCardLine[0]}.formatData`);
             wdw_formatData.createFormatFieldButton(formatData, `${aCardLine[0]}.format`);
-            let undoData = cardbookElementTools.addHTMLTD(row, `${aCardLine[0]}.undoData`);
+            let undoData = cardbookHTMLTools.addHTMLTD(row, `${aCardLine[0]}.undoData`);
             wdw_formatData.createUndoButton(undoData, `${aCardLine[0]}.undo`);
-            let cbidData = cardbookElementTools.addHTMLTD(row, `${aCardLine[0]}.cbidData`);
-            wdw_formatData.createHiddenLabel(cbidData, `${aCardLine[0]}.cbid`, aCardLine[1]);
-            let sourceValueData = cardbookElementTools.addHTMLTD(row, `${aCardLine[0]}.sourceValueData`);
-            wdw_formatData.createHiddenLabel(sourceValueData, `${aCardLine[0]}.sourceValue`, aCardLine[3]);
+            let cbidData = cardbookHTMLTools.addHTMLTD(row, `${aCardLine[0]}.cbidData`);
+            cardbookHTMLTools.addHTMLLABEL(cbidData, `${aCardLine[0]}.cbid`, aCardLine[1], {class: "hidden"});
+            let sourceValueData = cardbookHTMLTools.addHTMLTD(row, `${aCardLine[0]}.sourceValueData`);
+            cardbookHTMLTools.addHTMLLABEL(sourceValueData, `${aCardLine[0]}.sourceValue`, aCardLine[3], {class: "hidden"});
         },
 
-		loadCardFields: async function (aCard) {
-			if (wdw_formatData.abort) {
-				return
-			}
-			let field = document.getElementById('fieldMenulist').value;
-			let value = "";
-			let fieldType = wdw_formatData.getFieldTypeValue();
-
-			if (fieldType == "string") {
-				if (typeof aCard[field] !== 'undefined') {
-					value = aCard[field];
-				}
-				wdw_formatData.displayCardLineFields([wdw_formatData.lines, aCard.cbid, aCard.fn, value, value]);
-				wdw_formatData.lines++;
-				wdw_formatData.rowDone++;
-			} else if (fieldType == "custom") {
-				let tmpArray = aCard.others.filter( x => x.startsWith(field + ":"));
-				if (tmpArray.length) {
-					let regexp = new RegExp("^" + field + ":");
-					value = tmpArray[0].replace(regexp, "");
-				}
-				wdw_formatData.displayCardLineFields([wdw_formatData.lines, aCard.cbid, aCard.fn, value, value]);
-				wdw_formatData.lines++;
-				wdw_formatData.rowDone++;
-			} else if (fieldType == "customOrg") {
-				let orgStructure = cardbookRepository.cardbookPreferences.getStringPref("extensions.cardbook.orgStructure");
-				let orgStructureArray = cardbookRepository.cardbookUtils.unescapeArray(cardbookRepository.cardbookUtils.escapeString(orgStructure).split(";"));
-				let index = orgStructureArray.indexOf(field.replace(/^org\./, ""));
-				let orgValue = cardbookRepository.cardbookUtils.unescapeArray(cardbookRepository.cardbookUtils.escapeString(aCard.org).split(";"));
-				if (orgValue[index]) {
-					value = orgValue[index];
-				}
-				wdw_formatData.displayCardLineFields([wdw_formatData.lines, aCard.cbid, aCard.fn, value, value]);
-				wdw_formatData.lines++;
-				wdw_formatData.rowDone++;
-			}
-        },
-
-		displayCardLineTels: async function (aCardLine) {
+		displayCardLineTels: function (aCardLine) {
             // [index, aCard.cbid, aCard.fn, country, tel source, tel modified, index tel line]
 			let table = document.getElementById('fieldsTable');
-			let row = cardbookElementTools.addHTMLTR(table, `${aCardLine[0]}.row`, {"align": "center", "class": "rowCount"});
-            let fnData = cardbookElementTools.addHTMLTD(row, `${aCardLine[0]}.fnData`);
-            wdw_formatData.createLabel(fnData, `${aCardLine[0]}.fn`, aCardLine[2]);
-            let valueData = cardbookElementTools.addHTMLTD(row, `${aCardLine[0]}.valueData`);
-            wdw_formatData.createTextbox(valueData, `${aCardLine[0]}.value`, aCardLine[5], 'tel', {country: aCardLine[3]});
-            let countryData = cardbookElementTools.addHTMLTD(row, `${aCardLine[0]}.countryData`);
-            await wdw_formatData.createCountryList(countryData, `${aCardLine[0]}.country`, aCardLine[3]);
-            let formatData = cardbookElementTools.addHTMLTD(row, `${aCardLine[0]}.formatData`);
+			let row = cardbookHTMLTools.addHTMLTR(table, `${aCardLine[0]}.row`);
+            let fnData = cardbookHTMLTools.addHTMLTD(row, `${aCardLine[0]}.fnData`);
+            cardbookHTMLTools.addHTMLLABEL(fnData, `${aCardLine[0]}.fn`, aCardLine[2]);
+            let valueData = cardbookHTMLTools.addHTMLTD(row, `${aCardLine[0]}.valueData`);
+            wdw_formatData.createTextbox(valueData, `${aCardLine[0]}.value`, aCardLine[5], 'tel', {country: aCardLine[3].toUpperCase(), 'valuetype': 'tel'});
+            let countryData = cardbookHTMLTools.addHTMLTD(row, `${aCardLine[0]}.countryData`);
+            wdw_formatData.createCountryList(countryData, `${aCardLine[0]}.country`, aCardLine[3].toUpperCase());
+            let formatData = cardbookHTMLTools.addHTMLTD(row, `${aCardLine[0]}.formatData`);
             wdw_formatData.createFormatButton(formatData, `${aCardLine[0]}.format`);
-            let undoData = cardbookElementTools.addHTMLTD(row, `${aCardLine[0]}.undoData`);
+            let undoData = cardbookHTMLTools.addHTMLTD(row, `${aCardLine[0]}.undoData`);
             wdw_formatData.createUndoButton(undoData, `${aCardLine[0]}.undo`);
-            let cbidData = cardbookElementTools.addHTMLTD(row, `${aCardLine[0]}.cbidData`);
-            wdw_formatData.createHiddenLabel(cbidData, `${aCardLine[0]}.cbid`, aCardLine[1]);
-            let sourceValueData = cardbookElementTools.addHTMLTD(row, `${aCardLine[0]}.sourceValueData`);
-            wdw_formatData.createHiddenLabel(sourceValueData, `${aCardLine[0]}.sourceValue`, aCardLine[4]);
-            let indexData = cardbookElementTools.addHTMLTD(row, `${aCardLine[0]}.indexData`);
-            wdw_formatData.createHiddenLabel(indexData, `${aCardLine[0]}.index`, aCardLine[6]);
-        },
-
-		loadCardTels: async function (aCard) {
-			let country = await cardbookRepository.cardbookUtils.getCardRegion(aCard);
-            let i = 0;
-            for (let telLine of aCard.tel) {
-				if (wdw_formatData.abort) {
-					return
-				}
-				await wdw_formatData.displayCardLineTels([wdw_formatData.lines, aCard.cbid, aCard.fn, country.toLowerCase(), telLine[0][0], telLine[0][0], i]);
-				wdw_formatData.lines++;
-				i++;
-		    }
-			wdw_formatData.rowDone++;
+            let cbidData = cardbookHTMLTools.addHTMLTD(row, `${aCardLine[0]}.cbidData`);
+            cardbookHTMLTools.addHTMLLABEL(cbidData, `${aCardLine[0]}.cbid`, aCardLine[1], {class: "hidden"});
+            let sourceValueData = cardbookHTMLTools.addHTMLTD(row, `${aCardLine[0]}.sourceValueData`);
+            cardbookHTMLTools.addHTMLLABEL(sourceValueData, `${aCardLine[0]}.sourceValue`, aCardLine[4], {class: "hidden"});
+            let indexData = cardbookHTMLTools.addHTMLTD(row, `${aCardLine[0]}.indexData`);
+            cardbookHTMLTools.addHTMLLABEL(indexData, `${aCardLine[0]}.index`, aCardLine[6], {class: "hidden"});
         },
 
 		displayCardLineEmail: function (aCardLine) {
             // [index, aCard.cbid, aCard.fn, email source, email modified, index email line]
 			let table = document.getElementById('fieldsTable');
-			let row = cardbookElementTools.addHTMLTR(table, `${aCardLine[0]}.row`, {"align": "center", "class": "rowCount"});
-            let fnData = cardbookElementTools.addHTMLTD(row, `${aCardLine[0]}.fnData`);
-            wdw_formatData.createLabel(fnData, `${aCardLine[0]}.fn`, aCardLine[2]);
-            let valueData = cardbookElementTools.addHTMLTD(row, `${aCardLine[0]}.valueData`);
-            wdw_formatData.createTextbox(valueData, `${aCardLine[0]}.value`, aCardLine[4], 'email');
-            let formatData = cardbookElementTools.addHTMLTD(row, `${aCardLine[0]}.formatData`);
+			let row = cardbookHTMLTools.addHTMLTR(table, `${aCardLine[0]}.row`);
+            let fnData = cardbookHTMLTools.addHTMLTD(row, `${aCardLine[0]}.fnData`);
+            cardbookHTMLTools.addHTMLLABEL(fnData, `${aCardLine[0]}.fn`, aCardLine[2]);
+            let valueData = cardbookHTMLTools.addHTMLTD(row, `${aCardLine[0]}.valueData`);
+            wdw_formatData.createTextbox(valueData, `${aCardLine[0]}.value`, aCardLine[4], 'email', {'valuetype': 'email'});
+            let formatData = cardbookHTMLTools.addHTMLTD(row, `${aCardLine[0]}.formatData`);
             wdw_formatData.createFormatButton(formatData, `${aCardLine[0]}.format`);
-            let undoData = cardbookElementTools.addHTMLTD(row, `${aCardLine[0]}.undoData`);
+            let undoData = cardbookHTMLTools.addHTMLTD(row, `${aCardLine[0]}.undoData`);
             wdw_formatData.createUndoButton(undoData, `${aCardLine[0]}.undo`);
-            let cbidData = cardbookElementTools.addHTMLTD(row, `${aCardLine[0]}.cbidData`);
-            wdw_formatData.createHiddenLabel(cbidData, `${aCardLine[0]}.cbid`, aCardLine[1]);
-            let sourceValueData = cardbookElementTools.addHTMLTD(row, `${aCardLine[0]}.sourceValueData`);
-            wdw_formatData.createHiddenLabel(sourceValueData, `${aCardLine[0]}.sourceValue`, aCardLine[3]);
-            let indexData = cardbookElementTools.addHTMLTD(row, `${aCardLine[0]}.indexData`);
-            wdw_formatData.createHiddenLabel(indexData, `${aCardLine[0]}.index`, aCardLine[5]);
+            let cbidData = cardbookHTMLTools.addHTMLTD(row, `${aCardLine[0]}.cbidData`);
+            cardbookHTMLTools.addHTMLLABEL(cbidData, `${aCardLine[0]}.cbid`, aCardLine[1], {class: "hidden"});
+            let sourceValueData = cardbookHTMLTools.addHTMLTD(row, `${aCardLine[0]}.sourceValueData`);
+            cardbookHTMLTools.addHTMLLABEL(sourceValueData, `${aCardLine[0]}.sourceValue`, aCardLine[3], {class: "hidden"});
+            let indexData = cardbookHTMLTools.addHTMLTD(row, `${aCardLine[0]}.indexData`);
+            cardbookHTMLTools.addHTMLLABEL(indexData, `${aCardLine[0]}.index`, aCardLine[5], {class: "hidden"});
         },
 
-		loadCardEmails: async function (aCard) {
-			let i = 0;
-			for (let emailLine of aCard.email) {
-				if (wdw_formatData.abort) {
-					return
-				}
-				wdw_formatData.displayCardLineEmail([wdw_formatData.lines, aCard.cbid, aCard.fn, emailLine[0][0], emailLine[0][0], i]);
-				wdw_formatData.lines++;
-				i++;
-		    }
-			wdw_formatData.rowDone++;
-		},
-
-		prepareVariables: function () {
+		prepareVariables: async function () {
+			let win = await messenger.windows.getCurrent();
+			wdw_formatData.winId = win.id;
+			wdw_formatData.displayId++;
+			await messenger.runtime.sendMessage({query: "cardbook.processData.setDisplayId", winId: wdw_formatData.winId, displayId: wdw_formatData.displayId});
 			wdw_formatData.rowDone = 0;
-			wdw_formatData.lines = 0;
 			wdw_formatData.toDo = 0;
 			wdw_formatData.cardsLoaded = false;
         },
 
-		displayCards: function (aDirPrefId, aLoadFunction) {
-            cardbookElementTools.deleteTableRows('fieldsTable');
+		displayCards: async function (aFields) {
+            cardbookHTMLTools.deleteTableRows('fieldsTable');
 			wdw_formatData.waitForDisplay();
 
-			wdw_formatData.prepareVariables();
-			Services.tm.currentThread.dispatch({ run: function() {
-				if (aDirPrefId) {
-					let data = JSON.parse(JSON.stringify(cardbookRepository.cardbookDisplayCards[aDirPrefId].cards));
-					wdw_formatData.toDo = data.length;
-					for (let card of data) {
-						Services.tm.currentThread.dispatch({ run: async function() {
-							if (wdw_formatData.abort) {
-								return
-							}
-							await aLoadFunction(card);
-						}}, Components.interfaces.nsIEventTarget.DISPATCH_SYNC);
-					}
-					data = null;
-				} else {
-					let data = JSON.parse(JSON.stringify(cardbookRepository.cardbookCards));
-					for (let i in data) {
-						wdw_formatData.toDo++;
-					}
-					for (let i in data) {
-						Services.tm.currentThread.dispatch({ run: async function() {
-							if (wdw_formatData.abort) {
-								return
-							}
-							let card = data[i];
-							await aLoadFunction(card);
-						}}, Components.interfaces.nsIEventTarget.DISPATCH_SYNC);
-					}
-					data = null;
-				}
-				wdw_formatData.cardsLoaded = true;
-			}}, Components.interfaces.nsIEventTarget.DISPATCH_NORMAL);
+			await wdw_formatData.prepareVariables();
+			await messenger.runtime.sendMessage({query: "cardbook.formatData.getCards", dirPrefId: wdw_formatData.dirPrefId, fields: aFields, winId: wdw_formatData.winId, displayId: wdw_formatData.displayId});
 		},
 		
 		createTextbox: function (aTableData, aId, aValue, aType, aParam) {
-			let aTextbox = document.createElementNS("http://www.w3.org/1999/xhtml","html:input");
-			aTableData.appendChild(aTextbox);
-			aTextbox.setAttribute('id', aId);
-			aTextbox.setAttribute('value', aValue);
-			aTextbox.setAttribute('valuetype', aType);
+            let aTextbox = cardbookHTMLTools.addHTMLINPUT(aTableData, aId, aValue, aParam);
 			let validatedValue = "";
 			if (aType == "fields") {
 				if (aValue) {
 					let convertFunction = document.getElementById('convertFuntionMenulist').value;
-					validatedValue = cardbookRepository.cardbookUtils.convertField(convertFunction, aValue);
+					validatedValue = cardbookHTMLUtils.convertField(convertFunction, aValue);
 				}
 			} else {
 				validatedValue = wdw_formatData.getNewFormat(aId.replace(/.value$/, ""), aValue, aType, aParam);
@@ -261,9 +149,10 @@ if ("undefined" == typeof(wdw_formatData)) {
 				let validatedValue = "";
 				if (valuetype == "fields") {
 					let convertFunction = document.getElementById('convertFuntionMenulist').value;
-					validatedValue = cardbookRepository.cardbookUtils.convertField(convertFunction, this.value);
+					validatedValue = cardbookHTMLUtils.convertField(convertFunction, this.value);
 				} else {
-					validatedValue = wdw_formatData.getNewFormat(id, this.value, valuetype);
+					let country = this.getAttribute('country');
+					validatedValue = wdw_formatData.getNewFormat(id, this.value, valuetype, {"country": country});
 				}
 				if (validatedValue && this.value == validatedValue) {
                     this.setAttribute("class", "validated");
@@ -273,10 +162,10 @@ if ("undefined" == typeof(wdw_formatData)) {
 
 				let undoButton = document.getElementById(id + '.undo');
                 let sourceValue = document.getElementById(id + '.sourceValue');
-				if (sourceValue.value != this.value) {
-					undoButton.removeAttribute('disabled');
+				if (sourceValue.textContent != this.value) {
+					undoButton.disabled = false;
 				} else {
-					undoButton.setAttribute('disabled', 'true');
+					undoButton.disabled = true;
 				}
 
             };
@@ -284,136 +173,78 @@ if ("undefined" == typeof(wdw_formatData)) {
             return aTextbox
 		},
 
-        createLabel: function (aParent, aId, aValue) {
-			let aLabel = document.createXULElement('label');
-			aParent.appendChild(aLabel);
-			aLabel.setAttribute('id', aId);
-			aLabel.setAttribute('value', aValue);
-            return aLabel;
-		},
+		createCountryList: function (aTableData, aId, aValue) {
+			let aMenulist = cardbookHTMLTools.addHTMLSELECT(aTableData, aId, "");
+			let label = "";
+			if (aValue) {
+				label = messenger.i18n.getMessage("region-name-" + aValue);
+			}
+            let option = cardbookHTMLTools.addHTMLOPTION(aMenulist, "menulist_option_0", aValue, label, {"selected": true});
 
-        createHiddenLabel: function (aParent, aId, aValue) {
-			let aLabel = wdw_formatData.createLabel(aParent, aId, aValue);
-			aLabel.setAttribute('hidden', 'true');
-            return aLabel;
-		},
-
-		createCountryList: async function (aTableData, aId, aValue) {
-			let aMenulist = document.createXULElement('menulist');
-			aTableData.appendChild(aMenulist);
-			aMenulist.setAttribute('id', aId + '.menulist');
-			aMenulist.setAttribute('sizetopopup', 'none');
-			let aMenupopup = document.createXULElement('menupopup');
-			aMenulist.appendChild(aMenupopup);
-			aMenupopup.setAttribute('id', aId + '.menupopup');
-
-			const loc = new Localization(["toolkit/intl/regionNames.ftl"]);
-			let value = await loc.formatValue("region-name-" + aValue);
-			let menuItem = aMenulist.appendItem(value, aValue);
-			aMenupopup.appendChild(menuItem);
-			aMenulist.selectedIndex = 0;
-
-			async function fireButton(event) {
-				let menulist = document.getElementById(this.id.replace(/.menupopup$/, ".menulist"));
-				let value = menulist.value;
-				cardbookElementTools.deleteRows(this.id);
-				let j = 0;
-				var menuItemBlank = document.createXULElement("menuitem");
-				menuItemBlank.setAttribute("label", "");
-				menuItemBlank.setAttribute("value", "");
-				this.appendChild(menuItemBlank);
-				j++;
-				let found = false;
-				for (let i = 0; i < wdw_formatData.countries.length; i++) {
-					var menuItem = document.createXULElement("menuitem");
-					menuItem.setAttribute("label", wdw_formatData.countries[i][1]);
-					menuItem.setAttribute("value", wdw_formatData.countries[i][0]);
-					this.appendChild(menuItem);
-					if (!found && value != "" && wdw_formatData.countries[i][0] == value) {
-						defaultIndex=j;
-						found=true;
+			async function clickCountry(event) {
+				let menulistValue = this.value;
+				cardbookHTMLTools.deleteRows(this.id);
+				let option = cardbookHTMLTools.addHTMLOPTION(this, `${this.id}_option_empty`, "", "");
+				let i = 0;
+				for (let [value, label] of wdw_formatData.countries) {
+					let option = cardbookHTMLTools.addHTMLOPTION(this, `${this.id}_option_${i}`, value, label);
+					if (value == menulistValue) {
+						option.selected = true;
 					}
-					j++;
-				}
-				if (found) {
-					menulist.selectedIndex = defaultIndex;
+					i++;
 				}
 			};
-			aMenupopup.addEventListener("popupshowing", fireButton, false);
+			aMenulist.addEventListener("click", clickCountry, false);
+
+			async function changeCountry(event) {
+				let textboxId = this.id.replace(".country", ".value");
+				document.getElementById(textboxId).setAttribute("country", this.value);
+			};
+			aMenulist.addEventListener("change", changeCountry, false);
 			return aMenulist;
 		},
 
 		createConvertFunctionList: async function (aParent) {
-			let aMenulist = document.createXULElement('menulist');
-			aParent.appendChild(aMenulist);
-			aMenulist.setAttribute('id', 'convertFuntionMenulist');
-			aMenulist.setAttribute('sizetopopup', 'none');
-			let aMenupopup = document.createXULElement('menupopup');
-			aMenulist.appendChild(aMenupopup);
-			aMenupopup.setAttribute('id', 'convertFuntionMenupopup');
+			let aMenulist = cardbookHTMLTools.addHTMLSELECT(aParent, 'convertFuntionMenulist', "");
+			cardbookHTMLTools.loadConvertionFuntions(aMenulist, "lowercase", false);
 
-			let menuItem = aMenulist.appendItem(cardbookRepository.extension.localeData.localizeMessage("capitalizationLabel"), "capitalization");
-			aMenupopup.appendChild(menuItem);
-			aMenulist.selectedIndex = 0;
-
-			async function fireButton(event) {
-				cardbookElementTools.deleteRows(this.id);
-				let convertFunctions = [];
-				for (let value of [ "uppercase", "lowercase", "capitalization" ]) {
-					convertFunctions.push([value, cardbookRepository.extension.localeData.localizeMessage(`${value}Label`)]);
-				}
-				for (let convertFunction of convertFunctions) {
-					var menuItem = document.createXULElement("menuitem");
-					menuItem.setAttribute("label", convertFunction[1]);
-					menuItem.setAttribute("value",convertFunction[0]);
-					this.appendChild(menuItem);
+			async function changeConvertion(event) {
+				let nodes = document.getElementById("fieldsTable").querySelectorAll("tr:not(.hidden)");
+				for (let node of nodes) {
+					let id = node.id.replace(".row", ".value");
+					document.getElementById(id).dispatchEvent(new Event('input'));
 				}
 			};
-			aMenupopup.addEventListener("popupshowing", fireButton, false);
+			aMenulist.addEventListener("change", changeConvertion, false);
+
 			return aMenulist;
 		},
 
 		createFieldsList: async function (aParent) {
-			let aMenulist = document.createXULElement('menulist');
-			aParent.appendChild(aMenulist);
-			aMenulist.setAttribute('id', 'fieldMenulist');
-			aMenulist.setAttribute('sizetopopup', 'none');
-			let aMenupopup = document.createXULElement('menupopup');
-			aMenulist.appendChild(aMenupopup);
-			aMenupopup.setAttribute('id', 'fieldMenupopup');
-
-			// note and street are textarea fields
 			let disabledFields = [ "addressbook", "categories", "fn",  "key", "gender", "bday", "anniversary", "deathdate", "country", "email", "tel", "adr", "impp", "url", "event", "note", "street", "list"];
-			let editionFields = cardbookRepository.cardbookUtils.getEditionFieldsList();
-			editionFields = editionFields.filter(x => !disabledFields.includes(x[1]));
-			let menuItem = aMenulist.appendItem(editionFields[0][0], editionFields[0][1]);
-			aMenupopup.appendChild(menuItem);
-			aMenulist.selectedIndex = 0;
+            let editionFields = await messenger.runtime.sendMessage({query: "cardbook.getEditionFields"});
+			editionFields = editionFields.filter(x => !disabledFields.includes(x[2]));
 
-			async function fireShowingButton(event) {
-				cardbookElementTools.deleteRows(this.id);
-				for (let editionField of editionFields) {
-					var menuItem = document.createXULElement("menuitem");
-					menuItem.setAttribute("label", editionField[0]);
-					menuItem.setAttribute("value",editionField[1]);
-					this.appendChild(menuItem);
-				}
-			};
-			aMenupopup.addEventListener("popupshowing", fireShowingButton, false);
+			let aMenulist = cardbookHTMLTools.addHTMLSELECT(aParent, 'fieldMenulist');
+			let i = 0;
+			for (let editionField of editionFields) {
+				let option = cardbookHTMLTools.addHTMLOPTION(aMenulist, `fieldMenulist_option_${i}`, editionField[2], editionField[1]);
+				i++;
+			}
 
 			async function fireHidingButton(event) {
-				wdw_formatData.displayCards(window.arguments[0].dirPrefId, wdw_formatData.loadCardFields);
+				let field = "";
+				if (document.getElementById('fieldMenulist')) {
+					field = document.getElementById('fieldMenulist').value;
+				}
+				await wdw_formatData.displayCards(field);
 			};
-			aMenupopup.addEventListener("popuphiding", fireHidingButton, false);
+			aMenulist.addEventListener("change", fireHidingButton, false);
 			return aMenulist;
 		},
 
 		createFormatFieldButton: function (aRow, aId) {
-			let aButton = document.createXULElement('button');
-			aRow.appendChild(aButton);
-			aButton.setAttribute('id', aId);
-			aButton.setAttribute('label', cardbookRepository.extension.localeData.localizeMessage("formatEditionLabel"));
-			aButton.setAttribute('flex', '1');
+			let aButton = cardbookHTMLTools.addHTMLBUTTON(aRow, aId, messenger.i18n.getMessage("formatEditionLabel"));
 			async function fireButton(event) {
 				let id = this.id.replace(/.format$/, "");
                 let textbox = document.getElementById(id + '.value');
@@ -423,15 +254,15 @@ if ("undefined" == typeof(wdw_formatData)) {
 				}
 
 				let convertFunction = document.getElementById('convertFuntionMenulist').value;
-				let validatedValue = cardbookRepository.cardbookUtils.convertField(convertFunction, textbox.value);
+				let validatedValue = cardbookHTMLUtils.convertField(convertFunction, textbox.value);
                 if (validatedValue) {
                     textbox.value = validatedValue;
                     textbox.setAttribute("class", "validated");
-					if (sourceTextbox.value == textbox.value) {
+					if (sourceTextbox.textContent == textbox.value) {
 						return
 					} 
 					let undoButton = document.getElementById(id + '.undo');
-					undoButton.removeAttribute('disabled');
+					undoButton.disabled = false;
                 }
              };
 			aButton.addEventListener("click", fireButton, false);
@@ -440,25 +271,22 @@ if ("undefined" == typeof(wdw_formatData)) {
 		},
 
 		createFormatButton: function (aRow, aId) {
-			let aButton = document.createXULElement('button');
-			aRow.appendChild(aButton);
-			aButton.setAttribute('id', aId);
-			aButton.setAttribute('label', cardbookRepository.extension.localeData.localizeMessage("formatEditionLabel"));
-			aButton.setAttribute('flex', '1');
+			let aButton = cardbookHTMLTools.addHTMLBUTTON(aRow, aId, messenger.i18n.getMessage("formatEditionLabel"));
 			async function fireButton(event) {
 				let id = this.id.replace(/.format$/, "");
                 let textbox = document.getElementById(id + '.value');
                 let sourceTextbox = document.getElementById(id + '.sourceValue');
 				let valuetype = textbox.getAttribute('valuetype');
-				let validatedValue = wdw_formatData.getNewFormat(id, textbox.value, valuetype);
+				let country = textbox.getAttribute('country');
+				let validatedValue = wdw_formatData.getNewFormat(id, textbox.value, valuetype, {"country": country});
                 if (validatedValue) {
                     textbox.value = validatedValue;
                     textbox.setAttribute("class", "validated");
-					if (sourceTextbox.value == textbox.value) {
+					if (sourceTextbox.textContent == textbox.value) {
 						return
 					} 
 					let undoButton = document.getElementById(id + '.undo');
-					undoButton.removeAttribute('disabled');
+					undoButton.disabled = false;
                 }
              };
 			aButton.addEventListener("click", fireButton, false);
@@ -467,19 +295,16 @@ if ("undefined" == typeof(wdw_formatData)) {
 		},
 
 		createUndoButton: function (aRow, aId) {
-			let aButton = document.createXULElement('button');
-			aRow.appendChild(aButton);
-			aButton.setAttribute('id', aId);
-			aButton.setAttribute('label', cardbookRepository.extension.localeData.localizeMessage("cardbookToolbarBackButtonLabel"));
-			aButton.setAttribute('flex', '1');
-			aButton.setAttribute('disabled', 'true');
+			let aButton = cardbookHTMLTools.addHTMLBUTTON(aRow, aId, messenger.i18n.getMessage("cardbookToolbarBackButtonLabel"), {"disabled": "true"});
 			async function fireButton(event) {
 				let id = this.id.replace(/.undo$/, "");
                 let textbox = document.getElementById(id + '.value');
                 let sourceTextbox = document.getElementById(id + '.sourceValue');
-                textbox.value = sourceTextbox.value;
-				textbox.removeAttribute("class");
-				this.setAttribute('disabled', 'true');
+				if (textbox.value != sourceTextbox.textContent) {
+					textbox.value = sourceTextbox.textContent;
+					textbox.removeAttribute("class");
+					this.disabled = true;
+				}
             };
 			aButton.addEventListener("click", fireButton, false);
 			aButton.addEventListener("input", fireButton, false);
@@ -487,43 +312,37 @@ if ("undefined" == typeof(wdw_formatData)) {
 		},
 
 		actionAll: function (aAction) {
-			let nodes = document.getElementById("fieldsTable").querySelectorAll(".rowCount");
-            for (let node of nodes) {
+			let nodes = document.getElementById("fieldsTable").querySelectorAll("tr:not(.hidden)");
+			for (let node of nodes) {
 				let id = node.id.replace(/.row$/, "");
 				document.getElementById(id + "." + aAction).dispatchEvent(new Event('input'));
 			}
 		},
 
         save: async function () {
-			let nodes = document.getElementById("fieldsTable").querySelectorAll(".rowCount");
+			let nodes = document.getElementById("fieldsTable").querySelectorAll("tr:not(.hidden)");
 			if (!nodes.length) {
 				return
 			}
 			let valueType = document.getElementById("0.value").getAttribute("valuetype");
 
 			// for field tab
-			let fieldType = "";
-			let field = "";
+			let field = valueType;
 			if (valueType == "fields") {
 				field = document.getElementById('fieldMenulist').value;
-				fieldType = wdw_formatData.getFieldTypeValue();
 			}
 
-			let valueTypeName = cardbookRepository.extension.localeData.localizeMessage(`${valueType}Label`);
-			let myTopic = "cardsFormatted";
-			let dirPrefId = window.arguments[0].dirPrefId || null;
-			let myActionId = cardbookActions.startAction(myTopic, [wdw_formatData.scopeName, valueTypeName], dirPrefId);
-			wdw_formatData.waitForSave(myActionId);
-			wdw_formatData.prepareVariables();
+			wdw_formatData.waitForSave();
+			await wdw_formatData.prepareVariables();
 			let results = {};
             for (let node of nodes) {
 				let id = node.id.replace(/.row$/, "");
-				let cbid = document.getElementById(id + ".cbid").value;
+				let cbid = document.getElementById(id + ".cbid").textContent;
 				let value = document.getElementById(id + ".value").value;
-				let sourceValue = document.getElementById(id + ".sourceValue").value;
+				let sourceValue = document.getElementById(id + ".sourceValue").textContent;
 				let index = 0
 				if (document.getElementById(id + ".index")) {
-					index = document.getElementById(id + ".index").value;
+					index = document.getElementById(id + ".index").textContent;
 				}
 				if (value != sourceValue) {
 					if (!results[cbid]) {
@@ -533,78 +352,31 @@ if ("undefined" == typeof(wdw_formatData)) {
 					results[cbid].push([index, value]);
 				}
 			}
-			for (let id in results) {
-				if (wdw_formatData.abort) {
-					break;
-				}
-				if (cardbookRepository.cardbookCards[id]) {
-					wdw_formatData.rowDone++;
-					let myCard = cardbookRepository.cardbookCards[id];
-					if (cardbookRepository.cardbookPreferences.getReadOnly(myCard.dirPrefId)) {
-						continue;
-					}
-					let myOutCard = new cardbookCardParser();
-					await cardbookRepository.cardbookUtils.cloneCard(myCard, myOutCard);
-					let deleted = 0;
-					for (let line of results[id]) {
-						let index = line[0] - deleted;
-						let value = line[1];
-						if (value) {
-							if (valueType == "fields") {
-								if (fieldType == "string") {
-									myOutCard[field] = value;
-								} else if (fieldType == "custom") {
-									myOutCard.others = myOutCard.others.filter(x => !x.startsWith(field + ":"));
-									myOutCard.others.push(field + ":"+ value);
-								} else if (fieldType == "customOrg") {
-									let orgStructure = cardbookRepository.cardbookPreferences.getStringPref("extensions.cardbook.orgStructure");
-									let orgStructureArray = cardbookRepository.cardbookUtils.unescapeArray(cardbookRepository.cardbookUtils.escapeString(orgStructure).split(";"));
-									let index = orgStructureArray.indexOf(field.replace(/^org\./, ""));
-									let orgValue = cardbookRepository.cardbookUtils.unescapeArray(cardbookRepository.cardbookUtils.escapeString(myOutCard.org).split(";"));
-									orgValue[index] = cardbookRepository.cardbookUtils.escapeStringSemiColon(value.trim());
-									myOutCard.org = cardbookRepository.cardbookUtils.unescapeStringSemiColon(orgValue.join(";"));
-								}
-							} else {
-								myOutCard[valueType][index][0] = [value];
-							}
-						} else {
-							if (valueType == "fields") {
-								if (fieldType == "string") {
-									myOutCard[field] = "";
-								} else if (fieldType == "custom") {
-									myOutCard.others = myOutCard.others.filter(x => !x.startsWith(field + ":"));
-								} else if (fieldType == "customOrg") {
-								}
-							} else {
-								myOutCard[valueType].splice(index, 1);
-								deleted++;
-							}
-						}
-					}
-					await cardbookRepository.saveCardFromUpdate(myCard, myOutCard, myActionId, false);
-				}
-			}
-			wdw_formatData.cardsLoaded = true;
+			await messenger.runtime.sendMessage({query: "cardbook.formatData.saveCards", results: results,
+												scopeName: wdw_formatData.scopeName, dirPrefId: wdw_formatData.dirPrefId, fields: field, winId: wdw_formatData.winId, displayId: wdw_formatData.displayId});
 		},
 		
         showLabels: function () {
-			for (let node of document.getElementById("cardbookContactButtonsBox").querySelectorAll("button")) {
+			for (let node of document.getElementById("cardbookFormatButtonsBox").querySelectorAll("button")) {
 				node.disabled = false;
 			}
-			if (wdw_formatData.lines == 0) {
-				document.getElementById('noLinesFoundDescVbox').setAttribute("class", "flex-grow-y alignCenter");
-				document.getElementById('noLinesFoundDesc').value = cardbookRepository.extension.localeData.localizeMessage("noDataAvailable");
+			let nodes = document.getElementById("fieldsTable").querySelectorAll("tr:not(.hidden)");
+			if (nodes.length == 0) {
+				document.getElementById('noLinesFoundDescVbox').classList.remove("hidden");
+				document.getElementById('noLinesFoundDesc').textContent = messenger.i18n.getMessage("noDataAvailable");
 				document.getElementById('recordsHbox').classList.add("hidden");
-				document.getElementById('numberLinesFoundDesc').hidden = true;
+				document.getElementById('numberLinesFoundDesc').classList.add("hidden");
 			} else {
-				document.getElementById('numberLinesFoundDesc').value = cardbookRepository.extension.localeData.localizeMessage("numberLines", [wdw_formatData.lines]);
-				document.getElementById('numberLinesFoundDesc').hidden = false;
+				document.getElementById('noLinesFoundDescVbox').classList.add("hidden");
+				document.getElementById('numberLinesFoundDesc').textContent = messenger.i18n.getMessage("numberLines", [nodes.length]);
+				document.getElementById('numberLinesFoundDesc').classList.remove("hidden");
 			}
 		},
 
         showProgressBar: function () {
+			document.getElementById('progressBox').classList.remove("hidden");
 			document.getElementById('recordsHbox').classList.add("hidden");
-			document.getElementById('formatAllVbox').setAttribute("class", "flex-grow-y alignCenter");
+			document.getElementById('numberLinesFoundDesc').classList.add("hidden");
 		},
 
         disableButtons: function () {
@@ -613,113 +385,157 @@ if ("undefined" == typeof(wdw_formatData)) {
 		},
 
         endWaitForDisplay: function () {
-			document.getElementById('formatAllVbox').classList.add("hidden");
+			document.getElementById('progressBox').classList.add("hidden");
 			document.getElementById('recordsHbox').classList.remove("hidden");
 			wdw_formatData.showLabels();
 		},
 
         waitForDisplay: function () {
 			wdw_formatData.showProgressBar();
-			let lTimerDisplay = Components.classes["@mozilla.org/timer;1"].createInstance(Components.interfaces.nsITimer);
-			lTimerDisplay.initWithCallback({ notify: function(lTimerDisplay) {
+			let lTimerDisplay = setInterval( async function() {
 				let todo = wdw_formatData.toDo;
 				let done = wdw_formatData.rowDone;
-				if (wdw_formatData.abort) {
-					lTimerDisplay.cancel();
-				} else if (done == todo && todo != 0) {
-					document.getElementById("formatAll-progressmeter").value = 100;
+				if (done == todo && todo != 0) {
+					document.getElementById("data-progressmeter").value = 100;
 					wdw_formatData.endWaitForDisplay();
-					lTimerDisplay.cancel();
+					clearInterval(lTimerDisplay);
 				} else if (wdw_formatData.cardsLoaded && todo == 0) {
 					wdw_formatData.endWaitForDisplay();
-					lTimerDisplay.cancel();
+					clearInterval(lTimerDisplay);
 				} else if (todo != 0) {
 					let value = Math.round(done / todo * 100);
-					document.getElementById("formatAll-progressmeter").value = value;
+					document.getElementById("data-progressmeter").value = value;
 				}
-			}
-			}, wdw_formatData.resfreshTime, Components.interfaces.nsITimer.TYPE_REPEATING_SLACK);
+			}, wdw_formatData.resfreshTime);
 		},
 
-        endWaitForSave: async function (aTimer, aActionId) {
-			aTimer.cancel();
-			await cardbookActions.endAction(aActionId, true);
-			wdw_formatData.cancel();
+        endWaitForSave: async function (aTimer) {
+			clearInterval(aTimer);
+			await wdw_formatData.cancel();
 		},
 
-		waitForSave: function (aActionId) {
+		waitForSave: function () {
 			wdw_formatData.disableButtons();
 			wdw_formatData.showProgressBar();
-			let lTimerSave = Components.classes["@mozilla.org/timer;1"].createInstance(Components.interfaces.nsITimer);
-			lTimerSave.initWithCallback({ notify: async function(lTimerSave) {
+			var lTimerSave = setInterval(async function() {
 				let todo = wdw_formatData.toDo;
 				let done = wdw_formatData.rowDone;
-				if (wdw_formatData.abort) {
-					await wdw_formatData.endWaitForSave(lTimerSave, aActionId);
-				} else if (done == todo && todo != 0) {
-					document.getElementById("formatAll-progressmeter").value = 100;
-					await wdw_formatData.endWaitForSave(lTimerSave, aActionId);
+				if (done == todo && todo != 0) {
+					document.getElementById("data-progressmeter").value = 100;
+					await wdw_formatData.endWaitForSave(lTimerSave);
 				} else if (wdw_formatData.cardsLoaded && todo == 0) {
-					await wdw_formatData.endWaitForSave(lTimerSave, aActionId);
+					await wdw_formatData.endWaitForSave(lTimerSave);
 				} else if (todo != 0) {
 					let value = Math.round(done / todo * 100);
-					document.getElementById("formatAll-progressmeter").value = value;
+					document.getElementById("data-progressmeter").value = value;
 				}
-			}
-			}, wdw_formatData.resfreshTime, Components.interfaces.nsITimer.TYPE_REPEATING_SLACK);
+			}, wdw_formatData.resfreshTime);
 		},
 
 		load: async function () {
-			i18n.updateDocument({ extension: cardbookRepository.extension });
-			if (window.arguments[0].dirPrefId) {
-				wdw_formatData.scopeName = cardbookRepository.cardbookPreferences.getName(window.arguments[0].dirPrefId);
+            let urlParams = new URLSearchParams(window.location.search);
+            wdw_formatData.dirPrefId = urlParams.get("dirPrefId");
+        
+			i18n.updateDocument();
+			cardbookHTMLRichContext.loadRichContext();
+			if (wdw_formatData.dirPrefId) {
+				wdw_formatData.scopeName = await cardbookNewPreferences.getName(wdw_formatData.dirPrefId);
 			} else {
-				wdw_formatData.scopeName = cardbookRepository.extension.localeData.localizeMessage("allAddressBooks");
+				wdw_formatData.scopeName = messenger.i18n.getMessage("allAddressBooks");
 			}
+			document.title = messenger.i18n.getMessage("wdw_formatDataTitle", [wdw_formatData.scopeName]);
 
-			document.title = cardbookRepository.extension.localeData.localizeMessage("wdw_formatDataTitle", [wdw_formatData.scopeName]);
+            // button
+        	document.getElementById("email").addEventListener("click", event => wdw_formatData.setData("email"));
+        	document.getElementById("tel").addEventListener("click", event => wdw_formatData.setData("tel"));
+        	document.getElementById("fields").addEventListener("click", event => wdw_formatData.setData("fields"));
+        	document.getElementById("formatAllLabel").addEventListener("click", event => wdw_formatData.actionAll('format'));
+        	document.getElementById("undoAllLabel").addEventListener("click", event => wdw_formatData.actionAll('undo'));
+        	document.getElementById("cancelEditionLabel").addEventListener("click", event => wdw_formatData.cancel());
+        	document.getElementById("saveEditionLabel").addEventListener("click", event => wdw_formatData.save());
 
             await wdw_formatData.loadCountries();
 
-			let nodeSelected = document.getElementById("cardbookContactButtonsBox").querySelectorAll("button[visuallyselected]");
-			wdw_formatData.setData(nodeSelected[0]);
+			let nodeSelected = document.getElementById("cardbookFormatButtonsBox").querySelectorAll("button[visuallyselected]");
+			wdw_formatData.setData(nodeSelected[0].id);
 		},
 
-		setData: async function (aButton) {
-			for (let node of document.getElementById("cardbookContactButtonsBox").querySelectorAll("button")) {
-				if (node.id == aButton.id) {
-					aButton.setAttribute("visuallyselected", "true");
+		setData: async function (aButtonId) {
+			for (let node of document.getElementById("cardbookFormatButtonsBox").querySelectorAll("button")) {
+				if (node.id == aButtonId) {
+					document.getElementById(aButtonId).setAttribute("visuallyselected", "true");
 				} else {
 					node.removeAttribute("visuallyselected");
 				}
 			}
-            cardbookElementTools.deleteRows('fieldsBox');
+            cardbookHTMLTools.deleteRows('fieldsBox');
 			let fieldsBox = document.getElementById('fieldsBox');
-			switch(aButton.id) {
+			switch(aButtonId) {
 				case "tel":
 					fieldsBox.classList.add("hidden");
-					wdw_formatData.displayCards(window.arguments[0].dirPrefId, wdw_formatData.loadCardTels);
+					await wdw_formatData.displayCards(aButtonId);
 					break;
 				case "email":
 					fieldsBox.classList.add("hidden");
-					wdw_formatData.displayCards(window.arguments[0].dirPrefId, wdw_formatData.loadCardEmails);
+					await wdw_formatData.displayCards(aButtonId);
 					break;
 				case "fields":
 					fieldsBox.classList.remove("hidden");
-					wdw_formatData.createFieldsList(fieldsBox);
+                    wdw_formatData.allColumns = await messenger.runtime.sendMessage({query: "cardbook.getAllColumns"});
+                    wdw_formatData.adrElements = await messenger.runtime.sendMessage({query: "cardbook.getAdrElements"});
+                    wdw_formatData.allCustomFields = await cardbookNewPreferences.getAllCustomFields();
+					await wdw_formatData.createFieldsList(fieldsBox);
 					wdw_formatData.createConvertFunctionList(fieldsBox);
-					wdw_formatData.displayCards(window.arguments[0].dirPrefId, wdw_formatData.loadCardFields);
+					let field = "";
+					if (document.getElementById('fieldMenulist')) {
+						field = document.getElementById('fieldMenulist').value;
+					}
+					await wdw_formatData.displayCards(field);
 					break;
 				}
-	},
+		},
 
-		cancel: function () {
-			wdw_formatData.abort = true;
-			close();
+		cancel: async function () {
+			cardbookHTMLRichContext.closeWindow();
 		}
 
 	};
 
 };
 
-document.addEventListener("DOMContentLoaded", wdw_formatData.load);
+messenger.runtime.onMessage.addListener( (info) => {
+	switch (info.query) {
+		case "cardbook.processData.cardsLoaded":
+			if (wdw_formatData.winId == info.winId && wdw_formatData.displayId == info.displayId) {
+				wdw_formatData.cardsLoaded = info.cardsLoaded;
+			}
+			break;
+		case "cardbook.processData.toDo":
+			if (wdw_formatData.winId == info.winId && wdw_formatData.displayId == info.displayId) {
+				wdw_formatData.toDo = info.toDo;
+			}
+			break;
+		case "cardbook.processData.rowDone":
+			if (wdw_formatData.winId == info.winId && wdw_formatData.displayId == info.displayId) {
+				wdw_formatData.rowDone = info.rowDone;
+			}
+			break;
+		case "cardbook.formatData.displayCardLineTels":
+			if (wdw_formatData.winId == info.winId && wdw_formatData.displayId == info.displayId) {
+				wdw_formatData.displayCardLineTels(info.record);
+			}
+			break;
+		case "cardbook.formatData.displayCardLineEmail":
+			if (wdw_formatData.winId == info.winId && wdw_formatData.displayId == info.displayId) {
+				wdw_formatData.displayCardLineEmail(info.record);
+			}
+			break;
+		case "cardbook.formatData.displayCardLineFields":
+			if (wdw_formatData.winId == info.winId && wdw_formatData.displayId == info.displayId) {
+				wdw_formatData.displayCardLineFields(info.record);
+			}
+			break;
+		}
+});
+
+wdw_formatData.load();

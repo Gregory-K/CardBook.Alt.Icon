@@ -1,0 +1,75 @@
+<?xml version="1.0"?>
+<!DOCTYPE html>
+
+<html id="wdw_cardbookConfigurationAddVcards">
+	<head>
+        <meta charset="UTF-8">
+		<link rel='stylesheet' type='text/css' href="chrome://messenger/skin/messenger.css">
+		<link rel='stylesheet' type='text/css' href="chrome://global/skin/in-content/common.css">
+		<link rel='stylesheet' type='text/css' href="chrome://messenger/skin/shared/themeableDialog.css">
+        <link rel='stylesheet' type='text/css' href="chrome://messenger/skin/accountSetup.css">
+        <!-- for MailList icon -->
+        <link rel='stylesheet' type="text/css" href="../skin/cardbookCardsIcon.css">
+
+        <link rel='stylesheet' type='text/css' href="../skin/cardbookHTML.css">
+        <link rel='stylesheet' type='text/css' href="../skin/cardbookAddressBooks.css">
+		<link rel='stylesheet' type='text/css' href="../skin/cardbookConfiguration.css">
+		<title>__MSG_wdw_cardbookConfigurationAddVcardTitle__</title>	
+	</head>
+
+	<body xmlns="http://www.mozilla.org/keymaster/gatekeeper/there.is.only.xul">
+		<div class="hbox">
+			<table>
+                <tr>
+                    <td>
+                        <label>__MSG_mailAccountLabel__</label>
+                    </td>
+                    <td>
+						<select id="mailAccountMenulist"></select>
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <label>__MSG_addressbookLabel__</label>
+                    </td>
+                    <td>
+						<select id="CardBookABMenulist"></select>
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <label>__MSG_contactVcardLabel__</label>
+                    </td>
+                    <td>
+						<select id="contactMenulist"></select>
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <label>__MSG_filenameLabel__</label>
+                    </td>
+                    <td class="cardbook-td-input">
+                        <input id="filenameTextbox"/>
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <label>__MSG_vCardLabel__</label>
+                    </td>
+                    <td>
+                        <div id="VCardTextboxWrapper">
+                            <textarea id="VCardTextbox"></textarea>
+                        </div>
+                    </td>
+                </tr>
+            </table>
+        </div>
+		<div class="hbox vright">
+			<button id="cancelButton">__MSG_cancelEditionLabel__</button>
+			<button id="validateButton">__MSG_validateEditionLabel__</button>
+		</div>
+        <script src="../scripts/i18n.js"></script>
+		<script type="module" src="../cardbookHTMLTools.mjs"></script>
+		<script type="module" src="wdw_cardbookConfigurationAddVcards.js"></script>
+    </body>
+</html>

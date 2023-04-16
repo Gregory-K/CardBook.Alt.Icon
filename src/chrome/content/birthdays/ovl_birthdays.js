@@ -6,8 +6,8 @@ if ("undefined" == typeof(ovl_birthdays)) {
 		lTimerPopup: null,
 		lPopupShowed: 0,
 		lEventTimerPopup: { notify: function(lTimerPopup) {
-			if (cardbookRepository.cardbookPreferences.getBoolPref("extensions.cardbook.showPeriodicPopup")) {
-				var popupTime = cardbookRepository.cardbookPreferences.getStringPref("extensions.cardbook.periodicPopupIime");
+			if (cardbookRepository.cardbookPrefs["showPeriodicPopup"]) {
+				var popupTime = cardbookRepository.cardbookPrefs["periodicPopupIime"];
 				var dateOfToday = new Date();
 				var dateOfTodayHour = (dateOfToday.getHours()<10?'0':'') + dateOfToday.getHours();
 				var dateOfTodayMin = (dateOfToday.getMinutes()<10?'0':'') + dateOfToday.getMinutes();
@@ -38,11 +38,11 @@ if ("undefined" == typeof(ovl_birthdays)) {
 		}},
 	
 		onLoad: function() {
-			if (cardbookRepository.cardbookPreferences.getBoolPref("extensions.cardbook.showPopupOnStartup")) {
+			if (cardbookRepository.cardbookPrefs["showPopupOnStartup"]) {
 				ovl_birthdays.onShowPopup();
 			}
 			
-			if (cardbookRepository.cardbookPreferences.getBoolPref("extensions.cardbook.syncWithLightningOnStartup")) {
+			if (cardbookRepository.cardbookPrefs["syncWithLightningOnStartup"]) {
 				cardbookBirthdaysUtils.syncWithLightning();
 			}
 		},
@@ -60,9 +60,9 @@ if ("undefined" == typeof(ovl_birthdays)) {
 		},
 	
 		onShowPopup: function() {
-			var maxDaysUntilNextBirthday = cardbookRepository.cardbookPreferences.getStringPref("extensions.cardbook.numberOfDaysForSearching");
+			var maxDaysUntilNextBirthday = cardbookRepository.cardbookPrefs["numberOfDaysForSearching"];
 			cardbookBirthdaysUtils.loadBirthdays(maxDaysUntilNextBirthday);
-			var lshowPopupEvenIfNoBirthday = cardbookRepository.cardbookPreferences.getBoolPref("extensions.cardbook.showPopupEvenIfNoBirthday");
+			var lshowPopupEvenIfNoBirthday = cardbookRepository.cardbookPrefs["showPopupEvenIfNoBirthday"];
 			if ((cardbookBirthdaysUtils.lBirthdayList.length>0) || lshowPopupEvenIfNoBirthday) {
 				ovl_birthdays.displayBirthdayList();
 			}

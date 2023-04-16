@@ -1,0 +1,22 @@
+@import url("chrome://messenger/skin/shared/contextMenu.css");
+@import url("chrome://messenger/skin/colors.css");
+
+.notificationMessage {
+    display: list-item;
+    flex: 1;
+    list-style-position: inside;
+}
+
+.notificationMessage[type=info] {
+    background-color: white;
+    color: #000;
+    list-style-image: url("chrome://messenger/skin/icons/information.svg");
+}
+.notificationMessage[type=warning] {
+    background-color: #fff160;
+    color: #000;
+    list-style-image: url("chrome://global/skin/icons/warning.svg");
+}
+.notificationMessage[type=OK] {
+    display: none;
+}

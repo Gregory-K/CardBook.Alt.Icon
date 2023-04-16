@@ -1,65 +1,107 @@
-var { cardbookRepository } = ChromeUtils.import("chrome://cardbook/content/cardbookRepository.js");
+import { cardbookHTMLTools } from "../cardbookHTMLTools.mjs";
+import { cardbookHTMLRichContext } from "../cardbookHTMLRichContext.mjs";
 
-function loadMailAccounts () {
-	cardbookElementTools.loadMailAccounts("mailAccountMenupopup", "mailAccountMenulist", window.arguments[0].emailAccountId, true);
+var enabled = true;
+var id = "";
+var emailAccountName = "";
+var emailAccountId = "";
+var addressBookId = "";
+var contactName = "";
+var contactId = "";
+var fileName = "";
+
+async function loadMailAccounts () {
+	let mailAccountMenulist = document.getElementById('mailAccountMenulist');
+	await cardbookHTMLTools.loadMailAccounts(mailAccountMenulist, emailAccountId, true);
 };
 
-function loadAB () {
-	var ABList = document.getElementById('CardBookABMenulist');
-	var ABPopup = document.getElementById('CardBookABMenupopup');
-	cardbookElementTools.loadAddressBooks(ABPopup, ABList, window.arguments[0].addressBookId, true, false, true, false, false);
+async function loadAB () {
+ 	let ABList = document.getElementById('CardBookABMenulist');
+	await cardbookHTMLTools.loadAddressBooks(ABList, addressBookId, true, false, true, false, false);
 };
 
-function loadContacts () {
-	cardbookElementTools.loadContacts("contactMenupopup", "contactMenulist", document.getElementById('CardBookABMenulist').value, window.arguments[0].contactId);
+async function loadContacts () {
+	let ABid = document.getElementById('CardBookABMenulist').value;
+	let contactMenulist = document.getElementById('contactMenulist');
+	await cardbookHTMLTools.loadContacts(contactMenulist, ABid, contactId);
 	changeFileName();
 	changeVCard();
 };
 		
 function changeFileName () {
-	document.getElementById('filenameTextbox').value = document.getElementById('contactMenulist').label + ".vcf";
+	let label = document.getElementById("contactMenulist").querySelector("option:checked").textContent;
+	document.getElementById('filenameTextbox').value = label + ".vcf";
 };
 		
 async function changeVCard () {
-	document.getElementById('VCardTextbox').value = await cardbookRepository.cardbookUtils.getvCardForEmail(cardbookRepository.cardbookCards[document.getElementById('CardBookABMenulist').value+"::"+document.getElementById('contactMenulist').value]);
+	let ABid = document.getElementById('CardBookABMenulist').value;
+	let cId = document.getElementById('contactMenulist').value;
+	let vCard = await messenger.runtime.sendMessage({query: "cardbook.getvCard", dirPrefId: ABid, contactId: cId});
+	document.getElementById('VCardTextbox').value = vCard;
 };
 		
 function checkRequired () {
+	let btnSave = document.getElementById("validateButton");
 	if (document.getElementById('filenameTextbox').value != "") {
-		document.querySelector("dialog").getButton("accept").disabled = false;
+		btnSave.disabled = false;
 	} else {
-		document.querySelector("dialog").getButton("accept").disabled = true;
+		btnSave.disabled = true;
 	}
 };
 
-function onLoadDialog () {
-	i18n.updateDocument({ extension: cardbookRepository.extension });
-	loadMailAccounts();
-	loadAB();
+async function onLoadDialog () {
+	let urlParams = new URLSearchParams(window.location.search);
+	enabled = urlParams.get("enabled");
+	id = urlParams.get("id");
+	emailAccountName = urlParams.get("emailAccountName");
+	emailAccountId = urlParams.get("emailAccountId");
+	addressBookId = urlParams.get("addressBookId");
+	contactName = urlParams.get("contactName");
+	contactId = urlParams.get("contactId");
+	fileName = urlParams.get("fileName");
+
+	i18n.updateDocument();
+	cardbookHTMLRichContext.loadRichContext();
+
+	// button
+	document.getElementById('cancelButton').addEventListener("click", onCancelDialog);
+	document.getElementById('validateButton').addEventListener("click", onAcceptDialog);
+	// select
+	document.getElementById("CardBookABMenulist").addEventListener("change", event => loadContacts());
+	document.getElementById("contactMenulist").addEventListener("change", event => {
+		changeFileName();
+		changeVCard();
+	});
+	// input
+	document.getElementById("filenameTextbox").addEventListener("input", event => checkRequired());
+
+	await loadMailAccounts();
+	await loadAB();
 	loadContacts();
-	if (window.arguments[0].fileName != "") {
-		document.getElementById('filenameTextbox').value = window.arguments[0].fileName;
+	if (fileName != "") {
+		document.getElementById('filenameTextbox').value = fileName;
 	}
+
+	checkRequired();
 };
 
-function onAcceptDialog () {
-	window.arguments[0].emailAccountId = document.getElementById('mailAccountMenulist').value;
-	window.arguments[0].emailAccountName = document.getElementById('mailAccountMenulist').label;
-	window.arguments[0].fn = document.getElementById('contactMenulist').label;
-	window.arguments[0].contactId = document.getElementById('contactMenulist').value;
-	window.arguments[0].addressBookId = document.getElementById('CardBookABMenulist').value;
-	window.arguments[0].fileName = document.getElementById('filenameTextbox').value;
-	window.arguments[0].typeAction = "SAVE";
-	close();
+async function onAcceptDialog () {
+	let urlParams = {};
+	urlParams.id = id;
+	urlParams.enabled = enabled;
+	urlParams.emailAccountName = document.getElementById("mailAccountMenulist").querySelector("option:checked").textContent;
+	urlParams.emailAccountId = document.getElementById('mailAccountMenulist').value;
+	urlParams.addressBookId = document.getElementById('CardBookABMenulist').value;
+	urlParams.fileName = document.getElementById('filenameTextbox').value;
+	urlParams.contactName = document.getElementById("contactMenulist").querySelector("option:checked").textContent;
+	urlParams.contactId = document.getElementById('contactMenulist').value;
+	await messenger.runtime.sendMessage({query: "cardbook.conf.saveVCard", urlParams: urlParams});
+	onCancelDialog();
 };
 
-function onCancelDialog () {
-	window.arguments[0].typeAction="CANCEL";
-	close();
+async function onCancelDialog () {
+	cardbookHTMLRichContext.closeWindow();
 };
 
-document.addEventListener("DOMContentLoaded", onLoadDialog);
-document.addEventListener("dialogaccept", onAcceptDialog);
-document.addEventListener("dialogcancel", onCancelDialog);
-document.addEventListener("input", checkRequired, true);
-document.addEventListener("command", checkRequired, true);
+await onLoadDialog();
+

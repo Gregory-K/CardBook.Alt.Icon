@@ -1,5 +1,5 @@
 // Set this to the ID of your add-on.
-const ADDON_ID = "cardbook@vigneau.philippe";
+const ADDON_CB_ID = "cardbook@vigneau.philippe";
 
 /*
  * This file is provided by the addon-developer-support repository at
@@ -27,10 +27,10 @@ var notifyTools = {
 
   onNotifyExperimentObserver: {
     observe: async function (aSubject, aTopic, aData) {
-      if (ADDON_ID == "") {
-        throw new Error("notifyTools: ADDON_ID is empty!");
+      if (ADDON_CB_ID == "") {
+        throw new Error("notifyTools: ADDON_CB_ID is empty!");
       }
-      if (aData != ADDON_ID) {
+      if (aData != ADDON_CB_ID) {
         return;
       }
       let payload = aSubject.wrappedJSObject;
@@ -82,14 +82,14 @@ var notifyTools = {
   },
 
   notifyBackground: function (data) {
-    if (ADDON_ID == "") {
-      throw new Error("notifyTools: ADDON_ID is empty!");
+    if (ADDON_CB_ID == "") {
+      throw new Error("notifyTools: ADDON_CB_ID is empty!");
     }
     return new Promise((resolve) => {
       Services.obs.notifyObservers(
         { data, resolve },
         "NotifyBackgroundObserver",
-        ADDON_ID
+        ADDON_CB_ID
       );
     });
   },

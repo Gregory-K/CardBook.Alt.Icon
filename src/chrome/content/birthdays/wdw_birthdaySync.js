@@ -23,7 +23,7 @@ function do_close () {
 function do_refresh () {
 	let noneFound = document.getElementById("noneFound");
 	let resulTable = document.getElementById("syncListTable");
-	let maxDaysUntilNextBirthday = cardbookRepository.cardbookPreferences.getStringPref("extensions.cardbook.numberOfDaysForWriting");
+	let maxDaysUntilNextBirthday = cardbookRepository.cardbookPrefs["numberOfDaysForWriting"];
 	maxDaysUntilNextBirthday = (maxDaysUntilNextBirthday > 365) ? 365 : maxDaysUntilNextBirthday;
 
 	// if there are no birthdays in the configured timespan

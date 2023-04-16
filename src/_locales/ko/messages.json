@@ -114,14 +114,8 @@
 	"showForgottenLabel": {
 		"message": "잊어버린 중복된 연락처 표시"
 	},
-	"showForgottenAccesskey": {
-		"message": "S"
-	},
 	"hideForgottenLabel": {
 		"message": "잊어버린 중복된 연락처 숨기기"
-	},
-	"hideForgottenAccesskey": {
-		"message": "H"
 	},
 	"noContactsDuplicated": {
 		"message": "중복된 연락처가 없습니다."
@@ -3309,6 +3303,12 @@
 	"toLowerCase": {
 		"message": "소문자로 변환"
 	},
+	"copy": {
+		"message": "복사"
+	},
+	"paste": {
+		"message": "붙여넣기"
+	},
 	"copyFieldValue": {
 		"message": "복사하기 ($P1$)",
 		"placeholders": {
@@ -3369,7 +3369,7 @@
 	"wdw_cardbookConfigurationAddEmailsRestrictionTitle": {
 		"message": "메일 계정 제한 정의"
 	},
-	"wdw_cardbookConfigurationAddEmailsCollectionTitle": {
+	"wdw_cardbookConfigurationAddEmailsEmailsCollectionTitle": {
 		"message": "메일 계정 보내는 전자 메일 컬렉션 정의"
 	},
 	"ignoreCaseIgnoreDiacriticLabel": {
@@ -3777,6 +3777,9 @@
 	"wizard.back.label": {
 		"message": "뒤로"
 	},
+	"wizard.cancel.label": {
+		"message": "취소"
+	},
 	"wizard.create.label": {
 		"message": "생성"
 	},
@@ -3800,9 +3803,6 @@
 	},
 	"initialPage.search.label": {
 		"message": "기존 주소록 검색"
-	},
-	"initialPage.find.label": {
-		"message": "원격 주소록 검색"
 	},
 	"localPage.type.description": {
 		"message": "로컬 주소록 유형:"
@@ -3838,7 +3838,7 @@
 		"message": "찾아보기"
 	},
 	"remotePage.description": {
-		"message": "원격 주소록의 유형은 무엇입니까? (주의 : Google은 vCard 표준을 준수하지 않습니다.)"
+		"message": "원격 주소록의 유형은 무엇입니까?"
 	},
 	"remotePage.type.label": {
 		"message": "유형"
@@ -3891,7 +3891,7 @@
 	"rememberPassword": {
 		"message": "이 비밀번호를 기억하는데 비밀번호 관리자를 사용합니다"
 	},
-	"showHidePassword.tooltip": {
+	"showHidePassword": {
 		"message": "비밀번호 표시/숨기기"
 	},
 	"remotePage.validatebutton.label": {
@@ -3903,20 +3903,11 @@
 	"abSearchHeading.label": {
 		"message": "검색:"
 	},
-	"abSearchHeading.accesskey": {
-		"message": "h"
-	},
 	"matchAll.label": {
 		"message": "모든 조건 검색"
 	},
-	"matchAll.accesskey": {
-		"message": "A"
-	},
 	"matchAny.label": {
 		"message": "모든 조건 중 하나라도 일치"
-	},
-	"matchAny.accesskey": {
-		"message": "o"
 	},
 	"googleOauthPage.wizard.description": {
 		"message": "구글 인증"
@@ -3969,9 +3960,6 @@
 	"name.ABedit.label": {
 		"message": "이름:"
 	},
-	"name.ABedit.accesskey": {
-		"message": "N"
-	},
 	"nodesLabel": {
 		"message": "노드:"
 	},
@@ -3993,9 +3981,6 @@
 	"readonlyLabel": {
 		"message": "읽기 전용 모드"
 	},
-	"readonlyAccesskey": {
-		"message": "R"
-	},
 	"urnuuidLabel": {
 		"message": "urn:uuid 사용"
 	},
@@ -4008,14 +3993,8 @@
 	"autoSyncLabel": {
 		"message": "주기적 동기화 사용"
 	},
-	"autoSyncAccesskey": {
-		"message": "E"
-	},
 	"autoSyncIntervalLabel": {
 		"message": "주기적 동기화 간격 (분):"
-	},
-	"autoSyncIntervalAccesskey": {
-		"message": "I"
 	},
 	"miscTabLabel": {
 		"message": "기타"
@@ -4026,20 +4005,11 @@
 	"fnFormulaLabel": {
 		"message": "표시 이름 공식:"
 	},
-	"fnFormulaAccesskey": {
-		"message": "y"
-	},
 	"resetFnFormulaLabel": {
 		"message": "초기화"
 	},
-	"resetFnFormulaAccesskey": {
-		"message": "R"
-	},
 	"applyToABButtonLabel": {
 		"message": "다음에 적용…"
-	},
-	"applyToABButtonAccesskey": {
-		"message": "A"
 	},
 	"wdw_adrEditionTitle": {
 		"message": "주소 편집기"
@@ -4173,53 +4143,26 @@
 	"autocompletionLabel": {
 		"message": "이메일 주소 자동 완성"
 	},
-	"autocompletionAccesskey": {
-		"message": "o"
-	},
-	"autocompletionTooltip": {
-		"message": "CardBook 주소록에 자동 완성 기능을 추가하여 Thunderbird 주소록의 연락처 자동 완성 기능을 확장합니다."
-	},
 	"autocompleteSortByPopularityLabel": {
 		"message": "인기도에 따라 전자 메일 주소 정렬"
-	},
-	"autocompleteSortByPopularityAccesskey": {
-		"message": "p"
 	},
 	"autocompleteProposeConcatEmailsLabel": {
 		"message": "연락처에 맞는 전자 메일 제안"
 	},
-	"autocompleteProposeConcatEmailsAccesskey": {
-		"message": "c"
-	},
 	"autocompleteShowAddressbookLabel": {
 		"message": "주소록 이름 표시"
-	},
-	"autocompleteShowAddressbookAccesskey": {
-		"message": "a"
 	},
 	"autocompleteShowEmailTypeLabel": {
 		"message": "이메일 유형 표시"
 	},
-	"autocompleteShowEmailTypeAccesskey": {
-		"message": "e"
-	},
 	"autocompleteShowPopularityLabel": {
 		"message": "인기도 표시"
-	},
-	"autocompleteShowPopularityAccesskey": {
-		"message": "y"
 	},
 	"autocompleteWithColorLabel": {
 		"message": "주소록 색상 사용"
 	},
-	"autocompleteWithColorAccesskey": {
-		"message": "c"
-	},
 	"autocompleteRestrictSearchLabel": {
 		"message": "검색 필드 제한"
-	},
-	"autocompleteRestrictSearchAccesskey": {
-		"message": "R"
 	},
 	"chooseAutocompleteRestrictSearchFieldsButtonLabel": {
 		"message": "편집"
@@ -4256,12 +4199,6 @@
 	},
 	"exclusiveLabel": {
 		"message": "연락처 고유 소스"
-	},
-	"exclusiveAccesskey": {
-		"message": "U"
-	},
-	"exclusiveTooltip": {
-		"message": "이 옵션을 비활성화하면 노란색 별표, 전자 메일 표시 이름 및 전자 메일 자동 완성을 위해 Thunderbird 표준 주소록의 연락처를 검색 할 수 있습니다."
 	},
 	"accountsRestrictionsLabel": {
 		"message": "메일 계정 제한 사항"
@@ -4341,12 +4278,6 @@
 	"debugModeLabel": {
 		"message": "디버그 모드"
 	},
-	"debugModeAccesskey": {
-		"message": "m"
-	},
-	"debugModeTooltip": {
-		"message": "확장 로깅을위한 디버그 모드를 사용"
-	},
 	"statusInformationLineNumberLabel": {
 		"message": "로그 파일에 보관 된 라인 수:"
 	},
@@ -4365,26 +4296,14 @@
 	"listTab.conf.label": {
 		"message": "목록"
 	},
-	"listTab.conf.accesskey": {
-		"message": "L"
-	},
 	"technicalTab.conf.label": {
 		"message": "전문적"
-	},
-	"technicalTab.conf.accesskey": {
-		"message": "T"
 	},
 	"vCardTab.conf.label": {
 		"message": "v카드(가상카드)"
 	},
-	"vCardTab.conf.accesskey": {
-		"message": "V"
-	},
 	"keyTab.conf.label": {
 		"message": "공개키"
-	},
-	"keyTab.conf.accesskey": {
-		"message": "K"
 	},
 	"advancedTab1Label": {
 		"message": "고급"
@@ -4482,9 +4401,6 @@
 	"preferEmailEditionLabel": {
 		"message": "연락처를 더블클릭하여 이메일 작성 대신 편집하기"
 	},
-	"preferEmailEditionAccesskey": {
-		"message": "k"
-	},
 	"dateDisplayedFormatLabel": {
 		"message": "날짜 텍스트 형식:"
 	},
@@ -4493,9 +4409,6 @@
 	},
 	"defaultRegionLabel": {
 		"message": "기본 지역:"
-	},
-	"defaultRegionAccesskey": {
-		"message": "D"
 	},
 	"defaultRegionTooltip": {
 		"message": "주소 및 전화번호 포맷에 사용할 기본 지역"
@@ -4641,9 +4554,6 @@
 	"preferIMPPPrefLabel": {
 		"message": "표시된 인터넷 메신저 우선"
 	},
-	"preferIMPPPrefAccesskey": {
-		"message": "P"
-	},
 	"preferIMPPPrefWarn": {
 		"message": "주소가 표시되지 않으면 모든 연락처의 주소에 대한 연결이 제안됩니다."
 	},
@@ -4707,9 +4617,6 @@
 	"URLPhoneBackgroundLabel": {
 		"message": "백그라운드에서 실행"
 	},
-	"URLPhoneBackgroundAccesskey": {
-		"message": "S"
-	},
 	"encryptionGroupboxLabel": {
 		"message": "암호화"
 	},
@@ -4718,9 +4625,6 @@
 	},
 	"localDataEncryptionEnabledLabel": {
 		"message": "로컬에 캐시된 연락처 암호화"
-	},
-	"localDataEncryptionEnabledAccesskey": {
-		"message": "E"
 	},
 	"customFieldRankHeaderLabel": {
 		"message": "등급"
@@ -4771,7 +4675,7 @@
 		"message": "필드 레이블"
 	},
 	"listPanelLabel": {
-		"message": "서버가 카테고리를 지원하지 않는 경우 (Google, Apple, Zimbra 등), 그룹에 이메일을 보내는 좋은 방법은 목록입니다. vCard 3.0은 기본적으로 목록을 지원하지 않습니다만, 사용자 정의 필드를 사용하면 목록을 사용할 수 있습니다. 따라서 만약 vCard 3.0에서 목록을 사용하고 싶다면 이러한 필드를 정의해야 합니다."
+		"message": "서버가 카테고리를 지원하지 않는 경우 (Apple, Zimbra 등), 그룹에 이메일을 보내는 좋은 방법은 목록입니다. vCard 3.0은 기본적으로 목록을 지원하지 않습니다만, 사용자 정의 필드를 사용하면 목록을 사용할 수 있습니다. 따라서 만약 vCard 3.0에서 목록을 사용하고 싶다면 이러한 필드를 정의해야 합니다."
 	},
 	"listGroupboxLabel": {
 		"message": "목록의 사용자 정의 필드"
@@ -4803,14 +4707,8 @@
 	"syncAfterChangeLabel": {
 		"message": "변경 후 동기화"
 	},
-	"syncAfterChangeAccesskey": {
-		"message": "c"
-	},
 	"initialSyncLabel": {
 		"message": "Thunderbird 시작시 동기화 실행"
-	},
-	"initialSyncAccesskey": {
-		"message": "R"
 	},
 	"initialSyncDelayLabel": {
 		"message": "초기 동기화 소요 시간 (초):"
@@ -4872,17 +4770,11 @@
 	"decodeReportLabel": {
 		"message": "보고서 요청을 위한 URL 디코딩"
 	},
-	"decodeReportAccesskey": {
-		"message": "D"
-	},
 	"miscEmailGroupboxLabel": {
 		"message": "이메일 발송"
 	},
 	"preferEmailPrefLabel": {
 		"message": "표시된 이메일 주소 우선"
-	},
-	"preferEmailPrefAccesskey": {
-		"message": "P"
 	},
 	"preferEmailPrefWarn": {
 		"message": "주소가 표시되지 않으면 메시지가 모든 연락처의 주소로 전송됩니다."
@@ -4890,14 +4782,8 @@
 	"warnEmptyEmailsLabel": {
 		"message": "이메일 주소없이 연락처에 이메일을 보내려고 할 때 경고하기"
 	},
-	"warnEmptyEmailsAccesskey": {
-		"message": "W"
-	},
 	"useOnlyEmailLabel": {
 		"message": "표시 이름 없이 이메일 주소만 사용하기"
-	},
-	"useOnlyEmailAccesskey": {
-		"message": "O"
 	},
 	"attachVCardWarn": {
 		"message": "이메일에 vCard를 자동으로 추가하려면 각 이메일 계정에 대한 vCard를 선택하십시오. 활성화되면, CardBook은 이 계정의 모든 발신 이메일에 이 vCard를 첨부합니다."
@@ -4956,26 +4842,14 @@
 	"bday.conf.label": {
 		"message": "생일"
 	},
-	"bday.conf.accesskey": {
-		"message": "B"
-	},
 	"anniversary.conf.label": {
 		"message": "기념일 (vCard 4.0 전용)"
-	},
-	"anniversary.conf.accesskey": {
-		"message": "A"
 	},
 	"deathdate.conf.label": {
 		"message": "사망일 (vCard 4.0 전용)"
 	},
-	"deathdate.conf.accesskey": {
-		"message": "D"
-	},
 	"eventsLabel": {
 		"message": "이벤트"
-	},
-	"eventsAccesskey": {
-		"message": "E"
 	},
 	"gender.conf.label": {
 		"message": "성별 (vCard 4.0 전용)"
@@ -5007,14 +4881,8 @@
 	"showPopupOnStartupLabel": {
 		"message": "시작시 팝업 창 표시"
 	},
-	"showPopupOnStartupAccesskey": {
-		"message": "S"
-	},
 	"showPeriodicPopupLabel": {
 		"message": "일일 팝업 표시"
-	},
-	"showPeriodicPopupAccesskey": {
-		"message": "d"
 	},
 	"periodicPopupTimeLabel": {
 		"message": "시간 표시 (시간:분):"
@@ -5024,9 +4892,6 @@
 	},
 	"showPopupEvenIfNoBirthdayLabel": {
 		"message": "기념일 목록이 비어 있으면 팝업 창 표시"
-	},
-	"showPopupEvenIfNoBirthdayAccesskey": {
-		"message": "h"
 	},
 	"remindViaLightningGroupboxLabel": {
 		"message": "Thunderbird Lightning Calendar로 알림"
@@ -5039,9 +4904,6 @@
 	},
 	"syncWithLightningOnStartupLabel": {
 		"message": "시작시 Lightning과 동기화"
-	},
-	"syncWithLightningOnStartupAccesskey": {
-		"message": "L"
 	},
 	"calendarEntryTitleLabel": {
 		"message": "캘린더 일정 제목:"
@@ -5061,9 +4923,6 @@
 	"calendarRepeatingEventLabel": {
 		"message": "반복 일정"
 	},
-	"calendarRepeatingEventAccesskey": {
-		"message": "R"
-	},
 	"calendarEntryTimeLabel": {
 		"message": "일정 이벤트 시간 (시간:분):"
 	},
@@ -5072,9 +4931,6 @@
 	},
 	"calendarEntryWholeDayLabel": {
 		"message": "종일 일정 이벤트"
-	},
-	"calendarEntryWholeDayAccesskey": {
-		"message": "y"
 	},
 	"calendarEntryAlarmLabel": {
 		"message": "캘린더 이벤트의 시간 수를 나타내는 알람 (예: 4,+1):"
@@ -5835,9 +5691,6 @@
 	"viewResultEditionLabel": {
 		"message": "결과보기"
 	},
-	"viewResultEditionAccesskey": {
-		"message": "V"
-	},
 	"previousEditButton.tooltip": {
 		"message": "이전"
 	},
@@ -5883,20 +5736,11 @@
 	"moreEditionLabel": {
 		"message": "더 보기"
 	},
-	"moreEditionAccesskey": {
-		"message": "m"
-	},
 	"lessEditionLabel": {
 		"message": "줄이기"
 	},
-	"lessEditionAccesskey": {
-		"message": "l"
-	},
 	"mergeAllEditionLabel": {
 		"message": "모두 병합하기"
-	},
-	"mergeAllEditionAccesskey": {
-		"message": "M"
 	},
 	"formatAllEditionLabel": {
 		"message": "모두 포맷하기"
@@ -5906,9 +5750,6 @@
 	},
 	"undoAllEditionLabel": {
 		"message": "모두 되돌리기"
-	},
-	"undoAllEditionAccesskey": {
-		"message": "U"
 	},
 	"formatEditionLabel": {
 		"message": "포맷"
@@ -5951,9 +5792,6 @@
 	},
 	"convertVCardsTooltip": {
 		"message": "일부 연락처의 vCard 버전이 연락처의 vCard 버전과 다릅니다. 이 버튼은 그러한 vCard를 변환시킬 수 있습니다."
-	},
-	"convertVCardsAccesskey": {
-		"message": "C"
 	},
 	"wdw_findDuplicatesTitle": {
 		"message": "중복된 연락처 ($P1$)",
@@ -6016,26 +5854,14 @@
 	"refreshLogEditionLabel": {
 		"message": "새로고침"
 	},
-	"refreshLogEditionAccesskey": {
-		"message": "R"
-	},
 	"flushLogEditionLabel": {
 		"message": "목록 지우기"
-	},
-	"flushLogEditionAccesskey": {
-		"message": "C"
 	},
 	"clipboardLogEditionLabel": {
 		"message": "클립 보드에 복사"
 	},
-	"clipboardLogEditionAccesskey": {
-		"message": "o"
-	},
 	"cancelLogEditionLabel": {
 		"message": "확인"
-	},
-	"cancelLogEditionAccesskey": {
-		"message": "O"
 	},
 	"wdw_mergeCardsTitle": {
 		"message": "연락처 병합"
@@ -6064,6 +5890,30 @@
 	"wdw_cardbookConfigurationEditFieldTitle": {
 		"message": "변환 함수 선택"
 	},
+	"ContainsOperator": {
+		"message": "에 다음을 포함"
+	},
+	"DoesntContainOperator": {
+		"message": "에 다음을 불포함"
+	},
+	"IsOperator": {
+		"message": "이(가) 다음과 일치"
+	},
+	"IsntOperator": {
+		"message": "이(가) 다음과 불일치"
+	},
+	"BeginsWithOperator": {
+		"message": "이(가) 다음으로 시작"
+	},
+	"EndsWithOperator": {
+		"message": "이(가) 다음으로 끝남"
+	},
+	"IsEmptyOperator": {
+		"message": "없는"
+	},
+	"IsntEmptyOperator": {
+		"message": "비어있지 않음"
+	},
 	"uppercaseLabel": {
 		"message": "대문자"
 	},
@@ -6072,5 +5922,821 @@
 	},
 	"capitalizationLabel": {
 		"message": "대문자화"
+	},
+	"region-name-ad": {
+		"message": "안도라"
+	},
+	"region-name-ae": {
+		"message": "아랍에미리트"
+	},
+	"region-name-af": {
+		"message": "아프가니스탄"
+	},
+	"region-name-ai": {
+		"message": "앙귈라"
+	},
+	"region-name-al": {
+		"message": "알바니아"
+	},
+	"region-name-ag": {
+		"message": "앤티가 바부다"
+	},
+	"region-name-am": {
+		"message": "아르메니아"
+	},
+	"region-name-ar": {
+		"message": "아르헨티나"
+	},
+	"region-name-aq": {
+		"message": "남극"
+	},
+	"region-name-ao": {
+		"message": "앙골라"
+	},
+	"region-name-at": {
+		"message": "오스트리아"
+	},
+	"region-name-az": {
+		"message": "아제르바이젠"
+	},
+	"region-name-ba": {
+		"message": "보스니아 헤르체코비나"
+	},
+	"region-name-bb": {
+		"message": "바베이도스"
+	},
+	"region-name-as": {
+		"message": "미국령 사모아"
+	},
+	"region-name-au": {
+		"message": "호주"
+	},
+	"region-name-bd": {
+		"message": "방글라데시"
+	},
+	"region-name-be": {
+		"message": "벨기에"
+	},
+	"region-name-aw": {
+		"message": "아루바"
+	},
+	"region-name-bf": {
+		"message": "부르키나 파소"
+	},
+	"region-name-bm": {
+		"message": "버뮤다"
+	},
+	"region-name-bj": {
+		"message": "베닌"
+	},
+	"region-name-bg": {
+		"message": "불가리아"
+	},
+	"region-name-bi": {
+		"message": "부룬디"
+	},
+	"region-name-bh": {
+		"message": "바레인"
+	},
+	"region-name-bl": {
+		"message": "산타 바스미"
+	},
+	"region-name-bn": {
+		"message": "브루나이"
+	},
+	"region-name-bo": {
+		"message": "볼리비아"
+	},
+	"region-name-br": {
+		"message": "브라질"
+	},
+	"region-name-bq": {
+		"message": "보네르 섬, 신트외스타티위스 섬, 사바 섬"
+	},
+	"region-name-bt": {
+		"message": "부탄"
+	},
+	"region-name-bs": {
+		"message": "바하마"
+	},
+	"region-name-bz": {
+		"message": "벨리즈"
+	},
+	"region-name-ca": {
+		"message": "캐나다"
+	},
+	"region-name-cc": {
+		"message": "코코스 제도"
+	},
+	"region-name-by": {
+		"message": "벨라루시"
+	},
+	"region-name-cd": {
+		"message": "콩고-킨샤사"
+	},
+	"region-name-cf": {
+		"message": "중앙 아프리카 공화국"
+	},
+	"region-name-bv": {
+		"message": "부벳 제도"
+	},
+	"region-name-bw": {
+		"message": "보츠와나"
+	},
+	"region-name-cl": {
+		"message": "칠레"
+	},
+	"region-name-ci": {
+		"message": "코트디부아르"
+	},
+	"region-name-ch": {
+		"message": "스위스"
+	},
+	"region-name-cm": {
+		"message": "카메룬"
+	},
+	"region-name-ck": {
+		"message": "쿡 제도"
+	},
+	"region-name-cg": {
+		"message": "콩고-프라차빌"
+	},
+	"region-name-cn": {
+		"message": "중국"
+	},
+	"region-name-cp": {
+		"message": "클리퍼턴 섬"
+	},
+	"region-name-co": {
+		"message": "콜롬비아"
+	},
+	"region-name-cr": {
+		"message": "코스타리카"
+	},
+	"region-name-cz": {
+		"message": "체코 공화국"
+	},
+	"region-name-cy": {
+		"message": "사이프러스"
+	},
+	"region-name-cx": {
+		"message": "크리스마스 제도"
+	},
+	"region-name-cv": {
+		"message": "케이프 베르디"
+	},
+	"region-name-cu": {
+		"message": "쿠바"
+	},
+	"region-name-cw": {
+		"message": "큐라소"
+	},
+	"region-name-de": {
+		"message": "독일"
+	},
+	"region-name-dg": {
+		"message": "디에고 가르시아"
+	},
+	"region-name-dk": {
+		"message": "덴마크"
+	},
+	"region-name-dj": {
+		"message": "지부티"
+	},
+	"region-name-dm": {
+		"message": "도미니카"
+	},
+	"region-name-ec": {
+		"message": "에쿠아도르"
+	},
+	"region-name-dz": {
+		"message": "알제리"
+	},
+	"region-name-do": {
+		"message": "도미니카공화국"
+	},
+	"region-name-ee": {
+		"message": "에스토니아"
+	},
+	"region-name-eg": {
+		"message": "이집트"
+	},
+	"region-name-eh": {
+		"message": "서 사하라"
+	},
+	"region-name-et": {
+		"message": "에디오피아"
+	},
+	"region-name-er": {
+		"message": "에리트리아"
+	},
+	"region-name-es": {
+		"message": "스페인"
+	},
+	"region-name-fi": {
+		"message": "핀란드"
+	},
+	"region-name-fj": {
+		"message": "피지"
+	},
+	"region-name-fm": {
+		"message": "미크로네시아"
+	},
+	"region-name-fk": {
+		"message": "포클랜드 제도"
+	},
+	"region-name-fo": {
+		"message": "페로스 제도"
+	},
+	"region-name-ge": {
+		"message": "조지아"
+	},
+	"region-name-gb": {
+		"message": "영국"
+	},
+	"region-name-gd": {
+		"message": "그레나다"
+	},
+	"region-name-fr": {
+		"message": "프랑스"
+	},
+	"region-name-ga": {
+		"message": "가봉"
+	},
+	"region-name-gf": {
+		"message": "프랑스령 기아나"
+	},
+	"region-name-gl": {
+		"message": "그린랜드"
+	},
+	"region-name-gm": {
+		"message": "감비아"
+	},
+	"region-name-gi": {
+		"message": "지브랄타"
+	},
+	"region-name-gg": {
+		"message": "건지 제도"
+	},
+	"region-name-gh": {
+		"message": "가나"
+	},
+	"region-name-gn": {
+		"message": "기니"
+	},
+	"region-name-gp": {
+		"message": "과들루프 제도"
+	},
+	"region-name-gr": {
+		"message": "그리스"
+	},
+	"region-name-gq": {
+		"message": "적도 기니"
+	},
+	"region-name-gt": {
+		"message": "구아테말라"
+	},
+	"region-name-gw": {
+		"message": "기니비사우"
+	},
+	"region-name-hk": {
+		"message": "홍콩"
+	},
+	"region-name-gu": {
+		"message": "괌"
+	},
+	"region-name-gs": {
+		"message": "사우스 조지아 및 사우스 샌드위치 제도"
+	},
+	"region-name-gy": {
+		"message": "가이아나"
+	},
+	"region-name-hm": {
+		"message": "허드 및 맥도날드 제도"
+	},
+	"region-name-ht": {
+		"message": "하이티"
+	},
+	"region-name-hr": {
+		"message": "크로아티아"
+	},
+	"region-name-hn": {
+		"message": "온두라스"
+	},
+	"region-name-in": {
+		"message": "인도"
+	},
+	"region-name-il": {
+		"message": "이스라엘"
+	},
+	"region-name-im": {
+		"message": "맨섬"
+	},
+	"region-name-ie": {
+		"message": "아일랜드"
+	},
+	"region-name-hu": {
+		"message": "헝가리"
+	},
+	"region-name-id": {
+		"message": "인도네시아"
+	},
+	"region-name-io": {
+		"message": "영국령 인도양 식민지"
+	},
+	"region-name-ir": {
+		"message": "이란"
+	},
+	"region-name-is": {
+		"message": "아이슬랜드"
+	},
+	"region-name-iq": {
+		"message": "이라크"
+	},
+	"region-name-je": {
+		"message": "저지섬"
+	},
+	"region-name-jp": {
+		"message": "일본"
+	},
+	"region-name-it": {
+		"message": "이탈리아"
+	},
+	"region-name-ke": {
+		"message": "케냐"
+	},
+	"region-name-jo": {
+		"message": "요르단"
+	},
+	"region-name-jm": {
+		"message": "자메이카"
+	},
+	"region-name-kg": {
+		"message": "키르기스스탄"
+	},
+	"region-name-ki": {
+		"message": "키리바시"
+	},
+	"region-name-kh": {
+		"message": "캄보디아"
+	},
+	"region-name-km": {
+		"message": "코모로스"
+	},
+	"region-name-kn": {
+		"message": "세인트 키츠 네비스"
+	},
+	"region-name-ky": {
+		"message": "케이맨 제도"
+	},
+	"region-name-kp": {
+		"message": "조선민주주의인민공화국"
+	},
+	"region-name-kr": {
+		"message": "대한민국"
+	},
+	"region-name-kw": {
+		"message": "쿠웨이트"
+	},
+	"region-name-kz": {
+		"message": "카자흐스탄"
+	},
+	"region-name-la": {
+		"message": "라오스"
+	},
+	"region-name-lb": {
+		"message": "레바논"
+	},
+	"region-name-lc": {
+		"message": "세인트루시아"
+	},
+	"region-name-li": {
+		"message": "리히텐슈타인"
+	},
+	"region-name-lk": {
+		"message": "스리랑카"
+	},
+	"region-name-lr": {
+		"message": "라이베리아"
+	},
+	"region-name-lu": {
+		"message": "룩셈부르크"
+	},
+	"region-name-lv": {
+		"message": "라트비아"
+	},
+	"region-name-ls": {
+		"message": "레소토"
+	},
+	"region-name-ly": {
+		"message": "리비아"
+	},
+	"region-name-lt": {
+		"message": "리투아니아"
+	},
+	"region-name-mc": {
+		"message": "모나코"
+	},
+	"region-name-md": {
+		"message": "몰도바"
+	},
+	"region-name-ma": {
+		"message": "모로코"
+	},
+	"region-name-me": {
+		"message": "몬테니그로"
+	},
+	"region-name-mf": {
+		"message": "산타 마틴"
+	},
+	"region-name-mg": {
+		"message": "마다카스카르"
+	},
+	"region-name-mh": {
+		"message": "마샬 군도"
+	},
+	"region-name-mk": {
+		"message": "마케도니아"
+	},
+	"region-name-ml": {
+		"message": "말리"
+	},
+	"region-name-mm": {
+		"message": "미안마"
+	},
+	"region-name-mn": {
+		"message": "몽고"
+	},
+	"region-name-mo": {
+		"message": "마카오"
+	},
+	"region-name-mp": {
+		"message": "북 마리아나 제도"
+	},
+	"region-name-mt": {
+		"message": "말타"
+	},
+	"region-name-mu": {
+		"message": "모리셔스"
+	},
+	"region-name-mr": {
+		"message": "모리타니아"
+	},
+	"region-name-ms": {
+		"message": "몬트세라트섬"
+	},
+	"region-name-mq": {
+		"message": "마르티니크"
+	},
+	"region-name-mv": {
+		"message": "몰디브"
+	},
+	"region-name-mw": {
+		"message": "말라위"
+	},
+	"region-name-my": {
+		"message": "말레이시아"
+	},
+	"region-name-mx": {
+		"message": "멕시코"
+	},
+	"region-name-mz": {
+		"message": "모잠비크"
+	},
+	"region-name-na": {
+		"message": "나미비아"
+	},
+	"region-name-nc": {
+		"message": "뉴 칼레도니아"
+	},
+	"region-name-ne": {
+		"message": "니제르"
+	},
+	"region-name-nf": {
+		"message": "노퍽섬"
+	},
+	"region-name-ng": {
+		"message": "나이지리아"
+	},
+	"region-name-ni": {
+		"message": "니카라과"
+	},
+	"region-name-nl": {
+		"message": "네덜란드"
+	},
+	"region-name-no": {
+		"message": "노르웨이"
+	},
+	"region-name-np": {
+		"message": "네팔"
+	},
+	"region-name-nr": {
+		"message": "나우르섬"
+	},
+	"region-name-pk": {
+		"message": "파키스탄"
+	},
+	"region-name-pl": {
+		"message": "폴란드"
+	},
+	"region-name-nz": {
+		"message": "뉴질랜드"
+	},
+	"region-name-ph": {
+		"message": "필리핀"
+	},
+	"region-name-nu": {
+		"message": "니우에섬"
+	},
+	"region-name-om": {
+		"message": "오만"
+	},
+	"region-name-pe": {
+		"message": "페루"
+	},
+	"region-name-pa": {
+		"message": "파나마"
+	},
+	"region-name-pf": {
+		"message": "프랑스령 폴리네시아"
+	},
+	"region-name-pg": {
+		"message": "파퓨어 뉴 기니"
+	},
+	"region-name-pm": {
+		"message": "세인트 피에르 미퀄론"
+	},
+	"region-name-pn": {
+		"message": "피트케언섬"
+	},
+	"region-name-pr": {
+		"message": "푸에르토리코"
+	},
+	"region-name-pt": {
+		"message": "포르투갈"
+	},
+	"region-name-pw": {
+		"message": "팔라우"
+	},
+	"region-name-qm": {
+		"message": "미드웨이 환초"
+	},
+	"region-name-py": {
+		"message": "파라구아이"
+	},
+	"region-name-qa": {
+		"message": "카타르"
+	},
+	"region-name-qs": {
+		"message": "바사스 다 인디아"
+	},
+	"region-name-qu": {
+		"message": "후앙 데 노바 섬"
+	},
+	"region-name-qw": {
+		"message": "웨이크 섬"
+	},
+	"region-name-qx": {
+		"message": "글로리오소 섬"
+	},
+	"region-name-rs": {
+		"message": "세르비아"
+	},
+	"region-name-ro": {
+		"message": "루마니아"
+	},
+	"region-name-qz": {
+		"message": "아크로티리"
+	},
+	"region-name-re": {
+		"message": "루니온"
+	},
+	"region-name-rw": {
+		"message": "르완다"
+	},
+	"region-name-ru": {
+		"message": "러시아 연방"
+	},
+	"region-name-sa": {
+		"message": "사우디 아라비아"
+	},
+	"region-name-sb": {
+		"message": "솔로몬 제도"
+	},
+	"region-name-sc": {
+		"message": "세이셀"
+	},
+	"region-name-sd": {
+		"message": "수단"
+	},
+	"region-name-se": {
+		"message": "스웨덴"
+	},
+	"region-name-sg": {
+		"message": "싱가포르"
+	},
+	"region-name-sh": {
+		"message": "세인트헬레나"
+	},
+	"region-name-si": {
+		"message": "슬로베니아"
+	},
+	"region-name-sk": {
+		"message": "슬로바키아"
+	},
+	"region-name-sl": {
+		"message": "시에라리온"
+	},
+	"region-name-sn": {
+		"message": "세네갈"
+	},
+	"region-name-sm": {
+		"message": "산마리노"
+	},
+	"region-name-ss": {
+		"message": "남수단"
+	},
+	"region-name-so": {
+		"message": "소말리아"
+	},
+	"region-name-sr": {
+		"message": "수리남"
+	},
+	"region-name-sx": {
+		"message": "신트마르턴"
+	},
+	"region-name-st": {
+		"message": "상투메 프린시페"
+	},
+	"region-name-sv": {
+		"message": "엘살바도르"
+	},
+	"region-name-sy": {
+		"message": "시리아"
+	},
+	"region-name-sz": {
+		"message": "스와질랜드"
+	},
+	"region-name-tc": {
+		"message": "터크스카이코스 제도"
+	},
+	"region-name-td": {
+		"message": "차드"
+	},
+	"region-name-tg": {
+		"message": "토고"
+	},
+	"region-name-th": {
+		"message": "태국"
+	},
+	"region-name-tf": {
+		"message": "프랑스령 남부 식민지 제도"
+	},
+	"region-name-tj": {
+		"message": "타지키스탄"
+	},
+	"region-name-tk": {
+		"message": "토클라우"
+	},
+	"region-name-tl": {
+		"message": "동티모르"
+	},
+	"region-name-tr": {
+		"message": "터키"
+	},
+	"region-name-tn": {
+		"message": "튀니지"
+	},
+	"region-name-to": {
+		"message": "통가"
+	},
+	"region-name-tm": {
+		"message": "투르크메니스탄"
+	},
+	"region-name-tt": {
+		"message": "트리니다드토바고"
+	},
+	"region-name-tv": {
+		"message": "투발루"
+	},
+	"region-name-tw": {
+		"message": "대만"
+	},
+	"region-name-tz": {
+		"message": "탄자니아"
+	},
+	"region-name-ua": {
+		"message": "우크라이나"
+	},
+	"region-name-ug": {
+		"message": "우간다"
+	},
+	"region-name-us": {
+		"message": "미국"
+	},
+	"region-name-uy": {
+		"message": "우루과이"
+	},
+	"region-name-va": {
+		"message": "바티칸 시국"
+	},
+	"region-name-uz": {
+		"message": "우즈벡키스탄"
+	},
+	"region-name-vc": {
+		"message": "세인트 빈센트 그레나다"
+	},
+	"region-name-vg": {
+		"message": "영국령 버진 제도"
+	},
+	"region-name-vi": {
+		"message": "미국령 버진 제도"
+	},
+	"region-name-vu": {
+		"message": "바누아투"
+	},
+	"region-name-ve": {
+		"message": "베네주엘라"
+	},
+	"region-name-vn": {
+		"message": "베트남"
+	},
+	"region-name-wf": {
+		"message": "왈리스 퓌튀나"
+	},
+	"region-name-ws": {
+		"message": "사모아"
+	},
+	"region-name-xa": {
+		"message": "애시모어 카르티에 제도"
+	},
+	"region-name-xb": {
+		"message": "베이커 섬"
+	},
+	"region-name-xc": {
+		"message": "산호해 제도"
+	},
+	"region-name-xd": {
+		"message": "데켈리아"
+	},
+	"region-name-xe": {
+		"message": "에우로파 섬"
+	},
+	"region-name-xh": {
+		"message": "하울랜드 섬"
+	},
+	"region-name-xg": {
+		"message": "가자 지구"
+	},
+	"region-name-xj": {
+		"message": "얀마옌 섬"
+	},
+	"region-name-xk": {
+		"message": "코소보"
+	},
+	"region-name-xl": {
+		"message": "팔미라 환초"
+	},
+	"region-name-xp": {
+		"message": "파라셀 제도"
+	},
+	"region-name-xm": {
+		"message": "킹먼 암초"
+	},
+	"region-name-xq": {
+		"message": "자르비스 섬"
+	},
+	"region-name-xr": {
+		"message": "스발바르 제도"
+	},
+	"region-name-xs": {
+		"message": "스프래틀리 군도"
+	},
+	"region-name-xt": {
+		"message": "트로믈랭 섬"
+	},
+	"region-name-xv": {
+		"message": "나배사 섬"
+	},
+	"region-name-yt": {
+		"message": "마요트"
+	},
+	"region-name-ye": {
+		"message": "예멘"
+	},
+	"region-name-xw": {
+		"message": "요르단 강 서안 지구"
+	},
+	"region-name-za": {
+		"message": "남아프리카공화국"
+	},
+	"region-name-xu": {
+		"message": "존스턴 환초"
+	},
+	"region-name-zw": {
+		"message": "짐바브웨"
+	},
+	"region-name-zm": {
+		"message": "잠비아"
 	}
 }

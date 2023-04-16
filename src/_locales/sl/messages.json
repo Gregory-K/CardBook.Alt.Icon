@@ -114,14 +114,8 @@
 	"showForgottenLabel": {
 		"message": "Prikaži pozabljene dvojnike"
 	},
-	"showForgottenAccesskey": {
-		"message": "P"
-	},
 	"hideForgottenLabel": {
 		"message": "Skrij pozabljene dvojnike"
-	},
-	"hideForgottenAccesskey": {
-		"message": "S"
 	},
 	"noContactsDuplicated": {
 		"message": "Podvojenih stikov ni bilo najdenih."
@@ -3309,6 +3303,12 @@
 	"toLowerCase": {
 		"message": "Zapiši z malimi črkami"
 	},
+	"copy": {
+		"message": "Kopiraj"
+	},
+	"paste": {
+		"message": "Prilepi"
+	},
 	"copyFieldValue": {
 		"message": "Kopiraj ($P1$)",
         "placeholders": {
@@ -3369,7 +3369,7 @@
 	"wdw_cardbookConfigurationAddEmailsRestrictionTitle": {
 		"message": "Določilo omejitev poštnega računa"
 	},
-	"wdw_cardbookConfigurationAddEmailsCollectionTitle": {
+	"wdw_cardbookConfigurationAddEmailsEmailsCollectionTitle": {
 		"message": "Določilo zbiranja odhodne pošte poštnega računa"
 	},
 	"ignoreCaseIgnoreDiacriticLabel": {
@@ -3773,10 +3773,13 @@
 	},
 	"wizard.next.label": {
 		"message": "Naprej"
-	},	
+	},
 	"wizard.back.label": {
 		"message": "Nazaj"
-	},	
+	},
+	"wizard.cancel.label": {
+		"message": "Prekliči"
+	},
 	"wizard.create.label": {
 		"message": "Ustvari"
 	},
@@ -3800,9 +3803,6 @@
 	},
 	"initialPage.search.label": {
 		"message": "Išči v obstoječih imenikih"
-	},
-	"initialPage.find.label": {
-		"message": "??Search for remote address books??"
 	},
 	"localPage.type.description": {
 		"message": "Katere vrste je vaš krajevni imenik?"
@@ -3838,7 +3838,7 @@
 		"message": "Brskaj"
 	},
 	"remotePage.description": {
-		"message": "Katere vrste je vaš oddaljeni imenik (pozor: Google NE podpira standardov vCard)?"
+		"message": "Katere vrste je vaš oddaljeni imenik?"
 	},
 	"remotePage.type.label": {
 		"message": "Vrsta"
@@ -3891,7 +3891,7 @@
 	"rememberPassword": {
 		"message": "Uporabi upravitelja gesel, da si zapomni to geslo."
 	},
-	"showHidePassword.tooltip": {
+	"showHidePassword": {
 		"message": "Prikaži/skrij geslo"
 	},
 	"remotePage.validatebutton.label": {
@@ -3903,20 +3903,11 @@
 	"abSearchHeading.label": {
 		"message": "Išči v:"
 	},
-	"abSearchHeading.accesskey": {
-		"message": "š"
-	},
 	"matchAll.label": {
 		"message": "Izpolni vsa merila"
 	},
-	"matchAll.accesskey": {
-		"message": "v"
-	},
 	"matchAny.label": {
 		"message": "Izpolni vsaj eno merilo"
-	},
-	"matchAny.accesskey": {
-		"message": "e"
 	},
 	"googleOauthPage.wizard.description": {
 		"message": "Overitev Google"
@@ -3969,9 +3960,6 @@
 	"name.ABedit.label": {
 		"message": "Ime:"
 	},
-	"name.ABedit.accesskey": {
-		"message": "I"
-	},
 	"nodesLabel": {
 		"message": "??Nodes:??"
 	},
@@ -3993,9 +3981,6 @@
 	"readonlyLabel": {
 		"message": "Način samo za branje"
 	},
-	"readonlyAccesskey": {
-		"message": "N"
-	},
 	"urnuuidLabel": {
 		"message": "Uporabi urn:uuid"
 	},
@@ -4008,14 +3993,8 @@
 	"autoSyncLabel": {
 		"message": "Omnogoči občasno sinhronizacijo"
 	},
-	"autoSyncAccesskey": {
-		"message": "O"
-	},
 	"autoSyncIntervalLabel": {
 		"message": "Razmik občasne sinhronizacije (minute):"
-	},
-	"autoSyncIntervalAccesskey": {
-		"message": "R"
 	},
 	"miscTabLabel": {
 		"message": "Razno"
@@ -4026,20 +4005,11 @@
 	"fnFormulaLabel": {
 		"message": "Ustvari prikazano ime:"
 	},
-	"fnFormulaAccesskey": {
-		"message": "U"
-	},
 	"resetFnFormulaLabel": {
 		"message": "Obnovi na privzeto"
 	},
-	"resetFnFormulaAccesskey": {
-		"message": "n"
-	},
 	"applyToABButtonLabel": {
 		"message": "??Apply to…??"
-	},
-	"applyToABButtonAccesskey": {
-		"message": "A"
 	},
 	"wdw_adrEditionTitle": {
 		"message": "Urejevalnik naslovov"
@@ -4173,53 +4143,26 @@
 	"autocompletionLabel": {
 		"message": "Samodokončevanje e-poštnih naslovov"
 	},
-	"autocompletionAccesskey": {
-		"message": "S"
-	},
-	"autocompletionTooltip": {
-		"message": "Razširi običajno samodokončevanje stikov iz Thunderbirdovih imenikov s samodokončevanjem stikov iz CardBookovih imenikov."
-	},
 	"autocompleteSortByPopularityLabel": {
 		"message": "Razvrsti e-poštne naslove po priljubljenosti"
-	},
-	"autocompleteSortByPopularityAccesskey": {
-		"message": "R"
 	},
 	"autocompleteProposeConcatEmailsLabel": {
 		"message": "??Propose concatenated emails per contact??"
 	},
-	"autocompleteProposeConcatEmailsAccesskey": {
-		"message": "c"
-	},
 	"autocompleteShowAddressbookLabel": {
 		"message": "Prikaži ime imenika"
-	},
-	"autocompleteShowAddressbookAccesskey": {
-		"message": "P"
 	},
 	"autocompleteShowEmailTypeLabel": {
 		"message": "??Show email type??"
 	},
-	"autocompleteShowEmailTypeAccesskey": {
-		"message": "e"
-	},
 	"autocompleteShowPopularityLabel": {
 		"message": "??Show popularity??"
-	},
-	"autocompleteShowPopularityAccesskey": {
-		"message": "y"
 	},
 	"autocompleteWithColorLabel": {
 		"message": "Uporabi barvo imenika"
 	},
-	"autocompleteWithColorAccesskey": {
-		"message": "U"
-	},
 	"autocompleteRestrictSearchLabel": {
 		"message": "??Restrict searched fields??"
-	},
-	"autocompleteRestrictSearchAccesskey": {
-		"message": "P"
 	},
 	"chooseAutocompleteRestrictSearchFieldsButtonLabel": {
 		"message": "Uredi"
@@ -4256,12 +4199,6 @@
 	},
 	"exclusiveLabel": {
 		"message": "Edinstven vir za stike"
-	},
-	"exclusiveAccesskey": {
-		"message": "E"
-	},
-	"exclusiveTooltip": {
-		"message": "Če je omogočena, ta možnost omogoča pridobivanje stikov iz Thunderbirdovih imenikov za rumene zvezdice, prikazano ime in samodokončevanje e-pošte."
 	},
 	"accountsRestrictionsLabel": {
 		"message": "Omejitve poštnega računa"
@@ -4341,12 +4278,6 @@
 	"debugModeLabel": {
 		"message": "Način razhoščevanja"
 	},
-	"debugModeAccesskey": {
-		"message": "N"
-	},
-	"debugModeTooltip": {
-		"message": "Omogoči način razhroščevanja za razširjeno beleženje."
-	},
 	"statusInformationLineNumberLabel": {
 		"message": "Največje število vrstic datoteke dnevnika:"
 	},
@@ -4365,26 +4296,14 @@
 	"listTab.conf.label": {
 		"message": "Seznami"
 	},
-	"listTab.conf.accesskey": {
-		"message": "S"
-	},
 	"technicalTab.conf.label": {
 		"message": "Tehnično"
-	},
-	"technicalTab.conf.accesskey": {
-		"message": "T"
 	},
 	"vCardTab.conf.label": {
 		"message": "vCard"
 	},
-	"vCardTab.conf.accesskey": {
-		"message": "C"
-	},
 	"keyTab.conf.label": {
 		"message": "??Public Keys??"
-	},
-	"keyTab.conf.accesskey": {
-		"message": "J"
 	},
 	"advancedTab1Label": {
 		"message": "Napredno"
@@ -4482,9 +4401,6 @@
 	"preferEmailEditionLabel": {
 		"message": "Dvoklik na stik ga uredi namesto pošlje"
 	},
-	"preferEmailEditionAccesskey": {
-		"message": "D"
-	},
 	"dateDisplayedFormatLabel": {
 		"message": "Oblika zapisa datuma:"
 	},
@@ -4493,9 +4409,6 @@
 	},
 	"defaultRegionLabel": {
 		"message": "??Default Region:??"
-	},
-	"defaultRegionAccesskey": {
-		"message": "D"
 	},
 	"defaultRegionTooltip": {
 		"message": "??Default region for addresses and formatting phone numbers.??"
@@ -4641,9 +4554,6 @@
 	"preferIMPPPrefLabel": {
 		"message": "Daj prednost internetni komunikaciji, ki je označena s/z"
 	},
-	"preferIMPPPrefAccesskey": {
-		"message": "p"
-	},
 	"preferIMPPPrefWarn": {
 		"message": "Če ni označen noben naslov, bo za vse naslove stika predlagana povezava."
 	},
@@ -4707,9 +4617,6 @@
 	"URLPhoneBackgroundLabel": {
 		"message": "??Run in background??"
 	},
-	"URLPhoneBackgroundAccesskey": {
-		"message": "S"
-	},
 	"encryptionGroupboxLabel": {
 		"message": "Šifriranje"
 	},
@@ -4718,9 +4625,6 @@
 	},
 	"localDataEncryptionEnabledLabel": {
 		"message": "??Encrypt locally cached cards??"
-	},
-	"localDataEncryptionEnabledAccesskey": {
-		"message": "E"
 	},
 	"customFieldRankHeaderLabel": {
 		"message": "Uvrstitev"
@@ -4771,7 +4675,7 @@
 		"message": "Oznaka polja"
 	},
 	"listPanelLabel": {
-		"message": "Če vaš strežnik ne podpira kategorij (kot npr. Google, Apple, Zimbra itd. …), lahko za pošiljanje e-pošte skupinam uporabite sezname. vCard 3.0 izvirno ne podpra seznamov, vendar lahko to dosežete s polji po meri. Če želite s standardom vCard 3.0 uporabiti sezname, morate ta polja določiti."
+		"message": "Če vaš strežnik ne podpira kategorij (kot npr. Apple, Zimbra itd. …), lahko za pošiljanje e-pošte skupinam uporabite sezname. vCard 3.0 izvirno ne podpra seznamov, vendar lahko to dosežete s polji po meri. Če želite s standardom vCard 3.0 uporabiti sezname, morate ta polja določiti."
 	},
 	"listGroupboxLabel": {
 		"message": "Polja po meri za sezname"
@@ -4803,14 +4707,8 @@
 	"syncAfterChangeLabel": {
 		"message": "??Synchronize after changes??"
 	},
-	"syncAfterChangeAccesskey": {
-		"message": "c"
-	},
 	"initialSyncLabel": {
 		"message": "Zaženi začetno sinhronizacijo ob zagonu Thunderbirda"
-	},
-	"initialSyncAccesskey": {
-		"message": "Z"
 	},
 	"initialSyncDelayLabel": {
 		"message": "??Delay for running first requests (seconds):??"
@@ -4872,17 +4770,11 @@
 	"decodeReportLabel": {
 		"message": "Odkodiraj URL-je za zahteve REPORT"
 	},
-	"decodeReportAccesskey": {
-		"message": "d"
-	},
 	"miscEmailGroupboxLabel": {
 		"message": "Pošiljanje e-pošte"
 	},
 	"preferEmailPrefLabel": {
 		"message": "Daj prednost -poštnim naslovom, ki so označeni z oznako PREF"
-	},
-	"preferEmailPrefAccesskey": {
-		"message": "D"
 	},
 	"preferEmailPrefWarn": {
 		"message": "Če noben naslov ni označen z oznako „PREF”, bo sporočilo poslano na vse e-poštne naslove stika."
@@ -4890,14 +4782,8 @@
 	"warnEmptyEmailsLabel": {
 		"message": "Opozori me, kadar poskušam poslati pošto stikom brez e-poštnega naslova"
 	},
-	"warnEmptyEmailsAccesskey": {
-		"message": "O"
-	},
 	"useOnlyEmailLabel": {
 		"message": "Uporabi samo e-poštne naslove"
-	},
-	"useOnlyEmailAccesskey": {
-		"message": "U"
 	},
 	"attachVCardWarn": {
 		"message": "Za samodejno dodajanje kartice vCard k vaši e-pošti izberite kartico vCard za vsak e-poštni račun. Če je omogočeno, jo bo CardBook pripel k vsaki odhodni e-pošti za ta račun."
@@ -4956,26 +4842,14 @@
 	"bday.conf.label": {
 		"message": "Rojstni dan"
 	},
-	"bday.conf.accesskey": {
-		"message": "R"
-	},
 	"anniversary.conf.label": {
 		"message": "Obletnica (samo za vCard 4.0)"
-	},
-	"anniversary.conf.accesskey": {
-		"message": "O"
 	},
 	"deathdate.conf.label": {
 		"message": "Dan smrti (samo za vCard 4.0)"
 	},
-	"deathdate.conf.accesskey": {
-		"message": "D"
-	},
 	"eventsLabel": {
 		"message": "Dogodki"
-	},
-	"eventsAccesskey": {
-		"message": "g"
 	},
 	"gender.conf.label": {
 		"message": "Spol (samo za vCard 4.0)"
@@ -5007,14 +4881,8 @@
 	"showPopupOnStartupLabel": {
 		"message": "Prikaži pojavno okno ob zagonu"
 	},
-	"showPopupOnStartupAccesskey": {
-		"message": "z"
-	},
 	"showPeriodicPopupLabel": {
 		"message": "Prikaži pojavno okno vsak dan"
-	},
-	"showPeriodicPopupAccesskey": {
-		"message": "s"
 	},
 	"periodicPopupTimeLabel": {
 		"message": "Čas prikaza (hh:mm):"
@@ -5024,9 +4892,6 @@
 	},
 	"showPopupEvenIfNoBirthdayLabel": {
 		"message": "Prikaži pojavno okno, kadar je seznam obletnic prazen"
-	},
-	"showPopupEvenIfNoBirthdayAccesskey": {
-		"message": "P"
 	},
 	"remindViaLightningGroupboxLabel": {
 		"message": "Opomni preko Thunderbirdove koledarske razširitve Lightning"
@@ -5039,9 +4904,6 @@
 	},
 	"syncWithLightningOnStartupLabel": {
 		"message": "Sinhroniziraj z Lightningom ob zagonu"
-	},
-	"syncWithLightningOnStartupAccesskey": {
-		"message": "n"
 	},
 	"calendarEntryTitleLabel": {
 		"message": "Naziv dogodka:"
@@ -5061,9 +4923,6 @@
 	"calendarRepeatingEventLabel": {
 		"message": "Ponavljajoč dogodek"
 	},
-	"calendarRepeatingEventAccesskey": {
-		"message": "P"
-	},
 	"calendarEntryTimeLabel": {
 		"message": "Čas dogodka (hh:mm):"
 	},
@@ -5072,9 +4931,6 @@
 	},
 	"calendarEntryWholeDayLabel": {
 		"message": "Celodnevni dogodek"
-	},
-	"calendarEntryWholeDayAccesskey": {
-		"message": "C"
 	},
 	"calendarEntryAlarmLabel": {
 		"message": "??Alarm(s) to n hours for calendar events (Example: 4,+1):??"
@@ -5835,9 +5691,6 @@
 	"viewResultEditionLabel": {
 		"message": "Pokaži rezultat"
 	},
-	"viewResultEditionAccesskey": {
-		"message": "r"
-	},
 	"previousEditButton.tooltip": {
 		"message": "Najdi nazaj"
 	},
@@ -5883,20 +5736,11 @@
 	"moreEditionLabel": {
 		"message": "Prikaži več"
 	},
-	"moreEditionAccesskey": {
-		"message": "v"
-	},
 	"lessEditionLabel": {
 		"message": "Prikaži manj"
 	},
-	"lessEditionAccesskey": {
-		"message": "m"
-	},
 	"mergeAllEditionLabel": {
 		"message": "??Merge All??"
-	},
-	"mergeAllEditionAccesskey": {
-		"message": "M"
 	},
 	"formatAllEditionLabel": {
 		"message": "??Format all??"
@@ -5906,9 +5750,6 @@
 	},
 	"undoAllEditionLabel": {
 		"message": "??Undo all??"
-	},
-	"undoAllEditionAccesskey": {
-		"message": "U"
 	},
 	"formatEditionLabel": {
 		"message": "??Format??"
@@ -5951,9 +5792,6 @@
 	},
 	"convertVCardsTooltip": {
 		"message": "??The vCard version of some contacts is different from the vCard version of your address book, this button may convert these vCards??"
-	},
-	"convertVCardsAccesskey": {
-		"message": "C"
 	},
 	"wdw_findDuplicatesTitle": {
 		"message": "Podvojeni stiki ($P1$)",
@@ -6016,26 +5854,14 @@
 	"refreshLogEditionLabel": {
 		"message": "Osveži"
 	},
-	"refreshLogEditionAccesskey": {
-		"message": "O"
-	},
 	"flushLogEditionLabel": {
 		"message": "Počisti seznam"
-	},
-	"flushLogEditionAccesskey": {
-		"message": "P"
 	},
 	"clipboardLogEditionLabel": {
 		"message": "Kopiraj na odložišče"
 	},
-	"clipboardLogEditionAccesskey": {
-		"message": "K"
-	},
 	"cancelLogEditionLabel": {
 		"message": "V redu"
-	},
-	"cancelLogEditionAccesskey": {
-		"message": "V"
 	},
 	"wdw_mergeCardsTitle": {
 		"message": "Združi stike"
@@ -6064,6 +5890,30 @@
 	"wdw_cardbookConfigurationEditFieldTitle": {
 		"message": "??Choose a conversion function??"
 	},
+	"ContainsOperator": {
+		"message": "vsebuje"
+	},
+	"DoesntContainOperator": {
+		"message": "ne vsebuje"
+	},
+	"IsOperator": {
+		"message": "je"
+	},
+	"IsntOperator": {
+		"message": "ni"
+	},
+	"BeginsWithOperator": {
+		"message": "se začne s/z"
+	},
+	"EndsWithOperator": {
+		"message": "se konča s/z"
+	},
+	"IsEmptyOperator": {
+		"message": "je prazno"
+	},
+	"IsntEmptyOperator": {
+		"message": "ni prazno"
+	},
 	"uppercaseLabel": {
 		"message": "??Uppercase??"
 	},
@@ -6072,5 +5922,821 @@
 	},
 	"capitalizationLabel": {
 		"message": "??Capitalization??"
+	},
+	"region-name-ad": {
+		"message": "Andora"
+	},
+	"region-name-ae": {
+		"message": "ZAE"
+	},
+	"region-name-af": {
+		"message": "Afganistan"
+	},
+	"region-name-ai": {
+		"message": "Angvila"
+	},
+	"region-name-al": {
+		"message": "Albanija"
+	},
+	"region-name-ag": {
+		"message": "Antigva in Barbuda"
+	},
+	"region-name-am": {
+		"message": "Armenija"
+	},
+	"region-name-ar": {
+		"message": "Argentina"
+	},
+	"region-name-aq": {
+		"message": "Antarktika"
+	},
+	"region-name-ao": {
+		"message": "Angola"
+	},
+	"region-name-at": {
+		"message": "Avstrija"
+	},
+	"region-name-az": {
+		"message": "Azerbajdžan"
+	},
+	"region-name-ba": {
+		"message": "Bosna in Hercegovina"
+	},
+	"region-name-bb": {
+		"message": "Barbados"
+	},
+	"region-name-as": {
+		"message": "Ameriška Samoa"
+	},
+	"region-name-au": {
+		"message": "Avstralija"
+	},
+	"region-name-bd": {
+		"message": "Bangladeš"
+	},
+	"region-name-be": {
+		"message": "Belgija"
+	},
+	"region-name-aw": {
+		"message": "Aruba"
+	},
+	"region-name-bf": {
+		"message": "Burkina Faso"
+	},
+	"region-name-bm": {
+		"message": "Bermudi"
+	},
+	"region-name-bj": {
+		"message": "Benin"
+	},
+	"region-name-bg": {
+		"message": "Bolgarija"
+	},
+	"region-name-bi": {
+		"message": "Burundi"
+	},
+	"region-name-bh": {
+		"message": "Bahrajn"
+	},
+	"region-name-bl": {
+		"message": "Sveti Bartolomej"
+	},
+	"region-name-bn": {
+		"message": "Brunei Darussalam"
+	},
+	"region-name-bo": {
+		"message": "Bolivija"
+	},
+	"region-name-br": {
+		"message": "Brazilija"
+	},
+	"region-name-bq": {
+		"message": "Bonaire, Saint Eustatius in Saba"
+	},
+	"region-name-bt": {
+		"message": "Butan"
+	},
+	"region-name-bs": {
+		"message": "Bahami"
+	},
+	"region-name-bz": {
+		"message": "Belize"
+	},
+	"region-name-ca": {
+		"message": "Kanada"
+	},
+	"region-name-cc": {
+		"message": "Kokosovi otoki"
+	},
+	"region-name-by": {
+		"message": "Belorusija"
+	},
+	"region-name-cd": {
+		"message": "Kongo - Kinšasa"
+	},
+	"region-name-cf": {
+		"message": "Srednjeafriška republika"
+	},
+	"region-name-bv": {
+		"message": "Bouvetov otok"
+	},
+	"region-name-bw": {
+		"message": "Bocvana"
+	},
+	"region-name-cl": {
+		"message": "Čile"
+	},
+	"region-name-ci": {
+		"message": "Slonokoščena obala"
+	},
+	"region-name-ch": {
+		"message": "Švica"
+	},
+	"region-name-cm": {
+		"message": "Kamerun"
+	},
+	"region-name-ck": {
+		"message": "Cookovi otoki"
+	},
+	"region-name-cg": {
+		"message": "Kongo-Brazzaville"
+	},
+	"region-name-cn": {
+		"message": "Kitajska"
+	},
+	"region-name-cp": {
+		"message": "Otok Clipperton"
+	},
+	"region-name-co": {
+		"message": "Kolumbija"
+	},
+	"region-name-cr": {
+		"message": "Kostarika"
+	},
+	"region-name-cz": {
+		"message": "Češka"
+	},
+	"region-name-cy": {
+		"message": "Ciper"
+	},
+	"region-name-cx": {
+		"message": "Božični otoki"
+	},
+	"region-name-cv": {
+		"message": "Zelenortski otoki"
+	},
+	"region-name-cu": {
+		"message": "Kuba"
+	},
+	"region-name-cw": {
+		"message": "Curaçao"
+	},
+	"region-name-de": {
+		"message": "Nemčija"
+	},
+	"region-name-dg": {
+		"message": "Diego Garcia"
+	},
+	"region-name-dk": {
+		"message": "Danska"
+	},
+	"region-name-dj": {
+		"message": "Džibuti"
+	},
+	"region-name-dm": {
+		"message": "Dominika"
+	},
+	"region-name-ec": {
+		"message": "Ekvador"
+	},
+	"region-name-dz": {
+		"message": "Alžirija"
+	},
+	"region-name-do": {
+		"message": "Dominikanska republika"
+	},
+	"region-name-ee": {
+		"message": "Estonija"
+	},
+	"region-name-eg": {
+		"message": "Egipt"
+	},
+	"region-name-eh": {
+		"message": "Zahodna Sahara"
+	},
+	"region-name-et": {
+		"message": "Etiopija"
+	},
+	"region-name-er": {
+		"message": "Eritreja"
+	},
+	"region-name-es": {
+		"message": "Španija"
+	},
+	"region-name-fi": {
+		"message": "Finska"
+	},
+	"region-name-fj": {
+		"message": "Fidži"
+	},
+	"region-name-fm": {
+		"message": "Mikronezija"
+	},
+	"region-name-fk": {
+		"message": "Falklandi (Malvinski otoki)"
+	},
+	"region-name-fo": {
+		"message": "Ferski otoki"
+	},
+	"region-name-ge": {
+		"message": "Gruzija"
+	},
+	"region-name-gb": {
+		"message": "Velika Britanija"
+	},
+	"region-name-gd": {
+		"message": "Grenada"
+	},
+	"region-name-fr": {
+		"message": "Francija"
+	},
+	"region-name-ga": {
+		"message": "Gabon"
+	},
+	"region-name-gf": {
+		"message": "Francoska Gvajana"
+	},
+	"region-name-gl": {
+		"message": "Grenlandija"
+	},
+	"region-name-gm": {
+		"message": "Gambija"
+	},
+	"region-name-gi": {
+		"message": "Gibraltar"
+	},
+	"region-name-gg": {
+		"message": "Guernsey"
+	},
+	"region-name-gh": {
+		"message": "Gana"
+	},
+	"region-name-gn": {
+		"message": "Gvineja"
+	},
+	"region-name-gp": {
+		"message": "Guadeloupe"
+	},
+	"region-name-gr": {
+		"message": "Grčija"
+	},
+	"region-name-gq": {
+		"message": "Ekvatorialna Gvineja"
+	},
+	"region-name-gt": {
+		"message": "Gvatemala"
+	},
+	"region-name-gw": {
+		"message": "Gvineja Bissau"
+	},
+	"region-name-hk": {
+		"message": "Hong Kong"
+	},
+	"region-name-gu": {
+		"message": "Guam"
+	},
+	"region-name-gs": {
+		"message": "Južna Georgia in Južni Sandwichevi otoki"
+	},
+	"region-name-gy": {
+		"message": "Gvajana"
+	},
+	"region-name-hm": {
+		"message": "Otok Heard in Otočje McDonald"
+	},
+	"region-name-ht": {
+		"message": "Haiti"
+	},
+	"region-name-hr": {
+		"message": "Hrvaška"
+	},
+	"region-name-hn": {
+		"message": "Honduras"
+	},
+	"region-name-in": {
+		"message": "Indija"
+	},
+	"region-name-il": {
+		"message": "Izrael"
+	},
+	"region-name-im": {
+		"message": "Man"
+	},
+	"region-name-ie": {
+		"message": "Irska"
+	},
+	"region-name-hu": {
+		"message": "Madžarska"
+	},
+	"region-name-id": {
+		"message": "Indonezija"
+	},
+	"region-name-io": {
+		"message": "Britanski teritorij v Indijskem oceanu"
+	},
+	"region-name-ir": {
+		"message": "Iran"
+	},
+	"region-name-is": {
+		"message": "Islandija"
+	},
+	"region-name-iq": {
+		"message": "Irak"
+	},
+	"region-name-je": {
+		"message": "Jersey"
+	},
+	"region-name-jp": {
+		"message": "Japonska"
+	},
+	"region-name-it": {
+		"message": "Italija"
+	},
+	"region-name-ke": {
+		"message": "Kenija"
+	},
+	"region-name-jo": {
+		"message": "Jordanija"
+	},
+	"region-name-jm": {
+		"message": "Jamajka"
+	},
+	"region-name-kg": {
+		"message": "Kirgizistan"
+	},
+	"region-name-ki": {
+		"message": "Kiribati"
+	},
+	"region-name-kh": {
+		"message": "Kambodža"
+	},
+	"region-name-km": {
+		"message": "Komori"
+	},
+	"region-name-kn": {
+		"message": "Saint Kitts in Nevis"
+	},
+	"region-name-ky": {
+		"message": "Kajmanski otoki"
+	},
+	"region-name-kp": {
+		"message": "Severna Koreja"
+	},
+	"region-name-kr": {
+		"message": "Južna Koreja"
+	},
+	"region-name-kw": {
+		"message": "Kuvajt"
+	},
+	"region-name-kz": {
+		"message": "Kazahstan"
+	},
+	"region-name-la": {
+		"message": "Laos"
+	},
+	"region-name-lb": {
+		"message": "Libanon"
+	},
+	"region-name-lc": {
+		"message": "Sveta Lucija"
+	},
+	"region-name-li": {
+		"message": "Lihtenštajn"
+	},
+	"region-name-lk": {
+		"message": "Šri Lanka"
+	},
+	"region-name-lr": {
+		"message": "Liberija"
+	},
+	"region-name-lu": {
+		"message": "Luksemburg"
+	},
+	"region-name-lv": {
+		"message": "Latvija"
+	},
+	"region-name-ls": {
+		"message": "Lesoto"
+	},
+	"region-name-ly": {
+		"message": "Libija"
+	},
+	"region-name-lt": {
+		"message": "Litva"
+	},
+	"region-name-mc": {
+		"message": "Monako"
+	},
+	"region-name-md": {
+		"message": "Moldavija"
+	},
+	"region-name-ma": {
+		"message": "Maroko"
+	},
+	"region-name-me": {
+		"message": "Črna Gora"
+	},
+	"region-name-mf": {
+		"message": "Sveti Martin"
+	},
+	"region-name-mg": {
+		"message": "Madagaskar"
+	},
+	"region-name-mh": {
+		"message": "Marshallovi otoki"
+	},
+	"region-name-mk": {
+		"message": "Makedonija"
+	},
+	"region-name-ml": {
+		"message": "Mali"
+	},
+	"region-name-mm": {
+		"message": "Mjanmar"
+	},
+	"region-name-mn": {
+		"message": "Mongolija"
+	},
+	"region-name-mo": {
+		"message": "Macao"
+	},
+	"region-name-mp": {
+		"message": "Severni Marianski otoki"
+	},
+	"region-name-mt": {
+		"message": "Malta"
+	},
+	"region-name-mu": {
+		"message": "Mauritius"
+	},
+	"region-name-mr": {
+		"message": "Mavretanija"
+	},
+	"region-name-ms": {
+		"message": "Montserrat"
+	},
+	"region-name-mq": {
+		"message": "Martinik"
+	},
+	"region-name-mv": {
+		"message": "Maldivi"
+	},
+	"region-name-mw": {
+		"message": "Malavi"
+	},
+	"region-name-my": {
+		"message": "Malezija"
+	},
+	"region-name-mx": {
+		"message": "Mehika"
+	},
+	"region-name-mz": {
+		"message": "Mozambik"
+	},
+	"region-name-na": {
+		"message": "Namibija"
+	},
+	"region-name-nc": {
+		"message": "Nova Kaledonija"
+	},
+	"region-name-ne": {
+		"message": "Niger"
+	},
+	"region-name-nf": {
+		"message": "Otok Norfolk"
+	},
+	"region-name-ng": {
+		"message": "Nigerija"
+	},
+	"region-name-ni": {
+		"message": "Nikaragva"
+	},
+	"region-name-nl": {
+		"message": "Nizozemska"
+	},
+	"region-name-no": {
+		"message": "Norveška"
+	},
+	"region-name-np": {
+		"message": "Nepal"
+	},
+	"region-name-nr": {
+		"message": "Nauru"
+	},
+	"region-name-pk": {
+		"message": "Pakistan"
+	},
+	"region-name-pl": {
+		"message": "Poljska"
+	},
+	"region-name-nz": {
+		"message": "Nova Zelandija"
+	},
+	"region-name-ph": {
+		"message": "Filipini"
+	},
+	"region-name-nu": {
+		"message": "Niue"
+	},
+	"region-name-om": {
+		"message": "Oman"
+	},
+	"region-name-pe": {
+		"message": "Peru"
+	},
+	"region-name-pa": {
+		"message": "Panama"
+	},
+	"region-name-pf": {
+		"message": "Francoska Polinezija"
+	},
+	"region-name-pg": {
+		"message": "Papua Nova Gvineja"
+	},
+	"region-name-pm": {
+		"message": "Saint Pierre in Miquelon"
+	},
+	"region-name-pn": {
+		"message": "Pitcairnovi otoki"
+	},
+	"region-name-pr": {
+		"message": "Portoriko"
+	},
+	"region-name-pt": {
+		"message": "Portugalska"
+	},
+	"region-name-pw": {
+		"message": "Palau"
+	},
+	"region-name-qm": {
+		"message": "Otočje Midway"
+	},
+	"region-name-py": {
+		"message": "Paragvaj"
+	},
+	"region-name-qa": {
+		"message": "Katar"
+	},
+	"region-name-qs": {
+		"message": "Bassas da India"
+	},
+	"region-name-qu": {
+		"message": "Otok Juan de Nova"
+	},
+	"region-name-qw": {
+		"message": "Otok Wake"
+	},
+	"region-name-qx": {
+		"message": "Otočje Glorioso"
+	},
+	"region-name-rs": {
+		"message": "Srbija"
+	},
+	"region-name-ro": {
+		"message": "Romunija"
+	},
+	"region-name-qz": {
+		"message": "Akrotiri"
+	},
+	"region-name-re": {
+		"message": "Reunion"
+	},
+	"region-name-rw": {
+		"message": "Ruanda"
+	},
+	"region-name-ru": {
+		"message": "Rusija"
+	},
+	"region-name-sa": {
+		"message": "Savdska Arabija"
+	},
+	"region-name-sb": {
+		"message": "Solomonovi otoki"
+	},
+	"region-name-sc": {
+		"message": "Sejšeli"
+	},
+	"region-name-sd": {
+		"message": "Sudan"
+	},
+	"region-name-se": {
+		"message": "Švedska"
+	},
+	"region-name-sg": {
+		"message": "Singapur"
+	},
+	"region-name-sh": {
+		"message": "Sveta Helena"
+	},
+	"region-name-si": {
+		"message": "Slovenija"
+	},
+	"region-name-sk": {
+		"message": "Slovaška"
+	},
+	"region-name-sl": {
+		"message": "Sierra Leone"
+	},
+	"region-name-sn": {
+		"message": "Senegal"
+	},
+	"region-name-sm": {
+		"message": "San Marino"
+	},
+	"region-name-ss": {
+		"message": "Južni Sudan"
+	},
+	"region-name-so": {
+		"message": "Somalija"
+	},
+	"region-name-sr": {
+		"message": "Surinam"
+	},
+	"region-name-sx": {
+		"message": "Sint Maarten"
+	},
+	"region-name-st": {
+		"message": "Sao Tome in Principe"
+	},
+	"region-name-sv": {
+		"message": "Salvador"
+	},
+	"region-name-sy": {
+		"message": "Sirija"
+	},
+	"region-name-sz": {
+		"message": "Svazi"
+	},
+	"region-name-tc": {
+		"message": "Otoki Turka in Caicosa"
+	},
+	"region-name-td": {
+		"message": "Čad"
+	},
+	"region-name-tg": {
+		"message": "Togo"
+	},
+	"region-name-th": {
+		"message": "Tajska"
+	},
+	"region-name-tf": {
+		"message": "Francoske južne in antarktične dežele"
+	},
+	"region-name-tj": {
+		"message": "Tadžikistan"
+	},
+	"region-name-tk": {
+		"message": "Tokelau"
+	},
+	"region-name-tl": {
+		"message": "Timor-Leste"
+	},
+	"region-name-tr": {
+		"message": "Tučija"
+	},
+	"region-name-tn": {
+		"message": "Tunizija"
+	},
+	"region-name-to": {
+		"message": "Tonga"
+	},
+	"region-name-tm": {
+		"message": "Turkmenistan"
+	},
+	"region-name-tt": {
+		"message": "Trinidad"
+	},
+	"region-name-tv": {
+		"message": "Tuvalu"
+	},
+	"region-name-tw": {
+		"message": "Tajvan"
+	},
+	"region-name-tz": {
+		"message": "Tanzanija"
+	},
+	"region-name-ua": {
+		"message": "Ukrajina"
+	},
+	"region-name-ug": {
+		"message": "Uganda"
+	},
+	"region-name-us": {
+		"message": "Združene države Amerike"
+	},
+	"region-name-uy": {
+		"message": "Urugvaj"
+	},
+	"region-name-va": {
+		"message": "Vatikan"
+	},
+	"region-name-uz": {
+		"message": "Uzbekistan"
+	},
+	"region-name-vc": {
+		"message": "Saint Vincent in Grenadine"
+	},
+	"region-name-vg": {
+		"message": "Britanski deviški otoki"
+	},
+	"region-name-vi": {
+		"message": "Ameriški deviški otoki"
+	},
+	"region-name-vu": {
+		"message": "Vanuatu"
+	},
+	"region-name-ve": {
+		"message": "Venezuela"
+	},
+	"region-name-vn": {
+		"message": "Vietnam"
+	},
+	"region-name-wf": {
+		"message": "Wallis in Futuna"
+	},
+	"region-name-ws": {
+		"message": "Samoa"
+	},
+	"region-name-xa": {
+		"message": "Ashmore in Cartier"
+	},
+	"region-name-xb": {
+		"message": "Otok Baker"
+	},
+	"region-name-xc": {
+		"message": "Otoki Koralnega morja"
+	},
+	"region-name-xd": {
+		"message": "Dhekelia"
+	},
+	"region-name-xe": {
+		"message": "Otok Europa"
+	},
+	"region-name-xh": {
+		"message": "Otok Howland"
+	},
+	"region-name-xg": {
+		"message": "Gaza"
+	},
+	"region-name-xj": {
+		"message": "Jan Mayen"
+	},
+	"region-name-xk": {
+		"message": "Kosovo"
+	},
+	"region-name-xl": {
+		"message": "Atol Palmyra"
+	},
+	"region-name-xp": {
+		"message": "Otočje Paracel"
+	},
+	"region-name-xm": {
+		"message": "Kingmanov greben"
+	},
+	"region-name-xq": {
+		"message": "Otok Jarvis"
+	},
+	"region-name-xr": {
+		"message": "Svalbard"
+	},
+	"region-name-xs": {
+		"message": "Otočje Spratly"
+	},
+	"region-name-xt": {
+		"message": "Tromelinov otok"
+	},
+	"region-name-xv": {
+		"message": "Otok Navassa"
+	},
+	"region-name-yt": {
+		"message": "Mayotte"
+	},
+	"region-name-ye": {
+		"message": "Jemen"
+	},
+	"region-name-xw": {
+		"message": "Zahodni breg"
+	},
+	"region-name-za": {
+		"message": "Južna Afrika"
+	},
+	"region-name-xu": {
+		"message": "Johnstonov atol"
+	},
+	"region-name-zw": {
+		"message": "Zimbabve"
+	},
+	"region-name-zm": {
+		"message": "Zambija"
 	}
 }

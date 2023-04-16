@@ -64,13 +64,13 @@ var cardbookDates = {
 					case 20:
 					case 24:
 						myFieldValue = cardbookDates.getCorrectDatetime(myFieldValue);
-						return cardbookDates.getFormattedDateTimeForDateTimeString(myFieldValue, cardbookRepository.dateDisplayedFormat);
+						return cardbookDates.getFormattedDateTimeForDateTimeString(myFieldValue, cardbookRepository.cardbookPrefs["dateDisplayedFormat"]);
 						break;
 
 					// dates
 					default:
 						var dateFormat = cardbookRepository.getDateFormat(aCard.dirPrefId, aCard.version);
-						return cardbookDates.getFormattedDateForDateString(myFieldValue, dateFormat, cardbookRepository.dateDisplayedFormat);
+						return cardbookDates.getFormattedDateForDateString(myFieldValue, dateFormat, cardbookRepository.cardbookPrefs["dateDisplayedFormat"]);
 				}
 			}
 		}

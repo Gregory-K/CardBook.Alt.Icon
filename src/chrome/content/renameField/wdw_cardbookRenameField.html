@@ -1,0 +1,65 @@
+<?xml version="1.0"?>
+<!DOCTYPE html>
+
+<html id="wdw_cardbookRenameField">
+	<head>
+        <meta charset="UTF-8">
+		<link rel='stylesheet' type='text/css' href="chrome://messenger/skin/messenger.css">
+		<link rel='stylesheet' type='text/css' href="chrome://global/skin/in-content/common.css">
+		<link rel='stylesheet' type='text/css' href="chrome://messenger/skin/shared/themeableDialog.css">
+        <link rel='stylesheet' type='text/css' href="chrome://messenger/skin/accountSetup.css">
+
+		<link rel='stylesheet' type='text/css' href="../skin/cardbookHTML.css">
+        <link rel='stylesheet' type='text/css' href="../skin/cardbookNotifications.css">
+        <link rel='stylesheet' type='text/css' href="../skin/cardbookMain.css">
+		<title></title>
+	</head>
+
+	<body xmlns="http://www.mozilla.org/keymaster/gatekeeper/there.is.only.xul">
+		<div class="vbox">
+            <div class="hbox">
+                <table>
+                    <tr>
+                        <td>
+                            <label id="nameLabel"></label>
+                        </td>
+                        <td class="cardbook-td-input cardbook-large2-column">
+                            <input id="nameTextBox"/>
+                        </td>
+                    </tr>
+                    <tr id="colorRow">
+                        <td>
+                            <label>__MSG_colorLabel__</label>
+                        </td>
+                        <td class="cardbook-td-input">
+                            <div class="hbox">
+                                <label>
+                                    <input type="checkbox" id="useColorCheck">
+                                    __MSG_useColorCheckLabel__
+                                </label>
+                                <input id="colorInput" type="color" palettename="standard"/>
+                            </div>
+                        </td>
+                    </tr>
+                    <tr id="mailPopRow">
+                        <td>
+                            <label>__MSG_popularityLabel__</label>
+                        </td>
+                        <td class="cardbook-td-input">
+                            <input id="mailPopTextBox" type="number" min="0" max="100000" class="size5"/>
+                        </td>
+                    </tr>
+                </table>
+            </div>
+            <div class="vbox hcentered vcentered">
+				<label id="notificationMessage" type="OK" class="notificationMessage"></label>
+            </div>
+            <div class="hbox vright">
+                <button id="cancelButton">__MSG_cancelEditionLabel__</button>
+                <button id="validateButton">__MSG_validateEditionLabel__</button>
+            </div>
+        </div>
+        <script src="../scripts/i18n.js"></script>
+		<script type="module" src="../renameField/wdw_cardbookRenameField.js"></script>
+    </body>
+</html>

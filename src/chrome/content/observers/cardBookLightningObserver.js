@@ -14,7 +14,7 @@ var cardBookLightningObserver = {
 			case "cardbook.addressbookCreated":
 			case "cardbook.addressbookDeleted":
 			case "cardbook.addressbookModified":
-			case "cardbook.preferencesChanged":
+			case "cardbook.pref.preferencesChanged":
 				cardbookAutocomplete.loadCssRules();
 				break;
 		}

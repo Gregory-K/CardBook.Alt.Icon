@@ -11,14 +11,16 @@ if ("undefined" == typeof(cardbookActions)) {
 		lTimerActionAll: {},
 
 		setUndoAndRedoMenuAndButton: function () {
-			var myCurrentUndoId = cardbookRepository.currentUndoId;
-			cardbookIDBUndo.setUndoAndRedoMenuAndButton("menu_undo", "cardbookToolbarBackButton", myCurrentUndoId);
+			let myCurrentUndoId = cardbookRepository.currentUndoId;
+			let undoData = {menu: "menu_undo", button: "cardbookToolbarBackButton", value: myCurrentUndoId};
+			cardbookRepository.cardbookUtils.notifyObservers("setUndoAndRedoMenuAndButton", JSON.stringify(undoData));
 			myCurrentUndoId++;
-			cardbookIDBUndo.setUndoAndRedoMenuAndButton("menu_redo", "cardbookToolbarForwardButton", myCurrentUndoId);
+			let redoData = {menu: "menu_redo", button: "cardbookToolbarForwardButton", value: myCurrentUndoId};
+			cardbookRepository.cardbookUtils.notifyObservers("setUndoAndRedoMenuAndButton", JSON.stringify(redoData));
 		},
 
 		saveCurrentUndoId: function () {
-			cardbookRepository.cardbookPreferences.setStringPref("extensions.cardbook.currentUndoId", cardbookRepository.currentUndoId);
+			cardbookRepository.cardbookPreferences.setStringPref("currentUndoId", cardbookRepository.currentUndoId);
 		},
 
 		addUndoCardsAction: async function (aActionCode, aActionMessage, aOldCards, aNewCards, aOldCats, aNewCats) {
@@ -110,17 +112,22 @@ if ("undefined" == typeof(cardbookActions)) {
 			cardbookActions.cryptoActivity[cardbookActions.mainContext].syncProcess = process;
 		},
 
-		fetchCryptoCount: function(aCountTotal) {
+		fetchCryptoCount: async function(aCountTotal) {
 			cardbookActions.cryptoCount = cardbookActions.cryptoCount + aCountTotal;
+			await notifyTools.notifyBackground({query: "cardbook.conf.addProgressBar", type: "crypto", total: cardbookActions.cryptoCount});
 		},
 
-		fetchCryptoActivity: function(aMode) {
+		fetchCryptoActivity: async function(aMode) {
 			cardbookActions.cryptoDone++;
 			if (cardbookActions.cryptoActivity[cardbookActions.mainContext] && cardbookActions.cryptoActivity[cardbookActions.mainContext].syncProcess) {
-				var processMessage = cardbookRepository.extension.localeData.localizeMessage(aMode + "Processed", [cardbookActions.cryptoDone, cardbookActions.cryptoCount]);
-				cardbookActions.cryptoActivity[cardbookActions.mainContext].syncProcess.setProgress(processMessage, cardbookActions.cryptoDone, cardbookActions.cryptoCount);
+				if (cardbookActions.cryptoDone % 100 == 0) {
+					let processMessage = cardbookRepository.extension.localeData.localizeMessage(aMode + "Processed", [cardbookActions.cryptoDone, cardbookActions.cryptoCount]);
+					cardbookActions.cryptoActivity[cardbookActions.mainContext].syncProcess.setProgress(processMessage, cardbookActions.cryptoDone, cardbookActions.cryptoCount);
+					await notifyTools.notifyBackground({query: "cardbook.conf.addProgressBar", type: "crypto", done: cardbookActions.cryptoDone});
+				}
 			}
 			if (cardbookActions.cryptoDone == cardbookActions.cryptoCount) {
+				await notifyTools.notifyBackground({query: "cardbook.conf.addProgressBar", type: "crypto", done: cardbookActions.cryptoDone});
 				cardbookActions.finishCryptoActivityOK(aMode);
 			}
 		},
@@ -303,7 +310,7 @@ if ("undefined" == typeof(cardbookActions)) {
 			}
 		},
 
-		endAction: async function (aActionId, aForceRefresh, aFinishParams) {
+		endAction: async function (aActionId, aForceRefresh) {
 			if (cardbookRepository.currentAction[aActionId]) {
 				var myAction = cardbookRepository.currentAction[aActionId];
 				if (myAction.files.length > 0) {
@@ -319,7 +326,7 @@ if ("undefined" == typeof(cardbookActions)) {
 						cardbookRepository.cardbookUtils.notifyObservers(myAction.actionCode);
 					}
 					await cardbookRepository.reWriteFiles(myAction.files);
-					if (cardbookRepository.cardbookPreferences.getBoolPref("extensions.cardbook.syncAfterChange")) {
+					if (cardbookRepository.cardbookPrefs["syncAfterChange"]) {
 						cardbookRepository.cardbookSynchronization.syncAccounts(myAction.files);
 					}
 				} else if (aForceRefresh == true) {

@@ -6,6 +6,7 @@ cardbookRepository.cardbookMailPopDatabase.db.close();
 cardbookRepository.cardbookPrefDispNameDatabase.db.close();
 cardbookRepository.cardbookSearchDatabase.db.close();
 cardbookRepository.cardbookImageDatabase.db.close();
+cardbookRepository.cardbookDuplicateDatabase.db.close();
 
 let JSMs = [
 	"chrome://cardbook/content/addressbooksconfiguration/wdw_addressbooksAdd.js",
@@ -23,7 +24,7 @@ let JSMs = [
 	"chrome://cardbook/content/cardEdition/wdw_cardEditionEvents.js",
 	"chrome://cardbook/content/cardEdition/wdw_imageEdition.js",
 	"chrome://cardbook/content/collected/cardbookCollection.jsm",
-	"chrome://cardbook/content/complexSearch/cardbookComplexSearch.js",
+	"chrome://cardbook/content/complexSearch/cardbookHTMLComplexSearch.mjs",
 	"chrome://cardbook/content/composeMsg/ovl_cardbookComposeMsg.js",
 	"chrome://cardbook/content/composeMsg/wl_cardbookComposeMsg.js",
 	"chrome://cardbook/content/configuration/wdw_cardbookConfiguration.js",
@@ -85,6 +86,7 @@ let JSMs = [
 	"chrome://cardbook/content/indexedDB/cardbookIDBMailPop.js",
 	"chrome://cardbook/content/indexedDB/cardbookIDBPrefDispName.js",
 	"chrome://cardbook/content/indexedDB/cardbookIDBSearch.js",
+	"chrome://cardbook/content/indexedDB/cardbookIDBDuplicate.js",
 	"chrome://cardbook/content/cardbookInit.js",
 	"chrome://cardbook/content/cardbookLog.jsm",
 	"chrome://cardbook/content/cardbookNotifications.js",
@@ -102,11 +104,11 @@ let JSMs = [
 	"chrome://cardbook/content/cardbookWebDAV.js",
 	"chrome://cardbook/content/cardbookWindowUtils.js",
 	"chrome://cardbook/content/ovl_cardbook.js",
-	"chrome://cardbook/content/wdw_bulkOperation.js",
+	"chrome://cardbook/content/bulkOperation/wdw_bulkOperation.js",
 	"chrome://cardbook/content/wdw_cardbook.js",
-	"chrome://cardbook/content/wdw_cardbookAskUser.js",
-	"chrome://cardbook/content/wdw_cardbookRenameField.js",
-	"chrome://cardbook/content/wdw_logEdition.js",
+	"chrome://cardbook/content/askUser/wdw_cardbookAskUser.js",
+	"chrome://cardbook/content/renameField/wdw_cardbookRenameField.js",
+	"chrome://cardbook/content/log/wdw_logEdition.js",
 	"chrome://cardbook/content/wl_cardbookMessenger.js",
 	"chrome://cardbook/content/cardbookRepository.js"
 ];

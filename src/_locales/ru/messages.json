@@ -114,14 +114,8 @@
 	"showForgottenLabel": {
 		"message": "Показать исключённые копии контактов"
 	},
-	"showForgottenAccesskey": {
-		"message": "П"
-	},
 	"hideForgottenLabel": {
 		"message": "Скрыть исключённые копии контактов"
-	},
-	"hideForgottenAccesskey": {
-		"message": "С"
 	},
 	"noContactsDuplicated": {
 		"message": "Дублирющихся контактов не найдено."
@@ -3309,6 +3303,12 @@
 	"toLowerCase": {
 		"message": "Перевести в нижний регистр"
 	},
+	"copy": {
+		"message": "Копировать"
+	},
+	"paste": {
+		"message": "Вставить"
+	},
 	"copyFieldValue": {
 		"message": "Копировать ($P1$)",
 		"placeholders": {
@@ -3369,7 +3369,7 @@
 	"wdw_cardbookConfigurationAddEmailsRestrictionTitle": {
 		"message": "Определение ограничения для учётной записи почты"
 	},
-	"wdw_cardbookConfigurationAddEmailsCollectionTitle": {
+	"wdw_cardbookConfigurationAddEmailsEmailsCollectionTitle": {
 		"message": "Определение правила для сохранения адресов из исходящей почты"
 	},
 	"ignoreCaseIgnoreDiacriticLabel": {
@@ -3777,6 +3777,9 @@
 	"wizard.back.label": {
 		"message": "Назад"
 	},
+	"wizard.cancel.label": {
+		"message": "Отменить"
+	},
 	"wizard.create.label": {
 		"message": "Создать"
 	},
@@ -3800,9 +3803,6 @@
 	},
 	"initialPage.search.label": {
 		"message": "Поиск в существующих адресных книгах"
-	},
-	"initialPage.find.label": {
-		"message": "Поиск сетевых адресных книг"
 	},
 	"localPage.type.description": {
 		"message": "Какой тип новой локальной адресной книги? :"
@@ -3838,7 +3838,7 @@
 		"message": "Просмотреть"
 	},
 	"remotePage.description": {
-		"message": "Какой тип вашей удалённой адресной книги? : (Внимание: Google НЕ соблюдает стандарт vCard)"
+		"message": "Какой тип вашей удалённой адресной книги? :"
 	},
 	"remotePage.type.label": {
 		"message": "Тип"
@@ -3891,7 +3891,7 @@
 	"rememberPassword": {
 		"message": "Сохранить этот пароль в хранилище паролей"
 	},
-	"showHidePassword.tooltip": {
+	"showHidePassword": {
 		"message": "Показать/Скрыть пароль"
 	},
 	"remotePage.validatebutton.label": {
@@ -3903,20 +3903,11 @@
 	"abSearchHeading.label": {
 		"message": "Место поиска:"
 	},
-	"abSearchHeading.accesskey": {
-		"message": "c"
-	},
 	"matchAll.label": {
 		"message": "Выполнении всех условий"
 	},
-	"matchAll.accesskey": {
-		"message": "ы"
-	},
 	"matchAny.label": {
 		"message": "Выполнении любого из условий"
-	},
-	"matchAny.accesskey": {
-		"message": "л"
 	},
 	"googleOauthPage.wizard.description": {
 		"message": "Аутентификация Google"
@@ -3969,9 +3960,6 @@
 	"name.ABedit.label": {
 		"message": "Имя:"
 	},
-	"name.ABedit.accesskey": {
-		"message": "И"
-	},
 	"nodesLabel": {
 		"message": "Поле группировки:"
 	},
@@ -3993,9 +3981,6 @@
 	"readonlyLabel": {
 		"message": "Режим «только чтение»"
 	},
-	"readonlyAccesskey": {
-		"message": "P"
-	},
 	"urnuuidLabel": {
 		"message": "Использовать urn:uuid"
 	},
@@ -4008,14 +3993,8 @@
 	"autoSyncLabel": {
 		"message": "Включить периодическую синхронизацию"
 	},
-	"autoSyncAccesskey": {
-		"message": "П"
-	},
 	"autoSyncIntervalLabel": {
 		"message": "Интервал между синхронизациями (минут):"
-	},
-	"autoSyncIntervalAccesskey": {
-		"message": "И"
 	},
 	"miscTabLabel": {
 		"message": "Дополнительные параметры"
@@ -4026,20 +4005,11 @@
 	"fnFormulaLabel": {
 		"message": "Формировать отображаемое имя:"
 	},
-	"fnFormulaAccesskey": {
-		"message": "Ф"
-	},
 	"resetFnFormulaLabel": {
 		"message": "Сбросить до значений по умолчанию"
 	},
-	"resetFnFormulaAccesskey": {
-		"message": "у"
-	},
 	"applyToABButtonLabel": {
 		"message": "Применить к"
-	},
-	"applyToABButtonAccesskey": {
-		"message": "П"
 	},
 	"wdw_adrEditionTitle": {
 		"message": "Редактор адресов"
@@ -4173,53 +4143,26 @@
 	"autocompletionLabel": {
 		"message": "Автозавершение адресов эл. почты"
 	},
-	"autocompletionAccesskey": {
-		"message": "А"
-	},
-	"autocompletionTooltip": {
-		"message": "Расширяет стандартное автоматическое завершение ввода для контактов из адресной книги Thunderbird добавлением контактов из CardBook."
-	},
 	"autocompleteSortByPopularityLabel": {
 		"message": "Сортировка адресов эл. почты по популярности"
-	},
-	"autocompleteSortByPopularityAccesskey": {
-		"message": "п"
 	},
 	"autocompleteProposeConcatEmailsLabel": {
 		"message": "Предлагать объединённые адреса эл.почты"
 	},
-	"autocompleteProposeConcatEmailsAccesskey": {
-		"message": "ъ"
-	},
 	"autocompleteShowAddressbookLabel": {
 		"message": "Показывать название адресной книги"
-	},
-	"autocompleteShowAddressbookAccesskey": {
-		"message": "н"
 	},
 	"autocompleteShowEmailTypeLabel": {
 		"message": "Показывать тип адреса"
 	},
-	"autocompleteShowEmailTypeAccesskey": {
-		"message": "т"
-	},
 	"autocompleteShowPopularityLabel": {
 		"message": "Показывать частоту использования"
-	},
-	"autocompleteShowPopularityAccesskey": {
-		"message": "ч"
 	},
 	"autocompleteWithColorLabel": {
 		"message": "Использовать цвет адресной книги"
 	},
-	"autocompleteWithColorAccesskey": {
-		"message": "ц"
-	},
 	"autocompleteRestrictSearchLabel": {
 		"message": "Ограничить поиск заданными полями"
-	},
-	"autocompleteRestrictSearchAccesskey": {
-		"message": "О"
 	},
 	"chooseAutocompleteRestrictSearchFieldsButtonLabel": {
 		"message": "Редактировать"
@@ -4256,12 +4199,6 @@
 	},
 	"exclusiveLabel": {
 		"message": "Единственный источник контактов"
-	},
-	"exclusiveAccesskey": {
-		"message": "Е"
-	},
-	"exclusiveTooltip": {
-		"message": "Отключение этого параметра позволяет Thunderbird запрашивать контакты из стандартной адресной книги для жёлтых звёздочек, отображаемого имени в сообщениях и автоматического завершения адресов email."
 	},
 	"accountsRestrictionsLabel": {
 		"message": "Ограничения для учётных записей"
@@ -4341,12 +4278,6 @@
 	"debugModeLabel": {
 		"message": "Режим отладки"
 	},
-	"debugModeAccesskey": {
-		"message": "о"
-	},
-	"debugModeTooltip": {
-		"message": "Включает режим отладки для расширенного протоколирования."
-	},
 	"statusInformationLineNumberLabel": {
 		"message": "Максимальное количество строк для файла журнала:"
 	},
@@ -4365,26 +4296,14 @@
 	"listTab.conf.label": {
 		"message": "Списки"
 	},
-	"listTab.conf.accesskey": {
-		"message": "C"
-	},
 	"technicalTab.conf.label": {
 		"message": "Тех.данные"
-	},
-	"technicalTab.conf.accesskey": {
-		"message": "Т"
 	},
 	"vCardTab.conf.label": {
 		"message": "vCard"
 	},
-	"vCardTab.conf.accesskey": {
-		"message": "V"
-	},
 	"keyTab.conf.label": {
 		"message": "Открытые ключи"
-	},
-	"keyTab.conf.accesskey": {
-		"message": "О"
 	},
 	"advancedTab1Label": {
 		"message": "Дополнительно"
@@ -4482,9 +4401,6 @@
 	"preferEmailEditionLabel": {
 		"message": "Редактирование контакта двойным щелчком мыши"
 	},
-	"preferEmailEditionAccesskey": {
-		"message": "Р"
-	},
 	"dateDisplayedFormatLabel": {
 		"message": "Формат даты:"
 	},
@@ -4493,9 +4409,6 @@
 	},
 	"defaultRegionLabel": {
 		"message": "Регион по умолчанию:"
-	},
-	"defaultRegionAccesskey": {
-		"message": "Р"
 	},
 	"defaultRegionTooltip": {
 		"message": "Регион по умолчанию, используемый для форматирования адресов и номеров телефона."
@@ -4641,9 +4554,6 @@
 	"preferIMPPPrefLabel": {
 		"message": "Предпочитать способы интернет-связи, помеченные"
 	},
-	"preferIMPPPrefAccesskey": {
-		"message": "и"
-	},
 	"preferIMPPPrefWarn": {
 		"message": "Если ни один из способов связи не помечен, будет предложено установление соединения со всеми доступными адресами контакта."
 	},
@@ -4707,9 +4617,6 @@
 	"URLPhoneBackgroundLabel": {
 		"message": "Выполнять в воновом режиме"
 	},
-	"URLPhoneBackgroundAccesskey": {
-		"message": "В"
-	},
 	"encryptionGroupboxLabel": {
 		"message": "Шифрование"
 	},
@@ -4718,9 +4625,6 @@
 	},
 	"localDataEncryptionEnabledLabel": {
 		"message": "Шифровать карточки контактов"
-	},
-	"localDataEncryptionEnabledAccesskey": {
-		"message": "Ш"
 	},
 	"customFieldRankHeaderLabel": {
 		"message": "Ранг"
@@ -4771,7 +4675,7 @@
 		"message": "Метка поля"
 	},
 	"listPanelLabel": {
-		"message": "Если ваш сервер не поддерживает категории (как, например, Google, Apple, Zimbra, и т.д.…), то списки — это хороший способ для отправки email группам получателей. Протокол vCard версии 3.0 не поддерживает списки, но этого можно добиться используя пользовательские поля. Поэтому, для использования списков в vCard версии 3.0, необходимо определить эти поля."
+		"message": "Если ваш сервер не поддерживает категории (как, например, Apple, Zimbra, и т.д.…), то списки — это хороший способ для отправки email группам получателей. Протокол vCard версии 3.0 не поддерживает списки, но этого можно добиться используя пользовательские поля. Поэтому, для использования списков в vCard версии 3.0, необходимо определить эти поля."
 	},
 	"listGroupboxLabel": {
 		"message": "Пользовательские поля для списков"
@@ -4803,14 +4707,8 @@
 	"syncAfterChangeLabel": {
 		"message": "Синхронизировать изменения"
 	},
-	"syncAfterChangeAccesskey": {
-		"message": "и"
-	},
 	"initialSyncLabel": {
 		"message": "Выполнять синхронизацию при запуске Thunderbird"
-	},
-	"initialSyncAccesskey": {
-		"message": "з"
 	},
 	"initialSyncDelayLabel": {
 		"message": "Задержка перед выполнением первого запроса (сек.):"
@@ -4872,17 +4770,11 @@
 	"decodeReportLabel": {
 		"message": "Декодировать URL для запросов REPORT"
 	},
-	"decodeReportAccesskey": {
-		"message": "Д"
-	},
 	"miscEmailGroupboxLabel": {
 		"message": "Отправка эл.почты"
 	},
 	"preferEmailPrefLabel": {
 		"message": "Предпочитать ПРИОРитетный адрес эл почты"
-	},
-	"preferEmailPrefAccesskey": {
-		"message": "П"
 	},
 	"preferEmailPrefWarn": {
 		"message": "Если адреса, отмеченные как ПРИОРитетные, отсутствуют, отправлять сообщения на все адреса эл.почты контакта."
@@ -4890,14 +4782,8 @@
 	"warnEmptyEmailsLabel": {
 		"message": "Предупреждать при попытке отправить письма контактам, у которых нет адреса эл. почты"
 	},
-	"warnEmptyEmailsAccesskey": {
-		"message": "н"
-	},
 	"useOnlyEmailLabel": {
 		"message": "Не использовать отображаемое имя, а только адрес эл. почты"
-	},
-	"useOnlyEmailAccesskey": {
-		"message": "е"
 	},
 	"attachVCardWarn": {
 		"message": "Добавлять визитку vCard к отправляемым писмам. Выберите карточку для каждого из аккаунтов. Если эта настройка включена, CardBook будет вкладывать указанную визитку vCard к каждому исходящему email аккаунта."
@@ -4956,26 +4842,14 @@
 	"bday.conf.label": {
 		"message": "День рождения"
 	},
-	"bday.conf.accesskey": {
-		"message": "р"
-	},
 	"anniversary.conf.label": {
 		"message": "Годовщина (только для vCard 4.0)"
-	},
-	"anniversary.conf.accesskey": {
-		"message": "Г"
 	},
 	"deathdate.conf.label": {
 		"message": "Дата смерти (только для vCard 4.0)"
 	},
-	"deathdate.conf.accesskey": {
-		"message": "а"
-	},
 	"eventsLabel": {
 		"message": "События"
-	},
-	"eventsAccesskey": {
-		"message": "о"
 	},
 	"gender.conf.label": {
 		"message": "Пол (только для vCard 4.0)"
@@ -5007,14 +4881,8 @@
 	"showPopupOnStartupLabel": {
 		"message": "Показывать всплывающее окно при запуске"
 	},
-	"showPopupOnStartupAccesskey": {
-		"message": "з"
-	},
 	"showPeriodicPopupLabel": {
 		"message": "Показывать всплывающее окно ежедневно"
-	},
-	"showPeriodicPopupAccesskey": {
-		"message": "е"
 	},
 	"periodicPopupTimeLabel": {
 		"message": "В указанное время (чч:мм):"
@@ -5024,9 +4892,6 @@
 	},
 	"showPopupEvenIfNoBirthdayLabel": {
 		"message": "Показывать всплывающее окно при пустом списке дней рождения"
-	},
-	"showPopupEvenIfNoBirthdayAccesskey": {
-		"message": "п"
 	},
 	"remindViaLightningGroupboxLabel": {
 		"message": "Вывод напоминаний при помощи расширения Lightning"
@@ -5039,9 +4904,6 @@
 	},
 	"syncWithLightningOnStartupLabel": {
 		"message": "Синхронизация с Lightning при запуске"
-	},
-	"syncWithLightningOnStartupAccesskey": {
-		"message": "L"
 	},
 	"calendarEntryTitleLabel": {
 		"message": "Название события календаря:"
@@ -5061,9 +4923,6 @@
 	"calendarRepeatingEventLabel": {
 		"message": "Повторяющееся событие"
 	},
-	"calendarRepeatingEventAccesskey": {
-		"message": "П"
-	},
 	"calendarEntryTimeLabel": {
 		"message": "Время для события календаря (чч:мм):"
 	},
@@ -5072,9 +4931,6 @@
 	},
 	"calendarEntryWholeDayLabel": {
 		"message": "Событие на весь день"
-	},
-	"calendarEntryWholeDayAccesskey": {
-		"message": "д"
 	},
 	"calendarEntryAlarmLabel": {
 		"message": "Уведомлять за заданное количество часов до начала события (Пример: 4,+1):"
@@ -5835,9 +5691,6 @@
 	"viewResultEditionLabel": {
 		"message": "Посмотреть результат"
 	},
-	"viewResultEditionAccesskey": {
-		"message": "р"
-	},
 	"previousEditButton.tooltip": {
 		"message": "Назад"
 	},
@@ -5883,20 +5736,11 @@
 	"moreEditionLabel": {
 		"message": "Показать больше"
 	},
-	"moreEditionAccesskey": {
-		"message": "б"
-	},
 	"lessEditionLabel": {
 		"message": "Показать меньше"
 	},
-	"lessEditionAccesskey": {
-		"message": "м"
-	},
 	"mergeAllEditionLabel": {
 		"message": "Объединить все"
-	},
-	"mergeAllEditionAccesskey": {
-		"message": "M"
 	},
 	"formatAllEditionLabel": {
 		"message": "Форматировать все"
@@ -5906,9 +5750,6 @@
 	},
 	"undoAllEditionLabel": {
 		"message": "Отменить все"
-	},
-	"undoAllEditionAccesskey": {
-		"message": "О"
 	},
 	"formatEditionLabel": {
 		"message": "Форматировать"
@@ -5951,9 +5792,6 @@
 	},
 	"convertVCardsTooltip": {
 		"message": "Некоторые контакты сохранены в версии vCard, отличной от заданной для адресной книги. Эта кнопка служит для их преобразования в формат адресной книги."
-	},
-	"convertVCardsAccesskey": {
-		"message": "ф"
 	},
 	"wdw_findDuplicatesTitle": {
 		"message": "Дублирующиеся контакты ($P1$)",
@@ -6016,26 +5854,14 @@
 	"refreshLogEditionLabel": {
 		"message": "Обновить"
 	},
-	"refreshLogEditionAccesskey": {
-		"message": "б"
-	},
 	"flushLogEditionLabel": {
 		"message": "Очистить"
-	},
-	"flushLogEditionAccesskey": {
-		"message": "О"
 	},
 	"clipboardLogEditionLabel": {
 		"message": "Копировать в буфер обмена"
 	},
-	"clipboardLogEditionAccesskey": {
-		"message": "К"
-	},
 	"cancelLogEditionLabel": {
 		"message": "OK"
-	},
-	"cancelLogEditionAccesskey": {
-		"message": "O"
 	},
 	"wdw_mergeCardsTitle": {
 		"message": "Объедение контактов"
@@ -6064,6 +5890,30 @@
 	"wdw_cardbookConfigurationEditFieldTitle": {
 		"message": "Выбор правила преобразования"
 	},
+	"ContainsOperator": {
+		"message": "содержит"
+	},
+	"DoesntContainOperator": {
+		"message": "не содержит"
+	},
+	"IsOperator": {
+		"message": "совпадает с"
+	},
+	"IsntOperator": {
+		"message": "не совпадает с"
+	},
+	"BeginsWithOperator": {
+		"message": "начинается с"
+	},
+	"EndsWithOperator": {
+		"message": "заканчивается на"
+	},
+	"IsEmptyOperator": {
+		"message": "отсутствуют"
+	},
+	"IsntEmptyOperator": {
+		"message": "присутствуют"
+	},
 	"uppercaseLabel": {
 		"message": "Прописные"
 	},
@@ -6072,5 +5922,821 @@
 	},
 	"capitalizationLabel": {
 		"message": "Капитализация"
+	},
+	"region-name-ad": {
+		"message": "Андорра"
+	},
+	"region-name-ae": {
+		"message": "Объединённые Арабские Эмираты"
+	},
+	"region-name-af": {
+		"message": "Афганистан"
+	},
+	"region-name-ai": {
+		"message": "Ангилья"
+	},
+	"region-name-al": {
+		"message": "Албания"
+	},
+	"region-name-ag": {
+		"message": "Антигуа и Барбуда"
+	},
+	"region-name-am": {
+		"message": "Армения"
+	},
+	"region-name-ar": {
+		"message": "Аргентина"
+	},
+	"region-name-aq": {
+		"message": "Антарктика"
+	},
+	"region-name-ao": {
+		"message": "Ангола"
+	},
+	"region-name-at": {
+		"message": "Австрия"
+	},
+	"region-name-az": {
+		"message": "Азербайджан"
+	},
+	"region-name-ba": {
+		"message": "Босния и Герцеговина"
+	},
+	"region-name-bb": {
+		"message": "Барбадос"
+	},
+	"region-name-as": {
+		"message": "Американское Самоа"
+	},
+	"region-name-au": {
+		"message": "Австралия"
+	},
+	"region-name-bd": {
+		"message": "Бангладеш"
+	},
+	"region-name-be": {
+		"message": "Бельгия"
+	},
+	"region-name-aw": {
+		"message": "Аруба"
+	},
+	"region-name-bf": {
+		"message": "Буркина-Фасо"
+	},
+	"region-name-bm": {
+		"message": "Бермуды"
+	},
+	"region-name-bj": {
+		"message": "Бенин"
+	},
+	"region-name-bg": {
+		"message": "Болгария"
+	},
+	"region-name-bi": {
+		"message": "Бурунди"
+	},
+	"region-name-bh": {
+		"message": "Бахрейн"
+	},
+	"region-name-bl": {
+		"message": "Сен-Бартелеми"
+	},
+	"region-name-bn": {
+		"message": "Бруней"
+	},
+	"region-name-bo": {
+		"message": "Боливия"
+	},
+	"region-name-br": {
+		"message": "Бразилия"
+	},
+	"region-name-bq": {
+		"message": "Бонэйр, Синт-Эстатиус и Саба"
+	},
+	"region-name-bt": {
+		"message": "Бутан"
+	},
+	"region-name-bs": {
+		"message": "Багамские острова"
+	},
+	"region-name-bz": {
+		"message": "Белиз"
+	},
+	"region-name-ca": {
+		"message": "Канада"
+	},
+	"region-name-cc": {
+		"message": "Кокосовые (Килинг) острова"
+	},
+	"region-name-by": {
+		"message": "Белоруссия"
+	},
+	"region-name-cd": {
+		"message": "Демократическая Республика Конго"
+	},
+	"region-name-cf": {
+		"message": "Центрально-Африканская Республика"
+	},
+	"region-name-bv": {
+		"message": "Буве, остров"
+	},
+	"region-name-bw": {
+		"message": "Ботсвана"
+	},
+	"region-name-cl": {
+		"message": "Чили"
+	},
+	"region-name-ci": {
+		"message": "Кот-д'Ивуар"
+	},
+	"region-name-ch": {
+		"message": "Швейцария"
+	},
+	"region-name-cm": {
+		"message": "Камерун"
+	},
+	"region-name-ck": {
+		"message": "Кука, острова"
+	},
+	"region-name-cg": {
+		"message": "Республика Конго"
+	},
+	"region-name-cn": {
+		"message": "Китай"
+	},
+	"region-name-cp": {
+		"message": "Клиппертон, остров"
+	},
+	"region-name-co": {
+		"message": "Колумбия"
+	},
+	"region-name-cr": {
+		"message": "Коста-Рика"
+	},
+	"region-name-cz": {
+		"message": "Чехия"
+	},
+	"region-name-cy": {
+		"message": "Кипр"
+	},
+	"region-name-cx": {
+		"message": "Рождества (Кристмас), остров"
+	},
+	"region-name-cv": {
+		"message": "Кабо-Верде"
+	},
+	"region-name-cu": {
+		"message": "Куба"
+	},
+	"region-name-cw": {
+		"message": "Кюрасао"
+	},
+	"region-name-de": {
+		"message": "Германия"
+	},
+	"region-name-dg": {
+		"message": "Диего-Гарсия"
+	},
+	"region-name-dk": {
+		"message": "Дания"
+	},
+	"region-name-dj": {
+		"message": "Джибути"
+	},
+	"region-name-dm": {
+		"message": "Доминика"
+	},
+	"region-name-ec": {
+		"message": "Эквадор"
+	},
+	"region-name-dz": {
+		"message": "Алжир"
+	},
+	"region-name-do": {
+		"message": "Доминиканская Республика"
+	},
+	"region-name-ee": {
+		"message": "Эстония"
+	},
+	"region-name-eg": {
+		"message": "Египет"
+	},
+	"region-name-eh": {
+		"message": "Западная Сахара"
+	},
+	"region-name-et": {
+		"message": "Эфиопия"
+	},
+	"region-name-er": {
+		"message": "Эритрея"
+	},
+	"region-name-es": {
+		"message": "Испания"
+	},
+	"region-name-fi": {
+		"message": "Финляндия"
+	},
+	"region-name-fj": {
+		"message": "Фиджи"
+	},
+	"region-name-fm": {
+		"message": "Микронезия, Федеративные Штаты"
+	},
+	"region-name-fk": {
+		"message": "Фолклендские (Мальвинские) острова"
+	},
+	"region-name-fo": {
+		"message": "Фарерские острова"
+	},
+	"region-name-ge": {
+		"message": "Грузия"
+	},
+	"region-name-gb": {
+		"message": "Великобритания"
+	},
+	"region-name-gd": {
+		"message": "Гренада"
+	},
+	"region-name-fr": {
+		"message": "Франция"
+	},
+	"region-name-ga": {
+		"message": "Габон"
+	},
+	"region-name-gf": {
+		"message": "Гвиана Французская"
+	},
+	"region-name-gl": {
+		"message": "Гренландия"
+	},
+	"region-name-gm": {
+		"message": "Гамбия"
+	},
+	"region-name-gi": {
+		"message": "Гибралтар"
+	},
+	"region-name-gg": {
+		"message": "Гернси"
+	},
+	"region-name-gh": {
+		"message": "Гана"
+	},
+	"region-name-gn": {
+		"message": "Гвинея"
+	},
+	"region-name-gp": {
+		"message": "Гваделупа"
+	},
+	"region-name-gr": {
+		"message": "Греция"
+	},
+	"region-name-gq": {
+		"message": "Экваториальная Гвинея"
+	},
+	"region-name-gt": {
+		"message": "Гватемала"
+	},
+	"region-name-gw": {
+		"message": "Гвинея-Бисау"
+	},
+	"region-name-hk": {
+		"message": "Гонконг"
+	},
+	"region-name-gu": {
+		"message": "Гуам"
+	},
+	"region-name-gs": {
+		"message": "Южная Георгия и Южные Сандвичевы острова"
+	},
+	"region-name-gy": {
+		"message": "Гайана"
+	},
+	"region-name-hm": {
+		"message": "Херд и Макдональд, острова"
+	},
+	"region-name-ht": {
+		"message": "Гаити"
+	},
+	"region-name-hr": {
+		"message": "Хорватия"
+	},
+	"region-name-hn": {
+		"message": "Гондурас"
+	},
+	"region-name-in": {
+		"message": "Индия"
+	},
+	"region-name-il": {
+		"message": "Израиль"
+	},
+	"region-name-im": {
+		"message": "Мэн, остров"
+	},
+	"region-name-ie": {
+		"message": "Ирландия"
+	},
+	"region-name-hu": {
+		"message": "Венгрия"
+	},
+	"region-name-id": {
+		"message": "Индонезия"
+	},
+	"region-name-io": {
+		"message": "Британская территория в Индийском Океане"
+	},
+	"region-name-ir": {
+		"message": "Иран"
+	},
+	"region-name-is": {
+		"message": "Исландия"
+	},
+	"region-name-iq": {
+		"message": "Ирак"
+	},
+	"region-name-je": {
+		"message": "Джерси"
+	},
+	"region-name-jp": {
+		"message": "Япония"
+	},
+	"region-name-it": {
+		"message": "Италия"
+	},
+	"region-name-ke": {
+		"message": "Кения"
+	},
+	"region-name-jo": {
+		"message": "Иордания"
+	},
+	"region-name-jm": {
+		"message": "Ямайка"
+	},
+	"region-name-kg": {
+		"message": "Киргизия"
+	},
+	"region-name-ki": {
+		"message": "Кирибати"
+	},
+	"region-name-kh": {
+		"message": "Камбоджа"
+	},
+	"region-name-km": {
+		"message": "Коморы"
+	},
+	"region-name-kn": {
+		"message": "Сент-Китс и Невис"
+	},
+	"region-name-ky": {
+		"message": "Кайман, острова"
+	},
+	"region-name-kp": {
+		"message": "Северная Корея"
+	},
+	"region-name-kr": {
+		"message": "Южная Корея"
+	},
+	"region-name-kw": {
+		"message": "Кувейт"
+	},
+	"region-name-kz": {
+		"message": "Казахстан"
+	},
+	"region-name-la": {
+		"message": "Лаос"
+	},
+	"region-name-lb": {
+		"message": "Ливан"
+	},
+	"region-name-lc": {
+		"message": "Сент-Люсия"
+	},
+	"region-name-li": {
+		"message": "Лихтенштейн"
+	},
+	"region-name-lk": {
+		"message": "Шри-Ланка"
+	},
+	"region-name-lr": {
+		"message": "Либерия"
+	},
+	"region-name-lu": {
+		"message": "Люксембург"
+	},
+	"region-name-lv": {
+		"message": "Латвия"
+	},
+	"region-name-ls": {
+		"message": "Лесото"
+	},
+	"region-name-ly": {
+		"message": "Ливия"
+	},
+	"region-name-lt": {
+		"message": "Литва"
+	},
+	"region-name-mc": {
+		"message": "Монако"
+	},
+	"region-name-md": {
+		"message": "Молдавия"
+	},
+	"region-name-ma": {
+		"message": "Марокко"
+	},
+	"region-name-me": {
+		"message": "Черногория"
+	},
+	"region-name-mf": {
+		"message": "Святого Мартина, остров"
+	},
+	"region-name-mg": {
+		"message": "Мадагаскар"
+	},
+	"region-name-mh": {
+		"message": "Маршалловы острова"
+	},
+	"region-name-mk": {
+		"message": "Северная Македония"
+	},
+	"region-name-ml": {
+		"message": "Мали"
+	},
+	"region-name-mm": {
+		"message": "Мьянма"
+	},
+	"region-name-mn": {
+		"message": "Монголия"
+	},
+	"region-name-mo": {
+		"message": "Макао"
+	},
+	"region-name-mp": {
+		"message": "Северные Марианские острова"
+	},
+	"region-name-mt": {
+		"message": "Мальта"
+	},
+	"region-name-mu": {
+		"message": "Маврикий"
+	},
+	"region-name-mr": {
+		"message": "Мавритания"
+	},
+	"region-name-ms": {
+		"message": "Монтсеррат"
+	},
+	"region-name-mq": {
+		"message": "Мартиника"
+	},
+	"region-name-mv": {
+		"message": "Мальдивы"
+	},
+	"region-name-mw": {
+		"message": "Малави"
+	},
+	"region-name-my": {
+		"message": "Малайзия"
+	},
+	"region-name-mx": {
+		"message": "Мексика"
+	},
+	"region-name-mz": {
+		"message": "Мозамбик"
+	},
+	"region-name-na": {
+		"message": "Намибия"
+	},
+	"region-name-nc": {
+		"message": "Новая Каледония"
+	},
+	"region-name-ne": {
+		"message": "Нигер"
+	},
+	"region-name-nf": {
+		"message": "Норфолк, остров"
+	},
+	"region-name-ng": {
+		"message": "Нигерия"
+	},
+	"region-name-ni": {
+		"message": "Никарагуа"
+	},
+	"region-name-nl": {
+		"message": "Нидерланды"
+	},
+	"region-name-no": {
+		"message": "Норвегия"
+	},
+	"region-name-np": {
+		"message": "Непал"
+	},
+	"region-name-nr": {
+		"message": "Науру"
+	},
+	"region-name-pk": {
+		"message": "Пакистан"
+	},
+	"region-name-pl": {
+		"message": "Польша"
+	},
+	"region-name-nz": {
+		"message": "Новая Зеландия"
+	},
+	"region-name-ph": {
+		"message": "Филиппины"
+	},
+	"region-name-nu": {
+		"message": "Ниуэ"
+	},
+	"region-name-om": {
+		"message": "Оман"
+	},
+	"region-name-pe": {
+		"message": "Перу"
+	},
+	"region-name-pa": {
+		"message": "Панама"
+	},
+	"region-name-pf": {
+		"message": "Французская Полинезия"
+	},
+	"region-name-pg": {
+		"message": "Папуа-Новая Гвинея"
+	},
+	"region-name-pm": {
+		"message": "Сент-Пьер и Микелон"
+	},
+	"region-name-pn": {
+		"message": "Питкэрн, острова"
+	},
+	"region-name-pr": {
+		"message": "Пуэрто-Рико"
+	},
+	"region-name-pt": {
+		"message": "Португалия"
+	},
+	"region-name-pw": {
+		"message": "Палау"
+	},
+	"region-name-qm": {
+		"message": "Мидуэй, острова"
+	},
+	"region-name-py": {
+		"message": "Парагвай"
+	},
+	"region-name-qa": {
+		"message": "Катар"
+	},
+	"region-name-qs": {
+		"message": "Бассас-да-Индия"
+	},
+	"region-name-qu": {
+		"message": "Жуан-ди-Нова, остров"
+	},
+	"region-name-qw": {
+		"message": "Уэйк, остров"
+	},
+	"region-name-qx": {
+		"message": "Глорьёз, острова"
+	},
+	"region-name-rs": {
+		"message": "Сербия"
+	},
+	"region-name-ro": {
+		"message": "Румыния"
+	},
+	"region-name-qz": {
+		"message": "Акротири"
+	},
+	"region-name-re": {
+		"message": "Реюньон"
+	},
+	"region-name-rw": {
+		"message": "Руанда"
+	},
+	"region-name-ru": {
+		"message": "Россия"
+	},
+	"region-name-sa": {
+		"message": "Саудовская Аравия"
+	},
+	"region-name-sb": {
+		"message": "Соломоновы острова"
+	},
+	"region-name-sc": {
+		"message": "Сейшелы"
+	},
+	"region-name-sd": {
+		"message": "Судан"
+	},
+	"region-name-se": {
+		"message": "Швеция"
+	},
+	"region-name-sg": {
+		"message": "Сингапур"
+	},
+	"region-name-sh": {
+		"message": "Святая Елена, Вознесения и Тристан-да-Кунья, острова"
+	},
+	"region-name-si": {
+		"message": "Словения"
+	},
+	"region-name-sk": {
+		"message": "Словакия"
+	},
+	"region-name-sl": {
+		"message": "Сьерра-Леоне"
+	},
+	"region-name-sn": {
+		"message": "Сенегал"
+	},
+	"region-name-sm": {
+		"message": "Сан-Марино"
+	},
+	"region-name-ss": {
+		"message": "Южный Судан"
+	},
+	"region-name-so": {
+		"message": "Сомали"
+	},
+	"region-name-sr": {
+		"message": "Суринам"
+	},
+	"region-name-sx": {
+		"message": "Синт-Мартен"
+	},
+	"region-name-st": {
+		"message": "Сан-Томе и Принсипи"
+	},
+	"region-name-sv": {
+		"message": "Сальвадор"
+	},
+	"region-name-sy": {
+		"message": "Сирия"
+	},
+	"region-name-sz": {
+		"message": "Свазиленд"
+	},
+	"region-name-tc": {
+		"message": "Тёркс и Кайкос, острова"
+	},
+	"region-name-td": {
+		"message": "Чад"
+	},
+	"region-name-tg": {
+		"message": "Того"
+	},
+	"region-name-th": {
+		"message": "Таиланд"
+	},
+	"region-name-tf": {
+		"message": "Французские Южные и Антарктические территории"
+	},
+	"region-name-tj": {
+		"message": "Таджикистан"
+	},
+	"region-name-tk": {
+		"message": "Токелау"
+	},
+	"region-name-tl": {
+		"message": "Тимор-Лешти"
+	},
+	"region-name-tr": {
+		"message": "Турция"
+	},
+	"region-name-tn": {
+		"message": "Тунис"
+	},
+	"region-name-to": {
+		"message": "Тонга"
+	},
+	"region-name-tm": {
+		"message": "Туркменистан"
+	},
+	"region-name-tt": {
+		"message": "Тринидад и Тобаго"
+	},
+	"region-name-tv": {
+		"message": "Тувалу"
+	},
+	"region-name-tw": {
+		"message": "Тайвань"
+	},
+	"region-name-tz": {
+		"message": "Танзания"
+	},
+	"region-name-ua": {
+		"message": "Украина"
+	},
+	"region-name-ug": {
+		"message": "Уганда"
+	},
+	"region-name-us": {
+		"message": "США"
+	},
+	"region-name-uy": {
+		"message": "Уругвай"
+	},
+	"region-name-va": {
+		"message": "Ватикан"
+	},
+	"region-name-uz": {
+		"message": "Узбекистан"
+	},
+	"region-name-vc": {
+		"message": "Сент-Винсент и Гренадины"
+	},
+	"region-name-vg": {
+		"message": "Виргинские острова (Британские)"
+	},
+	"region-name-vi": {
+		"message": "Виргинские острова (США)"
+	},
+	"region-name-vu": {
+		"message": "Вануату"
+	},
+	"region-name-ve": {
+		"message": "Венесуэла"
+	},
+	"region-name-vn": {
+		"message": "Вьетнам"
+	},
+	"region-name-wf": {
+		"message": "Уоллис и Футуна"
+	},
+	"region-name-ws": {
+		"message": "Самоа"
+	},
+	"region-name-xa": {
+		"message": "Ашмор и Картье, острова"
+	},
+	"region-name-xb": {
+		"message": "Бейкер, остров"
+	},
+	"region-name-xc": {
+		"message": "Коралловое море, острова"
+	},
+	"region-name-xd": {
+		"message": "Декелия"
+	},
+	"region-name-xe": {
+		"message": "Европа, остров"
+	},
+	"region-name-xh": {
+		"message": "Хауленд, остров"
+	},
+	"region-name-xg": {
+		"message": "Сектор Газа"
+	},
+	"region-name-xj": {
+		"message": "Ян-Майен"
+	},
+	"region-name-xk": {
+		"message": "Косово"
+	},
+	"region-name-xl": {
+		"message": "Пальмира, атолл"
+	},
+	"region-name-xp": {
+		"message": "Парасельские острова"
+	},
+	"region-name-xm": {
+		"message": "Кингмен, риф"
+	},
+	"region-name-xq": {
+		"message": "Джарвис, остров"
+	},
+	"region-name-xr": {
+		"message": "Шпицберген"
+	},
+	"region-name-xs": {
+		"message": "Спратли, острова"
+	},
+	"region-name-xt": {
+		"message": "Тромлен, остров"
+	},
+	"region-name-xv": {
+		"message": "Навасса, остров"
+	},
+	"region-name-yt": {
+		"message": "Майотта"
+	},
+	"region-name-ye": {
+		"message": "Йемен"
+	},
+	"region-name-xw": {
+		"message": "Западный берег реки Иордан"
+	},
+	"region-name-za": {
+		"message": "Южно-Африканская Республика"
+	},
+	"region-name-xu": {
+		"message": "Джонстон, атолл"
+	},
+	"region-name-zw": {
+		"message": "Зимбабве"
+	},
+	"region-name-zm": {
+		"message": "Замбия"
 	}
 }

@@ -124,14 +124,14 @@ var cardbookDirTreeUtils = {
 		if (document.getElementById('accountsOrCatsTreeMenulist')) {
 			var accountsShown = document.getElementById('accountsOrCatsTreeMenulist').value;
 		} else {
-			var accountsShown = cardbookRepository.cardbookPreferences.getStringPref("extensions.cardbook.accountsShown");
+			var accountsShown = cardbookRepository.cardbookPrefs["accountsShown"];
 		}
 		var typeColumn = document.getElementById('accountTypeCheckbox');
 		var colorColumn = document.getElementById('accountColor');
 		cardbookDirTreeUtils.newArray = JSON.parse(JSON.stringify(cardbookRepository.cardbookAccounts));
 		
 		typeColumn.removeAttribute('hidden');
-		if (cardbookRepository.useColor == "nothing") {
+		if (cardbookRepository.cardbookPrefs["useColor"] == "nothing") {
 			colorColumn.setAttribute("hidden", true);
 		} else {
 			colorColumn.removeAttribute('hidden');

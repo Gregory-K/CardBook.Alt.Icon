@@ -32,9 +32,9 @@
 	/**
 	 * Read the selected options and update the preview document.
 	 */
-	async function updatePreview() {
+	function updatePreview() {
 		let cards = ownerDocument.getElementById("cardbookPrintContent").getAttribute("cards");
-		await cardbookPrint.buildHTML(PrintEventHandler.printPreviewEl.querySelector("browser").contentDocument,
+		cardbookPrint.buildHTML(PrintEventHandler.printPreviewEl.querySelector("browser").contentDocument,
 												cards,
 												{ headers: document.getElementById("displayHeadersCheckBox").checked,
 													fieldNames: document.getElementById("displayFieldNamesCheckBox").checked,

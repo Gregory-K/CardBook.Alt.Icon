@@ -90,7 +90,7 @@ var cardbookIDBPrefDispName = {
 	addPrefDispName: async function(aPrefDispName, aMode) {
 		try {
 			aPrefDispName.email = aPrefDispName.email.toLowerCase();
-			if (!aPrefDispName.mailPopId) {
+			if (!aPrefDispName.prefDispNameId) {
 				aPrefDispName.prefDispNameId = cardbookIDBPrefDispName.getPrefDispNameId();
 			}
 			var db = cardbookRepository.cardbookPrefDispNameDatabase.db;
@@ -99,7 +99,7 @@ var cardbookIDBPrefDispName = {
 			var store = transaction.objectStore("prefDispName");
 			var cursorRequest = store.put(storedPrefDispName);
 
-			cursorRequest.onsuccess = function(e) {
+			cursorRequest.onsuccess = async function(e) {
 				cardbookIDBPrefDispName.addPrefDispNameToIndex(aPrefDispName);
 				if (cardbookIndexedDB.encryptionEnabled) {
 					cardbookRepository.cardbookLog.updateStatusProgressInformationWithDebug2("debug mode : Prefer display name " + aPrefDispName + " written to encrypted PrefDispNameDB");
@@ -107,7 +107,7 @@ var cardbookIDBPrefDispName = {
 					cardbookRepository.cardbookLog.updateStatusProgressInformationWithDebug2("debug mode : Prefer display name " + aPrefDispName + " written to PrefDispNameDB");
 				}
 				if (aMode) {
-					cardbookActions.fetchCryptoActivity(aMode);
+					await cardbookActions.fetchCryptoActivity(aMode);
 				}
 			};
 
@@ -222,7 +222,7 @@ var cardbookIDBPrefDispName = {
 					cardbookIDBPrefDispName.addPrefDispName(prefDispName, "decryption");
 				}
 				catch(e) {
-					cardbookActions.fetchCryptoActivity("decryption");
+					await cardbookActions.fetchCryptoActivity("decryption");
 					cardbookRepository.cardbookLog.updateStatusProgressInformation("debug mode : Decryption failed e : " + e, "Error");
 				}
 			},
@@ -243,7 +243,7 @@ var cardbookIDBPrefDispName = {
 					cardbookIDBPrefDispName.addPrefDispName(prefDispName, "encryption");
 				}
 				catch(e) {
-					cardbookActions.fetchCryptoActivity("encryption");
+					await cardbookActions.fetchCryptoActivity("encryption");
 					cardbookRepository.cardbookLog.updateStatusProgressInformation("debug mode : Encryption failed e : " + e, "Error");
 				}
 			},

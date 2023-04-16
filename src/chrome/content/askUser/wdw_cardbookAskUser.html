@@ -1,0 +1,40 @@
+<?xml version="1.0"?>
+<!DOCTYPE html>
+
+<html id="wdw_cardbookAskUser">
+	<head>
+        <meta charset="UTF-8">
+		<link rel='stylesheet' type='text/css' href="chrome://messenger/skin/messenger.css">
+		<link rel='stylesheet' type='text/css' href="chrome://global/skin/in-content/common.css">
+		<link rel='stylesheet' type='text/css' href="chrome://messenger/skin/shared/themeableDialog.css">
+        <link rel='stylesheet' type='text/css' href="chrome://messenger/skin/accountSetup.css">
+
+		<link rel='stylesheet' type='text/css' href="../skin/cardbookHTML.css">
+        <link rel='stylesheet' type='text/css' href="../skin/cardbookMain.css">
+		<title></title>
+	</head>
+
+	<body xmlns="http://www.mozilla.org/keymaster/gatekeeper/there.is.only.xul">
+		<div class="vbox hcentered">
+			<div class="hbox">
+				<label id="messageLabel"></label>
+			</div>
+
+			<div class="hbox">
+				<button id="askUserButton1"></button>
+				<button id="askUserButton2"></button>
+				<button id="askUserButton3"></button>
+				<button id="askUserButton4"></button>
+			</div>
+
+			<div class="hbox">
+				<label>
+					<input type="checkbox" id="confirmCheckBox">
+					__MSG_askUserPersistMessage__
+				</label>
+			</div>
+		</div>
+        <script src="../scripts/i18n.js"></script>
+		<script type="module" src="../askUser/wdw_cardbookAskUser.js"></script>
+    </body>
+</html>

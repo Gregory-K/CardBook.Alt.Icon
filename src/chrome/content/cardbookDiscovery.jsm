@@ -3,19 +3,19 @@ var { Services } = ChromeUtils.import("resource://gre/modules/Services.jsm");
 var EXPORTED_SYMBOLS = ["cardbookDiscovery"];
 var cardbookDiscovery = {
 
-	addAddressbook: function (aAccountsToAdd) {
-		// this function is luckily not always available
-		// especially after having added an address book, a new discovery does not reask for adding 
-		let window = Services.wm.getMostRecentWindow("mail:3pane");
-		if (window) {
-			if (Services.wm.getMostRecentWindow("mail:3pane").openDialog && aAccountsToAdd.length != 0) {
-				var myArgs = {action: "discovery", accountsToAdd: aAccountsToAdd};
-				Services.wm.getMostRecentWindow("mail:3pane").openDialog("chrome://cardbook/content/addressbooksconfiguration/wdw_addressbooksAdd.xhtml", "", cardbookRepository.windowParams, myArgs);
-			}
+	addAddressbook: async function (aAccountsToAdd) {
+		if (aAccountsToAdd.length) {
+			let url = "chrome/content/addressbooksconfiguration/wdw_addressbooksAdd.html";
+			let params = new URLSearchParams();
+			params.set("accountsToAdd", JSON.stringify(aAccountsToAdd));
+			params.set("action", "discovery");
+			let win = await notifyTools.notifyBackground({query: "cardbook.openWindow",
+													url: `${url}?${params.toString()}`,
+													type: "popup"});
 		}
 	},
 
-	removeAddressbook: function (aDirPrefId) {
+	removeAddressbook: async function (aDirPrefId) {
 		try {
 			var myDirPrefIdName = cardbookRepository.cardbookPreferences.getName(aDirPrefId);
 		
@@ -24,7 +24,7 @@ var cardbookDiscovery = {
 			var returnFlag = false;
 			returnFlag = Services.prompt.confirm(null, confirmTitle, confirmMsg);
 			if (returnFlag) {
-				cardbookRepository.removeAccountFromComplexSearch(aDirPrefId);
+				await cardbookRepository.removeAccountFromComplexSearch(aDirPrefId);
 				cardbookRepository.removeAccountFromRepository(aDirPrefId);
 				// cannot be launched from cardbookRepository
 				cardbookIndexedDB.removeAccount(aDirPrefId, myDirPrefIdName);

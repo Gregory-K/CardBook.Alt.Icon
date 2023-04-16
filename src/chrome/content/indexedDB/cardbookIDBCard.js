@@ -52,7 +52,7 @@ var cardbookIDBCard = {
 				if ('encrypted' in aCard) {
 					aCard = await cardbookEncryptor.decryptCard(aCard);
 				}
-				cardbookIDBCard.addCard(aDirPrefName, aCard);
+				await cardbookIDBCard.addCard(aDirPrefName, aCard);
 			} else {
 				if ('encrypted' in aCard) {
 					aCard = await cardbookEncryptor.decryptCard(aCard);
@@ -68,32 +68,32 @@ var cardbookIDBCard = {
 
 	// add or override the contact to the cache
 	addCard: async function(aDirPrefName, aCard, aMode) {
-		try {
+        let addCard = new Promise( async function(resolve, reject) {
 			var storedCard = cardbookIndexedDB.encryptionEnabled ? (await cardbookEncryptor.encryptCard(aCard)) : aCard;
 			var db = cardbookRepository.cardbookDatabase.db;
 			var transaction = db.transaction(["cards"], "readwrite");
 			var store = transaction.objectStore("cards");
 			var cursorRequest = store.put(storedCard);
-			cursorRequest.onsuccess = function(e) {
+			cursorRequest.onsuccess = async function(e) {
 				if (cardbookIndexedDB.encryptionEnabled) {
 					cardbookRepository.cardbookLog.updateStatusProgressInformationWithDebug2(aDirPrefName + " : debug mode : Contact " + aCard.fn + " written to encrypted DB");
 				} else {
 					cardbookRepository.cardbookLog.updateStatusProgressInformationWithDebug2(aDirPrefName + " : debug mode : Contact " + aCard.fn + " written to DB");
 				}
 				if (aMode) {
-					cardbookActions.fetchCryptoActivity(aMode);
+					await cardbookActions.fetchCryptoActivity(aMode);
 				}
+				resolve();
 			};
-			
-			cursorRequest.onerror = function(e) {
+			cursorRequest.onerror = async function(e) {
 				if (aMode) {
-					cardbookActions.fetchCryptoActivity(aMode);
+					await cardbookActions.fetchCryptoActivity(aMode);
 				}
 				cardbookRepository.cardbookDatabase.onerror(e);
+				reject();
 			};
-		} catch(e) {
-			cardbookRepository.cardbookDatabase.onerror(e);
-		}
+        });
+        await addCard;
 	},
 
 	// delete the contact
@@ -113,6 +113,27 @@ var cardbookIDBCard = {
 		cursorRequest.onerror = cardbookRepository.cardbookDatabase.onerror;
 	},
 
+	// Check if a card is present in the database
+	getCard: function(aCardId) {
+		return new Promise( function(resolve, reject) {
+			var db = cardbookRepository.cardbookDatabase.db;
+			var transaction = db.transaction(["cards"], "readonly");
+			var store = transaction.objectStore("cards");
+			var cursorRequest = store.get(aCardId);
+		
+			cursorRequest.onsuccess = async function(e) {
+				var result = e.target.result;
+				let card = {};
+				if (result) {
+					card = await cardbookIDBCard.checkCard("", result);
+				}
+				resolve(card);
+			};
+			
+			cursorRequest.onerror = cardbookRepository.cardbookDatabase.onerror;
+		});
+	},
+	
 	// Check if a card is present in the database
 	checkCardForUndoAction: function(aMessage, aCard, aActionId) {
 		return new Promise( function(resolve, reject) {
@@ -208,7 +229,7 @@ var cardbookIDBCard = {
 			cardsTransaction.objectStore("cards"),
 			async card => {
 				try {
-					cardbookIDBCard.addCard(cardbookRepository.cardbookPreferences.getName(card.dirPrefId), card, "encryption");
+					await cardbookIDBCard.addCard(cardbookRepository.cardbookPreferences.getName(card.dirPrefId), card, "encryption");
 				}
 				catch(e) {
 					cardbookRepository.cardbookLog.updateStatusProgressInformation("debug mode : Encryption failed e : " + e, "Error");
@@ -228,10 +249,10 @@ var cardbookIDBCard = {
 			async card => {
 				try {
 					card = await cardbookEncryptor.decryptCard(card);
-					cardbookIDBCard.addCard(cardbookRepository.cardbookPreferences.getName(card.dirPrefId), card, "decryption");
+					await cardbookIDBCard.addCard(cardbookRepository.cardbookPreferences.getName(card.dirPrefId), card, "decryption");
 				}
 				catch(e) {
-					cardbookActions.fetchCryptoActivity("decryption");
+					await cardbookActions.fetchCryptoActivity("decryption");
 					cardbookRepository.cardbookLog.updateStatusProgressInformation("debug mode : Decryption failed e : " + e, "Error");
 				}
 			},
@@ -249,10 +270,10 @@ var cardbookIDBCard = {
 			async card => {
 				try {
 					card = await cardbookEncryptor.decryptCard(card);
-					cardbookIDBCard.addCard(cardbookRepository.cardbookPreferences.getName(card.dirPrefId), card, "encryption");
+					await cardbookIDBCard.addCard(cardbookRepository.cardbookPreferences.getName(card.dirPrefId), card, "encryption");
 				}
 				catch(e) {
-					cardbookActions.fetchCryptoActivity("encryption");
+					await cardbookActions.fetchCryptoActivity("encryption");
 					cardbookRepository.cardbookLog.updateStatusProgressInformation("debug mode : Encryption failed e : " + e, "Error");
 				}
 			},

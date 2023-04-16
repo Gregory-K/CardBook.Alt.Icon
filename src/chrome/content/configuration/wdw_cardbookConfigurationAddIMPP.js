@@ -1,36 +1,61 @@
+import { cardbookHTMLRichContext } from "../cardbookHTMLRichContext.mjs";
+
+var id = "";
+var type = "";
+var code = "";
+var label = "";
+var protocol = "";
+
 function checkRequired () {
+	let btnSave = document.getElementById("validateButton");
 	if (document.getElementById('IMPPCodeTextBox').value != "" && document.getElementById('IMPPLabelTextBox').value != "" && document.getElementById('IMPPProtocolTextBox').value != "") {
-		document.querySelector("dialog").getButton("accept").disabled = false;
+		btnSave.disabled = false;
 	} else {
-		document.querySelector("dialog").getButton("accept").disabled = true;
+		btnSave.disabled = true;
 	}
 };
 
-function onLoadDialog () {
-	i18n.updateDocument({ extension: cardbookRepository.extension });
-	document.getElementById('IMPPCodeTextBox').value = window.arguments[0].code;
-	document.getElementById('IMPPLabelTextBox').value = window.arguments[0].label;
-	document.getElementById('IMPPProtocolTextBox').value = window.arguments[0].protocol;
-	document.getElementById('IMPPCodeTextBox').focus();
+async function onLoadDialog () {
+	let urlParams = new URLSearchParams(window.location.search);
+	id = urlParams.get("id");
+	type = urlParams.get("type");
+	code = urlParams.get("code");
+	label = urlParams.get("label");
+	protocol = urlParams.get("protocol");
+
+	i18n.updateDocument();
+	cardbookHTMLRichContext.loadRichContext();
+
+	// input
+	document.getElementById("IMPPCodeTextBox").addEventListener("input", event => checkRequired() );
+	document.getElementById("IMPPLabelTextBox").addEventListener("input", event => checkRequired());
+	document.getElementById("IMPPProtocolTextBox").addEventListener("input", event => checkRequired());
+	// button
+	document.getElementById('cancelButton').addEventListener("click", onCancelDialog);
+	document.getElementById('validateButton').addEventListener("click", onAcceptDialog);
+
+	document.getElementById('IMPPCodeTextBox').value = code;
+	document.getElementById('IMPPLabelTextBox').value = label;
+	document.getElementById('IMPPProtocolTextBox').value = protocol;
 	checkRequired();
 };
 
-function onAcceptDialog () {
-	window.arguments[0].code = document.getElementById('IMPPCodeTextBox').value.replace(/:/g, "").trim();
-	window.arguments[0].label = document.getElementById('IMPPLabelTextBox').value.replace(/:/g, "").trim();
-	window.arguments[0].protocol = document.getElementById('IMPPProtocolTextBox').value.replace(/:/g, "").trim();
-	window.arguments[0].typeAction="SAVE";
-	close();
+async function onAcceptDialog (aEvent) {
+	let urlParams = {};
+	urlParams.id = id;
+	urlParams.type = type;
+	urlParams.code = document.getElementById('IMPPCodeTextBox').value.replace(/:/g, "").trim();
+	urlParams.label = document.getElementById('IMPPLabelTextBox').value.replace(/:/g, "").trim();
+	urlParams.protocol = document.getElementById('IMPPProtocolTextBox').value.replace(/:/g, "").trim();
+	await messenger.runtime.sendMessage({query: "cardbook.conf.saveIMPPs", urlParams: urlParams});
+	onCancelDialog();
 };
 
-function onCancelDialog () {
-	window.arguments[0].typeAction="CANCEL";
-	close();
+async function onCancelDialog () {
+	cardbookHTMLRichContext.closeWindow();
 };
 
-document.addEventListener("DOMContentLoaded", onLoadDialog);
-document.addEventListener("dialogaccept", onAcceptDialog);
-document.addEventListener("dialogcancel", onCancelDialog);
-document.addEventListener("popupshowing", cardbookRichContext.loadRichContext, true);
-document.addEventListener("input", checkRequired, true);
-document.addEventListener("command", checkRequired, true);
+await onLoadDialog();
+
+
+// to do cardbookRichContext

@@ -194,7 +194,15 @@ if ("undefined" == typeof(wdw_cardEdition)) {
 				case "addedCardsTreeFirstname":
 					columnArray=3;
 					break;
-			}
+				default:
+                    columnArray=4;
+                    if (aTreeName == "availableCardsTree") {
+                        columnName = "availableCardsTreeName";
+                    } else {
+                        columnName = "addedCardsTreeName";
+                    }
+                    break;
+            }
 			if (wdw_cardEdition.cardbookeditlists[aTreeName]) {
 				cardbookRepository.cardbookUtils.sortMultipleArrayByString(wdw_cardEdition.cardbookeditlists[aTreeName], columnArray, order);
 			} else {
@@ -468,7 +476,7 @@ if ("undefined" == typeof(wdw_cardEdition)) {
 				item.setAttribute("label", category);
 				item.setAttribute("value", category);
 				item.setAttribute("type", "checkbox");
-				if (category in cardbookRepository.cardbookNodeColors && cardbookRepository.useColor != "nothing") {
+				if (category in cardbookRepository.cardbookNodeColors && cardbookRepository.cardbookPrefs["useColor"] != "nothing") {
 					item.setAttribute("colorType", 'category_' + cardbookRepository.cardbookUtils.formatCategoryForCss(category));
 				}
 				if (aCategoryChecked.includes(category)) {
@@ -556,7 +564,7 @@ if ("undefined" == typeof(wdw_cardEdition)) {
 				document.getElementById('cardbookSwitchButtonDown').setAttribute('hidden', 'true');
 				document.getElementById('cardbookSwitchButtonUp').setAttribute('hidden', 'true');
 				document.getElementById('helpTab').setAttribute("collapsed", true);
-				var panesView = cardbookRepository.cardbookPreferences.getStringPref("extensions.cardbook.panesView");
+				var panesView = cardbookRepository.cardbookPrefs["panesView"];
 				if (panesView == "classical") {
 					document.getElementById('modernRows').setAttribute('hidden', 'true');
 				} else {
@@ -665,7 +673,7 @@ if ("undefined" == typeof(wdw_cardEdition)) {
 			}
 			document.getElementById('lastnameTextBox').focus();
 			document.getElementById('addressbookMenulistLabel').scrollIntoView();
-			wdw_cardEdition.autoComputeFn(document.getElementById('autoComputeFnButton'), cardbookRepository.cardbookPreferences.getBoolPref("extensions.cardbook.autoComputeFn"));
+			wdw_cardEdition.autoComputeFn(document.getElementById('autoComputeFnButton'), cardbookRepository.cardbookPrefs["autoComputeFn"]);
 		},
 
 		setFieldsAsDefault: function () {
@@ -825,7 +833,7 @@ if ("undefined" == typeof(wdw_cardEdition)) {
 					}
 				}
 			}
-			var orgStructure = cardbookRepository.cardbookPreferences.getStringPref("extensions.cardbook.orgStructure");
+			var orgStructure = cardbookRepository.cardbookPrefs["orgStructure"];
 			if (orgStructure) {
 				let myOrgStructure = cardbookRepository.cardbookUtils.unescapeArray(cardbookRepository.cardbookUtils.escapeString(orgStructure).split(";"));
 				for (let i = 0; i < myOrgStructure.length; i++) {
@@ -922,7 +930,7 @@ if ("undefined" == typeof(wdw_cardEdition)) {
 				let value = cardbookRepository.cardbookUtils.convertField(convertionFunction, textbox.value);
 				textbox.value = value;
 			}
-			let orgStructure = cardbookRepository.cardbookPreferences.getStringPref("extensions.cardbook.orgStructure");
+			let orgStructure = cardbookRepository.cardbookPrefs["orgStructure"];
 			let allOrg = [];
 			if (orgStructure != "") {
 				allOrg = cardbookRepository.cardbookUtils.unescapeArray(cardbookRepository.cardbookUtils.escapeString(orgStructure).split(";"));
@@ -935,7 +943,7 @@ if ("undefined" == typeof(wdw_cardEdition)) {
 		},
 
 		loadHelpTab: function () {
-			let orgStructure = cardbookRepository.cardbookPreferences.getStringPref("extensions.cardbook.orgStructure");
+			let orgStructure = cardbookRepository.cardbookPrefs["orgStructure"];
 			let allOrg = [];
 			if (orgStructure != "") {
 				allOrg = cardbookRepository.cardbookUtils.unescapeArray(cardbookRepository.cardbookUtils.escapeString(orgStructure).split(";"));
@@ -1049,7 +1057,7 @@ if ("undefined" == typeof(wdw_cardEdition)) {
 			wdw_cardEdition.workingCard.dirPrefId = document.getElementById('addressbookMenulist').value;
 
 			wdw_cardEdition.loadDateFormatLabels();
-			await wdw_cardEdition.displayCard(wdw_cardEdition.workingCard);
+			wdw_cardEdition.displayCard(wdw_cardEdition.workingCard);
 		},
 
 		changeContact: async function () {
@@ -1067,7 +1075,7 @@ if ("undefined" == typeof(wdw_cardEdition)) {
 				wdw_cardEdition.workingCard = new cardbookCardParser();
 				await wdw_cardEdition.cloneCard(window.arguments[0].cardIn, wdw_cardEdition.workingCard);
 			}
-			await wdw_cardEdition.displayCard(wdw_cardEdition.workingCard);
+			wdw_cardEdition.displayCard(wdw_cardEdition.workingCard);
 		},
 
 		switchLastnameAndFirstname: function () {
@@ -1088,7 +1096,7 @@ if ("undefined" == typeof(wdw_cardEdition)) {
 					aButton.removeAttribute('autoComputeFn');
 					aButton.setAttribute('tooltiptext', cardbookRepository.extension.localeData.localizeMessage("autoComputeFn"));
 				}
-				cardbookRepository.cardbookPreferences.setBoolPref("extensions.cardbook.autoComputeFn", !cardbookRepository.cardbookPreferences.getBoolPref("extensions.cardbook.autoComputeFn"));
+				cardbookRepository.cardbookPreferences.setBoolPref("autoComputeFn", !cardbookRepository.cardbookPrefs["autoComputeFn"]);
 			} else {
 				if (aForce == true) {
 					aButton.setAttribute('autoComputeFn', 'true');
@@ -1125,10 +1133,10 @@ if ("undefined" == typeof(wdw_cardEdition)) {
 			cardbookNotifications.setNotification(cardEditionNotification.errorNotifications, "OK");
 		},
 
-		displayCard: async function (aCard) {
+		displayCard: function (aCard) {
 			wdw_cardEdition.clearCard();
 			var aReadOnly = cardbookRepository.cardbookPreferences.getReadOnly(aCard.dirPrefId);
-			await cardbookWindowUtils.displayCard(aCard, aReadOnly);
+			cardbookWindowUtils.displayCard(aCard, aReadOnly);
 			
 			// specific
 			document.getElementById('addressbookTextBox').value = cardbookRepository.cardbookPreferences.getName(aCard.dirPrefId);
@@ -1238,10 +1246,10 @@ if ("undefined" == typeof(wdw_cardEdition)) {
 			}
 		},
 
-		loadCountries: async function () {
+		loadCountries: function () {
 			var countryList = document.getElementById('countryMenulist');
 			var countryPopup = document.getElementById('countryMenupopup');
-			await cardbookElementTools.loadCountries(countryPopup, countryList, countryList.value, true, false);
+			cardbookElementTools.loadCountries(countryPopup, countryList, countryList.value, true, false);
 		},
 
 		cloneCard: async function (aSourceCard, aTargetCard) {
@@ -1342,7 +1350,6 @@ if ("undefined" == typeof(wdw_cardEdition)) {
 		load: async function () {
 			i18n.updateDocument({ extension: cardbookRepository.extension });
 			cardBookEditionObserver.register();
-			cardBookEditionPrefObserver.register();
 
 			wdw_cardEdition.workingCard = {};
 			wdw_cardEdition.workingCard = new cardbookCardParser();
@@ -1362,9 +1369,9 @@ if ("undefined" == typeof(wdw_cardEdition)) {
 			
 			wdw_cardEdition.loadCssRules();
 			wdw_cardEdition.loadDefaultVersion();
-			await wdw_cardEdition.displayCard(wdw_cardEdition.workingCard);
+			wdw_cardEdition.displayCard(wdw_cardEdition.workingCard);
 			
-			wdw_cardEdition.cardRegion = await cardbookRepository.cardbookUtils.getCardRegion(wdw_cardEdition.workingCard);
+			wdw_cardEdition.cardRegion = cardbookRepository.cardbookUtils.getCardRegion(wdw_cardEdition.workingCard);
 			
 			// address panel behaviour
 			function firePopupShownAdr(event) {
@@ -1717,7 +1724,6 @@ if ("undefined" == typeof(wdw_cardEdition)) {
 					window.arguments[0].editionCallback(window.arguments[0].cardIn, window.arguments[0].cardOut, window.arguments[0].editionMode);
 				}
 				cardBookEditionObserver.unregister();
-				cardBookEditionPrefObserver.unregister();
 				if (aClose) {
 					wdw_cardEdition.closeWindow();
 				}
@@ -1756,7 +1762,6 @@ if ("undefined" == typeof(wdw_cardEdition)) {
 		cancel: function () {
 			window.arguments[0].cardEditionAction = "CANCEL";
 			cardBookEditionObserver.unregister();
-			cardBookEditionPrefObserver.unregister();
 			wdw_cardEdition.closeWindow();
 		},
 

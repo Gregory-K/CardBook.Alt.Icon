@@ -1,0 +1,39 @@
+<?xml version="1.0"?>
+<!DOCTYPE html>
+
+<html id="wdw_logEdition">
+	<head>
+        <meta charset="UTF-8">
+		<link rel='stylesheet' type='text/css' href="chrome://messenger/skin/messenger.css">
+		<link rel='stylesheet' type='text/css' href="chrome://global/skin/in-content/common.css">
+		<link rel='stylesheet' type='text/css' href="chrome://messenger/skin/shared/themeableDialog.css">
+        <link rel='stylesheet' type='text/css' href="chrome://messenger/skin/accountSetup.css">
+
+		<link rel='stylesheet' type='text/css' href="../skin/cardbookHTML.css">
+        <link rel='stylesheet' type='text/css' href="../skin/cardbookMain.css">
+        <link rel='stylesheet' type='text/css' href="../skin/cardbookLogEdition.css">
+		<title>__MSG_wdw_logEditionTitle__</title>
+	</head>
+
+	<body xmlns="http://www.mozilla.org/keymaster/gatekeeper/there.is.only.xul">
+        <div class="fullContainer">
+            <div class="flex-pad-x">
+                <div class="flex-pad-y">
+                    <div class="flex-grow-y alignCenter justifyCenter">
+                        <select id="logEditionTable" size="20" multiple class="selectTree"></select>
+                    </div>
+                    <div class="hbox fullline2">
+                        <div class="hbox">
+                            <button id="refreshLogEditionLabel">__MSG_refreshLogEditionLabel__</button>
+                            <button id="flushLogEditionLabel">__MSG_flushLogEditionLabel__</button>
+                            <button id="clipboardLogEditionLabel">__MSG_clipboardLogEditionLabel__</button>
+                            <button id="cancelLogEditionLabel">__MSG_cancelLogEditionLabel__</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <script src="../scripts/i18n.js"></script>
+		<script type="module" src="../log/wdw_logEdition.js"></script>
+    </body>
+</html>

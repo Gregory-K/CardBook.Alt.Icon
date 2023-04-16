@@ -137,7 +137,7 @@ if ("undefined" == typeof(wdw_birthdayList)) {
 		displayAllBirthdays: function () {
 			i18n.updateDocument({ extension: cardbookRepository.extension });
 			document.getElementById('syncLightningMenuItemLabel').disabled = false;
-			let maxDaysUntilNextBirthday = cardbookRepository.cardbookPreferences.getStringPref("extensions.cardbook.numberOfDaysForSearching");
+			let maxDaysUntilNextBirthday = cardbookRepository.cardbookPrefs["numberOfDaysForSearching"];
 			cardbookBirthdaysUtils.loadBirthdays(maxDaysUntilNextBirthday);
 			wdw_birthdayList.sortTable("birthdayListTable");
 		},
@@ -146,7 +146,7 @@ if ("undefined" == typeof(wdw_birthdayList)) {
 			wdw_birthdayList.loadCssRules();
 			let noneFound = document.getElementById("noneFound");
 			let resulTable = document.getElementById("birthdayListTable");
-			let maxDaysUntilNextBirthday = cardbookRepository.cardbookPreferences.getStringPref("extensions.cardbook.numberOfDaysForSearching");
+			let maxDaysUntilNextBirthday = cardbookRepository.cardbookPrefs["numberOfDaysForSearching"];
 			maxDaysUntilNextBirthday = (maxDaysUntilNextBirthday > 365) ? 365 : maxDaysUntilNextBirthday;
 
 			// if there are no birthdays in the configured timespan

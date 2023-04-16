@@ -10,6 +10,7 @@ loader.loadSubScript("chrome://cardbook/content/indexedDB/cardbookIDBImage.js", 
 loader.loadSubScript("chrome://cardbook/content/indexedDB/cardbookIDBMailPop.js", this);
 loader.loadSubScript("chrome://cardbook/content/indexedDB/cardbookIDBPrefDispName.js", this);
 loader.loadSubScript("chrome://cardbook/content/indexedDB/cardbookIDBSearch.js", this);
+loader.loadSubScript("chrome://cardbook/content/indexedDB/cardbookIDBDuplicate.js", this);
 loader.loadSubScript("chrome://cardbook/content/indexedDB/cardbookEncryptor.js", this);
 
 var cardbookSynchro = {

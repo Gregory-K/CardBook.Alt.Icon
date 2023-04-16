@@ -78,10 +78,7 @@ var cardbookPasswordManager = {
 			var myPassword = {value: ""};
 			var myRememberText = cardbookRepository.extension.localeData.localizeMessage("rememberPassword");
 			var check = {value: false};
-			// test var prompter = Services.ww.getNewPrompter(null);
-			// test if (prompter.promptPassword(myTitle, myText, myPassword, myRememberText, check)) {
 			if (cardbookPasswordManager.askPassword(myTitle, myText, myUsername, myPassword, myRememberText, check)) {
-				console.log("test myPassword.value : " + myPassword.value)
 				cardbookPasswordManager.rememberPassword(aUsername, myUrl, myPassword.value, check.value);
 				return myPassword.value;
 			}
@@ -98,10 +95,7 @@ var cardbookPasswordManager = {
 		var myPassword = {value: ""};
 		var myRememberText = cardbookRepository.extension.localeData.localizeMessage("rememberPassword");
 		var check = {value: false};
-		var prompter = Services.ww.getNewPrompter(null);
-		//test if (prompter.promptPassword(myTitle, myText, myPassword, myRememberText, check)) {
 		if (cardbookPasswordManager.askPassword(myTitle, myText, myUsername, myPassword, myRememberText, check)) {
-			console.log("test myPassword.value : " + myPassword.value)
 			cardbookPasswordManager.rememberPassword(aUsername, myUrl, myPassword.value, check.value);
 			return myPassword.value;
 		}

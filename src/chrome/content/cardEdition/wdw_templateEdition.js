@@ -177,7 +177,7 @@ if ("undefined" == typeof(wdw_templateEdition)) {
 						}
 
 						await wdw_cardEdition.cloneCard(myTempCard, wdw_cardEdition.workingCard);
-						await wdw_cardEdition.displayCard(wdw_cardEdition.workingCard);
+						wdw_cardEdition.displayCard(wdw_cardEdition.workingCard);
 						myTempCard = null;
 						
 						// first vCard shown

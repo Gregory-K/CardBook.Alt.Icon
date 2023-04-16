@@ -66,7 +66,8 @@ if ("undefined" == typeof(ovl_attachments)) {
 							var myTopic = "cardsImportedFromFile";
 							var myActionId = cardbookActions.startAction(myTopic, [this.mFile.leafName]);
 							cardbookRepository.cardbookSynchronization.loadFile(this.mFile, this.myDirPrefId, this.myDirPrefId, "IMPORTFILE", myActionId);
-							cardbookActions.endAsyncAction(myActionId);
+							let window = Services.wm.getMostRecentWindow("mail:3pane");
+							cardbookActions.endAsyncAction(myActionId, {window: window});
 						} else {
 							cardbookRepository.cardbookLog.updateStatusProgressInformationWithDebug2("debug mode : attachment not successfully downloaded, status : " + aStatus);
 						}

@@ -33,8 +33,8 @@ if ("undefined" == typeof(cardbookListConversion)) {
 		},
 		
 		_convert: function (aEmails, aIdentity, aOnlyEmail) {
-			let memberCustom = cardbookRepository.cardbookPreferences.getStringPref("extensions.cardbook.memberCustom");
-			let useOnlyEmail = aOnlyEmail || cardbookRepository.cardbookPreferences.getBoolPref("extensions.cardbook.useOnlyEmail");
+			let memberCustom = cardbookRepository.cardbookPrefs["memberCustom"];
+			let useOnlyEmail = aOnlyEmail || cardbookRepository.cardbookPrefs["useOnlyEmail"];
 			let addresses = MailServices.headerParser.parseEncodedHeaderW(aEmails);
 			for (let address of addresses) {
 				let fullAddress = MailServices.headerParser.makeMimeAddress(address.name, address.email);

@@ -114,14 +114,8 @@
 	"showForgottenLabel": {
 		"message": "Mostrar duplicados esquecidos"
 	},
-	"showForgottenAccesskey": {
-		"message": "S"
-	},
 	"hideForgottenLabel": {
 		"message": "Esconder duplicados esquecidos"
-	},
-	"hideForgottenAccesskey": {
-		"message": "H"
 	},
 	"noContactsDuplicated": {
 		"message": "Não existem contactos duplicados."
@@ -3309,6 +3303,12 @@
 	"toLowerCase": {
 		"message": "Converter para minúsculas"
 	},
+	"copy": {
+		"message": "Copiar"
+	},
+	"paste": {
+		"message": "Colar"
+	},
 	"copyFieldValue": {
 		"message": "Copiar ($P1$)",
         "placeholders": {
@@ -3369,7 +3369,7 @@
 	"wdw_cardbookConfigurationAddEmailsRestrictionTitle": {
 		"message": "Definições das Restrições da Conta de E-mail"
 	},
-	"wdw_cardbookConfigurationAddEmailsCollectionTitle": {
+	"wdw_cardbookConfigurationAddEmailsEmailsCollectionTitle": {
 		"message": "Definições da Coleta de E-mails da Conta de Envio"
 	},
 	"ignoreCaseIgnoreDiacriticLabel": {
@@ -3773,10 +3773,13 @@
 	},
 	"wizard.next.label": {
 		"message": "Seguinte"
-	},	
+	},
 	"wizard.back.label": {
 		"message": "Retroceder"
-	},	
+	},
+	"wizard.cancel.label": {
+		"message": "Cancelar"
+	},
 	"wizard.create.label": {
 		"message": "Criar"
 	},
@@ -3800,9 +3803,6 @@
 	},
 	"initialPage.search.label": {
 		"message": "Procurar em livros de endereços existentes"
-	},
-	"initialPage.find.label": {
-		"message": "Procurar por livros de endereços remotos"
 	},
 	"localPage.type.description": {
 		"message": "Tipo de livro de endereços local:"
@@ -3838,7 +3838,7 @@
 		"message": "Navegar"
 	},
 	"remotePage.description": {
-		"message": "Qual o tipo do teu livro de endereços remoto (Atenção: o Google NÃO utiliza standards de vCard)?"
+		"message": "Qual o tipo do teu livro de endereços remoto?"
 	},
 	"remotePage.type.label": {
 		"message": "Tipo"
@@ -3891,7 +3891,7 @@
 	"rememberPassword": {
 		"message": "Utilizar o gestor de palavras-passe para memorizar esta palavra-passe"
 	},
-	"showHidePassword.tooltip": {
+	"showHidePassword": {
 		"message": "Mostrar/Esconder palavra-passe"
 	},
 	"remotePage.validatebutton.label": {
@@ -3903,20 +3903,11 @@
 	"abSearchHeading.label": {
 		"message": "Procurar em:"
 	},
-	"abSearchHeading.accesskey": {
-		"message": "u"
-	},
 	"matchAll.label": {
 		"message": "Coincidente com todos os seguintes"
 	},
-	"matchAll.accesskey": {
-		"message": "C"
-	},
 	"matchAny.label": {
 		"message": "Coincidente com qualquer dos seguintes"
-	},
-	"matchAny.accesskey": {
-		"message": "o"
 	},
 	"googleOauthPage.wizard.description": {
 		"message": "Autenticação Google"
@@ -3969,9 +3960,6 @@
 	"name.ABedit.label": {
 		"message": "Nome:"
 	},
-	"name.ABedit.accesskey": {
-		"message": "N"
-	},
 	"nodesLabel": {
 		"message": "Nós:"
 	},
@@ -3993,9 +3981,6 @@
 	"readonlyLabel": {
 		"message": "Modo só de leitura"
 	},
-	"readonlyAccesskey": {
-		"message": "M"
-	},
 	"urnuuidLabel": {
 		"message": "Usar urn:uuid"
 	},
@@ -4008,14 +3993,8 @@
 	"autoSyncLabel": {
 		"message": "Ativar sincronização periódica"
 	},
-	"autoSyncAccesskey": {
-		"message": "P"
-	},
 	"autoSyncIntervalLabel": {
 		"message": "Intervalo entre sincronizações periódicas (minutos):"
-	},
-	"autoSyncIntervalAccesskey": {
-		"message": "I"
 	},
 	"miscTabLabel": {
 		"message": "Diversos"
@@ -4026,20 +4005,11 @@
 	"fnFormulaLabel": {
 		"message": "Fórmula de Nome a Mostrar:"
 	},
-	"fnFormulaAccesskey": {
-		"message": "P"
-	},
 	"resetFnFormulaLabel": {
 		"message": "Restaurar para Predefinição"
 	},
-	"resetFnFormulaAccesskey": {
-		"message": "R"
-	},
 	"applyToABButtonLabel": {
 		"message": "Aplicar a…"
-	},
-	"applyToABButtonAccesskey": {
-		"message": "A"
 	},
 	"wdw_adrEditionTitle": {
 		"message": "Editor de Endereço"
@@ -4173,53 +4143,26 @@
 	"autocompletionLabel": {
 		"message": "Preenchimento automático de endereços de e-mail"
 	},
-	"autocompletionAccesskey": {
-		"message": "o"
-	},
-	"autocompletionTooltip": {
-		"message": "Estende o preenchimento automático padrão de contactos em livros de endereços do Thunderbird com um preenchimento automático de contactos em livros de endereços do CardBook."
-	},
 	"autocompleteSortByPopularityLabel": {
 		"message": "Ordenar endereços de e-mail por popularidade"
-	},
-	"autocompleteSortByPopularityAccesskey": {
-		"message": "p"
 	},
 	"autocompleteProposeConcatEmailsLabel": {
 		"message": "Propor e-mails concatenados por contacto"
 	},
-	"autocompleteProposeConcatEmailsAccesskey": {
-		"message": "c"
-	},
 	"autocompleteShowAddressbookLabel": {
 		"message": "Mostrar nome de livro de endereços"
-	},
-	"autocompleteShowAddressbookAccesskey": {
-		"message": "M"
 	},
 	"autocompleteShowEmailTypeLabel": {
 		"message": "Mostrar tipo de e-mail"
 	},
-	"autocompleteShowEmailTypeAccesskey": {
-		"message": "e"
-	},
 	"autocompleteShowPopularityLabel": {
 		"message": "Mostrar popularidade"
-	},
-	"autocompleteShowPopularityAccesskey": {
-		"message": "p"
 	},
 	"autocompleteWithColorLabel": {
 		"message": "Usar cor do livro de endereços"
 	},
-	"autocompleteWithColorAccesskey": {
-		"message": "U"
-	},
 	"autocompleteRestrictSearchLabel": {
 		"message": "Restringir campos de pesquisa"
-	},
-	"autocompleteRestrictSearchAccesskey": {
-		"message": "P"
 	},
 	"chooseAutocompleteRestrictSearchFieldsButtonLabel": {
 		"message": "Editar"
@@ -4256,12 +4199,6 @@
 	},
 	"exclusiveLabel": {
 		"message": "Fonte única para contactos"
-	},
-	"exclusiveAccesskey": {
-		"message": "U"
-	},
-	"exclusiveTooltip": {
-		"message": "Se desativada, esta opção permite obter contactos nos livros de endereços standards do Thunderbird para as estrelas amarelas, para o nome a mostrar e para o preenchimento automático de e-mails."
 	},
 	"accountsRestrictionsLabel": {
 		"message": "Restrições da Conta de E-mail"
@@ -4341,12 +4278,6 @@
 	"debugModeLabel": {
 		"message": "Modo debug"
 	},
-	"debugModeAccesskey": {
-		"message": "M"
-	},
-	"debugModeTooltip": {
-		"message": "Ativar modo de debug para log estendido."
-	},
 	"statusInformationLineNumberLabel": {
 		"message": "Número de linhas mantidas no ficheiro de log:"
 	},
@@ -4365,26 +4296,14 @@
 	"listTab.conf.label": {
 		"message": "Listas"
 	},
-	"listTab.conf.accesskey": {
-		"message": "L"
-	},
 	"technicalTab.conf.label": {
 		"message": "Técnico"
-	},
-	"technicalTab.conf.accesskey": {
-		"message": "T"
 	},
 	"vCardTab.conf.label": {
 		"message": "vCard"
 	},
-	"vCardTab.conf.accesskey": {
-		"message": "V"
-	},
 	"keyTab.conf.label": {
 		"message": "Chaves Públicas"
-	},
-	"keyTab.conf.accesskey": {
-		"message": "C"
 	},
 	"advancedTab1Label": {
 		"message": "Avançado"
@@ -4482,9 +4401,6 @@
 	"preferEmailEditionLabel": {
 		"message": "Fazer clique-duplo num contacto edita-o em vez de enviar-lhe um e-mail"
 	},
-	"preferEmailEditionAccesskey": {
-		"message": "E"
-	},
 	"dateDisplayedFormatLabel": {
 		"message": "Formato de Texto da Data:"
 	},
@@ -4493,9 +4409,6 @@
 	},
 	"defaultRegionLabel": {
 		"message": "Região Predefinida:"
-	},
-	"defaultRegionAccesskey": {
-		"message": "o"
 	},
 	"defaultRegionTooltip": {
 		"message": "Região predefinida para moradas e formatação de números de telefone."
@@ -4641,9 +4554,6 @@
 	"preferIMPPPrefLabel": {
 		"message": "Preferir Comunicações pela Internet marcadas com"
 	},
-	"preferIMPPPrefAccesskey": {
-		"message": "M"
-	},
 	"preferIMPPPrefWarn": {
 		"message": "Se nenhum endereço estiver marcado, uma ligação será proposta para todos os endereços do contacto."
 	},
@@ -4707,9 +4617,6 @@
 	"URLPhoneBackgroundLabel": {
 		"message": "Executar em segundo plano"
 	},
-	"URLPhoneBackgroundAccesskey": {
-		"message": "S"
-	},
 	"encryptionGroupboxLabel": {
 		"message": "Encriptação"
 	},
@@ -4718,9 +4625,6 @@
 	},
 	"localDataEncryptionEnabledLabel": {
 		"message": "Encriptar cartões locais em cache"
-	},
-	"localDataEncryptionEnabledAccesskey": {
-		"message": "E"
 	},
 	"customFieldRankHeaderLabel": {
 		"message": "Classificação"
@@ -4771,7 +4675,7 @@
 		"message": "Etiqueta do Campo"
 	},
 	"listPanelLabel": {
-		"message": "Se o teu servidor não suporta categorias (Google, Apple, Zimbra, etc …), as listas são uma boa forma de enviar e-mails para grupos de pessoas. O vCard 3.0 não suporta nativamente listas, mas isto pode ser conseguido com campos personalizados, assim, se quiseres usar listas com o vCard 3.0, terás de definir estes campos."
+		"message": "Se o teu servidor não suporta categorias (Apple, Zimbra, etc …), as listas são uma boa forma de enviar e-mails para grupos de pessoas. O vCard 3.0 não suporta nativamente listas, mas isto pode ser conseguido com campos personalizados, assim, se quiseres usar listas com o vCard 3.0, terás de definir estes campos."
 	},
 	"listGroupboxLabel": {
 		"message": "Campos personalizados para listas"
@@ -4803,14 +4707,8 @@
 	"syncAfterChangeLabel": {
 		"message": "Sincronizar após alterações"
 	},
-	"syncAfterChangeAccesskey": {
-		"message": "c"
-	},
 	"initialSyncLabel": {
 		"message": "Executar a sincronização no arranque do Thunderbird"
-	},
-	"initialSyncAccesskey": {
-		"message": "C"
 	},
 	"initialSyncDelayLabel": {
 		"message": "Atraso de sincronização inicial (segundos):"
@@ -4872,17 +4770,11 @@
 	"decodeReportLabel": {
 		"message": "Descodificar URLs para pedidos de REPORT"
 	},
-	"decodeReportAccesskey": {
-		"message": "D"
-	},
 	"miscEmailGroupboxLabel": {
 		"message": "Enviar E-mails"
 	},
 	"preferEmailPrefLabel": {
 		"message": "Preferir endereços de e-mail marcados com"
-	},
-	"preferEmailPrefAccesskey": {
-		"message": "W"
 	},
 	"preferEmailPrefWarn": {
 		"message": "Se nenhum endereço estiver marcado, a mensagem é enviada para todos os endereços do contacto."
@@ -4890,14 +4782,8 @@
 	"warnEmptyEmailsLabel": {
 		"message": "Avisar-me quando tento enviar e-mails para contactos sem um endereço de e-mail"
 	},
-	"warnEmptyEmailsAccesskey": {
-		"message": "W"
-	},
 	"useOnlyEmailLabel": {
 		"message": "Usar apenas endereços de e-mail, sem os seus Nomes a Mostrar"
-	},
-	"useOnlyEmailAccesskey": {
-		"message": "U"
 	},
 	"attachVCardWarn": {
 		"message": "Para adicionar automaticamente um vCard aos teus e-mails, seleciona um vCard para cada conta de e-mail. Se ativado, o CardBook vai anexar este vCard a todos os emails de saída desta conta."
@@ -4956,26 +4842,14 @@
 	"bday.conf.label": {
 		"message": "Nascimento"
 	},
-	"bday.conf.accesskey": {
-		"message": "N"
-	},
 	"anniversary.conf.label": {
 		"message": "Aniversário (apenas para vCard 4.0)"
-	},
-	"anniversary.conf.accesskey": {
-		"message": "A"
 	},
 	"deathdate.conf.label": {
 		"message": "Data de Falecimento (apenas para vCard 4.0)"
 	},
-	"deathdate.conf.accesskey": {
-		"message": "D"
-	},
 	"eventsLabel": {
 		"message": "Eventos"
-	},
-	"eventsAccesskey": {
-		"message": "E"
 	},
 	"gender.conf.label": {
 		"message": "Género (apenas para vCard 4.0)"
@@ -5007,14 +4881,8 @@
 	"showPopupOnStartupLabel": {
 		"message": "Mostrar janela popup no arranque"
 	},
-	"showPopupOnStartupAccesskey": {
-		"message": "a"
-	},
 	"showPeriodicPopupLabel": {
 		"message": "Mostrar popup diário"
-	},
-	"showPeriodicPopupAccesskey": {
-		"message": "d"
 	},
 	"periodicPopupTimeLabel": {
 		"message": "Mostrar horas (hh:mm):"
@@ -5024,9 +4892,6 @@
 	},
 	"showPopupEvenIfNoBirthdayLabel": {
 		"message": "Mostrar popup quando a lista de aniversários está vazia"
-	},
-	"showPopupEvenIfNoBirthdayAccesskey": {
-		"message": "q"
 	},
 	"remindViaLightningGroupboxLabel": {
 		"message": "Lembrete via Thunderbird Lightning"
@@ -5039,9 +4904,6 @@
 	},
 	"syncWithLightningOnStartupLabel": {
 		"message": "Sincronizar com Lightning no arranque"
-	},
-	"syncWithLightningOnStartupAccesskey": {
-		"message": "S"
 	},
 	"calendarEntryTitleLabel": {
 		"message": "Titulo para evento do calendário:"
@@ -5061,9 +4923,6 @@
 	"calendarRepeatingEventLabel": {
 		"message": "Evento recorrente"
 	},
-	"calendarRepeatingEventAccesskey": {
-		"message": "E"
-	},
 	"calendarEntryTimeLabel": {
 		"message": "Hora do evento de calendário (hh:mm):"
 	},
@@ -5072,9 +4931,6 @@
 	},
 	"calendarEntryWholeDayLabel": {
 		"message": "Evento de calendário para o dia todo"
-	},
-	"calendarEntryWholeDayAccesskey": {
-		"message": "i"
 	},
 	"calendarEntryAlarmLabel": {
 		"message": "Alarme(s) de n horas para eventos do calendário (Exemplo: 4,+1):"
@@ -5835,9 +5691,6 @@
 	"viewResultEditionLabel": {
 		"message": "Ver resultado"
 	},
-	"viewResultEditionAccesskey": {
-		"message": "V"
-	},
 	"previousEditButton.tooltip": {
 		"message": "Anterior"
 	},
@@ -5883,20 +5736,11 @@
 	"moreEditionLabel": {
 		"message": "Mostrar mais"
 	},
-	"moreEditionAccesskey": {
-		"message": "a"
-	},
 	"lessEditionLabel": {
 		"message": "Mostrar menos"
 	},
-	"lessEditionAccesskey": {
-		"message": "e"
-	},
 	"mergeAllEditionLabel": {
 		"message": "Fundir Tudo"
-	},
-	"mergeAllEditionAccesskey": {
-		"message": "F"
 	},
 	"formatAllEditionLabel": {
 		"message": "Formatar todos"
@@ -5906,9 +5750,6 @@
 	},
 	"undoAllEditionLabel": {
 		"message": "Desfazer tudo"
-	},
-	"undoAllEditionAccesskey": {
-		"message": "D"
 	},
 	"formatEditionLabel": {
 		"message": "Formatar"
@@ -5951,9 +5792,6 @@
 	},
 	"convertVCardsTooltip": {
 		"message": "A versão do vCard de alguns contactos é diferente da versão do vCard do teu livro de endereços, este botão pode converter esses vCards."
-	},
-	"convertVCardsAccesskey": {
-		"message": "o"
 	},
 	"wdw_findDuplicatesTitle": {
 		"message": "Contactos Duplicados ($P1$)",
@@ -6016,26 +5854,14 @@
 	"refreshLogEditionLabel": {
 		"message": "Refrescar"
 	},
-	"refreshLogEditionAccesskey": {
-		"message": "R"
-	},
 	"flushLogEditionLabel": {
 		"message": "Limpar Lista"
-	},
-	"flushLogEditionAccesskey": {
-		"message": "L"
 	},
 	"clipboardLogEditionLabel": {
 		"message": "Copiar para Clipboard"
 	},
-	"clipboardLogEditionAccesskey": {
-		"message": "C"
-	},
 	"cancelLogEditionLabel": {
 		"message": "OK"
-	},
-	"cancelLogEditionAccesskey": {
-		"message": "O"
 	},
 	"wdw_mergeCardsTitle": {
 		"message": "Fundir Contactos"
@@ -6064,6 +5890,30 @@
 	"wdw_cardbookConfigurationEditFieldTitle": {
 		"message": "Escolhe uma função de conversão"
 	},
+	"ContainsOperator": {
+		"message": "contém"
+	},
+	"DoesntContainOperator": {
+		"message": "não contém"
+	},
+	"IsOperator": {
+		"message": "é"
+	},
+	"IsntOperator": {
+		"message": "não é"
+	},
+	"BeginsWithOperator": {
+		"message": "começa com"
+	},
+	"EndsWithOperator": {
+		"message": "termina com"
+	},
+	"IsEmptyOperator": {
+		"message": "é vazio"
+	},
+	"IsntEmptyOperator": {
+		"message": "não é vazio"
+	},
 	"uppercaseLabel": {
 		"message": "Maiúsculas"
 	},
@@ -6072,5 +5922,821 @@
 	},
 	"capitalizationLabel": {
 		"message": "Capitalização"
+	},
+	"region-name-ad": {
+		"message": "Andorra"
+	},
+	"region-name-ae": {
+		"message": "Emirados Árabes Unidos"
+	},
+	"region-name-af": {
+		"message": "Afeganistão"
+	},
+	"region-name-ai": {
+		"message": "Anguila"
+	},
+	"region-name-al": {
+		"message": "Albânia"
+	},
+	"region-name-ag": {
+		"message": "Antígua e Barbados"
+	},
+	"region-name-am": {
+		"message": "Arménia"
+	},
+	"region-name-ar": {
+		"message": "Argentina"
+	},
+	"region-name-aq": {
+		"message": "Antártida"
+	},
+	"region-name-ao": {
+		"message": "Angola"
+	},
+	"region-name-at": {
+		"message": "Áustria"
+	},
+	"region-name-az": {
+		"message": "Azerbeijão"
+	},
+	"region-name-ba": {
+		"message": "Bósnia-Herzegovina"
+	},
+	"region-name-bb": {
+		"message": "Barbados"
+	},
+	"region-name-as": {
+		"message": "Samoa Americana"
+	},
+	"region-name-au": {
+		"message": "Austrália"
+	},
+	"region-name-bd": {
+		"message": "Bangladesh"
+	},
+	"region-name-be": {
+		"message": "Bélgica"
+	},
+	"region-name-aw": {
+		"message": "Aruba"
+	},
+	"region-name-bf": {
+		"message": "Burkina Faso"
+	},
+	"region-name-bm": {
+		"message": "Bermuda"
+	},
+	"region-name-bj": {
+		"message": "Benin"
+	},
+	"region-name-bg": {
+		"message": "Bulgária"
+	},
+	"region-name-bi": {
+		"message": "Burundi"
+	},
+	"region-name-bh": {
+		"message": "Bahrein"
+	},
+	"region-name-bl": {
+		"message": "Saint Barthelemy"
+	},
+	"region-name-bn": {
+		"message": "Brunei"
+	},
+	"region-name-bo": {
+		"message": "Bolívia"
+	},
+	"region-name-br": {
+		"message": "Brasil"
+	},
+	"region-name-bq": {
+		"message": "Bonaire, Sint Eustatius e Saba"
+	},
+	"region-name-bt": {
+		"message": "Butão"
+	},
+	"region-name-bs": {
+		"message": "Bahamas"
+	},
+	"region-name-bz": {
+		"message": "Belize"
+	},
+	"region-name-ca": {
+		"message": "Canadá"
+	},
+	"region-name-cc": {
+		"message": "Ilhas Cocos (Keeling)"
+	},
+	"region-name-by": {
+		"message": "Bielorússia"
+	},
+	"region-name-cd": {
+		"message": "Congo (Kinshasa)"
+	},
+	"region-name-cf": {
+		"message": "República Centro-Africana"
+	},
+	"region-name-bv": {
+		"message": "Ilha Bouvet"
+	},
+	"region-name-bw": {
+		"message": "Botswana"
+	},
+	"region-name-cl": {
+		"message": "Chile"
+	},
+	"region-name-ci": {
+		"message": "Costa do Marfim"
+	},
+	"region-name-ch": {
+		"message": "Suiça"
+	},
+	"region-name-cm": {
+		"message": "Camarões"
+	},
+	"region-name-ck": {
+		"message": "Ilhas Cook"
+	},
+	"region-name-cg": {
+		"message": "Congo (Brazzaville)"
+	},
+	"region-name-cn": {
+		"message": "China"
+	},
+	"region-name-cp": {
+		"message": "Ilha Clipperton"
+	},
+	"region-name-co": {
+		"message": "Colômbia"
+	},
+	"region-name-cr": {
+		"message": "Costa Rica"
+	},
+	"region-name-cz": {
+		"message": "República Checa"
+	},
+	"region-name-cy": {
+		"message": "Chipre"
+	},
+	"region-name-cx": {
+		"message": "Ilha do Natal"
+	},
+	"region-name-cv": {
+		"message": "Cabo Verde"
+	},
+	"region-name-cu": {
+		"message": "Cuba"
+	},
+	"region-name-cw": {
+		"message": "Coração"
+	},
+	"region-name-de": {
+		"message": "Alemanha"
+	},
+	"region-name-dg": {
+		"message": "Diego Garcia"
+	},
+	"region-name-dk": {
+		"message": "Dinamarca"
+	},
+	"region-name-dj": {
+		"message": "Jibouti"
+	},
+	"region-name-dm": {
+		"message": "Dominica"
+	},
+	"region-name-ec": {
+		"message": "Equador"
+	},
+	"region-name-dz": {
+		"message": "Argélia"
+	},
+	"region-name-do": {
+		"message": "República Dominicana"
+	},
+	"region-name-ee": {
+		"message": "Estónia"
+	},
+	"region-name-eg": {
+		"message": "Egipto"
+	},
+	"region-name-eh": {
+		"message": "Saara Ocidental"
+	},
+	"region-name-et": {
+		"message": "Etiópia"
+	},
+	"region-name-er": {
+		"message": "Eritreia"
+	},
+	"region-name-es": {
+		"message": "Espanha"
+	},
+	"region-name-fi": {
+		"message": "Finlândia"
+	},
+	"region-name-fj": {
+		"message": "Ilhas Fiji"
+	},
+	"region-name-fm": {
+		"message": "Estados Federados da Micronésia"
+	},
+	"region-name-fk": {
+		"message": "Ilhas Falkland (Ilhas Malvinas)"
+	},
+	"region-name-fo": {
+		"message": "Ilhas Faroé"
+	},
+	"region-name-ge": {
+		"message": "Geérgia"
+	},
+	"region-name-gb": {
+		"message": "Reino Unido"
+	},
+	"region-name-gd": {
+		"message": "Granada"
+	},
+	"region-name-fr": {
+		"message": "França"
+	},
+	"region-name-ga": {
+		"message": "Gabão"
+	},
+	"region-name-gf": {
+		"message": "Guiana Francesa"
+	},
+	"region-name-gl": {
+		"message": "Gronelândia"
+	},
+	"region-name-gm": {
+		"message": "Gâmbia"
+	},
+	"region-name-gi": {
+		"message": "Gibraltar"
+	},
+	"region-name-gg": {
+		"message": "Guernsey"
+	},
+	"region-name-gh": {
+		"message": "Gana"
+	},
+	"region-name-gn": {
+		"message": "Guiné"
+	},
+	"region-name-gp": {
+		"message": "Guadalupe"
+	},
+	"region-name-gr": {
+		"message": "Grécia"
+	},
+	"region-name-gq": {
+		"message": "Guiné Equatorial"
+	},
+	"region-name-gt": {
+		"message": "Guatemala"
+	},
+	"region-name-gw": {
+		"message": "Guiné-Bissau"
+	},
+	"region-name-hk": {
+		"message": "Hong Kong"
+	},
+	"region-name-gu": {
+		"message": "Guão"
+	},
+	"region-name-gs": {
+		"message": "Ilhas South Georgia e South Sandwich"
+	},
+	"region-name-gy": {
+		"message": "Guiana"
+	},
+	"region-name-hm": {
+		"message": "Ilhas Heard e McDonald"
+	},
+	"region-name-ht": {
+		"message": "Haiti"
+	},
+	"region-name-hr": {
+		"message": "Croácia"
+	},
+	"region-name-hn": {
+		"message": "Honduras"
+	},
+	"region-name-in": {
+		"message": "Índia"
+	},
+	"region-name-il": {
+		"message": "Israel"
+	},
+	"region-name-im": {
+		"message": "Ilha de Man"
+	},
+	"region-name-ie": {
+		"message": "Irlanda"
+	},
+	"region-name-hu": {
+		"message": "Hungria"
+	},
+	"region-name-id": {
+		"message": "Indonésia"
+	},
+	"region-name-io": {
+		"message": "Território Britânico Oceânico da Índia"
+	},
+	"region-name-ir": {
+		"message": "Irão"
+	},
+	"region-name-is": {
+		"message": "Islândia"
+	},
+	"region-name-iq": {
+		"message": "Iraque"
+	},
+	"region-name-je": {
+		"message": "Jérsia"
+	},
+	"region-name-jp": {
+		"message": "Japão"
+	},
+	"region-name-it": {
+		"message": "Itália"
+	},
+	"region-name-ke": {
+		"message": "Quénia"
+	},
+	"region-name-jo": {
+		"message": "Jordânia"
+	},
+	"region-name-jm": {
+		"message": "Jamaica"
+	},
+	"region-name-kg": {
+		"message": "Kirziquistão"
+	},
+	"region-name-ki": {
+		"message": "Kiribati"
+	},
+	"region-name-kh": {
+		"message": "Cambodja"
+	},
+	"region-name-km": {
+		"message": "Comores"
+	},
+	"region-name-kn": {
+		"message": "Saint Kitts e Nevis"
+	},
+	"region-name-ky": {
+		"message": "Ilhas Caimão"
+	},
+	"region-name-kp": {
+		"message": "Coreia do Norte"
+	},
+	"region-name-kr": {
+		"message": "Coreia do Sul"
+	},
+	"region-name-kw": {
+		"message": "Kuwait"
+	},
+	"region-name-kz": {
+		"message": "Kazaquistão"
+	},
+	"region-name-la": {
+		"message": "Laos"
+	},
+	"region-name-lb": {
+		"message": "Líbano"
+	},
+	"region-name-lc": {
+		"message": "Santa Luzia"
+	},
+	"region-name-li": {
+		"message": "Liechtenstein"
+	},
+	"region-name-lk": {
+		"message": "Sri Lanka"
+	},
+	"region-name-lr": {
+		"message": "Libéria"
+	},
+	"region-name-lu": {
+		"message": "Luxemburgo"
+	},
+	"region-name-lv": {
+		"message": "Letónia"
+	},
+	"region-name-ls": {
+		"message": "Lesoto"
+	},
+	"region-name-ly": {
+		"message": "Líbia"
+	},
+	"region-name-lt": {
+		"message": "Lituânia"
+	},
+	"region-name-mc": {
+		"message": "Mónaco"
+	},
+	"region-name-md": {
+		"message": "Moldávia"
+	},
+	"region-name-ma": {
+		"message": "Marrocos"
+	},
+	"region-name-me": {
+		"message": "Montenegro"
+	},
+	"region-name-mf": {
+		"message": "Saint Martin"
+	},
+	"region-name-mg": {
+		"message": "Madagáscar"
+	},
+	"region-name-mh": {
+		"message": "Ilhas Marshall"
+	},
+	"region-name-mk": {
+		"message": "Macedónia"
+	},
+	"region-name-ml": {
+		"message": "Mali"
+	},
+	"region-name-mm": {
+		"message": "Burma"
+	},
+	"region-name-mn": {
+		"message": "Mongólia"
+	},
+	"region-name-mo": {
+		"message": "Macau"
+	},
+	"region-name-mp": {
+		"message": "Ilhas Marianas do Norte"
+	},
+	"region-name-mt": {
+		"message": "Malta"
+	},
+	"region-name-mu": {
+		"message": "Maurícias"
+	},
+	"region-name-mr": {
+		"message": "Mauritânia"
+	},
+	"region-name-ms": {
+		"message": "Montserrate"
+	},
+	"region-name-mq": {
+		"message": "Martinica"
+	},
+	"region-name-mv": {
+		"message": "Maldivas"
+	},
+	"region-name-mw": {
+		"message": "Malaui"
+	},
+	"region-name-my": {
+		"message": "Malásia"
+	},
+	"region-name-mx": {
+		"message": "México"
+	},
+	"region-name-mz": {
+		"message": "Moçambique"
+	},
+	"region-name-na": {
+		"message": "Namíbia"
+	},
+	"region-name-nc": {
+		"message": "Nova Caledónia"
+	},
+	"region-name-ne": {
+		"message": "Níger"
+	},
+	"region-name-nf": {
+		"message": "Ilha de Norfolk"
+	},
+	"region-name-ng": {
+		"message": "Nigéria"
+	},
+	"region-name-ni": {
+		"message": "Nicarágua"
+	},
+	"region-name-nl": {
+		"message": "Holanda"
+	},
+	"region-name-no": {
+		"message": "Noruega"
+	},
+	"region-name-np": {
+		"message": "Nepal"
+	},
+	"region-name-nr": {
+		"message": "Nauru"
+	},
+	"region-name-pk": {
+		"message": "Paquistão"
+	},
+	"region-name-pl": {
+		"message": "Polónia"
+	},
+	"region-name-nz": {
+		"message": "Nova Zelândia"
+	},
+	"region-name-ph": {
+		"message": "Filipinas"
+	},
+	"region-name-nu": {
+		"message": "Niue"
+	},
+	"region-name-om": {
+		"message": "Omão"
+	},
+	"region-name-pe": {
+		"message": "Peru"
+	},
+	"region-name-pa": {
+		"message": "Panamá"
+	},
+	"region-name-pf": {
+		"message": "Polinésia Francesa"
+	},
+	"region-name-pg": {
+		"message": "Papua Nova Guiné"
+	},
+	"region-name-pm": {
+		"message": "Saint Pierre e Miquelon"
+	},
+	"region-name-pn": {
+		"message": "Ilhas Pitcairn"
+	},
+	"region-name-pr": {
+		"message": "Porto Rico"
+	},
+	"region-name-pt": {
+		"message": "Portugal"
+	},
+	"region-name-pw": {
+		"message": "Palau"
+	},
+	"region-name-qm": {
+		"message": "Ilhas Midway"
+	},
+	"region-name-py": {
+		"message": "Paraguai"
+	},
+	"region-name-qa": {
+		"message": "Catar"
+	},
+	"region-name-qs": {
+		"message": "Bassas da Índia"
+	},
+	"region-name-qu": {
+		"message": "Ilha de Juan de Nova"
+	},
+	"region-name-qw": {
+		"message": "Ilha Wake"
+	},
+	"region-name-qx": {
+		"message": "Ilhas Glorioso"
+	},
+	"region-name-rs": {
+		"message": "Sérvia"
+	},
+	"region-name-ro": {
+		"message": "Roménia"
+	},
+	"region-name-qz": {
+		"message": "Akrotiri"
+	},
+	"region-name-re": {
+		"message": "Reunião"
+	},
+	"region-name-rw": {
+		"message": "Ruanda"
+	},
+	"region-name-ru": {
+		"message": "Rússia"
+	},
+	"region-name-sa": {
+		"message": "Arábia Saudita"
+	},
+	"region-name-sb": {
+		"message": "Ilhas Salomão"
+	},
+	"region-name-sc": {
+		"message": "Seicheles"
+	},
+	"region-name-sd": {
+		"message": "Sudão"
+	},
+	"region-name-se": {
+		"message": "Suécia"
+	},
+	"region-name-sg": {
+		"message": "Singapora"
+	},
+	"region-name-sh": {
+		"message": "Santa Helena, Ascensão e Tristão da Cunha"
+	},
+	"region-name-si": {
+		"message": "Eslovénia"
+	},
+	"region-name-sk": {
+		"message": "Eslováquia"
+	},
+	"region-name-sl": {
+		"message": "Serra Leoa"
+	},
+	"region-name-sn": {
+		"message": "Senegal"
+	},
+	"region-name-sm": {
+		"message": "São Marino"
+	},
+	"region-name-ss": {
+		"message": "Sudão do Sul"
+	},
+	"region-name-so": {
+		"message": "Somália"
+	},
+	"region-name-sr": {
+		"message": "Suriname"
+	},
+	"region-name-sx": {
+		"message": "São Martinho (Sint Maarten)"
+	},
+	"region-name-st": {
+		"message": "São Tomé e Príncipe"
+	},
+	"region-name-sv": {
+		"message": "El Salvador"
+	},
+	"region-name-sy": {
+		"message": "Síria"
+	},
+	"region-name-sz": {
+		"message": "Swazilândia"
+	},
+	"region-name-tc": {
+		"message": "Ilhas Turks e Caicos"
+	},
+	"region-name-td": {
+		"message": "Chad"
+	},
+	"region-name-tg": {
+		"message": "Togo"
+	},
+	"region-name-th": {
+		"message": "Tailândia"
+	},
+	"region-name-tf": {
+		"message": "Territórios Austrais e Antárticos Franceses"
+	},
+	"region-name-tj": {
+		"message": "Tadjiquistão"
+	},
+	"region-name-tk": {
+		"message": "Toquelau"
+	},
+	"region-name-tl": {
+		"message": "Timor Leste"
+	},
+	"region-name-tr": {
+		"message": "Turquia"
+	},
+	"region-name-tn": {
+		"message": "Tunísia"
+	},
+	"region-name-to": {
+		"message": "Tonga"
+	},
+	"region-name-tm": {
+		"message": "Turqueministão"
+	},
+	"region-name-tt": {
+		"message": "Trinidade e Tobago"
+	},
+	"region-name-tv": {
+		"message": "Tuvalu"
+	},
+	"region-name-tw": {
+		"message": "Formosa"
+	},
+	"region-name-tz": {
+		"message": "Tanzânia"
+	},
+	"region-name-ua": {
+		"message": "Ucrânia"
+	},
+	"region-name-ug": {
+		"message": "Uganda"
+	},
+	"region-name-us": {
+		"message": "Estados Unidos da América"
+	},
+	"region-name-uy": {
+		"message": "Uruguai"
+	},
+	"region-name-va": {
+		"message": "Cidade do Vaticano"
+	},
+	"region-name-uz": {
+		"message": "Usbequistão"
+	},
+	"region-name-vc": {
+		"message": "Saint Vincent e as Grenadines"
+	},
+	"region-name-vg": {
+		"message": "Ilhas Virgens Britânicas"
+	},
+	"region-name-vi": {
+		"message": "Ilhas Virgens, E.U.A."
+	},
+	"region-name-vu": {
+		"message": "Vanuatu"
+	},
+	"region-name-ve": {
+		"message": "Venezuela"
+	},
+	"region-name-vn": {
+		"message": "Vietname"
+	},
+	"region-name-wf": {
+		"message": "Wallis e Futuna"
+	},
+	"region-name-ws": {
+		"message": "Samoa"
+	},
+	"region-name-xa": {
+		"message": "Ilhas Ashmore e Cartier"
+	},
+	"region-name-xb": {
+		"message": "Ilha Baker"
+	},
+	"region-name-xc": {
+		"message": "Ilhas do Mar de Coral"
+	},
+	"region-name-xd": {
+		"message": "Dhekelia"
+	},
+	"region-name-xe": {
+		"message": "Ilha Europa"
+	},
+	"region-name-xh": {
+		"message": "Ilha Howland"
+	},
+	"region-name-xg": {
+		"message": "Faixa de Gaza"
+	},
+	"region-name-xj": {
+		"message": "Jan Mayen"
+	},
+	"region-name-xk": {
+		"message": "Kosovo"
+	},
+	"region-name-xl": {
+		"message": "Atol Palmira"
+	},
+	"region-name-xp": {
+		"message": "Ilhas Paracel"
+	},
+	"region-name-xm": {
+		"message": "Recife Kingman"
+	},
+	"region-name-xq": {
+		"message": "Ilha Jarvis"
+	},
+	"region-name-xr": {
+		"message": "Svalbard"
+	},
+	"region-name-xs": {
+		"message": "Ilhas Spratly"
+	},
+	"region-name-xt": {
+		"message": "Ilha Tromelin"
+	},
+	"region-name-xv": {
+		"message": "Ilha Navassa"
+	},
+	"region-name-yt": {
+		"message": "Mayotte"
+	},
+	"region-name-ye": {
+		"message": "Iémen"
+	},
+	"region-name-xw": {
+		"message": "Banco Ocidental"
+	},
+	"region-name-za": {
+		"message": "África do Sul"
+	},
+	"region-name-xu": {
+		"message": "Atol de Johnston"
+	},
+	"region-name-zw": {
+		"message": "Zimbabué"
+	},
+	"region-name-zm": {
+		"message": "Zâmbia"
 	}
 }

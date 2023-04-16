@@ -237,22 +237,12 @@ if ("undefined" == typeof(cardbookWindowUtils)) {
 			}
 		},
 
-		openConfigurationWindow: function() {
+		openConfigurationWindow: async function() {
 			try {
-				var tabmail = document.getElementById("tabmail");
-				if (!tabmail) {
-					// Try opening new tabs in an existing 3pane window
-					let mail3PaneWindow = Services.wm.getMostRecentWindow("mail:3pane");
-					if (mail3PaneWindow) {
-						tabmail = mail3PaneWindow.document.getElementById("tabmail");
-						mail3PaneWindow.focus();
-					}
-				}
-				tabmail.openTab("contentTab", {url: "chrome://cardbook/content/configuration/wdw_cardbookConfiguration.xhtml",
-										onLoad(aEvent, aBrowser) {
-											document.getElementById('contentTabToolbox' + aBrowser.id.replace('contentTabBrowser','')).hidden = true;
-										}
-										}, "tab");
+				let url = "chrome/content/configuration/wdw_cardbookConfiguration.html";
+				await notifyTools.notifyBackground({query: "cardbook.openWindow",
+									url: url,
+									type: "popup"});
 			}
 			catch (e) {
 				cardbookRepository.cardbookLog.updateStatusProgressInformation("cardbookWindowUtils.openConfigurationWindow error : " + e, "Error");
@@ -320,7 +310,7 @@ if ("undefined" == typeof(cardbookWindowUtils)) {
 				cardbookRepository.cardbookUtils.formatStringForOutput("invalidURL", [aUrl], "Error");
 				return;
 			}
-			var localizeTarget = cardbookRepository.cardbookPreferences.getStringPref("extensions.cardbook.localizeTarget");
+			var localizeTarget = cardbookRepository.cardbookPrefs["localizeTarget"];
 			if (localizeTarget === "in") {
 				let tabmail = document.getElementById("tabmail");
 				if (!tabmail) {
@@ -366,22 +356,23 @@ if ("undefined" == typeof(cardbookWindowUtils)) {
 		},
 
 		openTel: function (aValue) {
-			var telProtocolLine = cardbookRepository.cardbookPreferences.getStringPref("extensions.cardbook.tels.0");
-			var telProtocolLineArray = telProtocolLine.split(':');
-			if (telProtocolLineArray[2]) {
-				var telProtocol = telProtocolLineArray[2];
-			} else {
-				var telProtocol = "callto";
+			var telProtocol = "callto";
+			var telProtocolLine = cardbookRepository.cardbookPrefs["tels.0"];
+			if (telProtocolLine) {
+				var telProtocolLineArray = telProtocolLine.split(':');
+				if (telProtocolLineArray[2]) {
+					telProtocol = telProtocolLineArray[2];
+				}
 			}
 			var myValue = cardbookRepository.cardbookUtils.formatTelForOpenning(aValue);
 			if (telProtocol != "url") {
 				var myResult = telProtocol + ":" + myValue;
 				cardbookRepository.cardbookUtils.openExternalURL(myResult);
 			} else {
-				var myUrl = cardbookRepository.cardbookPreferences.getStringPref("extensions.cardbook.URLPhoneURL").replace("{{1}}", myValue).replace("$1", myValue);
-				var myBackground = cardbookRepository.cardbookPreferences.getBoolPref("extensions.cardbook.URLPhoneBackground");
+				var myUrl = cardbookRepository.cardbookPrefs["URLPhoneURL"].replace("{{1}}", myValue).replace("$1", myValue);
+				var myBackground = cardbookRepository.cardbookPrefs["URLPhoneBackground"];
 				if (myBackground) {
-					var myUser = cardbookRepository.cardbookPreferences.getStringPref("extensions.cardbook.URLPhoneUser");
+					var myUser = cardbookRepository.cardbookPrefs["URLPhoneUser"];
 					var myPassword = cardbookRepository.cardbookPasswordManager.getPassword(myUser, myUrl);
 					var req = CardbookHttpRequest(myUrl, myUser);
 					req.withCredentials = true;					
@@ -579,9 +570,15 @@ if ("undefined" == typeof(cardbookWindowUtils)) {
 							menuItem.setAttribute("id", account[4]);
 							menuItem.addEventListener("command", function(aEvent) {
 									// run from email header nodes or from context menu
+									// first case add an email from email body
 									if (gContextMenu && gContextMenu.linkURL) {
 										// 7 for mailto:
 										aCallback(this.id, gContextMenu.linkURL.substr(7));
+									// second case add an attachment
+									} else if (aEvent.target.parentNode.parentNode.parentNode.attachments) {
+										for (let attachment of aEvent.target.parentNode.parentNode.parentNode.attachments) {
+											aCallback(this.id, attachment.url);
+										}
 									} else {
 										let headerField = aEvent.currentTarget.parentNode.parentNode.parentNode.headerField;
 										aCallback(this.id, headerField.emailAddress, headerField.displayName);
@@ -786,7 +783,7 @@ if ("undefined" == typeof(cardbookWindowUtils)) {
 			}
 		},
 
-		displayCard: async function (aCard, aReadOnly) {
+		displayCard: function (aCard, aReadOnly) {
 			var fieldArray = [ "fn", "lastname", "firstname", "othername", "prefixname", "suffixname", "nickname",
 								"birthplace", "deathplace", "mailer", "sortstring",
 								"class1", "agent", "prodid", "uid", "version", "dirPrefId", "cardurl", "etag" ];
@@ -883,7 +880,7 @@ if ("undefined" == typeof(cardbookWindowUtils)) {
 				for (let field of cardbookRepository.multilineFields) {
 					if (aReadOnly) {
 						if (aCard[field].length > 0) {
-							await cardbookWindowUtils.constructStaticRows(aCard.dirPrefId, field, aCard[field], aCard.version);
+							cardbookWindowUtils.constructStaticRows(aCard.dirPrefId, field, aCard[field], aCard.version);
 						}
 					} else {
 						if (field == "impp") {
@@ -918,7 +915,7 @@ if ("undefined" == typeof(cardbookWindowUtils)) {
 					document.getElementById('othersTextBox').removeAttribute('readonly');
 				}
 			}
-			var panesView = cardbookRepository.cardbookPreferences.getStringPref("extensions.cardbook.panesView");
+			var panesView = cardbookRepository.cardbookPrefs["panesView"];
 			if (document.getElementById('note' + panesView + 'TextBox')) {
 				var myNoteBox = document.getElementById('note' + panesView + 'TextBox');
 			} else if (document.getElementById('noteTextBox')) {
@@ -992,10 +989,12 @@ if ("undefined" == typeof(cardbookWindowUtils)) {
 				let myValue = '';
 				let j;
 				for (j = 0; j < othersTemp.length; j++) {
-					let localDelim1 = othersTemp[j].indexOf(":",0);
-					let myTestCode = othersTemp[j].substr(0,localDelim1);
-					if (myCode == myTestCode) {
-						myValue = othersTemp[j].substr(localDelim1+1,othersTemp[j].length);
+					let delim = othersTemp[j].indexOf(":", 0);
+					let header = othersTemp[j].substr(0, delim);
+					let value = othersTemp[j].substr(delim+1, othersTemp[j].length);
+					let headerTmp = header.split(";");
+					if (myCode == headerTmp[0]) {
+						myValue = value;
 						break;
 					}
 				}
@@ -1026,7 +1025,7 @@ if ("undefined" == typeof(cardbookWindowUtils)) {
 
 		constructOrg: function (aReadOnly, aOrgValue, aTitleValue, aRoleValue) {
 			let aOrigBox = document.getElementById('orgTable');
-			let orgStructure = cardbookRepository.cardbookPreferences.getStringPref("extensions.cardbook.orgStructure");
+			let orgStructure = cardbookRepository.cardbookPrefs["orgStructure"];
 			let currentRow;
 			if (orgStructure != "") {
 				let myOrgStructure = cardbookRepository.cardbookUtils.unescapeArray(cardbookRepository.cardbookUtils.escapeString(orgStructure).split(";"));
@@ -1303,8 +1302,8 @@ if ("undefined" == typeof(cardbookWindowUtils)) {
 			return result;
 		},
 
-		openAdrPanel: async function (aAdrLine, aIdArray) {
-			await wdw_cardEdition.loadCountries();
+		openAdrPanel: function (aAdrLine, aIdArray) {
+			wdw_cardEdition.loadCountries();
 			wdw_cardEdition.currentAdrId = JSON.parse(JSON.stringify(aIdArray));
 			document.getElementById('postOfficeTextBox').value = cardbookRepository.cardbookUtils.undefinedToBlank(aAdrLine[0][0]);
 			document.getElementById('extendedAddrTextBox').value = cardbookRepository.cardbookUtils.undefinedToBlank(aAdrLine[0][1]);
@@ -1314,14 +1313,12 @@ if ("undefined" == typeof(cardbookWindowUtils)) {
 			document.getElementById('postalCodeTextBox').value = cardbookRepository.cardbookUtils.undefinedToBlank(aAdrLine[0][5]);
 			let country = cardbookRepository.cardbookUtils.undefinedToBlank(aAdrLine[0][6]);
 			if (cardbookRepository.countriesList.includes(country.toLowerCase())) {
-				const loc = new Localization(["toolkit/intl/regionNames.ftl"]);
-				document.getElementById('countryMenulist').value = await loc.formatValue("region-name-" + country.toLowerCase());
+				document.getElementById('countryMenulist').value = cardbookRepository.extension.localeData.localizeMessage("region-name-" + country.toLowerCase());
 			} else if (country == "") {
-				let cardRegion = await cardbookRepository.cardbookUtils.getCardRegion(wdw_cardEdition.workingCard);
+				let cardRegion = cardbookRepository.cardbookUtils.getCardRegion(wdw_cardEdition.workingCard);
 				document.getElementById('countryMenulist').value = "";
 				if (cardRegion != "") {
-					const loc = new Localization(["toolkit/intl/regionNames.ftl"]);
-					document.getElementById('countryMenulist').value = await loc.formatValue("region-name-" + cardRegion.toLowerCase());
+					document.getElementById('countryMenulist').value = cardbookRepository.extension.localeData.localizeMessage("region-name-" + cardRegion.toLowerCase());
 				}
 			} else {
 				document.getElementById('countryMenulist').value = country;
@@ -1329,9 +1326,9 @@ if ("undefined" == typeof(cardbookWindowUtils)) {
 			document.getElementById('adrPanel').openPopup(document.getElementById(wdw_cardEdition.currentAdrId.join("_")), 'after_start', 0, 0, true);
 		},
 
-		closeAdrPanel: async function () {
+		closeAdrPanel: function () {
 			document.getElementById('adrPanel').hidePopup();
-			wdw_cardEdition.cardRegion = await cardbookRepository.cardbookUtils.getCardRegion(wdw_cardEdition.workingCard);
+			wdw_cardEdition.cardRegion = cardbookRepository.cardbookUtils.getCardRegion(wdw_cardEdition.workingCard);
 		},
 
 		validateAdrPanel: function () {
@@ -1409,9 +1406,9 @@ if ("undefined" == typeof(cardbookWindowUtils)) {
 			}
 		},
 
-		constructStaticRows: async function (aDirPrefId, aType, aArray, aVersion) {
+		constructStaticRows: function (aDirPrefId, aType, aArray, aVersion) {
 			for (let i = 0; i < aArray.length; i++) {
-				await cardbookWindowUtils.loadStaticTypes(aDirPrefId, aType, i, aArray[i][1], aArray[i][2], aArray[i][3], aArray[i][0], aVersion);
+				cardbookWindowUtils.loadStaticTypes(aDirPrefId, aType, i, aArray[i][1], aArray[i][2], aArray[i][3], aArray[i][0], aVersion);
 			}
 		},
 
@@ -1571,7 +1568,7 @@ if ("undefined" == typeof(cardbookWindowUtils)) {
 		},
 
 		displayPref: function (aVersion) {
-			var usePreferenceValue = cardbookRepository.cardbookPreferences.getBoolPref("extensions.cardbook.usePreferenceValue");
+			var usePreferenceValue = cardbookRepository.cardbookPrefs["usePreferenceValue"];
 			for (let field of cardbookRepository.multilineFields) {
 				if (document.getElementById(field + 'Groupbox')) {
 					var j = 0;
@@ -1625,7 +1622,7 @@ if ("undefined" == typeof(cardbookWindowUtils)) {
 				document.getElementById(aType + '_' + aIndex + '_prefWeightBox').disabled = true;
 			}
 
-			var usePreferenceValue = cardbookRepository.cardbookPreferences.getBoolPref("extensions.cardbook.usePreferenceValue");
+			var usePreferenceValue = cardbookRepository.cardbookPrefs["usePreferenceValue"];
 			if (document.getElementById('versionTextBox').value === "4.0" && usePreferenceValue) {
 				document.getElementById(aType + '_' + aIndex + '_prefWeightBoxLabel').removeAttribute('hidden');
 				document.getElementById(aType + '_' + aIndex + '_prefWeightBox').removeAttribute('hidden');
@@ -1793,9 +1790,10 @@ if ("undefined" == typeof(cardbookWindowUtils)) {
 					if (document.getElementById(this.id).disabled) {
 						return;
 					}
-					var myEmailTextBox = document.getElementById(aType + '_' + aIndex + '_valueBox');
-					var emailLower = myEmailTextBox.value.toLowerCase();
-					var atPos = myEmailTextBox.value.lastIndexOf("@");
+					let myEmailTextBox = document.getElementById(aType + '_' + aIndex + '_valueBox');
+					let emailLower = myEmailTextBox.value.toLowerCase();
+					emailLower = emailLower.replace("'", "").replace('"', "");
+					let atPos = myEmailTextBox.value.lastIndexOf("@");
 					if (atPos > 0 && atPos + 1 < myEmailTextBox.value.length) {
 						myEmailTextBox.value = emailLower;
 						this.setAttribute('label', '✔');
@@ -2149,13 +2147,13 @@ if ("undefined" == typeof(cardbookWindowUtils)) {
 			keyTextbox.dispatchEvent(new Event('input'));
 		},
 
-		loadStaticTypes: async function (aDirPrefId, aType, aIndex, aInputTypes, aPgName, aPgType, aCardValue, aVersion) {
+		loadStaticTypes: function (aDirPrefId, aType, aIndex, aInputTypes, aPgName, aPgType, aCardValue, aVersion) {
 			if (aCardValue.join(" ") == "") {
 				return;
 			}
 
 			let aOrigBox;
-			let panesView = cardbookRepository.cardbookPreferences.getStringPref("extensions.cardbook.panesView");
+			let panesView = cardbookRepository.cardbookPrefs["panesView"];
 			if (aIndex == 0) {
 				let parent = document.getElementById(panesView + 'Rows');
 				aOrigBox = cardbookElementTools.addVBox(parent, aType + panesView + 'Groupbox', {flex: '1'});
@@ -2258,7 +2256,7 @@ if ("undefined" == typeof(cardbookWindowUtils)) {
 	
 				if (aType == "adr") {
 					let re = /[\n\u0085\u2028\u2029]|\r\n?/;
-					let myAdrResult = await cardbookRepository.cardbookUtils.formatAddress(aCardValue);
+					let myAdrResult = cardbookRepository.cardbookUtils.formatAddress(aCardValue);
 					let myAdrResultArray = myAdrResult.split(re);
 					myValueTextbox = cardbookElementTools.addHTMLTEXTAREA(valueData, aType + '_' + aIndex + '_valueBox', myAdrResult, {rows: myAdrResultArray.length});
 				} else {
@@ -2271,7 +2269,6 @@ if ("undefined" == typeof(cardbookWindowUtils)) {
 					myValueTextbox.setAttribute('class', 'text-link');
 				} else if (aType == "tel") {
 					try {
-						let telProtocol = cardbookRepository.cardbookPreferences.getStringPref("extensions.cardbook.tels.0");
 						myValueTextbox.setAttribute('link', 'true');
 					}
 					catch(e) {
@@ -2292,7 +2289,7 @@ if ("undefined" == typeof(cardbookWindowUtils)) {
 
 		loadStaticEventsTypes: function (aDirPrefId, aType, aIndex, aEventType, aVersion) {
 			let aOrigBox;
-			let panesView = cardbookRepository.cardbookPreferences.getStringPref("extensions.cardbook.panesView");
+			let panesView = cardbookRepository.cardbookPrefs["panesView"];
 			if (aIndex == 0) {
 				let parent = document.getElementById(panesView + 'Rows');
 				aOrigBox = cardbookElementTools.addVBox(parent, aType + panesView + 'Groupbox', {flex: '1'});
@@ -2325,7 +2322,7 @@ if ("undefined" == typeof(cardbookWindowUtils)) {
 			}
 			
 			let dateFormat = cardbookRepository.getDateFormat(aDirPrefId, aVersion);
-			let myFormattedDate = cardbookRepository.cardbookDates.getFormattedDateForDateString(aEventType[0], dateFormat, cardbookRepository.dateDisplayedFormat);
+			let myFormattedDate = cardbookRepository.cardbookDates.getFormattedDateForDateString(aEventType[0], dateFormat, cardbookRepository.cardbookPrefs["dateDisplayedFormat"]);
 			let myDate = cardbookRepository.cardbookDates.convertDateStringToDateUTC(aEventType[0], dateFormat);
 			let myDateString = cardbookRepository.cardbookDates.convertUTCDateToDateString(myDate, "4.0");
 			let typeData = cardbookElementTools.addHTMLTD(row, aType + '_' + aIndex + '_typeBox' + '.1');
@@ -2352,7 +2349,7 @@ if ("undefined" == typeof(cardbookWindowUtils)) {
 			}
 
 			let aOrigBox;
-			let panesView = cardbookRepository.cardbookPreferences.getStringPref("extensions.cardbook.panesView");
+			let panesView = cardbookRepository.cardbookPrefs["panesView"];
 			if (aIndex == 0) {
 				let parent = document.getElementById(panesView + 'Rows');
 				aOrigBox = cardbookElementTools.addVBox(parent, aType + panesView + 'Groupbox', {flex: '1'});
@@ -2529,18 +2526,13 @@ if ("undefined" == typeof(cardbookWindowUtils)) {
 				
 				myMenu.disabled = true;
 				if (aCard) {
-					var telProtocolLine = "";
-					try {
-						var telProtocolLine = cardbookRepository.cardbookPreferences.getStringPref("extensions.cardbook.tels.0");
-					}
-					catch(e) {
-					}
+					var telProtocolLine = cardbookRepository.cardbookPrefs["tels.0"];
 					var rowNumber = 0;
-					if (telProtocolLine != "") {
+					if (telProtocolLine) {
 						var telProtocolLineArray = telProtocolLine.split(':');
 						var telLabel = telProtocolLineArray[1];
 						var telProtocol = telProtocolLineArray[2];
-						var myTels = cardbookRepository.cardbookUtils.getPrefAddressFromCard(aCard, "tel", cardbookRepository.preferIMPPPref);
+						var myTels = cardbookRepository.cardbookUtils.getPrefAddressFromCard(aCard, "tel", cardbookRepository.cardbookPrefs["preferIMPPPref"]);
 						for (var i = 0; i < myTels.length; i++) {
 							var menuItem = document.createXULElement("menuitem");
 							var myRegexp = new RegExp("^" + telProtocol + ":");
@@ -2557,7 +2549,7 @@ if ("undefined" == typeof(cardbookWindowUtils)) {
 							myMenu.disabled = false;
 						}
 					}
-					var myIMPPs = cardbookRepository.cardbookUtils.getPrefAddressFromCard(aCard, "impp", cardbookRepository.preferIMPPPref);
+					var myIMPPs = cardbookRepository.cardbookUtils.getPrefAddressFromCard(aCard, "impp", cardbookRepository.cardbookPrefs["preferIMPPPref"]);
 					for (var i = 0; i < myIMPPs.length; i++) {
 						var serviceProtocol = cardbookRepository.cardbookTypes.getIMPPProtocol([myIMPPs[i]]);
 						var serviceLine = [];

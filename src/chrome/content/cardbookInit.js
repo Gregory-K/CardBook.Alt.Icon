@@ -1,152 +1,119 @@
 var { Services } = ChromeUtils.import("resource://gre/modules/Services.jsm");
 var { cardbookRepository } = ChromeUtils.import("chrome://cardbook/content/cardbookRepository.js");
 
+var loader = Services.scriptloader;
+loader.loadSubScript("chrome://cardbook/content/scripts/notifyTools.js", this);
+
 var cardbookInit = {
 
-	initPrefs: function () {
+	setPrefsInMemory: async function () {
+		cardbookRepository.cardbookPrefs = {};
+		let allPrefs = await notifyTools.notifyBackground({query: "cardbook.pref.getAllPrefs"});
+		for (const [key, value] of Object.entries(allPrefs)) {
+			cardbookRepository.cardbookPrefs[key] = value;
+		}
+		if (!Services.prefs.getBoolPref("extensions.cardbook.optionsMigrated", false)) {
+			let oldPrefix = "extensions.cardbook."
+			let allPrefs = Services.prefs.getChildList(oldPrefix);
+			  for (let pref of allPrefs) {
+				let startReg = new RegExp("^" + oldPrefix);
+				let newPref = pref.replace(startReg, "");
+				let type = Services.prefs.getPrefType(pref);
+				let value = "";
+				switch (type) {
+					case Services.prefs.PREF_STRING:
+						value = Services.prefs.getStringPref(pref);
+						break;
+					case Services.prefs.PREF_INT:
+						value = Services.prefs.getIntPref(pref);
+						break;
+					case Services.prefs.PREF_BOOL:
+						value = Services.prefs.getBoolPref(pref);
+						break;
+					}
+				cardbookRepository.cardbookPrefs[newPref] = value;
+			}
+		}
+	},
+
+	keepMigrationLog: async function (aArray) {
+		var cacheDir = cardbookRepository.getLocalDirectory();
+		cacheDir.append("cardBookPrefMigration.log");
+		
+		if (!cacheDir.exists()) {
+			// read and write permissions to owner and group, read-only for others.
+			cacheDir.create(Components.interfaces.nsIFile.NORMAL_FILE_TYPE, 420);
+		}
+		if (cacheDir.exists()) {
+			await cardbookRepository.cardbookUtils.writeContentToFile(cacheDir.path, aArray.join("\r\n"), "UTF8");
+		}
+		console.log(`Migration log : ${cacheDir.path}`)
+	},
+
+	addToLog: function (aArray, aMessage) {
+		console.log(aMessage);
+		aArray.push(aMessage);
+	},
+
+	migratePrefs: async function () {
+		if (!Services.prefs.getBoolPref("extensions.cardbook.optionsMigrated", false)) {
+			let log = [];
+			cardbookInit.addToLog(log, "Starting migration");
+			let result = await notifyTools.notifyBackground({query: "cardbook.pref.migrateClear"});
+			if (result == "KO") {
+				return
+			}
+			let oldPrefix = "extensions.cardbook."
+			let allPrefs = Services.prefs.getChildList(oldPrefix);
+			for (let pref of allPrefs) {
+				let startReg = new RegExp("^" + oldPrefix);
+				let newPref = pref.replace(startReg, "");
+				let type = Services.prefs.getPrefType(pref);
+				let value = "";
+				let result = "KO";
+				switch (type) {
+					case Services.prefs.PREF_STRING:
+						value = Services.prefs.getStringPref(pref);
+						result = await notifyTools.notifyBackground({query: "cardbook.pref.migrateString", key: newPref, value: value})
+						break;
+					case Services.prefs.PREF_INT:
+						value = Services.prefs.getIntPref(pref);
+						result = await notifyTools.notifyBackground({query: "cardbook.pref.migrateString", key: newPref, value: value})
+						break;
+					case Services.prefs.PREF_BOOL:
+						value = Services.prefs.getBoolPref(pref);
+						result = await notifyTools.notifyBackground({query: "cardbook.pref.migrateString", key: newPref, value: value})
+						break;
+					default:
+						result = "OK";
+				}
+				if (result == "KO") {
+					cardbookInit.addToLog(log, "FAILED migration for : prefName : " + newPref + " : prefValue : " + value);
+				} else {
+					cardbookInit.addToLog(log, "OK migration for : prefName : " + newPref + " : prefValue : " + value);
+				}
+			}
+			cardbookInit.addToLog(log, "migration OK");
+			await cardbookInit.keepMigrationLog(log);
+			Services.prefs.setBoolPref("extensions.cardbook.optionsMigrated", true);
+		} else {
+			console.log("no migration");
+		}
+	},
+
+	initPrefs: async function () {
+		await notifyTools.notifyBackground({query: "cardbook.pref.initPrefs"});
+		// force to have nice svg
+		Services.prefs.setBoolPref("svg.context-properties.content.enabled", true);
+	},
+
+	initRepo: function () {
 		if (cardbookRepository.firstLoad) {
 			return;
 		}
-		var prefs = Services.prefs.getDefaultBranch("extensions.cardbook.");
-		
-		prefs.setBoolPref("autocompletion", true);
-		prefs.setBoolPref("autocompleteSortByPopularity", true);
-		prefs.setBoolPref("proposeConcatEmails", false);
-		prefs.setBoolPref("autocompleteShowAddressbook", false);
-		prefs.setBoolPref("autocompleteShowEmailType", false);
-		prefs.setBoolPref("autocompleteShowPopularity", false);
-		prefs.setBoolPref("autocompleteWithColor", true);
-		prefs.setBoolPref("autocompleteRestrictSearch", false);
-		prefs.setCharPref("autocompleteRestrictSearchFields", cardbookRepository.defaultAutocompleteRestrictSearchFields);
-		prefs.setCharPref("useColor", "background");
-		prefs.setBoolPref("exclusive", false);
-		prefs.setCharPref("requestsTimeout", "120");
-		prefs.setCharPref("statusInformationLineNumber", "250");
-		prefs.setBoolPref("debugMode", false);
-		
-		prefs.setBoolPref("preferEmailEdition", true);
-		prefs.setBoolPref("listTabView", true);
-		prefs.setBoolPref("technicalTabView", true);
-		prefs.setBoolPref("vcardTabView", true);
-		prefs.setBoolPref("keyTabView", true);
-		
-		prefs.setCharPref("panesView", "modern");
-		prefs.setBoolPref("syncAfterChange", true);
-		prefs.setBoolPref("initialSync", true);
-		prefs.setCharPref("initialSyncDelay", "0");
-		prefs.setCharPref("solveConflicts", "User");
-		prefs.setCharPref("discoveryAccountsNameList", "");
-		prefs.setCharPref("multiget", "100");
-		prefs.setCharPref("maxModifsPushed", "100");
-		prefs.setBoolPref("decodeReport", true);
-		
-		prefs.setBoolPref("preferEmailPref", true);
-		prefs.setBoolPref("preferIMPPPref", true);
-		prefs.setBoolPref("warnEmptyEmails", true);
-		prefs.setBoolPref("useOnlyEmail", false);
-		
-		prefs.setCharPref("fieldsNameList", "allFields");
-		prefs.setBoolPref("autoComputeFn", true);
-
-		prefs.setBoolPref("usePreferenceValue", false);
-		prefs.setCharPref("preferenceValueLabel", "");
-		
-		prefs.setBoolPref("firstRun", true);
-		
-		prefs.setCharPref("kindCustom", "X-ADDRESSBOOKSERVER-KIND");
-		prefs.setCharPref("memberCustom", "X-ADDRESSBOOKSERVER-MEMBER");
-		
-		prefs.setCharPref("orgStructure", "");
-		
-		prefs.setCharPref("localizeEngine", "OpenStreetMap");
-		prefs.setCharPref("localizeTarget", "out");
-		var lastnamefirst = Services.prefs.getIntPref("mail.addr_book.lastnamefirst");
-		if (lastnamefirst == 0) {
-			prefs.setCharPref("showNameAs", "DSP");
-		} else if (lastnamefirst == 1) {
-			prefs.setCharPref("showNameAs", "LFCOMMA");
-		} else if (lastnamefirst == 2) {
-			prefs.setCharPref("showNameAs", "FL");
-		}
-		
-		// localized
-		cardbookRepository.defaultAdrFormula = cardbookRepository.extension.localeData.localizeMessage("addressFormatFormula");
-		prefs.setCharPref("adrFormula", cardbookRepository.defaultAdrFormula);
-		prefs.setCharPref("dateDisplayedFormat", "0");
-		
-		prefs.setCharPref("addressBooksNameList", "allAddressBooks");
-		prefs.setBoolPref("birthday.bday", true);
-		prefs.setBoolPref("birthday.anniversary", true);
-		prefs.setBoolPref("birthday.deathdate", true);
-		prefs.setBoolPref("birthday.events", true);
-		prefs.setCharPref("calendarsNameList", "");
-		prefs.setCharPref("numberOfDaysForSearching", "30");
-		prefs.setBoolPref("showPopupOnStartup", false);
-		prefs.setBoolPref("showPeriodicPopup", false);
-		prefs.setCharPref("periodicPopupIime", "08:00");
-		prefs.setBoolPref("showPopupEvenIfNoBirthday", true);
-		prefs.setBoolPref("syncWithLightningOnStartup", false);
-		prefs.setCharPref("numberOfDaysForWriting", "365");
-		// localized
-		prefs.setCharPref("eventEntryTitle", cardbookRepository.extension.localeData.localizeMessage("eventEntryTitleMessage"));
-		prefs.setCharPref("calendarEntryCategories", cardbookRepository.extension.localeData.localizeMessage("anniversaryCategory"));
-		prefs.setCharPref("eventEntryTime", "00:00");
-		prefs.setBoolPref("repeatingEvent", true);
-		prefs.setBoolPref("eventEntryWholeDay", false);
-		prefs.setCharPref("calendarEntryAlarm", "168");
-		prefs.setBoolPref("calendarEntryAlarmMigrated", false);
-		prefs.setCharPref("calendarEntryCategories", "");
-		
-		prefs.setBoolPref("viewABPane", true);
-		prefs.setBoolPref("viewABContact", true);
-		
-		prefs.setCharPref("accountsShown", "all");
-		prefs.setCharPref("accountShown", "");
-		prefs.setCharPref("uncategorizedCards", "");
-		prefs.setCharPref("categoryColors", "");
-		prefs.setCharPref("addonVersion", "83.3.1");
-		prefs.setCharPref("defaultRegion", "NOTSET");
-
-		prefs.setBoolPref("localDataEncryption", false);
-
-		// not UI accessible prefs
-		prefs.setCharPref("maxUndoChanges", "100");
-		prefs.setCharPref("currentUndoId", "0");
-
-		// setting uncategorizedCards
-		try {
-			cardbookRepository.cardbookUncategorizedCards = cardbookRepository.cardbookPreferences.getStringPref("extensions.cardbook.uncategorizedCards");
-			if (cardbookRepository.cardbookUncategorizedCards == "") {
-				throw "CardBook no uncategorizedCards";
-			}
-		}
-		catch (e) {
-			cardbookRepository.cardbookUncategorizedCards = cardbookRepository.extension.localeData.localizeMessage("uncategorizedCards");
-			cardbookRepository.cardbookPreferences.setStringPref("extensions.cardbook.uncategorizedCards", cardbookRepository.cardbookUncategorizedCards);
-		}
-		// setting preferEmailPref and preferIMPPPref for getting usefull emails and impps
-		cardbookRepository.preferEmailPref = cardbookRepository.cardbookPreferences.getBoolPref("extensions.cardbook.preferEmailPref");
-		cardbookRepository.preferIMPPPref = cardbookRepository.cardbookPreferences.getBoolPref("extensions.cardbook.preferIMPPPref");
-
-		// setting addonVersion, userAgent and prodid
-		cardbookRepository.addonVersion = cardbookRepository.cardbookPreferences.getStringPref("extensions.cardbook.addonVersion");
-		cardbookRepository.userAgent = "Thunderbird CardBook/" + cardbookRepository.addonVersion;
-		cardbookRepository.prodid = "-//Thunderbird.net/NONSGML Thunderbird CardBook V"+ cardbookRepository.addonVersion + "//" + cardbookRepository.getLang().toUpperCase();
-
-		// setting autocompleteRestrictSearch and autocompleteRestrictSearchFields
-		cardbookRepository.autocompleteRestrictSearch = cardbookRepository.cardbookPreferences.getBoolPref("extensions.cardbook.autocompleteRestrictSearch");
-		cardbookRepository.autocompleteRestrictSearchFields = cardbookRepository.cardbookPreferences.getStringPref("extensions.cardbook.autocompleteRestrictSearchFields").split('|');
-
-		// setting useColor
-		cardbookRepository.useColor = cardbookRepository.cardbookPreferences.getStringPref("extensions.cardbook.useColor");
-
-		// setting some display preferences
-		cardbookRepository.showNameAs = cardbookRepository.cardbookPreferences.getStringPref("extensions.cardbook.showNameAs");
-		cardbookRepository.dateDisplayedFormat = cardbookRepository.cardbookPreferences.getStringPref("extensions.cardbook.dateDisplayedFormat");
-
-		// setting some log preferences
-		cardbookRepository.debugMode = cardbookRepository.cardbookPreferences.getBoolPref("extensions.cardbook.debugMode");
-		cardbookRepository.statusInformationLineNumber = cardbookRepository.cardbookPreferences.getStringPref("extensions.cardbook.statusInformationLineNumber");
+		// setting userAgent and prodid
+		cardbookRepository.userAgent = "Thunderbird CardBook/" + cardbookRepository.cardbookPrefs["addonVersion"];
+		cardbookRepository.prodid = "-//Thunderbird.net/NONSGML Thunderbird CardBook V"+ cardbookRepository.cardbookPrefs["addonVersion"]; + "//" + cardbookRepository.getLang().toUpperCase();
 
 		// setting cardbookGenderLookup for having lookups
 		cardbookRepository.setGenderLookup();
@@ -165,7 +132,11 @@ var cardbookInit = {
 
 		// load category colors
 		try {
-			cardbookRepository.cardbookNodeColors = JSON.parse(cardbookRepository.cardbookPreferences.getStringPref("extensions.cardbook.categoryColors"));
+			if ("undefined" == typeof(cardbookRepository.cardbookPrefs["categoryColors"])) {
+				cardbookRepository.cardbookNodeColors = {};
+			} else {
+				cardbookRepository.cardbookNodeColors = JSON.parse(cardbookRepository.cardbookPrefs["categoryColors"]);
+			}
 		}
 		catch (e) {
 			cardbookRepository.cardbookNodeColors = {};
@@ -173,7 +144,10 @@ var cardbookInit = {
 	}
 };
 
-function startup() {
-	cardbookInit.initPrefs();
+async function startup() {
+	await cardbookInit.migratePrefs();
+	await cardbookInit.initPrefs();
+	await cardbookInit.setPrefsInMemory();
+	cardbookInit.initRepo();
 }
 

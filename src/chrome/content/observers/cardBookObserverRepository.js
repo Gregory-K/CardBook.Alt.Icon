@@ -1,19 +1,5 @@
 var { Services } = ChromeUtils.import("resource://gre/modules/Services.jsm");
 
-var cardBookPrefObserverRepository = {
-	registerAll: function(aPrefObserver) {
-		aPrefObserver.branch = Components.classes["@mozilla.org/preferences-service;1"].getService(Components.interfaces.nsIPrefService).getBranch("extensions.cardbook.");
-		if (!("addObserver" in aPrefObserver.branch)) {
-			aPrefObserver.branch.QueryInterface(Components.interfaces.nsIPrefBranch);
-		}
-		aPrefObserver.branch.addObserver("", aPrefObserver, false);
-	},
-	
-	unregisterAll: function(aPrefObserver) {
-		aPrefObserver.branch.removeObserver("", aPrefObserver);
-	}
-};
-
 var cardBookObserverRepository = {
 	registerAll: function(aObserver) {
 		Services.obs.addObserver(aObserver, "cardbook.openTab", false);
@@ -22,6 +8,7 @@ var cardBookObserverRepository = {
 		Services.obs.addObserver(aObserver, "cardbook.addressbookDeleted", false);
 		Services.obs.addObserver(aObserver, "cardbook.addressbookModified", false);
 
+		Services.obs.addObserver(aObserver, "cardbook.setUndoAndRedoMenuAndButton", false);
 		Services.obs.addObserver(aObserver, "cardbook.undoActionDone", false);
 		Services.obs.addObserver(aObserver, "cardbook.redoActionDone", false);
 		Services.obs.addObserver(aObserver, "cardbook.categoryRenamed", false);
@@ -66,7 +53,18 @@ var cardBookObserverRepository = {
 		Services.obs.addObserver(aObserver, "cardbook.complexSearchLoaded", false);
 		Services.obs.addObserver(aObserver, "cardbook.accountsLoaded", false);
 
-		Services.obs.addObserver(aObserver, "cardbook.preferencesChanged", false);
+		Services.obs.addObserver(aObserver, "cardbook.pref.preferencesChanged", false);
+
+		Services.obs.addObserver(aObserver, "cardbook.AB.saveEditAB", false);
+		Services.obs.addObserver(aObserver, "cardbook.AB.saveSearchAB", false);
+		Services.obs.addObserver(aObserver, "cardbook.AB.saveNewAB", false);
+		Services.obs.addObserver(aObserver, "cardbook.AB.cancelEditAB", false);
+
+		Services.obs.addObserver(aObserver, "cardbook.finishCSV", false);
+		Services.obs.addObserver(aObserver, "cardbook.writeCardsToCSVFile", false);
+		Services.obs.addObserver(aObserver, "cardbook.loadCSVFile", false);
+		Services.obs.addObserver(aObserver, "cardbook.createCategory", false);
+		Services.obs.addObserver(aObserver, "cardbook.modifyNode", false);
 
 		Services.obs.addObserver(aObserver, "cardbook.identityChanged", false);
 
@@ -81,6 +79,7 @@ var cardBookObserverRepository = {
 		Services.obs.removeObserver(aObserver, "cardbook.addressbookDeleted");
 		Services.obs.removeObserver(aObserver, "cardbook.addressbookModified");
 
+		Services.obs.removeObserver(aObserver, "cardbook.setUndoAndRedoMenuAndButton");
 		Services.obs.removeObserver(aObserver, "cardbook.undoActionDone");
 		Services.obs.removeObserver(aObserver, "cardbook.redoActionDone");
 		Services.obs.removeObserver(aObserver, "cardbook.categoryRenamed");
@@ -124,7 +123,18 @@ var cardBookObserverRepository = {
 		Services.obs.removeObserver(aObserver, "cardbook.complexSearchInitLoaded");
 		Services.obs.removeObserver(aObserver, "cardbook.complexSearchLoaded");
 
-		Services.obs.removeObserver(aObserver, "cardbook.preferencesChanged");
+		Services.obs.removeObserver(aObserver, "cardbook.pref.preferencesChanged");
+
+		Services.obs.removeObserver(aObserver, "cardbook.AB.saveEditAB");
+		Services.obs.removeObserver(aObserver, "cardbook.AB.saveSearchAB");
+		Services.obs.removeObserver(aObserver, "cardbook.AB.saveNewAB");
+		Services.obs.removeObserver(aObserver, "cardbook.AB.cancelEditAB");
+
+		Services.obs.removeObserver(aObserver, "cardbook.finishCSV");
+		Services.obs.removeObserver(aObserver, "cardbook.writeCardsToCSVFile");
+		Services.obs.removeObserver(aObserver, "cardbook.loadCSVFile");
+		Services.obs.removeObserver(aObserver, "cardbook.createCategory");
+		Services.obs.removeObserver(aObserver, "cardbook.modifyNode");
 
 		Services.obs.removeObserver(aObserver, "cardbook.identityChanged");
 

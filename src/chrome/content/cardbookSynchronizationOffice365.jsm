@@ -189,14 +189,14 @@ var cardbookSynchronizationOffice365 = {
 				// "DELETEDONDISKUPDATEDONSERVER";
 				cardbookRepository.cardbookServerSyncDeletedCardOnDiskUpdatedCardOnServer[aCardConnection.connPrefId]++;
 				cardbookRepository.cardbookUtils.formatStringForOutput("cardDeletedOnDiskUpdatedOnServer", [aCardConnection.connDescription, myCacheCard.fn]);
-				var solveConflicts = cardbookRepository.cardbookPreferences.getStringPref("extensions.cardbook.solveConflicts");
+				var solveConflicts = cardbookRepository.cardbookPrefs["solveConflicts"];
 				if (solveConflicts === "Local") {
 					var conflictResult = "delete";
 				} else if (solveConflicts === "Remote") {
 					var conflictResult = "keep";
 				} else {
 					var message = cardbookRepository.extension.localeData.localizeMessage("cardDeletedOnDiskUpdatedOnServer", [aCardConnection.connDescription, myCacheCard.fn]);
-					var conflictResult = cardbookRepository.cardbookSynchronization.askUser("card", aCardConnection.connPrefId, message, cardbookRepository.importConflictChoiceSync1Values);
+					var conflictResult = await cardbookRepository.cardbookSynchronization.askUser("card", aCardConnection.connPrefId, message, cardbookRepository.importConflictChoiceSync1Values);
 				}
 				
 				cardbookRepository.cardbookLog.updateStatusProgressInformationWithDebug1(aCardConnection.connDescription + " : debug mode : conflict resolution : ", conflictResult);
@@ -217,14 +217,14 @@ var cardbookSynchronizationOffice365 = {
 				// "UPDATEDONBOTH";
 				cardbookRepository.cardbookServerSyncUpdatedCardOnBoth[aCardConnection.connPrefId]++;
 				cardbookRepository.cardbookUtils.formatStringForOutput("cardUpdatedOnBoth", [aCardConnection.connDescription, myCacheCard.fn]);
-				var solveConflicts = cardbookRepository.cardbookPreferences.getStringPref("extensions.cardbook.solveConflicts");
+				var solveConflicts = cardbookRepository.cardbookPrefs["solveConflicts"];
 				if (solveConflicts === "Local") {
 					var conflictResult = "local";
 				} else if (solveConflicts === "Remote") {
 					var conflictResult = "remote";
 				} else {
 					var message = cardbookRepository.extension.localeData.localizeMessage("cardUpdatedOnBoth", [aCardConnection.connDescription, myCacheCard.fn]);
-					var conflictResult = cardbookRepository.cardbookSynchronization.askUser("card", aCardConnection.connPrefId, message, cardbookRepository.importConflictChoiceSync2Values);
+					var conflictResult = await cardbookRepository.cardbookSynchronization.askUser("card", aCardConnection.connPrefId, message, cardbookRepository.importConflictChoiceSync2Values);
 				}
 				
 				cardbookRepository.cardbookLog.updateStatusProgressInformationWithDebug1(aCardConnection.connDescription + " : debug mode : conflict resolution : ", conflictResult);
@@ -276,14 +276,14 @@ var cardbookSynchronizationOffice365 = {
 					cardbookRepository.cardbookUtils.formatStringForOutput("cardUpdatedOnDiskDeletedOnServer", [aConnection.connDescription, aCard.fn]);
 					cardbookRepository.cardbookServerCardSyncTotal[aConnection.connPrefId]++;
 					cardbookRepository.cardbookServerSyncUpdatedCardOnDiskDeletedCardOnServer[aConnection.connPrefId]++;
-					var solveConflicts = cardbookRepository.cardbookPreferences.getStringPref("extensions.cardbook.solveConflicts");
+					var solveConflicts = cardbookRepository.cardbookPrefs["solveConflicts"];
 					if (solveConflicts === "Local") {
 						var conflictResult = "keep";
 					} else if (solveConflicts === "Remote") {
 						var conflictResult = "delete";
 					} else {
 						var message = cardbookRepository.extension.localeData.localizeMessage("cardUpdatedOnDiskDeletedOnServer", [aConnection.connDescription, aCard.fn]);
-						var conflictResult = cardbookRepository.cardbookSynchronization.askUser("card", aConnection.connPrefId, message, cardbookRepository.importConflictChoiceSync1Values);
+						var conflictResult = await cardbookRepository.cardbookSynchronization.askUser("card", aConnection.connPrefId, message, cardbookRepository.importConflictChoiceSync1Values);
 					}
 					
 					cardbookRepository.cardbookLog.updateStatusProgressInformationWithDebug1(aConnection.connDescription + " : debug mode : conflict resolution : ", conflictResult);
@@ -414,22 +414,9 @@ var cardbookSynchronizationOffice365 = {
 	},
 
 	serverGetForMerge: function(aConnection, aEtag, aCacheCard) {
-		function mergeContactOK(aCard) {
-			cardbookRepository.cardbookUtils.formatStringForOutput("serverCardGetOK", [aConnection.connDescription, aCard.fn]);
-			var myArgs = {cardsIn: [aCard, aCacheCard], cardsOut: [], hideCreate: true, action: ""};
-			var myWindow = Services.wm.getMostRecentWindow("mail:3pane").openDialog("chrome://cardbook/content/mergeCards/wdw_mergeCards.xhtml", "", cardbookRepository.modalWindowParams, myArgs);
-			if (myArgs.action == "CREATEANDREPLACE") {
-				myArgs.cardsOut[0].uid = aCacheCard.uid;
-				myArgs.cardsOut[0].cardurl = aCacheCard.cardurl;
-				cardbookRepository.cardbookUtils.addEtag(myArgs.cardsOut[0], aEtag);
-				cardbookRepository.cardbookUtils.setCalculatedFields(myArgs.cardsOut[0]);
-				cardbookRepository.cardbookServerUpdatedCardRequest[aConnection.connPrefId]++;
-				cardbookRepository.cardbookServerGetCardForMergeResponse[aConnection.connPrefId]++;
-				cardbookSynchronizationOffice365.serverUpdateCard(aConnection, myArgs.cardsOut[0]);
-			} else {
-				cardbookRepository.cardbookServerCardSyncDone[aConnection.connPrefId]++;
-				cardbookRepository.cardbookServerGetCardForMergeResponse[aConnection.connPrefId]++;
-			}
+		async function mergeContactOK(aCard) {
+			cardbookRepository.cardbookUtils.formatStringForOutput("serverCardGetOK", [aConnection.connDescription, aCacheCard.fn]);
+			await cardbookRepository.mergeCardsFromSync(aCacheCard, aCard, aConnection, aEtag, "SYNC");
 		};
 		function mergeContactKO(aStatus) {
 			cardbookRepository.cardbookServerGetCardForMergeError[aConnection.connPrefId]++;
@@ -453,60 +440,13 @@ var cardbookSynchronizationOffice365 = {
 						if (myCard.photo.attachmentId) {
 							cardbookSynchronizationOffice365.serverGetCardPhoto(aConnection, myCard, mergeContactOK, mergeContactKO);
 						} else {
-							mergeContactOK(myCard);
+							await mergeContactOK(myCard);
 						}
 					} else {
 						mergeContactKO(status);
 					}
 				} else {
 					mergeContactKO(status);
-				}
-			}
-		};
-		let data = cardbookSynchronizationOffice365.getDataForContacts([ [aCacheCard.uid, aCacheCard.etag] ]);
-		let request = new cardbookWebDAV(aConnection, listener_get, "", false);
-		request.getOffice365Contact(data);
-	},
-
-	serverGetPhotoForMerge: function(aConnection, aEtag, aCacheCard) {
-		var listener_get = {
-			onDAVQueryComplete: async function(status, responseXML) {
-				if (responseXML && (status > 199 && status < 400)) {
-					let responseState = responseXML.getElementsByTagNameNS(cardbookSynchronizationOffice365.nsMessages, "GetItemResponseMessage");
-					if (responseState[0].getAttribute("ResponseClass") == "Success") {
-						let office365Contact;
-						if (aCacheCard.isAList) {
-							office365Contact = responseXML.getElementsByTagNameNS(cardbookSynchronizationOffice365.nsTypes, "DistributionList")[0];
-						} else {
-							office365Contact = responseXML.getElementsByTagNameNS(cardbookSynchronizationOffice365.nsTypes, "Contact")[0];
-						}
-						let myCard = cardbookSynchronizationOffice365.parseOffice365ContactToCard(office365Contact, aConnection.connPrefId);
-						cardbookRepository.cardbookUtils.formatStringForOutput("serverCardGetOK", [aConnection.connDescription, myCard.fn]);
-						var myArgs = {cardsIn: [myCard, aCacheCard], cardsOut: [], hideCreate: true, action: ""};
-						var myWindow = Services.wm.getMostRecentWindow("mail:3pane").openDialog("chrome://cardbook/content/mergeCards/wdw_mergeCards.xhtml", "", cardbookRepository.modalWindowParams, myArgs);
-						if (myArgs.action == "CREATEANDREPLACE") {
-							myArgs.cardsOut[0].uid = aCacheCard.uid;
-							myArgs.cardsOut[0].cardurl = aCacheCard.cardurl;
-							cardbookRepository.cardbookUtils.addEtag(myArgs.cardsOut[0], aEtag);
-							cardbookRepository.cardbookUtils.setCalculatedFields(myArgs.cardsOut[0]);
-							cardbookRepository.cardbookServerUpdatedCardRequest[aConnection.connPrefId]++;
-							cardbookRepository.cardbookServerGetCardForMergeResponse[aConnection.connPrefId]++;
-							cardbookSynchronizationOffice365.serverUpdateCard(aConnection, myArgs.cardsOut[0]);
-						} else {
-							cardbookRepository.cardbookServerCardSyncDone[aConnection.connPrefId]++;
-							cardbookRepository.cardbookServerGetCardForMergeResponse[aConnection.connPrefId]++;
-						}
-					} else {
-						cardbookRepository.cardbookServerGetCardForMergeError[aConnection.connPrefId]++;
-						cardbookRepository.cardbookServerGetCardForMergeResponse[aConnection.connPrefId]++;
-						cardbookRepository.cardbookServerCardSyncDone[aConnection.connPrefId]++;
-						cardbookRepository.cardbookUtils.formatStringForOutput("serverCardGetFailed", [aConnection.connDescription, aConnection.connUrl, status], "Error");
-					}
-				} else {
-					cardbookRepository.cardbookServerGetCardForMergeError[aConnection.connPrefId]++;
-					cardbookRepository.cardbookServerGetCardForMergeResponse[aConnection.connPrefId]++;
-					cardbookRepository.cardbookServerCardSyncDone[aConnection.connPrefId]++;
-					cardbookRepository.cardbookUtils.formatStringForOutput("serverCardGetFailed", [aConnection.connDescription, aConnection.connUrl, status], "Error");
 				}
 			}
 		};
@@ -648,23 +588,29 @@ var cardbookSynchronizationOffice365 = {
 						let contact = responseXML.getElementsByTagNameNS(cardbookSynchronizationOffice365.nsTypes, "ItemId");
 						let etag = contact[0].getAttribute("ChangeKey");
 						cardbookRepository.cardbookUtils.formatStringForOutput("serverCardUpdatedOnServerWithEtag", [aConnection.connDescription, aCard.fn, etag]);
-						let newCard = new cardbookCardParser();
-						await cardbookRepository.cardbookUtils.cloneCard(aCard, newCard);
-						cardbookRepository.cardbookUtils.addEtag(newCard, etag);
-						cardbookRepository.cardbookUtils.nullifyTagModification(newCard);
+						cardbookRepository.cardbookUtils.addEtag(aCard, etag);
 						cardbookRepository.cardbookServerCardSyncDone[aConnection.connPrefId]++;
 						await cardbookRepository.cardbookUtils.changeMediaFromFileToContent(aCard);
-						if (newCard.photo.attachmentId) {
-							cardbookRepository.cardbookServerUpdatedCardPhotoRequest[aConnection.connPrefId]++;
-							cardbookSynchronizationOffice365.serverDeleteCardPhoto(aConnection, newCard);
-							newCard.photo.attachmentId = "";
-						}
-						await cardbookRepository.removeCardFromRepository(aCard, true);
-						await cardbookRepository.addCardToRepository(newCard, true);
 						if (aCard.photo.value) {
-							cardbookRepository.cardbookUtils.addTagUpdated(newCard);
+							cardbookRepository.cardbookUtils.addTagUpdated(aCard);
 							cardbookRepository.cardbookServerUpdatedCardPhotoRequest[aConnection.connPrefId]++;
-							cardbookSynchronizationOffice365.serverCreateCardPhoto(aConnection, newCard);
+							cardbookSynchronizationOffice365.serverUpdateCardPhoto(aConnection, aCard);
+						} else if (aCard.photo.attachmentId) {
+							cardbookRepository.cardbookServerUpdatedCardPhotoRequest[aConnection.connPrefId]++;
+							cardbookSynchronizationOffice365.serverDeleteCardPhoto(aConnection, aCard);
+							if (cardbookRepository.cardbookCards[aCard.dirPrefId+"::"+aCard.uid]) {
+								let myOldCard = cardbookRepository.cardbookCards[aCard.dirPrefId+"::"+aCard.uid];
+								await cardbookRepository.removeCardFromRepository(myOldCard, true);
+							}
+							cardbookRepository.cardbookUtils.nullifyTagModification(aCard);
+							await cardbookRepository.addCardToRepository(aCard, true);
+						} else {
+							if (cardbookRepository.cardbookCards[aCard.dirPrefId+"::"+aCard.uid]) {
+								let myOldCard = cardbookRepository.cardbookCards[aCard.dirPrefId+"::"+aCard.uid];
+								await cardbookRepository.removeCardFromRepository(myOldCard, true);
+							}
+							cardbookRepository.cardbookUtils.nullifyTagModification(aCard);
+							await cardbookRepository.addCardToRepository(aCard, true);
 						}
 					} else {
 						cardbookRepository.cardbookServerCardSyncDone[aConnection.connPrefId]++;
@@ -722,17 +668,17 @@ var cardbookSynchronizationOffice365 = {
 						cardbookRepository.cardbookUtils.addEtag(newCard, etag);
 						cardbookRepository.cardbookUtils.setCalculatedFields(newCard);
 						cardbookRepository.cardbookUtils.formatStringForOutput("serverCardCreatedOnServerWithEtag", [aConnection.connDescription, newCard.fn, etag]);
-						cardbookRepository.cardbookUtils.nullifyTagModification(newCard);
 						if (cardbookRepository.cardbookCards[aCard.dirPrefId+"::"+aCard.uid]) {
 							var myOldCard = cardbookRepository.cardbookCards[aCard.dirPrefId+"::"+aCard.uid];
 							await cardbookRepository.removeCardFromRepository(myOldCard, true);
 						}
-						await cardbookRepository.removeCardFromRepository(aCard, true);
+						cardbookRepository.cardbookUtils.nullifyTagModification(newCard);
 						await cardbookRepository.addCardToRepository(newCard, true);
-						if (aCard.photo.value) {
+						await cardbookRepository.cardbookUtils.changeMediaFromFileToContent(newCard);
+						if (newCard.photo.value) {
 							cardbookRepository.cardbookUtils.addTagUpdated(newCard);
 							cardbookRepository.cardbookServerUpdatedCardPhotoRequest[aConnection.connPrefId]++;
-							cardbookSynchronizationOffice365.serverCreateCardPhoto(aConnection, newCard);
+							cardbookSynchronizationOffice365.serverUpdateCardPhoto(aConnection, newCard);
 						}
 					} else {
 						cardbookRepository.cardbookServerCreatedCardError[aConnection.connPrefId]++;
@@ -782,7 +728,7 @@ var cardbookSynchronizationOffice365 = {
 						let value = content[0].textContent;
 						aCard.photo.value = value;
 						if (aCallBackOK) {
-							aCallBackOK(aCard);
+							await aCallBackOK(aCard);
 						} else {
 							if (cardbookRepository.cardbookCards[aCard.dirPrefId+"::"+aCard.uid]) {
 								let myOldCard = cardbookRepository.cardbookCards[aCard.dirPrefId+"::"+aCard.uid];
@@ -838,7 +784,7 @@ var cardbookSynchronizationOffice365 = {
 		}
 	},
 
-	serverCreateCardPhoto: function(aConnection, aCard) {
+	serverUpdateCardPhoto: function(aConnection, aCard) {
 		var listener_createphoto = {
 			onDAVQueryComplete: async function(status, responseXML) {
 				if (status > 199 && status < 400) {
@@ -850,11 +796,11 @@ var cardbookSynchronizationOffice365 = {
 						aCard.photo.attachmentId = attachmentId;
 						let etag = content[0].getAttribute("RootItemChangeKey");
 						cardbookRepository.cardbookUtils.addEtag(aCard, etag);
-						cardbookRepository.cardbookUtils.nullifyTagModification(aCard);
 						if (cardbookRepository.cardbookCards[aCard.dirPrefId+"::"+aCard.uid]) {
 							let myOldCard = cardbookRepository.cardbookCards[aCard.dirPrefId+"::"+aCard.uid];
 							await cardbookRepository.removeCardFromRepository(myOldCard, true);
 						}
+						cardbookRepository.cardbookUtils.nullifyTagModification(aCard);
 						await cardbookRepository.addCardToRepository(aCard, true);
 					} else {
 						cardbookRepository.cardbookServerUpdatedCardPhotoError[aConnection.connPrefId]++;
@@ -878,8 +824,10 @@ var cardbookSynchronizationOffice365 = {
 									"<m:ParentItemId Id=\"" + aCard.uid + "\" ChangeKey=\"" + aCard.etag + "\"/>" +
 									"<m:Attachments>" +
 										"<t:FileAttachment>" +
-											"<t:Name>" + aCard.uid + "." + aCard.photo.extension + "</t:Name>" +
+											"<t:Name>ContactPicture." + aCard.photo.extension + "</t:Name>" +
 											"<t:Content>" + aCard.photo.value + "</t:Content>" +
+											"<t:ContentType>image/" + aCard.photo.extension + "</t:ContentType>" +
+											"<t:IsInline>true</t:IsInline>" +
 											"<t:IsContactPhoto>true</t:IsContactPhoto>" +
 										"</t:FileAttachment>" +
 									"</m:Attachments>" +
@@ -1149,12 +1097,13 @@ var cardbookSynchronizationOffice365 = {
 			return aData;
 		}
 
-		function addAddrField(aData, aType, aValue) {
+		function addAddrField(aData, aType, aValue, aCounter) {
 			aData = addAddrTypeField(aData, "Street", aType, aValue[0][2]);
 			aData = addAddrTypeField(aData, "City", aType, aValue[0][3]);
 			aData = addAddrTypeField(aData, "State", aType, aValue[0][4]);
 			aData = addAddrTypeField(aData, "PostalCode", aType, aValue[0][5]);
 			aData = addAddrTypeField(aData, "CountryOrRegion", aType, aValue[0][6]);
+			aCounter[aType]++;
 			return aData;
 		}
 
@@ -1175,25 +1124,24 @@ var cardbookSynchronizationOffice365 = {
 		for (let adr of adrs) {
 			let type = cardbookRepository.cardbookTypes.getCodeType("adr", aCard.dirPrefId, adr[1]).result;
 			if (type == "hometype" && (adrCount["Home"] <= 1)) {
-				Office365Contact = addAddrField(Office365Contact, "Home", adr);
+				Office365Contact = addAddrField(Office365Contact, "Home", adr, adrCount);
 			} else if (type == "worktype" && (adrCount["Business"] <= 1)) {
-				Office365Contact = addAddrField(Office365Contact, "Business", adr);
+				Office365Contact = addAddrField(Office365Contact, "Business", adr, adrCount);
 			} else if (type == "othertype" && (adrCount["Other"] <= 1)) {
-				Office365Contact = addAddrField(Office365Contact, "Other", adr);
+				Office365Contact = addAddrField(Office365Contact, "Other", adr, adrCount);
 			} else {
 				if (adrCount["Home"] <= 1) {
-					Office365Contact = addAddrField(Office365Contact, "Home", adr);
+					Office365Contact = addAddrField(Office365Contact, "Home", adr, adrCount);
 				} else if (adrCount["Business"] <= 1) {
-					Office365Contact = addAddrField(Office365Contact, "Business", adr);
+					Office365Contact = addAddrField(Office365Contact, "Business", adr, adrCount);
 				} else if (adrCount["Other"] <= 1) {
-					Office365Contact = addAddrField(Office365Contact, "Other", adr);
+					Office365Contact = addAddrField(Office365Contact, "Other", adr, adrCount);
 				} else {
 					let fieldName = cardbookRepository.extension.localeData.localizeMessage("typesCategoryAdrLabel");
 					aCard.adr.splice(index, 1);
 					aCard.note = aCard.note + "\r\n" + fieldName + " : " + adr[0].join(":");
 				}
 			}
-			adrCount[type]++;
 			index++;
 		}
 		if (adrCount["Home"] <= 1) {
@@ -1206,7 +1154,7 @@ var cardbookSynchronizationOffice365 = {
 			Office365Contact = deleteAddrField(Office365Contact, "Other");
 		}
 
-		function addTelTypeField(aData, aType, aValue) {
+		function addTelTypeField(aData, aType, aValue, aCounter) {
 			if (aValue) {
 				aData = cardbookSynchronizationOffice365.addEntry(aData, "SetItemField", [], false);
 				aData = cardbookSynchronizationOffice365.addEntry(aData, "IndexedFieldURI",  [ ["FieldURI", "contacts:PhoneNumber"],  ["FieldIndex", aType] ], true);
@@ -1216,6 +1164,7 @@ var cardbookSynchronizationOffice365 = {
 				aData = cardbookSynchronizationOffice365.addEntry(aData, "PhoneNumbers", [], true);
 				aData = cardbookSynchronizationOffice365.addEntry(aData, "Contact", [], true);
 				aData = cardbookSynchronizationOffice365.addEntry(aData, "SetItemField", [], true);
+				aCounter[aType]++;
 			} else {
 				aData = cardbookSynchronizationOffice365.addEntry(aData, "DeleteItemField", [], false);
 				aData = cardbookSynchronizationOffice365.addEntry(aData, "IndexedFieldURI",  [ ["FieldURI", "contacts:PhoneNumber"],  ["FieldIndex", aType] ], true);
@@ -1232,81 +1181,80 @@ var cardbookSynchronizationOffice365 = {
 			let type = cardbookRepository.cardbookTypes.getCodeType("tel", aCard.dirPrefId, tel[1]).result;
 			let telValue = tel[0][0];
 			if (type == "hometype" && (telCount["HomePhone"] <= 1)) {
-				Office365Contact = addTelTypeField(Office365Contact, "HomePhone", telValue);
+				Office365Contact = addTelTypeField(Office365Contact, "HomePhone", telValue, telCount);
 			} else if (type == "hometype" && (telCount["HomePhone2"] <= 1)) {
-				Office365Contact = addTelTypeField(Office365Contact, "HomePhone2", telValue);
+				Office365Contact = addTelTypeField(Office365Contact, "HomePhone2", telValue, telCount);
 			} else if (type == "othertype" && (telCount["OtherTelephone"] <= 1)) {
-				Office365Contact = addTelTypeField(Office365Contact, "OtherTelephone", telValue);
+				Office365Contact = addTelTypeField(Office365Contact, "OtherTelephone", telValue, telCount);
 			} else if (type == "celltype" && (telCount["MobilePhone"] <= 1)) {
-				Office365Contact = addTelTypeField(Office365Contact, "MobilePhone", telValue);
+				Office365Contact = addTelTypeField(Office365Contact, "MobilePhone", telValue, telCount);
 			} else if (type == "assistanttype" && (telCount["AssistantPhone"] <= 1)) {
-				Office365Contact = addTelTypeField(Office365Contact, "AssistantPhone", telValue);
+				Office365Contact = addTelTypeField(Office365Contact, "AssistantPhone", telValue, telCount);
 			} else if (type == "worktype" && (telCount["BusinessPhone"] <= 1)) {
-				Office365Contact = addTelTypeField(Office365Contact, "BusinessPhone", telValue);
+				Office365Contact = addTelTypeField(Office365Contact, "BusinessPhone", telValue, telCount);
 			} else if (type == "worktype" && (telCount["BusinessPhone2"] <= 1)) {
-				Office365Contact = addTelTypeField(Office365Contact, "BusinessPhone2", telValue);
+				Office365Contact = addTelTypeField(Office365Contact, "BusinessPhone2", telValue, telCount);
 			} else if (type == "worktype" && (telCount["CompanyMainPhone"] <= 1)) {
-				Office365Contact = addTelTypeField(Office365Contact, "CompanyMainPhone", telValue);
+				Office365Contact = addTelTypeField(Office365Contact, "CompanyMainPhone", telValue, telCount);
 			} else if (type == "workfaxtype" && (telCount["BusinessFax"] <= 1)) {
-				Office365Contact = addTelTypeField(Office365Contact, "BusinessFax", telValue);
+				Office365Contact = addTelTypeField(Office365Contact, "BusinessFax", telValue, telCount);
 			} else if (type == "callbacktype" && (telCount["Callback"] <= 1)) {
-				Office365Contact = addTelTypeField(Office365Contact, "Callback", telValue);
+				Office365Contact = addTelTypeField(Office365Contact, "Callback", telValue, telCount);
 			} else if (type == "carphonetype" && (telCount["CarPhone"] <= 1)) {
-				Office365Contact = addTelTypeField(Office365Contact, "CarPhone", telValue);
+				Office365Contact = addTelTypeField(Office365Contact, "CarPhone", telValue, telCount);
 			} else if (type == "pagertype" && (telCount["Pager"] <= 1)) {
-				Office365Contact = addTelTypeField(Office365Contact, "Pager", telValue);
+				Office365Contact = addTelTypeField(Office365Contact, "Pager", telValue, telCount);
 			} else if (type == "telextype" && (telCount["Telex"] <= 1)) {
-				Office365Contact = addTelTypeField(Office365Contact, "Telex", telValue);
+				Office365Contact = addTelTypeField(Office365Contact, "Telex", telValue, telCount);
 			} else if (type == "ttytype" && (telCount["TtyTddPhone"] <= 1)) {
-				Office365Contact = addTelTypeField(Office365Contact, "TtyTddPhone", telValue);
+				Office365Contact = addTelTypeField(Office365Contact, "TtyTddPhone", telValue, telCount);
 			} else if (type == "radiotype" && (telCount["RadioPhone"] <= 1)) {
-				Office365Contact = addTelTypeField(Office365Contact, "RadioPhone", telValue);
+				Office365Contact = addTelTypeField(Office365Contact, "RadioPhone", telValue, telCount);
 			} else if (type == "homefaxtype" && (telCount["HomeFax"] <= 1)) {
-				Office365Contact = addTelTypeField(Office365Contact, "HomeFax", telValue);
+				Office365Contact = addTelTypeField(Office365Contact, "HomeFax", telValue, telCount);
 			} else if (type == "otherfaxtype" && (telCount["OtherFax"] <= 1)) {
-				Office365Contact = addTelTypeField(Office365Contact, "OtherFax", telValue);
+				Office365Contact = addTelTypeField(Office365Contact, "OtherFax", telValue, telCount);
 			} else {
 				if (telCount["HomePhone"] <= 1) {
-					Office365Contact = addTelTypeField(Office365Contact, "HomePhone", telValue);
+					Office365Contact = addTelTypeField(Office365Contact, "HomePhone", telValue, telCount);
 				} else if (telCount["HomePhone2"] <= 1) {
-					Office365Contact = addTelTypeField(Office365Contact, "HomePhone2", telValue);
+					Office365Contact = addTelTypeField(Office365Contact, "HomePhone2", telValue, telCount);
 				} else if (telCount["OtherTelephone"] <= 1) {
-					Office365Contact = addTelTypeField(Office365Contact, "OtherTelephone", telValue);
+					Office365Contact = addTelTypeField(Office365Contact, "OtherTelephone", telValue, telCount);
 				} else if (telCount["MobilePhone"] <= 1) {
-					Office365Contact = addTelTypeField(Office365Contact, "MobilePhone", telValue);
+					Office365Contact = addTelTypeField(Office365Contact, "MobilePhone", telValue, telCount);
 				} else if (telCount["AssistantPhone"] <= 1) {
-					Office365Contact = addTelTypeField(Office365Contact, "AssistantPhone", telValue);
+					Office365Contact = addTelTypeField(Office365Contact, "AssistantPhone", telValue, telCount);
 				} else if (telCount["BusinessPhone"] <= 1) {
-					Office365Contact = addTelTypeField(Office365Contact, "BusinessPhone", telValue);
+					Office365Contact = addTelTypeField(Office365Contact, "BusinessPhone", telValue, telCount);
 				} else if (telCount["BusinessPhone2"] <= 1) {
-					Office365Contact = addTelTypeField(Office365Contact, "BusinessPhone2", telValue);
+					Office365Contact = addTelTypeField(Office365Contact, "BusinessPhone2", telValue, telCount);
 				} else if (telCount["CompanyMainPhone"] <= 1) {
-					Office365Contact = addTelTypeField(Office365Contact, "CompanyMainPhone", telValue);
+					Office365Contact = addTelTypeField(Office365Contact, "CompanyMainPhone", telValue, telCount);
 				} else if (telCount["BusinessFax"] <= 1) {
-					Office365Contact = addTelTypeField(Office365Contact, "BusinessFax", telValue);
+					Office365Contact = addTelTypeField(Office365Contact, "BusinessFax", telValue, telCount);
 				} else if (telCount["Callback"] <= 1) {
-					Office365Contact = addTelTypeField(Office365Contact, "Callback", telValue);
+					Office365Contact = addTelTypeField(Office365Contact, "Callback", telValue, telCount);
 				} else if (telCount["CarPhone"] <= 1) {
-					Office365Contact = addTelTypeField(Office365Contact, "CarPhone", telValue);
+					Office365Contact = addTelTypeField(Office365Contact, "CarPhone", telValue, telCount);
 				} else if (telCount["Pager"] <= 1) {
-					Office365Contact = addTelTypeField(Office365Contact, "Pager", telValue);
+					Office365Contact = addTelTypeField(Office365Contact, "Pager", telValue, telCount);
 				} else if (telCount["Telex"] <= 1) {
-					Office365Contact = addTelTypeField(Office365Contact, "Telex", telValue);
+					Office365Contact = addTelTypeField(Office365Contact, "Telex", telValue, telCount);
 				} else if (telCount["TtyTddPhone"] <= 1) {
-					Office365Contact = addTelTypeField(Office365Contact, "TtyTddPhone", telValue);
+					Office365Contact = addTelTypeField(Office365Contact, "TtyTddPhone", telValue, telCount);
 				} else if (telCount["RadioPhone"] <= 1) {
-					Office365Contact = addTelTypeField(Office365Contact, "RadioPhone", telValue);
+					Office365Contact = addTelTypeField(Office365Contact, "RadioPhone", telValue, telCount);
 				} else if (telCount["HomeFax"] <= 1) {
-					Office365Contact = addTelTypeField(Office365Contact, "HomeFax", telValue);
+					Office365Contact = addTelTypeField(Office365Contact, "HomeFax", telValue, telCount);
 				} else if (telCount["OtherFax"] <= 1) {
-					Office365Contact = addTelTypeField(Office365Contact, "OtherFax", telValue);
+					Office365Contact = addTelTypeField(Office365Contact, "OtherFax", telValue, telCount);
 				} else {
 					let fieldName = cardbookRepository.extension.localeData.localizeMessage("typesCategoryTelLabel");
 					aCard.tel.splice(index, 1);
 					aCard.note = aCard.note + "\r\n" + fieldName + " : " + telValue;
 				}
 			}
-			telCount[type]++;
 			index++;
 		}
 		for (let type in telCount) {
@@ -1519,9 +1467,9 @@ var cardbookSynchronizationOffice365 = {
 		Office365Contact = cardbookSynchronizationOffice365.addEntry(Office365Contact, "Contact", [], false);
 		Office365Contact = cardbookSynchronizationOffice365.addContent(Office365Contact, "DisplayName", [], aCard.fn);
 
-		Office365Contact = cardbookSynchronizationOffice365.addContent(Office365Contact, "FirstName", [], aCard.firstname);
+		Office365Contact = cardbookSynchronizationOffice365.addContent(Office365Contact, "GivenName", [], aCard.firstname);
 		Office365Contact = cardbookSynchronizationOffice365.addContent(Office365Contact, "MiddleName", [], aCard.othername);
-		Office365Contact = cardbookSynchronizationOffice365.addContent(Office365Contact, "LastName", [], aCard.lastname);
+		Office365Contact = cardbookSynchronizationOffice365.addContent(Office365Contact, "Surname", [], aCard.lastname);
 		Office365Contact = cardbookSynchronizationOffice365.addContent(Office365Contact, "FullName", [], aCard.fn);
 		Office365Contact = cardbookSynchronizationOffice365.addContent(Office365Contact, "Nickname", [], aCard.nickname);
 

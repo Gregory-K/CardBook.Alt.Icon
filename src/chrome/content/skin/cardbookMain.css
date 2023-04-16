@@ -231,21 +231,38 @@ treecol#cardIcon.cardIconHeader .treecol-sortdirection {
 	display: flex;
 	flex-direction: column;
 	flex-grow: 1;
-	justify-content: center;
 }
 .flex-grow-x {
 	display: flex;
 	flex-direction: row;
 	flex-grow: 1;
-	justify-content: center;
 }
 .fullline {
 	display: flex;
 	width: 100%;
 	align-items: center;
 }
+.fullline1 {
+	display: flex;
+	width: 100%;
+	justify-content: space-between;
+}
+.fullline2{
+	display: flex;
+	width: 100%;
+	flex-direction: row-reverse;
+}
 .hidden {
 	display: none;
+}
+.disabled {
+	color: graytext;
+}
+.overflow {
+	overflow: auto;
+}
+.nowrap {
+	white-space: nowrap;
 }
 
 .red {

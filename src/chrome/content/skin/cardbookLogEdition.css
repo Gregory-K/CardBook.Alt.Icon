@@ -1,6 +1,5 @@
 #logEditionTable {
 	min-width: 900px;
-	max-width: 900px;
 }
 
 .selectTree option[data-value='Warning'] {
@@ -10,3 +9,4 @@
 .selectTree option[data-value='Error'] {
 	background-color: #F5A9A9 !important;
 }
+

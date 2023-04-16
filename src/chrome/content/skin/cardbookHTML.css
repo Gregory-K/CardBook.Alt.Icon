@@ -1,12 +1,31 @@
-/* vertical alignment */
+label {
+    display: flex;
+    align-items: center;
+    flex-direction: row;
+}
+  
 .vbox {
     display: flex;
     flex-direction: column;
     justify-content: flex-start;
 }
 
-.vbox.centered {
+.vbox-buttons {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+
+.vcentered {
     justify-content: center;
+}
+
+.vleft {
+    justify-content: flex-start;
+}
+
+.vright {
+    justify-content: flex-end;
 }
 
 .vbox .separator,
@@ -19,26 +38,13 @@
     flex-direction: row;
 }
 
+.hbox .separator,
 .hbox .spacer {
     width: 10px;
 }
-  
-.hbox.centered {
+
+.hcentered {
     align-items: center;
-}
-
-/* <div class="hbox centered input-container">
-class indent
-class notification-inline
-test */
-
-html|fieldset > vbox {
-    vertical-align:top
-}
-
-fieldset[orient="horizontal"] > vbox,
-fieldset[orient="horizontal"] > checkbox {
-    display: inline-block;
 }
 
 .indent {
@@ -46,5 +52,15 @@ fieldset[orient="horizontal"] > checkbox {
 }
 
 select {
-    min-height: 26px;
+    max-width: 200px;
 }
+
+.tab-container section {
+	display: none;
+	padding: 6px 12px;
+	border-top: none;
+}
+.tab-container section.active {
+	display: block;
+}
+

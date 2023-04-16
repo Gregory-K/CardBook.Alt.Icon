@@ -24,12 +24,27 @@ var cardBookObserver = {
 		}
 	},
 	
-	observe: function(aSubject, aTopic, aData) {
+	observe: async function(aSubject, aTopic, aData) {
 		switch (aTopic) {
+			case "cardbook.AB.saveEditAB":
+				let editAccount = JSON.parse(aData);
+				await cardbookRepository.modifyAddressbook(editAccount);
+				break;
+			case "cardbook.AB.cancelEditAB":
+				cardbookRepository.cancelModifyAddressbook(aData);
+				break;
+			case "cardbook.AB.saveNewAB":
+				let newAccount = JSON.parse(aData);
+				await cardbookRepository.createAddressbook(newAccount);
+				break;
+			case "cardbook.AB.saveSearchAB":
+				let searchAccount = JSON.parse(aData);
+				await cardbookRepository.modifySearchAddressbook(searchAccount);
+				break;
 			case "cardbook.openTab":
 				ovl_cardbook.open();
 				break;
-			case "cardbook.preferencesChanged":
+			case "cardbook.pref.preferencesChanged":
 				if (!("undefined" == typeof(ovl_cardbook))) {
 					ovl_cardbook.reloadCardBookQFB();
 				}
@@ -66,7 +81,7 @@ var cardBookObserver = {
 				cardbookIDBSearch.openSearchDB();
 				break;
 			case "cardbook.searchDBOpen":
-				cardbookRepository.cardbookSynchronization.loadComplexSearchAccounts();
+				await cardbookRepository.cardbookSynchronization.loadComplexSearchAccounts();
 				break;
 			case "cardbook.complexSearchInitLoaded":
 				cardbookRepository.cardbookSynchronization.loadAccounts();

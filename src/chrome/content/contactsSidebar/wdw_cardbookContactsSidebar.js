@@ -163,7 +163,7 @@ if ("undefined" == typeof(wdw_cardbookContactsSidebar)) {
 			var searchAB = document.getElementById('CardBookABMenulist').value;
 			var searchCategory = document.getElementById('categoriesMenulist').value;
 			var searchInput = cardbookRepository.makeSearchString(document.getElementById('cardbookpeopleSearchInput').value);
-			var useOnlyEmail = cardbookRepository.cardbookPreferences.getBoolPref("extensions.cardbook.useOnlyEmail");
+			var useOnlyEmail = cardbookRepository.cardbookPrefs["useOnlyEmail"];
 			for (let account of cardbookRepository.cardbookAccounts) {
 				if (account[1] && account[5]) {
 					var myDirPrefId = account[4];
@@ -222,8 +222,8 @@ if ("undefined" == typeof(wdw_cardbookContactsSidebar)) {
 								for (var j in cardbookRepository.cardbookCardLongSearch[myDirPrefId]) {
 									if (j.includes(searchInput) || searchInput == "") {
 										for (let card of cardbookRepository.cardbookCardLongSearch[myDirPrefId][j]) {
-											if (((card.categories.find(searchArray) != undefined) && (cardbookRepository.cardbookUncategorizedCards != myCategory))
-												|| ((card.categories.length == 0) && (cardbookRepository.cardbookUncategorizedCards == myCategory))) {
+											if (((card.categories.find(searchArray) != undefined) && (cardbookRepository.cardbookPrefs["uncategorizedCards"] != myCategory))
+												|| ((card.categories.length == 0) && (cardbookRepository.cardbookPrefs["uncategorizedCards"] == myCategory))) {
 												if (wdw_cardbookContactsSidebar.catExclRestrictions[myDirPrefId]) {
 													var add = true;
 													for (var l in wdw_cardbookContactsSidebar.catExclRestrictions[myDirPrefId]) {
@@ -360,7 +360,7 @@ if ("undefined" == typeof(wdw_cardbookContactsSidebar)) {
 					}
 				}
 			}
-			if (!cardbookRepository.cardbookPreferences.getBoolPref("extensions.cardbook.exclusive")) {
+			if (!cardbookRepository.cardbookPrefs["exclusive"]) {
 				var lastnamefirst = Services.prefs.getIntPref("mail.addr_book.lastnamefirst");
 				for (let addrbook of MailServices.ab.directories) {
 					if (cardbookRepository.verifyABRestrictions(addrbook.dirPrefId, searchAB, wdw_cardbookContactsSidebar.ABExclRestrictions, wdw_cardbookContactsSidebar.ABInclRestrictions)) {
@@ -460,12 +460,12 @@ if ("undefined" == typeof(wdw_cardbookContactsSidebar)) {
 			}
 		},
 
-		deleteCard: function () {
+		deleteCard: async function () {
 			var listOfUid = wdw_cardbookContactsSidebar.getSelectedCards();
 			var AB =  MailServices.ab.getDirectoryFromId(listOfUid[0][2]);
 			for (var i = 0; i < listOfUid.length; i++) {
 				if (listOfUid[i][0] === "CARDCARDBOOK" || listOfUid[i][0] === "LISTCARDBOOK") {
-					wdw_cardbook.deleteCardsAndValidate([listOfUid[i][1]]);
+					await wdw_cardbook.deleteCardsAndValidate([listOfUid[i][1]]);
 				} else if (listOfUid[i][0] === "CATCARDBOOK") {
 					var myDirPrefId = cardbookRepository.cardbookUtils.getAccountId(listOfUid[i][1]);
 					var myCategory = cardbookRepository.cardbookUtils.getNodeName(listOfUid[i][1]);
@@ -529,7 +529,7 @@ if ("undefined" == typeof(wdw_cardbookContactsSidebar)) {
 				var myDirPrefId = myTmpArray[0];
 				var myNodeName = myTmpArray[myTmpArray.length - 1];
 				var myNodeType = myTmpArray[1];
-				wdw_cardbook.renameNode(myDirPrefId, listOfUid[0][1], myNodeName, myNodeType, true);
+				await wdw_cardbook.renameNode(myDirPrefId, listOfUid[0][1], myNodeName, myNodeType, true);
 			}
 			wdw_cardbookContactsSidebar.search();
 		},
@@ -571,7 +571,7 @@ if ("undefined" == typeof(wdw_cardbookContactsSidebar)) {
 						var myDirPrefId = cardbookRepository.cardbookUtils.getAccountId(listOfUid[0][1]);
 						if (cardbookRepository.cardbookPreferences.getReadOnly(myDirPrefId)) {
 							wdw_cardbookContactsSidebar.disableCardModification();
-						} else if (listOfUid[0][1] == myDirPrefId + "::categories::" + cardbookRepository.cardbookUncategorizedCards) {
+						} else if (listOfUid[0][1] == myDirPrefId + "::categories::" + cardbookRepository.cardbookPrefs["uncategorizedCards"]) {
 							wdw_cardbookContactsSidebar.disableCardDeletion();
 						} else {
 							wdw_cardbookContactsSidebar.enableCardModification();
@@ -622,14 +622,12 @@ if ("undefined" == typeof(wdw_cardbookContactsSidebar)) {
 			}
 			document.getElementById("abContextMenuButton").hidden=false;
 			cardBookSideBarObserver.register();
-			cardBookSideBarPrefObserver.register();
 			document.title = parent.document.getElementById("contactsTitle").value;
 			wdw_cardbookContactsSidebar.loadAB();
 		},
 		
 		unloadPanel: function () {
 			cardBookSideBarObserver.unregister();
-			cardBookSideBarPrefObserver.unregister();
 		},
 		
 		loadRestrictions: async function () {
@@ -667,7 +665,7 @@ if ("undefined" == typeof(wdw_cardbookContactsSidebar)) {
 			wdw_cardbookContactsSidebar.ABInclRestrictions["length"] = cardbookRepository.cardbookUtils.sumElements(wdw_cardbookContactsSidebar.ABInclRestrictions);
 		},
 		
-		loadAB: function () {
+		loadAB: function (aParams) {
 			wdw_cardbookContactsSidebar.loadRestrictions();
 			var ABList = document.getElementById('CardBookABMenulist');
 			var ABPopup = document.getElementById('CardBookABMenupopup');
@@ -676,9 +674,9 @@ if ("undefined" == typeof(wdw_cardbookContactsSidebar)) {
 			} else {
 				var ABDefaultValue = 0;
 			}
-			cardbookElementTools.loadAddressBooks(ABPopup, ABList, ABDefaultValue, cardbookRepository.cardbookPreferences.getBoolPref("extensions.cardbook.exclusive"), true, true, true, false,
+			cardbookElementTools.loadAddressBooks(ABPopup, ABList, ABDefaultValue, cardbookRepository.cardbookPrefs["exclusive"], true, true, true, false,
 													wdw_cardbookContactsSidebar.ABInclRestrictions, wdw_cardbookContactsSidebar.ABExclRestrictions);
-			wdw_cardbookContactsSidebar.onABChange();
+			wdw_cardbookContactsSidebar.onABChange(aParams);
 			
 			document.getElementById('cardbookpeopleSearchInput').placeholder = cardbookRepository.extension.localeData.localizeMessage("cardbookSearchInputDefault");
 		},
@@ -729,7 +727,7 @@ if ("undefined" == typeof(wdw_cardbookContactsSidebar)) {
 			}
 		},
 
-		onSearchEntered: function () {
+		onSearchEntered: async function () {
 			var myABValue = document.getElementById('CardBookABMenulist').value;
 			if (myABValue != "allAddressBooks") {
 				if (document.getElementById('CardBookABMenulist').selectedItem.getAttribute('ABtype') == "standard-abook") {
@@ -741,7 +739,7 @@ if ("undefined" == typeof(wdw_cardbookContactsSidebar)) {
 							return;
 						}
 						cardbookRepository.cardbookPreferences.setLastSearch(myABValue, mySearchValue);
-						cardbookRepository.cardbookSynchronization.searchRemote(myABValue, mySearchValue);
+						await cardbookRepository.cardbookSynchronization.searchRemote(myABValue, mySearchValue);
 					} else {
 						wdw_cardbookContactsSidebar.search();
 					}

@@ -114,14 +114,8 @@
 	"showForgottenLabel": {
 		"message": "Rodyti užmirštus dublikatus"
 	},
-	"showForgottenAccesskey": {
-		"message": "R"
-	},
 	"hideForgottenLabel": {
 		"message": "Slėpti užmirštus dublikatus"
-	},
-	"hideForgottenAccesskey": {
-		"message": "S"
 	},
 	"noContactsDuplicated": {
 		"message": "Nėra pasikartojančių kontaktų."
@@ -3309,6 +3303,12 @@
 	"toLowerCase": {
 		"message": "Paversti mažosiomis raidėmis"
 	},
+	"copy": {
+		"message": "Kopijuoti"
+	},
+	"paste": {
+		"message": "Įdėti"
+	},
 	"copyFieldValue": {
 		"message": "Kopijuoti ($P1$)",
         "placeholders": {
@@ -3369,7 +3369,7 @@
 	"wdw_cardbookConfigurationAddEmailsRestrictionTitle": {
 		"message": "Pranešimų paskyros apribojimo apibrėžimas"
 	},
-	"wdw_cardbookConfigurationAddEmailsCollectionTitle": {
+	"wdw_cardbookConfigurationAddEmailsEmailsCollectionTitle": {
 		"message": "Pranešimų paskyros išsiunčiamų laiškų rinkimo apibrėžimas"
 	},
 	"ignoreCaseIgnoreDiacriticLabel": {
@@ -3773,10 +3773,13 @@
 	},
 	"wizard.next.label": {
 		"message": "Kitas"
-	},	
+	},
 	"wizard.back.label": {
 		"message": "Atgal"
-	},	
+	},
+	"wizard.cancel.label": {
+		"message": "Atisakyti"
+	},
 	"wizard.create.label": {
 		"message": "Kartotis"
 	},
@@ -3800,9 +3803,6 @@
 	},
 	"initialPage.search.label": {
 		"message": "Ieškoti naudojant esamas adresų knygas"
-	},
-	"initialPage.find.label": {
-		"message": "??Search for remote address books??"
 	},
 	"localPage.type.description": {
 		"message": "Koks yra jūsų vietinės adresų knygos tipas? :"
@@ -3838,7 +3838,7 @@
 		"message": "Naršyti"
 	},
 	"remotePage.description": {
-		"message": "Koks jūsų nuotolinės adresų knygos tipas? (Atsargiai! Google“ neatitinka vCard“ standartų)"
+		"message": "Koks jūsų nuotolinės adresų knygos tipas?"
 	},
 	"remotePage.type.label": {
 		"message": "Tipo"
@@ -3891,7 +3891,7 @@
 	"rememberPassword": {
 		"message": "Naudoti slaptažodžių tvarkytuvę šiam slaptažodžiui įsiminti"
 	},
-	"showHidePassword.tooltip": {
+	"showHidePassword": {
 		"message": "Rodyti / slėpti slaptažodį*-9"
 	},
 	"remotePage.validatebutton.label": {
@@ -3903,20 +3903,11 @@
 	"abSearchHeading.label": {
 		"message": "Kur ieškoti:"
 	},
-	"abSearchHeading.accesskey": {
-		"message": "K"
-	},
 	"matchAll.label": {
 		"message": "visos sąlygos"
 	},
-	"matchAll.accesskey": {
-		"message": "v"
-	},
 	"matchAny.label": {
 		"message": "bent viena iš sąlygų"
-	},
-	"matchAny.accesskey": {
-		"message": "b"
 	},
 	"googleOauthPage.wizard.description": {
 		"message": "„Google“ autentifikavimas"
@@ -3969,9 +3960,6 @@
 	"name.ABedit.label": {
 		"message": "Vardas:"
 	},
-	"name.ABedit.accesskey": {
-		"message": "V"
-	},
 	"nodesLabel": {
 		"message": "??Nodes:??"
 	},
@@ -3993,9 +3981,6 @@
 	"readonlyLabel": {
 		"message": "Tik skaitymo režimas"
 	},
-	"readonlyAccesskey": {
-		"message": "T"
-	},
 	"urnuuidLabel": {
 		"message": "Naudokite urn:uuid"
 	},
@@ -4008,14 +3993,8 @@
 	"autoSyncLabel": {
 		"message": "Įgalinti periodinę sinchronizaciją"
 	},
-	"autoSyncAccesskey": {
-		"message": "g"
-	},
 	"autoSyncIntervalLabel": {
 		"message": "Periodinio sinchronizavimo intervalas (minutės):"
-	},
-	"autoSyncIntervalAccesskey": {
-		"message": "į"
 	},
 	"miscTabLabel": {
 		"message": "Įvairūs"
@@ -4026,20 +4005,11 @@
 	"fnFormulaLabel": {
 		"message": "Sukurti rodomo pavadinimą:"
 	},
-	"fnFormulaAccesskey": {
-		"message": "ą"
-	},
 	"resetFnFormulaLabel": {
 		"message": "Atstatyti numatytąjį"
 	},
-	"resetFnFormulaAccesskey": {
-		"message": "A"
-	},
 	"applyToABButtonLabel": {
 		"message": "??Apply to…??"
-	},
-	"applyToABButtonAccesskey": {
-		"message": "A"
 	},
 	"wdw_adrEditionTitle": {
 		"message": "Adreso redaktorius"
@@ -4173,53 +4143,26 @@
 	"autocompletionLabel": {
 		"message": "Elektroninio pašto adresų automatinis prirašymas"
 	},
-	"autocompletionAccesskey": {
-		"message": "E"
-	},
-	"autocompletionTooltip": {
-		"message": "Išplečia standartinį adresų knygos „Thunderbird“ automatinį užpildymą, kai „Kontaktų“ adresų knygos adresai automatiškai užbaigiami."
-	},
 	"autocompleteSortByPopularityLabel": {
 		"message": "Rūšiuoti el. pašto adresus pagal populiarumą"
-	},
-	"autocompleteSortByPopularityAccesskey": {
-		"message": "p"
 	},
 	"autocompleteProposeConcatEmailsLabel": {
 		"message": "Siūlome susietus elektroniniai laiškai laiškus vienam adresatui"
 	},
-	"autocompleteProposeConcatEmailsAccesskey": {
-		"message": "S"
-	},
 	"autocompleteShowAddressbookLabel": {
 		"message": "Rodyti adresų knygos pavadinimą"
-	},
-	"autocompleteShowAddressbookAccesskey": {
-		"message": "R"
 	},
 	"autocompleteShowEmailTypeLabel": {
 		"message": "??Show email type??"
 	},
-	"autocompleteShowEmailTypeAccesskey": {
-		"message": "e"
-	},
 	"autocompleteShowPopularityLabel": {
 		"message": "??Show popularity??"
-	},
-	"autocompleteShowPopularityAccesskey": {
-		"message": "y"
 	},
 	"autocompleteWithColorLabel": {
 		"message": "Naudokite adresų knygos spalvą"
 	},
-	"autocompleteWithColorAccesskey": {
-		"message": "N"
-	},
 	"autocompleteRestrictSearchLabel": {
 		"message": "Apriboti paieškos laukus"
-	},
-	"autocompleteRestrictSearchAccesskey": {
-		"message": "p"
 	},
 	"chooseAutocompleteRestrictSearchFieldsButtonLabel": {
 		"message": "Keisti"
@@ -4256,12 +4199,6 @@
 	},
 	"exclusiveLabel": {
 		"message": "Unikalus kontaktų šaltinis"
-	},
-	"exclusiveAccesskey": {
-		"message": "U"
-	},
-	"exclusiveTooltip": {
-		"message": "Jei ši funkcija išjungta, ši parinktis leidžia iš „Thunderbird“ standartinių adresų knygų gauti kontaktų geltonosioms žvaigždutėms, el. Pašto pavadinimui ir elektroninio pašto automatinio užbaigimo funkcijoms."
 	},
 	"accountsRestrictionsLabel": {
 		"message": "Pranešimų paskyros apribojimai"
@@ -4341,12 +4278,6 @@
 	"debugModeLabel": {
 		"message": "Derinimo režimas"
 	},
-	"debugModeAccesskey": {
-		"message": "D"
-	},
-	"debugModeTooltip": {
-		"message": "Įgalinti derinimo režimą, jei norima pratęsti registravimą."
-	},
 	"statusInformationLineNumberLabel": {
 		"message": "Žurnalo faile laikomų eilučių skaičius:"
 	},
@@ -4365,26 +4296,14 @@
 	"listTab.conf.label": {
 		"message": "Sąrašai"
 	},
-	"listTab.conf.accesskey": {
-		"message": "S"
-	},
 	"technicalTab.conf.label": {
 		"message": "Techninis"
-	},
-	"technicalTab.conf.accesskey": {
-		"message": "T"
 	},
 	"vCardTab.conf.label": {
 		"message": "vCard"
 	},
-	"vCardTab.conf.accesskey": {
-		"message": "v"
-	},
 	"keyTab.conf.label": {
 		"message": "??Public Keys??"
-	},
-	"keyTab.conf.accesskey": {
-		"message": "r"
 	},
 	"advancedTab1Label": {
 		"message": "Išplėstinė"
@@ -4482,9 +4401,6 @@
 	"preferEmailEditionLabel": {
 		"message": "Spustelėjant kontaktą dukart, tai leidžia redaguoti kontaktą, o ne el. pašto žinutes"
 	},
-	"preferEmailEditionAccesskey": {
-		"message": "S"
-	},
 	"dateDisplayedFormatLabel": {
 		"message": "Datos formatas:"
 	},
@@ -4493,9 +4409,6 @@
 	},
 	"defaultRegionLabel": {
 		"message": "??Default Region:??"
-	},
-	"defaultRegionAccesskey": {
-		"message": "D"
 	},
 	"defaultRegionTooltip": {
 		"message": "??Default region for addresses and formatting phone numbers.??"
@@ -4641,9 +4554,6 @@
 	"preferIMPPPrefLabel": {
 		"message": "Nustatyti pirmenybę internetiniams pokalbiams, pažymėtiems P raide"
 	},
-	"preferIMPPPrefAccesskey": {
-		"message": "P"
-	},
 	"preferIMPPPrefWarn": {
 		"message": "Jei nė vienas adresas nėra pažymėtas, siūlyti prisijungti prie visų kontakto adresų."
 	},
@@ -4707,9 +4617,6 @@
 	"URLPhoneBackgroundLabel": {
 		"message": "??Run in background??"
 	},
-	"URLPhoneBackgroundAccesskey": {
-		"message": "S"
-	},
 	"encryptionGroupboxLabel": {
 		"message": "Šifravimas"
 	},
@@ -4718,9 +4625,6 @@
 	},
 	"localDataEncryptionEnabledLabel": {
 		"message": "??Encrypt locally cached cards??"
-	},
-	"localDataEncryptionEnabledAccesskey": {
-		"message": "E"
 	},
 	"customFieldRankHeaderLabel": {
 		"message": "Reitingas"
@@ -4771,7 +4675,7 @@
 		"message": "Lauko etiketė"
 	},
 	"listPanelLabel": {
-		"message": "Jei jūsų serveryje nepalaikomos kategorijos (pvz., „Google“, „Apple“, „Zimbra“ ir kt.), Sąrašai yra geras būdas siųsti el. laiškus grupėms. „vCard 3.0“ iš esmės nepalaiko sąrašų, tačiau tai gali būti padaryta naudojant tinkintus laukus, taigi, jei norite naudoti sąrašus „vCard 3.0“, turite apibrėžti šiuos laukus."
+		"message": "Jei jūsų serveryje nepalaikomos kategorijos (pvz., „Apple“, „Zimbra“ ir kt.), Sąrašai yra geras būdas siųsti el. laiškus grupėms. „vCard 3.0“ iš esmės nepalaiko sąrašų, tačiau tai gali būti padaryta naudojant tinkintus laukus, taigi, jei norite naudoti sąrašus „vCard 3.0“, turite apibrėžti šiuos laukus."
 	},
 	"listGroupboxLabel": {
 		"message": "Tinkinti laukai sąrašams"
@@ -4803,14 +4707,8 @@
 	"syncAfterChangeLabel": {
 		"message": "??Synchronize after changes??"
 	},
-	"syncAfterChangeAccesskey": {
-		"message": "c"
-	},
 	"initialSyncLabel": {
 		"message": "Paleisti „Thunderbird“ sinchronizavimą kai programa pradeda."
-	},
-	"initialSyncAccesskey": {
-		"message": "P"
 	},
 	"initialSyncDelayLabel": {
 		"message": "Pradinio sinchronizavimo delsimas (sekundės):"
@@ -4872,17 +4770,11 @@
 	"decodeReportLabel": {
 		"message": "Dekoduoti URL dėl ataskaitų užklausų"
 	},
-	"decodeReportAccesskey": {
-		"message": "D"
-	},
 	"miscEmailGroupboxLabel": {
 		"message": "Elektroninių pašto žinučių siuntimas"
 	},
 	"preferEmailPrefLabel": {
 		"message": "Naudoti el. pašto adresus, pažymėtus:"
-	},
-	"preferEmailPrefAccesskey": {
-		"message": "p"
 	},
 	"preferEmailPrefWarn": {
 		"message": "Jei nė vienas adresas nėra pažymėtas, pranešimas siunčiamas visiems adresato adresams."
@@ -4890,14 +4782,8 @@
 	"warnEmptyEmailsLabel": {
 		"message": "Įspėti mane, kai bandau išsiųsti el. pašto žinutę be el. pašto adreso"
 	},
-	"warnEmptyEmailsAccesskey": {
-		"message": "s"
-	},
 	"useOnlyEmailLabel": {
 		"message": "Naudokite tik el. pašto adresus, be jų rodomų vardų"
-	},
-	"useOnlyEmailAccesskey": {
-		"message": "N"
 	},
 	"attachVCardWarn": {
 		"message": "Norėdami automatiškai pridėti „vCard“ prie savo el. pašto žinučių, pasirinkite kiekvienos el. pašto paskyros vCard. Jei programa „Kontaktai“ įjungta, ji pridės šią „vCard“ prie kiekvieno siunčiamo el. pašto iš šios paskyros."
@@ -4956,26 +4842,14 @@
 	"bday.conf.label": {
 		"message": "Gimimo diena"
 	},
-	"bday.conf.accesskey": {
-		"message": "G"
-	},
 	"anniversary.conf.label": {
 		"message": "Jubiliejus (tik „vCard 4.0“)"
-	},
-	"anniversary.conf.accesskey": {
-		"message": "J"
 	},
 	"deathdate.conf.label": {
 		"message": "Mirties data (tik „vCard 4.0“)"
 	},
-	"deathdate.conf.accesskey": {
-		"message": "M"
-	},
 	"eventsLabel": {
 		"message": "Įvykius"
-	},
-	"eventsAccesskey": {
-		"message": "Į"
 	},
 	"gender.conf.label": {
 		"message": "Lytis (tik „vCard 4.0“)"
@@ -5007,14 +4881,8 @@
 	"showPopupOnStartupLabel": {
 		"message": "Rodyti iššokantį langelį kai programa prasideda"
 	},
-	"showPopupOnStartupAccesskey": {
-		"message": "R"
-	},
 	"showPeriodicPopupLabel": {
 		"message": "Rodyti iššokantį langelį kasdien"
-	},
-	"showPeriodicPopupAccesskey": {
-		"message": "d"
 	},
 	"periodicPopupTimeLabel": {
 		"message": "Ekrane rodomas laikas (vv:mm):"
@@ -5024,9 +4892,6 @@
 	},
 	"showPopupEvenIfNoBirthdayLabel": {
 		"message": "Rodyti iššokantį langelį, kai jubiliejų sąrašas tuščias"
-	},
-	"showPopupEvenIfNoBirthdayAccesskey": {
-		"message": "š"
 	},
 	"remindViaLightningGroupboxLabel": {
 		"message": "Priminti per „Thunderbird Lightning Calendar Extension“"
@@ -5039,9 +4904,6 @@
 	},
 	"syncWithLightningOnStartupLabel": {
 		"message": "Programai pradedant, paleisti sinchronizavimas su „Lightning“"
-	},
-	"syncWithLightningOnStartupAccesskey": {
-		"message": "L"
 	},
 	"calendarEntryTitleLabel": {
 		"message": "Kalendorinio įvykio pavadinimas:"
@@ -5061,9 +4923,6 @@
 	"calendarRepeatingEventLabel": {
 		"message": "Pasikartojantis įvykis"
 	},
-	"calendarRepeatingEventAccesskey": {
-		"message": "v"
-	},
 	"calendarEntryTimeLabel": {
 		"message": "Kalendoriaus įvykio laikas (vv:mm):"
 	},
@@ -5072,9 +4931,6 @@
 	},
 	"calendarEntryWholeDayLabel": {
 		"message": "Kalendoriaus įvykis visą dieną"
-	},
-	"calendarEntryWholeDayAccesskey": {
-		"message": "v"
 	},
 	"calendarEntryAlarmLabel": {
 		"message": "Signalai iki n valandų kalendoriniams įvykiams (Pavyzdys: 4,+1):"
@@ -5835,9 +5691,6 @@
 	"viewResultEditionLabel": {
 		"message": "Peržiūrėti rezultatą"
 	},
-	"viewResultEditionAccesskey": {
-		"message": "P"
-	},
 	"previousEditButton.tooltip": {
 		"message": "Ankstesnis"
 	},
@@ -5883,20 +5736,11 @@
 	"moreEditionLabel": {
 		"message": "Rodyti daugiau"
 	},
-	"moreEditionAccesskey": {
-		"message": "d"
-	},
 	"lessEditionLabel": {
 		"message": "Rodyti mažiau"
 	},
-	"lessEditionAccesskey": {
-		"message": "m"
-	},
 	"mergeAllEditionLabel": {
 		"message": "??Merge All??"
-	},
-	"mergeAllEditionAccesskey": {
-		"message": "M"
 	},
 	"formatAllEditionLabel": {
 		"message": "??Format all??"
@@ -5906,9 +5750,6 @@
 	},
 	"undoAllEditionLabel": {
 		"message": "??Undo all??"
-	},
-	"undoAllEditionAccesskey": {
-		"message": "U"
 	},
 	"formatEditionLabel": {
 		"message": "??Format??"
@@ -5951,9 +5792,6 @@
 	},
 	"convertVCardsTooltip": {
 		"message": "??The vCard version of some contacts is different from the vCard version of your address book, this button may convert these vCards??"
-	},
-	"convertVCardsAccesskey": {
-		"message": "C"
 	},
 	"wdw_findDuplicatesTitle": {
 		"message": "Pasikartojantys kontaktai ($P1$)",
@@ -6016,26 +5854,14 @@
 	"refreshLogEditionLabel": {
 		"message": "Atnaujinti"
 	},
-	"refreshLogEditionAccesskey": {
-		"message": "A"
-	},
 	"flushLogEditionLabel": {
 		"message": "Ištuštinti sąrašą"
-	},
-	"flushLogEditionAccesskey": {
-		"message": "š"
 	},
 	"clipboardLogEditionLabel": {
 		"message": "Kopijuoti į iškarpinę"
 	},
-	"clipboardLogEditionAccesskey": {
-		"message": "K"
-	},
 	"cancelLogEditionLabel": {
 		"message": "Gerai"
-	},
-	"cancelLogEditionAccesskey": {
-		"message": "G"
 	},
 	"wdw_mergeCardsTitle": {
 		"message": "Sujungti kontaktus"
@@ -6064,6 +5890,30 @@
 	"wdw_cardbookConfigurationEditFieldTitle": {
 		"message": "??Choose a conversion function??"
 	},
+	"ContainsOperator": {
+		"message": "turi"
+	},
+	"DoesntContainOperator": {
+		"message": "neturi"
+	},
+	"IsOperator": {
+		"message": "yra"
+	},
+	"IsntOperator": {
+		"message": "nėra"
+	},
+	"BeginsWithOperator": {
+		"message": "prasideda"
+	},
+	"EndsWithOperator": {
+		"message": "baigiasi"
+	},
+	"IsEmptyOperator": {
+		"message": "yra tuščias"
+	},
+	"IsntEmptyOperator": {
+		"message": "nėra tuščias"
+	},
 	"uppercaseLabel": {
 		"message": "??Uppercase??"
 	},
@@ -6072,5 +5922,821 @@
 	},
 	"capitalizationLabel": {
 		"message": "??Capitalization??"
+	},
+	"region-name-ad": {
+		"message": "Andora"
+	},
+	"region-name-ae": {
+		"message": "Jungtiniai Arabų Emyratai"
+	},
+	"region-name-af": {
+		"message": "Afganistanas"
+	},
+	"region-name-ai": {
+		"message": "Angilija"
+	},
+	"region-name-al": {
+		"message": "Albanija"
+	},
+	"region-name-ag": {
+		"message": "Antigva ir Barbuda"
+	},
+	"region-name-am": {
+		"message": "Armėmija"
+	},
+	"region-name-ar": {
+		"message": "Argentina"
+	},
+	"region-name-aq": {
+		"message": "Antarktida"
+	},
+	"region-name-ao": {
+		"message": "Angola"
+	},
+	"region-name-at": {
+		"message": "Austrija"
+	},
+	"region-name-az": {
+		"message": "Azerbaidžanas"
+	},
+	"region-name-ba": {
+		"message": "Bosnija ir Hercegovina"
+	},
+	"region-name-bb": {
+		"message": "Barbadosas"
+	},
+	"region-name-as": {
+		"message": "Amerikos Samoa"
+	},
+	"region-name-au": {
+		"message": "Australija"
+	},
+	"region-name-bd": {
+		"message": "Bangladešas"
+	},
+	"region-name-be": {
+		"message": "Belgija"
+	},
+	"region-name-aw": {
+		"message": "Aruba"
+	},
+	"region-name-bf": {
+		"message": "Burkina Fasas"
+	},
+	"region-name-bm": {
+		"message": "Bermudai"
+	},
+	"region-name-bj": {
+		"message": "Beninas"
+	},
+	"region-name-bg": {
+		"message": "Bulgarija"
+	},
+	"region-name-bi": {
+		"message": "Burundis"
+	},
+	"region-name-bh": {
+		"message": "Bahreinas"
+	},
+	"region-name-bl": {
+		"message": "Šv. Bartolomėjaus sala"
+	},
+	"region-name-bn": {
+		"message": "Brunėjus"
+	},
+	"region-name-bo": {
+		"message": "Bolivija"
+	},
+	"region-name-br": {
+		"message": "Brazilija"
+	},
+	"region-name-bq": {
+		"message": "Boneras, Sint Eustatijus ir Saba"
+	},
+	"region-name-bt": {
+		"message": "Butanas"
+	},
+	"region-name-bs": {
+		"message": "Bahamos"
+	},
+	"region-name-bz": {
+		"message": "Belizas"
+	},
+	"region-name-ca": {
+		"message": "Kanada"
+	},
+	"region-name-cc": {
+		"message": "Kokosų (Kylingo) salos"
+	},
+	"region-name-by": {
+		"message": "Baltarusija"
+	},
+	"region-name-cd": {
+		"message": "Kongo Demokratinė Respublika (Kongas-Kinšasa)"
+	},
+	"region-name-cf": {
+		"message": "Centrinės Afrikos Respublika"
+	},
+	"region-name-bv": {
+		"message": "Buvė sala"
+	},
+	"region-name-bw": {
+		"message": "Botsvana"
+	},
+	"region-name-cl": {
+		"message": "Čilė"
+	},
+	"region-name-ci": {
+		"message": "Dramblio Kaulo Krantas"
+	},
+	"region-name-ch": {
+		"message": "Šveicarija"
+	},
+	"region-name-cm": {
+		"message": "Kamerūnas"
+	},
+	"region-name-ck": {
+		"message": "Kuko salos"
+	},
+	"region-name-cg": {
+		"message": "Kongo Respublika (Kongas-Brazavilis)"
+	},
+	"region-name-cn": {
+		"message": "Kinija"
+	},
+	"region-name-cp": {
+		"message": "Klipertono sala"
+	},
+	"region-name-co": {
+		"message": "Kolumbija"
+	},
+	"region-name-cr": {
+		"message": "Kosta Rika"
+	},
+	"region-name-cz": {
+		"message": "Čekija"
+	},
+	"region-name-cy": {
+		"message": "Kipras"
+	},
+	"region-name-cx": {
+		"message": "Kalėdų sala"
+	},
+	"region-name-cv": {
+		"message": "Žaliasis Kyšulys"
+	},
+	"region-name-cu": {
+		"message": "Kuba"
+	},
+	"region-name-cw": {
+		"message": "Kiurasao"
+	},
+	"region-name-de": {
+		"message": "Vokietija"
+	},
+	"region-name-dg": {
+		"message": "Diego Garsija"
+	},
+	"region-name-dk": {
+		"message": "Danija"
+	},
+	"region-name-dj": {
+		"message": "Džibutis"
+	},
+	"region-name-dm": {
+		"message": "Dominika"
+	},
+	"region-name-ec": {
+		"message": "Ekvadoras"
+	},
+	"region-name-dz": {
+		"message": "Alžyras"
+	},
+	"region-name-do": {
+		"message": "Dominikos Respublika"
+	},
+	"region-name-ee": {
+		"message": "Estija"
+	},
+	"region-name-eg": {
+		"message": "Egiptas"
+	},
+	"region-name-eh": {
+		"message": "Vakarų Sachara"
+	},
+	"region-name-et": {
+		"message": "Etiopija"
+	},
+	"region-name-er": {
+		"message": "Eritrėja"
+	},
+	"region-name-es": {
+		"message": "Ispanija"
+	},
+	"region-name-fi": {
+		"message": "Suomija"
+	},
+	"region-name-fj": {
+		"message": "Fidžis"
+	},
+	"region-name-fm": {
+		"message": "Mikronezijos Federacinės Valstijos"
+	},
+	"region-name-fk": {
+		"message": "Folklando (Malvinų) salos"
+	},
+	"region-name-fo": {
+		"message": "Farerų salos"
+	},
+	"region-name-ge": {
+		"message": "Gruzija"
+	},
+	"region-name-gb": {
+		"message": "Jungtinė Karalystė"
+	},
+	"region-name-gd": {
+		"message": "Grenada"
+	},
+	"region-name-fr": {
+		"message": "Prancūzija"
+	},
+	"region-name-ga": {
+		"message": "Gabonas"
+	},
+	"region-name-gf": {
+		"message": "Prancūzų Gviana"
+	},
+	"region-name-gl": {
+		"message": "Grenlandija"
+	},
+	"region-name-gm": {
+		"message": "Gambija"
+	},
+	"region-name-gi": {
+		"message": "Gibraltarqw"
+	},
+	"region-name-gg": {
+		"message": "Guernsis"
+	},
+	"region-name-gh": {
+		"message": "Gana"
+	},
+	"region-name-gn": {
+		"message": "Gvinėja"
+	},
+	"region-name-gp": {
+		"message": "Gvadelupa"
+	},
+	"region-name-gr": {
+		"message": "Graikija"
+	},
+	"region-name-gq": {
+		"message": "Pusiaujo Gvinėja"
+	},
+	"region-name-gt": {
+		"message": "Gvatemala"
+	},
+	"region-name-gw": {
+		"message": "Bisau Gvinėja"
+	},
+	"region-name-hk": {
+		"message": "Honkongas"
+	},
+	"region-name-gu": {
+		"message": "Guamas"
+	},
+	"region-name-gs": {
+		"message": "Pietų Džordžija ir Pietų Sandvičo salos"
+	},
+	"region-name-gy": {
+		"message": "Gajana"
+	},
+	"region-name-hm": {
+		"message": "Herdo ir Makdonaldo salos"
+	},
+	"region-name-ht": {
+		"message": "Haitis"
+	},
+	"region-name-hr": {
+		"message": "Kroatija"
+	},
+	"region-name-hn": {
+		"message": "Hondūras"
+	},
+	"region-name-in": {
+		"message": "Indija"
+	},
+	"region-name-il": {
+		"message": "Izraelis"
+	},
+	"region-name-im": {
+		"message": "Meno sala"
+	},
+	"region-name-ie": {
+		"message": "Airija"
+	},
+	"region-name-hu": {
+		"message": "Vengrija"
+	},
+	"region-name-id": {
+		"message": "Indonezija"
+	},
+	"region-name-io": {
+		"message": "Britų teritorija Indijos vandenyne"
+	},
+	"region-name-ir": {
+		"message": "Iranas"
+	},
+	"region-name-is": {
+		"message": "Islandija"
+	},
+	"region-name-iq": {
+		"message": "Irakas"
+	},
+	"region-name-je": {
+		"message": "Džersis"
+	},
+	"region-name-jp": {
+		"message": "Japonija"
+	},
+	"region-name-it": {
+		"message": "Italija"
+	},
+	"region-name-ke": {
+		"message": "Kenija"
+	},
+	"region-name-jo": {
+		"message": "Jordanija"
+	},
+	"region-name-jm": {
+		"message": "Jamaika"
+	},
+	"region-name-kg": {
+		"message": "Kirgizija"
+	},
+	"region-name-ki": {
+		"message": "Kiribatis"
+	},
+	"region-name-kh": {
+		"message": "Kambodža"
+	},
+	"region-name-km": {
+		"message": "Komorai"
+	},
+	"region-name-kn": {
+		"message": "Sent Kitsas ir Nevis"
+	},
+	"region-name-ky": {
+		"message": "Kaimanų salos"
+	},
+	"region-name-kp": {
+		"message": "Šiaurės Korėja"
+	},
+	"region-name-kr": {
+		"message": "Pietų Korėja"
+	},
+	"region-name-kw": {
+		"message": "Kuveitas"
+	},
+	"region-name-kz": {
+		"message": "Kazachija"
+	},
+	"region-name-la": {
+		"message": "Laosas"
+	},
+	"region-name-lb": {
+		"message": "Libanas"
+	},
+	"region-name-lc": {
+		"message": "Sent Lusija"
+	},
+	"region-name-li": {
+		"message": "Lichtenšteinas"
+	},
+	"region-name-lk": {
+		"message": "Šri Lanka"
+	},
+	"region-name-lr": {
+		"message": "Liberija"
+	},
+	"region-name-lu": {
+		"message": "Liuksemburgas"
+	},
+	"region-name-lv": {
+		"message": "Latvija"
+	},
+	"region-name-ls": {
+		"message": "Lesotas"
+	},
+	"region-name-ly": {
+		"message": "Libija"
+	},
+	"region-name-lt": {
+		"message": "Lietuva"
+	},
+	"region-name-mc": {
+		"message": "Monakas"
+	},
+	"region-name-md": {
+		"message": "Moldovos Respublika"
+	},
+	"region-name-ma": {
+		"message": "Marokas"
+	},
+	"region-name-me": {
+		"message": "Juodkalnija"
+	},
+	"region-name-mf": {
+		"message": "Sen Martenas"
+	},
+	"region-name-mg": {
+		"message": "Madagaskaras"
+	},
+	"region-name-mh": {
+		"message": "Maršalo salos"
+	},
+	"region-name-mk": {
+		"message": "Makedonija"
+	},
+	"region-name-ml": {
+		"message": "Malis"
+	},
+	"region-name-mm": {
+		"message": "Mianmaras (Birma)"
+	},
+	"region-name-mn": {
+		"message": "Mongolija"
+	},
+	"region-name-mo": {
+		"message": "Makao"
+	},
+	"region-name-mp": {
+		"message": "Marianos šiaurinės salos"
+	},
+	"region-name-mt": {
+		"message": "Malta"
+	},
+	"region-name-mu": {
+		"message": "Mauricijus"
+	},
+	"region-name-mr": {
+		"message": "Mauritanija"
+	},
+	"region-name-ms": {
+		"message": "Montseratas"
+	},
+	"region-name-mq": {
+		"message": "Martinika"
+	},
+	"region-name-mv": {
+		"message": "Maldyvai"
+	},
+	"region-name-mw": {
+		"message": "Malavis"
+	},
+	"region-name-my": {
+		"message": "Malaizija"
+	},
+	"region-name-mx": {
+		"message": "Meksika"
+	},
+	"region-name-mz": {
+		"message": "Mozambikas"
+	},
+	"region-name-na": {
+		"message": "Namibija"
+	},
+	"region-name-nc": {
+		"message": "Naujoji Kaledonija"
+	},
+	"region-name-ne": {
+		"message": "Nigeris"
+	},
+	"region-name-nf": {
+		"message": "Norfolko sala"
+	},
+	"region-name-ng": {
+		"message": "Nigerija"
+	},
+	"region-name-ni": {
+		"message": "Nikaragva"
+	},
+	"region-name-nl": {
+		"message": "Nyderlandai"
+	},
+	"region-name-no": {
+		"message": "Norvegija"
+	},
+	"region-name-np": {
+		"message": "Nepalas"
+	},
+	"region-name-nr": {
+		"message": "Nauru"
+	},
+	"region-name-pk": {
+		"message": "Pakistanas"
+	},
+	"region-name-pl": {
+		"message": "Lenkija"
+	},
+	"region-name-nz": {
+		"message": "Naujoji Zelandija"
+	},
+	"region-name-ph": {
+		"message": "Filipinai"
+	},
+	"region-name-nu": {
+		"message": "Niujės sala"
+	},
+	"region-name-om": {
+		"message": "Omanas"
+	},
+	"region-name-pe": {
+		"message": "Peru"
+	},
+	"region-name-pa": {
+		"message": "Panama"
+	},
+	"region-name-pf": {
+		"message": "Prancūzijos Polinezija"
+	},
+	"region-name-pg": {
+		"message": "Papua Naujoji Gvinėja"
+	},
+	"region-name-pm": {
+		"message": "Sent Pjeras ir Mikelonas"
+	},
+	"region-name-pn": {
+		"message": "Pitkerno salos"
+	},
+	"region-name-pr": {
+		"message": "Puerto Rikas"
+	},
+	"region-name-pt": {
+		"message": "Portugalija"
+	},
+	"region-name-pw": {
+		"message": "Palau"
+	},
+	"region-name-qm": {
+		"message": "Midvėjaus salos"
+	},
+	"region-name-py": {
+		"message": "Paragvajus"
+	},
+	"region-name-qa": {
+		"message": "Kataras"
+	},
+	"region-name-qs": {
+		"message": "Bassas da India"
+	},
+	"region-name-qu": {
+		"message": "Juan de Nova sala"
+	},
+	"region-name-qw": {
+		"message": "Veiko sala"
+	},
+	"region-name-qx": {
+		"message": "Glorioso salos"
+	},
+	"region-name-rs": {
+		"message": "Serbija"
+	},
+	"region-name-ro": {
+		"message": "Rumunija"
+	},
+	"region-name-qz": {
+		"message": "Akrotiris"
+	},
+	"region-name-re": {
+		"message": "Reunionas"
+	},
+	"region-name-rw": {
+		"message": "Ruanda"
+	},
+	"region-name-ru": {
+		"message": "Rusija"
+	},
+	"region-name-sa": {
+		"message": "Saudo Arabija"
+	},
+	"region-name-sb": {
+		"message": "Saliamono salos"
+	},
+	"region-name-sc": {
+		"message": "Seišeliai"
+	},
+	"region-name-sd": {
+		"message": "Sudanas"
+	},
+	"region-name-se": {
+		"message": "Švedija"
+	},
+	"region-name-sg": {
+		"message": "Singapūras"
+	},
+	"region-name-sh": {
+		"message": "Šv. Elenos, Dangun Žengimo ir Tristano da Kunjos salos"
+	},
+	"region-name-si": {
+		"message": "Slovėnija"
+	},
+	"region-name-sk": {
+		"message": "Slovakija"
+	},
+	"region-name-sl": {
+		"message": "Siera Leonė"
+	},
+	"region-name-sn": {
+		"message": "Senegalas"
+	},
+	"region-name-sm": {
+		"message": "San Marinas"
+	},
+	"region-name-ss": {
+		"message": "Pietų Sudanas"
+	},
+	"region-name-so": {
+		"message": "Somalis"
+	},
+	"region-name-sr": {
+		"message": "Surinamas"
+	},
+	"region-name-sx": {
+		"message": "Sint Martenas"
+	},
+	"region-name-st": {
+		"message": "San Tomė ir Prinsipė"
+	},
+	"region-name-sv": {
+		"message": "Salvadoras"
+	},
+	"region-name-sy": {
+		"message": "Sirija"
+	},
+	"region-name-sz": {
+		"message": "Svazilandas"
+	},
+	"region-name-tc": {
+		"message": "Terkso ir Kaiko salos"
+	},
+	"region-name-td": {
+		"message": "Čadas"
+	},
+	"region-name-tg": {
+		"message": "Togas"
+	},
+	"region-name-th": {
+		"message": "Tailandas"
+	},
+	"region-name-tf": {
+		"message": "Prancūzijos Pietų ir Antarkties žemės"
+	},
+	"region-name-tj": {
+		"message": "Tadžikistanas"
+	},
+	"region-name-tk": {
+		"message": "Tokelau"
+	},
+	"region-name-tl": {
+		"message": "Rytų Timoras"
+	},
+	"region-name-tr": {
+		"message": "Turkija"
+	},
+	"region-name-tn": {
+		"message": "Tunisas"
+	},
+	"region-name-to": {
+		"message": "Tonga"
+	},
+	"region-name-tm": {
+		"message": "Turkmėnistanas"
+	},
+	"region-name-tt": {
+		"message": "Trinidadas"
+	},
+	"region-name-tv": {
+		"message": "Tuvalu"
+	},
+	"region-name-tw": {
+		"message": "Taivanis"
+	},
+	"region-name-tz": {
+		"message": "Tanzanija"
+	},
+	"region-name-ua": {
+		"message": "Ukraina"
+	},
+	"region-name-ug": {
+		"message": "Uganda"
+	},
+	"region-name-us": {
+		"message": "Jungtinės Amerikos Valstijos"
+	},
+	"region-name-uy": {
+		"message": "Urugvajus"
+	},
+	"region-name-va": {
+		"message": "Vatikanas"
+	},
+	"region-name-uz": {
+		"message": "Uzbekistanas"
+	},
+	"region-name-vc": {
+		"message": "Sent Vinsentas ir Grenadinai"
+	},
+	"region-name-vg": {
+		"message": "Mergelių salos, Didžioji Britanija"
+	},
+	"region-name-vi": {
+		"message": "Mergelių salos, JAV"
+	},
+	"region-name-vu": {
+		"message": "Vanuatu"
+	},
+	"region-name-ve": {
+		"message": "Venesuela"
+	},
+	"region-name-vn": {
+		"message": "Vietnamas"
+	},
+	"region-name-wf": {
+		"message": "Volio ir Futunos salos"
+	},
+	"region-name-ws": {
+		"message": "Samoa"
+	},
+	"region-name-xa": {
+		"message": "Ešmoro ir Kartjė salos"
+	},
+	"region-name-xb": {
+		"message": "Beikerio sala"
+	},
+	"region-name-xc": {
+		"message": "Koralų jūros salos"
+	},
+	"region-name-xd": {
+		"message": "Dekelija"
+	},
+	"region-name-xe": {
+		"message": "Europos sala"
+	},
+	"region-name-xh": {
+		"message": "Holando sala"
+	},
+	"region-name-xg": {
+		"message": "Gazos Ruožas"
+	},
+	"region-name-xj": {
+		"message": "Jan Majenas"
+	},
+	"region-name-xk": {
+		"message": "Kosovas"
+	},
+	"region-name-xl": {
+		"message": "Palmyros atolas"
+	},
+	"region-name-xp": {
+		"message": "Paraselio salos"
+	},
+	"region-name-xm": {
+		"message": "Kingmano rifas"
+	},
+	"region-name-xq": {
+		"message": "Džervio sala"
+	},
+	"region-name-xr": {
+		"message": "Svalbardas"
+	},
+	"region-name-xs": {
+		"message": "Spratlio salos"
+	},
+	"region-name-xt": {
+		"message": "Tromelino sala"
+	},
+	"region-name-xv": {
+		"message": "Navasos sala"
+	},
+	"region-name-yt": {
+		"message": "Majotas"
+	},
+	"region-name-ye": {
+		"message": "Jemenas"
+	},
+	"region-name-xw": {
+		"message": "Vakarų Krantas"
+	},
+	"region-name-za": {
+		"message": "Pietų Afrikos Respublika"
+	},
+	"region-name-xu": {
+		"message": "Džonstono atolas"
+	},
+	"region-name-zw": {
+		"message": "Zimbabvė"
+	},
+	"region-name-zm": {
+		"message": "Zambija"
 	}
 }

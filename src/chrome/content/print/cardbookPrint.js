@@ -122,7 +122,7 @@ if ("undefined" == typeof(cardbookPrint)) {
 			}
 		},
 
-		buildHTML: async function (document, cards, options) {
+		buildHTML: function (document, cards, options) {
 			for (let option in options) {
 				cardbookPrint.options[option] = options[option];
 			}
@@ -171,7 +171,7 @@ if ("undefined" == typeof(cardbookPrint)) {
 					for (let field of cardbookRepository.allColumns["personal"]) {
 						let value = card[field];
 						if (cardbookRepository.dateFields.includes(field)) {
-							value = cardbookRepository.cardbookDates.getFormattedDateForDateString(card[field], dateFormat, cardbookRepository.dateDisplayedFormat);
+							value = cardbookRepository.cardbookDates.getFormattedDateForDateString(card[field], dateFormat, cardbookRepository.cardbookPrefs["dateDisplayedFormat"]);
 						}
 						let label = cardbookRepository.extension.localeData.localizeMessage(`${field}Label`)
 						cardbookPrint.setupPropertyRow(document, personalNode, value, label);
@@ -190,7 +190,7 @@ if ("undefined" == typeof(cardbookPrint)) {
 				if (cardbookPrint.options.org) {
 					// org fields
 					let orgNode = itemNode.querySelector(".orgrow");
-					let orgStructure = cardbookRepository.cardbookPreferences.getStringPref("extensions.cardbook.orgStructure");
+					let orgStructure = cardbookRepository.cardbookPrefs["orgStructure"];
 					if (orgStructure) {
 						let orgStructureArray = cardbookRepository.cardbookUtils.unescapeArray(cardbookRepository.cardbookUtils.escapeString(orgStructure).split(";"));
 						let orgValueArray = cardbookRepository.cardbookUtils.unescapeArray(cardbookRepository.cardbookUtils.escapeString(card.org).split(";"));
@@ -229,7 +229,7 @@ if ("undefined" == typeof(cardbookPrint)) {
 								let pref = cardbookRepository.cardbookUtils.getPrefBooleanFromTypes(line[1]);
 								let type = cardbookPrint.getTypes(card.dirPrefId, field, line[1], line[3], line[2], line[0][0]).join(" ");
 								if (field == "adr") {
-									value = await cardbookRepository.cardbookUtils.formatAddress(line[0]);
+									value = cardbookRepository.cardbookUtils.formatAddress(line[0]);
 								}
 								if (!cardbookPrint.options.headers) {
 									let initField = field[0].toUpperCase() + field.slice(1);
@@ -252,7 +252,7 @@ if ("undefined" == typeof(cardbookPrint)) {
 						let events = cardbookRepository.cardbookUtils.getEventsFromCard(card.note.split("\n"), card.others);
 						for (let event of events.result) {
 							let pref = (event[2] && cardbookRepository.cardbookUtils.getPrefBooleanFromTypes(event[2].split(";")));
-							let type = cardbookRepository.cardbookDates.getFormattedDateForDateString(event[0], dateFormat, cardbookRepository.dateDisplayedFormat);
+							let type = cardbookRepository.cardbookDates.getFormattedDateForDateString(event[0], dateFormat, cardbookRepository.cardbookPrefs["dateDisplayedFormat"]);
 							let value = event[1];
 							if (!cardbookPrint.options.headers) {
 								let label = cardbookRepository.extension.localeData.localizeMessage("eventLabel");
@@ -294,8 +294,6 @@ if ("undefined" == typeof(cardbookPrint)) {
 				}
 
 				listContainer.appendChild(itemNode);
-				console.debug(listContainer)
-				console.debug(listContainer.innerHTML)
 			}
 		}
 	};

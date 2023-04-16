@@ -1,47 +1,47 @@
 var { Services } = ChromeUtils.import("resource://gre/modules/Services.jsm");
 var { cardbookRepository } = ChromeUtils.import("chrome://cardbook/content/cardbookRepository.js");
 
-var cardBookWindowPrefObserver = {
-	register: function() {
-		cardBookPrefObserverRepository.registerAll(this);
-	},
-	
-	unregister: function() {
-		cardBookPrefObserverRepository.unregisterAll(this);
-	},
-	
-	observe: function(aSubject, aTopic, aData) {
-		switch (aData) {
-			case "panesView":
-				ovl_cardbookLayout.orientPanes();
-				break;
-			case "viewABPane":
-			case "viewABContact":
-				ovl_cardbookLayout.resizePanes();
-				break;
-			case "listTabView":
-			case "technicalTabView":
-			case "vcardTabView":
-			case "keyTabView":
-				wdw_cardbook.showCorrectTabs();
-				break;
-		}
-	}
-};
-
 var cardBookWindowObserver = {
+
+	registered: false,
+
 	register: function() {
-		cardBookObserverRepository.registerAll(this);
+		if (cardBookWindowObserver.registered === false) {
+			cardBookObserverRepository.registerAll(this);
+			cardBookWindowObserver.registered = true;
+		}
 	},
 	
 	unregister: function() {
 		cardBookObserverRepository.unregisterAll(this);
+		cardBookWindowObserver.registered = false;
 	},
 	
-	observe: function(aSubject, aTopic, aData) {
+	observe: async function(aSubject, aTopic, aData) {
 		switch (aTopic) {
-			case "cardbook.preferencesChanged":
-				cardbookRepository.loadCustoms();
+			case "cardbook.modifyNode":
+				let nodeData = JSON.parse(aData);
+				await wdw_cardbook.modifyNode(nodeData);
+				break;
+			case "cardbook.createCategory":
+				let categoryData = JSON.parse(aData);
+				await wdw_cardbook.createCategory(categoryData);
+				break;
+			case "cardbook.finishCSV":
+				wdw_cardbook.finishCSV(aData);
+				break;
+			case "cardbook.writeCardsToCSVFile":
+				let exportData = JSON.parse(aData);
+				wdw_cardbook.writeCardsToCSVFile(exportData);
+				break;
+			case "cardbook.loadCSVFile":
+				let importData = JSON.parse(aData);
+				wdw_cardbook.loadCSVFileNext2(importData);
+				break;
+			case "cardbook.pref.preferencesChanged":
+				ovl_cardbookLayout.orientPanes();
+				ovl_cardbookLayout.resizePanes();
+				wdw_cardbook.showCorrectTabs();
 				wdw_cardbook.loadCssRules();
 				var myColumns = cardbookTreeUtils.getColumnsState().split(',');
 				wdw_cardbook.addTreeColumns();

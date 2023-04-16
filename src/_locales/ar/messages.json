@@ -114,14 +114,8 @@
 	"showForgottenLabel": {
 		"message": "إظهار المكررات المنسية"
 	},
-	"showForgottenAccesskey": {
-		"message": "S"
-	},
 	"hideForgottenLabel": {
 		"message": "إخفاء المكررات المنسية"
-	},
-	"hideForgottenAccesskey": {
-		"message": "H"
 	},
 	"noContactsDuplicated": {
 		"message": "لم يتم العثور على جهات اتصال مكررة."
@@ -3309,6 +3303,12 @@
 	"toLowerCase": {
 		"message": "تحويل إلى أحرف صغيرة"
 	},
+	"copy": {
+		"message": "انسخ"
+	},
+	"paste": {
+		"message": "الصق"
+	},
 	"copyFieldValue": {
 		"message": "نسخ ($P1$)",
         "placeholders": {
@@ -3369,7 +3369,7 @@
 	"wdw_cardbookConfigurationAddEmailsRestrictionTitle": {
 		"message": "تعريف قيود حساب البريد"
 	},
-	"wdw_cardbookConfigurationAddEmailsCollectionTitle": {
+	"wdw_cardbookConfigurationAddEmailsEmailsCollectionTitle": {
 		"message": "تعريف مجموعة رسائل البريد الإلكتروني الصادرة لحساب البريد"
 	},
 	"ignoreCaseIgnoreDiacriticLabel": {
@@ -3777,6 +3777,9 @@
 	"wizard.back.label": {
 		"message": "إلى الخلف"
 	},
+	"wizard.cancel.label": {
+		"message": "إلغاء"
+	},
 	"wizard.create.label": {
 		"message": "أنشئ من المواعيد"
 	},
@@ -3800,9 +3803,6 @@
 	},
 	"initialPage.search.label": {
 		"message": "ابحث في دفاتر العناوين الموجودة"
-	},
-	"initialPage.find.label": {
-		"message": "ابحث عن دفاتر العناوين البعيدة"
 	},
 	"localPage.type.description": {
 		"message": "نوع دفتر العناوين المحلي:"
@@ -3838,7 +3838,7 @@
 		"message": "تصفح"
 	},
 	"remotePage.description": {
-		"message": "ما هو نوع دفتر العناوين البعيد (تنبيه: لا تتوافق Google مع معايير vCard)؟"
+		"message": "ما هو نوع دفتر العناوين البعيد ؟"
 	},
 	"remotePage.type.label": {
 		"message": "نوع"
@@ -3891,7 +3891,7 @@
 	"rememberPassword": {
 		"message": "استخدم مدير كلمات السر لتذكّر كلمة السر هذه."
 	},
-	"showHidePassword.tooltip": {
+	"showHidePassword": {
 		"message": "اعرض/أخفِ كلمة السر"
 	},
 	"remotePage.validatebutton.label": {
@@ -3903,20 +3903,11 @@
 	"abSearchHeading.label": {
 		"message": "ابحث في:"
 	},
-	"abSearchHeading.accesskey": {
-		"message": "h"
-	},
 	"matchAll.label": {
 		"message": "طابق كلّ التالي"
 	},
-	"matchAll.accesskey": {
-		"message": "a"
-	},
 	"matchAny.label": {
 		"message": "طابق أيًّا من التالي"
-	},
-	"matchAny.accesskey": {
-		"message": "o"
 	},
 	"googleOauthPage.wizard.description": {
 		"message": "مصادقة Google"
@@ -3969,9 +3960,6 @@
 	"name.ABedit.label": {
 		"message": "إسم:"
 	},
-	"name.ABedit.accesskey": {
-		"message": "N"
-	},
 	"nodesLabel": {
 		"message": "العقد:"
 	},
@@ -3993,9 +3981,6 @@
 	"readonlyLabel": {
 		"message": "وضع القراءة فقط"
 	},
-	"readonlyAccesskey": {
-		"message": "R"
-	},
 	"urnuuidLabel": {
 		"message": "إستخدم urn:uuid"
 	},
@@ -4008,14 +3993,8 @@
 	"autoSyncLabel": {
 		"message": "فعل التزامن الدوري"
 	},
-	"autoSyncAccesskey": {
-		"message": "E"
-	},
 	"autoSyncIntervalLabel": {
 		"message": "الفاصل الزمني بين عمليات المزامنة الدورية (بالدقائق):"
-	},
-	"autoSyncIntervalAccesskey": {
-		"message": "I"
 	},
 	"miscTabLabel": {
 		"message": "متنوع"
@@ -4026,20 +4005,11 @@
 	"fnFormulaLabel": {
 		"message": "صيغة اسم العرض:"
 	},
-	"fnFormulaAccesskey": {
-		"message": "y"
-	},
 	"resetFnFormulaLabel": {
 		"message": "استعادة إلى الافتراضي"
 	},
-	"resetFnFormulaAccesskey": {
-		"message": "R"
-	},
 	"applyToABButtonLabel": {
 		"message": "طبق على…"
-	},
-	"applyToABButtonAccesskey": {
-		"message": "A"
 	},
 	"wdw_adrEditionTitle": {
 		"message": "محرر العنوان"
@@ -4173,53 +4143,26 @@
 	"autocompletionLabel": {
 		"message": "الإكمال التلقائي لعناوين البريد الإلكتروني"
 	},
-	"autocompletionAccesskey": {
-		"message": "o"
-	},
-	"autocompletionTooltip": {
-		"message": "وسع الإكمال التلقائي القياسي لجهات الاتصال في دفاتر عناوين Thunderbird مع الإكمال التلقائي لجهات الاتصال في دفاتر عناوين CardBook."
-	},
 	"autocompleteSortByPopularityLabel": {
 		"message": "فرز عناوين البريد الإلكتروني حسب الشعبية"
-	},
-	"autocompleteSortByPopularityAccesskey": {
-		"message": "p"
 	},
 	"autocompleteProposeConcatEmailsLabel": {
 		"message": "اقتراح رسائل بريد إلكتروني متسلسلة لكل جهة اتصال"
 	},
-	"autocompleteProposeConcatEmailsAccesskey": {
-		"message": "c"
-	},
 	"autocompleteShowAddressbookLabel": {
 		"message": "إظهار اسم دفتر العناوين"
-	},
-	"autocompleteShowAddressbookAccesskey": {
-		"message": "S"
 	},
 	"autocompleteShowEmailTypeLabel": {
 		"message": "أظهر نوع عنوان البريد الإلكتروني"
 	},
-	"autocompleteShowEmailTypeAccesskey": {
-		"message": "e"
-	},
 	"autocompleteShowPopularityLabel": {
 		"message": "أظهرالشعبية"
-	},
-	"autocompleteShowPopularityAccesskey": {
-		"message": "y"
 	},
 	"autocompleteWithColorLabel": {
 		"message": "استخدم لون دفتر العناوين"
 	},
-	"autocompleteWithColorAccesskey": {
-		"message": "c"
-	},
 	"autocompleteRestrictSearchLabel": {
 		"message": "تقييد حقول البحث"
-	},
-	"autocompleteRestrictSearchAccesskey": {
-		"message": "R"
 	},
 	"chooseAutocompleteRestrictSearchFieldsButtonLabel": {
 		"message": "تعديل"
@@ -4256,12 +4199,6 @@
 	},
 	"exclusiveLabel": {
 		"message": "مصدر فريد لجهات الإتصال"
-	},
-	"exclusiveAccesskey": {
-		"message": "U"
-	},
-	"exclusiveTooltip": {
-		"message": "إذا تم تعطيله ، فإن هذا الخيار يسمح باسترداد جهات الاتصال الموجودة في دفاتر عناوين Thunderbird القياسية للنجوم الصفراء ، لاسم عرض البريد الإلكتروني ولإكمال البريد الإلكتروني تلقائيًا."
 	},
 	"accountsRestrictionsLabel": {
 		"message": "قيود حساب البريد"
@@ -4341,12 +4278,6 @@
 	"debugModeLabel": {
 		"message": "وضع التصحيح"
 	},
-	"debugModeAccesskey": {
-		"message": "m"
-	},
-	"debugModeTooltip": {
-		"message": "تفعيل وضع التصحيح للتسجيل المكثف."
-	},
 	"statusInformationLineNumberLabel": {
 		"message": "عدد الأسطر المحفوظة في ملف السجل:"
 	},
@@ -4365,26 +4296,14 @@
 	"listTab.conf.label": {
 		"message": "قوائم"
 	},
-	"listTab.conf.accesskey": {
-		"message": "L"
-	},
 	"technicalTab.conf.label": {
 		"message": "تقني"
-	},
-	"technicalTab.conf.accesskey": {
-		"message": "T"
 	},
 	"vCardTab.conf.label": {
 		"message": "vCard"
 	},
-	"vCardTab.conf.accesskey": {
-		"message": "V"
-	},
 	"keyTab.conf.label": {
 		"message": "مفاتيح عمومية"
-	},
-	"keyTab.conf.accesskey": {
-		"message": "K"
 	},
 	"advancedTab1Label": {
 		"message": "متقدم"
@@ -4482,9 +4401,6 @@
 	"preferEmailEditionLabel": {
 		"message": "انقر نقرًا مزدوجًا فوق جهة اتصال لتعديلها بدلاً من إرسالها بريد إلكتروني"
 	},
-	"preferEmailEditionAccesskey": {
-		"message": "k"
-	},
 	"dateDisplayedFormatLabel": {
 		"message": "تنسيق نص التاريخ:"
 	},
@@ -4493,9 +4409,6 @@
 	},
 	"defaultRegionLabel": {
 		"message": "المنطقة(الإقليم) الافتراضية:"
-	},
-	"defaultRegionAccesskey": {
-		"message": "D"
 	},
 	"defaultRegionTooltip": {
 		"message": "المنطقة(الإقليم) الافتراضية للعناوين وتنسيق أرقام الهواتف."
@@ -4641,9 +4554,6 @@
 	"preferIMPPPrefLabel": {
 		"message": "فضل اتصالات الإنترنت المميزة بـ"
 	},
-	"preferIMPPPrefAccesskey": {
-		"message": "P"
-	},
 	"preferIMPPPrefWarn": {
 		"message": "إذا لم يتم وضع علامة على أي عنوان ، فسيتم اقتراح اتصال لجميع عناوين جهات الاتصال."
 	},
@@ -4707,9 +4617,6 @@
 	"URLPhoneBackgroundLabel": {
 		"message": "تشغيل في الخلفية"
 	},
-	"URLPhoneBackgroundAccesskey": {
-		"message": "R"
-	},
 	"encryptionGroupboxLabel": {
 		"message": "التشفير"
 	},
@@ -4718,9 +4625,6 @@
 	},
 	"localDataEncryptionEnabledLabel": {
 		"message": "تشفير البطاقات المخزنة محليًا"
-	},
-	"localDataEncryptionEnabledAccesskey": {
-		"message": "E"
 	},
 	"customFieldRankHeaderLabel": {
 		"message": "مرتبة"
@@ -4771,7 +4675,7 @@
 		"message": "تسيمة الحقل"
 	},
 	"listPanelLabel": {
-		"message": "إذا كان الخادم الخاص بك لا يدعم التصنيفات (مثل Google ، و Apple ، و Zimbra ، وما إلى ذلك ...) ، فإن القوائم تعد وسيلة جيدة لإرسال رسائل البريد الإلكتروني إلى المجموعات. لا يدعم vCard 3.0 القوائم في الأصل ، ولكن يمكن تحقيق ذلك باستخدام الحقول المخصصة، لذلك إذا كنت تريد استخدام القوائم في vCard 3.0، فيجب عليك تحديد هذه الحقول."
+		"message": "إذا كان الخادم الخاص بك لا يدعم التصنيفات (مثل Apple ، و Zimbra ، وما إلى ذلك ...) ، فإن القوائم تعد وسيلة جيدة لإرسال رسائل البريد الإلكتروني إلى المجموعات. لا يدعم vCard 3.0 القوائم في الأصل ، ولكن يمكن تحقيق ذلك باستخدام الحقول المخصصة، لذلك إذا كنت تريد استخدام القوائم في vCard 3.0، فيجب عليك تحديد هذه الحقول."
 	},
 	"listGroupboxLabel": {
 		"message": "حقول خاصة للقوائم"
@@ -4803,14 +4707,8 @@
 	"syncAfterChangeLabel": {
 		"message": "مزامنة بعد التغيير"
 	},
-	"syncAfterChangeAccesskey": {
-		"message": "c"
-	},
 	"initialSyncLabel": {
 		"message": "قم بتشغيل المزامنة عند بدء تشغيل Thunderbird"
-	},
-	"initialSyncAccesskey": {
-		"message": "R"
 	},
 	"initialSyncDelayLabel": {
 		"message": "تأخير التزامن الأولي (بالثواني):"
@@ -4872,17 +4770,11 @@
 	"decodeReportLabel": {
 		"message": "فك تشفير عناوين URLs لطلبات التقرير(REPORT)"
 	},
-	"decodeReportAccesskey": {
-		"message": "D"
-	},
 	"miscEmailGroupboxLabel": {
 		"message": "إرسال رسائل البريد الإلكتروني"
 	},
 	"preferEmailPrefLabel": {
 		"message": "فضل عناوين البريد الإلكتروني المميزة بـ"
-	},
-	"preferEmailPrefAccesskey": {
-		"message": "P"
 	},
 	"preferEmailPrefWarn": {
 		"message": "إذا لم يتم وضع علامة على أي عنوان ، فسيتم إرسال الرسالة إلى جميع عناوين جهات الاتصال."
@@ -4890,14 +4782,8 @@
 	"warnEmptyEmailsLabel": {
 		"message": "حذرني عندما أحاول إرسال بريد إلكتروني إلى جهات الاتصال بدون عنوان بريد إلكتروني"
 	},
-	"warnEmptyEmailsAccesskey": {
-		"message": "W"
-	},
 	"useOnlyEmailLabel": {
 		"message": "استخدم فقط عناوين البريد الإلكتروني، بدون أسماء العرض الخاصة بهم"
-	},
-	"useOnlyEmailAccesskey": {
-		"message": "O"
 	},
 	"attachVCardWarn": {
 		"message": "لإضافة بطاقة vCard تلقائيًا إلى رسائل البريد الإلكتروني الخاصة بك، حدد vCard لكل حساب بريد إلكتروني. في حالة التنشيط، سيرفق CardBook بطاقة vCard هذه بكل بريد إلكتروني صادر من هذا الحساب."
@@ -4956,26 +4842,14 @@
 	"bday.conf.label": {
 		"message": "يوم الميلاد"
 	},
-	"bday.conf.accesskey": {
-		"message": "B"
-	},
 	"anniversary.conf.label": {
 		"message": "الذكرى السنوية (فقط لــvCard 4.0)"
-	},
-	"anniversary.conf.accesskey": {
-		"message": "A"
 	},
 	"deathdate.conf.label": {
 		"message": "تاريخ الوفاة (فقط لــvCard 4.0)"
 	},
-	"deathdate.conf.accesskey": {
-		"message": "D"
-	},
 	"eventsLabel": {
 		"message": "الأحداث"
-	},
-	"eventsAccesskey": {
-		"message": "E"
 	},
 	"gender.conf.label": {
 		"message": "الجنس (فقط لــvCard 4.0)"
@@ -5007,14 +4881,8 @@
 	"showPopupOnStartupLabel": {
 		"message": "أظهر نافذة منبثقة عند بدء التشغيل"
 	},
-	"showPopupOnStartupAccesskey": {
-		"message": "S"
-	},
 	"showPeriodicPopupLabel": {
 		"message": "أظهر النافذة المنبثقة اليومية"
-	},
-	"showPeriodicPopupAccesskey": {
-		"message": "d"
 	},
 	"periodicPopupTimeLabel": {
 		"message": "وقت العرض (hh:mm):"
@@ -5024,9 +4892,6 @@
 	},
 	"showPopupEvenIfNoBirthdayLabel": {
 		"message": "عرض نافذة منبثقة عندما تكون قائمة الذكرى السنوية فارغة"
-	},
-	"showPopupEvenIfNoBirthdayAccesskey": {
-		"message": "h"
 	},
 	"remindViaLightningGroupboxLabel": {
 		"message": "تذكير عبر ملحق تقويم Thunderbird Lightning"
@@ -5039,9 +4904,6 @@
 	},
 	"syncWithLightningOnStartupLabel": {
 		"message": "تزامن مع Lightning عند بدء التشغيل"
-	},
-	"syncWithLightningOnStartupAccesskey": {
-		"message": "L"
 	},
 	"calendarEntryTitleLabel": {
 		"message": "العنوان لحدث التقويم:"
@@ -5061,9 +4923,6 @@
 	"calendarRepeatingEventLabel": {
 		"message": "حدث متكرر"
 	},
-	"calendarRepeatingEventAccesskey": {
-		"message": "R"
-	},
 	"calendarEntryTimeLabel": {
 		"message": "وقت الحدث للتقويم (hh:mm):"
 	},
@@ -5072,9 +4931,6 @@
 	},
 	"calendarEntryWholeDayLabel": {
 		"message": "حدث التقويم ليوم كامل"
-	},
-	"calendarEntryWholeDayAccesskey": {
-		"message": "y"
 	},
 	"calendarEntryAlarmLabel": {
 		"message": "المنبه (المنبهات) إلى n من الساعات لأحداث التقويم (مثال: 4 ، + 1):"
@@ -5835,9 +5691,6 @@
 	"viewResultEditionLabel": {
 		"message": "عرض النتيجة"
 	},
-	"viewResultEditionAccesskey": {
-		"message": "V"
-	},
 	"previousEditButton.tooltip": {
 		"message": "السابق"
 	},
@@ -5883,20 +5736,11 @@
 	"moreEditionLabel": {
 		"message": "اعرض المزيد"
 	},
-	"moreEditionAccesskey": {
-		"message": "m"
-	},
 	"lessEditionLabel": {
 		"message": "اعرض أقل"
 	},
-	"lessEditionAccesskey": {
-		"message": "l"
-	},
 	"mergeAllEditionLabel": {
 		"message": "دمج الكل"
-	},
-	"mergeAllEditionAccesskey": {
-		"message": "M"
 	},
 	"formatAllEditionLabel": {
 		"message": "تنسيق الكل"
@@ -5906,9 +5750,6 @@
 	},
 	"undoAllEditionLabel": {
 		"message": "التراجع عن الكل"
-	},
-	"undoAllEditionAccesskey": {
-		"message": "U"
 	},
 	"formatEditionLabel": {
 		"message": "تنسيق"
@@ -5951,9 +5792,6 @@
 	},
 	"convertVCardsTooltip": {
 		"message": "يختلف إصدار vCard لبعض جهات الاتصال عن إصدار vCard الخاص بدفتر العناوين الخاص بك ، وقد يقوم هذا الزر بتحويل vCards هذه"
-	},
-	"convertVCardsAccesskey": {
-		"message": "o"
 	},
 	"wdw_findDuplicatesTitle": {
 		"message": "كرّر جهات اتصال ($P1$)",
@@ -6016,26 +5854,14 @@
 	"refreshLogEditionLabel": {
 		"message": "تحديث"
 	},
-	"refreshLogEditionAccesskey": {
-		"message": "R"
-	},
 	"flushLogEditionLabel": {
 		"message": "محو القائمة"
-	},
-	"flushLogEditionAccesskey": {
-		"message": "C"
 	},
 	"clipboardLogEditionLabel": {
 		"message": "نسخ إلى الحافظة"
 	},
-	"clipboardLogEditionAccesskey": {
-		"message": "p"
-	},
 	"cancelLogEditionLabel": {
 		"message": "موافق"
-	},
-	"cancelLogEditionAccesskey": {
-		"message": "O"
 	},
 	"wdw_mergeCardsTitle": {
 		"message": "دمج جهات الإتصال"
@@ -6064,6 +5890,30 @@
 	"wdw_cardbookConfigurationEditFieldTitle": {
 		"message": "اختر وظيفة التحويل"
 	},
+	"ContainsOperator": {
+		"message": "يحتوي"
+	},
+	"DoesntContainOperator": {
+		"message": "لا يحتوي"
+	},
+	"IsOperator": {
+		"message": "هو"
+	},
+	"IsntOperator": {
+		"message": "ليس"
+	},
+	"BeginsWithOperator": {
+		"message": "يبدأ ب‍"
+	},
+	"EndsWithOperator": {
+		"message": "ينتهي ب‍"
+	},
+	"IsEmptyOperator": {
+		"message": "فارغ"
+	},
+	"IsntEmptyOperator": {
+		"message": "ليس فارغًا"
+	},
 	"uppercaseLabel": {
 		"message": "أحرف كبيرة"
 	},
@@ -6072,5 +5922,821 @@
 	},
 	"capitalizationLabel": {
 		"message": "الرسملة"
+	},
+	"region-name-ad": {
+		"message": "أندورا"
+	},
+	"region-name-ae": {
+		"message": "الإمارات العربيّة المتّحدة"
+	},
+	"region-name-af": {
+		"message": "أفغانستان"
+	},
+	"region-name-ai": {
+		"message": "أنغويلا"
+	},
+	"region-name-al": {
+		"message": "ألبانيا"
+	},
+	"region-name-ag": {
+		"message": "أنتيجوا و بربودا"
+	},
+	"region-name-am": {
+		"message": "أرمينيا"
+	},
+	"region-name-ar": {
+		"message": "الأرجنتين"
+	},
+	"region-name-aq": {
+		"message": "القارة القطبية الجنوبية"
+	},
+	"region-name-ao": {
+		"message": "أنغولا"
+	},
+	"region-name-at": {
+		"message": "النّمسا"
+	},
+	"region-name-az": {
+		"message": "أذربيجان"
+	},
+	"region-name-ba": {
+		"message": "البوسنة و الهرسك"
+	},
+	"region-name-bb": {
+		"message": "باربادوس"
+	},
+	"region-name-as": {
+		"message": "ساموا الأمريكية"
+	},
+	"region-name-au": {
+		"message": "أستراليا"
+	},
+	"region-name-bd": {
+		"message": "بنغلاديش"
+	},
+	"region-name-be": {
+		"message": "بلجيكا"
+	},
+	"region-name-aw": {
+		"message": "أروبا"
+	},
+	"region-name-bf": {
+		"message": "بوركينا فاسو"
+	},
+	"region-name-bm": {
+		"message": "برمودا"
+	},
+	"region-name-bj": {
+		"message": "بنين"
+	},
+	"region-name-bg": {
+		"message": "بلغاريا"
+	},
+	"region-name-bi": {
+		"message": "بوروندي"
+	},
+	"region-name-bh": {
+		"message": "البحرين"
+	},
+	"region-name-bl": {
+		"message": "سانت بارثيليمي"
+	},
+	"region-name-bn": {
+		"message": "بروناي"
+	},
+	"region-name-bo": {
+		"message": "بوليفيا"
+	},
+	"region-name-br": {
+		"message": "البرازيل"
+	},
+	"region-name-bq": {
+		"message": "بونير و سينت أوستاتيوس و سابا"
+	},
+	"region-name-bt": {
+		"message": "بهوتان"
+	},
+	"region-name-bs": {
+		"message": "البهاما"
+	},
+	"region-name-bz": {
+		"message": "بيليز"
+	},
+	"region-name-ca": {
+		"message": "كندا"
+	},
+	"region-name-cc": {
+		"message": "جزر الكوكوس (كيلنك)"
+	},
+	"region-name-by": {
+		"message": "روسيا البيضاء"
+	},
+	"region-name-cd": {
+		"message": "كونغو (كنشاسا)"
+	},
+	"region-name-cf": {
+		"message": "جمهورية أفريقيا الوسطى"
+	},
+	"region-name-bv": {
+		"message": "جزيرة بوفي"
+	},
+	"region-name-bw": {
+		"message": "بوتسوانا"
+	},
+	"region-name-cl": {
+		"message": "تشيلي"
+	},
+	"region-name-ci": {
+		"message": "ساحل العاج"
+	},
+	"region-name-ch": {
+		"message": "سويسرا"
+	},
+	"region-name-cm": {
+		"message": "الكاميرون"
+	},
+	"region-name-ck": {
+		"message": "جزر كوك"
+	},
+	"region-name-cg": {
+		"message": "كونغو (برازافيل)"
+	},
+	"region-name-cn": {
+		"message": "الصّين"
+	},
+	"region-name-cp": {
+		"message": "جزيرة كليبرتون"
+	},
+	"region-name-co": {
+		"message": "كولومبيا"
+	},
+	"region-name-cr": {
+		"message": "كوستا ريكا"
+	},
+	"region-name-cz": {
+		"message": "جمهورية التشيك"
+	},
+	"region-name-cy": {
+		"message": "قبرص"
+	},
+	"region-name-cx": {
+		"message": "جزيرة الكريسماس"
+	},
+	"region-name-cv": {
+		"message": "الرأس الأخضر"
+	},
+	"region-name-cu": {
+		"message": "كوبا"
+	},
+	"region-name-cw": {
+		"message": "كوراساو"
+	},
+	"region-name-de": {
+		"message": "ألمانيا"
+	},
+	"region-name-dg": {
+		"message": "دييغو غارسيا"
+	},
+	"region-name-dk": {
+		"message": "الدنمارك"
+	},
+	"region-name-dj": {
+		"message": "جيبوتي"
+	},
+	"region-name-dm": {
+		"message": "دومينيكا"
+	},
+	"region-name-ec": {
+		"message": "الإكوادور"
+	},
+	"region-name-dz": {
+		"message": "الجزائر"
+	},
+	"region-name-do": {
+		"message": "جمهورية الدومينيك"
+	},
+	"region-name-ee": {
+		"message": "إستونيا"
+	},
+	"region-name-eg": {
+		"message": "مصر"
+	},
+	"region-name-eh": {
+		"message": "الصحراء الغربية"
+	},
+	"region-name-et": {
+		"message": "أثيوبيا"
+	},
+	"region-name-er": {
+		"message": "إريتريا"
+	},
+	"region-name-es": {
+		"message": "إسبانيا"
+	},
+	"region-name-fi": {
+		"message": "فنلندا"
+	},
+	"region-name-fj": {
+		"message": "فيجي"
+	},
+	"region-name-fm": {
+		"message": "ولايات مايكرونيزيا الاتحادية"
+	},
+	"region-name-fk": {
+		"message": "جزر الفوكلاند (المالفيناس)"
+	},
+	"region-name-fo": {
+		"message": "جزر الفارو"
+	},
+	"region-name-ge": {
+		"message": "جورجيا"
+	},
+	"region-name-gb": {
+		"message": "المملكة المتّحدة"
+	},
+	"region-name-gd": {
+		"message": "غرناطة"
+	},
+	"region-name-fr": {
+		"message": "فرنسا"
+	},
+	"region-name-ga": {
+		"message": "الغابون"
+	},
+	"region-name-gf": {
+		"message": "غويانا الفرنسية"
+	},
+	"region-name-gl": {
+		"message": "غرينلاندا"
+	},
+	"region-name-gm": {
+		"message": "جامبيا"
+	},
+	"region-name-gi": {
+		"message": "جبل طارق"
+	},
+	"region-name-gg": {
+		"message": "غيرنسي"
+	},
+	"region-name-gh": {
+		"message": "غانا"
+	},
+	"region-name-gn": {
+		"message": "غينيا"
+	},
+	"region-name-gp": {
+		"message": "غواديلوب"
+	},
+	"region-name-gr": {
+		"message": "اليونان"
+	},
+	"region-name-gq": {
+		"message": "غينيا الإستوائية"
+	},
+	"region-name-gt": {
+		"message": "غواتيمالا"
+	},
+	"region-name-gw": {
+		"message": "غينيا-بيساو"
+	},
+	"region-name-hk": {
+		"message": "هونغ كونغ"
+	},
+	"region-name-gu": {
+		"message": "غوام"
+	},
+	"region-name-gs": {
+		"message": "جنوب جورجيا و جزر ساندويتش الجنوبيّة"
+	},
+	"region-name-gy": {
+		"message": "غويانا"
+	},
+	"region-name-hm": {
+		"message": "جزيرة هيرد و جزر ماكدونالد"
+	},
+	"region-name-ht": {
+		"message": "هايتي"
+	},
+	"region-name-hr": {
+		"message": "كرواتيا"
+	},
+	"region-name-hn": {
+		"message": "هندوراس"
+	},
+	"region-name-in": {
+		"message": "الهند"
+	},
+	"region-name-il": {
+		"message": "إسرائيل"
+	},
+	"region-name-im": {
+		"message": "جزيرة مان"
+	},
+	"region-name-ie": {
+		"message": "إيرلندا"
+	},
+	"region-name-hu": {
+		"message": "هنغاريا"
+	},
+	"region-name-id": {
+		"message": "إندونيسيا"
+	},
+	"region-name-io": {
+		"message": "إقليم المحيط الهندي البريطاني"
+	},
+	"region-name-ir": {
+		"message": "إيران"
+	},
+	"region-name-is": {
+		"message": "آيسلاندا"
+	},
+	"region-name-iq": {
+		"message": "العراق"
+	},
+	"region-name-je": {
+		"message": "جيرسي"
+	},
+	"region-name-jp": {
+		"message": "اليابان"
+	},
+	"region-name-it": {
+		"message": "إيطاليا"
+	},
+	"region-name-ke": {
+		"message": "كينيا"
+	},
+	"region-name-jo": {
+		"message": "الأردن"
+	},
+	"region-name-jm": {
+		"message": "جامايكا"
+	},
+	"region-name-kg": {
+		"message": "قيرغيزستان"
+	},
+	"region-name-ki": {
+		"message": "كيريباتي"
+	},
+	"region-name-kh": {
+		"message": "كمبوديا"
+	},
+	"region-name-km": {
+		"message": "جزر القمر"
+	},
+	"region-name-kn": {
+		"message": "سانت كيتس ونيفيس"
+	},
+	"region-name-ky": {
+		"message": "جزر الكايمان"
+	},
+	"region-name-kp": {
+		"message": "كوريا الشّماليّة"
+	},
+	"region-name-kr": {
+		"message": "كوريا الجنوبية"
+	},
+	"region-name-kw": {
+		"message": "الكويت"
+	},
+	"region-name-kz": {
+		"message": "كازاخستان"
+	},
+	"region-name-la": {
+		"message": "لاوس"
+	},
+	"region-name-lb": {
+		"message": "لبنان"
+	},
+	"region-name-lc": {
+		"message": "سان لويس"
+	},
+	"region-name-li": {
+		"message": "ليتشتنستاين"
+	},
+	"region-name-lk": {
+		"message": "سريلانكا"
+	},
+	"region-name-lr": {
+		"message": "ليبيريا"
+	},
+	"region-name-lu": {
+		"message": "لكسومبورغ"
+	},
+	"region-name-lv": {
+		"message": "لاتفيا"
+	},
+	"region-name-ls": {
+		"message": "ليسوتو"
+	},
+	"region-name-ly": {
+		"message": "ليبيا"
+	},
+	"region-name-lt": {
+		"message": "لتوانيا"
+	},
+	"region-name-mc": {
+		"message": "موناكو"
+	},
+	"region-name-md": {
+		"message": "مولدوفا"
+	},
+	"region-name-ma": {
+		"message": "المغرب"
+	},
+	"region-name-me": {
+		"message": "مونتنيغرو"
+	},
+	"region-name-mf": {
+		"message": "سانت مارتن"
+	},
+	"region-name-mg": {
+		"message": "مدغشقر"
+	},
+	"region-name-mh": {
+		"message": "جزر المارشال"
+	},
+	"region-name-mk": {
+		"message": "مقدونيا"
+	},
+	"region-name-ml": {
+		"message": "مالي"
+	},
+	"region-name-mm": {
+		"message": "بورما"
+	},
+	"region-name-mn": {
+		"message": "منغوليا"
+	},
+	"region-name-mo": {
+		"message": "ماكاو"
+	},
+	"region-name-mp": {
+		"message": "جزر ماريانا الشمالية"
+	},
+	"region-name-mt": {
+		"message": "مالطة"
+	},
+	"region-name-mu": {
+		"message": "موريتيوس"
+	},
+	"region-name-mr": {
+		"message": "موريتانيا"
+	},
+	"region-name-ms": {
+		"message": "مونسيرات"
+	},
+	"region-name-mq": {
+		"message": "مارتينيك"
+	},
+	"region-name-mv": {
+		"message": "جزر المالديف"
+	},
+	"region-name-mw": {
+		"message": "مالاوي"
+	},
+	"region-name-my": {
+		"message": "ماليزيا"
+	},
+	"region-name-mx": {
+		"message": "المكسيك"
+	},
+	"region-name-mz": {
+		"message": "موزمبيق"
+	},
+	"region-name-na": {
+		"message": "ناميبيا"
+	},
+	"region-name-nc": {
+		"message": "كالدونيا الجديدة"
+	},
+	"region-name-ne": {
+		"message": "النّيجر"
+	},
+	"region-name-nf": {
+		"message": "جزيرة نورفولك"
+	},
+	"region-name-ng": {
+		"message": "نيجيريا"
+	},
+	"region-name-ni": {
+		"message": "نيكاراجوا"
+	},
+	"region-name-nl": {
+		"message": "هولندا"
+	},
+	"region-name-no": {
+		"message": "النرويج"
+	},
+	"region-name-np": {
+		"message": "نيبال"
+	},
+	"region-name-nr": {
+		"message": "النّاورو"
+	},
+	"region-name-pk": {
+		"message": "باكستان"
+	},
+	"region-name-pl": {
+		"message": "بولندا"
+	},
+	"region-name-nz": {
+		"message": "نيوزيلاندا"
+	},
+	"region-name-ph": {
+		"message": "الفيليبين"
+	},
+	"region-name-nu": {
+		"message": "نيوي"
+	},
+	"region-name-om": {
+		"message": "عُمان"
+	},
+	"region-name-pe": {
+		"message": "بيرو"
+	},
+	"region-name-pa": {
+		"message": "بنما"
+	},
+	"region-name-pf": {
+		"message": "بولينيسيا الفرنسية"
+	},
+	"region-name-pg": {
+		"message": "بابوا غينيا الجديدة"
+	},
+	"region-name-pm": {
+		"message": "سان بيير و ميكِلون"
+	},
+	"region-name-pn": {
+		"message": "جزر بتكيرن"
+	},
+	"region-name-pr": {
+		"message": "بورتو ريكو"
+	},
+	"region-name-pt": {
+		"message": "البرتغال"
+	},
+	"region-name-pw": {
+		"message": "بالاو"
+	},
+	"region-name-qm": {
+		"message": "جزر ميدواي"
+	},
+	"region-name-py": {
+		"message": "باراغواي"
+	},
+	"region-name-qa": {
+		"message": "قطر"
+	},
+	"region-name-qs": {
+		"message": "باساس دا إنديا"
+	},
+	"region-name-qu": {
+		"message": "جزيرة خوان دي نوڤا"
+	},
+	"region-name-qw": {
+		"message": "جزيرة وايك"
+	},
+	"region-name-qx": {
+		"message": "جزر غلوريوسو"
+	},
+	"region-name-rs": {
+		"message": "صربيا"
+	},
+	"region-name-ro": {
+		"message": "رومانيا"
+	},
+	"region-name-qz": {
+		"message": "أكروتيري"
+	},
+	"region-name-re": {
+		"message": "ريونيون"
+	},
+	"region-name-rw": {
+		"message": "أوغاندا"
+	},
+	"region-name-ru": {
+		"message": "روسيا"
+	},
+	"region-name-sa": {
+		"message": "السّعوديّة"
+	},
+	"region-name-sb": {
+		"message": "جزر سليمان"
+	},
+	"region-name-sc": {
+		"message": "سايتشيلي"
+	},
+	"region-name-sd": {
+		"message": "السّودان"
+	},
+	"region-name-se": {
+		"message": "السّويد"
+	},
+	"region-name-sg": {
+		"message": "سنغافورة"
+	},
+	"region-name-sh": {
+		"message": "ساينت هيلينا، تريستان دا كونا"
+	},
+	"region-name-si": {
+		"message": "سلوفينيا"
+	},
+	"region-name-sk": {
+		"message": "سلوفاكيا"
+	},
+	"region-name-sl": {
+		"message": "سيراليون"
+	},
+	"region-name-sn": {
+		"message": "السنغال"
+	},
+	"region-name-sm": {
+		"message": "سان مارينو"
+	},
+	"region-name-ss": {
+		"message": "جنوب السودان"
+	},
+	"region-name-so": {
+		"message": "الصّومال"
+	},
+	"region-name-sr": {
+		"message": "سورينام"
+	},
+	"region-name-sx": {
+		"message": "سانت مارتن"
+	},
+	"region-name-st": {
+		"message": "صاو تومي و برنسيب"
+	},
+	"region-name-sv": {
+		"message": "السلفادور"
+	},
+	"region-name-sy": {
+		"message": "سوريا"
+	},
+	"region-name-sz": {
+		"message": "سوازيلاند"
+	},
+	"region-name-tc": {
+		"message": "جزر الترك والكايكوس"
+	},
+	"region-name-td": {
+		"message": "تشاد"
+	},
+	"region-name-tg": {
+		"message": "توغو"
+	},
+	"region-name-th": {
+		"message": "تايلاند"
+	},
+	"region-name-tf": {
+		"message": "المناطق الجنوبية و الأنتركتيكية الفرنسية"
+	},
+	"region-name-tj": {
+		"message": "طاجيكستان"
+	},
+	"region-name-tk": {
+		"message": "توكيلاو"
+	},
+	"region-name-tl": {
+		"message": "تيمور- ليشتي"
+	},
+	"region-name-tr": {
+		"message": "تركيا"
+	},
+	"region-name-tn": {
+		"message": "تونس"
+	},
+	"region-name-to": {
+		"message": "تونغا"
+	},
+	"region-name-tm": {
+		"message": "تركمانستان"
+	},
+	"region-name-tt": {
+		"message": "ترينيداد و توباغو"
+	},
+	"region-name-tv": {
+		"message": "توفالو"
+	},
+	"region-name-tw": {
+		"message": "تايوان"
+	},
+	"region-name-tz": {
+		"message": "تنزانيا"
+	},
+	"region-name-ua": {
+		"message": "أكرانيا"
+	},
+	"region-name-ug": {
+		"message": "أوغندا"
+	},
+	"region-name-us": {
+		"message": "الولايات المتّحدة"
+	},
+	"region-name-uy": {
+		"message": "أروغواي"
+	},
+	"region-name-va": {
+		"message": "مدينة الفاتيكان"
+	},
+	"region-name-uz": {
+		"message": "أوزباكستان"
+	},
+	"region-name-vc": {
+		"message": "سانت فنسينت والجرينادينز"
+	},
+	"region-name-vg": {
+		"message": "الجزر العذراء البريطانية"
+	},
+	"region-name-vi": {
+		"message": "جزر فيرجن الأمريكية"
+	},
+	"region-name-vu": {
+		"message": "فانواتو"
+	},
+	"region-name-ve": {
+		"message": "فنزويلا"
+	},
+	"region-name-vn": {
+		"message": "فيتنام"
+	},
+	"region-name-wf": {
+		"message": "جزر والس و فوتونا"
+	},
+	"region-name-ws": {
+		"message": "ساموا الأمريكية"
+	},
+	"region-name-xa": {
+		"message": "جزيرتي أشمور وكارتيير"
+	},
+	"region-name-xb": {
+		"message": "جزيرة بايكر"
+	},
+	"region-name-xc": {
+		"message": "جزر بحر الكورال"
+	},
+	"region-name-xd": {
+		"message": "دهقلية"
+	},
+	"region-name-xe": {
+		"message": "جزيرة أوروبا"
+	},
+	"region-name-xh": {
+		"message": "جزيرة هولاند"
+	},
+	"region-name-xg": {
+		"message": "قطاع غزة"
+	},
+	"region-name-xj": {
+		"message": "جان ماين"
+	},
+	"region-name-xk": {
+		"message": "كوسوفا"
+	},
+	"region-name-xl": {
+		"message": "جزر بالميرا المرجانية"
+	},
+	"region-name-xp": {
+		"message": "جزر پاراسيل"
+	},
+	"region-name-xm": {
+		"message": "شعب كينجمان المرجانية"
+	},
+	"region-name-xq": {
+		"message": "جزيرة جارفيس"
+	},
+	"region-name-xr": {
+		"message": "سفالبارد"
+	},
+	"region-name-xs": {
+		"message": "جزر سبراتلي"
+	},
+	"region-name-xt": {
+		"message": "جزيرة تروملين"
+	},
+	"region-name-xv": {
+		"message": "جزيرة نافاسا"
+	},
+	"region-name-yt": {
+		"message": "مايوتا"
+	},
+	"region-name-ye": {
+		"message": "اليمن"
+	},
+	"region-name-xw": {
+		"message": "الضفة الغربية"
+	},
+	"region-name-za": {
+		"message": "أفريقيا الجنوبية"
+	},
+	"region-name-xu": {
+		"message": "جزيرة جونستون"
+	},
+	"region-name-zw": {
+		"message": "زيمبابوي"
+	},
+	"region-name-zm": {
+		"message": "زامبيا"
 	}
 }

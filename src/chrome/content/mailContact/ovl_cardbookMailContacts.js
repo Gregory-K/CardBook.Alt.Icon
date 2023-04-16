@@ -113,8 +113,8 @@ if ("undefined" == typeof(ovl_cardbookMailContacts)) {
 			}
 		},
 
-		deleteContact: function(aCard) {
-			wdw_cardbook.deleteCardsAndValidate([aCard]);
+		deleteContact: async function(aCard) {
+			await wdw_cardbook.deleteCardsAndValidate([aCard]);
 		},
 
 		hideOldAddressbook: function (aExclusive) {
@@ -194,7 +194,7 @@ if ("undefined" == typeof(ovl_cardbookMailContacts)) {
 		if ("undefined" == typeof(DisplayNameUtils.getCardForEmail)) {
 			let cardDetails = ovl_formatEmailCorrespondents.getCardForEmail(this.emailAddress);
 			this.cardDetails = cardDetails;
-			let exclusive = cardbookRepository.cardbookPreferences.getBoolPref("extensions.cardbook.exclusive");
+			let exclusive = cardbookRepository.cardbookPrefs["exclusive"];
 			let hasCard = (this.cardDetails.card && this.cardDetails.card.cbid) || (!exclusive && this.cardDetails.card) ;
 			this.abIndicator.classList.toggle("in-address-book", hasCard);
 		}
@@ -238,7 +238,7 @@ if ("undefined" == typeof(ovl_cardbookMailContacts)) {
 
 		function colorAvatars() {
 			let nodes = document.getElementById("msgHeaderView").querySelectorAll(".header-recipient");
-			let exclusive = cardbookRepository.cardbookPreferences.getBoolPref("extensions.cardbook.exclusive");
+			let exclusive = cardbookRepository.cardbookPrefs["exclusive"];
 			for (let node of nodes) {
 				if (node.getAttribute("data-header-name") != "from") {
 					let cardDetails = ovl_formatEmailCorrespondents.getCardForEmail(node.emailAddress);
@@ -278,7 +278,7 @@ if ("undefined" == typeof(ovl_cardbookMailContacts)) {
 		let rv = await ovl_cardbookMailContacts.origFunctions.openEmailAddressPopup.apply(null, arguments);
 
 		// Execute some action afterwards.
-		let exclusive = cardbookRepository.cardbookPreferences.getBoolPref("extensions.cardbook.exclusive");
+		let exclusive = cardbookRepository.cardbookPrefs["exclusive"];
 		if (arguments[1].cardDetails.card && arguments[1].cardDetails.card.cbid) {
 			ovl_cardbookMailContacts.hideOrShowNewAddressbook(true);
 			let myCard = arguments[1].cardDetails.card;
@@ -391,7 +391,7 @@ if ("undefined" == typeof(ovl_cardbookMailContacts)) {
 		if (gContextMenu) {
 			gContextMenu.showItem("mailContext-addToCardBookMenu", gContextMenu.onMailtoLink && !gContextMenu.inThreadPane);
 			if (gContextMenu.onMailtoLink && !gContextMenu.inThreadPane) {
-				if (cardbookRepository.cardbookPreferences.getBoolPref("extensions.cardbook.exclusive")) {
+				if (cardbookRepository.cardbookPrefs["exclusive"]) {
 					gContextMenu.showItem("mailContext-addemail", false);
 				}
 			}

@@ -1,64 +1,104 @@
-var { Services } = ChromeUtils.import("resource://gre/modules/Services.jsm");
-var { cardbookRepository } = ChromeUtils.import("chrome://cardbook/content/cardbookRepository.js");
+import { cardbookHTMLTools } from "../cardbookHTMLTools.mjs";
+import { cardbookHTMLRichContext } from "../cardbookHTMLRichContext.mjs";
+
+var enabled = true;
+var id = "";
+var emailAccountName = "";
+var emailAccountId = "";
+var addressBookName = "";
+var addressBookId = "";
+var categoryName = "";
+var categoryId = "";
+var includeName = "";
+var includeCode = "";
+var context = "";
 
 function loadInclExcl () {
-	cardbookElementTools.loadInclExcl("typeMenupopup", "typeMenulist", window.arguments[0].includeCode);
+	let typeMenulist = document.getElementById('typeMenulist');
+	cardbookHTMLTools.loadInclExcl(typeMenulist, includeCode);
 };
 
-function loadMailAccounts () {
-	cardbookElementTools.loadMailAccounts("mailAccountMenupopup", "mailAccountMenulist", window.arguments[0].emailAccountId, true);
+async function loadMailAccounts () {
+	let mailAccountMenulist = document.getElementById('mailAccountMenulist');
+	await cardbookHTMLTools.loadMailAccounts(mailAccountMenulist, emailAccountId, true);
 };
 
-function loadAB () {
-	var aIncludeSearch = true;
-	if (window.arguments[0].context === "Collection") {
+async function loadAB () {
+	let aIncludeSearch = true;
+	if (context === "EmailsCollection") {
 		aIncludeSearch = false;
 	}
-	var ABList = document.getElementById('CardBookABMenulist');
-	var ABPopup = document.getElementById('CardBookABMenupopup');
-	cardbookElementTools.loadAddressBooks(ABPopup, ABList, window.arguments[0].addressBookId, true, false, false, aIncludeSearch, false);
+ 	let ABList = document.getElementById('CardBookABMenulist');
+	await cardbookHTMLTools.loadAddressBooks(ABList, addressBookId, true, false, false, aIncludeSearch, false);
 };
 
-function loadCategories () {
+async function loadCategories () {
 	var ABList = document.getElementById('CardBookABMenulist');
 	if (ABList.value) {
 		var ABDefaultValue = ABList.value;
 	} else {
 		var ABDefaultValue = 0;
 	}
-	cardbookElementTools.loadCategories("categoryMenupopup", "categoryMenulist", ABDefaultValue, window.arguments[0].categoryId, false, false, false, true);
+	let categoryList = document.getElementById('categoryMenulist');
+	await cardbookHTMLTools.loadCategories(categoryList, ABDefaultValue, categoryId, false, false, false, true);
 };
 
-function onLoadDialog () {
-	i18n.updateDocument({ extension: cardbookRepository.extension });
-	document.title = cardbookRepository.extension.localeData.localizeMessage("wdw_cardbookConfigurationAddEmails" + window.arguments[0].context + "Title");
-	loadInclExcl();
-	loadMailAccounts();
-	loadAB();
-	loadCategories();
-	if (window.arguments[0].context === "Collection") {
-		document.getElementById('typeRow').hidden = true;
+async function onLoadDialog () {
+	let urlParams = new URLSearchParams(window.location.search);
+	enabled = urlParams.get("enabled");
+	id = urlParams.get("id");
+	emailAccountName = urlParams.get("emailAccountName");
+	emailAccountId = urlParams.get("emailAccountId");
+	addressBookName = urlParams.get("addressBookName");
+	addressBookId = urlParams.get("addressBookId");
+	categoryName = urlParams.get("categoryName");
+	categoryId = urlParams.get("categoryId");
+	includeName = urlParams.get("includeName");
+	includeCode = urlParams.get("includeCode");
+	context = urlParams.get("context");
+
+	i18n.updateDocument();
+	cardbookHTMLRichContext.loadRichContext();
+	document.title = messenger.i18n.getMessage(`wdw_cardbookConfigurationAddEmails${context}Title`);
+
+	// button
+	document.getElementById('cancelButton').addEventListener("click", onCancelDialog);
+	document.getElementById('validateButton').addEventListener("click", onAcceptDialog);
+	// select
+	document.getElementById("CardBookABMenulist").addEventListener("change", event => loadCategories());
+
+	if (context == "EmailsCollection") {
+		document.getElementById('typeRow').style.display = "none";
+	} else {
+		loadInclExcl();
 	}
+	await loadMailAccounts();
+	await loadAB();
+	await loadCategories();
 };
 
-function onAcceptDialog () {
-	window.arguments[0].emailAccountId=document.getElementById('mailAccountMenulist').value;
-	window.arguments[0].emailAccountName=document.getElementById('mailAccountMenulist').label;
-	window.arguments[0].addressBookId=document.getElementById('CardBookABMenulist').value;
-	window.arguments[0].addressBookName=document.getElementById('CardBookABMenulist').label;
-	window.arguments[0].categoryId=document.getElementById('categoryMenulist').value;
-	window.arguments[0].categoryName=document.getElementById('categoryMenulist').label;
-	window.arguments[0].includeName=document.getElementById('typeMenulist').label;
-	window.arguments[0].includeCode=document.getElementById('typeMenulist').value;
-	window.arguments[0].typeAction="SAVE";
-	close();
+async function onAcceptDialog () {
+	let urlParams = {};
+	urlParams.id = id;
+	urlParams.enabled = enabled;
+	urlParams.context = context;
+	urlParams.emailAccountName = document.getElementById("mailAccountMenulist").querySelector("option:checked").textContent;
+	urlParams.emailAccountId = document.getElementById('mailAccountMenulist').value;
+	urlParams.addressBookName = document.getElementById("CardBookABMenulist").querySelector("option:checked").textContent;
+	urlParams.addressBookId = document.getElementById('CardBookABMenulist').value;
+	urlParams.categoryName = document.getElementById("categoryMenulist").querySelector("option:checked").textContent;
+	urlParams.categoryId = document.getElementById('categoryMenulist').value;
+	if (context != "EmailsCollection") {
+		urlParams.includeName = document.getElementById("typeMenulist").querySelector("option:checked").textContent;
+		urlParams.includeCode = document.getElementById('typeMenulist').value;
+	}
+	await messenger.runtime.sendMessage({query: `cardbook.conf.save${context}`, urlParams: urlParams});
+	onCancelDialog();
 };
 
-function onCancelDialog () {
-	window.arguments[0].typeAction="CANCEL";
-	close();
+async function onCancelDialog () {
+	cardbookHTMLRichContext.closeWindow();
 };
 
-document.addEventListener("DOMContentLoaded", onLoadDialog);
-document.addEventListener("dialogaccept", onAcceptDialog);
-document.addEventListener("dialogcancel", onCancelDialog);
+await onLoadDialog();
+

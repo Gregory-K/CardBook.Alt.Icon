@@ -1,4 +1,4 @@
-#fieldsTable td {
-	min-width: 150px;
-	max-width: 150px;
+#wdw_findDuplicatesBody {
+	overflow: auto;
+    white-space: nowrap;
 }

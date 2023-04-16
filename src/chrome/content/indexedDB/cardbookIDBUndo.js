@@ -27,7 +27,7 @@ var cardbookIDBUndo = {
 
 		request.onsuccess = function(e) {
 			cardbookRepository.cardbookActionsDatabase.db = e.target.result;
-			cardbookRepository.currentUndoId = Number(cardbookRepository.cardbookPreferences.getStringPref("extensions.cardbook.currentUndoId"));
+			cardbookRepository.currentUndoId = Number(cardbookRepository.cardbookPrefs["currentUndoId"]);
 			cardbookActions.setUndoAndRedoMenuAndButton();
 			cardbookRepository.cardbookUtils.notifyObservers("undoDBOpen");
 		};
@@ -108,7 +108,7 @@ var cardbookIDBUndo = {
 					}
 					try {
 						var cursorAddRequest = store.put(storedItem);
-						cursorAddRequest.onsuccess = function(e) {
+						cursorAddRequest.onsuccess = async function(e) {
 							cardbookRepository.currentUndoId = aUndoId;
 							cardbookActions.saveCurrentUndoId();
 							if (cardbookIndexedDB.encryptionEnabled) {
@@ -116,20 +116,20 @@ var cardbookIDBUndo = {
 							} else {
 								cardbookRepository.cardbookLog.updateStatusProgressInformationWithDebug2("debug mode : undo " + aUndoId + " written to undoDB");
 							}
-							var maxUndoChanges = cardbookRepository.cardbookPreferences.getStringPref("extensions.cardbook.maxUndoChanges");
+							var maxUndoChanges = cardbookRepository.cardbookPrefs["maxUndoChanges"];
 							var undoIdToDelete = aUndoId - maxUndoChanges;
 							if (undoIdToDelete > 0) {
 								cardbookIDBUndo.removeUndoItem(undoIdToDelete);
 							}
 							if (aMode) {
-								cardbookActions.fetchCryptoActivity(aMode);
+								await cardbookActions.fetchCryptoActivity(aMode);
 							}
 							resolve();
 						};
 						
-						cursorAddRequest.onerror = function(e) {
+						cursorAddRequest.onerror = async function(e) {
 							if (aMode) {
-								cardbookActions.fetchCryptoActivity(aMode);
+								await cardbookActions.fetchCryptoActivity(aMode);
 							}
 							cardbookRepository.cardbookActionsDatabase.onerror(e);
 						};
@@ -138,9 +138,9 @@ var cardbookIDBUndo = {
 					}
 				};
 
-				cursorDeleteRequest.onerror = function(e) {
+				cursorDeleteRequest.onerror = async function(e) {
 					if (aMode) {
-						cardbookActions.fetchCryptoActivity(aMode);
+						await cardbookActions.fetchCryptoActivity(aMode);
 					}
 					cardbookRepository.cardbookActionsDatabase.onerror(e);
 				};
@@ -231,7 +231,7 @@ var cardbookIDBUndo = {
 					cardbookRepository.cardbookLog.updateStatusProgressInformationWithDebug2("debug mode : executing undo " + cardbookRepository.currentUndoId + " updating myCatToCreate.cbid : " + myCatToCreate.cbid);
 					cardbookRepository.cardbookUtils.addTagUpdated(myCatToCreate);
 					myCatToCreate.etag = myCatToDelete.etag;
-					cardbookRepository.saveCategory(myCatToDelete, myCatToCreate, myActionId);
+					await cardbookRepository.saveCategory(myCatToDelete, myCatToCreate, myActionId);
 				}
 			}
 			for (let myCardToDelete of item.newCards) {
@@ -273,7 +273,7 @@ var cardbookIDBUndo = {
 				if (!myCatToCreate) {
 					cardbookRepository.cardbookUtils.addTagCreated(myCatToDelete);
 					cardbookRepository.cardbookLog.updateStatusProgressInformationWithDebug2("debug mode : executing undo " + cardbookRepository.currentUndoId + " deleting myCatToDelete.cbid : " + myCatToDelete.cbid);
-					cardbookRepository.deleteCategories([myCatToDelete], myActionId);
+					await cardbookRepository.deleteCategories([myCatToDelete], myActionId);
 				}
 			}
 			cardbookRepository.currentUndoId--;
@@ -322,7 +322,7 @@ var cardbookIDBUndo = {
 					cardbookRepository.cardbookLog.updateStatusProgressInformationWithDebug2("debug mode : executing redo " + cardbookRepository.currentUndoId + " updating myCatToCreate.cbid : " + myCatToCreate.cbid);
 					cardbookRepository.cardbookUtils.addTagUpdated(myCatToCreate);
 					myCatToCreate.etag = myCatToDelete.etag;
-					cardbookRepository.saveCategory(myCatToDelete, myCatToCreate, myActionId);
+					await cardbookRepository.saveCategory(myCatToDelete, myCatToCreate, myActionId);
 				}
 			}
 			for (let myCardToDelete of item.oldCards) {
@@ -360,7 +360,7 @@ var cardbookIDBUndo = {
 				if (!myCatToCreate) {
 					cardbookRepository.cardbookUtils.addTagCreated(myCatToDelete);
 					cardbookRepository.cardbookLog.updateStatusProgressInformationWithDebug2("debug mode : executing redo " + cardbookRepository.currentUndoId + " deleting myCatToDelete.cbid : " + myCatToDelete.cbid);
-					cardbookRepository.deleteCategories([myCatToDelete], myActionId);
+					await cardbookRepository.deleteCategories([myCatToDelete], myActionId);
 				}
 			}
 			cardbookRepository.currentUndoId++;
@@ -412,7 +412,7 @@ var cardbookIDBUndo = {
 					await cardbookIDBUndo.addUndoItem(item.undoId, item.undoCode, item.undoMessage, item.oldCards, item.newCards, item.oldCats, item.newCats, true, "decryption");
 				}
 				catch(e) {
-					cardbookActions.fetchCryptoActivity("decryption");
+					await cardbookActions.fetchCryptoActivity("decryption");
 					cardbookRepository.cardbookLog.updateStatusProgressInformation("debug mode : Undo decryption failed e : " + e, "Error");
 				}
 			},
@@ -433,7 +433,7 @@ var cardbookIDBUndo = {
 					await cardbookIDBUndo.addUndoItem(item.undoId, item.undoCode, item.undoMessage, item.oldCards, item.newCards, item.oldCats, item.newCats, true, "encryption");
 				}
 				catch(e) {
-					cardbookActions.fetchCryptoActivity("encryption");
+					await cardbookActions.fetchCryptoActivity("encryption");
 					cardbookRepository.cardbookLog.updateStatusProgressInformation("debug mode : Undo encryption failed e : " + e, "Error");
 				}
 			},

@@ -1,29 +1,5 @@
 var { Services } = ChromeUtils.import("resource://gre/modules/Services.jsm");
 
-var cardBookEditionPrefObserver = {
-	register: function() {
-		cardBookPrefObserverRepository.registerAll(this);
-	},
-	
-	unregister: function() {
-		cardBookPrefObserverRepository.unregisterAll(this);
-	},
-	
-	observe: function(aSubject, aTopic, aData) {
-		switch (aData) {
-			case "fieldsNameList":
-				wdw_cardEdition.setEditionFields();
-				wdw_cardEdition.loadEditionFields();
-				wdw_cardEdition.loadFieldSelector();
-				wdw_cardEdition.setConvertButtons();
-				break;
-			case "accountShown":
-				wdw_cardEdition.changePreviousNext();
-				break;
-		}
-	}
-};
-
 var cardBookEditionObserver = {
 	register: function() {
 		cardBookObserverRepository.registerAll(this);
@@ -35,6 +11,13 @@ var cardBookEditionObserver = {
 	
 	observe: function(aSubject, aTopic, aData) {
 		switch (aTopic) {
+			case "cardbook.pref.preferencesChanged":
+				wdw_cardEdition.setEditionFields();
+				wdw_cardEdition.loadEditionFields();
+				wdw_cardEdition.loadFieldSelector();
+				wdw_cardEdition.setConvertButtons();
+				wdw_cardEdition.changePreviousNext();
+				break;
 			case "cardbook.mailMode":
 				wdw_cardEdition.cancelPreviousNext();
 				break;

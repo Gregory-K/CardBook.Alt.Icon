@@ -52,8 +52,8 @@ if ("undefined" == typeof(cardbookWebDAV)) {
 		this.logDescription = connection.connDescription;
 		this.target = target;
 		this.etag = etag;
-		var requestsTimeout = cardbookRepository.cardbookPreferences.getStringPref("extensions.cardbook.requestsTimeout");
-		this.addonVersion = cardbookRepository.cardbookPreferences.getStringPref("extensions.cardbook.addonVersion");
+		var requestsTimeout = cardbookRepository.cardbookPrefs["requestsTimeout"];
+		this.addonVersion = cardbookRepository.cardbookPrefs["addonVersion"];
 		this.timeout = requestsTimeout * 1000;
 	
 		this.requestJSONResponse = false;
@@ -740,7 +740,7 @@ if ("undefined" == typeof(cardbookWebDAV)) {
 		_formatRelativeHref: function(aString) {
 			var decodeReport = true;
 			try {
-				decodeReport = cardbookRepository.cardbookPreferences.getBoolPref("extensions.cardbook.decodeReport");
+				decodeReport = cardbookRepository.cardbookPrefs["decodeReport"];
 			} catch (e) {
 				decodeReport = true;
 			}

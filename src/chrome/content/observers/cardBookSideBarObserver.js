@@ -1,26 +1,5 @@
 var { Services } = ChromeUtils.import("resource://gre/modules/Services.jsm");
 
-var cardBookSideBarPrefObserver = {
-	register: function() {
-		cardBookPrefObserverRepository.registerAll(this);
-	},
-	
-	unregister: function() {
-		cardBookPrefObserverRepository.unregisterAll(this);
-	},
-	
-	observe: function(aSubject, aTopic, aData) {
-		switch (aData) {
-			case "exclusive":
-				wdw_cardbookContactsSidebar.loadAB();
-				break;
-			case "preferEmailPref":
-				wdw_cardbookContactsSidebar.onABChange();
-				break;
-		}
-	}
-};
-
 var cardBookSideBarObserver = {
 	register: function() {
 		cardBookObserverRepository.registerAll(this);
@@ -66,9 +45,9 @@ var cardBookSideBarObserver = {
 			case "cardbook.outgoingEmailCollected":
 			case "cardbook.redoActionDone":
 			case "cardbook.undoActionDone":
-				wdw_cardbookContactsSidebar.onABChange(aData);
+				wdw_cardbookContactsSidebar.loadAB(aData);
 				break;
-			case "cardbook.preferencesChanged":
+			case "cardbook.pref.preferencesChanged":
 				wdw_cardbookContactsSidebar.onRestrictionsChanged();
 				break;
 			case "cardbook.identityChanged":

@@ -3,7 +3,7 @@ var { Services } = ChromeUtils.import("resource://gre/modules/Services.jsm");
 var cardbookIndexedDB = {
 
 	get encryptionEnabled() {
-		return cardbookRepository.cardbookPreferences.getBoolPref("extensions.cardbook.localDataEncryption", false);
+		return cardbookRepository.cardbookPrefs["localDataEncryption"];
 	},
 
 	// remove an account
@@ -74,7 +74,7 @@ var cardbookIndexedDB = {
 						toBeMigrated.push(item);
 					}
 				}
-				cardbookActions.fetchCryptoCount(toBeMigrated.length);
+				await cardbookActions.fetchCryptoCount(toBeMigrated.length);
 				for (var item of toBeMigrated) {
 					aMigrateItem(item);
 				}
@@ -92,30 +92,26 @@ var cardbookIndexedDB = {
 
 	encryptDBs: async function() {
 		cardbookActions.initCryptoActivity("encryption");
-		Promise.all([
-			cardbookIDBCat.encryptCategories(),
-			cardbookIDBCard.encryptCards(),
-			cardbookIDBUndo.encryptUndos(),
-			cardbookIDBImage.encryptImages(),
-			cardbookIDBMailPop.encryptMailPops(),
-			cardbookIDBPrefDispName.encryptPrefDispNames()
-		]);
+		await cardbookIDBCat.encryptCategories();
+		await cardbookIDBCard.encryptCards();
+		await cardbookIDBUndo.encryptUndos();
+		await cardbookIDBImage.encryptImages();
+		await cardbookIDBMailPop.encryptMailPops();
+		await cardbookIDBPrefDispName.encryptPrefDispNames();
 	},
 
 	decryptDBs: async function() {
 		cardbookActions.initCryptoActivity("decryption");
-		Promise.all([
-			cardbookIDBCat.decryptCategories(),
-			cardbookIDBCard.decryptCards(),
-			cardbookIDBUndo.decryptUndos(),
-			cardbookIDBImage.decryptImages(),
-			cardbookIDBMailPop.decryptMailPops(),
-			cardbookIDBPrefDispName.decryptPrefDispNames()
-		]);
+		await cardbookIDBCat.decryptCategories();
+		await cardbookIDBCard.decryptCards();
+		await cardbookIDBUndo.decryptUndos();
+		await cardbookIDBImage.decryptImages();
+		await cardbookIDBMailPop.decryptMailPops();
+		await cardbookIDBPrefDispName.decryptPrefDispNames();
 	},
 
 	upgradeDBs: async function() {
-		var lastValidatedVersion = cardbookRepository.cardbookPreferences.getStringPref("extensions.cardbook.localDataEncryption.validatedVersion", "");
+		var lastValidatedVersion = cardbookRepository.cardbookPrefs["localDataEncryption.validatedVersion"];
 		if (lastValidatedVersion != cardbookEncryptor.VERSION) {
 			cardbookActions.initCryptoActivity("encryption");
 			Promise.all([
@@ -126,7 +122,7 @@ var cardbookIndexedDB = {
 				cardbookIDBMailPop.upgradeMailPops(),
 				cardbookIDBPrefDispName.upgradePrefDispNames()
 			]).then(() => {
-				cardbookRepository.cardbookPreferences.setStringPref("extensions.cardbook.localDataEncryption.validatedVersion", String(cardbookEncryptor.VERSION));
+				cardbookRepository.cardbookPreferences.setStringPref("localDataEncryption.validatedVersion", String(cardbookEncryptor.VERSION));
 			});
 		}
 	}

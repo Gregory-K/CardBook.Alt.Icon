@@ -114,14 +114,8 @@
 	"showForgottenLabel": {
 		"message": "Show forgotten duplicates"
 	},
-	"showForgottenAccesskey": {
-		"message": "S"
-	},
 	"hideForgottenLabel": {
 		"message": "Hide forgotten duplicates"
-	},
-	"hideForgottenAccesskey": {
-		"message": "H"
 	},
 	"noContactsDuplicated": {
 		"message": "No duplicate contacts have been found."
@@ -3309,6 +3303,12 @@
 	"toLowerCase": {
 		"message": "Convert to lowercase"
 	},
+	"copy": {
+		"message": "Copy"
+	},
+	"paste": {
+		"message": "Paste"
+	},
 	"copyFieldValue": {
 		"message": "Copy ($P1$)",
         "placeholders": {
@@ -3369,7 +3369,7 @@
 	"wdw_cardbookConfigurationAddEmailsRestrictionTitle": {
 		"message": "Mail Account Restriction Definition"
 	},
-	"wdw_cardbookConfigurationAddEmailsCollectionTitle": {
+	"wdw_cardbookConfigurationAddEmailsEmailsCollectionTitle": {
 		"message": "Mail Account Outgoing Emails Collection Definition"
 	},
 	"ignoreCaseIgnoreDiacriticLabel": {
@@ -3773,10 +3773,13 @@
 	},
 	"wizard.next.label": {
 		"message": "Next"
-	},	
+	},
 	"wizard.back.label": {
 		"message": "Back"
-	},	
+	},
+	"wizard.cancel.label": {
+		"message": "Cancel"
+	},
 	"wizard.create.label": {
 		"message": "Create"
 	},
@@ -3800,9 +3803,6 @@
 	},
 	"initialPage.search.label": {
 		"message": "Search into existing address books"
-	},
-	"initialPage.find.label": {
-		"message": "Search for remote address books"
 	},
 	"localPage.type.description": {
 		"message": "Type of local address book:"
@@ -3838,7 +3838,7 @@
 		"message": "Browse"
 	},
 	"remotePage.description": {
-		"message": "What is the type of your remote address book (Caution: Google does NOT conform to vCard standards)?"
+		"message": "What is the type of your remote address book?"
 	},
 	"remotePage.type.label": {
 		"message": "Type"
@@ -3891,7 +3891,7 @@
 	"rememberPassword": {
 		"message": "Use Password Manager to remember this password"
 	},
-	"showHidePassword.tooltip": {
+	"showHidePassword": {
 		"message": "Show/Hide password"
 	},
 	"remotePage.validatebutton.label": {
@@ -3903,20 +3903,11 @@
 	"abSearchHeading.label": {
 		"message": "Search in:"
 	},
-	"abSearchHeading.accesskey": {
-		"message": "h"
-	},
 	"matchAll.label": {
 		"message": "Match all of the following"
 	},
-	"matchAll.accesskey": {
-		"message": "a"
-	},
 	"matchAny.label": {
 		"message": "Match any of the following"
-	},
-	"matchAny.accesskey": {
-		"message": "o"
 	},
 	"googleOauthPage.wizard.description": {
 		"message": "Google Authentication"
@@ -3969,9 +3960,6 @@
 	"name.ABedit.label": {
 		"message": "Name:"
 	},
-	"name.ABedit.accesskey": {
-		"message": "N"
-	},
 	"nodesLabel": {
 		"message": "Nodes:"
 	},
@@ -3993,9 +3981,6 @@
 	"readonlyLabel": {
 		"message": "Read-only mode"
 	},
-	"readonlyAccesskey": {
-		"message": "R"
-	},
 	"urnuuidLabel": {
 		"message": "Use urn:uuid"
 	},
@@ -4008,14 +3993,8 @@
 	"autoSyncLabel": {
 		"message": "Enable periodic synchronization"
 	},
-	"autoSyncAccesskey": {
-		"message": "E"
-	},
 	"autoSyncIntervalLabel": {
 		"message": "Interval between periodic synchronizations (minutes):"
-	},
-	"autoSyncIntervalAccesskey": {
-		"message": "I"
 	},
 	"miscTabLabel": {
 		"message": "Miscellaneous"
@@ -4026,20 +4005,11 @@
 	"fnFormulaLabel": {
 		"message": "Display Name Formula:"
 	},
-	"fnFormulaAccesskey": {
-		"message": "y"
-	},
 	"resetFnFormulaLabel": {
 		"message": "Restore to Default"
 	},
-	"resetFnFormulaAccesskey": {
-		"message": "R"
-	},
 	"applyToABButtonLabel": {
 		"message": "Apply to…"
-	},
-	"applyToABButtonAccesskey": {
-		"message": "A"
 	},
 	"wdw_adrEditionTitle": {
 		"message": "Address editor"
@@ -4173,53 +4143,26 @@
 	"autocompletionLabel": {
 		"message": "Autocompletion of email addresses"
 	},
-	"autocompletionAccesskey": {
-		"message": "o"
-	},
-	"autocompletionTooltip": {
-		"message": "Extends the standard autocompletion of contacts in address books of Thunderbird with an autocompletion of contacts in address books of CardBook."
-	},
 	"autocompleteSortByPopularityLabel": {
 		"message": "Sort email addresses by popularity"
-	},
-	"autocompleteSortByPopularityAccesskey": {
-		"message": "p"
 	},
 	"autocompleteProposeConcatEmailsLabel": {
 		"message": "Propose concatenated emails per contact"
 	},
-	"autocompleteProposeConcatEmailsAccesskey": {
-		"message": "c"
-	},
 	"autocompleteShowAddressbookLabel": {
 		"message": "Show address book name"
-	},
-	"autocompleteShowAddressbookAccesskey": {
-		"message": "a"
 	},
 	"autocompleteShowEmailTypeLabel": {
 		"message": "Show email type"
 	},
-	"autocompleteShowEmailTypeAccesskey": {
-		"message": "e"
-	},
 	"autocompleteShowPopularityLabel": {
 		"message": "Show popularity"
-	},
-	"autocompleteShowPopularityAccesskey": {
-		"message": "y"
 	},
 	"autocompleteWithColorLabel": {
 		"message": "Use address book color"
 	},
-	"autocompleteWithColorAccesskey": {
-		"message": "c"
-	},
 	"autocompleteRestrictSearchLabel": {
 		"message": "Restrict search fields"
-	},
-	"autocompleteRestrictSearchAccesskey": {
-		"message": "R"
 	},
 	"chooseAutocompleteRestrictSearchFieldsButtonLabel": {
 		"message": "Edit"
@@ -4256,12 +4199,6 @@
 	},
 	"exclusiveLabel": {
 		"message": "Unique source for contacts"
-	},
-	"exclusiveAccesskey": {
-		"message": "U"
-	},
-	"exclusiveTooltip": {
-		"message": "If disabled, this option allows to retrieve contacts in Thunderbird standard address books for the yellow stars, for the email display name and the for the email autocompletion."
 	},
 	"accountsRestrictionsLabel": {
 		"message": "Mail Account Restrictions"
@@ -4341,12 +4278,6 @@
 	"debugModeLabel": {
 		"message": "Debug mode"
 	},
-	"debugModeAccesskey": {
-		"message": "m"
-	},
-	"debugModeTooltip": {
-		"message": "Enable debug mode for extended logging."
-	},
 	"statusInformationLineNumberLabel": {
 		"message": "Number of lines kept in the log file:"
 	},
@@ -4365,26 +4296,14 @@
 	"listTab.conf.label": {
 		"message": "Lists"
 	},
-	"listTab.conf.accesskey": {
-		"message": "L"
-	},
 	"technicalTab.conf.label": {
 		"message": "Technical"
-	},
-	"technicalTab.conf.accesskey": {
-		"message": "T"
 	},
 	"vCardTab.conf.label": {
 		"message": "vCard"
 	},
-	"vCardTab.conf.accesskey": {
-		"message": "V"
-	},
 	"keyTab.conf.label": {
 		"message": "Public Keys"
-	},
-	"keyTab.conf.accesskey": {
-		"message": "K"
 	},
 	"advancedTab1Label": {
 		"message": "Advanced"
@@ -4482,9 +4401,6 @@
 	"preferEmailEditionLabel": {
 		"message": "Double-click on a contact edits it instead of emails it"
 	},
-	"preferEmailEditionAccesskey": {
-		"message": "k"
-	},
 	"dateDisplayedFormatLabel": {
 		"message": "Date Text Format:"
 	},
@@ -4493,9 +4409,6 @@
 	},
 	"defaultRegionLabel": {
 		"message": "Default Region:"
-	},
-	"defaultRegionAccesskey": {
-		"message": "D"
 	},
 	"defaultRegionTooltip": {
 		"message": "Default region for addresses and formatting phone numbers."
@@ -4641,9 +4554,6 @@
 	"preferIMPPPrefLabel": {
 		"message": "Prefer Internet Communications marked with"
 	},
-	"preferIMPPPrefAccesskey": {
-		"message": "P"
-	},
 	"preferIMPPPrefWarn": {
 		"message": "If no address is marked, a connection is proposed for all of the contact's addresses."
 	},
@@ -4707,9 +4617,6 @@
 	"URLPhoneBackgroundLabel": {
 		"message": "Run in background"
 	},
-	"URLPhoneBackgroundAccesskey": {
-		"message": "R"
-	},
 	"encryptionGroupboxLabel": {
 		"message": "Encryption"
 	},
@@ -4718,9 +4625,6 @@
 	},
 	"localDataEncryptionEnabledLabel": {
 		"message": "Encrypt locally cached cards"
-	},
-	"localDataEncryptionEnabledAccesskey": {
-		"message": "E"
 	},
 	"customFieldRankHeaderLabel": {
 		"message": "Rank"
@@ -4771,7 +4675,7 @@
 		"message": "Field Label"
 	},
 	"listPanelLabel": {
-		"message": "If your server does not support categories (like Google, Apple, Zimbra, etc…), lists are a good way to send emails to groups. vCard 3.0 does not natively support lists, but this may be achieved with custom fields, so if you want to use lists in vCard 3.0, you have to define these fields."
+		"message": "If your server does not support categories (like Apple, Zimbra, etc…), lists are a good way to send emails to groups. vCard 3.0 does not natively support lists, but this may be achieved with custom fields, so if you want to use lists in vCard 3.0, you have to define these fields."
 	},
 	"listGroupboxLabel": {
 		"message": "Custom Fields for Lists"
@@ -4803,14 +4707,8 @@
 	"syncAfterChangeLabel": {
 		"message": "Synchronize after changes"
 	},
-	"syncAfterChangeAccesskey": {
-		"message": "c"
-	},
 	"initialSyncLabel": {
 		"message": "Run synchronization at Thunderbird startup"
-	},
-	"initialSyncAccesskey": {
-		"message": "R"
 	},
 	"initialSyncDelayLabel": {
 		"message": "Initial synchronization delay (seconds):"
@@ -4872,17 +4770,11 @@
 	"decodeReportLabel": {
 		"message": "Decode URLs for REPORT requests"
 	},
-	"decodeReportAccesskey": {
-		"message": "D"
-	},
 	"miscEmailGroupboxLabel": {
 		"message": "Sending Emails"
 	},
 	"preferEmailPrefLabel": {
 		"message": "Prefer email addresses marked with"
-	},
-	"preferEmailPrefAccesskey": {
-		"message": "P"
 	},
 	"preferEmailPrefWarn": {
 		"message": "If no address is marked, the message is sent to all of the contact's addresses."
@@ -4890,14 +4782,8 @@
 	"warnEmptyEmailsLabel": {
 		"message": "Warn me when I attempt to email contacts without an email address"
 	},
-	"warnEmptyEmailsAccesskey": {
-		"message": "W"
-	},
 	"useOnlyEmailLabel": {
 		"message": "Only use email addresses, without their Display Names"
-	},
-	"useOnlyEmailAccesskey": {
-		"message": "O"
 	},
 	"attachVCardWarn": {
 		"message": "To automatically add a vCard to your emails, select a vCard for each email account. If activated, CardBook will attach this vCard to every outgoing email from this account."
@@ -4956,26 +4842,14 @@
 	"bday.conf.label": {
 		"message": "Birthday"
 	},
-	"bday.conf.accesskey": {
-		"message": "B"
-	},
 	"anniversary.conf.label": {
 		"message": "Anniversary (only for vCard 4.0)"
-	},
-	"anniversary.conf.accesskey": {
-		"message": "A"
 	},
 	"deathdate.conf.label": {
 		"message": "Death Date (only for vCard 4.0)"
 	},
-	"deathdate.conf.accesskey": {
-		"message": "D"
-	},
 	"eventsLabel": {
 		"message": "Events"
-	},
-	"eventsAccesskey": {
-		"message": "E"
 	},
 	"gender.conf.label": {
 		"message": "Gender (only for vCard 4.0)"
@@ -5007,14 +4881,8 @@
 	"showPopupOnStartupLabel": {
 		"message": "Show popup window on startup"
 	},
-	"showPopupOnStartupAccesskey": {
-		"message": "S"
-	},
 	"showPeriodicPopupLabel": {
 		"message": "Show daily popup"
-	},
-	"showPeriodicPopupAccesskey": {
-		"message": "d"
 	},
 	"periodicPopupTimeLabel": {
 		"message": "Display time (hh:mm):"
@@ -5024,9 +4892,6 @@
 	},
 	"showPopupEvenIfNoBirthdayLabel": {
 		"message": "Show popup window when anniversaries list is empty"
-	},
-	"showPopupEvenIfNoBirthdayAccesskey": {
-		"message": "h"
 	},
 	"remindViaLightningGroupboxLabel": {
 		"message": "Remind via Thunderbird Lightning Calendar Extension"
@@ -5039,9 +4904,6 @@
 	},
 	"syncWithLightningOnStartupLabel": {
 		"message": "Synchronize with Lightning on startup"
-	},
-	"syncWithLightningOnStartupAccesskey": {
-		"message": "L"
 	},
 	"calendarEntryTitleLabel": {
 		"message": "Title for calendar event:"
@@ -5061,9 +4923,6 @@
 	"calendarRepeatingEventLabel": {
 		"message": "Repeating event"
 	},
-	"calendarRepeatingEventAccesskey": {
-		"message": "R"
-	},
 	"calendarEntryTimeLabel": {
 		"message": "Time for calendar event (hh:mm):"
 	},
@@ -5072,9 +4931,6 @@
 	},
 	"calendarEntryWholeDayLabel": {
 		"message": "Calendar event for the whole day"
-	},
-	"calendarEntryWholeDayAccesskey": {
-		"message": "y"
 	},
 	"calendarEntryAlarmLabel": {
 		"message": "Alarm(s) to n hours for calendar events (Example: 4,+1):"
@@ -5835,9 +5691,6 @@
 	"viewResultEditionLabel": {
 		"message": "View result"
 	},
-	"viewResultEditionAccesskey": {
-		"message": "V"
-	},
 	"previousEditButton.tooltip": {
 		"message": "Previous"
 	},
@@ -5883,20 +5736,11 @@
 	"moreEditionLabel": {
 		"message": "Show more"
 	},
-	"moreEditionAccesskey": {
-		"message": "m"
-	},
 	"lessEditionLabel": {
 		"message": "Show less"
 	},
-	"lessEditionAccesskey": {
-		"message": "l"
-	},
 	"mergeAllEditionLabel": {
 		"message": "Merge All"
-	},
-	"mergeAllEditionAccesskey": {
-		"message": "M"
 	},
 	"formatAllEditionLabel": {
 		"message": "Format all"
@@ -5906,9 +5750,6 @@
 	},
 	"undoAllEditionLabel": {
 		"message": "Undo all"
-	},
-	"undoAllEditionAccesskey": {
-		"message": "U"
 	},
 	"formatEditionLabel": {
 		"message": "Format"
@@ -5952,9 +5793,6 @@
 	"convertVCardsTooltip": {
 		"message": "The vCard version of some contacts is different from the vCard version of your address book, this button may convert these vCards"
 	},
-	"convertVCardsAccesskey": {
-		"message": "o"
-	},
 	"wdw_findDuplicatesTitle": {
 		"message": "Duplicate Contacts ($P1$)",
         "placeholders": {
@@ -5964,7 +5802,7 @@
         }
 	},
 	"wdw_formatDataTitle": {
-		"message": "Format Contacts Data($P1$)",
+		"message": "Format Contacts Data ($P1$)",
         "placeholders": {
             "P1": {
                 "content": "$1"
@@ -6016,26 +5854,14 @@
 	"refreshLogEditionLabel": {
 		"message": "Refresh"
 	},
-	"refreshLogEditionAccesskey": {
-		"message": "R"
-	},
 	"flushLogEditionLabel": {
 		"message": "Clear List"
-	},
-	"flushLogEditionAccesskey": {
-		"message": "C"
 	},
 	"clipboardLogEditionLabel": {
 		"message": "Copy to Clipboard"
 	},
-	"clipboardLogEditionAccesskey": {
-		"message": "p"
-	},
 	"cancelLogEditionLabel": {
 		"message": "OK"
-	},
-	"cancelLogEditionAccesskey": {
-		"message": "O"
 	},
 	"wdw_mergeCardsTitle": {
 		"message": "Merge Contacts"
@@ -6064,6 +5890,30 @@
 	"wdw_cardbookConfigurationEditFieldTitle": {
 		"message": "Choose a conversion function"
 	},
+	"ContainsOperator": {
+		"message": "contains"
+	},
+	"DoesntContainOperator": {
+		"message": "doesn't contain"
+	},
+	"IsOperator": {
+		"message": "is"
+	},
+	"IsntOperator": {
+		"message": "isn't"
+	},
+	"BeginsWithOperator": {
+		"message": "begins with"
+	},
+	"EndsWithOperator": {
+		"message": "ends with"
+	},
+	"IsEmptyOperator": {
+		"message": "is empty"
+	},
+	"IsntEmptyOperator": {
+		"message": "isn't empty"
+	},
 	"uppercaseLabel": {
 		"message": "Uppercase"
 	},
@@ -6072,5 +5922,821 @@
 	},
 	"capitalizationLabel": {
 		"message": "Capitalization"
+	},
+	"region-name-ad": {
+		"message": "Andorra"
+	},
+	"region-name-ae": {
+		"message": "United Arab Emirates"
+	},
+	"region-name-af": {
+		"message": "Afghanistan"
+	},
+	"region-name-ai": {
+		"message": "Anguilla"
+	},
+	"region-name-al": {
+		"message": "Albania"
+	},
+	"region-name-ag": {
+		"message": "Antigua and Barbuda"
+	},
+	"region-name-am": {
+		"message": "Armenia"
+	},
+	"region-name-ar": {
+		"message": "Argentina"
+	},
+	"region-name-aq": {
+		"message": "Antarctica"
+	},
+	"region-name-ao": {
+		"message": "Angola"
+	},
+	"region-name-at": {
+		"message": "Austria"
+	},
+	"region-name-az": {
+		"message": "Azerbaijan"
+	},
+	"region-name-ba": {
+		"message": "Bosnia and Herzegovina"
+	},
+	"region-name-bb": {
+		"message": "Barbados"
+	},
+	"region-name-as": {
+		"message": "American Samoa"
+	},
+	"region-name-au": {
+		"message": "Australia"
+	},
+	"region-name-bd": {
+		"message": "Bangladesh"
+	},
+	"region-name-be": {
+		"message": "Belgium"
+	},
+	"region-name-aw": {
+		"message": "Aruba"
+	},
+	"region-name-bf": {
+		"message": "Burkina Faso"
+	},
+	"region-name-bm": {
+		"message": "Bermuda"
+	},
+	"region-name-bj": {
+		"message": "Benin"
+	},
+	"region-name-bg": {
+		"message": "Bulgaria"
+	},
+	"region-name-bi": {
+		"message": "Burundi"
+	},
+	"region-name-bh": {
+		"message": "Bahrain"
+	},
+	"region-name-bl": {
+		"message": "Saint Barthélemy"
+	},
+	"region-name-bn": {
+		"message": "Brunei"
+	},
+	"region-name-bo": {
+		"message": "Bolivia"
+	},
+	"region-name-br": {
+		"message": "Brazil"
+	},
+	"region-name-bq": {
+		"message": "Bonaire, Sint Eustatius, and Saba"
+	},
+	"region-name-bt": {
+		"message": "Bhutan"
+	},
+	"region-name-bs": {
+		"message": "Bahamas, The"
+	},
+	"region-name-bz": {
+		"message": "Belize"
+	},
+	"region-name-ca": {
+		"message": "Canada"
+	},
+	"region-name-cc": {
+		"message": "Cocos (Keeling) Islands"
+	},
+	"region-name-by": {
+		"message": "Belarus"
+	},
+	"region-name-cd": {
+		"message": "Congo (Kinshasa)"
+	},
+	"region-name-cf": {
+		"message": "Central African Republic"
+	},
+	"region-name-bv": {
+		"message": "Bouvet Island"
+	},
+	"region-name-bw": {
+		"message": "Botswana"
+	},
+	"region-name-cl": {
+		"message": "Chile"
+	},
+	"region-name-ci": {
+		"message": "Côte d’Ivoire"
+	},
+	"region-name-ch": {
+		"message": "Switzerland"
+	},
+	"region-name-cm": {
+		"message": "Cameroon"
+	},
+	"region-name-ck": {
+		"message": "Cook Islands"
+	},
+	"region-name-cg": {
+		"message": "Congo (Brazzaville)"
+	},
+	"region-name-cn": {
+		"message": "China"
+	},
+	"region-name-cp": {
+		"message": "Clipperton Island"
+	},
+	"region-name-co": {
+		"message": "Colombia"
+	},
+	"region-name-cr": {
+		"message": "Costa Rica"
+	},
+	"region-name-cz": {
+		"message": "Czech Republic"
+	},
+	"region-name-cy": {
+		"message": "Cyprus"
+	},
+	"region-name-cx": {
+		"message": "Christmas Island"
+	},
+	"region-name-cv": {
+		"message": "Cabo Verde"
+	},
+	"region-name-cu": {
+		"message": "Cuba"
+	},
+	"region-name-cw": {
+		"message": "Curaçao"
+	},
+	"region-name-de": {
+		"message": "Germany"
+	},
+	"region-name-dg": {
+		"message": "Diego Garcia"
+	},
+	"region-name-dk": {
+		"message": "Denmark"
+	},
+	"region-name-dj": {
+		"message": "Djibouti"
+	},
+	"region-name-dm": {
+		"message": "Dominica"
+	},
+	"region-name-ec": {
+		"message": "Ecuador"
+	},
+	"region-name-dz": {
+		"message": "Algeria"
+	},
+	"region-name-do": {
+		"message": "Dominican Republic"
+	},
+	"region-name-ee": {
+		"message": "Estonia"
+	},
+	"region-name-eg": {
+		"message": "Egypt"
+	},
+	"region-name-eh": {
+		"message": "Western Sahara"
+	},
+	"region-name-et": {
+		"message": "Ethiopia"
+	},
+	"region-name-er": {
+		"message": "Eritrea"
+	},
+	"region-name-es": {
+		"message": "Spain"
+	},
+	"region-name-fi": {
+		"message": "Finland"
+	},
+	"region-name-fj": {
+		"message": "Fiji"
+	},
+	"region-name-fm": {
+		"message": "Micronesia, Federated States of"
+	},
+	"region-name-fk": {
+		"message": "Falkland Islands (Islas Malvinas)"
+	},
+	"region-name-fo": {
+		"message": "Faroe Islands"
+	},
+	"region-name-ge": {
+		"message": "Georgia"
+	},
+	"region-name-gb": {
+		"message": "United Kingdom"
+	},
+	"region-name-gd": {
+		"message": "Grenada"
+	},
+	"region-name-fr": {
+		"message": "France"
+	},
+	"region-name-ga": {
+		"message": "Gabon"
+	},
+	"region-name-gf": {
+		"message": "French Guiana"
+	},
+	"region-name-gl": {
+		"message": "Greenland"
+	},
+	"region-name-gm": {
+		"message": "Gambia, The"
+	},
+	"region-name-gi": {
+		"message": "Gibraltar"
+	},
+	"region-name-gg": {
+		"message": "Guernsey"
+	},
+	"region-name-gh": {
+		"message": "Ghana"
+	},
+	"region-name-gn": {
+		"message": "Guinea"
+	},
+	"region-name-gp": {
+		"message": "Guadeloupe"
+	},
+	"region-name-gr": {
+		"message": "Greece"
+	},
+	"region-name-gq": {
+		"message": "Equatorial Guinea"
+	},
+	"region-name-gt": {
+		"message": "Guatemala"
+	},
+	"region-name-gw": {
+		"message": "Guinea-Bissau"
+	},
+	"region-name-hk": {
+		"message": "Hong Kong"
+	},
+	"region-name-gu": {
+		"message": "Guam"
+	},
+	"region-name-gs": {
+		"message": "South Georgia and South Sandwich Islands"
+	},
+	"region-name-gy": {
+		"message": "Guyana"
+	},
+	"region-name-hm": {
+		"message": "Heard Island and McDonald Islands"
+	},
+	"region-name-ht": {
+		"message": "Haiti"
+	},
+	"region-name-hr": {
+		"message": "Croatia"
+	},
+	"region-name-hn": {
+		"message": "Honduras"
+	},
+	"region-name-in": {
+		"message": "India"
+	},
+	"region-name-il": {
+		"message": "Israel"
+	},
+	"region-name-im": {
+		"message": "Isle of Man"
+	},
+	"region-name-ie": {
+		"message": "Ireland"
+	},
+	"region-name-hu": {
+		"message": "Hungary"
+	},
+	"region-name-id": {
+		"message": "Indonesia"
+	},
+	"region-name-io": {
+		"message": "British Indian Ocean Territory"
+	},
+	"region-name-ir": {
+		"message": "Iran"
+	},
+	"region-name-is": {
+		"message": "Iceland"
+	},
+	"region-name-iq": {
+		"message": "Iraq"
+	},
+	"region-name-je": {
+		"message": "Jersey"
+	},
+	"region-name-jp": {
+		"message": "Japan"
+	},
+	"region-name-it": {
+		"message": "Italy"
+	},
+	"region-name-ke": {
+		"message": "Kenya"
+	},
+	"region-name-jo": {
+		"message": "Jordan"
+	},
+	"region-name-jm": {
+		"message": "Jamaica"
+	},
+	"region-name-kg": {
+		"message": "Kyrgyzstan"
+	},
+	"region-name-ki": {
+		"message": "Kiribati"
+	},
+	"region-name-kh": {
+		"message": "Cambodia"
+	},
+	"region-name-km": {
+		"message": "Comoros"
+	},
+	"region-name-kn": {
+		"message": "Saint Kitts and Nevis"
+	},
+	"region-name-ky": {
+		"message": "Cayman Islands"
+	},
+	"region-name-kp": {
+		"message": "Korea, North"
+	},
+	"region-name-kr": {
+		"message": "Korea, South"
+	},
+	"region-name-kw": {
+		"message": "Kuwait"
+	},
+	"region-name-kz": {
+		"message": "Kazakhstan"
+	},
+	"region-name-la": {
+		"message": "Laos"
+	},
+	"region-name-lb": {
+		"message": "Lebanon"
+	},
+	"region-name-lc": {
+		"message": "Saint Lucia"
+	},
+	"region-name-li": {
+		"message": "Liechtenstein"
+	},
+	"region-name-lk": {
+		"message": "Sri Lanka"
+	},
+	"region-name-lr": {
+		"message": "Liberia"
+	},
+	"region-name-lu": {
+		"message": "Luxembourg"
+	},
+	"region-name-lv": {
+		"message": "Latvia"
+	},
+	"region-name-ls": {
+		"message": "Lesotho"
+	},
+	"region-name-ly": {
+		"message": "Libya"
+	},
+	"region-name-lt": {
+		"message": "Lithuania"
+	},
+	"region-name-mc": {
+		"message": "Monaco"
+	},
+	"region-name-md": {
+		"message": "Moldova"
+	},
+	"region-name-ma": {
+		"message": "Morocco"
+	},
+	"region-name-me": {
+		"message": "Montenegro"
+	},
+	"region-name-mf": {
+		"message": "Saint Martin"
+	},
+	"region-name-mg": {
+		"message": "Madagascar"
+	},
+	"region-name-mh": {
+		"message": "Marshall Islands"
+	},
+	"region-name-mk": {
+		"message": "Macedonia"
+	},
+	"region-name-ml": {
+		"message": "Mali"
+	},
+	"region-name-mm": {
+		"message": "Burma"
+	},
+	"region-name-mn": {
+		"message": "Mongolia"
+	},
+	"region-name-mo": {
+		"message": "Macau"
+	},
+	"region-name-mp": {
+		"message": "Northern Mariana Islands"
+	},
+	"region-name-mt": {
+		"message": "Malta"
+	},
+	"region-name-mu": {
+		"message": "Mauritius"
+	},
+	"region-name-mr": {
+		"message": "Mauritania"
+	},
+	"region-name-ms": {
+		"message": "Montserrat"
+	},
+	"region-name-mq": {
+		"message": "Martinique"
+	},
+	"region-name-mv": {
+		"message": "Maldives"
+	},
+	"region-name-mw": {
+		"message": "Malawi"
+	},
+	"region-name-my": {
+		"message": "Malaysia"
+	},
+	"region-name-mx": {
+		"message": "Mexico"
+	},
+	"region-name-mz": {
+		"message": "Mozambique"
+	},
+	"region-name-na": {
+		"message": "Namibia"
+	},
+	"region-name-nc": {
+		"message": "New Caledonia"
+	},
+	"region-name-ne": {
+		"message": "Niger"
+	},
+	"region-name-nf": {
+		"message": "Norfolk Island"
+	},
+	"region-name-ng": {
+		"message": "Nigeria"
+	},
+	"region-name-ni": {
+		"message": "Nicaragua"
+	},
+	"region-name-nl": {
+		"message": "Netherlands"
+	},
+	"region-name-no": {
+		"message": "Norway"
+	},
+	"region-name-np": {
+		"message": "Nepal"
+	},
+	"region-name-nr": {
+		"message": "Nauru"
+	},
+	"region-name-pk": {
+		"message": "Pakistan"
+	},
+	"region-name-pl": {
+		"message": "Poland"
+	},
+	"region-name-nz": {
+		"message": "New Zealand"
+	},
+	"region-name-ph": {
+		"message": "Philippines"
+	},
+	"region-name-nu": {
+		"message": "Niue"
+	},
+	"region-name-om": {
+		"message": "Oman"
+	},
+	"region-name-pe": {
+		"message": "Peru"
+	},
+	"region-name-pa": {
+		"message": "Panama"
+	},
+	"region-name-pf": {
+		"message": "French Polynesia"
+	},
+	"region-name-pg": {
+		"message": "Papua New Guinea"
+	},
+	"region-name-pm": {
+		"message": "Saint Pierre and Miquelon"
+	},
+	"region-name-pn": {
+		"message": "Pitcairn Islands"
+	},
+	"region-name-pr": {
+		"message": "Puerto Rico"
+	},
+	"region-name-pt": {
+		"message": "Portugal"
+	},
+	"region-name-pw": {
+		"message": "Palau"
+	},
+	"region-name-qm": {
+		"message": "Midway Islands"
+	},
+	"region-name-py": {
+		"message": "Paraguay"
+	},
+	"region-name-qa": {
+		"message": "Qatar"
+	},
+	"region-name-qs": {
+		"message": "Bassas da India"
+	},
+	"region-name-qu": {
+		"message": "Juan de Nova Island"
+	},
+	"region-name-qw": {
+		"message": "Wake Island"
+	},
+	"region-name-qx": {
+		"message": "Glorioso Islands"
+	},
+	"region-name-rs": {
+		"message": "Serbia"
+	},
+	"region-name-ro": {
+		"message": "Romania"
+	},
+	"region-name-qz": {
+		"message": "Akrotiri"
+	},
+	"region-name-re": {
+		"message": "Réunion"
+	},
+	"region-name-rw": {
+		"message": "Rwanda"
+	},
+	"region-name-ru": {
+		"message": "Russia"
+	},
+	"region-name-sa": {
+		"message": "Saudi Arabia"
+	},
+	"region-name-sb": {
+		"message": "Solomon Islands"
+	},
+	"region-name-sc": {
+		"message": "Seychelles"
+	},
+	"region-name-sd": {
+		"message": "Sudan"
+	},
+	"region-name-se": {
+		"message": "Sweden"
+	},
+	"region-name-sg": {
+		"message": "Singapore"
+	},
+	"region-name-sh": {
+		"message": "Saint Helena, Ascension, and Tristan da Cunha"
+	},
+	"region-name-si": {
+		"message": "Slovenia"
+	},
+	"region-name-sk": {
+		"message": "Slovakia"
+	},
+	"region-name-sl": {
+		"message": "Sierra Leone"
+	},
+	"region-name-sn": {
+		"message": "Senegal"
+	},
+	"region-name-sm": {
+		"message": "San Marino"
+	},
+	"region-name-ss": {
+		"message": "South Sudan"
+	},
+	"region-name-so": {
+		"message": "Somalia"
+	},
+	"region-name-sr": {
+		"message": "Suriname"
+	},
+	"region-name-sx": {
+		"message": "Sint Maarten"
+	},
+	"region-name-st": {
+		"message": "São Tomé and Príncipe"
+	},
+	"region-name-sv": {
+		"message": "El Salvador"
+	},
+	"region-name-sy": {
+		"message": "Syria"
+	},
+	"region-name-sz": {
+		"message": "Swaziland"
+	},
+	"region-name-tc": {
+		"message": "Turks and Caicos Islands"
+	},
+	"region-name-td": {
+		"message": "Chad"
+	},
+	"region-name-tg": {
+		"message": "Togo"
+	},
+	"region-name-th": {
+		"message": "Thailand"
+	},
+	"region-name-tf": {
+		"message": "French Southern and Antarctic Lands"
+	},
+	"region-name-tj": {
+		"message": "Tajikistan"
+	},
+	"region-name-tk": {
+		"message": "Tokelau"
+	},
+	"region-name-tl": {
+		"message": "Timor-Leste"
+	},
+	"region-name-tr": {
+		"message": "Turkey"
+	},
+	"region-name-tn": {
+		"message": "Tunisia"
+	},
+	"region-name-to": {
+		"message": "Tonga"
+	},
+	"region-name-tm": {
+		"message": "Turkmenistan"
+	},
+	"region-name-tt": {
+		"message": "Trinidad and Tobago"
+	},
+	"region-name-tv": {
+		"message": "Tuvalu"
+	},
+	"region-name-tw": {
+		"message": "Taiwan"
+	},
+	"region-name-tz": {
+		"message": "Tanzania"
+	},
+	"region-name-ua": {
+		"message": "Ukraine"
+	},
+	"region-name-ug": {
+		"message": "Uganda"
+	},
+	"region-name-us": {
+		"message": "United States"
+	},
+	"region-name-uy": {
+		"message": "Uruguay"
+	},
+	"region-name-va": {
+		"message": "Vatican City"
+	},
+	"region-name-uz": {
+		"message": "Uzbekistan"
+	},
+	"region-name-vc": {
+		"message": "Saint Vincent and the Grenadines"
+	},
+	"region-name-vg": {
+		"message": "Virgin Islands, British"
+	},
+	"region-name-vi": {
+		"message": "Virgin Islands, U.S."
+	},
+	"region-name-vu": {
+		"message": "Vanuatu"
+	},
+	"region-name-ve": {
+		"message": "Venezuela"
+	},
+	"region-name-vn": {
+		"message": "Vietnam"
+	},
+	"region-name-wf": {
+		"message": "Wallis and Futuna"
+	},
+	"region-name-ws": {
+		"message": "Samoa"
+	},
+	"region-name-xa": {
+		"message": "Ashmore and Cartier Islands"
+	},
+	"region-name-xb": {
+		"message": "Baker Island"
+	},
+	"region-name-xc": {
+		"message": "Coral Sea Islands"
+	},
+	"region-name-xd": {
+		"message": "Dhekelia"
+	},
+	"region-name-xe": {
+		"message": "Europa Island"
+	},
+	"region-name-xh": {
+		"message": "Howland Island"
+	},
+	"region-name-xg": {
+		"message": "Gaza Strip"
+	},
+	"region-name-xj": {
+		"message": "Jan Mayen"
+	},
+	"region-name-xk": {
+		"message": "Kosovo"
+	},
+	"region-name-xl": {
+		"message": "Palmyra Atoll"
+	},
+	"region-name-xp": {
+		"message": "Paracel Islands"
+	},
+	"region-name-xm": {
+		"message": "Kingman Reef"
+	},
+	"region-name-xq": {
+		"message": "Jarvis Island"
+	},
+	"region-name-xr": {
+		"message": "Svalbard"
+	},
+	"region-name-xs": {
+		"message": "Spratly Islands"
+	},
+	"region-name-xt": {
+		"message": "Tromelin Island"
+	},
+	"region-name-xv": {
+		"message": "Navassa Island"
+	},
+	"region-name-yt": {
+		"message": "Mayotte"
+	},
+	"region-name-ye": {
+		"message": "Yemen"
+	},
+	"region-name-xw": {
+		"message": "West Bank"
+	},
+	"region-name-za": {
+		"message": "South Africa"
+	},
+	"region-name-xu": {
+		"message": "Johnston Atoll"
+	},
+	"region-name-zw": {
+		"message": "Zimbabwe"
+	},
+	"region-name-zm": {
+		"message": "Zambia"
 	}
 }

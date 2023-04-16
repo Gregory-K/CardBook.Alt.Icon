@@ -48,7 +48,7 @@ var cardbookUtils = {
 
 	cleanCategories: function (aCategoryList) {
 		function filterCategories(element) {
-			return (element != cardbookRepository.cardbookUncategorizedCards);
+			return (element != cardbookRepository.cardbookPrefs["uncategorizedCards"]);
 		}
 		return cardbookRepository.arrayUnique(aCategoryList.filter(filterCategories));
 	},
@@ -81,18 +81,17 @@ var cardbookUtils = {
 		return cardbookRepository.arrayUnique(result);
 	},
 
-	formatAddress: async function(aAddress, aAdrFormula) {
+	formatAddress: function(aAddress, aAdrFormula) {
 		let result =  "";
-		let resultArray =  [];
+		let defaultAdrFormula = cardbookRepository.extension.localeData.localizeMessage("addressFormatFormula");
 		let myAdrFormula = aAdrFormula ||
-							cardbookRepository.cardbookPreferences.getStringPref("extensions.cardbook.adrFormula") ||
-							cardbookRepository.defaultAdrFormula;
+							cardbookRepository.cardbookPrefs["adrFormula"] ||
+							defaultAdrFormula;
 		let addressArray = JSON.parse(JSON.stringify(aAddress));
 		// maybe a country code (Google uses them)
 		let lcRegionCode = addressArray[6].toLowerCase();
 		if (cardbookRepository.countriesList.includes(lcRegionCode)) {
-			const loc = new Localization(["toolkit/intl/regionNames.ftl"]);
-			addressArray[6] = await loc.formatValue("region-name-" + lcRegionCode);
+			addressArray[6] = cardbookRepository.extension.localeData.localizeMessage("region-name-" + lcRegionCode);
 		}
 		result = cardbookUtils.getStringFromFormula(myAdrFormula, addressArray);
 		var re = /[\n\u0085\u2028\u2029]|\r\n?/;
@@ -100,10 +99,9 @@ var cardbookUtils = {
 		return cardbookUtils.cleanArray(myAdrResultArray).join("\n");
 	},
 
-	getCountryCodeFromCountryName: async function (aName) {
-		const loc = new Localization(["toolkit/intl/regionNames.ftl"]);
+	getCountryCodeFromCountryName: function (aName) {
 		for (let code of cardbookRepository.countriesList) {
-			let locName = await loc.formatValue("region-name-" + code);
+			let locName = cardbookRepository.extension.localeData.localizeMessage("region-name-" + code);
 			if (locName.toLowerCase() == aName.toLowerCase()) {
 				return code.toUpperCase();
 			}
@@ -111,13 +109,12 @@ var cardbookUtils = {
 		return aName;
 	},
 
-	getCardRegion: async function (aCard) {
+	getCardRegion: function (aCard) {
 		let i = 0;
 		while (true) {
 			if (aCard.adr[i] && aCard.adr[i][0]) {
 				var country = aCard.adr[i][0][6].toUpperCase();
 				if (country != "") {
-					const loc = new Localization(["toolkit/intl/regionNames.ftl"]);
 					let lcRegionCode = country.toLowerCase();
 					// maybe a country code
 					if (cardbookRepository.countriesList.includes(lcRegionCode)) {
@@ -125,7 +122,7 @@ var cardbookUtils = {
 					}
 					// let's try to find a known country
 					for (let code of cardbookRepository.countriesList) {
-						let locName = await loc.formatValue("region-name-" + code);
+						let locName = cardbookRepository.extension.localeData.localizeMessage("region-name-" + code);
 						if (lcRegionCode == locName.toLowerCase()) {
 							return code.toUpperCase();
 						}
@@ -133,7 +130,7 @@ var cardbookUtils = {
 				}
 				i++;
 			} else {
-				return cardbookRepository.cardbookPreferences.getStringPref("extensions.cardbook.defaultRegion");
+				return cardbookRepository.cardbookPrefs["defaultRegion"];
 			}
 		}
 		return "";
@@ -148,16 +145,17 @@ var cardbookUtils = {
 	},
 	
 	getName: function (aCard) {
-		if (aCard.isAList || cardbookRepository.showNameAs == "DSP") {
+		let showNameAs = cardbookRepository.cardbookPrefs["showNameAs"];
+		if (aCard.isAList || showNameAs == "DSP") {
 			return aCard.fn;
 		}
 		if (aCard.lastname != "" && aCard.firstname != "") {
 			let result = "";
-			if (cardbookRepository.showNameAs == "LF") {
+			if (showNameAs == "LF") {
 				result = aCard.lastname + " " + aCard.firstname;
-			} else if (cardbookRepository.showNameAs == "FL") {
+			} else if (showNameAs == "FL") {
 				result = aCard.firstname + " " + aCard.lastname;
-			} else if (cardbookRepository.showNameAs == "LFCOMMA") {
+			} else if (showNameAs == "LFCOMMA") {
 				result = aCard.lastname + ", " + aCard.firstname;
 			}
 			return result.trim();
@@ -808,10 +806,10 @@ var cardbookUtils = {
 	},
 
 	getFnDataForFormula: function(aNewN, aNewOrg) {
-		let orgStructure = cardbookRepository.cardbookPreferences.getStringPref("extensions.cardbook.orgStructure");
+		let orgStructure = cardbookRepository.cardbookPrefs["orgStructure"];
 		let myOrg = aNewOrg[0];
 		let myOrgArray = [];
-		if (orgStructure != "") {
+		if (typeof(orgStructure) !== "undefined") {
 			myOrgArray = cardbookUtils.unescapeArray(cardbookUtils.escapeString(myOrg).split(";"));
 			let myOrgStructureArray = cardbookUtils.unescapeArray(cardbookUtils.escapeString(orgStructure).split(";"));
 			for (let i = myOrgArray.length; i < myOrgStructureArray.length; i++) {
@@ -903,7 +901,7 @@ var cardbookUtils = {
 	setCalculatedFieldsWithoutRev: function(aCard) {
 		aCard.isAList = cardbookUtils.isMyCardAList(aCard);
 		if (!aCard.isAList) {
-			aCard.emails = cardbookUtils.getPrefAddressFromCard(aCard, "email", cardbookRepository.preferEmailPref);
+			aCard.emails = cardbookUtils.getPrefAddressFromCard(aCard, "email", cardbookRepository.cardbookPrefs["preferEmailPref"]);
 		}
 		if (aCard.dirPrefId != "" && aCard.uid != "") {
 			aCard.cbid = aCard.dirPrefId + "::" + aCard.uid;
@@ -947,8 +945,8 @@ var cardbookUtils = {
 			}
 
 			// lists
-			let kindCustom = cardbookRepository.cardbookPreferences.getStringPref("extensions.cardbook.kindCustom");
-			let memberCustom = cardbookRepository.cardbookPreferences.getStringPref("extensions.cardbook.memberCustom");
+			let kindCustom = cardbookRepository.cardbookPrefs["kindCustom"];
+			let memberCustom = cardbookRepository.cardbookPrefs["memberCustom"];
 			if (aCard.isAList) {
 				if (aTargetVersion == "3.0") {
 					cardbookUtils.addMemberstoCard(aCard, aCard.member, aCard.kind);
@@ -1066,12 +1064,64 @@ var cardbookUtils = {
 			var myField = myFieldArray[0];
 			var myPosition = myFieldArray[1];
 			if (myField == "org") {
-				var orgStructure = cardbookRepository.cardbookPreferences.getStringPref("extensions.cardbook.orgStructure");
+				var orgStructure = cardbookRepository.cardbookPrefs["orgStructure"];
 				if (orgStructure != "") {
 					var myOrgValue = cardbookUtils.unescapeArray(cardbookUtils.escapeString(aCard[myField]).split(";"));
 					result.push(myOrgValue[myPosition]);
 				} else {
 					result.push(aCard[myField]);
+				}
+			} else if (myField == "adr" && myFieldArray.length == 2) {
+				var myType = myFieldArray[1];
+				if (myType == "all") {
+					if (aCard[myField]) {
+						for (var i = 0; i < aCard[myField].length; i++) {
+							let address = cardbookRepository.cardbookUtils.formatAddress(aCard[myField][i][0]);
+							if (address) {
+								result.push(address);
+							}
+						}
+					}
+				} else {
+					if (aCard[myField]) {
+						var ABType = cardbookRepository.cardbookPreferences.getType(aCard.dirPrefId);
+						var ABTypeFormat = cardbookRepository.getABTypeFormat(ABType);
+						for (var i = 0; i < aCard[myField].length; i++) {
+							if (myType == "notype") {
+								if (aCard[myField][i][1].length == 0 && aCard[myField][i][3].length == 0 && aCard[myField][i][2] == "") {
+									let address = cardbookRepository.cardbookUtils.formatAddress(aCard[myField][i][0]);
+									if (address) {
+										result.push(address);
+									}
+								}
+							} else {
+								if (aCard[myField][i][3].length != 0 && aCard[myField][i][2] != "") {
+									let found = false;
+									for (var j = 0; j < aCard[myField][i][3].length; j++) {
+										let tmpArray = aCard[myField][i][3][j].split(":");
+										if (tmpArray[0] == "X-ABLABEL") {
+											var myInputTypes = [ tmpArray[1] ];
+											found = true;
+											break;
+										}
+									}
+									if (!found) {
+										var myInputTypes = cardbookUtils.getOnlyTypesFromTypes(aCard[myField][i][1]);
+									}
+								} else {
+									var myInputTypes = cardbookUtils.getOnlyTypesFromTypes(aCard[myField][i][1]);
+								}
+								if (cardbookRepository.cardbookTypes.isMyCodePresent(myField, myType, ABTypeFormat, myInputTypes)) {
+									let address = cardbookRepository.cardbookUtils.formatAddress(aCard[myField][i][0]);
+									if (aIncludePref && myField!= "adr" && cardbookUtils.getPrefBooleanFromTypes(aCard[myField][i][1])) {
+										result.push(cardbookRepository.prefCSVPrefix + address);
+									} else {
+										result.push(address);
+									}
+								}
+							}
+						}
+					}
 				}
 			} else {
 				var myType = myFieldArray[2];
@@ -1134,9 +1184,12 @@ var cardbookUtils = {
 				result.push(aCard[aField]);
 			} else {
 				for (var i = 0; i < aCard.others.length; i++) {
-					var othersTempArray = aCard.others[i].split(":");
-					if (aField == othersTempArray[0]) {
-						result.push(othersTempArray[1]);
+					let delim = aCard.others[i].indexOf(":", 0);
+					let header = aCard.others[i].substr(0, delim);
+					let value = aCard.others[i].substr(delim+1, aCard.others[i].length);
+					let headerTmp = header.split(";");
+					if (aField == headerTmp[0]) {
+						result.push(value);
 						break;
 					}
 				}
@@ -1449,15 +1502,6 @@ var cardbookUtils = {
 		return {result: myResult, remainingNote: myRemainingNote, remainingOthers: myRemainingOthers};
 	},
 
-	getTemplate: function (aFieldList) {
-		let fields = aFieldList.split('|');
-		let result = [];
-		for (let field of fields) {
-			result.push([field, cardbookRepository.cardbookUtils.getTranslatedField(field)]);
-		}
-		return result;
-	},
-
 	getTranslatedField: function (aField, aLocale) {
 		for (var i in cardbookRepository.allColumns) {
 			for (var j = 0; j < cardbookRepository.allColumns[i].length; j++) {
@@ -1480,6 +1524,11 @@ var cardbookUtils = {
 			}
 		}
 		for (var i = 0; i < cardbookRepository.allColumns.arrayColumns.length; i++) {
+			if (cardbookRepository.allColumns.arrayColumns[i][0] + ".all" == aField) {
+				return cardbookRepository.extension.localeData.localizeMessage(cardbookRepository.allColumns.arrayColumns[i][0] + "Label");
+			} else if (cardbookRepository.allColumns.arrayColumns[i][0] + ".notype" == aField) {
+				return cardbookRepository.extension.localeData.localizeMessage(cardbookRepository.allColumns.arrayColumns[i][0] + "Label") + " (" + cardbookRepository.extension.localeData.localizeMessage("importNoTypeLabel") + ")";
+			}
 			for (var k = 0; k < cardbookRepository.allColumns.arrayColumns[i][1].length; k++) {
 				if (cardbookRepository.allColumns.arrayColumns[i][0] + "." + k + ".all" == aField) {
 					return cardbookRepository.extension.localeData.localizeMessage(cardbookRepository.allColumns.arrayColumns[i][1][k] + "Label");
@@ -1492,6 +1541,9 @@ var cardbookUtils = {
 			var myPrefTypes = cardbookRepository.cardbookTypes.getTypesFromDirPrefId(cardbookRepository.allColumns.arrayColumns[i][0]);
 			cardbookRepository.cardbookUtils.sortMultipleArrayByString(myPrefTypes,0,1)
 			for (var j = 0; j < myPrefTypes.length; j++) {
+				if (cardbookRepository.allColumns.arrayColumns[i][0] + "." + myPrefTypes[j][1] == aField) {
+					return cardbookRepository.extension.localeData.localizeMessage(cardbookRepository.allColumns.arrayColumns[i][0] + "Label") + " (" + myPrefTypes[j][0] + ")";
+				}
 				for (var k = 0; k < cardbookRepository.allColumns.arrayColumns[i][1].length; k++) {
 					if (cardbookRepository.allColumns.arrayColumns[i][0] + "." + k + "." + myPrefTypes[j][1] == aField) {
 						return cardbookRepository.extension.localeData.localizeMessage(cardbookRepository.allColumns.arrayColumns[i][1][k] + "Label") + " (" + myPrefTypes[j][0] + ")";
@@ -1536,7 +1588,7 @@ var cardbookUtils = {
 				tmpArray.push([field[1], field[0]]);
 			}
 		}
-		let orgStructure = cardbookRepository.cardbookPreferences.getStringPref("extensions.cardbook.orgStructure");
+		let orgStructure = cardbookRepository.cardbookPrefs["orgStructure"];
 		if (orgStructure) {
 			let myOrgStructure = cardbookRepository.cardbookUtils.unescapeArray(cardbookRepository.cardbookUtils.escapeString(orgStructure).split(";"));
 			for (let field of myOrgStructure) {
@@ -1860,17 +1912,6 @@ var cardbookUtils = {
 		}
 	},
 
-	randomChannel: function(brightness) {
-		var r = 255-brightness;
-		var n = 0|((Math.random() * r) + brightness);
-		var s = n.toString(16);
-		return (s.length==1) ? '0'+s : s;
-	},
-
-	randomColor: function(brightness) {
-		return '#' + cardbookUtils.randomChannel(brightness) + cardbookUtils.randomChannel(brightness) + cardbookUtils.randomChannel(brightness);
-	},
-
 	getPrefAddressFromCard: function (aCard, aType, aAddressPref) {
 		var listOfAddress = [];
 		if (aCard) {
@@ -2037,8 +2078,8 @@ var cardbookUtils = {
 				}
 			}
 		} else if (aCard.version == "3.0") {
-			var kindCustom = cardbookRepository.cardbookPreferences.getStringPref("extensions.cardbook.kindCustom");
-			var memberCustom = cardbookRepository.cardbookPreferences.getStringPref("extensions.cardbook.memberCustom");
+			var kindCustom = cardbookRepository.cardbookPrefs["kindCustom"];
+			var memberCustom = cardbookRepository.cardbookPrefs["memberCustom"];
 			result.kind = aCard.kind;
 			for (let other of aCard.others) {
 				var localDelim1 = other.indexOf(":",0);
@@ -2072,8 +2113,8 @@ var cardbookUtils = {
 				aCard.kind = "group";
 			}
 		} else if (aCard.version == "3.0") {
-			var kindCustom = cardbookRepository.cardbookPreferences.getStringPref("extensions.cardbook.kindCustom");
-			var memberCustom = cardbookRepository.cardbookPreferences.getStringPref("extensions.cardbook.memberCustom");
+			var kindCustom = cardbookRepository.cardbookPrefs["kindCustom"];
+			var memberCustom = cardbookRepository.cardbookPrefs["memberCustom"];
 			for (var i = 0; i < aCard.others.length; i++) {
 				localDelim1 = aCard.others[i].indexOf(":",0);
 				if (localDelim1 >= 0) {
@@ -2103,7 +2144,7 @@ var cardbookUtils = {
 		if (aOnlyEmail) {
 			var useOnlyEmail = aOnlyEmail;
 		} else {
-			var useOnlyEmail = cardbookRepository.cardbookPreferences.getBoolPref("extensions.cardbook.useOnlyEmail");
+			var useOnlyEmail = cardbookRepository.cardbookPrefs["useOnlyEmail"];
 		}
 		var result = [];
 		for (var i = 0; i < aListOfCards.length; i++) {
@@ -2122,7 +2163,7 @@ var cardbookUtils = {
 		if (aOnlyEmail) {
 			var useOnlyEmail = aOnlyEmail;
 		} else {
-			var useOnlyEmail = cardbookRepository.cardbookPreferences.getBoolPref("extensions.cardbook.useOnlyEmail");
+			var useOnlyEmail = cardbookRepository.cardbookPrefs["useOnlyEmail"];
 		}
 		var result = {};
 		result.emptyResults = [];
@@ -2185,7 +2226,7 @@ var cardbookUtils = {
 		if (aCard.version == "4.0") {
 			return (aCard.kind.toLowerCase() == 'group');
 		} else if (aCard.version == "3.0") {
-			var kindCustom = cardbookRepository.cardbookPreferences.getStringPref("extensions.cardbook.kindCustom");
+			var kindCustom = cardbookRepository.cardbookPrefs["kindCustom"];
 			for (var i = 0; i < aCard.others.length; i++) {
 				var localDelim1 = aCard.others[i].indexOf(":",0);
 				if (localDelim1 >= 0) {
@@ -2228,9 +2269,21 @@ var cardbookUtils = {
 				result.push([cardbookRepository.allColumns.arrayColumns[i][0] + "." + k + ".all",
 											cardbookRepository.extension.localeData.localizeMessage(cardbookRepository.allColumns.arrayColumns[i][1][k] + "Label")]);
 			}
+			if (aMode != "import") {
+				if (cardbookRepository.allColumns.arrayColumns[i][1].length > 1) {
+					result.push([cardbookRepository.allColumns.arrayColumns[i][0] + ".all",
+												cardbookRepository.extension.localeData.localizeMessage(cardbookRepository.allColumns.arrayColumns[i][0] + "Label")]);
+				}
+			}
 			for (var k = 0; k < cardbookRepository.allColumns.arrayColumns[i][1].length; k++) {
 				result.push([cardbookRepository.allColumns.arrayColumns[i][0] + "." + k + ".notype",
 											cardbookRepository.extension.localeData.localizeMessage(cardbookRepository.allColumns.arrayColumns[i][1][k] + "Label") + " (" + cardbookRepository.extension.localeData.localizeMessage("importNoTypeLabel") + ")"]);
+			}
+			if (aMode != "import") {
+				if (cardbookRepository.allColumns.arrayColumns[i][1].length > 1) {
+					result.push([cardbookRepository.allColumns.arrayColumns[i][0] + ".notype",
+												cardbookRepository.extension.localeData.localizeMessage(cardbookRepository.allColumns.arrayColumns[i][0] + "Label") + " (" + cardbookRepository.extension.localeData.localizeMessage("importNoTypeLabel") + ")"]);
+				}
 			}
 			var myPrefTypes = cardbookRepository.cardbookTypes.getTypesFromDirPrefId(cardbookRepository.allColumns.arrayColumns[i][0]);
 			cardbookUtils.sortMultipleArrayByString(myPrefTypes,0,1)
@@ -2238,6 +2291,12 @@ var cardbookUtils = {
 				for (var k = 0; k < cardbookRepository.allColumns.arrayColumns[i][1].length; k++) {
 					result.push([cardbookRepository.allColumns.arrayColumns[i][0] + "." + k + "." + myPrefTypes[j][1],
 												cardbookRepository.extension.localeData.localizeMessage(cardbookRepository.allColumns.arrayColumns[i][1][k] + "Label") + " (" + myPrefTypes[j][0] + ")"]);
+				}
+				if (aMode != "import") {
+					if (cardbookRepository.allColumns.arrayColumns[i][1].length > 1) {
+						result.push([cardbookRepository.allColumns.arrayColumns[i][0] + "." + myPrefTypes[j][1],
+													cardbookRepository.extension.localeData.localizeMessage(cardbookRepository.allColumns.arrayColumns[i][0] + "Label") + " (" + myPrefTypes[j][0] + ")"]);
+					}
 				}
 			}
 		}
@@ -2381,7 +2440,7 @@ var cardbookUtils = {
 							cardbookRepository.cardbookServerValidation[aDirPrefId][url].version.length > 0) {
 				version = cardbookRepository.cardbookServerValidation[aDirPrefId][url].version;
 			} else {
-				version = JSON.parse(JSON.stringify(cardbookRepository.supportedVersion));
+				version = JSON.parse(JSON.stringify(cardbookRepository.cardbookPrefs["supportedVersion"]));
 			}
 			let type = connection[0].type;
 			let id = "";
@@ -2549,8 +2608,25 @@ var cardbookUtils = {
 
 	notifyObservers: function (aTopic, aParam) {
 		if (aTopic) {
-			Services.obs.notifyObservers(null, "cardbook." + aTopic, aParam);
+			let message = `cardbook.${aTopic}`;
+			if (aTopic.startsWith("cardbook.")) {
+				message = aTopic;
+			}
+			Services.obs.notifyObservers(null, message, aParam);
 		}
+	},
+
+	bulkOperation: async function (aActionId) {
+		if (aActionId && cardbookRepository.currentAction[aActionId] && cardbookRepository.currentAction[aActionId].totalEstimatedCards) {
+			if (cardbookRepository.currentAction[aActionId].totalEstimatedCards < 10) {
+				return;
+			}
+		}
+		let url = "chrome/content/bulkOperation/wdw_bulkOperation.html";
+		let params = new URLSearchParams();
+		let win = await notifyTools.notifyBackground({query: "cardbook.openWindow",
+												url: `${url}?${params.toString()}`,
+												type: "popup"});
 	},
 
 	cleanRefreshToken: function (aString) {

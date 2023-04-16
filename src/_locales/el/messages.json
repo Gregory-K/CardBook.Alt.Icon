@@ -73,7 +73,7 @@
 		"message": "Ορίστε το βιβλίο διευθύνσεων σε λειτουργία μόνο για ανάγνωση"
 	},
 	"createCategoryFromAccountsOrCats": {
-		"message": "??Create Category??"
+		"message": "Δημιουργία κατηγορίας"
 	},
 	"editCategoryFromAccountsOrCats": {
 		"message": "Επεξεργασία κατηγορίας"
@@ -114,14 +114,8 @@
 	"showForgottenLabel": {
 		"message": "Εμφάνιση ξεχασμένων αντιγράφων"
 	},
-	"showForgottenAccesskey": {
-		"message": "Ε"
-	},
 	"hideForgottenLabel": {
 		"message": "Απόκρυψη ξεχασμένων αντιγράφων"
-	},
-	"hideForgottenAccesskey": {
-		"message": "Α"
 	},
 	"noContactsDuplicated": {
 		"message": "Δεν βρέθηκαν διπλές επαφές."
@@ -3309,6 +3303,12 @@
 	"toLowerCase": {
 		"message": "Μετατροπή σε πεζά"
 	},
+	"copy": {
+		"message": "Αντιγραφή"
+	},
+	"paste": {
+		"message": "Επικόλληση"
+	},
 	"copyFieldValue": {
 		"message": "Αντιγραφή ($P1$)",
         "placeholders": {
@@ -3369,7 +3369,7 @@
 	"wdw_cardbookConfigurationAddEmailsRestrictionTitle": {
 		"message": "Ορισμός περιορισμοί λογαριασμός αλληλογραφίας"
 	},
-	"wdw_cardbookConfigurationAddEmailsCollectionTitle": {
+	"wdw_cardbookConfigurationAddEmailsEmailsCollectionTitle": {
 		"message": "Ορισμός λογαριασμού εξερχόμενων μηνυμάτων ηλεκτρονικού ταχυδρομείου"
 	},
 	"ignoreCaseIgnoreDiacriticLabel": {
@@ -3777,6 +3777,9 @@
 	"wizard.back.label": {
 		"message": "Πίσω"
 	},
+	"wizard.cancel.label": {
+		"message": "Ακύρωση"
+	},
 	"wizard.create.label": {
 		"message": "Δημιουργία"
 	},
@@ -3800,9 +3803,6 @@
 	},
 	"initialPage.search.label": {
 		"message": "Αναζήτηση στα υπάρχοντα βιβλία διευθύνσεων"
-	},
-	"initialPage.find.label": {
-		"message": "Αναζήτηση για απομακρυσμένα βιβλία διευθύνσεων"
 	},
 	"localPage.type.description": {
 		"message": "Τύπος τοπικού βιβλίου διευθύνσεων:"
@@ -3838,7 +3838,7 @@
 		"message": "Εξερεύνηση"
 	},
 	"remotePage.description": {
-		"message": "Ποιος είναι ο τύπος του απομακρυσμένου βιβλίου διευθύνσεών σας; (Προσοχή: η Google δεν συμμορφώνεται με τα πρότυπα εικονική κάρτα (vCard))"
+		"message": "Ποιος είναι ο τύπος του απομακρυσμένου βιβλίου διευθύνσεών σας"
 	},
 	"remotePage.type.label": {
 		"message": "Τύπος"
@@ -3891,7 +3891,7 @@
 	"rememberPassword": {
 		"message": "Χρήση της διαχείρισης κωδικών πρόσβασης για απομνημόνευση αυτού του κωδικού πρόσβασης"
 	},
-	"showHidePassword.tooltip": {
+	"showHidePassword": {
 		"message": "Εμφάνιση/Απόκρυψη κωδικού πρόσβασης"
 	},
 	"remotePage.validatebutton.label": {
@@ -3903,20 +3903,11 @@
 	"abSearchHeading.label": {
 		"message": "Αναζήτηση σε:"
 	},
-	"abSearchHeading.accesskey": {
-		"message": "v"
-	},
 	"matchAll.label": {
 		"message": "Ταίριασμα όλων των παρακάτω"
 	},
-	"matchAll.accesskey": {
-		"message": "α"
-	},
 	"matchAny.label": {
 		"message": "Ταίριασμα οποιουδήποτε από τα παρακάτω"
-	},
-	"matchAny.accesskey": {
-		"message": "π"
 	},
 	"googleOauthPage.wizard.description": {
 		"message": "Έλεγχος ταυτότητας Google"
@@ -3969,9 +3960,6 @@
 	"name.ABedit.label": {
 		"message": "Όνομα:"
 	},
-	"name.ABedit.accesskey": {
-		"message": "ν"
-	},
 	"nodesLabel": {
 		"message": "Κόμβοι:"
 	},
@@ -3993,9 +3981,6 @@
 	"readonlyLabel": {
 		"message": "Λειτουργία μόνο για ανάγνωση"
 	},
-	"readonlyAccesskey": {
-		"message": "Λ"
-	},
 	"urnuuidLabel": {
 		"message": "Χρησιμοποιήστε το urn:uuid"
 	},
@@ -4008,14 +3993,8 @@
 	"autoSyncLabel": {
 		"message": "Ενεργοποιήστε τον περιοδικό συγχρονισμό"
 	},
-	"autoSyncAccesskey": {
-		"message": "Ε"
-	},
 	"autoSyncIntervalLabel": {
 		"message": "Διάστημα μεταξύ περιοδικών συγχρονισμών (λεπτό):"
-	},
-	"autoSyncIntervalAccesskey": {
-		"message": "Δ"
 	},
 	"miscTabLabel": {
 		"message": "Διάφορα"
@@ -4026,20 +4005,11 @@
 	"fnFormulaLabel": {
 		"message": "Φόρμα εφάνιση:"
 	},
-	"fnFormulaAccesskey": {
-		"message": "Φ"
-	},
 	"resetFnFormulaLabel": {
 		"message": "Επαναφέρετε τις προεπιλογές"
 	},
-	"resetFnFormulaAccesskey": {
-		"message": "ρ"
-	},
 	"applyToABButtonLabel": {
 		"message": "Εφαρμογή σε…"
-	},
-	"applyToABButtonAccesskey": {
-		"message": "A"
 	},
 	"wdw_adrEditionTitle": {
 		"message": "Συντάκτης διευθύνσεων"
@@ -4173,53 +4143,26 @@
 	"autocompletionLabel": {
 		"message": "Αυτόματη συμπλήρωση διευθύνσεων ηλεκτρονικού ταχυδρομείου"
 	},
-	"autocompletionAccesskey": {
-		"message": "Α"
-	},
-	"autocompletionTooltip": {
-		"message": "Επεκτείνει την τυπική αυτόματη συμπλήρωση επαφών στα βιβλία διευθύνσεων του Thunderbird με αυτόματη συμπλήρωση επαφών στα βιβλία διευθύνσεων των Επαφών."
-	},
 	"autocompleteSortByPopularityLabel": {
 		"message": "Ταξινόμηση των διευθύνσεων ηλεκτρονικού ταχυδρομείου κατά δημοτικότητα"
-	},
-	"autocompleteSortByPopularityAccesskey": {
-		"message": "δ"
 	},
 	"autocompleteProposeConcatEmailsLabel": {
 		"message": "Προτείνετε αλληλοσυνδεόμενα μηνύματα ηλεκτρονικού ταχυδρομείου ανά επαφή"
 	},
-	"autocompleteProposeConcatEmailsAccesskey": {
-		"message": "λ"
-	},
 	"autocompleteShowAddressbookLabel": {
 		"message": "Εμφάνιση ονόματος βιβλίου διευθύνσεων"
-	},
-	"autocompleteShowAddressbookAccesskey": {
-		"message": "φ"
 	},
 	"autocompleteShowEmailTypeLabel": {
 		"message": "??Show email type??"
 	},
-	"autocompleteShowEmailTypeAccesskey": {
-		"message": "e"
-	},
 	"autocompleteShowPopularityLabel": {
 		"message": "??Show popularity??"
-	},
-	"autocompleteShowPopularityAccesskey": {
-		"message": "y"
 	},
 	"autocompleteWithColorLabel": {
 		"message": "Χρήση χρώματος βιβλίου διευθύνσεων"
 	},
-	"autocompleteWithColorAccesskey": {
-		"message": "Χ"
-	},
 	"autocompleteRestrictSearchLabel": {
 		"message": "Περιορίστε τα πεδία αναζήτησης"
-	},
-	"autocompleteRestrictSearchAccesskey": {
-		"message": "Π"
 	},
 	"chooseAutocompleteRestrictSearchFieldsButtonLabel": {
 		"message": "Επεξεργασία"
@@ -4256,12 +4199,6 @@
 	},
 	"exclusiveLabel": {
 		"message": "Μοναδική πηγή επαφών"
-	},
-	"exclusiveAccesskey": {
-		"message": "Μ"
-	},
-	"exclusiveTooltip": {
-		"message": "Εάν είναι απενεργοποιημένη, η επιλογή αυτή σας επιτρέπει να ανακτήσετε επαφές στα τυπικά βιβλία διευθύνσεων για τα κίτρινα αστέρια, για το εμφανιζόμενο όνομα ηλεκτρονικού ταχυδρομείου και για την αυτόματη ολοκλήρωση του ηλεκτρονικού ταχυδρομείου."
 	},
 	"accountsRestrictionsLabel": {
 		"message": "Περιορισμοί λογαριασμός αλληλογραφίας"
@@ -4341,12 +4278,6 @@
 	"debugModeLabel": {
 		"message": "Λειτουργία εντοπισμού σφαλμάτων"
 	},
-	"debugModeAccesskey": {
-		"message": "Λ"
-	},
-	"debugModeTooltip": {
-		"message": "Ενεργοποιήστε τη λειτουργία εντοπισμού σφαλμάτων για εκτεταμένη καταγραφή."
-	},
 	"statusInformationLineNumberLabel": {
 		"message": "Αριθμός γραμμών που διατηρούνται στο αρχείο καταγραφής:"
 	},
@@ -4365,26 +4296,14 @@
 	"listTab.conf.label": {
 		"message": "Λίστες"
 	},
-	"listTab.conf.accesskey": {
-		"message": "Λ"
-	},
 	"technicalTab.conf.label": {
 		"message": "Τεχνικός"
-	},
-	"technicalTab.conf.accesskey": {
-		"message": "Τ"
 	},
 	"vCardTab.conf.label": {
 		"message": "εικονική κάρτα (vCard)"
 	},
-	"vCardTab.conf.accesskey": {
-		"message": "κ"
-	},
 	"keyTab.conf.label": {
 		"message": "??Public Keys??"
-	},
-	"keyTab.conf.accesskey": {
-		"message": "δ"
 	},
 	"advancedTab1Label": {
 		"message": "Προχωρημένος"
@@ -4482,9 +4401,6 @@
 	"preferEmailEditionLabel": {
 		"message": "Κάντε διπλό κλικ για επεξεργασία αντί για μήνυμα ηλεκτρονικού ταχυδρομείου"
 	},
-	"preferEmailEditionAccesskey": {
-		"message": "Κ"
-	},
 	"dateDisplayedFormatLabel": {
 		"message": "Μορφή κειμένου ημερομηνίας:"
 	},
@@ -4493,9 +4409,6 @@
 	},
 	"defaultRegionLabel": {
 		"message": "??Default Region:??"
-	},
-	"defaultRegionAccesskey": {
-		"message": "D"
 	},
 	"defaultRegionTooltip": {
 		"message": "??Default region for addresses and formatting phone numbers.??"
@@ -4641,9 +4554,6 @@
 	"preferIMPPPrefLabel": {
 		"message": "Προτιμήστε τις επικοινωνίες μέσω διαδικτυακές με"
 	},
-	"preferIMPPPrefAccesskey": {
-		"message": "Π"
-	},
 	"preferIMPPPrefWarn": {
 		"message": "Εάν δεν έχει επισημανθεί καμία διεύθυνση, προτείνεται μια σύνδεση για όλες τις διευθύνσεις της επαφής."
 	},
@@ -4707,9 +4617,6 @@
 	"URLPhoneBackgroundLabel": {
 		"message": "??Run in background??"
 	},
-	"URLPhoneBackgroundAccesskey": {
-		"message": "S"
-	},
 	"encryptionGroupboxLabel": {
 		"message": "Κρυπτογράφηση"
 	},
@@ -4718,9 +4625,6 @@
 	},
 	"localDataEncryptionEnabledLabel": {
 		"message": "??Encrypt locally cached cards??"
-	},
-	"localDataEncryptionEnabledAccesskey": {
-		"message": "E"
 	},
 	"customFieldRankHeaderLabel": {
 		"message": "Τάξη"
@@ -4771,7 +4675,7 @@
 		"message": "Ετικέτα πεδίου"
 	},
 	"listPanelLabel": {
-		"message": "Αν ο διακομιστής σας δεν υποστηρίζει κατηγορίες (όπως Google, Apple, Zimbra, κ.λπ.), οι λίστες είναι ένας καλός τρόπος για να στείλετε μηνύματα ηλεκτρονικού ταχυδρομείου σε ομάδες. Το εικονική κάρτα (vCard) 3,0 δεν υποστηρίζει εγγενώς λίστες, αλλά αυτό μπορεί να επιτευχθεί με προσαρμοσμένα πεδία, οπότε αν θέλετε να χρησιμοποιήσετε λίστες στο εικονική κάρτα (vCard) 3,0, πρέπει να ορίσετε αυτά τα πεδία."
+		"message": "Αν ο διακομιστής σας δεν υποστηρίζει κατηγορίες (όπως Apple, Zimbra, κ.λπ.), οι λίστες είναι ένας καλός τρόπος για να στείλετε μηνύματα ηλεκτρονικού ταχυδρομείου σε ομάδες. Το εικονική κάρτα (vCard) 3,0 δεν υποστηρίζει εγγενώς λίστες, αλλά αυτό μπορεί να επιτευχθεί με προσαρμοσμένα πεδία, οπότε αν θέλετε να χρησιμοποιήσετε λίστες στο εικονική κάρτα (vCard) 3,0, πρέπει να ορίσετε αυτά τα πεδία."
 	},
 	"listGroupboxLabel": {
 		"message": "Προσαρμοσμένα πεδία για λίστες"
@@ -4803,14 +4707,8 @@
 	"syncAfterChangeLabel": {
 		"message": "??Synchronize after changes??"
 	},
-	"syncAfterChangeAccesskey": {
-		"message": "c"
-	},
 	"initialSyncLabel": {
 		"message": "Εκτελέστε συγχρονισμό κατά την εκκίνηση του Thunderbird"
-	},
-	"initialSyncAccesskey": {
-		"message": "Ε"
 	},
 	"initialSyncDelayLabel": {
 		"message": "Αρχική καθυστέρηση συγχρονισμού (1 δευτερόλεπτο):"
@@ -4872,17 +4770,11 @@
 	"decodeReportLabel": {
 		"message": "Αποκρυπτογραφώ παγκόσμιους εντοπιστές πόρων (URLs) για αιτήσεις REPORT"
 	},
-	"decodeReportAccesskey": {
-		"message": "Α"
-	},
 	"miscEmailGroupboxLabel": {
 		"message": "Αποστολή μηνυμάτων ηλεκτρονικού ταχυδρομείου"
 	},
 	"preferEmailPrefLabel": {
 		"message": "Προτιμήστε τις διευθύνσεις ηλεκτρονικού ταχυδρομείου που σημειώνονται με"
-	},
-	"preferEmailPrefAccesskey": {
-		"message": "Π"
 	},
 	"preferEmailPrefWarn": {
 		"message": "Εάν δεν έχει επισημανθεί καμία διεύθυνση, το μήνυμα αποστέλλεται σε όλες τις διευθύνσεις της επαφής."
@@ -4890,14 +4782,8 @@
 	"warnEmptyEmailsLabel": {
 		"message": "Προειδοποιήστε με όταν προσπαθώ να στείλω μηνύματα ηλεκτρονικού ταχυδρομείου χωρίς μια διεύθυνση ηλεκτρονικού ταχυδρομείου"
 	},
-	"warnEmptyEmailsAccesskey": {
-		"message": "ρ"
-	},
 	"useOnlyEmailLabel": {
 		"message": "Χρησιμοποιείτε μόνο διευθύνσεις ηλεκτρονικού ταχυδρομείου χωρίς τα ονόματα εμφάνισης τους"
-	},
-	"useOnlyEmailAccesskey": {
-		"message": "μ"
 	},
 	"attachVCardWarn": {
 		"message": "Για να προσθέσετε αυτόματα μια εικονική κάρτα (vCard) στα μηνύματα ηλεκτρονικού ταχυδρομείου σας, επιλέξτε εικονική κάρτα για κάθε λογαριασμό ηλεκτρονικού ταχυδρομείου. Αν ενεργοποιηθεί, οι Επαφές θα επισυνάψουν αυτήν την εικονική κάρτα σε κάθε εξερχόμενο μήνυμα ηλεκτρονικού ταχυδρομείου από αυτόν τον λογαριασμό."
@@ -4956,26 +4842,14 @@
 	"bday.conf.label": {
 		"message": "Γενέθλια"
 	},
-	"bday.conf.accesskey": {
-		"message": "Γ"
-	},
 	"anniversary.conf.label": {
 		"message": "Επέτειος (vCard 4.0)"
-	},
-	"anniversary.conf.accesskey": {
-		"message": "E"
 	},
 	"deathdate.conf.label": {
 		"message": "Ημερομηνία θανάτου (vCard 4.0)"
 	},
-	"deathdate.conf.accesskey": {
-		"message": "H"
-	},
 	"eventsLabel": {
 		"message": "Συμβάντα"
-	},
-	"eventsAccesskey": {
-		"message": "Σ"
 	},
 	"gender.conf.label": {
 		"message": "Γένος (vCard 4.0)"
@@ -5007,14 +4881,8 @@
 	"showPopupOnStartupLabel": {
 		"message": "Εμφάνιση αναδυόμενου παραθύρου κατά την εκκίνηση"
 	},
-	"showPopupOnStartupAccesskey": {
-		"message": "Ε"
-	},
 	"showPeriodicPopupLabel": {
 		"message": "Εμφάνιση αναδυόμενου μενού καθημερινά"
-	},
-	"showPeriodicPopupAccesskey": {
-		"message": "κ"
 	},
 	"periodicPopupTimeLabel": {
 		"message": "Εμφάνιση ώρας (ώώ:λλ):"
@@ -5024,9 +4892,6 @@
 	},
 	"showPopupEvenIfNoBirthdayLabel": {
 		"message": "Εμφάνιση αναδυόμενου παραθύρου όταν η λίστα επετείων είναι κενή"
-	},
-	"showPopupEvenIfNoBirthdayAccesskey": {
-		"message": "μ"
 	},
 	"remindViaLightningGroupboxLabel": {
 		"message": "Υπενθύμιση μέσω του Thunderbird Lightning Ημερολόγιο Εκτεκτάσεις"
@@ -5039,9 +4904,6 @@
 	},
 	"syncWithLightningOnStartupLabel": {
 		"message": "Συγχρονισμός με Lightning κατά την εκκίνηση"
-	},
-	"syncWithLightningOnStartupAccesskey": {
-		"message": "γ"
 	},
 	"calendarEntryTitleLabel": {
 		"message": "Τίτλος για συμβάν ημερολογίου:"
@@ -5061,9 +4923,6 @@
 	"calendarRepeatingEventLabel": {
 		"message": "Επαναλαμβανόμενο γεγονός"
 	},
-	"calendarRepeatingEventAccesskey": {
-		"message": "E"
-	},
 	"calendarEntryTimeLabel": {
 		"message": "Ώρα για συμβάν ημερολογίου (ώώ:λλ):"
 	},
@@ -5072,9 +4931,6 @@
 	},
 	"calendarEntryWholeDayLabel": {
 		"message": "Γεγονός ημερολογίου για όλη την ημέρα"
-	},
-	"calendarEntryWholeDayAccesskey": {
-		"message": "η"
 	},
 	"calendarEntryAlarmLabel": {
 		"message": "Συναγερμοί σε α ώρες για συμβάντα ημερολογίου (Παράδειγμα: 4,+1):"
@@ -5835,9 +5691,6 @@
 	"viewResultEditionLabel": {
 		"message": "Δείτε αποτέλεσμα"
 	},
-	"viewResultEditionAccesskey": {
-		"message": "τ"
-	},
 	"previousEditButton.tooltip": {
 		"message": "Προηγούμενο"
 	},
@@ -5883,20 +5736,11 @@
 	"moreEditionLabel": {
 		"message": "Εμφάνιση περισσότερων"
 	},
-	"moreEditionAccesskey": {
-		"message": "π"
-	},
 	"lessEditionLabel": {
 		"message": "Εμφάνιση λιγότερων"
 	},
-	"lessEditionAccesskey": {
-		"message": "λ"
-	},
 	"mergeAllEditionLabel": {
 		"message": "??Merge All??"
-	},
-	"mergeAllEditionAccesskey": {
-		"message": "M"
 	},
 	"formatAllEditionLabel": {
 		"message": "??Format all??"
@@ -5906,9 +5750,6 @@
 	},
 	"undoAllEditionLabel": {
 		"message": "??Undo all??"
-	},
-	"undoAllEditionAccesskey": {
-		"message": "U"
 	},
 	"formatEditionLabel": {
 		"message": "??Format??"
@@ -5951,9 +5792,6 @@
 	},
 	"convertVCardsTooltip": {
 		"message": "??The vCard version of some contacts is different from the vCard version of your address book, this button may convert these vCards??"
-	},
-	"convertVCardsAccesskey": {
-		"message": "C"
 	},
 	"wdw_findDuplicatesTitle": {
 		"message": "Διπλότυπες επαφές ($P1$)",
@@ -6016,26 +5854,14 @@
 	"refreshLogEditionLabel": {
 		"message": "Ανανέωση"
 	},
-	"refreshLogEditionAccesskey": {
-		"message": "Α"
-	},
 	"flushLogEditionLabel": {
 		"message": "Εκκαθάριση λίστας"
-	},
-	"flushLogEditionAccesskey": {
-		"message": "θ"
 	},
 	"clipboardLogEditionLabel": {
 		"message": "Αντιγραφή στο πρόχειρο"
 	},
-	"clipboardLogEditionAccesskey": {
-		"message": "γ"
-	},
 	"cancelLogEditionLabel": {
 		"message": "Καλά"
-	},
-	"cancelLogEditionAccesskey": {
-		"message": "Κ"
 	},
 	"wdw_mergeCardsTitle": {
 		"message": "Συγχώνευση επαφών"
@@ -6064,6 +5890,30 @@
 	"wdw_cardbookConfigurationEditFieldTitle": {
 		"message": "??Choose a conversion function??"
 	},
+	"ContainsOperator": {
+		"message": "περιέχει"
+	},
+	"DoesntContainOperator": {
+		"message": "δεν περιέχει"
+	},
+	"IsOperator": {
+		"message": "είναι"
+	},
+	"IsntOperator": {
+		"message": "δεν είναι"
+	},
+	"BeginsWithOperator": {
+		"message": "αρχίζει με"
+	},
+	"EndsWithOperator": {
+		"message": "τελειώνει με"
+	},
+	"IsEmptyOperator": {
+		"message": "είναι κενό"
+	},
+	"IsntEmptyOperator": {
+		"message": "δεν είναι κενό"
+	},
 	"uppercaseLabel": {
 		"message": "??Uppercase??"
 	},
@@ -6072,5 +5922,821 @@
 	},
 	"capitalizationLabel": {
 		"message": "??Capitalization??"
+	},
+	"region-name-ad": {
+		"message": "Ανδόρα"
+	},
+	"region-name-ae": {
+		"message": "Ηνωμένα Αραβικά Εμιράτα"
+	},
+	"region-name-af": {
+		"message": "Αφγανιστάν"
+	},
+	"region-name-ai": {
+		"message": "Ανγκουίλα"
+	},
+	"region-name-al": {
+		"message": "Αλβανία"
+	},
+	"region-name-ag": {
+		"message": "Αντίγκουα και Μπαρμπούντα"
+	},
+	"region-name-am": {
+		"message": "Αρμενία"
+	},
+	"region-name-ar": {
+		"message": "Αργεντινή"
+	},
+	"region-name-aq": {
+		"message": "Ανταρκτική"
+	},
+	"region-name-ao": {
+		"message": "Ανγκόλα"
+	},
+	"region-name-at": {
+		"message": "Αυστρία"
+	},
+	"region-name-az": {
+		"message": "Αζερμπαϊτζάν"
+	},
+	"region-name-ba": {
+		"message": "Βοσνία Ερζεγοβίνη"
+	},
+	"region-name-bb": {
+		"message": "Μπαρμπάντος"
+	},
+	"region-name-as": {
+		"message": "Αμερικανική Σαμόα"
+	},
+	"region-name-au": {
+		"message": "Αυστραλία"
+	},
+	"region-name-bd": {
+		"message": "Μπανγκλαντές"
+	},
+	"region-name-be": {
+		"message": "Βέλγιο"
+	},
+	"region-name-aw": {
+		"message": "Αρούμπα"
+	},
+	"region-name-bf": {
+		"message": "Μπουρκίνα Φάσο"
+	},
+	"region-name-bm": {
+		"message": "Βερμούδες"
+	},
+	"region-name-bj": {
+		"message": "Μπενίν"
+	},
+	"region-name-bg": {
+		"message": "Βουλγαρία"
+	},
+	"region-name-bi": {
+		"message": "Μπουρούντι"
+	},
+	"region-name-bh": {
+		"message": "Μπαχρέιν"
+	},
+	"region-name-bl": {
+		"message": "Saint Barthélemy"
+	},
+	"region-name-bn": {
+		"message": "Brunei Darussalam"
+	},
+	"region-name-bo": {
+		"message": "Βολιβία"
+	},
+	"region-name-br": {
+		"message": "Βραζιλία"
+	},
+	"region-name-bq": {
+		"message": "Μποναίρ, Άγιος Ευστάθιος και Σάμπα"
+	},
+	"region-name-bt": {
+		"message": "Μπουτάν"
+	},
+	"region-name-bs": {
+		"message": "Bahamas"
+	},
+	"region-name-bz": {
+		"message": "Μπελίζ"
+	},
+	"region-name-ca": {
+		"message": "Καναδάς"
+	},
+	"region-name-cc": {
+		"message": "Νήσοι Κόκος (Κήλινγκ)"
+	},
+	"region-name-by": {
+		"message": "Λευκορωσία"
+	},
+	"region-name-cd": {
+		"message": "Congo-Kinshasa"
+	},
+	"region-name-cf": {
+		"message": "Κεντροαφρικανική Δημοκρατία"
+	},
+	"region-name-bv": {
+		"message": "Νήσοι Μπουβέ"
+	},
+	"region-name-bw": {
+		"message": "Μποτσουάνα"
+	},
+	"region-name-cl": {
+		"message": "Χιλή"
+	},
+	"region-name-ci": {
+		"message": "Ivory Coast"
+	},
+	"region-name-ch": {
+		"message": "Ελβετία"
+	},
+	"region-name-cm": {
+		"message": "Καμερούν"
+	},
+	"region-name-ck": {
+		"message": "Νήσοι Κουκ"
+	},
+	"region-name-cg": {
+		"message": "Congo-Brazzaville"
+	},
+	"region-name-cn": {
+		"message": "Κίνα"
+	},
+	"region-name-cp": {
+		"message": "Νήσος Κλίπερτον"
+	},
+	"region-name-co": {
+		"message": "Κολομβία"
+	},
+	"region-name-cr": {
+		"message": "Κόστα Ρίκα"
+	},
+	"region-name-cz": {
+		"message": "Τσεχία"
+	},
+	"region-name-cy": {
+		"message": "Κύπρος"
+	},
+	"region-name-cx": {
+		"message": "Νήσος των Χριστουγέννων"
+	},
+	"region-name-cv": {
+		"message": "Cape Verde"
+	},
+	"region-name-cu": {
+		"message": "Κούβα"
+	},
+	"region-name-cw": {
+		"message": "Κουρασάο"
+	},
+	"region-name-de": {
+		"message": "Γερμανία"
+	},
+	"region-name-dg": {
+		"message": "Ντιέγκο Γκαρσία"
+	},
+	"region-name-dk": {
+		"message": "Δανία"
+	},
+	"region-name-dj": {
+		"message": "Τζιμπουτί"
+	},
+	"region-name-dm": {
+		"message": "Δομίνικα"
+	},
+	"region-name-ec": {
+		"message": "Εκουαδόρ"
+	},
+	"region-name-dz": {
+		"message": "Αλγερία"
+	},
+	"region-name-do": {
+		"message": "Δομινικανή δημοκρατία"
+	},
+	"region-name-ee": {
+		"message": "Εσθονία"
+	},
+	"region-name-eg": {
+		"message": "Αίγυπτος"
+	},
+	"region-name-eh": {
+		"message": "Δυτική Σαχάρα"
+	},
+	"region-name-et": {
+		"message": "Αιθιοπία"
+	},
+	"region-name-er": {
+		"message": "Ερυθραία"
+	},
+	"region-name-es": {
+		"message": "Ισπανία"
+	},
+	"region-name-fi": {
+		"message": "Φιλανδία"
+	},
+	"region-name-fj": {
+		"message": "Φίτζι"
+	},
+	"region-name-fm": {
+		"message": "Micronesia"
+	},
+	"region-name-fk": {
+		"message": "Falkland Islands (Malvinas)"
+	},
+	"region-name-fo": {
+		"message": "Νήσοι Φαρόε"
+	},
+	"region-name-ge": {
+		"message": "Γεωργία"
+	},
+	"region-name-gb": {
+		"message": "Ηνωμένο Βασίλειο"
+	},
+	"region-name-gd": {
+		"message": "Γρανάδα"
+	},
+	"region-name-fr": {
+		"message": "Γαλλία"
+	},
+	"region-name-ga": {
+		"message": "Γκαμπόν"
+	},
+	"region-name-gf": {
+		"message": "Γαλλική Γουινέα"
+	},
+	"region-name-gl": {
+		"message": "Γροιλανδία"
+	},
+	"region-name-gm": {
+		"message": "Gambia"
+	},
+	"region-name-gi": {
+		"message": "Γιβραλτάρ"
+	},
+	"region-name-gg": {
+		"message": "Γκουέρνσεϊ"
+	},
+	"region-name-gh": {
+		"message": "Γκάνα"
+	},
+	"region-name-gn": {
+		"message": "Γουινέα"
+	},
+	"region-name-gp": {
+		"message": "Γουαδελούπη"
+	},
+	"region-name-gr": {
+		"message": "Ελλάδα"
+	},
+	"region-name-gq": {
+		"message": "Ισημερινή Γουινέα"
+	},
+	"region-name-gt": {
+		"message": "Γουατεμάλα"
+	},
+	"region-name-gw": {
+		"message": "Γουινέα-Μπισάου"
+	},
+	"region-name-hk": {
+		"message": "Χονγκ Κογκ"
+	},
+	"region-name-gu": {
+		"message": "Γκουάμ"
+	},
+	"region-name-gs": {
+		"message": "South Georgia and the South Sandwich Islands"
+	},
+	"region-name-gy": {
+		"message": "Γουιάνα"
+	},
+	"region-name-hm": {
+		"message": "Νήσοι Χερντ και Μακντόναλντ"
+	},
+	"region-name-ht": {
+		"message": "Αϊτή"
+	},
+	"region-name-hr": {
+		"message": "Κροατία"
+	},
+	"region-name-hn": {
+		"message": "Ονδούρα"
+	},
+	"region-name-in": {
+		"message": "Ινδία"
+	},
+	"region-name-il": {
+		"message": "Ισραήλ"
+	},
+	"region-name-im": {
+		"message": "Νήσος του Μαν"
+	},
+	"region-name-ie": {
+		"message": "Ιρλανδία"
+	},
+	"region-name-hu": {
+		"message": "Ουγγαρία"
+	},
+	"region-name-id": {
+		"message": "Ινδονησία"
+	},
+	"region-name-io": {
+		"message": "Βρετανικό Έδαφος Ινδικού Ωκεανού"
+	},
+	"region-name-ir": {
+		"message": "Ιράν"
+	},
+	"region-name-is": {
+		"message": "Ισλανδία"
+	},
+	"region-name-iq": {
+		"message": "Ιράκ"
+	},
+	"region-name-je": {
+		"message": "Τζέρσεϊ"
+	},
+	"region-name-jp": {
+		"message": "Ιαπωνία"
+	},
+	"region-name-it": {
+		"message": "Ιταλία"
+	},
+	"region-name-ke": {
+		"message": "Κένυα"
+	},
+	"region-name-jo": {
+		"message": "Ιορδανία"
+	},
+	"region-name-jm": {
+		"message": "Τζαμάικα"
+	},
+	"region-name-kg": {
+		"message": "Κιργιστάν"
+	},
+	"region-name-ki": {
+		"message": "Κιριμπάτι"
+	},
+	"region-name-kh": {
+		"message": "Καμπότζη"
+	},
+	"region-name-km": {
+		"message": "Κομόρος"
+	},
+	"region-name-kn": {
+		"message": "Άγιος Χριστόφορος και Νέβις"
+	},
+	"region-name-ky": {
+		"message": "Νήσοι Κάιμαν"
+	},
+	"region-name-kp": {
+		"message": "North Korea"
+	},
+	"region-name-kr": {
+		"message": "South Korea"
+	},
+	"region-name-kw": {
+		"message": "Κουβέϊτ"
+	},
+	"region-name-kz": {
+		"message": "Καζακστάν"
+	},
+	"region-name-la": {
+		"message": "Λάος"
+	},
+	"region-name-lb": {
+		"message": "Λίβανος"
+	},
+	"region-name-lc": {
+		"message": "Αγία Λουκία"
+	},
+	"region-name-li": {
+		"message": "Λίχτενσταϊν"
+	},
+	"region-name-lk": {
+		"message": "Σρι Λάνκα"
+	},
+	"region-name-lr": {
+		"message": "Λιβερία"
+	},
+	"region-name-lu": {
+		"message": "Λουξεμβούργο"
+	},
+	"region-name-lv": {
+		"message": "Λετονία"
+	},
+	"region-name-ls": {
+		"message": "Λεσότο"
+	},
+	"region-name-ly": {
+		"message": "Λιβύη"
+	},
+	"region-name-lt": {
+		"message": "Λιθουανία"
+	},
+	"region-name-mc": {
+		"message": "Μονακό"
+	},
+	"region-name-md": {
+		"message": "Μολδαβία"
+	},
+	"region-name-ma": {
+		"message": "Μαρόκο"
+	},
+	"region-name-me": {
+		"message": "Μαυροβούνιο"
+	},
+	"region-name-mf": {
+		"message": "Άγιος Μαρτίνος"
+	},
+	"region-name-mg": {
+		"message": "Μαδαγασκάρη"
+	},
+	"region-name-mh": {
+		"message": "Νήσοι Μάρσαλ"
+	},
+	"region-name-mk": {
+		"message": "Macedonia, F.Y.R. of"
+	},
+	"region-name-ml": {
+		"message": "Μαλί"
+	},
+	"region-name-mm": {
+		"message": "Myanmar"
+	},
+	"region-name-mn": {
+		"message": "Μογγολία"
+	},
+	"region-name-mo": {
+		"message": "Macao"
+	},
+	"region-name-mp": {
+		"message": "Βόρειες Μαριάνες Νήσοι"
+	},
+	"region-name-mt": {
+		"message": "Μάλτα"
+	},
+	"region-name-mu": {
+		"message": "Μαυρίκιος"
+	},
+	"region-name-mr": {
+		"message": "Μαυριτανία"
+	},
+	"region-name-ms": {
+		"message": "Μονσερά"
+	},
+	"region-name-mq": {
+		"message": "Μαρτινίκα"
+	},
+	"region-name-mv": {
+		"message": "Μαλδίβες"
+	},
+	"region-name-mw": {
+		"message": "Μαλάουι"
+	},
+	"region-name-my": {
+		"message": "Μαλαισία"
+	},
+	"region-name-mx": {
+		"message": "Μεξικό"
+	},
+	"region-name-mz": {
+		"message": "Μοζαμβίκη"
+	},
+	"region-name-na": {
+		"message": "Ναμίμπια"
+	},
+	"region-name-nc": {
+		"message": "Νέα Καληδονία"
+	},
+	"region-name-ne": {
+		"message": "Νίγηρας"
+	},
+	"region-name-nf": {
+		"message": "Νήσος Νόρφολκ"
+	},
+	"region-name-ng": {
+		"message": "Νιγηρία"
+	},
+	"region-name-ni": {
+		"message": "Νικαράγουα"
+	},
+	"region-name-nl": {
+		"message": "Ολλανδία"
+	},
+	"region-name-no": {
+		"message": "Νορβηγία"
+	},
+	"region-name-np": {
+		"message": "Νεπάλ"
+	},
+	"region-name-nr": {
+		"message": "Ναούρου"
+	},
+	"region-name-pk": {
+		"message": "Πακιστάν"
+	},
+	"region-name-pl": {
+		"message": "Πολωνία"
+	},
+	"region-name-nz": {
+		"message": "Νέα Ζηλανδία"
+	},
+	"region-name-ph": {
+		"message": "Φιλιππίνες"
+	},
+	"region-name-nu": {
+		"message": "Νιου"
+	},
+	"region-name-om": {
+		"message": "Ομάν"
+	},
+	"region-name-pe": {
+		"message": "Περού"
+	},
+	"region-name-pa": {
+		"message": "Παναμάς"
+	},
+	"region-name-pf": {
+		"message": "Γαλλική Πολυνησία"
+	},
+	"region-name-pg": {
+		"message": "Παπούα Νέα Γουινέα"
+	},
+	"region-name-pm": {
+		"message": "Νήσοι Αγίου Πέτρου και Μιχαήλ"
+	},
+	"region-name-pn": {
+		"message": "Νήσοι Πίτκαιρν"
+	},
+	"region-name-pr": {
+		"message": "Πόρτο Ρίκο"
+	},
+	"region-name-pt": {
+		"message": "Πορτογαλία"
+	},
+	"region-name-pw": {
+		"message": "Παλάου"
+	},
+	"region-name-qm": {
+		"message": "Νήσοι Μίντγουαιη"
+	},
+	"region-name-py": {
+		"message": "Παραγουάη"
+	},
+	"region-name-qa": {
+		"message": "Κατάρ"
+	},
+	"region-name-qs": {
+		"message": "Ύφαλος Ινδίας"
+	},
+	"region-name-qu": {
+		"message": "Νήσος Χουάν ντε Νόβα"
+	},
+	"region-name-qw": {
+		"message": "Νήσος Ουέηκ"
+	},
+	"region-name-qx": {
+		"message": "Ένδοξες Νήσοι"
+	},
+	"region-name-rs": {
+		"message": "Σερβία"
+	},
+	"region-name-ro": {
+		"message": "Ρουμανία"
+	},
+	"region-name-qz": {
+		"message": "Ακρωτήρι"
+	},
+	"region-name-re": {
+		"message": "Ρεουνιόν"
+	},
+	"region-name-rw": {
+		"message": "Ρουάντα"
+	},
+	"region-name-ru": {
+		"message": "Russian Federation"
+	},
+	"region-name-sa": {
+		"message": "Σαουδική Αραβία"
+	},
+	"region-name-sb": {
+		"message": "Νήσοι Σολομώντος"
+	},
+	"region-name-sc": {
+		"message": "Σεϊχέλλες"
+	},
+	"region-name-sd": {
+		"message": "Σουδάν"
+	},
+	"region-name-se": {
+		"message": "Σουηδία"
+	},
+	"region-name-sg": {
+		"message": "Σιγκαπούρη"
+	},
+	"region-name-sh": {
+		"message": "Αγία Ελένη"
+	},
+	"region-name-si": {
+		"message": "Σλοβενία"
+	},
+	"region-name-sk": {
+		"message": "Σλοβακία"
+	},
+	"region-name-sl": {
+		"message": "Σιέρα Λεόνε"
+	},
+	"region-name-sn": {
+		"message": "Σενεγάλη"
+	},
+	"region-name-sm": {
+		"message": "Άγ. Μαρίνος"
+	},
+	"region-name-ss": {
+		"message": "Νότιο Σουδάν"
+	},
+	"region-name-so": {
+		"message": "Σομαλία"
+	},
+	"region-name-sr": {
+		"message": "Σουρινάμ"
+	},
+	"region-name-sx": {
+		"message": "Άγιος Μαρτίνος"
+	},
+	"region-name-st": {
+		"message": "Σάο Τομέ και Πρίνσιπε"
+	},
+	"region-name-sv": {
+		"message": "Ελ Σαλβαδόρ"
+	},
+	"region-name-sy": {
+		"message": "Συρία"
+	},
+	"region-name-sz": {
+		"message": "Σουαζιλάνδη"
+	},
+	"region-name-tc": {
+		"message": "Νήσοι Τερκς και Κέικος"
+	},
+	"region-name-td": {
+		"message": "Τσαντ"
+	},
+	"region-name-tg": {
+		"message": "Τόγκο"
+	},
+	"region-name-th": {
+		"message": "Ταϊλάνδη"
+	},
+	"region-name-tf": {
+		"message": "French Southern Territories"
+	},
+	"region-name-tj": {
+		"message": "Τατζικιστάν"
+	},
+	"region-name-tk": {
+		"message": "Τοκελάου"
+	},
+	"region-name-tl": {
+		"message": "Τιμόρ-Λέστε"
+	},
+	"region-name-tr": {
+		"message": "Τουρκία"
+	},
+	"region-name-tn": {
+		"message": "Τυνησία"
+	},
+	"region-name-to": {
+		"message": "Τόνγκα"
+	},
+	"region-name-tm": {
+		"message": "Τουρκμενιστάν"
+	},
+	"region-name-tt": {
+		"message": "Τρινιντάτ και Τομπάκο"
+	},
+	"region-name-tv": {
+		"message": "Τουβάλου"
+	},
+	"region-name-tw": {
+		"message": "Ταϊβάν"
+	},
+	"region-name-tz": {
+		"message": "Τανζανία"
+	},
+	"region-name-ua": {
+		"message": "Ουκρανία"
+	},
+	"region-name-ug": {
+		"message": "Ουγκάντα"
+	},
+	"region-name-us": {
+		"message": "Ηνωμένες Πολιτείες"
+	},
+	"region-name-uy": {
+		"message": "Ουρουγουάη"
+	},
+	"region-name-va": {
+		"message": "Βατικανό"
+	},
+	"region-name-uz": {
+		"message": "Ουζμπεκιστάν"
+	},
+	"region-name-vc": {
+		"message": "Άγιος Βικέντιος και Γρεναδίνες"
+	},
+	"region-name-vg": {
+		"message": "British Virgin Islands"
+	},
+	"region-name-vi": {
+		"message": "U.S. Virgin Islands"
+	},
+	"region-name-vu": {
+		"message": "Βανουάτου"
+	},
+	"region-name-ve": {
+		"message": "Βενεζουέλα"
+	},
+	"region-name-vn": {
+		"message": "Βιετνάμ"
+	},
+	"region-name-wf": {
+		"message": "Ουάλις και Φουτούνα"
+	},
+	"region-name-ws": {
+		"message": "Σαμόα"
+	},
+	"region-name-xa": {
+		"message": "Νήσοι Άσμορ και Καρτιέρ"
+	},
+	"region-name-xb": {
+		"message": "Νήσος Μπέικερ"
+	},
+	"region-name-xc": {
+		"message": "Νήσοι Κοραλλένιας Θάλασσας"
+	},
+	"region-name-xd": {
+		"message": "Δεκέλεια"
+	},
+	"region-name-xe": {
+		"message": "Νήσος Ευρώπη"
+	},
+	"region-name-xh": {
+		"message": "Νήσος Χάουλαντ"
+	},
+	"region-name-xg": {
+		"message": "Λωρίδα της Γάζας"
+	},
+	"region-name-xj": {
+		"message": "Γιαν Μαγιέν"
+	},
+	"region-name-xk": {
+		"message": "Κόσοβο"
+	},
+	"region-name-xl": {
+		"message": "Ατόλλη Παλμύρα"
+	},
+	"region-name-xp": {
+		"message": "Νήσοι Παρασέλ"
+	},
+	"region-name-xm": {
+		"message": "Ύφαλος Κίνγκμαν"
+	},
+	"region-name-xq": {
+		"message": "Νήσος Τζάρβις"
+	},
+	"region-name-xr": {
+		"message": "Σβάλμπαρντ"
+	},
+	"region-name-xs": {
+		"message": "Νήσοι Σπράτλυ"
+	},
+	"region-name-xt": {
+		"message": "Νήσος Τρομελέν"
+	},
+	"region-name-xv": {
+		"message": "Νήσος Ναβάσσα"
+	},
+	"region-name-yt": {
+		"message": "Μαγιότ"
+	},
+	"region-name-ye": {
+		"message": "Υεμένη"
+	},
+	"region-name-xw": {
+		"message": "Δυτική Όχθη"
+	},
+	"region-name-za": {
+		"message": "Νότιος Αφρική"
+	},
+	"region-name-xu": {
+		"message": "Ατόλλη Τζόνστον"
+	},
+	"region-name-zw": {
+		"message": "Ζιμπάμπουε"
+	},
+	"region-name-zm": {
+		"message": "Ζάμπια"
 	}
 }

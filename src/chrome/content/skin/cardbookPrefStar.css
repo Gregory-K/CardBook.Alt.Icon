@@ -1,16 +1,22 @@
+:root {
+	--color-orange-30: #fdba74;
+	--color-orange-60: #ea580c;
+}
 .cardbookPrefStarClass {
-	list-style-image: url("chrome://messenger/skin/icons/star.svg");
-	-moz-context-properties: fill;
-	fill: currentColor;
+	list-style-image: url("chrome://messenger/skin/icons/new/compact/star.svg");
+	-moz-context-properties: fill, stroke;
+	fill: color-mix(in srgb, currentColor 10%, transparent);
+	stroke: color-mix(in srgb, currentColor 30%, transparent);
+	border-radius: var(--toolbarbutton-border-radius);
 }
 .cardbookPrefStarClass[haspref="true"] {
-	list-style-image: url("chrome://messenger/skin/icons/starred.svg");
-	fill: var(--toolbarbutton-icon-fill-attention);
+	fill: var(--color-orange-30) !important;
+	stroke: var(--color-orange-60);
 }
-.cardbookNoPrefStarClass {
-	-moz-image-region: rect(0 16px 16px 0);
+.cardbookPrefStarClass:not([haspref="true"]):hover {
+	fill: color-mix(in srgb, currentColor 20%, transparent);
+	stroke: currentColor;
 }
-
 
 .cardbookKeyClass {
 	width: 50px !important;

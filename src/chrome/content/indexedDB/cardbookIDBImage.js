@@ -128,21 +128,21 @@ var cardbookIDBImage = {
 					var transaction = db.transaction([aDB], "readwrite");
 					var store = transaction.objectStore(aDB);
 					var cursorRequest = store.put(storedImage);
-					cursorRequest.onsuccess = function(e) {
+					cursorRequest.onsuccess = async function(e) {
 						if (cardbookIndexedDB.encryptionEnabled) {
 							cardbookRepository.cardbookLog.updateStatusProgressInformationWithDebug2(aDirPrefName + " : debug mode : Image for " + aCardName + " written to encrypted ImageDB (" + aDB + ")");
 						} else {
 							cardbookRepository.cardbookLog.updateStatusProgressInformationWithDebug2(aDirPrefName + " : debug mode : Image for " + aCardName + " written to ImageDB (" + aDB + ")");
 						}
 						if (aMode) {
-							cardbookActions.fetchCryptoActivity(aMode);
+							await cardbookActions.fetchCryptoActivity(aMode);
 						}
 						resolve();
 					};
 					
-					cursorRequest.onerror = function(e) {
+					cursorRequest.onerror = async function(e) {
 						if (aMode) {
-							cardbookActions.fetchCryptoActivity(aMode);
+							await cardbookActions.fetchCryptoActivity(aMode);
 						}
 						cardbookRepository.cardbookImageDatabase.onerror(e);
 						reject();
@@ -234,7 +234,7 @@ var cardbookIDBImage = {
 						await cardbookIDBImage.addImage(media, cardbookRepository.cardbookPreferences.getName(image.dirPrefId), image, "unknown", "decryption");
 					}
 					catch(e) {
-						cardbookActions.fetchCryptoActivity("decryption");
+						await cardbookActions.fetchCryptoActivity("decryption");
 						cardbookRepository.cardbookLog.updateStatusProgressInformation("debug mode : Decryption failed e : " + e, "Error");
 					}
 				},
@@ -257,7 +257,7 @@ var cardbookIDBImage = {
 						await cardbookIDBImage.addImage(media, cardbookRepository.cardbookPreferences.getName(image.dirPrefId), image, "unknown", "encryption");
 					}
 					catch(e) {
-						cardbookActions.fetchCryptoActivity("encryption");
+						await cardbookActions.fetchCryptoActivity("encryption");
 						cardbookRepository.cardbookLog.updateStatusProgressInformation("debug mode : Encryption failed e : " + e, "Error");
 					}
 				},

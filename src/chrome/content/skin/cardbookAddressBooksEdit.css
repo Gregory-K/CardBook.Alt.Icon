@@ -8,13 +8,13 @@
     box-sizing: border-box;
 }
 
-.cardbook-td-input > input {
-	width: 90%;
+#fnFormulahBox {
+	width: 700px;
+}
+#fnFormulaTextBox {
+	flex-grow: 1;
 }
 
 .cardbook-large-column {
-    width: 60%;
-}
-.cardbook-large2-column {
-    width: 80%;
+    min-width: 80%;
 }

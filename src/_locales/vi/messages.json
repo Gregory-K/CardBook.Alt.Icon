@@ -114,14 +114,8 @@
 	"showForgottenLabel": {
 		"message": "Hiển thị các bản sao bị lãng quên"
 	},
-	"showForgottenAccesskey": {
-		"message": "H"
-	},
 	"hideForgottenLabel": {
 		"message": "Ẩn các bản sao bị quên"
-	},
-	"hideForgottenAccesskey": {
-		"message": "n"
 	},
 	"noContactsDuplicated": {
 		"message": "Không tìm thấy địa chỉ liên hệ trùng lặp."
@@ -3309,6 +3303,12 @@
 	"toLowerCase": {
 		"message": "Chuyển đổi sang chữ thường"
 	},
+	"copy": {
+		"message": "Sao chép"
+	},
+	"paste": {
+		"message": "Dán"
+	},
 	"copyFieldValue": {
 		"message": "Sao chép ($P1$)",
         "placeholders": {
@@ -3369,7 +3369,7 @@
 	"wdw_cardbookConfigurationAddEmailsRestrictionTitle": {
 		"message": "Định nghĩa hạn chế Tài khoản Thư"
 	},
-	"wdw_cardbookConfigurationAddEmailsCollectionTitle": {
+	"wdw_cardbookConfigurationAddEmailsEmailsCollectionTitle": {
 		"message": "Tài khoản Thư Định nghĩa Bộ sưu tập Thư đi"
 	},
 	"ignoreCaseIgnoreDiacriticLabel": {
@@ -3773,10 +3773,13 @@
 	},
 	"wizard.next.label": {
 		"message": "Tiếp"
-	},	
+	},
 	"wizard.back.label": {
 		"message": "Quay lại"
-	},	
+	},
+	"wizard.cancel.label": {
+		"message": "Hủy bỏ"
+	},
 	"wizard.create.label": {
 		"message": "Tạo"
 	},
@@ -3800,9 +3803,6 @@
 	},
 	"initialPage.search.label": {
 		"message": "Tìm kiếm trong sổ địa chỉ hiện có"
-	},
-	"initialPage.find.label": {
-		"message": "??Search for remote address books??"
 	},
 	"localPage.type.description": {
 		"message": "Loại sổ địa chỉ địa phương:"
@@ -3838,7 +3838,7 @@
 		"message": "Duyệtn"
 	},
 	"remotePage.description": {
-		"message": "Loại sổ địa chỉ từ xa của bạn là gì (Chú ý: Google KHÔNG tuân thủ các tiêu chuẩn vCard)?"
+		"message": "Loại sổ địa chỉ từ xa của bạn là gì?"
 	},
 	"remotePage.type.label": {
 		"message": "Loại"
@@ -3891,7 +3891,7 @@
 	"rememberPassword": {
 		"message": "Dùng Trình quản lí mật khẩu để ghi nhớ mật khẩu này"
 	},
-	"showHidePassword.tooltip": {
+	"showHidePassword": {
 		"message": "Hiện/ẩn mật khẩu"
 	},
 	"remotePage.validatebutton.label": {
@@ -3903,20 +3903,11 @@
 	"abSearchHeading.label": {
 		"message": "Tìm kiếm trong:"
 	},
-	"abSearchHeading.accesskey": {
-		"message": "h"
-	},
 	"matchAll.label": {
 		"message": "Phù hợp tất cả những tìm kiếm sau"
 	},
-	"matchAll.accesskey": {
-		"message": "A"
-	},
 	"matchAny.label": {
 		"message": "Phù hợp bất kì tìm kiếm nào"
-	},
-	"matchAny.accesskey": {
-		"message": "n"
 	},
 	"googleOauthPage.wizard.description": {
 		"message": "Xác thực của Google"
@@ -3969,9 +3960,6 @@
 	"name.ABedit.label": {
 		"message": "Tên:"
 	},
-	"name.ABedit.accesskey": {
-		"message": "T"
-	},
 	"nodesLabel": {
 		"message": "??Nodes:??"
 	},
@@ -3993,9 +3981,6 @@
 	"readonlyLabel": {
 		"message": "Chế độ chỉ đọc"
 	},
-	"readonlyAccesskey": {
-		"message": "C"
-	},
 	"urnuuidLabel": {
 		"message": "Sử dụng urn:uuid"
 	},
@@ -4008,14 +3993,8 @@
 	"autoSyncLabel": {
 		"message": "Bật đồng bộ hóa định kỳ"
 	},
-	"autoSyncAccesskey": {
-		"message": "B"
-	},
 	"autoSyncIntervalLabel": {
 		"message": "Khoảng giữa các lần đồng bộ định kỳ (phút):"
-	},
-	"autoSyncIntervalAccesskey": {
-		"message": "K"
 	},
 	"miscTabLabel": {
 		"message": "Khác"
@@ -4026,20 +4005,11 @@
 	"fnFormulaLabel": {
 		"message": "Tạo tên Hiển thị:"
 	},
-	"fnFormulaAccesskey": {
-		"message": "i"
-	},
 	"resetFnFormulaLabel": {
 		"message": "Khôi phục về Mặc định"
 	},
-	"resetFnFormulaAccesskey": {
-		"message": "M"
-	},
 	"applyToABButtonLabel": {
 		"message": "??Apply to…??"
-	},
-	"applyToABButtonAccesskey": {
-		"message": "A"
 	},
 	"wdw_adrEditionTitle": {
 		"message": "Chỉnh sửa Địa chỉ"
@@ -4173,53 +4143,26 @@
 	"autocompletionLabel": {
 		"message": "Tự động điền địa chỉ email"
 	},
-	"autocompletionAccesskey": {
-		"message": "T"
-	},
-	"autocompletionTooltip": {
-		"message": "Mở rộng tự động hoàn thành tự động các địa chỉ liên lạc trong sổ địa chỉ của Thunderbird với một tự động hoàn thành các địa chỉ liên lạc trong sổ địa chỉ của Danh bạ."
-	},
 	"autocompleteSortByPopularityLabel": {
 		"message": "Sắp xếp các địa chỉ email theo mức độ phổ biến"
-	},
-	"autocompleteSortByPopularityAccesskey": {
-		"message": "p"
 	},
 	"autocompleteProposeConcatEmailsLabel": {
 		"message": "Đề xuất các email ghép mỗi địa chỉ liên hệ"
 	},
-	"autocompleteProposeConcatEmailsAccesskey": {
-		"message": "c"
-	},
 	"autocompleteShowAddressbookLabel": {
 		"message": "Hiển thị tên sách địa chỉ"
-	},
-	"autocompleteShowAddressbookAccesskey": {
-		"message": "H"
 	},
 	"autocompleteShowEmailTypeLabel": {
 		"message": "??Show email type??"
 	},
-	"autocompleteShowEmailTypeAccesskey": {
-		"message": "e"
-	},
 	"autocompleteShowPopularityLabel": {
 		"message": "??Show popularity??"
-	},
-	"autocompleteShowPopularityAccesskey": {
-		"message": "y"
 	},
 	"autocompleteWithColorLabel": {
 		"message": "Sử dụng màu sổ địa chỉ"
 	},
-	"autocompleteWithColorAccesskey": {
-		"message": "m"
-	},
 	"autocompleteRestrictSearchLabel": {
 		"message": "Hạn chế các trường tìm kiếm"
-	},
-	"autocompleteRestrictSearchAccesskey": {
-		"message": "c"
 	},
 	"chooseAutocompleteRestrictSearchFieldsButtonLabel": {
 		"message": "Chỉnh sửa"
@@ -4256,12 +4199,6 @@
 	},
 	"exclusiveLabel": {
 		"message": "Nguồn duy nhất cho địa chỉ liên hệ"
-	},
-	"exclusiveAccesskey": {
-		"message": "d"
-	},
-	"exclusiveTooltip": {
-		"message": "Nếu bị vô hiệu hóa, tùy chọn này cho phép lấy địa chỉ liên lạc trong sổ địa chỉ chuẩn Thunderbird cho các ngôi sao màu vàng, cho tên hiển thị email và cho tự động hoàn thành email."
 	},
 	"accountsRestrictionsLabel": {
 		"message": "Hạn chế Tài khoản Thư"
@@ -4341,12 +4278,6 @@
 	"debugModeLabel": {
 		"message": "Chế độ kiểm tra sửa lỗi"
 	},
-	"debugModeAccesskey": {
-		"message": "k"
-	},
-	"debugModeTooltip": {
-		"message": "Bật chế độ gỡ lỗi cho nhật ký mở rộng."
-	},
 	"statusInformationLineNumberLabel": {
 		"message": "Số dòng lưu trong tệp nhật ký:"
 	},
@@ -4365,26 +4296,14 @@
 	"listTab.conf.label": {
 		"message": "Danh sách"
 	},
-	"listTab.conf.accesskey": {
-		"message": "D"
-	},
 	"technicalTab.conf.label": {
 		"message": "Kỹ thuật"
-	},
-	"technicalTab.conf.accesskey": {
-		"message": "K"
 	},
 	"vCardTab.conf.label": {
 		"message": "Thẻ Ảo"
 	},
-	"vCardTab.conf.accesskey": {
-		"message": "o"
-	},
 	"keyTab.conf.label": {
 		"message": "??Public Keys??"
-	},
-	"keyTab.conf.accesskey": {
-		"message": "K"
 	},
 	"advancedTab1Label": {
 		"message": "Nâng cao"
@@ -4482,9 +4401,6 @@
 	"preferEmailEditionLabel": {
 		"message": "Nhấp đúp vào một địa chỉ liên hệ thay đổi nó thay vì email nó"
 	},
-	"preferEmailEditionAccesskey": {
-		"message": "p"
-	},
 	"dateDisplayedFormatLabel": {
 		"message": "Định dạng Văn bản Ngày:"
 	},
@@ -4493,9 +4409,6 @@
 	},
 	"defaultRegionLabel": {
 		"message": "??Default Region:??"
-	},
-	"defaultRegionAccesskey": {
-		"message": "D"
 	},
 	"defaultRegionTooltip": {
 		"message": "??Default region for addresses and formatting phone numbers.??"
@@ -4641,9 +4554,6 @@
 	"preferIMPPPrefLabel": {
 		"message": "Ưu tiên Truyền thông Internet được đánh dấu bằng"
 	},
-	"preferIMPPPrefAccesskey": {
-		"message": "T"
-	},
 	"preferIMPPPrefWarn": {
 		"message": "Nếu không có địa chỉ nào được đánh dấu, một kết nối được đề xuất cho tất cả các địa chỉ liên hệ."
 	},
@@ -4707,9 +4617,6 @@
 	"URLPhoneBackgroundLabel": {
 		"message": "??Run in background??"
 	},
-	"URLPhoneBackgroundAccesskey": {
-		"message": "S"
-	},
 	"encryptionGroupboxLabel": {
 		"message": "Mật hóa"
 	},
@@ -4718,9 +4625,6 @@
 	},
 	"localDataEncryptionEnabledLabel": {
 		"message": "??Encrypt locally cached cards??"
-	},
-	"localDataEncryptionEnabledAccesskey": {
-		"message": "E"
 	},
 	"customFieldRankHeaderLabel": {
 		"message": "Cấp"
@@ -4771,7 +4675,7 @@
 		"message": "Nhãn Trường"
 	},
 	"listPanelLabel": {
-		"message": "Nếu máy chủ của bạn không hỗ trợ các loại (ví dụ Google, Apple, Zimbra, vân vân), danh sách là một cách hay để gửi email đến các nhóm. Thẻ Ảo 3,0 không hỗ trợ danh sách, nhưng điều này có thể đạt được với các lĩnh vực tùy chỉnh, vì vậy nếu bạn muốn sử dụng các danh sách trong Thẻ Ảo 3,0, bạn phải xác định các trường này."
+		"message": "Nếu máy chủ của bạn không hỗ trợ các loại (ví dụ Apple, Zimbra, vân vân), danh sách là một cách hay để gửi email đến các nhóm. Thẻ Ảo 3,0 không hỗ trợ danh sách, nhưng điều này có thể đạt được với các lĩnh vực tùy chỉnh, vì vậy nếu bạn muốn sử dụng các danh sách trong Thẻ Ảo 3,0, bạn phải xác định các trường này."
 	},
 	"listGroupboxLabel": {
 		"message": "Trường tùy chỉnh cho danh sách"
@@ -4803,14 +4707,8 @@
 	"syncAfterChangeLabel": {
 		"message": "??Synchronize after changes??"
 	},
-	"syncAfterChangeAccesskey": {
-		"message": "c"
-	},
 	"initialSyncLabel": {
 		"message": "Chạy đồng bộ hóa khi khởi động Thunderbird"
-	},
-	"initialSyncAccesskey": {
-		"message": "C"
 	},
 	"initialSyncDelayLabel": {
 		"message": "Ban đầu Đồng bộ hóa Sự chậm trễ (giây):"
@@ -4872,17 +4770,11 @@
 	"decodeReportLabel": {
 		"message": "Giải mã Địa chỉ URL cho các yêu cầu BÀI BÁO CÁO"
 	},
-	"decodeReportAccesskey": {
-		"message": "G"
-	},
 	"miscEmailGroupboxLabel": {
 		"message": "Gửi Email"
 	},
 	"preferEmailPrefLabel": {
 		"message": "Thích hơn các địa chỉ email được đánh dấu bằng"
-	},
-	"preferEmailPrefAccesskey": {
-		"message": "T"
 	},
 	"preferEmailPrefWarn": {
 		"message": "Nếu không có địa chỉ nào được đánh dấu, thư sẽ được gửi đến tất cả các địa chỉ email."
@@ -4890,14 +4782,8 @@
 	"warnEmptyEmailsLabel": {
 		"message": "Cảnh báo tôi khi tôi cố gắng liên hệ qua email mà không có địa chỉ email"
 	},
-	"warnEmptyEmailsAccesskey": {
-		"message": "C"
-	},
 	"useOnlyEmailLabel": {
 		"message": "Chỉ sử dụng địa chỉ email, không có tên hiển thị của họ"
-	},
-	"useOnlyEmailAccesskey": {
-		"message": "E"
 	},
 	"attachVCardWarn": {
 		"message": "Để tự động thêm Thẻ Ảo vào email của bạn, chọn một Thẻ Ảo cho mỗi tài khoản email. Nếu được kích hoạt, Danh bạ sẽ đính kèm Thẻ Ảo này với mọi email gửi đi từ tài khoản này."
@@ -4956,26 +4842,14 @@
 	"bday.conf.label": {
 		"message": "Ngày Sinh"
 	},
-	"bday.conf.accesskey": {
-		"message": "S"
-	},
 	"anniversary.conf.label": {
 		"message": "Ngày kỷ niệm (chỉ dành cho Thẻ Ảo 4.0)"
-	},
-	"anniversary.conf.accesskey": {
-		"message": "k"
 	},
 	"deathdate.conf.label": {
 		"message": "Ngày Chết (chỉ dành cho Thẻ Ảo 4.0)"
 	},
-	"deathdate.conf.accesskey": {
-		"message": "C"
-	},
 	"eventsLabel": {
 		"message": "Sự kiện"
-	},
-	"eventsAccesskey": {
-		"message": "i"
 	},
 	"gender.conf.label": {
 		"message": "Giới tính (chỉ dành cho Thẻ Ảo 4.0)"
@@ -5007,14 +4881,8 @@
 	"showPopupOnStartupLabel": {
 		"message": "Hiển thị cửa sổ bật lên khi khởi động"
 	},
-	"showPopupOnStartupAccesskey": {
-		"message": "H"
-	},
 	"showPeriodicPopupLabel": {
 		"message": "Hiển thị quảng cáo hàng ngày"
-	},
-	"showPeriodicPopupAccesskey": {
-		"message": "y"
 	},
 	"periodicPopupTimeLabel": {
 		"message": "Hiển thị thời gian (gg:pp):"
@@ -5024,9 +4892,6 @@
 	},
 	"showPopupEvenIfNoBirthdayLabel": {
 		"message": "Hiển thị cửa sổ bật lên khi danh sách kỷ niệm rỗng"
-	},
-	"showPopupEvenIfNoBirthdayAccesskey": {
-		"message": "h"
 	},
 	"remindViaLightningGroupboxLabel": {
 		"message": "Nhắc nhở qua Thunderbird Lightning Lịch Phần mở rộng"
@@ -5039,9 +4904,6 @@
 	},
 	"syncWithLightningOnStartupLabel": {
 		"message": "Đồng bộ với Lightning khi khởi động"
-	},
-	"syncWithLightningOnStartupAccesskey": {
-		"message": "L"
 	},
 	"calendarEntryTitleLabel": {
 		"message": "Tiêu đề cho sự kiện lịch:"
@@ -5061,9 +4923,6 @@
 	"calendarRepeatingEventLabel": {
 		"message": "Sự kiện lặp lại"
 	},
-	"calendarRepeatingEventAccesskey": {
-		"message": "S"
-	},
 	"calendarEntryTimeLabel": {
 		"message": "Thời gian cho sự kiện lịch (gg:pp):"
 	},
@@ -5072,9 +4931,6 @@
 	},
 	"calendarEntryWholeDayLabel": {
 		"message": "Sự kiện trên lịch cho cả ngày"
-	},
-	"calendarEntryWholeDayAccesskey": {
-		"message": "y"
 	},
 	"calendarEntryAlarmLabel": {
 		"message": "Báo thức số giờ cho sự kiện lịch (ví dụ: 4,+1):"
@@ -5835,9 +5691,6 @@
 	"viewResultEditionLabel": {
 		"message": "Xem kết quả"
 	},
-	"viewResultEditionAccesskey": {
-		"message": "X"
-	},
 	"previousEditButton.tooltip": {
 		"message": "Trước"
 	},
@@ -5883,20 +5736,11 @@
 	"moreEditionLabel": {
 		"message": "Xem thêm"
 	},
-	"moreEditionAccesskey": {
-		"message": "t"
-	},
 	"lessEditionLabel": {
 		"message": "Xem ít hơn"
 	},
-	"lessEditionAccesskey": {
-		"message": "h"
-	},
 	"mergeAllEditionLabel": {
 		"message": "??Merge All??"
-	},
-	"mergeAllEditionAccesskey": {
-		"message": "M"
 	},
 	"formatAllEditionLabel": {
 		"message": "??Format all??"
@@ -5906,9 +5750,6 @@
 	},
 	"undoAllEditionLabel": {
 		"message": "??Undo all??"
-	},
-	"undoAllEditionAccesskey": {
-		"message": "U"
 	},
 	"formatEditionLabel": {
 		"message": "??Format??"
@@ -5951,9 +5792,6 @@
 	},
 	"convertVCardsTooltip": {
 		"message": "??The vCard version of some contacts is different from the vCard version of your address book, this button may convert these vCards??"
-	},
-	"convertVCardsAccesskey": {
-		"message": "C"
 	},
 	"wdw_findDuplicatesTitle": {
 		"message": "Địa chỉ liên hệ trùng lặp ($P1$)",
@@ -6016,26 +5854,14 @@
 	"refreshLogEditionLabel": {
 		"message": "Tải lại"
 	},
-	"refreshLogEditionAccesskey": {
-		"message": "T"
-	},
 	"flushLogEditionLabel": {
 		"message": "Xóa Danh Sách"
-	},
-	"flushLogEditionAccesskey": {
-		"message": "X"
 	},
 	"clipboardLogEditionLabel": {
 		"message": "Chép sang Khay nhớ tạm"
 	},
-	"clipboardLogEditionAccesskey": {
-		"message": "a"
-	},
 	"cancelLogEditionLabel": {
 		"message": "Được"
-	},
-	"cancelLogEditionAccesskey": {
-		"message": "c"
 	},
 	"wdw_mergeCardsTitle": {
 		"message": "Hợp nhất địa chỉ liên lạc"
@@ -6064,6 +5890,30 @@
 	"wdw_cardbookConfigurationEditFieldTitle": {
 		"message": "??Choose a conversion function??"
 	},
+	"ContainsOperator": {
+		"message": "chứa"
+	},
+	"DoesntContainOperator": {
+		"message": "không chứa"
+	},
+	"IsOperator": {
+		"message": "là"
+	},
+	"IsntOperator": {
+		"message": "không là"
+	},
+	"BeginsWithOperator": {
+		"message": "bắt đầu bằng"
+	},
+	"EndsWithOperator": {
+		"message": "kết thúc bằng"
+	},
+	"IsEmptyOperator": {
+		"message": "là rỗng"
+	},
+	"IsntEmptyOperator": {
+		"message": "không rỗng"
+	},
 	"uppercaseLabel": {
 		"message": "??Uppercase??"
 	},
@@ -6072,5 +5922,821 @@
 	},
 	"capitalizationLabel": {
 		"message": "??Capitalization??"
+	},
+	"region-name-ad": {
+		"message": "Andorra"
+	},
+	"region-name-ae": {
+		"message": "Các tiểu vương quốc Ả Rập thống nhất"
+	},
+	"region-name-af": {
+		"message": "Afghanistan"
+	},
+	"region-name-ai": {
+		"message": "Anguilla"
+	},
+	"region-name-al": {
+		"message": "Anbani"
+	},
+	"region-name-ag": {
+		"message": "Antigua và Barbuda"
+	},
+	"region-name-am": {
+		"message": "Armenia"
+	},
+	"region-name-ar": {
+		"message": "Argentina"
+	},
+	"region-name-aq": {
+		"message": "Châu Nam Cực"
+	},
+	"region-name-ao": {
+		"message": "Angola"
+	},
+	"region-name-at": {
+		"message": "Áo"
+	},
+	"region-name-az": {
+		"message": "Azerbaijan"
+	},
+	"region-name-ba": {
+		"message": "Bosnia và Herzegovina"
+	},
+	"region-name-bb": {
+		"message": "Barbados"
+	},
+	"region-name-as": {
+		"message": "Samoa thuộc Mỹ"
+	},
+	"region-name-au": {
+		"message": "Úc"
+	},
+	"region-name-bd": {
+		"message": "Bangladesh"
+	},
+	"region-name-be": {
+		"message": "Bỉ"
+	},
+	"region-name-aw": {
+		"message": "Aruba"
+	},
+	"region-name-bf": {
+		"message": "Burkina Faso"
+	},
+	"region-name-bm": {
+		"message": "Bermuda"
+	},
+	"region-name-bj": {
+		"message": "Benin"
+	},
+	"region-name-bg": {
+		"message": "Bungari"
+	},
+	"region-name-bi": {
+		"message": "Burundi"
+	},
+	"region-name-bh": {
+		"message": "Bahrain"
+	},
+	"region-name-bl": {
+		"message": "Saint Barthelemy"
+	},
+	"region-name-bn": {
+		"message": "Bru-nây"
+	},
+	"region-name-bo": {
+		"message": "Bolivia"
+	},
+	"region-name-br": {
+		"message": "Brazil"
+	},
+	"region-name-bq": {
+		"message": "Bonaire, Sint Eustatius, và Saba"
+	},
+	"region-name-bt": {
+		"message": "Bhutan"
+	},
+	"region-name-bs": {
+		"message": "Bahamas"
+	},
+	"region-name-bz": {
+		"message": "Belize"
+	},
+	"region-name-ca": {
+		"message": "Canada"
+	},
+	"region-name-cc": {
+		"message": "Quần đảo Cocos (Keeling)"
+	},
+	"region-name-by": {
+		"message": "Belarus"
+	},
+	"region-name-cd": {
+		"message": "Congo (Kinshasa)"
+	},
+	"region-name-cf": {
+		"message": "Cộng hòa Trung Phi"
+	},
+	"region-name-bv": {
+		"message": "Đảo Bouvet"
+	},
+	"region-name-bw": {
+		"message": "Botswana"
+	},
+	"region-name-cl": {
+		"message": "Chile"
+	},
+	"region-name-ci": {
+		"message": "Bờ biển Ngà"
+	},
+	"region-name-ch": {
+		"message": "Thụy Sĩ"
+	},
+	"region-name-cm": {
+		"message": "Cameroon"
+	},
+	"region-name-ck": {
+		"message": "Quần đảo Cook"
+	},
+	"region-name-cg": {
+		"message": "Congo (Brazzaville)"
+	},
+	"region-name-cn": {
+		"message": "Trung Quốc"
+	},
+	"region-name-cp": {
+		"message": "Đảo Clipperton"
+	},
+	"region-name-co": {
+		"message": "Colombia"
+	},
+	"region-name-cr": {
+		"message": "Costa Rica"
+	},
+	"region-name-cz": {
+		"message": "Cộng hòa Séc"
+	},
+	"region-name-cy": {
+		"message": "Síp"
+	},
+	"region-name-cx": {
+		"message": "Đảo Giáng Sinh"
+	},
+	"region-name-cv": {
+		"message": "Cabo Verde"
+	},
+	"region-name-cu": {
+		"message": "Cuba"
+	},
+	"region-name-cw": {
+		"message": "Curaçao"
+	},
+	"region-name-de": {
+		"message": "Đức"
+	},
+	"region-name-dg": {
+		"message": "Diego Garcia"
+	},
+	"region-name-dk": {
+		"message": "Đan Mạch"
+	},
+	"region-name-dj": {
+		"message": "Djibouti"
+	},
+	"region-name-dm": {
+		"message": "Dominica"
+	},
+	"region-name-ec": {
+		"message": "Ecuador"
+	},
+	"region-name-dz": {
+		"message": "Angiêri"
+	},
+	"region-name-do": {
+		"message": "Cộng hòa Dominica"
+	},
+	"region-name-ee": {
+		"message": "Estonia"
+	},
+	"region-name-eg": {
+		"message": "Ai Cập"
+	},
+	"region-name-eh": {
+		"message": "Tây Sahara"
+	},
+	"region-name-et": {
+		"message": "Ethiopia"
+	},
+	"region-name-er": {
+		"message": "Eritrea"
+	},
+	"region-name-es": {
+		"message": "Tây Ban Nha"
+	},
+	"region-name-fi": {
+		"message": "Phần Lan"
+	},
+	"region-name-fj": {
+		"message": "Fiji"
+	},
+	"region-name-fm": {
+		"message": "Liên bang Micronesia"
+	},
+	"region-name-fk": {
+		"message": "Đảo Falkland (Islas Malvinas)"
+	},
+	"region-name-fo": {
+		"message": "Quần đảo Faroe"
+	},
+	"region-name-ge": {
+		"message": "Gruzia"
+	},
+	"region-name-gb": {
+		"message": "Vương quốc Anh"
+	},
+	"region-name-gd": {
+		"message": "Grenada"
+	},
+	"region-name-fr": {
+		"message": "Pháp"
+	},
+	"region-name-ga": {
+		"message": "Gabon"
+	},
+	"region-name-gf": {
+		"message": "Guiana thuộc Pháp"
+	},
+	"region-name-gl": {
+		"message": "Greenland"
+	},
+	"region-name-gm": {
+		"message": "Cộng hòa Gambia"
+	},
+	"region-name-gi": {
+		"message": "Gibraltar"
+	},
+	"region-name-gg": {
+		"message": "Guernsey"
+	},
+	"region-name-gh": {
+		"message": "Ghana"
+	},
+	"region-name-gn": {
+		"message": "Guinea"
+	},
+	"region-name-gp": {
+		"message": "Guadeloupe"
+	},
+	"region-name-gr": {
+		"message": "Hi Lạp"
+	},
+	"region-name-gq": {
+		"message": "Guinea Xích Đạo"
+	},
+	"region-name-gt": {
+		"message": "Guatemala"
+	},
+	"region-name-gw": {
+		"message": "Guinea-Bissau"
+	},
+	"region-name-hk": {
+		"message": "Hồng Kông"
+	},
+	"region-name-gu": {
+		"message": "Guam"
+	},
+	"region-name-gs": {
+		"message": "Nam Georgia và Quần đảo Nam Sandwich"
+	},
+	"region-name-gy": {
+		"message": "Guyana"
+	},
+	"region-name-hm": {
+		"message": "Đảo Heard và quần đảo McDonald"
+	},
+	"region-name-ht": {
+		"message": "Haiti"
+	},
+	"region-name-hr": {
+		"message": "Croatia"
+	},
+	"region-name-hn": {
+		"message": "Honduras"
+	},
+	"region-name-in": {
+		"message": "Ấn Độ"
+	},
+	"region-name-il": {
+		"message": "Israel"
+	},
+	"region-name-im": {
+		"message": "Đảo Man"
+	},
+	"region-name-ie": {
+		"message": "Ai-len"
+	},
+	"region-name-hu": {
+		"message": "Hungary"
+	},
+	"region-name-id": {
+		"message": "Indonesia"
+	},
+	"region-name-io": {
+		"message": "Lãnh thổ Ấn Độ Dương thuộc Anh"
+	},
+	"region-name-ir": {
+		"message": "Iran"
+	},
+	"region-name-is": {
+		"message": "Ai-xơ-len"
+	},
+	"region-name-iq": {
+		"message": "Iraq"
+	},
+	"region-name-je": {
+		"message": "Jersey"
+	},
+	"region-name-jp": {
+		"message": "Nhật Bản"
+	},
+	"region-name-it": {
+		"message": "Ý"
+	},
+	"region-name-ke": {
+		"message": "Kenya"
+	},
+	"region-name-jo": {
+		"message": "Gioóc-đa-ni"
+	},
+	"region-name-jm": {
+		"message": "Jamaica"
+	},
+	"region-name-kg": {
+		"message": "Kyrgyzstan"
+	},
+	"region-name-ki": {
+		"message": "Kiribati"
+	},
+	"region-name-kh": {
+		"message": "Campuchia"
+	},
+	"region-name-km": {
+		"message": "Comoros"
+	},
+	"region-name-kn": {
+		"message": "Saint Kitts và Nevis"
+	},
+	"region-name-ky": {
+		"message": "Quần đảo Cayman"
+	},
+	"region-name-kp": {
+		"message": "Triều Tiên"
+	},
+	"region-name-kr": {
+		"message": "Hàn Quốc"
+	},
+	"region-name-kw": {
+		"message": "Kuwait"
+	},
+	"region-name-kz": {
+		"message": "Kazakhstan"
+	},
+	"region-name-la": {
+		"message": "Lào"
+	},
+	"region-name-lb": {
+		"message": "Libăng"
+	},
+	"region-name-lc": {
+		"message": "Saint Lucia"
+	},
+	"region-name-li": {
+		"message": "Liechtenstein"
+	},
+	"region-name-lk": {
+		"message": "Sri Lanka"
+	},
+	"region-name-lr": {
+		"message": "Liberia"
+	},
+	"region-name-lu": {
+		"message": "Luxembourg"
+	},
+	"region-name-lv": {
+		"message": "Latvia"
+	},
+	"region-name-ls": {
+		"message": "Lesotho"
+	},
+	"region-name-ly": {
+		"message": "Libya"
+	},
+	"region-name-lt": {
+		"message": "Litva"
+	},
+	"region-name-mc": {
+		"message": "Monaco"
+	},
+	"region-name-md": {
+		"message": "Moldova"
+	},
+	"region-name-ma": {
+		"message": "Marốc"
+	},
+	"region-name-me": {
+		"message": "Montenegro"
+	},
+	"region-name-mf": {
+		"message": "Saint Martin"
+	},
+	"region-name-mg": {
+		"message": "Madagascar"
+	},
+	"region-name-mh": {
+		"message": "Quần đảo Marshall"
+	},
+	"region-name-mk": {
+		"message": "Cộng hòa Macedonia"
+	},
+	"region-name-ml": {
+		"message": "Mali"
+	},
+	"region-name-mm": {
+		"message": "Miến Điện"
+	},
+	"region-name-mn": {
+		"message": "Mông Cổ"
+	},
+	"region-name-mo": {
+		"message": "Ma Cao"
+	},
+	"region-name-mp": {
+		"message": "Quần đảo Bắc Mariana"
+	},
+	"region-name-mt": {
+		"message": "Malta"
+	},
+	"region-name-mu": {
+		"message": "Mauritius"
+	},
+	"region-name-mr": {
+		"message": "Mauritania"
+	},
+	"region-name-ms": {
+		"message": "Montserrat"
+	},
+	"region-name-mq": {
+		"message": "Martinique"
+	},
+	"region-name-mv": {
+		"message": "Maldives"
+	},
+	"region-name-mw": {
+		"message": "Malawi"
+	},
+	"region-name-my": {
+		"message": "Malaysia"
+	},
+	"region-name-mx": {
+		"message": "Mexico"
+	},
+	"region-name-mz": {
+		"message": "Mozambique"
+	},
+	"region-name-na": {
+		"message": "Namibia"
+	},
+	"region-name-nc": {
+		"message": "Tân Caledonia"
+	},
+	"region-name-ne": {
+		"message": "Niger"
+	},
+	"region-name-nf": {
+		"message": "Đảo Norfolk"
+	},
+	"region-name-ng": {
+		"message": "Nigeria"
+	},
+	"region-name-ni": {
+		"message": "Nicaragua"
+	},
+	"region-name-nl": {
+		"message": "Hà Lan"
+	},
+	"region-name-no": {
+		"message": "Na Uy"
+	},
+	"region-name-np": {
+		"message": "Nepal"
+	},
+	"region-name-nr": {
+		"message": "Nauru"
+	},
+	"region-name-pk": {
+		"message": "Pakistan"
+	},
+	"region-name-pl": {
+		"message": "Ba Lan"
+	},
+	"region-name-nz": {
+		"message": "New Zealand"
+	},
+	"region-name-ph": {
+		"message": "Philippines"
+	},
+	"region-name-nu": {
+		"message": "Niue"
+	},
+	"region-name-om": {
+		"message": "Oman"
+	},
+	"region-name-pe": {
+		"message": "Peru"
+	},
+	"region-name-pa": {
+		"message": "Panama"
+	},
+	"region-name-pf": {
+		"message": "Polynesia thuộc Pháp"
+	},
+	"region-name-pg": {
+		"message": "Papua New Guinea"
+	},
+	"region-name-pm": {
+		"message": "Saint Pierre và Miquelon"
+	},
+	"region-name-pn": {
+		"message": "Đảo Pitcairn"
+	},
+	"region-name-pr": {
+		"message": "Puerto Rico"
+	},
+	"region-name-pt": {
+		"message": "Bồ Đào Nha"
+	},
+	"region-name-pw": {
+		"message": "Palau"
+	},
+	"region-name-qm": {
+		"message": "Quần đảo Midway"
+	},
+	"region-name-py": {
+		"message": "Paraguay"
+	},
+	"region-name-qa": {
+		"message": "Qatar"
+	},
+	"region-name-qs": {
+		"message": "Bassas da India"
+	},
+	"region-name-qu": {
+		"message": "Đảo Juan de Nova"
+	},
+	"region-name-qw": {
+		"message": "Đảo Wake"
+	},
+	"region-name-qx": {
+		"message": "Quần đảo Glorioso"
+	},
+	"region-name-rs": {
+		"message": "Serbia"
+	},
+	"region-name-ro": {
+		"message": "Romania"
+	},
+	"region-name-qz": {
+		"message": "Akrotiri"
+	},
+	"region-name-re": {
+		"message": "Reunion"
+	},
+	"region-name-rw": {
+		"message": "Rwanda"
+	},
+	"region-name-ru": {
+		"message": "Nga"
+	},
+	"region-name-sa": {
+		"message": "Ả Rập Saudi"
+	},
+	"region-name-sb": {
+		"message": "Quần đảo Solomon"
+	},
+	"region-name-sc": {
+		"message": "Seychelles"
+	},
+	"region-name-sd": {
+		"message": "Sudan"
+	},
+	"region-name-se": {
+		"message": "Thụy Điển"
+	},
+	"region-name-sg": {
+		"message": "Singapore"
+	},
+	"region-name-sh": {
+		"message": "Saint Helena, Ascension và Tristan da Cunha"
+	},
+	"region-name-si": {
+		"message": "Slovenia"
+	},
+	"region-name-sk": {
+		"message": "Slovakia"
+	},
+	"region-name-sl": {
+		"message": "Sierra Leone"
+	},
+	"region-name-sn": {
+		"message": "Senegal"
+	},
+	"region-name-sm": {
+		"message": "San Marino"
+	},
+	"region-name-ss": {
+		"message": "Nam Sudan"
+	},
+	"region-name-so": {
+		"message": "Somalia"
+	},
+	"region-name-sr": {
+		"message": "Suriname"
+	},
+	"region-name-sx": {
+		"message": "Sint Maarten"
+	},
+	"region-name-st": {
+		"message": "Sao Tome và Principe"
+	},
+	"region-name-sv": {
+		"message": "El Salvador"
+	},
+	"region-name-sy": {
+		"message": "Xi-ri"
+	},
+	"region-name-sz": {
+		"message": "Swaziland"
+	},
+	"region-name-tc": {
+		"message": "Quần đảo Turks và Caicos"
+	},
+	"region-name-td": {
+		"message": "Sát"
+	},
+	"region-name-tg": {
+		"message": "Togo"
+	},
+	"region-name-th": {
+		"message": "Thái Lan"
+	},
+	"region-name-tf": {
+		"message": "Vùng đất phía Nam và châu Nam Cực thuộc Pháp"
+	},
+	"region-name-tj": {
+		"message": "Tajikistan"
+	},
+	"region-name-tk": {
+		"message": "Tokelau"
+	},
+	"region-name-tl": {
+		"message": "Đông Timor"
+	},
+	"region-name-tr": {
+		"message": "Thổ Nhĩ Kì"
+	},
+	"region-name-tn": {
+		"message": "Tuy-ni-di"
+	},
+	"region-name-to": {
+		"message": "Tonga"
+	},
+	"region-name-tm": {
+		"message": "Turkmenistan"
+	},
+	"region-name-tt": {
+		"message": "Trinidad và Tobago"
+	},
+	"region-name-tv": {
+		"message": "Tuvalu"
+	},
+	"region-name-tw": {
+		"message": "Đài Loan"
+	},
+	"region-name-tz": {
+		"message": "Tanzania"
+	},
+	"region-name-ua": {
+		"message": "Ucraina"
+	},
+	"region-name-ug": {
+		"message": "Uganda"
+	},
+	"region-name-us": {
+		"message": "Hoa Kỳ"
+	},
+	"region-name-uy": {
+		"message": "Uruguay"
+	},
+	"region-name-va": {
+		"message": "Thành Vatican"
+	},
+	"region-name-uz": {
+		"message": "Uzbekistan"
+	},
+	"region-name-vc": {
+		"message": "Saint Vincent và Grenadines"
+	},
+	"region-name-vg": {
+		"message": "Quần đảo Virgin thuộc Anh"
+	},
+	"region-name-vi": {
+		"message": "Quần đảo Virgin thuộc Mỹ"
+	},
+	"region-name-vu": {
+		"message": "Vanuatu"
+	},
+	"region-name-ve": {
+		"message": "Venezuela"
+	},
+	"region-name-vn": {
+		"message": "Việt Nam"
+	},
+	"region-name-wf": {
+		"message": "Wallis và Futuna"
+	},
+	"region-name-ws": {
+		"message": "Samoa"
+	},
+	"region-name-xa": {
+		"message": "Quần đảo Ashmore và Cartier"
+	},
+	"region-name-xb": {
+		"message": "Đảo Baker"
+	},
+	"region-name-xc": {
+		"message": "Quần đảo Biển San hô"
+	},
+	"region-name-xd": {
+		"message": "Dhekelia"
+	},
+	"region-name-xe": {
+		"message": "Đảo Europa"
+	},
+	"region-name-xh": {
+		"message": "Đảo Howland"
+	},
+	"region-name-xg": {
+		"message": "Dải Gaza"
+	},
+	"region-name-xj": {
+		"message": "Jan Mayen"
+	},
+	"region-name-xk": {
+		"message": "Kosovo"
+	},
+	"region-name-xl": {
+		"message": "Đảo San hô Palmyra"
+	},
+	"region-name-xp": {
+		"message": "Quần đảo Hoàng Sa"
+	},
+	"region-name-xm": {
+		"message": "Rạn san hô Kingman"
+	},
+	"region-name-xq": {
+		"message": "Đảo Jarvis"
+	},
+	"region-name-xr": {
+		"message": "Svalbard"
+	},
+	"region-name-xs": {
+		"message": "Quần đảo Trường Sa"
+	},
+	"region-name-xt": {
+		"message": "Đảo Tromelin"
+	},
+	"region-name-xv": {
+		"message": "Đảo Navassa"
+	},
+	"region-name-yt": {
+		"message": "Mayotte"
+	},
+	"region-name-ye": {
+		"message": "Yemen"
+	},
+	"region-name-xw": {
+		"message": "Bờ Tây"
+	},
+	"region-name-za": {
+		"message": "Nam Phi"
+	},
+	"region-name-xu": {
+		"message": "Đảo Johnston"
+	},
+	"region-name-zw": {
+		"message": "Zimbabwe"
+	},
+	"region-name-zm": {
+		"message": "Zambia"
 	}
 }

@@ -138,17 +138,16 @@ var cardbookTypes = {
 	},
 
 	getTypeLabelFromTypeCode: function (aABType, aType, aTypeCode) {
-		var prefResult = cardbookRepository.cardbookPreferences.getStringPref(cardbookRepository.cardbookPreferences.prefCardBookCustomTypes + aABType + "." + aType + "." + aTypeCode + ".value");
-		if (prefResult != "") {
+		var prefResult = cardbookRepository.cardbookPrefs[cardbookRepository.cardbookPreferences.prefCardBookCustomTypes + aABType + "." + aType + "." + aTypeCode + ".value"];
+		if (prefResult) {
 			return prefResult;
 		} else {
 			return cardbookRepository.extension.localeData.localizeMessage(aTypeCode);
 		}
-		return aTypeCode;
 	},
 
 	getTypeDisabledFromTypeCode: function (aABType, aType, aTypeCode) {
-		return cardbookRepository.cardbookPreferences.getBoolPref(cardbookRepository.cardbookPreferences.prefCardBookCustomTypes + aABType + "." + aType + "." + aTypeCode + ".disabled", false);
+		return cardbookRepository.cardbookPrefs[cardbookRepository.cardbookPreferences.prefCardBookCustomTypes + aABType + "." + aType + "." + aTypeCode + ".disabled"] ?? false;
 	},
 
 	getTypes: function (aABType, aType, aResetToCore) {
@@ -162,14 +161,13 @@ var cardbookTypes = {
 			}
 		}
 		if (!aResetToCore) {
-			var customTypes = Services.prefs.getChildList(cardbookRepository.cardbookPreferences.prefCardBookCustomTypes + aABType + "." + aType + ".");
 			var tmpArray = [];
-			for (let k = 0; k < customTypes.length; k++) {
-				var tmpValue = customTypes[k].replace(cardbookRepository.cardbookPreferences.prefCardBookCustomTypes + aABType + "." + aType + ".", "");
-				if (tmpValue.endsWith(".value")) {
-					tmpArray.push(tmpValue.replace(".value", ""));
+			for (const [key, value] of Object.entries(cardbookRepository.cardbookPrefs)) {
+				if (key.startsWith("customTypes." + aABType + "." + aType) && key.endsWith(".value")) {
+					tmpArray.push(key.replace("customTypes." + aABType + "." + aType + ".", "").replace(".value", ""));
 				}
 			}
+
 			for (let k = 0; k < tmpArray.length; k++) {
 				var myCustomType = tmpArray[k];
 				var isItACore = false;
@@ -181,8 +179,7 @@ var cardbookTypes = {
 					}
 				}
 				if (!isItACore) {
-					var myLabel = cardbookRepository.cardbookPreferences.getStringPref(cardbookRepository.cardbookPreferences.prefCardBookCustomTypes + aABType + "." + aType + "." + myCustomType + ".value");
-					result.push([myLabel, myCustomType]);
+					result.push([myCustomType, myCustomType]);
 				}
 			}
 		}

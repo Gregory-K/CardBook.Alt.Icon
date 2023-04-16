@@ -14,7 +14,7 @@ if ("undefined" == typeof(cardbookBirthdaysUtils)) {
 		},
 		
 		getCalendars: function () {
-			var myCalendar = cardbookRepository.cardbookPreferences.getStringPref("extensions.cardbook.calendarsNameList");
+			var myCalendar = cardbookRepository.cardbookPrefs["calendarsNameList"];
 			let cals = cal.manager.getCalendars();
 			for (let calendar of cals) {
 				if (myCalendar.includes(calendar.id)) {
@@ -24,7 +24,7 @@ if ("undefined" == typeof(cardbookBirthdaysUtils)) {
 		},
 
 		syncWithLightning: function () {
-			var maxDaysUntilNextBirthday = cardbookRepository.cardbookPreferences.getStringPref("extensions.cardbook.numberOfDaysForWriting");
+			var maxDaysUntilNextBirthday = cardbookRepository.cardbookPrefs["numberOfDaysForWriting"];
 			cardbookBirthdaysUtils.loadBirthdays(maxDaysUntilNextBirthday);
 
 			cardbookBirthdaysUtils.getCalendars();
@@ -148,19 +148,19 @@ if ("undefined" == typeof(cardbookBirthdaysUtils)) {
 			var iCalString = "BEGIN:VCALENDAR\n";
 			iCalString += "BEGIN:VEVENT\n";
 
-			var calendarEntryCategories = cardbookRepository.cardbookPreferences.getStringPref("extensions.cardbook.calendarEntryCategories");
+			var calendarEntryCategories = cardbookRepository.cardbookPrefs["calendarEntryCategories"];
 			if (calendarEntryCategories !== "") {
 				iCalString += "CATEGORIES:" + calendarEntryCategories + "\n";
 			}
 			
 			iCalString += "TRANSP:TRANSPARENT\n";
-			if (cardbookRepository.cardbookPreferences.getBoolPref("extensions.cardbook.repeatingEvent")) {
+			if (cardbookRepository.cardbookPrefs["repeatingEvent"]) {
 				iCalString += "RRULE:FREQ=YEARLY\n";
 			}
 
 			var dtstart;
 			var dtend;
-			if (cardbookRepository.cardbookPreferences.getBoolPref("extensions.cardbook.eventEntryWholeDay")) {
+			if (cardbookRepository.cardbookPrefs["eventEntryWholeDay"]) {
 				dtstart = "DTSTART;VALUE=DATE:";
 				dtend = "DTEND;VALUE=DATE:";
 				iCalString += dtstart + aDate + "\n";
@@ -168,7 +168,7 @@ if ("undefined" == typeof(cardbookBirthdaysUtils)) {
 			} else {
 				dtstart = "DTSTART;TZID=" + cal.dtz.defaultTimezone.tzid + ":";
 				dtend = "DTEND;TZID=" + cal.dtz.defaultTimezone.tzid + ":";
-				var eventEntryTime = cardbookRepository.cardbookPreferences.getStringPref("extensions.cardbook.eventEntryTime");
+				var eventEntryTime = cardbookRepository.cardbookPrefs["eventEntryTime"];
 				var EmptyParamRegExp1 = new RegExp("(.*)([^0-9])(.*)", "ig");
 				if (eventEntryTime.replace(EmptyParamRegExp1, "$1")!=eventEntryTime) {
 					var eventEntryTimeHour = eventEntryTime.replace(EmptyParamRegExp1, "$1");
@@ -188,7 +188,7 @@ if ("undefined" == typeof(cardbookBirthdaysUtils)) {
 			}
 
 			// set Alarms
-			var lcalendarEntryAlarm = cardbookRepository.cardbookPreferences.getStringPref("extensions.cardbook.calendarEntryAlarm");
+			var lcalendarEntryAlarm = cardbookRepository.cardbookPrefs["calendarEntryAlarm"];
 			var lcalendarEntryAlarmArray = lcalendarEntryAlarm.split(',');
 			for (var i = 0; i < lcalendarEntryAlarmArray.length; i++) {
 				// default before alarm before event
@@ -263,7 +263,7 @@ if ("undefined" == typeof(cardbookBirthdaysUtils)) {
 			var lDateOfBirthOld = aDateOfBirth;
 			var lDateOfBirth = cardbookRepository.cardbookDates.convertDateStringToDateUTC(aDateOfBirth, aDateFormat);
 
-			var leventEntryTitle = cardbookRepository.cardbookPreferences.getStringPref("extensions.cardbook.eventEntryTitle");
+			var leventEntryTitle = cardbookRepository.cardbookPrefs["eventEntryTitle"];
 			endDate.setUTCDate(date_of_today.getDate()+parseInt(aNumberOfDays));
 			while (dateRef < endDate) {
 				lnextBirthday = this.calcDateOfNextBirthday(dateRef,lDateOfBirth);
@@ -280,7 +280,7 @@ if ("undefined" == typeof(cardbookBirthdaysUtils)) {
 					}
 	
 					if (ldaysUntilNextBirthday === parseInt(ldaysUntilNextBirthday)) {
-						let dateOfBirthOld = cardbookRepository.cardbookDates.getFormattedDateForDateString(lDateOfBirthOld, aDateFormat, cardbookRepository.dateDisplayedFormat)
+						let dateOfBirthOld = cardbookRepository.cardbookDates.getFormattedDateForDateString(lDateOfBirthOld, aDateFormat, cardbookRepository.cardbookPrefs["dateDisplayedFormat"])
 						cardbookBirthdaysUtils.lBirthdayList.push([ldaysUntilNextBirthday, lBirthdayTitle, lAge, dateOfBirthOld, aDateOfBirthFound, aEmail, aDirPrefId, aName]);
 					} else {
 						cardbookBirthdaysUtils.lBirthdayList.push(["0", lBirthdayTitle + " : Error", "0", "0", aDateOfBirthFound, aEmail, aDirPrefId, aName]);
@@ -291,7 +291,7 @@ if ("undefined" == typeof(cardbookBirthdaysUtils)) {
 				}
 				dateRef.setMonth(dateRef.getMonth() + 12);
 				// for repeating events one event is enough
-				if (cardbookRepository.cardbookPreferences.getBoolPref("extensions.cardbook.repeatingEvent")) {
+				if (cardbookRepository.cardbookPrefs["repeatingEvent"]) {
 					return;
 				}
 			}
@@ -299,13 +299,13 @@ if ("undefined" == typeof(cardbookBirthdaysUtils)) {
 	
 		loadBirthdays: function (aNumberOfDays) {
 			aNumberOfDays = (aNumberOfDays > 365) ? 365 : aNumberOfDays;
-			var myContact = cardbookRepository.cardbookPreferences.getStringPref("extensions.cardbook.addressBooksNameList");
-			var useOnlyEmail = cardbookRepository.cardbookPreferences.getBoolPref("extensions.cardbook.useOnlyEmail");
+			var ABs = cardbookRepository.cardbookPrefs["addressBooksNameList"];
+			var useOnlyEmail = cardbookRepository.cardbookPrefs["useOnlyEmail"];
 			var search = {};
 			for (var field of cardbookRepository.dateFields) {
-				search[field] = cardbookRepository.cardbookPreferences.getBoolPref("extensions.cardbook.birthday." + field, true);
+				search[field] = cardbookRepository.cardbookPrefs["birthday." + field];
 			}
-			search.events = cardbookRepository.cardbookPreferences.getBoolPref("extensions.cardbook.birthday.events", true);
+			search.events = cardbookRepository.cardbookPrefs["birthday.events"];
 			cardbookBirthdaysUtils.lBirthdayList = [];
 
 			let fieldType = {};
@@ -317,7 +317,7 @@ if ("undefined" == typeof(cardbookBirthdaysUtils)) {
 			for (let i in cardbookRepository.cardbookCards) {
 				var myCard = cardbookRepository.cardbookCards[i];
 				var myDirPrefId = myCard.dirPrefId;
-				if (myContact.includes(myDirPrefId) || myContact === "allAddressBooks") {
+				if (ABs.includes(myDirPrefId) || ABs === "allAddressBooks") {
 					var dateFormat = cardbookRepository.getDateFormat(myDirPrefId, myCard.version);
 					var myDirPrefName = cardbookRepository.cardbookUtils.getPrefNameFromPrefId(myDirPrefId);
 					let name = cardbookRepository.cardbookUtils.getName(myCard);

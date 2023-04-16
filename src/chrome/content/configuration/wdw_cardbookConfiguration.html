@@ -1,0 +1,936 @@
+<?xml version="1.0"?>
+<!DOCTYPE html>
+
+<html id="wdw_cardbookConfigurationWindow">
+	<head>
+        <meta charset="UTF-8">
+		<link rel='stylesheet' type='text/css' href="chrome://global/skin/in-content/common.css">
+		<link rel='stylesheet' type='text/css' href="chrome://messenger/skin/preferences/preferences.css">
+		<link rel='stylesheet' type='text/css' href="chrome://messenger/skin/shared/themeableDialog.css">
+		<link rel='stylesheet' type='text/css' href="chrome://messenger/skin/messenger.css">
+		<!-- for the left pane -->
+		<link rel="stylesheet" type='text/css' href="chrome://messenger/skin/shared/accountManager.css"/>
+
+        <link rel='stylesheet' type='text/css' href="../skin/cardbookPrefStar.css">
+        <link rel='stylesheet' type='text/css' href="../skin/cardbookNotifications.css">
+		<link rel='stylesheet' type='text/css' href="../skin/cardbookConfiguration.css">
+        <link rel='stylesheet' type='text/css' href="../skin/cardbookTableTree.css">
+        <link rel='stylesheet' type='text/css' href="../skin/cardbookMain.css">
+        <link rel='stylesheet' type='text/css' href="../skin/cardbookHTML.css">
+		<title></title>
+	</head>
+
+	<body>
+		<aside id="category-cardbook-pane">
+			<nav class="tabs" id="category-cardbook-Tabbox">
+				<ul>
+					<li><button id="category-cardbook-generalPane" value="cardbook-generalPane" class="category" isTab="true" tabNo="0">__MSG_generalTabLabel__</button></li>
+					<li><button id="category-cardbook-CardBookPane" value="cardbook-CardBookPane" class="category" isTab="true" tabNo="1">__MSG_CardBookTabLabel__</button></li>
+					<li><button id="category-cardbook-EditionPane" value="cardbook-EditionPane" class="category" isTab="true" tabNo="2">__MSG_editionTabLabel__</button></li>
+					<li><button id="category-cardbook-advancedPane" value="cardbook-advancedPane" class="category" isTab="true" tabNo="3">__MSG_advancedTab1Label__</button></li>
+					<li><button id="category-cardbook-IMPPPane" value="cardbook-IMPPPane" class="category" isTab="true" tabNo="4">__MSG_IMPPsTabLabel__</button></li>
+					<li><button id="category-cardbook-customFieldsPane" value="cardbook-customFieldsPane" class="category" isTab="true" tabNo="5">__MSG_customFieldsTabLabel__</button></li>
+					<li><button id="category-cardbook-listsPane" value="cardbook-listsPane" class="category" isTab="true" tabNo="5">__MSG_listsTabLabel__</button></li>
+					<li><button id="category-cardbook-syncPane" value="cardbook-syncPane" class="category" isTab="true" tabNo="5">__MSG_syncTabLabel__</button></li>
+					<li><button id="category-cardbook-emailPane" value="cardbook-emailPane" class="category" isTab="true" tabNo="5">__MSG_emailTabLabel__</button></li>
+					<li><button id="category-cardbook-birthdaylistPane" value="cardbook-birthdaylistPane" class="category" isTab="true" tabNo="5">__MSG_birthdaylistTabLabel__</button></li>
+					<li><button id="category-cardbook-helpPane" value="cardbook-helpPane" class="category" isTab="true" tabNo="5">__MSG_helpTabLabel__</button></li>
+				</ul>
+			</nav>
+			<div id="progressmeterBox"></div>
+		</aside>
+
+		<div class="vbox overflow">
+			<div class="vbox">
+				<div class="vbox tab-container">
+					<section class="active" id="cardbook-generalPane">
+						<div class="vbox">
+							<label><h2>__MSG_integrationGroupboxLabel__</h2></label>
+							<label>
+								<input type="checkbox" id="exclusiveCheckBox" preference="exclusive" instantApply="true">
+								__MSG_exclusiveLabel__
+							</label>
+							<div class="separator"></div>
+							<label>
+								<input type="checkbox" id="autocompletionCheckBox" preference="autocompletion">
+								__MSG_autocompletionLabel__
+							</label>
+							<fieldset id="autocompleteSearch" class="indent">
+								<div>
+									<label id="autocompleteSortByPopularityLabel">
+										<input type="checkbox" id="autocompleteSortByPopularityCheckBox" preference="autocompleteSortByPopularity" instantApply="true">
+										__MSG_autocompleteSortByPopularityLabel__
+									</label>
+								</div>
+								<div>
+									<label id="autocompleteProposeConcatEmailsLabel">
+										<input type="checkbox" id="autocompleteProposeConcatEmailsCheckBox" preference="proposeConcatEmails" instantApply="true">
+										__MSG_autocompleteProposeConcatEmailsLabel__
+									</label>
+								</div>
+								<div>
+									<label id="autocompleteShowAddressbookLabel">
+										<input type="checkbox" id="autocompleteShowAddressbookCheckBox" preference="autocompleteShowAddressbook" instantApply="true">
+										__MSG_autocompleteShowAddressbookLabel__
+									</label>
+								</div>
+								<div>
+									<label id="autocompleteShowEmailTypeLabel">
+										<input type="checkbox" id="autocompleteShowEmailTypeCheckBox" preference="autocompleteShowEmailType" instantApply="true">
+										__MSG_autocompleteShowEmailTypeLabel__
+									</label>
+								</div>
+								<div>
+									<label id="autocompleteShowPopularityLabel">
+										<input type="checkbox" id="autocompleteShowPopularityCheckBox" preference="autocompleteShowPopularity" instantApply="true">
+										__MSG_autocompleteShowPopularityLabel__
+									</label>
+								</div>
+								<div>
+									<label id="autocompleteWithColorLabel">
+										<input type="checkbox" id="autocompleteWithColorCheckBox" preference="autocompleteWithColor" instantApply="true">
+										__MSG_autocompleteWithColorLabel__
+									</label>
+								</div>
+								<fieldset class="restrictConcurrent">
+									<div class="vbox" id="autocompleteRestrictSearchvBox">
+										<div class="hbox hcentered">
+											<label id="autocompleteRestrictSearchLabel">
+												<input type="checkbox" id="autocompleteRestrictSearchCheckBox" preference="autocompleteRestrictSearch">
+												__MSG_autocompleteRestrictSearchLabel__
+											</label>
+											<input type="text" id="autocompleteRestrictSearchFieldsTextBox" disabled>
+										</div>
+										<div class="hbox vright">
+											<button id="chooseAutocompleteRestrictSearchFieldsButton">__MSG_chooseAutocompleteRestrictSearchFieldsButtonLabel__</button>
+											<button id="resetAutocompleteRestrictSearchFieldsButton">__MSG_resetAutocompleteRestrictSearchFieldsButtonLabel__</button>
+										</div>
+									</div>
+								</fieldset>
+							</fieldset>
+							<div class="vbox">
+								<label id="useColor">__MSG_useColorLabel__</label>
+								<div class="hbox hcentered indent">
+									<label>
+										<input type="radio" id="useColorBackground" value="background" name="useColorRadiogroup" preference="useColor">
+										__MSG_useColorBackgroundLabel__
+									</label>
+									<div class="separator"></div>
+									<label>
+										<input type="radio" id="useColorText" value="text" name="useColorRadiogroup" preference="useColor">
+										__MSG_useColorTextLabel__
+									</label>
+									<div class="separator"></div>
+									<label>
+										<input type="radio" id="useColorNothing" value="nothing" name="useColorRadiogroup" preference="useColor">
+										__MSG_useColorNothingLabel__
+									</label>
+								</div>
+							</div>
+
+							<label><h2>__MSG_accountsRestrictionsLabel__</h2></label>
+							<div class="hbox">
+								<table id="accountsRestrictionsTable" class="tableTree" 
+									data-sort-order="ascending" data-sort-column="accountsRestrictionsABName">
+								</table>
+								<div class="vbox">
+									<button id="addRestrictionLabel">__MSG_addRestrictionLabel__</button>
+									<button id="renameRestrictionLabel" disabled>__MSG_renameRestrictionLabel__</button>
+									<button id="deleteRestrictionLabel" disabled>__MSG_deleteRestrictionLabel__</button>
+								</div>
+							</div>
+
+							<label><h2>__MSG_logGroupboxLabel__</h2></label>
+							<label>
+								<input type="checkbox" id="debugModeCheckBox" preference="debugMode" instantApply="true">
+								__MSG_debugModeLabel__
+							</label>
+							<label>
+								__MSG_statusInformationLineNumberLabel__
+								<input type="number" id="statusInformationLineNumberTextBox" min="10" max="100000" class="size5"
+									preference="statusInformationLineNumber"  instantApply="true">
+							</label>
+						</div>
+					</section>
+
+					<section id="cardbook-CardBookPane">
+						<label><h2>__MSG_tabsEditingGroupboxLabel__</h2></label>
+						<div class="vbox">
+							<label>
+								<input type="checkbox" id="listTabCheckBox" preference="listTabView" instantApply="true">
+								__MSG_listTab.conf.label__
+							</label>
+							<label>
+								<input type="checkbox" id="technicalTabCheckBox" preference="technicalTabView" instantApply="true">
+								__MSG_technicalTab.conf.label__
+							</label>
+							<label>
+								<input type="checkbox" id="vcardTabCheckBox" preference="vcardTabView" instantApply="true">
+								__MSG_vCardTab.conf.label__
+							</label>
+							<label>
+								<input type="checkbox" id="keyTabCheckBox" preference="keyTabView" instantApply="true">
+								__MSG_keyTab.conf.label__
+							</label>
+						</div>
+
+						<label><h2>__MSG_localizeEditingGroupboxLabel__</h2></label>
+						<div class="hbox">
+							<label>
+								<input type="radio" id="localizeEngineOpenStreetMap" value="OpenStreetMap" name="localizeEngineRadiogroup"
+									preference="localizeEngine">
+								__MSG_localizeEngineOpenStreetMapLabel__
+							</label>
+							<div class="separator"></div>
+							<label>
+								<input type="radio" id="localizeEngineGoogleMaps" value="GoogleMaps" name="localizeEngineRadiogroup"
+									preference="localizeEngine">
+								__MSG_localizeEngineGoogleMapsLabel__
+							</label>
+							<div class="separator"></div>
+							<label>
+								<input type="radio" id="localizeEngineBingMaps" value="BingMaps" name="localizeEngineRadiogroup"
+									preference="localizeEngine">
+								__MSG_localizeEngineBingMapsLabel__
+							</label>
+						</div>
+
+						<label><h2>__MSG_showNameAsLabel__</h2></label>
+						<div class="hbox">
+							<label>
+								<input type="radio" id="showNameAsLF" value="LF" name="showNameAsRadiogroup" preference="showNameAs">
+								__MSG_showNameAsLFLabel__
+							</label>
+							<div class="separator"></div>
+							<label>
+								<input type="radio" id="showNameAsLFCOMMA" value="LFCOMMA" name="showNameAsRadiogroup" preference="showNameAs">
+								__MSG_showNameAsLFCommaLabel__
+							</label>
+							<div class="separator"></div>
+							<label>
+								<input type="radio" id="showNameAsFL" value="FL" name="showNameAsRadiogroup" preference="showNameAs">
+								__MSG_showNameAsFLLabel__
+							</label>
+							<div class="separator"></div>
+							<label>
+								<input type="radio" id="showNameAsDSP" value="DSP" name="showNameAsRadiogroup" preference="showNameAs">
+								__MSG_showNameAsDSPLabel__
+							</label>
+						</div>
+
+						<label><h2>__MSG_adrFormulaCaption__</h2></label>
+						<div class="vbox">
+							<label>__MSG_adrFormulaExplanation__</label>
+							<label class="indent">__MSG_formulaExplanation1__</label>
+							<label class="indent">__MSG_formulaExplanation2__</label>
+							<label class="indent">__MSG_formulaExplanation3__</label>
+							<label class="indent">__MSG_formulaExplanation4__</label>
+							<label class="indent">__MSG_formulaExplanation5__</label>
+							<label class="indent">__MSG_formulaExplanation6__</label>
+							<div class="separator"></div>
+							<div class="hbox hcentered" id="adrFormulahBox">
+								<label>__MSG_adrFormulaLabel__</label>
+								<input type="text" id="adrFormulaTextBox">
+								<button id="resetAdrFormulaButton">__MSG_resetAdrFormulaLabel__</button>
+							</div>
+						</div>
+						<div class="vbox indent">
+							<label><h3>__MSG_previewLabel__</h3></label>
+							<div class="hbox">
+								<div class="vbox">
+									<table id="formulaMemberTable">
+										<tr>
+											<td>
+												<label id="formulaMemberLabel1"></label>
+											</td>
+											<td class="cardbook-td-input">
+												<input type="text" id="formulaSampleTextBox1">
+											</td>
+										</tr>
+										<tr>
+											<td>
+												<label id="formulaMemberLabel2"></label>
+											</td>
+											<td class="cardbook-td-input">
+												<input type="text" id="formulaSampleTextBox2">
+											</td>
+										</tr>
+										<tr>
+											<td>
+												<label id="formulaMemberLabel3"></label>
+											</td>
+											<td class="cardbook-td-input">
+												<input type="text" id="formulaSampleTextBox3">
+											</td>
+										</tr>
+										<tr>
+											<td>
+												<label id="formulaMemberLabel4"></label>
+											</td>
+											<td class="cardbook-td-input">
+												<input type="text" id="formulaSampleTextBox4">
+											</td>
+										</tr>
+										<tr>
+											<td>
+												<label id="formulaMemberLabel5"></label>
+											</td>
+											<td class="cardbook-td-input">
+												<input type="text" id="formulaSampleTextBox5">
+											</td>
+										</tr>
+										<tr>
+											<td>
+												<label id="formulaMemberLabel6"></label>
+											</td>
+											<td class="cardbook-td-input">
+												<input type="text" id="formulaSampleTextBox6">
+											</td>
+										</tr>
+										<tr>
+											<td>
+												<label id="formulaMemberLabel7"></label>
+											</td>
+											<td class="cardbook-td-input">
+												<input type="text" id="formulaSampleTextBox7">
+											</td>
+										</tr>
+									</table>
+								</div>
+								<div class="vbox" id="adrPreviewWrapper">
+									<textarea id="adrPreviewTextBox"></textarea>
+								</div>
+							</div>
+						</div>
+
+						<label><h2>__MSG_localizeTargetLabel__</h2></label>
+						<div class="hbox">
+							<label>
+								<input type="radio" id="localizeTargetIn" value="in" name="localizeTargetRadiogroup"
+									preference="localizeTarget">
+								__MSG_localizeTargetInLabel__
+							</label>
+							<div class="separator"></div>
+							<label>
+								<input type="radio" id="localizeTargetOut" value="out" name="localizeTargetRadiogroup"
+									preference="localizeTarget">
+								__MSG_localizeTargetOutLabel__
+							</label>
+						</div>
+
+						<label><h2>__MSG_miscEditingGroupboxLabel__</h2></label>
+						<label>
+							<input type="checkbox" id="preferEmailEditionCheckBox" preference="preferEmailEdition" instantApply="true">
+							__MSG_preferEmailEditionLabel__
+						</label>
+						<label>
+							__MSG_dateDisplayedFormatLabel__
+							<select id="dateDisplayedFormatMenulist">
+								<option id="dateDisplayedFormatLong" value="0"></option>
+								<option id="dateDisplayedFormatShort" value="1"></option>
+							</select>
+						</label>
+						<label>
+							__MSG_defaultRegionLabel__
+							<select id="defaultRegionMenulist" title="__MSG_defaultRegionTooltip__">
+							</select>
+						</label>
+					</section>
+
+					<section id="cardbook-EditionPane">
+						<div class="vbox">
+							<label><h2>__MSG_editionGroupboxLabel__</h2></label>
+							<label>__MSG_editionWarn__</label>
+							<label>__MSG_conversionWarn__</label>
+							<div class="separator"></div>
+							<div class="indent">
+								<label>
+									<input type="checkbox" id="fieldsCheckbox">
+									__MSG_selectAllFieldsLabel__
+								</label>
+							</div>
+						</div>
+						<div class="separator"></div>
+						<div class="hbox">
+							<table id="fieldsTreeTable" class="tableTree" 
+								data-sort-order="ascending" data-sort-column="fieldsName">
+							</table>
+							<div class="vbox">
+								<button id="renameFieldsLabel" disabled>__MSG_renameFieldsLabel__</button>
+							</div>
+						</div>
+					</section>
+
+					<section id="cardbook-advancedPane">
+						<label><h2>__MSG_typesGroupboxLabel__</h2></label>
+						<label><h3>__MSG_ABtypesGroupboxLabel__</h3></label>
+						<div class="hbox indent">
+							<label>
+								<input type="radio" id="ABtypesCategoryGOOGLE2" value="GOOGLE2" name="ABtypesCategoryRadiogroup" checked>
+								__MSG_typesCategoryGoogleLabel__
+							</label>
+							<div class="separator"></div>
+							<label>
+								<input type="radio" id="ABtypesCategoryAPPLE" value="APPLE" name="ABtypesCategoryRadiogroup">
+								__MSG_typesCategoryAppleLabel__
+							</label>
+							<div class="separator"></div>
+							<label>
+								<input type="radio" id="ABtypesCategoryYAHOO" value="YAHOO" name="ABtypesCategoryRadiogroup">
+								__MSG_typesCategoryYahooLabel__
+							</label>
+							<div class="separator"></div>
+							<label>
+								<input type="radio" id="ABtypesCategoryOFFICE365" value="OFFICE365" name="ABtypesCategoryRadiogroup">
+								__MSG_typesCategoryOffice365Label__
+							</label>
+							<div class="separator"></div>
+							<label>
+								<input type="radio" id="ABtypesCategoryCARDDAV" value="CARDDAV" name="ABtypesCategoryRadiogroup">
+								__MSG_typesCategoryOthersLabel__
+							</label>
+						</div>
+						<label><h3>__MSG_typesGroupboxLabel__</h3></label>
+						<div class="hbox indent">
+							<label>
+								<input type="radio" id="typesCategoryEmail" value="email" name="typesCategoryRadiogroup" checked>
+								__MSG_typesCategoryEmailLabel__
+							</label>
+							<div class="separator"></div>
+							<label>
+								<input type="radio" id="typesCategoryTel" value="tel" name="typesCategoryRadiogroup">
+								__MSG_typesCategoryTelLabel__
+							</label>
+							<div class="separator"></div>
+							<label>
+								<input type="radio" id="typesCategoryAdr" value="adr" name="typesCategoryRadiogroup">
+								__MSG_typesCategoryAdrLabel__
+							</label>
+							<div class="separator"></div>
+							<label>
+								<input type="radio" id="typesCategoryImpp" value="impp" name="typesCategoryRadiogroup">
+								__MSG_typesCategoryImppLabel__
+							</label>
+							<div class="separator"></div>
+							<label>
+								<input type="radio" id="typesCategoryUrl" value="url" name="typesCategoryRadiogroup">
+								__MSG_typesCategoryUrlLabel__
+							</label>
+						</div>
+						<div class="separator"></div>
+						<div class="hbox">
+							<table id="typesTable" class="tableTree" 
+								data-sort-order="ascending" data-sort-column="typesLabel">
+							</table>
+							<div class="vbox">
+								<button id="addTypeLabel">__MSG_addTypeLabel__</button>
+								<button id="renameTypeLabel" disabled>__MSG_renameTypeLabel__</button>
+								<button id="deleteTypeLabel" disabled>__MSG_deleteTypeLabel__</button>
+								<button id="resetTypeLabel">__MSG_resetTypeLabel__</button>
+							</div>
+						</div>
+
+						<label><h2>__MSG_encryptionGroupboxLabel__</h2></label>
+						<div class="vbox">
+							<fieldset class="restrictConcurrent">
+								<label>__MSG_encryptionExplanation__</label>
+								<div class="hbox">
+									<label>
+										<input type="checkbox" id="localDataEncryptionEnabledCheckBox" preference="localDataEncryption">
+										__MSG_localDataEncryptionEnabledLabel__
+									</label>
+								</div>
+							</fieldset>
+						</div>
+					</section>
+
+					<section id="cardbook-IMPPPane">
+						<label><h2>__MSG_IMPPGroupboxLabel__</h2></label>
+						<label>__MSG_IMPPGroupboxWarn__</label>
+						<div class="hbox hcentered">
+							<label>
+								<input type="checkbox" id="preferIMPPPrefCheckBox" preference="preferIMPPPref" instantApply="true">
+								__MSG_preferIMPPPrefLabel__
+							</label>
+							<div class="separator"></div>
+							<div class="prefImage cardbookPrefStarClass" haspref="true"></div>
+						</div>
+						<label>__MSG_preferIMPPPrefWarn__</label>
+						<div class="separator"></div>
+						<div class="hbox indent">
+							<label>
+								<input type="radio" id="imppsCategoryImpp" value="impp" name="imppsCategoryRadiogroup" checked>
+								__MSG_typesCategoryImppLabel__
+							</label>
+							<div class="separator"></div>
+							<label>
+								<input type="radio" id="imppsCategoryTel" value="tel" name="imppsCategoryRadiogroup">
+								__MSG_typesCategoryTelLabel__
+							</label>
+						</div>
+						<div class="separator"></div>
+						<div class="hbox">
+							<table id="IMPPsTable" class="tableTree" 
+								data-sort-order="ascending" data-sort-column="IMPPLabelHeader">
+							</table>
+							<div class="vbox">
+								<button id="addIMPPLabel">__MSG_addIMPPLabel__</button>
+								<button id="renameIMPPLabel" disabled>__MSG_renameIMPPLabel__</button>
+								<button id="deleteIMPPLabel" disabled>__MSG_deleteIMPPLabel__</button>
+								<button id="resetIMPPLabel">__MSG_resetIMPPLabel__</button>
+							</div>
+						</div>
+						<fieldset id="URLPhoneGroupbox">
+							<label><h2>__MSG_URLPhoneGroupboxLabel__</h2></label>
+							<label>__MSG_URLPhoneGroupboxWarn__</label>
+							<div class="separator"></div>
+							<table>
+								<tr>
+									<td>
+										<label id="URLPhoneURLLabel">__MSG_URLPhoneURLLabel__</label>
+									</td>
+									<td class="cardbook-td-input listPane-input">
+										<input type="text" id="URLPhoneURLTextBox">
+									</td>
+								</tr>
+								<tr>
+									<td>
+										<label id="URLPhoneUserLabel">__MSG_URLPhoneUserLabel__</label>
+									</td>
+									<td class="cardbook-td-input">
+										<input type="text" id="URLPhoneUserTextBox">
+									</td>
+								</tr>
+								<tr>
+									<td>
+										<label id="URLPhonePasswordLabel">__MSG_URLPhonePasswordLabel__</label>
+									</td>
+									<td class="cardbook-td-input hbox">
+										<input type="password" id="URLPhonePasswordTextBox">
+										<img id="URLPhonePasswordTextBoxInfo"
+											title="__MSG_showHidePassword__"
+											src="chrome://messenger/skin/icons/hidden.svg"
+											class="form-icon">
+									</td>
+									<td>
+										<label>
+											<input type="checkbox" id="URLPhoneBackgroundCheckBox" preference="URLPhoneBackground" instantApply="true">
+											__MSG_URLPhoneBackgroundLabel__
+										</label>
+									</td>
+								</tr>
+							</table>
+						</fieldset>
+					</section>
+
+					<section id="cardbook-customFieldsPane">
+						<label><h2>__MSG_customFieldsTabLabel__</h2></label>
+						<div class="hbox">
+							<label>
+								<input type="radio" id="customFieldsCategoryPersonal" value="personal" name="customFieldsCategoryRadiogroup" checked>
+								__MSG_customFieldsPersTitleLabel__
+							</label>
+							<div class="separator"></div>
+							<label>
+								<input type="radio" id="customFieldsCategoryOrg" value="org" name="customFieldsCategoryRadiogroup">
+								__MSG_customFieldsOrgTitleLabel__
+							</label>
+						</div>
+						<div class="separator"></div>
+						<div class="hbox">
+							<table id="customFieldsTable" class="tableTree" 
+								data-sort-order="ascending" data-sort-column="customFieldRankHeader">
+							</table>
+							<div class="vbox">
+								<button id="addCustomFieldsLabel">__MSG_addCustomFieldsLabel__</button>
+								<button id="renameCustomFieldsLabel" disabled>__MSG_renameCustomFieldsLabel__</button>
+								<button id="deleteCustomFieldsLabel" disabled>__MSG_deleteCustomFieldsLabel__</button>
+								<button id="upCustomFieldsLabel" disabled>↑</button>
+								<button id="downCustomFieldsLabel" disabled>↓</button>
+							</div>
+						</div>
+
+						<label><h2>__MSG_orgTitleLabel__</h2></label>
+						<label>__MSG_orgWarn__</label>
+						<div class="separator"></div>
+						<div class="hbox">
+							<table id="orgTreeTable" class="tableTree" 
+								data-sort-order="ascending" data-sort-column="orgRank">
+							</table>
+							<div class="vbox">
+								<button id="addOrgLabel">__MSG_addTypeLabel__</button>
+								<button id="renameOrgLabel" disabled>__MSG_renameTypeLabel__</button>
+								<button id="deleteOrgLabel" disabled>__MSG_deleteTypeLabel__</button>
+								<button id="upOrgLabel" disabled>↑</button>
+								<button id="downOrgLabel" disabled>↓</button>
+							</div>
+						</div>
+					</section>
+
+					<section id="cardbook-listsPane">
+						<label><h2>__MSG_listGroupboxLabel__</h2></label>
+						<label>__MSG_listPanelLabel__</label>
+						<div class="hbox">
+							<div class="vbox">
+								<table id="customFieldsDef">
+									<tr>
+										<td>
+											<label id="kindCustom">__MSG_kindCustomLabel__</label>
+										</td>
+										<td class="cardbook-td-input cardbook-large-column">
+											<input type="text" id="kindCustomTextBox">
+										</td>
+										<td>
+											<button id="resetListButton">__MSG_resetListLabel__</button>
+										</td>
+									</tr>
+									<tr>
+										<td>
+											<label id="memberCustom">__MSG_memberCustomLabel__</label>
+										</td>
+										<td class="cardbook-td-input cardbook-large-column">
+											<input type="text" id="memberCustomTextBox">
+										</td>
+									</tr>
+								</table>
+							</div>
+						</div>
+					</section>
+
+					<section id="cardbook-syncPane">
+						<label><h2>__MSG_syncGroupboxLabel__</h2></label>
+						<label>__MSG_syncWarn__</label>
+						<label>
+							<input type="checkbox" id="syncAfterChangeCheckBox" preference="syncAfterChange" instantApply="true">
+							__MSG_syncAfterChangeLabel__
+						</label>
+						<div class="separator"></div>
+						<label>
+							<input type="checkbox" id="initialSyncCheckBox" preference="initialSync" instantApply="true">
+							__MSG_initialSyncLabel__
+						</label>
+						<div class="hbox indent">
+							<label id="initialSyncDelay">
+								__MSG_initialSyncDelayLabel__
+								<input type="number" id="initialSyncDelayTextBox" min="0" max="200" class="size3"
+									preference="initialSyncDelay" instantApply="true">
+							</label>
+						</div>
+						<div class="separator"></div>
+						<label id="solveConflicts">__MSG_solveConflictsLabel__</label>
+						<div class="hbox indent">
+							<label>
+								<input type="radio" id="solveConflictsLocal" value="Local" name="solveConflictsRadiogroup"
+									preference="solveConflicts">
+								__MSG_solveConflictsLocalLabel__
+							</label>
+							<div class="separator"></div>
+							<label>
+								<input type="radio" id="solveConflictsRemote" value="Remote" name="solveConflictsRadiogroup"
+									preference="solveConflicts">
+								__MSG_solveConflictsRemoteLabel__
+							</label>
+							<div class="separator"></div>
+							<label>
+								<input type="radio" id="solveConflictsUser" value="User" name="solveConflictsRadiogroup"
+									preference="solveConflicts">
+								__MSG_solveConflictsUserLabel__
+							</label>
+						</div>
+						<div class="separator"></div>
+						<label>
+							__MSG_maxModifsPushedLabel__
+							<input type="number" id="maxModifsPushedTextBox" min="1" max="1000" class="size4"
+								preference="maxModifsPushed" instantApply="true">
+						</label>
+
+						<label><h2>__MSG_requestsGroupboxLabel__</h2></label>
+						<label>
+							__MSG_requestsTimeoutLabel__
+							<input type="number" id="requestsTimeoutTextBox" min="1" max="180" class="size3"
+								preference="requestsTimeout" instantApply="true">
+						</label>
+						<label>
+							__MSG_multigetLabel__
+							<input type="number" id="multigetTextBox" min="1" max="1000" class="size4"
+								preference="multiget" instantApply="true">
+						</label>
+
+						<label><h2>__MSG_discoveryGroupboxLabel__</h2></label>
+						<label>__MSG_discoveryWarn__</label>
+						<div class="separator"></div>
+						<div class="hbox indent">
+							<label>
+								<input type="checkbox" id="discoveryAccountsCheckbox">
+								__MSG_selectAllDiscoveryLabel__
+							</label>
+						</div>
+						<div class="separator"></div>
+						<div class="hbox">
+							<table id="discoveryAccountsTable" class="tableTree" 
+								data-sort-order="ascending" data-sort-column="discoveryAccountsName">
+							</table>
+						</div>
+
+						<label><h2>__MSG_advancedSyncGroupboxLabel__</h2></label>
+						<label>
+							<input type="checkbox" id="decodeReportCheckBox" preference="decodeReport" instantApply="true">
+							__MSG_decodeReportLabel__
+						</label>
+					</section>
+
+					<section id="cardbook-emailPane">
+						<label><h2>__MSG_miscEmailGroupboxLabel__</h2></label>
+						<fieldset class="restrictConcurrent">
+							<div class="hbox hcentered">
+								<input type="checkbox" id="preferEmailPrefCheckBox" preference="preferEmailPref">
+								<label>__MSG_preferEmailPrefLabel__</label>
+								<div class="separator"></div>
+								<div class="prefImage cardbookPrefStarClass" haspref="true"></div>
+							</div>
+							<label>__MSG_preferEmailPrefWarn__</label>
+						</fieldset>
+						<label>
+							<input type="checkbox" id="warnEmptyEmailsCheckBox" preference="warnEmptyEmails" instantApply="true">
+							__MSG_warnEmptyEmailsLabel__
+						</label>
+						<label>
+							<input type="checkbox" id="useOnlyEmailCheckBox" preference="useOnlyEmail" instantApply="true">
+							__MSG_useOnlyEmailLabel__
+						</label>
+
+						<label><h2>__MSG_attachVCardGroupboxLabel__</h2></label>
+						<label>__MSG_attachVCardWarn__</label>
+						<div class="separator"></div>
+						<div class="hbox">
+							<table id="accountsVCardsTable" class="tableTree" 
+								data-sort-order="ascending" data-sort-column="accountsVCardsMailName">
+							</table>
+							<div class="vbox">
+								<button id="addVCardLabel">__MSG_addVCardLabel__</button>
+								<button id="renameVCardLabel" disabled>__MSG_renameVCardLabel__</button>
+								<button id="deleteVCardLabel" disabled>__MSG_deleteVCardLabel__</button>
+							</div>
+						</div>
+
+						<label><h2>__MSG_emailsCollectionLabel__</h2></label>
+						<label>__MSG_emailsCollectionTooltip__</label>
+						<div class="separator"></div>
+						<div class="hbox">
+							<table id="emailsCollectionTable" class="tableTree" 
+								data-sort-order="ascending" data-sort-column="emailsCollectionMailName">
+							</table>
+							<div class="vbox">
+								<button id="addEmailsCollectionLabel">__MSG_addEmailsCollectionLabel__</button>
+								<button id="renameEmailsCollectionLabel" disabled>__MSG_renameEmailsCollectionLabel__</button>
+								<button id="deleteEmailsCollectionLabel" disabled>__MSG_deleteEmailsCollectionLabel__</button>
+							</div>
+						</div>
+					</section>
+
+					<section id="cardbook-birthdaylistPane">
+						<label><h2>__MSG_generalGroupboxLabel__</h2></label>
+						<label>__MSG_searchForLabel__</label>
+						<div class="hbox indent">
+							<label>
+								<input type="checkbox" id="bdayCheckBox" preference="birthday.bday" instantApply="true">
+								__MSG_bday.conf.label__
+							</label>
+						</div>
+						<div class="hbox indent">
+							<label>
+								<input type="checkbox" id="anniversaryCheckBox" preference="birthday.anniversary" instantApply="true">
+								__MSG_anniversary.conf.label__
+							</label>
+						</div>
+						<div class="hbox indent">
+							<label>
+								<input type="checkbox" id="deathdateCheckBox" preference="birthday.deathdate" instantApply="true">
+								__MSG_deathdate.conf.label__
+							</label>
+						</div>
+						<div class="hbox indent">
+							<label>
+								<input type="checkbox" id="eventsCheckBox" preference="birthday.events" instantApply="true">
+								__MSG_eventsLabel__
+							</label>
+						</div>
+						<div class="hbox hcentered" id="calendarEntryTitlevBox">
+							<label id="calendarEntryTitleLabel">__MSG_calendarEntryTitleLabel__</label>
+							<input type="text" id="calendarEntryTitleTextBox" title="__MSG_calendarEntryAlarmTooltip__"
+								preference="eventEntryTitle" instantApply="true">
+							<button id="resetCalendarEntryTitleButton">__MSG_resetCalendarEntryTitleButtonLabel__</button>
+						</div>
+						<div class="vbox indent">
+							<label id="eventEntryTimeDesc1"></label>
+							<label id="eventEntryTimeDesc2"></label>
+							<label id="eventEntryTimeDesc3"></label>
+							<label id="eventEntryTimeDesc4"></label>
+							<label id="eventEntryTimeDesc5"></label>
+						</div>
+
+						<label><h2>__MSG_addressbooksGroupboxLabel__</h2></label>
+						<label>__MSG_birthdayListWarn__</label>
+						<div class="separator"></div>
+						<div class="hbox indent">
+							<label>
+								<input type="checkbox" id="addressbooksCheckbox">
+								__MSG_selectAllABsLabel__
+							</label>
+						</div>
+						<div class="separator"></div>
+						<div class="hbox">
+							<table id="addressbooksTable" class="tableTree"
+								data-sort-order="ascending" data-sort-column="addressbooksName">
+							</table>
+						</div>
+
+						<label><h2>__MSG_calendarsGroupboxLabel__</h2></label>
+						<div class="separator"></div>
+						<div class="hbox hcentered indent">
+							<label>
+								<input type="checkbox" id="calendarsCheckbox">
+								__MSG_selectAllCalendarsLabel__
+							</label>
+						</div>
+						<div class="separator"></div>
+						<div class="hbox">
+							<table id="calendarsTable" class="tableTree" 
+								data-sort-order="ascending" data-sort-column="calendarsName">
+							</table>
+						</div>
+
+						<label><h2>__MSG_remindViaPopupWindowGroupboxLabel__</h2></label>
+						<label>
+							__MSG_numberOfDaysForSearchingLabel__
+							<input type="number" id="numberOfDaysForSearchingTextBox" min="1" max="365" class="size4"
+								preference="numberOfDaysForSearching" instantApply="true">
+						</label>
+						<label>
+							<input type="checkbox" id="showPopupOnStartupCheckBox" preference="showPopupOnStartup">
+							__MSG_showPopupOnStartupLabel__
+						</label>
+						<label>
+							<input type="checkbox" id="showPeriodicPopupCheckBox" preference="showPeriodicPopup">
+							__MSG_showPeriodicPopupLabel__
+						</label>
+						<div class="hbox indent">
+							<label id="periodicPopupTimeLabel">
+								__MSG_periodicPopupTimeLabel__
+								<input type="text" id="periodicPopupTimeTextBox" preference="periodicPopupIime" instantApply="true">
+							</label>
+						</div>
+						<label id="showPopupEvenIfNoBirthdayLabel">
+							<input type="checkbox" id="showPopupEvenIfNoBirthdayCheckBox" preference="showPopupEvenIfNoBirthday" instantApply="true">
+							__MSG_showPopupEvenIfNoBirthdayLabel__
+						</label>
+
+						<label><h2>__MSG_remindViaLightningGroupboxLabel__</h2></label>
+						<label id="numberOfDaysForWritingLabel">
+							__MSG_numberOfDaysForWritingLabel__
+							<input type="number" id="numberOfDaysForWritingTextBox" min="1" max="365" class="size4"
+								preference="numberOfDaysForWriting" instantApply="true">
+						</label>
+						<label>
+							<input type="checkbox" id="syncWithLightningOnStartupCheckBox" preference="syncWithLightningOnStartup" instantApply="true">
+							__MSG_syncWithLightningOnStartupLabel__
+						</label>
+						<label>
+							<input type="checkbox" id="calendarRepeatingEventCheckBox" preference="repeatingEvent" instantApply="true">
+							__MSG_calendarRepeatingEventLabel__
+						</label>
+						<label>
+							<input type="checkbox" id="calendarEntryWholeDayCheckBox" preference="eventEntryWholeDay">
+							__MSG_calendarEntryWholeDayLabel__
+						</label>
+						<label id="calendarEntryTimeLabel">
+							__MSG_calendarEntryTimeLabel__
+							<input type="text" id="calendarEntryTimeTextBox" preference="eventEntryTime" instantApply="true">
+						</label>
+						<label id="calendarEntryAlarmLabel">
+							__MSG_calendarEntryAlarmLabel__
+							<input type="text" id="calendarEntryAlarmTextBox" title="__MSG_calendarEntryAlarmTooltip__"
+								preference="calendarEntryAlarm" instantApply="true">
+						</label>
+						<label id="calendarEntryCategoriesLabel">
+							__MSG_calendarEntryCategoriesLabel__
+							<input type="text" id="calendarEntryCategoriesTextBox" title="__MSG_calendarEntryCategoriesTooltip__"
+								preference="calendarEntryCategories" instantApply="true">
+						</label>
+					</section>
+
+					<section id="cardbook-helpPane">
+						<!-- +Alt.Icon -->
+						<label><h2>CardBook Alt.Icon</h2></label>
+						<div class="hbox hcentered indent">
+							This is a fork of CardBook.
+						</div>
+						<div class="hbox hcentered indent">
+							CardBook Alt.Icon simply provides an alternative main icon more aligned with Thunderbird&#39;s toolbar icon design.
+						</div>
+						<div class="hbox hcentered indent">
+							<label>More on:</label>
+							<div class="separator"></div>
+							<a id="sourcecodeURL">https://github.com/Gregory-K/CardBook.Alt.Icon</a>
+						</div>
+						<label><h3>CAUTION</h3></label>
+						<div class="hbox hcentered indent">
+							This altered extension was only intended for the author's personal use, and it doesn't offer anything more than a different main icon design. It was plain experimentation now being offered "as is" for anyone to try. It is neither digitally signed nor distributed via the official Thunderbird channels.
+						</div>
+						<div class="hbox hcentered indent">
+							You should not use unsigned Add-ons outside the official Thunderbird Add-ons Repository, unless you trust the author/developer or you're able to inspect the source code. It is a serious security risk. The author of the present extension disclaims any responsibility for any damage caused to your Thunderbird installation.
+						</div>
+						<div class="hbox hcentered indent">
+							If you are not sure about using this extension, please prefer the
+						</div>
+						<div class="hbox hcentered indent">
+							<label>Original:</label>
+							<div class="separator"></div>
+							<a id="websiteURL">https://gitlab.com/CardBook/CardBook</a>.
+						</div>
+						<!-- /+Alt.Icon -->
+						<label><h2>__MSG_translateLabel__</h2></label>
+						<div class="hbox hcentered indent">
+							<label>__MSG_websiteLabel__</label>
+							<div class="separator"></div>
+							<a id="websiteURL">https://crowdin.com/project/cardbook</a>
+						</div>
+						<label><h2>__MSG_sourceCodeLabel__</h2></label>
+						<div class="hbox hcentered indent">
+							<label>__MSG_websiteLabel__</label>
+							<div class="separator"></div>
+							<a id="sourcecodeURL">https://gitlab.com/CardBook/CardBook/-/tree/master</a>
+						</div>
+						<label><h2>__MSG_documentationLabel__</h2></label>
+						<div class="hbox hcentered indent">
+							<label>__MSG_websiteLabel__</label>
+							<div class="separator"></div>
+							<a id="documentationURL">https://gitlab.com/CardBook/CardBook/-/wikis/Documentation</a>
+						</div>
+						<label><h2>__MSG_supportLabel__</h2></label>
+						<div class="hbox hcentered indent">
+							<label>__MSG_websiteLabel__</label>
+							<div class="separator"></div>
+							<a id="issueURL">https://gitlab.com/CardBook/CardBook/-/issues</a>
+						</div>
+						<label><h2>__MSG_contributeLabel__</h2></label>
+						<div class="hbox hcentered indent">
+							<button id="contributeButton" value="https://www.paypal.com/donate?hosted_button_id=BKVSVSD2CX4V2"
+								class="addon-detail-contribute-button">__MSG_contributeLabel__</button>
+						</div>
+					</section>
+				</div>
+			</div>
+			<div class="vbox hcentered vcentered">
+				<label id="notificationMessage" type="OK" class="notificationMessage"></label>
+			</div>
+		</div>
+
+		<script src="../scripts/i18n.js"></script>
+		<script type="module" src="../cardbookHTMLNotification.mjs"></script>
+		<script type="module" src="../cardbookHTMLTools.mjs"></script>
+		<script type="module" src="../cardbookHTMLUtils.mjs"></script>
+		<script type="module" src="../preferences/cardbookNewPreferences.mjs"></script>
+		<script type="module" src="wdw_cardbookConfiguration.js"></script>
+	</body>
+</html>

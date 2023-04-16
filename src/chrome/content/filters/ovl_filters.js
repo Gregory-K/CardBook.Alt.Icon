@@ -56,7 +56,7 @@ if ("undefined" == typeof(ovl_filters)) {
 							for (let k = 0; k < cardbookRepository.cardbookCardEmails[aActionValue][myEmail].length; k++) {
 								let myCard = cardbookRepository.cardbookCardEmails[aActionValue][myEmail][k];
 								if (myCategory != "") {
-									if (myCategory == cardbookRepository.cardbookUncategorizedCards) {
+									if (myCategory == cardbookRepository.cardbookPrefs["uncategorizedCards"]) {
 										if (myCard.categories == "") {
 											cardbookRepository.asyncDeleteCards([myCard], myActionId);
 										}

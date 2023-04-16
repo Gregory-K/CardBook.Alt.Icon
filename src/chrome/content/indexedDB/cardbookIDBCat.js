@@ -50,7 +50,7 @@ var cardbookIDBCat = {
 				if ('encrypted' in aCategory) {
 					aCategory = await cardbookEncryptor.decryptCategory(aCategory);
 				}
-				cardbookIDBCat.addCategory(aDirPrefName, aCategory);
+				await cardbookIDBCat.addCategory(aDirPrefName, aCategory);
 			} else {
 				if ('encrypted' in aCategory) {
 					aCategory = await cardbookEncryptor.decryptCategory(aCategory);
@@ -66,32 +66,33 @@ var cardbookIDBCat = {
 
 	// add or override the category to the cache
 	addCategory: async function(aDirPrefName, aCategory, aMode) {
-		try {
+        let addCategory = new Promise( async function(resolve, reject) {
 			var storedCategory = cardbookIndexedDB.encryptionEnabled ? (await cardbookEncryptor.encryptCategory(aCategory)) : aCategory;
 			var db = cardbookRepository.cardbookCatDatabase.db;
 			var transaction = db.transaction(["categories"], "readwrite");
 			var store = transaction.objectStore("categories");
 			var cursorRequest = store.put(storedCategory);
-			cursorRequest.onsuccess = function(e) {
+			cursorRequest.onsuccess = async function(e) {
 				if (cardbookIndexedDB.encryptionEnabled) {
 					cardbookRepository.cardbookLog.updateStatusProgressInformationWithDebug2(aDirPrefName + " : debug mode : Category " + aCategory.name + " written to encrypted CatDB");
 				} else {
 					cardbookRepository.cardbookLog.updateStatusProgressInformationWithDebug2(aDirPrefName + " : debug mode : Category " + aCategory.name + " written to CatDB");
 				}
 				if (aMode) {
-					cardbookActions.fetchCryptoActivity(aMode);
+					await cardbookActions.fetchCryptoActivity(aMode);
 				}
+				resolve();
 			};
 			
-			cursorRequest.onerror = function(e) {
+			cursorRequest.onerror = async function(e) {
 				if (aMode) {
-					cardbookActions.fetchCryptoActivity(aMode);
+					await cardbookActions.fetchCryptoActivity(aMode);
 				}
 				cardbookRepository.cardbookCatDatabase.onerror(e);
+				reject();
 			};
-		} catch(e) {
-			cardbookRepository.cardbookCatDatabase.onerror(e);
-		}
+		});
+        await addCategory;
 	},
 
 	// delete the category
@@ -117,14 +118,14 @@ var cardbookIDBCat = {
 		var store = transaction.objectStore("categories");
 		var cursorRequest = store.get(aCategory.cbid);
 	
-		cursorRequest.onsuccess = function(e) {
+		cursorRequest.onsuccess = async function(e) {
 			cardbookRepository.cardbookLog.updateStatusProgressInformationWithDebug2(aMessage);
 			cardbookRepository.cardbookUtils.addTagCreated(aCategory);
 			var category = e.target.result;
 			if (category) {
 				aCategory.etag = category.etag;
 			}
-			cardbookRepository.saveCategory({}, aCategory, aActionId);
+			await cardbookRepository.saveCategory({}, aCategory, aActionId);
 			cardbookRepository.cardbookUtils.notifyObservers(cardbookRepository.currentAction[aActionId].actionCode);
 		};
 		
@@ -160,8 +161,8 @@ var cardbookIDBCat = {
 				cardbookRepository.cardbookServerCatSyncDone[aDirPrefId]++;
 				return;
 			}
-			if (!category.deleted && category.name != cardbookRepository.cardbookUncategorizedCards) {
-				cardbookRepository.addCategoryToRepository(category, false, aDirPrefId);
+			if (!category.deleted && category.name != cardbookRepository.cardbookPrefs["uncategorizedCards"]) {
+				await cardbookRepository.addCategoryToRepository(category, false, aDirPrefId);
 				cardbookRepository.cardbookUtils.formatStringForOutput("categoryLoadedFromCacheDB", [aDirPrefName, category.name]);
 			} else {
 				if (cardbookRepository.cardbookFileCacheCategories[aDirPrefId]) {
@@ -200,7 +201,7 @@ var cardbookIDBCat = {
 			categoriesTransaction.objectStore("categories"),
 			async category => {
 				try {
-					cardbookIDBCat.addCategory(cardbookRepository.cardbookPreferences.getName(category.dirPrefId), category, "encryption");
+					await cardbookIDBCat.addCategory(cardbookRepository.cardbookPreferences.getName(category.dirPrefId), category, "encryption");
 				}
 				catch(e) {
 					cardbookRepository.cardbookLog.updateStatusProgressInformation("debug mode : Encryption failed e : " + e, "Error");
@@ -220,10 +221,10 @@ var cardbookIDBCat = {
 			async category => {
 				try {
 					category = await cardbookEncryptor.decryptCategory(category);
-					cardbookIDBCat.addCategory(cardbookRepository.cardbookPreferences.getName(category.dirPrefId), category, "decryption");
+					await cardbookIDBCat.addCategory(cardbookRepository.cardbookPreferences.getName(category.dirPrefId), category, "decryption");
 				}
 				catch(e) {
-					cardbookActions.fetchCryptoActivity("decryption");
+					await cardbookActions.fetchCryptoActivity("decryption");
 					cardbookRepository.cardbookLog.updateStatusProgressInformation("debug mode : Decryption failed e : " + e, "Error");
 				}
 			},
@@ -241,10 +242,10 @@ var cardbookIDBCat = {
 			async category => {
 				try {
 					category = await cardbookEncryptor.decryptCard(category);
-					cardbookIDBCat.addCategory(cardbookRepository.cardbookPreferences.getName(category.dirPrefId), category, "encryption");
+					await cardbookIDBCat.addCategory(cardbookRepository.cardbookPreferences.getName(category.dirPrefId), category, "encryption");
 				}
 				catch(e) {
-					cardbookActions.fetchCryptoActivity("encryption");
+					await cardbookActions.fetchCryptoActivity("encryption");
 					cardbookRepository.cardbookLog.updateStatusProgressInformation("debug mode : Encryption failed e : " + e, "Error");
 				}
 			},

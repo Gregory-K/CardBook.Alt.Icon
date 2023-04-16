@@ -1,3 +1,8 @@
+#wdw_formatDataBody {
+	overflow: auto;
+    white-space: nowrap;
+}
+
 .validated{
     background-color: #138a13;
 }

@@ -43,7 +43,7 @@ if ("undefined" == typeof(cardbookAutocomplete)) {
 				} else {
 					var OSName="LINUX";
 				}
-				var autocompleteWithColor = cardbookRepository.cardbookPreferences.getBoolPref("extensions.cardbook.autocompleteWithColor");
+				var autocompleteWithColor = cardbookRepository.cardbookPrefs["autocompleteWithColor"];
 				var myStyleSheet = "chrome://cardbook/content/skin/cardbookAutocomplete.css";
 				var myStyleSheetRuleName = "cardbookAutocomplete";
 				for (let styleSheet of InspectorUtils.getAllStyleSheets(window.document, false)) {
@@ -58,12 +58,12 @@ if ("undefined" == typeof(cardbookAutocomplete)) {
 									var myColor = cardbookRepository.cardbookPreferences.getColor(dirPrefId)
 									var oppositeColor = cardbookRepository.getTextColorFromBackgroundColor(myColor);
 									var myStyle = cardbookRepository.getABIconType(account[6]) + "_color_" + dirPrefId + "-abook";
-									if (cardbookRepository.useColor == "text" && autocompleteWithColor) {
+									if (cardbookRepository.cardbookPrefs["useColor"] == "text" && autocompleteWithColor) {
 										cardbookAutocomplete.createCssMsgAccountRules60(styleSheet, myStyle, myColor, OSName, "color");
 										cardbookAutocomplete.createCssMsgAccountRules60(styleSheet, myStyle, oppositeColor, OSName, "background-color");
 										cardbookAutocomplete.createCssMsgAccountSelectedRules60(styleSheet, myStyle, "HighlightText", OSName, "color");
 										cardbookAutocomplete.createCssMsgAccountSelectedRules60(styleSheet, myStyle, "Highlight", OSName, "background-color");
-									} else if (cardbookRepository.useColor == "background" && autocompleteWithColor) {
+									} else if (cardbookRepository.cardbookPrefs["useColor"] == "background" && autocompleteWithColor) {
 										cardbookAutocomplete.createCssMsgAccountRules60(styleSheet, myStyle, myColor, OSName, "background-color");
 										cardbookAutocomplete.createCssMsgAccountRules60(styleSheet, myStyle, oppositeColor, OSName, "color");
 										cardbookAutocomplete.createCssMsgAccountSelectedRules60(styleSheet, myStyle, "Highlight", OSName, "background-color");
@@ -76,12 +76,12 @@ if ("undefined" == typeof(cardbookAutocomplete)) {
 								var oppositeColor = cardbookRepository.getTextColorFromBackgroundColor(color);
 								for (type of cardbookRepository.getABIconType("ALL")) {
 									var myStyle =  type + "_color_category_" + cardbookRepository.cardbookUtils.formatCategoryForCss(category) + "-abook";
-									if (cardbookRepository.useColor == "text" && autocompleteWithColor) {
+									if (cardbookRepository.cardbookPrefs["useColor"] == "text" && autocompleteWithColor) {
 										cardbookAutocomplete.createCssMsgAccountRules60(styleSheet, myStyle, color, OSName, "color");
 										cardbookAutocomplete.createCssMsgAccountRules60(styleSheet, myStyle, oppositeColor, OSName, "background-color");
 										cardbookAutocomplete.createCssMsgAccountSelectedRules60(styleSheet, myStyle, "HighlightText", OSName, "color");
 										cardbookAutocomplete.createCssMsgAccountSelectedRules60(styleSheet, myStyle, "Highlight", OSName, "background-color");
-									} else if (cardbookRepository.useColor == "background" && autocompleteWithColor) {
+									} else if (cardbookRepository.cardbookPrefs["useColor"] == "background" && autocompleteWithColor) {
 										cardbookAutocomplete.createCssMsgAccountRules60(styleSheet, myStyle, color, OSName, "background-color");
 										cardbookAutocomplete.createCssMsgAccountRules60(styleSheet, myStyle, oppositeColor, OSName, "color");
 										cardbookAutocomplete.createCssMsgAccountSelectedRules60(styleSheet, myStyle, "Highlight", OSName, "background-color");
@@ -109,7 +109,7 @@ if ("undefined" == typeof(cardbookAutocomplete)) {
 								}, false);
 						}
 						let attrArray = node.getAttribute('autocompletesearch').split(" ");
-						if (cardbookRepository.cardbookPreferences.getBoolPref("extensions.cardbook.autocompletion")) {
+						if (cardbookRepository.cardbookPrefs["autocompletion"]) {
 							let index1 = attrArray.indexOf('addrbook');
 							if (index1 > -1) {
 								attrArray.splice(index1, 1);

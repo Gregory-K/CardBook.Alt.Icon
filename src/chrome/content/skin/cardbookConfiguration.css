@@ -1,13 +1,82 @@
-/* textarea */
-#adrPreviewWrapper,
-#VCardTextboxWrapper {
-    display: flex;
+.tabs ul {
+	margin: 0;
+	padding-left: 0;
 }
 
-#adrPreviewTextBox,
-#VCardTextbox {
-    width: 100%;
-    box-sizing: border-box;
+.tabs li {
+	list-style: none;
+	outline: none;
+	flex-grow: 1;
+	padding-left: 0;
+}
+.tabs li:hover {
+	 background-color: var(--in-content-button-background-hover);
+}
+
+.tabs button {
+	width: 100%;
+	border: none;
+	background-color: transparent;
+}
+.tabs button:hover {
+	background-color: transparent;
+}
+.tabs button.active {
+	background-color: var(--in-content-accent-color);
+}
+
+#category-cardbook-pane {
+	-moz-context-properties: fill, fill-opacity, stroke;
+	fill: transparent;
+	stroke: currentColor;
+	fill-opacity: var(--toolbarbutton-icon-fill-opacity);
+	background-color: var(--in-content-categories-background);
+	position: sticky;
+	top: 0;
+	flex-direction: column;
+	justify-content: left;
+	align-items: flex-start;
+	margin: 0;
+}
+
+/* style buttons with images: */
+button[isTab], button.iconButton {
+    display: list-item;
+    list-style-position: inside;
+}
+
+#category-cardbook-generalPane {
+	list-style-image: url("icons/prefs.svg");
+}
+#category-cardbook-CardBookPane {
+	list-style-image: url("icons/tab.svg");
+}
+#category-cardbook-EditionPane {
+	list-style-image: url("icons/edit.svg");
+}
+#category-cardbook-advancedPane {
+	list-style-image: url("icons/advanced.svg");
+}
+#category-cardbook-IMPPPane {
+	list-style-image: url("icons/chat.svg");
+}
+#category-cardbook-customFieldsPane {
+	list-style-image: url("icons/custom.svg");
+}
+#category-cardbook-listsPane {
+	list-style-image: url("icons/list.svg");
+}
+#category-cardbook-syncPane {
+	list-style-image: url("icons/synchronize.svg");
+}
+#category-cardbook-emailPane {
+	list-style-image: url("icons/compose.svg");
+}
+#category-cardbook-birthdaylistPane {
+	list-style-image: url("icons/smiley.svg");
+}
+#category-cardbook-helpPane {
+	list-style-image: url("icons/help.svg");
 }
 
 /* for the contribute button */
@@ -26,79 +95,39 @@
 	background-position-x: right 8px;
 }
 
-#category-cardbook-generalPane > .category-icon,
-#category-cardbook-CardBookPane > .category-icon,
-#category-cardbook-EditionPane > .category-icon,
-#category-cardbook-advancedPane > .category-icon,
-#category-cardbook-IMPPPane > .category-icon,
-#category-cardbook-customFieldsPane > .category-icon,
-#category-cardbook-listsPane > .category-icon,
-#category-cardbook-syncPane > .category-icon,
-#category-cardbook-emailPane > .category-icon,
-#category-cardbook-birthdaylistPane > .category-icon,
-#category-cardbook-helpPane > .category-icon {
-	-moz-context-properties: fill, stroke, stroke-opacity;
-	fill: color-mix(in srgb, currentColor 20%, transparent);
-	stroke: currentColor;
+#autocompleteRestrictSearchvBox {
+	width: 700px;
 }
-
-/* Preference tabs */
-#category-cardbook-generalPane > .category-icon {
-	list-style-image: url("chrome://cardbook/content/skin/icons/prefs.svg");
+#autocompleteRestrictSearchFieldsTextBox {
+	flex-grow: 1;
 }
-#category-cardbook-CardBookPane > .category-icon {
-	list-style-image: url("chrome://cardbook/content/skin/icons/tab.svg");
+#adrFormulahBox {
+	width: 700px;
 }
-#category-cardbook-EditionPane > .category-icon {
-	list-style-image: url("chrome://cardbook/content/skin/icons/edit.svg");
+#adrFormulaTextBox {
+	flex-grow: 1;
 }
-#category-cardbook-advancedPane > .category-icon {
-	list-style-image: url("chrome://cardbook/content/skin/icons/advanced.svg");
+#customFieldsDef {
+	width: 700px;
 }
-#category-cardbook-IMPPPane > .category-icon {
-	list-style-image: url("chrome://cardbook/content/skin/icons/chat.svg");
-}
-#category-cardbook-customFieldsPane > .category-icon {
-	list-style-image: url("chrome://cardbook/content/skin/icons/custom.svg");
-}
-#category-cardbook-listsPane > .category-icon {
-	list-style-image: url("chrome://cardbook/content/skin/icons/list.svg");
-}
-#category-cardbook-syncPane > .category-icon {
-	list-style-image: url("chrome://cardbook/content/skin/icons/synchronize.svg");
-}
-#category-cardbook-emailPane > .category-icon {
-	list-style-image: url("chrome://cardbook/content/skin/icons/compose.svg");
-}
-#category-cardbook-birthdaylistPane > .category-icon {
-	list-style-image: url("chrome://cardbook/content/skin/icons/smiley.svg");
-}
-#category-cardbook-helpPane > .category-icon {
-	list-style-image: url("chrome://cardbook/content/skin/icons/help.svg");
-}
-
-.cardbook-td-input {
-	width: 80%;
+#kindCustomTextBox,
+#memberCustomTextBox {
+	flex-grow: 1;
 }
 .cardbook-td-input > input {
 	width: 90%;
 }
-.listPane-input {
-	width: 60%;
+.cardbook-large-column {
+    width: 60%;
+}
+#calendarEntryTitlevBox {
+	width: 700px;
+}
+#calendarEntryTitleTextBox {
+	flex-grow: 1;
 }
 
-.hbox {
-	display: flex;
-	flex-wrap: "row nowrap";
-	align-items: center;
-	justify-content: center;
-}
-.vbox {
-	display: flex;
-	flex-wrap: "column nowrap";
-	align-items: center;
-	justify-content: center;
-}
-.flex {
-	flex-grow: 1;
+.prefImage {
+    display: list-item;
+    list-style-position: inside;
 }

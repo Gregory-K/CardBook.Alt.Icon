@@ -114,14 +114,8 @@
 	"showForgottenLabel": {
 		"message": "Zobrazit zapomenuté duplikáty"
 	},
-	"showForgottenAccesskey": {
-		"message": "Z"
-	},
 	"hideForgottenLabel": {
 		"message": "Skrýt zapomenuté duplikáty"
-	},
-	"hideForgottenAccesskey": {
-		"message": "S"
 	},
 	"noContactsDuplicated": {
 		"message": "Nebyly nalezeny duplicitní kontakty."
@@ -3309,6 +3303,12 @@
 	"toLowerCase": {
 		"message": "Převést na malá"
 	},
+	"copy": {
+		"message": "Kopírovat"
+	},
+	"paste": {
+		"message": "Vložit"
+	},
 	"copyFieldValue": {
 		"message": "Kopírovat ($P1$)",
         "placeholders": {
@@ -3369,7 +3369,7 @@
 	"wdw_cardbookConfigurationAddEmailsRestrictionTitle": {
 		"message": "Definice omezení e-mailového účtu"
 	},
-	"wdw_cardbookConfigurationAddEmailsCollectionTitle": {
+	"wdw_cardbookConfigurationAddEmailsEmailsCollectionTitle": {
 		"message": "Definice kolekce odchozích e-mailů e-mailového účtu"
 	},
 	"ignoreCaseIgnoreDiacriticLabel": {
@@ -3777,6 +3777,9 @@
 	"wizard.back.label": {
 		"message": "Zpět"
 	},
+	"wizard.cancel.label": {
+		"message": "Zrušit"
+	},
 	"wizard.create.label": {
 		"message": "Vytvořit"
 	},
@@ -3800,9 +3803,6 @@
 	},
 	"initialPage.search.label": {
 		"message": "Vyhledávání do existujících adresářů"
-	},
-	"initialPage.find.label": {
-		"message": "Hledat vzdálené adresáře"
 	},
 	"localPage.type.description": {
 		"message": "Typ místního adresáře:"
@@ -3838,7 +3838,7 @@
 		"message": "Procházet"
 	},
 	"remotePage.description": {
-		"message": "Jaký je typ vašeho vzdáleného adresáře ? : (Upozornění: Google nerespektuje vCard standardy)"
+		"message": "Jaký je typ vašeho vzdáleného adresáře ? :"
 	},
 	"remotePage.type.label": {
 		"message": "Typ"
@@ -3891,7 +3891,7 @@
 	"rememberPassword": {
 		"message": "Použít Správce hesel pro uložení tohoto hesla"
 	},
-	"showHidePassword.tooltip": {
+	"showHidePassword": {
 		"message": "Zobrazit/Skrýt heslo"
 	},
 	"remotePage.validatebutton.label": {
@@ -3903,20 +3903,11 @@
 	"abSearchHeading.label": {
 		"message": "Hledat v:"
 	},
-	"abSearchHeading.accesskey": {
-		"message": "H"
-	},
 	"matchAll.label": {
 		"message": "Odpovídající všem pravidlům"
 	},
-	"matchAll.accesskey": {
-		"message": "O"
-	},
 	"matchAny.label": {
 		"message": "Odpovídající některému pravidlu"
-	},
-	"matchAny.accesskey": {
-		"message": "d"
 	},
 	"googleOauthPage.wizard.description": {
 		"message": "Autentizace Google"
@@ -3969,9 +3960,6 @@
 	"name.ABedit.label": {
 		"message": "Jméno:"
 	},
-	"name.ABedit.accesskey": {
-		"message": "J"
-	},
 	"nodesLabel": {
 		"message": "Uzly:"
 	},
@@ -3993,9 +3981,6 @@
 	"readonlyLabel": {
 		"message": "Režim jen pro čtení"
 	},
-	"readonlyAccesskey": {
-		"message": "R"
-	},
 	"urnuuidLabel": {
 		"message": "Použít urn:uuid"
 	},
@@ -4008,14 +3993,8 @@
 	"autoSyncLabel": {
 		"message": "Povolit opakovanou synchronizaci"
 	},
-	"autoSyncAccesskey": {
-		"message": "P"
-	},
 	"autoSyncIntervalLabel": {
 		"message": "Interval opakované synchronizace (minuty):"
-	},
-	"autoSyncIntervalAccesskey": {
-		"message": "T"
 	},
 	"miscTabLabel": {
 		"message": "Ost."
@@ -4026,20 +4005,11 @@
 	"fnFormulaLabel": {
 		"message": "Vytvořit zobrazované jméno:"
 	},
-	"fnFormulaAccesskey": {
-		"message": "z"
-	},
 	"resetFnFormulaLabel": {
 		"message": "Obnovit na výchozí hodnotu"
 	},
-	"resetFnFormulaAccesskey": {
-		"message": "h"
-	},
 	"applyToABButtonLabel": {
 		"message": "Použít pro…"
-	},
-	"applyToABButtonAccesskey": {
-		"message": "P"
 	},
 	"wdw_adrEditionTitle": {
 		"message": "Editor adresy"
@@ -4173,53 +4143,26 @@
 	"autocompletionLabel": {
 		"message": "Doplňování e-mailových adres"
 	},
-	"autocompletionAccesskey": {
-		"message": "A"
-	},
-	"autocompletionTooltip": {
-		"message": "Rozšíří dokončování adres kontaktů Thunderbirdu o adresáře CardBooku"
-	},
 	"autocompleteSortByPopularityLabel": {
 		"message": "Řadit e-mailové adresy podle oblíbenosti"
-	},
-	"autocompleteSortByPopularityAccesskey": {
-		"message": "d"
 	},
 	"autocompleteProposeConcatEmailsLabel": {
 		"message": "Navrhovat pro každý kontakt zvlášť spojené e-maily"
 	},
-	"autocompleteProposeConcatEmailsAccesskey": {
-		"message": "N"
-	},
 	"autocompleteShowAddressbookLabel": {
 		"message": "Zobrazit jméno adresáře"
-	},
-	"autocompleteShowAddressbookAccesskey": {
-		"message": "Z"
 	},
 	"autocompleteShowEmailTypeLabel": {
 		"message": "Zobrazit druh e-mailu"
 	},
-	"autocompleteShowEmailTypeAccesskey": {
-		"message": "e"
-	},
 	"autocompleteShowPopularityLabel": {
 		"message": "Zobrazit oblíbenost"
-	},
-	"autocompleteShowPopularityAccesskey": {
-		"message": "o"
 	},
 	"autocompleteWithColorLabel": {
 		"message": "Použít barvu adresáře"
 	},
-	"autocompleteWithColorAccesskey": {
-		"message": "P"
-	},
 	"autocompleteRestrictSearchLabel": {
 		"message": "Omezit prohledávaná pole"
-	},
-	"autocompleteRestrictSearchAccesskey": {
-		"message": "P"
 	},
 	"chooseAutocompleteRestrictSearchFieldsButtonLabel": {
 		"message": "Upravit"
@@ -4256,12 +4199,6 @@
 	},
 	"exclusiveLabel": {
 		"message": "Unikátní zdroj pro kontakty"
-	},
-	"exclusiveAccesskey": {
-		"message": "z"
-	},
-	"exclusiveTooltip": {
-		"message": "Pokud je zakázáno, tato možnost dovolí Thunderbirdu získat údaje pro žluté hvězdy, zobrazované jméno e-mailů a dokončování z standardního adresáře."
 	},
 	"accountsRestrictionsLabel": {
 		"message": "Omezení e-mailových účtů"
@@ -4341,12 +4278,6 @@
 	"debugModeLabel": {
 		"message": "Ladící režim"
 	},
-	"debugModeAccesskey": {
-		"message": "L"
-	},
-	"debugModeTooltip": {
-		"message": "Pro rozšířené protokolování povolte ladící režim."
-	},
 	"statusInformationLineNumberLabel": {
 		"message": "Počet řádků uchovávaných v souboru protokolu:"
 	},
@@ -4365,26 +4296,14 @@
 	"listTab.conf.label": {
 		"message": "Seznamy"
 	},
-	"listTab.conf.accesskey": {
-		"message": "S"
-	},
 	"technicalTab.conf.label": {
 		"message": "Technické"
-	},
-	"technicalTab.conf.accesskey": {
-		"message": "T"
 	},
 	"vCardTab.conf.label": {
 		"message": "vCard"
 	},
-	"vCardTab.conf.accesskey": {
-		"message": "C"
-	},
 	"keyTab.conf.label": {
 		"message": "Veřejné klíče"
-	},
-	"keyTab.conf.accesskey": {
-		"message": "k"
 	},
 	"advancedTab1Label": {
 		"message": "Rozšířené"
@@ -4482,9 +4401,6 @@
 	"preferEmailEditionLabel": {
 		"message": "Dvojklik na kontakt ho upraví namísto odeslání e-mailu"
 	},
-	"preferEmailEditionAccesskey": {
-		"message": "D"
-	},
 	"dateDisplayedFormatLabel": {
 		"message": "Formát data:"
 	},
@@ -4493,9 +4409,6 @@
 	},
 	"defaultRegionLabel": {
 		"message": "Výchozí oblast:"
-	},
-	"defaultRegionAccesskey": {
-		"message": "o"
 	},
 	"defaultRegionTooltip": {
 		"message": "Tato oblast bude výchozí pro adresy, stejně jako bude použit při formátování telefonních čísel."
@@ -4641,9 +4554,6 @@
 	"preferIMPPPrefLabel": {
 		"message": "Upřednostňovat internetovou komunikaci označenou"
 	},
-	"preferIMPPPrefAccesskey": {
-		"message": "i"
-	},
 	"preferIMPPPrefWarn": {
 		"message": "Pokud není žádná adresa označena, je navrženo propojení všech adres kontaktu."
 	},
@@ -4707,9 +4617,6 @@
 	"URLPhoneBackgroundLabel": {
 		"message": "Spustit na pozadí"
 	},
-	"URLPhoneBackgroundAccesskey": {
-		"message": "S"
-	},
 	"encryptionGroupboxLabel": {
 		"message": "Šifrování"
 	},
@@ -4718,9 +4625,6 @@
 	},
 	"localDataEncryptionEnabledLabel": {
 		"message": "Šifrovat místně uložené vizitky"
-	},
-	"localDataEncryptionEnabledAccesskey": {
-		"message": "i"
 	},
 	"customFieldRankHeaderLabel": {
 		"message": "Pořadí"
@@ -4771,7 +4675,7 @@
 		"message": "Popisek pole"
 	},
 	"listPanelLabel": {
-		"message": "Pokud váš server nepodporuje kategorie (jako Google, Apple, Zimbra, atd…), seznamy jsou dobrý způsob, ak posílat e-maily skupinám. vCard 3.0 nativne seznamy nepodporuje, ale to lze obejít pomocí vlastních polí, takže pokud ve vCard 3.0 chcete použít seznamy, musíte definovat tato pole."
+		"message": "Pokud váš server nepodporuje kategorie (jako Apple, Zimbra, atd…), seznamy jsou dobrý způsob, ak posílat e-maily skupinám. vCard 3.0 nativne seznamy nepodporuje, ale to lze obejít pomocí vlastních polí, takže pokud ve vCard 3.0 chcete použít seznamy, musíte definovat tato pole."
 	},
 	"listGroupboxLabel": {
 		"message": "Vlastní pole pro seznamy"
@@ -4803,14 +4707,8 @@
 	"syncAfterChangeLabel": {
 		"message": "Synchronizovat po změnách"
 	},
-	"syncAfterChangeAccesskey": {
-		"message": "c"
-	},
 	"initialSyncLabel": {
 		"message": "Provést prvotní synchronizaci při startu Thunderbirdu"
-	},
-	"initialSyncAccesskey": {
-		"message": "S"
 	},
 	"initialSyncDelayLabel": {
 		"message": "Zpoždění před provedením prvních požadavků (sekundy):"
@@ -4872,17 +4770,11 @@
 	"decodeReportLabel": {
 		"message": "Dekódovat URL pro REPORT požadavky"
 	},
-	"decodeReportAccesskey": {
-		"message": "D"
-	},
 	"miscEmailGroupboxLabel": {
 		"message": "Posílání e-mailů"
 	},
 	"preferEmailPrefLabel": {
 		"message": "Upřednostnit e-mailové adresy označené jako PREFerované"
-	},
-	"preferEmailPrefAccesskey": {
-		"message": "W"
 	},
 	"preferEmailPrefWarn": {
 		"message": "Pokud není žádná z adres označena jako „PREFerovaná”, zprávaje poslána na všechny adresy kontaktu."
@@ -4890,14 +4782,8 @@
 	"warnEmptyEmailsLabel": {
 		"message": "Upozornit mě při pokusu o odeslání e-mailu kontaktu bez e-mailové adresy"
 	},
-	"warnEmptyEmailsAccesskey": {
-		"message": "U"
-	},
 	"useOnlyEmailLabel": {
 		"message": "Použít pouze e-mailové adresy"
-	},
-	"useOnlyEmailAccesskey": {
-		"message": "P"
 	},
 	"attachVCardWarn": {
 		"message": "Pokud chcete ke každé zprávě automaticky přiložit svou vizitku, zvolte pro každý e-mailový účet, která se má použít. Pokud je aktivní, CardBook automaticky přiloží vybranou vizitku ke každé odchozí zprávě."
@@ -4956,26 +4842,14 @@
 	"bday.conf.label": {
 		"message": "Narozeniny"
 	},
-	"bday.conf.accesskey": {
-		"message": "N"
-	},
 	"anniversary.conf.label": {
 		"message": "Výročí (pouze pro vCard 4.0)"
-	},
-	"anniversary.conf.accesskey": {
-		"message": "V"
 	},
 	"deathdate.conf.label": {
 		"message": "Datum úmrtí (pouze pro vCard 4.0)"
 	},
-	"deathdate.conf.accesskey": {
-		"message": "D"
-	},
 	"eventsLabel": {
 		"message": "Události"
-	},
-	"eventsAccesskey": {
-		"message": "U"
 	},
 	"gender.conf.label": {
 		"message": "Pohlaví (pouze pro vCard 4.0)"
@@ -5007,14 +4881,8 @@
 	"showPopupOnStartupLabel": {
 		"message": "Zobrazit vyskakovací okno při startu"
 	},
-	"showPopupOnStartupAccesskey": {
-		"message": "Z"
-	},
 	"showPeriodicPopupLabel": {
 		"message": "Zobrazit denní vyskakovací okno"
-	},
-	"showPeriodicPopupAccesskey": {
-		"message": "d"
 	},
 	"periodicPopupTimeLabel": {
 		"message": "Čas zobrazení (hh:mm):"
@@ -5024,9 +4892,6 @@
 	},
 	"showPopupEvenIfNoBirthdayLabel": {
 		"message": "Zobrazovat vyskakovací okno, když je seznam narozenin prázdný"
-	},
-	"showPopupEvenIfNoBirthdayAccesskey": {
-		"message": "o"
 	},
 	"remindViaLightningGroupboxLabel": {
 		"message": "Připomenout pomocí doplňku Thunderbirdu pro kalendář Lightning"
@@ -5039,9 +4904,6 @@
 	},
 	"syncWithLightningOnStartupLabel": {
 		"message": "Synchronizovat s Lightningem při startu"
-	},
-	"syncWithLightningOnStartupAccesskey": {
-		"message": "L"
 	},
 	"calendarEntryTitleLabel": {
 		"message": "Titulek události v kalendáři:"
@@ -5061,9 +4923,6 @@
 	"calendarRepeatingEventLabel": {
 		"message": "Opakovaná událost"
 	},
-	"calendarRepeatingEventAccesskey": {
-		"message": "O"
-	},
 	"calendarEntryTimeLabel": {
 		"message": "Čas události v kalendáři (hh:mm):"
 	},
@@ -5072,9 +4931,6 @@
 	},
 	"calendarEntryWholeDayLabel": {
 		"message": "Událost v kalendáři na celý den"
-	},
-	"calendarEntryWholeDayAccesskey": {
-		"message": "e"
 	},
 	"calendarEntryAlarmLabel": {
 		"message": "Alarm(y) n hodin pro událostí v kalendáři (Příklad: 4,+1):"
@@ -5835,9 +5691,6 @@
 	"viewResultEditionLabel": {
 		"message": "Zobrazit výsledek"
 	},
-	"viewResultEditionAccesskey": {
-		"message": "V"
-	},
 	"previousEditButton.tooltip": {
 		"message": "Předchozí"
 	},
@@ -5883,20 +5736,11 @@
 	"moreEditionLabel": {
 		"message": "Zobrazit víc"
 	},
-	"moreEditionAccesskey": {
-		"message": "v"
-	},
 	"lessEditionLabel": {
 		"message": "Zobrazit méně"
 	},
-	"lessEditionAccesskey": {
-		"message": "m"
-	},
 	"mergeAllEditionLabel": {
 		"message": "Sloučit vše"
-	},
-	"mergeAllEditionAccesskey": {
-		"message": "S"
 	},
 	"formatAllEditionLabel": {
 		"message": "Naformátovat vše"
@@ -5906,9 +5750,6 @@
 	},
 	"undoAllEditionLabel": {
 		"message": "Vrátit všechny změny"
-	},
-	"undoAllEditionAccesskey": {
-		"message": "V"
 	},
 	"formatEditionLabel": {
 		"message": "Formátovat"
@@ -5951,9 +5792,6 @@
 	},
 	"convertVCardsTooltip": {
 		"message": "Verze VCard je u některých kontaktů odlišná od verze VCard používané tímto adresářem, toto tlačítko může převést verzi těchto kontaktů."
-	},
-	"convertVCardsAccesskey": {
-		"message": "P"
 	},
 	"wdw_findDuplicatesTitle": {
 		"message": "Duplicitní kontakty ($P1$)",
@@ -6016,26 +5854,14 @@
 	"refreshLogEditionLabel": {
 		"message": "Obnovit"
 	},
-	"refreshLogEditionAccesskey": {
-		"message": "b"
-	},
 	"flushLogEditionLabel": {
 		"message": "Vyprázdnit"
-	},
-	"flushLogEditionAccesskey": {
-		"message": "V"
 	},
 	"clipboardLogEditionLabel": {
 		"message": "Kopírovat do schránky"
 	},
-	"clipboardLogEditionAccesskey": {
-		"message": "K"
-	},
 	"cancelLogEditionLabel": {
 		"message": "OK"
-	},
-	"cancelLogEditionAccesskey": {
-		"message": "O"
 	},
 	"wdw_mergeCardsTitle": {
 		"message": "Sloučení kontaktů"
@@ -6064,6 +5890,30 @@
 	"wdw_cardbookConfigurationEditFieldTitle": {
 		"message": "Vyberte konverzní funkci"
 	},
+	"ContainsOperator": {
+		"message": "obsahuje"
+	},
+	"DoesntContainOperator": {
+		"message": "neobsahuje"
+	},
+	"IsOperator": {
+		"message": "je"
+	},
+	"IsntOperator": {
+		"message": "není"
+	},
+	"BeginsWithOperator": {
+		"message": "začíná na"
+	},
+	"EndsWithOperator": {
+		"message": "končí na"
+	},
+	"IsEmptyOperator": {
+		"message": "je prázdný"
+	},
+	"IsntEmptyOperator": {
+		"message": "není prázdný"
+	},
 	"uppercaseLabel": {
 		"message": "Velká písmena"
 	},
@@ -6072,5 +5922,821 @@
 	},
 	"capitalizationLabel": {
 		"message": "Velká první písmena"
+	},
+	"region-name-ad": {
+		"message": "Andorra"
+	},
+	"region-name-ae": {
+		"message": "Spojené arabské emiráty"
+	},
+	"region-name-af": {
+		"message": "Afghánistán"
+	},
+	"region-name-ai": {
+		"message": "Anguilla"
+	},
+	"region-name-al": {
+		"message": "Albánie"
+	},
+	"region-name-ag": {
+		"message": "Antigua a Barbuda"
+	},
+	"region-name-am": {
+		"message": "Arménie"
+	},
+	"region-name-ar": {
+		"message": "Argentina"
+	},
+	"region-name-aq": {
+		"message": "Antarktida"
+	},
+	"region-name-ao": {
+		"message": "Angola"
+	},
+	"region-name-at": {
+		"message": "Rakousko"
+	},
+	"region-name-az": {
+		"message": "Ázerbájdžán"
+	},
+	"region-name-ba": {
+		"message": "Bosna a Hercegovina"
+	},
+	"region-name-bb": {
+		"message": "Barbados"
+	},
+	"region-name-as": {
+		"message": "Americká Samoa"
+	},
+	"region-name-au": {
+		"message": "Austrálie"
+	},
+	"region-name-bd": {
+		"message": "Bangladéš"
+	},
+	"region-name-be": {
+		"message": "Belgie"
+	},
+	"region-name-aw": {
+		"message": "Aruba"
+	},
+	"region-name-bf": {
+		"message": "Burkina Faso"
+	},
+	"region-name-bm": {
+		"message": "Bermudy"
+	},
+	"region-name-bj": {
+		"message": "Benin"
+	},
+	"region-name-bg": {
+		"message": "Bulharsko"
+	},
+	"region-name-bi": {
+		"message": "Burundi"
+	},
+	"region-name-bh": {
+		"message": "Bahrajn"
+	},
+	"region-name-bl": {
+		"message": "Svatý Bartoloměj"
+	},
+	"region-name-bn": {
+		"message": "Brunej"
+	},
+	"region-name-bo": {
+		"message": "Bolívie"
+	},
+	"region-name-br": {
+		"message": "Brazílie"
+	},
+	"region-name-bq": {
+		"message": "Bonaire, Svatý Eustach a Saba"
+	},
+	"region-name-bt": {
+		"message": "Bhútán"
+	},
+	"region-name-bs": {
+		"message": "Bahamy"
+	},
+	"region-name-bz": {
+		"message": "Belize"
+	},
+	"region-name-ca": {
+		"message": "Kanada"
+	},
+	"region-name-cc": {
+		"message": "Kokosové (Keelingovy) ostrovy"
+	},
+	"region-name-by": {
+		"message": "Bělorusko"
+	},
+	"region-name-cd": {
+		"message": "Kongo (Kinshasa)"
+	},
+	"region-name-cf": {
+		"message": "Středoafrická republika"
+	},
+	"region-name-bv": {
+		"message": "Bouvetův ostrov"
+	},
+	"region-name-bw": {
+		"message": "Botswana"
+	},
+	"region-name-cl": {
+		"message": "Chile"
+	},
+	"region-name-ci": {
+		"message": "Pobřeží slonoviny"
+	},
+	"region-name-ch": {
+		"message": "Švýcarsko"
+	},
+	"region-name-cm": {
+		"message": "Kamerun"
+	},
+	"region-name-ck": {
+		"message": "Cookovy ostrovy"
+	},
+	"region-name-cg": {
+		"message": "Kongo (Brazzaville)"
+	},
+	"region-name-cn": {
+		"message": "Čína"
+	},
+	"region-name-cp": {
+		"message": "Clippertonův ostrov"
+	},
+	"region-name-co": {
+		"message": "Kolumbie"
+	},
+	"region-name-cr": {
+		"message": "Kostarika"
+	},
+	"region-name-cz": {
+		"message": "Česká republika"
+	},
+	"region-name-cy": {
+		"message": "Kypr"
+	},
+	"region-name-cx": {
+		"message": "Vánoční ostrov"
+	},
+	"region-name-cv": {
+		"message": "Kapverdy"
+	},
+	"region-name-cu": {
+		"message": "Kuba"
+	},
+	"region-name-cw": {
+		"message": "Curaçao"
+	},
+	"region-name-de": {
+		"message": "Německo"
+	},
+	"region-name-dg": {
+		"message": "Diego García"
+	},
+	"region-name-dk": {
+		"message": "Dánsko"
+	},
+	"region-name-dj": {
+		"message": "Džibutsko"
+	},
+	"region-name-dm": {
+		"message": "Dominika"
+	},
+	"region-name-ec": {
+		"message": "Ekvádor"
+	},
+	"region-name-dz": {
+		"message": "Alžírsko"
+	},
+	"region-name-do": {
+		"message": "Dominikánská republika"
+	},
+	"region-name-ee": {
+		"message": "Estonsko"
+	},
+	"region-name-eg": {
+		"message": "Egypt"
+	},
+	"region-name-eh": {
+		"message": "Západní Sahara"
+	},
+	"region-name-et": {
+		"message": "Etiopie"
+	},
+	"region-name-er": {
+		"message": "Eritrea"
+	},
+	"region-name-es": {
+		"message": "Španělsko"
+	},
+	"region-name-fi": {
+		"message": "Finsko"
+	},
+	"region-name-fj": {
+		"message": "Fidži"
+	},
+	"region-name-fm": {
+		"message": "Mikronésie"
+	},
+	"region-name-fk": {
+		"message": "Falklandy (Malvíny)"
+	},
+	"region-name-fo": {
+		"message": "Faerské ostrovy"
+	},
+	"region-name-ge": {
+		"message": "Gruzie"
+	},
+	"region-name-gb": {
+		"message": "Spojené království"
+	},
+	"region-name-gd": {
+		"message": "Grenada"
+	},
+	"region-name-fr": {
+		"message": "Francie"
+	},
+	"region-name-ga": {
+		"message": "Gabon"
+	},
+	"region-name-gf": {
+		"message": "Francouzská Guyana"
+	},
+	"region-name-gl": {
+		"message": "Grónsko"
+	},
+	"region-name-gm": {
+		"message": "Gambie"
+	},
+	"region-name-gi": {
+		"message": "Gibraltar"
+	},
+	"region-name-gg": {
+		"message": "Guernsey"
+	},
+	"region-name-gh": {
+		"message": "Ghana"
+	},
+	"region-name-gn": {
+		"message": "Guinea"
+	},
+	"region-name-gp": {
+		"message": "Guadeloupe"
+	},
+	"region-name-gr": {
+		"message": "Řecko"
+	},
+	"region-name-gq": {
+		"message": "Rovníková Guinea"
+	},
+	"region-name-gt": {
+		"message": "Guatemala"
+	},
+	"region-name-gw": {
+		"message": "Guinea-Bissau"
+	},
+	"region-name-hk": {
+		"message": "Hongkong"
+	},
+	"region-name-gu": {
+		"message": "Guam"
+	},
+	"region-name-gs": {
+		"message": "Jižní Georgie a Jižní Sandwichovy ostrovy"
+	},
+	"region-name-gy": {
+		"message": "Guyana"
+	},
+	"region-name-hm": {
+		"message": "Heardův ostrov a McDonaldovy ostrovy"
+	},
+	"region-name-ht": {
+		"message": "Haiti"
+	},
+	"region-name-hr": {
+		"message": "Chorvatsko"
+	},
+	"region-name-hn": {
+		"message": "Honduras"
+	},
+	"region-name-in": {
+		"message": "Indie"
+	},
+	"region-name-il": {
+		"message": "Izrael"
+	},
+	"region-name-im": {
+		"message": "Ostrov Man"
+	},
+	"region-name-ie": {
+		"message": "Irsko"
+	},
+	"region-name-hu": {
+		"message": "Maďarsko"
+	},
+	"region-name-id": {
+		"message": "Indonésie"
+	},
+	"region-name-io": {
+		"message": "Britské indickooceánské území"
+	},
+	"region-name-ir": {
+		"message": "Írán"
+	},
+	"region-name-is": {
+		"message": "Island"
+	},
+	"region-name-iq": {
+		"message": "Irák"
+	},
+	"region-name-je": {
+		"message": "Jersey"
+	},
+	"region-name-jp": {
+		"message": "Japonsko"
+	},
+	"region-name-it": {
+		"message": "Itálie"
+	},
+	"region-name-ke": {
+		"message": "Keňa"
+	},
+	"region-name-jo": {
+		"message": "Jordánsko"
+	},
+	"region-name-jm": {
+		"message": "Jamajka"
+	},
+	"region-name-kg": {
+		"message": "Kyrgyzstán"
+	},
+	"region-name-ki": {
+		"message": "Kiribati"
+	},
+	"region-name-kh": {
+		"message": "Kambodža"
+	},
+	"region-name-km": {
+		"message": "Komory"
+	},
+	"region-name-kn": {
+		"message": "Svatý Kryštof a Nevis"
+	},
+	"region-name-ky": {
+		"message": "Kajmanské ostrovy"
+	},
+	"region-name-kp": {
+		"message": "Severní Korea"
+	},
+	"region-name-kr": {
+		"message": "Jižní Korea"
+	},
+	"region-name-kw": {
+		"message": "Kuvajt"
+	},
+	"region-name-kz": {
+		"message": "Kazachstán"
+	},
+	"region-name-la": {
+		"message": "Laos"
+	},
+	"region-name-lb": {
+		"message": "Libanon"
+	},
+	"region-name-lc": {
+		"message": "Svatá Lucie"
+	},
+	"region-name-li": {
+		"message": "Lichtenštejnsko"
+	},
+	"region-name-lk": {
+		"message": "Srí Lanka"
+	},
+	"region-name-lr": {
+		"message": "Libérie"
+	},
+	"region-name-lu": {
+		"message": "Lucembursko"
+	},
+	"region-name-lv": {
+		"message": "Lotyšsko"
+	},
+	"region-name-ls": {
+		"message": "Lesotho"
+	},
+	"region-name-ly": {
+		"message": "Libye"
+	},
+	"region-name-lt": {
+		"message": "Litva"
+	},
+	"region-name-mc": {
+		"message": "Monako"
+	},
+	"region-name-md": {
+		"message": "Moldavsko"
+	},
+	"region-name-ma": {
+		"message": "Maroko"
+	},
+	"region-name-me": {
+		"message": "Černá Hora"
+	},
+	"region-name-mf": {
+		"message": "Svatý Martin"
+	},
+	"region-name-mg": {
+		"message": "Madagaskar"
+	},
+	"region-name-mh": {
+		"message": "Marshallovy ostrovy"
+	},
+	"region-name-mk": {
+		"message": "Makedonie"
+	},
+	"region-name-ml": {
+		"message": "Mali"
+	},
+	"region-name-mm": {
+		"message": "Barma"
+	},
+	"region-name-mn": {
+		"message": "Mongolsko"
+	},
+	"region-name-mo": {
+		"message": "Macao"
+	},
+	"region-name-mp": {
+		"message": "Severní Mariany"
+	},
+	"region-name-mt": {
+		"message": "Malta"
+	},
+	"region-name-mu": {
+		"message": "Mauricius"
+	},
+	"region-name-mr": {
+		"message": "Mauritánie"
+	},
+	"region-name-ms": {
+		"message": "Montserrat"
+	},
+	"region-name-mq": {
+		"message": "Martinik"
+	},
+	"region-name-mv": {
+		"message": "Maledivy"
+	},
+	"region-name-mw": {
+		"message": "Malawi"
+	},
+	"region-name-my": {
+		"message": "Malajsie"
+	},
+	"region-name-mx": {
+		"message": "Mexiko"
+	},
+	"region-name-mz": {
+		"message": "Mosambik"
+	},
+	"region-name-na": {
+		"message": "Namibie"
+	},
+	"region-name-nc": {
+		"message": "Nová Kaledonie"
+	},
+	"region-name-ne": {
+		"message": "Niger"
+	},
+	"region-name-nf": {
+		"message": "Norfolk"
+	},
+	"region-name-ng": {
+		"message": "Nigérie"
+	},
+	"region-name-ni": {
+		"message": "Nikaragua"
+	},
+	"region-name-nl": {
+		"message": "Nizozemsko"
+	},
+	"region-name-no": {
+		"message": "Norsko"
+	},
+	"region-name-np": {
+		"message": "Nepál"
+	},
+	"region-name-nr": {
+		"message": "Nauru"
+	},
+	"region-name-pk": {
+		"message": "Pákistán"
+	},
+	"region-name-pl": {
+		"message": "Polsko"
+	},
+	"region-name-nz": {
+		"message": "Nový Zéland"
+	},
+	"region-name-ph": {
+		"message": "Filipíny"
+	},
+	"region-name-nu": {
+		"message": "Niue"
+	},
+	"region-name-om": {
+		"message": "Omán"
+	},
+	"region-name-pe": {
+		"message": "Peru"
+	},
+	"region-name-pa": {
+		"message": "Panama"
+	},
+	"region-name-pf": {
+		"message": "Francouzská Polynésie"
+	},
+	"region-name-pg": {
+		"message": "Papua-Nová Guinea"
+	},
+	"region-name-pm": {
+		"message": "Saint Pierre a Miquelon"
+	},
+	"region-name-pn": {
+		"message": "Pitcairnovy ostrovy"
+	},
+	"region-name-pr": {
+		"message": "Portoriko"
+	},
+	"region-name-pt": {
+		"message": "Portugalsko"
+	},
+	"region-name-pw": {
+		"message": "Palau"
+	},
+	"region-name-qm": {
+		"message": "Midwayské ostrovy"
+	},
+	"region-name-py": {
+		"message": "Paraguay"
+	},
+	"region-name-qa": {
+		"message": "Katar"
+	},
+	"region-name-qs": {
+		"message": "Bassas da India"
+	},
+	"region-name-qu": {
+		"message": "Juan da Nova"
+	},
+	"region-name-qw": {
+		"message": "Wake"
+	},
+	"region-name-qx": {
+		"message": "Glorieuses"
+	},
+	"region-name-rs": {
+		"message": "Srbsko"
+	},
+	"region-name-ro": {
+		"message": "Rumunsko"
+	},
+	"region-name-qz": {
+		"message": "Akrotiri"
+	},
+	"region-name-re": {
+		"message": "Réunion"
+	},
+	"region-name-rw": {
+		"message": "Rwanda"
+	},
+	"region-name-ru": {
+		"message": "Rusko"
+	},
+	"region-name-sa": {
+		"message": "Saúdská Arábie"
+	},
+	"region-name-sb": {
+		"message": "Šalamounovy ostrovy"
+	},
+	"region-name-sc": {
+		"message": "Seychely"
+	},
+	"region-name-sd": {
+		"message": "Súdán"
+	},
+	"region-name-se": {
+		"message": "Švédsko"
+	},
+	"region-name-sg": {
+		"message": "Singapur"
+	},
+	"region-name-sh": {
+		"message": "Svatá Helena"
+	},
+	"region-name-si": {
+		"message": "Slovinsko"
+	},
+	"region-name-sk": {
+		"message": "Slovensko"
+	},
+	"region-name-sl": {
+		"message": "Sierra Leone"
+	},
+	"region-name-sn": {
+		"message": "Senegal"
+	},
+	"region-name-sm": {
+		"message": "San Marino"
+	},
+	"region-name-ss": {
+		"message": "Jižní Súdán"
+	},
+	"region-name-so": {
+		"message": "Somálsko"
+	},
+	"region-name-sr": {
+		"message": "Surinam"
+	},
+	"region-name-sx": {
+		"message": "Svatý Martin"
+	},
+	"region-name-st": {
+		"message": "Svatý Tomáš a Princův ostrov"
+	},
+	"region-name-sv": {
+		"message": "Salvador"
+	},
+	"region-name-sy": {
+		"message": "Sýrie"
+	},
+	"region-name-sz": {
+		"message": "Svazijsko"
+	},
+	"region-name-tc": {
+		"message": "Ostrovy Turks a Caicos"
+	},
+	"region-name-td": {
+		"message": "Čad"
+	},
+	"region-name-tg": {
+		"message": "Togo"
+	},
+	"region-name-th": {
+		"message": "Thajsko"
+	},
+	"region-name-tf": {
+		"message": "Francouzská jižní a antarktická území"
+	},
+	"region-name-tj": {
+		"message": "Tádžikistán"
+	},
+	"region-name-tk": {
+		"message": "Tokelau"
+	},
+	"region-name-tl": {
+		"message": "Východní Timor"
+	},
+	"region-name-tr": {
+		"message": "Turecko"
+	},
+	"region-name-tn": {
+		"message": "Tunisko"
+	},
+	"region-name-to": {
+		"message": "Tonga"
+	},
+	"region-name-tm": {
+		"message": "Turkmenistán"
+	},
+	"region-name-tt": {
+		"message": "Trinidad a Tobago"
+	},
+	"region-name-tv": {
+		"message": "Tuvalu"
+	},
+	"region-name-tw": {
+		"message": "Tchaj-wan"
+	},
+	"region-name-tz": {
+		"message": "Tanzanie"
+	},
+	"region-name-ua": {
+		"message": "Ukrajina"
+	},
+	"region-name-ug": {
+		"message": "Uganda"
+	},
+	"region-name-us": {
+		"message": "Spojené státy"
+	},
+	"region-name-uy": {
+		"message": "Uruguay"
+	},
+	"region-name-va": {
+		"message": "Vatikán"
+	},
+	"region-name-uz": {
+		"message": "Uzbekistán"
+	},
+	"region-name-vc": {
+		"message": "Svatý Vincenc a Grenadiny"
+	},
+	"region-name-vg": {
+		"message": "Britské Panenské ostrovy"
+	},
+	"region-name-vi": {
+		"message": "Americké Panenské ostrovy"
+	},
+	"region-name-vu": {
+		"message": "Vanuatu"
+	},
+	"region-name-ve": {
+		"message": "Venezuela"
+	},
+	"region-name-vn": {
+		"message": "Vietnam"
+	},
+	"region-name-wf": {
+		"message": "Wallis a Futuna"
+	},
+	"region-name-ws": {
+		"message": "Samoa"
+	},
+	"region-name-xa": {
+		"message": "Ostrovy Ashmore a Cartier"
+	},
+	"region-name-xb": {
+		"message": "Bakerův ostrov"
+	},
+	"region-name-xc": {
+		"message": "Ostrovy Korálového moře"
+	},
+	"region-name-xd": {
+		"message": "Dhekelia"
+	},
+	"region-name-xe": {
+		"message": "Ostrov Europa"
+	},
+	"region-name-xh": {
+		"message": "Howlandův ostrov"
+	},
+	"region-name-xg": {
+		"message": "Pásmo Gazy"
+	},
+	"region-name-xj": {
+		"message": "Jan Mayen"
+	},
+	"region-name-xk": {
+		"message": "Kosovo"
+	},
+	"region-name-xl": {
+		"message": "Palmyra"
+	},
+	"region-name-xp": {
+		"message": "Paracelské ostrovy"
+	},
+	"region-name-xm": {
+		"message": "Kingmanův útes"
+	},
+	"region-name-xq": {
+		"message": "Jarvisův ostrov"
+	},
+	"region-name-xr": {
+		"message": "Špicberky"
+	},
+	"region-name-xs": {
+		"message": "Spratlyovy ostrovy"
+	},
+	"region-name-xt": {
+		"message": "Tromelin"
+	},
+	"region-name-xv": {
+		"message": "Navassa"
+	},
+	"region-name-yt": {
+		"message": "Mayotte"
+	},
+	"region-name-ye": {
+		"message": "Jemen"
+	},
+	"region-name-xw": {
+		"message": "Západní břeh Jordánu"
+	},
+	"region-name-za": {
+		"message": "Jihoafrická republika"
+	},
+	"region-name-xu": {
+		"message": "Johnstonův atol"
+	},
+	"region-name-zw": {
+		"message": "Zimbabwe"
+	},
+	"region-name-zm": {
+		"message": "Zambie"
 	}
 }

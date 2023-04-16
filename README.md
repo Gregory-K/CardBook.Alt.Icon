@@ -19,7 +19,7 @@ GitHub (main) - https://github.com/Gregory-K/CardBook.Alt.Icon
 GitLab (alt.) - https://gitlab.com/Gregory.K/CardBook.Alt.Icon
 
 Version:  
-**83.3.1**  
+**85.5.1**  
 Compatibility:  
 102.0a1 <= Thunderbird version >= 102.*
 

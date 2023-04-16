@@ -9,20 +9,21 @@ if ("undefined" == typeof(ovl_cardbookLayout)) {
 			if (aSplitter) {
 				// unpossible to fire a drag event on splitter
 				// don't know how to do
-				cardbookRepository.cardbookPreferences.setBoolPref("extensions.cardbook." + aPref, (aSplitter.getAttribute("state") == "open"));
+				cardbookRepository.cardbookPreferences.setBoolPref(aPref, (aSplitter.getAttribute("state") == "open"));
 			} else {
-				cardbookRepository.cardbookPreferences.setBoolPref("extensions.cardbook." + aPref, !cardbookRepository.cardbookPreferences.getBoolPref("extensions.cardbook." + aPref));
+				cardbookRepository.cardbookPreferences.setBoolPref(aPref, !cardbookRepository.cardbookPrefs[aPref]);
 			}
+			ovl_cardbookLayout.resizePanes();
 		},
 
 		resizePanes: function() {
 			if (document.getElementById("cardsBox") && document.getElementById("dirTreeSplitter")) {
-				if (cardbookRepository.cardbookPreferences.getBoolPref("extensions.cardbook.viewABPane")) {
+				if (cardbookRepository.cardbookPrefs["viewABPane"]) {
 					document.getElementById("dirTreeSplitter").setAttribute("state", "open");
 				} else {
 					document.getElementById("dirTreeSplitter").setAttribute("state", "collapsed");
 				}
-				if (cardbookRepository.cardbookPreferences.getBoolPref("extensions.cardbook.viewABContact")) {
+				if (cardbookRepository.cardbookPrefs["viewABContact"]) {
 					document.getElementById("resultsSplitter").setAttribute("state", "open");
 				} else {
 					document.getElementById("resultsSplitter").setAttribute("state", "collapsed");
@@ -37,8 +38,8 @@ if ("undefined" == typeof(ovl_cardbookLayout)) {
 				document.getElementById("menu_showFolderPane").hidden=true;
 				document.getElementById("menu_showFolderPaneCols").hidden=true;
 				document.getElementById("menu_showMessage").hidden=true;
-				document.getElementById("cardbookABPaneItem").setAttribute('checked', cardbookRepository.cardbookPreferences.getBoolPref("extensions.cardbook.viewABPane"));
-				document.getElementById("cardbookContactPaneItem").setAttribute('checked', cardbookRepository.cardbookPreferences.getBoolPref("extensions.cardbook.viewABContact"));
+				document.getElementById("cardbookABPaneItem").setAttribute('checked', cardbookRepository.cardbookPrefs["viewABPane"]);
+				document.getElementById("cardbookContactPaneItem").setAttribute('checked', cardbookRepository.cardbookPrefs["viewABContact"]);
 			} else {
 				document.getElementById("cardbookABPaneItem").hidden=true;
 				document.getElementById("cardbookContactPaneItem").hidden=true;
@@ -49,14 +50,14 @@ if ("undefined" == typeof(ovl_cardbookLayout)) {
 		},
 
 		setCheckboxesForWindow: function() {
-			document.getElementById("cardbookABPaneItem").setAttribute('checked', cardbookRepository.cardbookPreferences.getBoolPref("extensions.cardbook.viewABPane"));
-			document.getElementById("cardbookContactPaneItem").setAttribute('checked', cardbookRepository.cardbookPreferences.getBoolPref("extensions.cardbook.viewABContact"));
+			document.getElementById("cardbookABPaneItem").setAttribute('checked', cardbookRepository.cardbookPrefs["viewABPane"]);
+			document.getElementById("cardbookContactPaneItem").setAttribute('checked', cardbookRepository.cardbookPrefs["viewABContact"]);
 		},
 
 		setBoxes: function(aEvent) {
 			aEvent.stopImmediatePropagation();
 			var paneConfig = 0;
-			var panesView = cardbookRepository.cardbookPreferences.getStringPref("extensions.cardbook.panesView");
+			var panesView = cardbookRepository.cardbookPrefs["panesView"];
 			if (panesView == "modern") {
 				var paneConfig = 2;
 			} else if (panesView == "classical") {
@@ -74,12 +75,13 @@ if ("undefined" == typeof(ovl_cardbookLayout)) {
 			} else if (aValue == "cmd_viewVerticalMailLayout") {
 				var strData = "modern";
 			}
-			cardbookRepository.cardbookPreferences.setStringPref("extensions.cardbook.panesView", strData);
+			cardbookRepository.cardbookPreferences.setStringPref("panesView", strData);
+			ovl_cardbookLayout.orientPanes();
 		},
 
 		orientPanes: async function() {
 			if (document.getElementById("cardsBox") && document.getElementById("resultsSplitter")) {
-				var panesView = cardbookRepository.cardbookPreferences.getStringPref("extensions.cardbook.panesView");
+				var panesView = cardbookRepository.cardbookPrefs["panesView"];
 				if (panesView == "modern") {
 					document.getElementById("cardsBox").setAttribute("orient", "horizontal");
 					document.getElementById("resultsSplitter").hidden=false;

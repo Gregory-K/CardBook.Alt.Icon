@@ -1,91 +1,109 @@
-var { Services } = ChromeUtils.import("resource://gre/modules/Services.jsm");
-var { XPCOMUtils } = ChromeUtils.import("resource://gre/modules/XPCOMUtils.jsm");
-var { cardbookRepository } = ChromeUtils.import("chrome://cardbook/content/cardbookRepository.js");
+import { cardbookHTMLNotification } from "../cardbookHTMLNotification.mjs";
+import { cardbookHTMLRichContext } from "../cardbookHTMLRichContext.mjs";
 
-var CardBookConfigAddCustomNotification = {};
-XPCOMUtils.defineLazyGetter(CardBookConfigAddCustomNotification, "errorNotifications", () => {
-	return new MozElements.NotificationBox(element => {
-		element.setAttribute("flex", "1");
-		document.getElementById("errorNotificationsHbox").append(element);
-	});
-});
+var id = "";
+var type = "";
+var code = "";
+var label = "";
+var validationList = [];
+var notAllowedCustoms = [ 'X-ABDATE', 'X-ABLABEL', 'X-CATEGORIES', 'X-MOZILLA-HTML' ];
 
-function customFieldCheck (aTextBox) {
-	var myValue = aTextBox.value.trim();
-	if (myValue == "") {
-		aTextBox.value = "X-";
+function customFieldCheck () {
+	let textbox = document.getElementById('customFieldCodeTextBox');
+	let value = textbox.value.trim();
+	if (value == "") {
+		textbox.value = "X-";
 	} else {
-		aTextBox.value = myValue.toUpperCase();
+		textbox.value = value.toUpperCase();
 	}
 };
 
 function validateCustomValues () {
-	var myValue = document.getElementById('customFieldCodeTextBox').value;
-	var myValidationList = JSON.parse(JSON.stringify(window.arguments[0].validationList));
+	let value = document.getElementById('customFieldCodeTextBox').value;
+	let newValidationList = JSON.parse(JSON.stringify(validationList));
 	function filterOriginal(element) {
-		return (element != myValue);
+		return (element != value);
 	}
-	myValidationList = myValidationList.filter(filterOriginal);
-	if (myValidationList.length != window.arguments[0].validationList.length) {
-		cardbookNotifications.setNotification(CardBookConfigAddCustomNotification.errorNotifications, "customFieldsErrorUNIQUE");
+	newValidationList = newValidationList.filter(filterOriginal);
+	let notificationMessage = document.getElementById("notificationMessage");
+	if (newValidationList.length != validationList.length) {
+		cardbookHTMLNotification.setNotification(notificationMessage, "warning", "customFieldsErrorUNIQUE");
 		return false;
-	} else if (myValue.toUpperCase() !== myValue) {
-		cardbookNotifications.setNotification(CardBookConfigAddCustomNotification.errorNotifications, "customFieldsErrorUPPERCASE", [myValue]);
+	} else if (value.toUpperCase() !== value) {
+		cardbookHTMLNotification.setNotification(notificationMessage, "warning", "customFieldsErrorUPPERCASE", [value]);
 		return false;
-	} else if (!(myValue.toUpperCase().startsWith("X-"))) {
-		cardbookNotifications.setNotification(CardBookConfigAddCustomNotification.errorNotifications, "customFieldsErrorX", [myValue]);
+	} else if (!(value.toUpperCase().startsWith("X-"))) {
+		cardbookHTMLNotification.setNotification(notificationMessage, "warning", "customFieldsErrorX", [value]);
 		return false;
-	} else if (cardbookRepository.notAllowedCustoms.indexOf(myValue.toUpperCase()) != -1) {
-		cardbookNotifications.setNotification(CardBookConfigAddCustomNotification.errorNotifications, "customFieldsErrorFIELD", [myValue]);
+	} else if (notAllowedCustoms.indexOf(value.toUpperCase()) != -1) {
+		cardbookHTMLNotification.setNotification(notificationMessage, "warning", "customFieldsErrorFIELD", [value]);
 		return false;
-	} else if (myValue.includes(":") || myValue.includes(",") || myValue.includes(";") || myValue.includes(".")) {
-		cardbookNotifications.setNotification(CardBookConfigAddCustomNotification.errorNotifications, "customFieldsErrorCHAR", [myValue]);
+	} else if (value.includes(":") || value.includes(",") || value.includes(";") || value.includes(".")) {
+		cardbookHTMLNotification.setNotification(notificationMessage, "warning", "customFieldsErrorCHAR", [value]);
 		return false;
 	} else {
-		cardbookNotifications.setNotification(CardBookConfigAddCustomNotification.errorNotifications, "OK");
+		cardbookHTMLNotification.setNotification(notificationMessage, "OK");
 		return true;
 	}
 };
 
 function validate () {
-	var fieldCode = document.getElementById("customFieldCodeTextBox").value;
-	var fieldLabel = document.getElementById("customFieldLabelTextBox").value;
-	var btnSave = document.querySelector("dialog").getButton("accept");
+	let fieldCode = document.getElementById("customFieldCodeTextBox").value;
+	let fieldLabel = document.getElementById("customFieldLabelTextBox").value;
+	let btnSave = document.getElementById("validateButton");
 	if (fieldCode != "" && fieldLabel != "") {
-		btnSave.disabled = false;
-		return validateCustomValues();
+		let validation = validateCustomValues();
+		btnSave.disabled = !validation;
+		return validation;
 	} else {
 		btnSave.disabled = true;
-		cardbookNotifications.setNotification(CardBookConfigAddCustomNotification.errorNotifications, "OK");
+		cardbookHTMLNotification.setNotification(notificationMessage, "OK");
 		return false;
 	}
 };
 
 function onLoadDialog () {
-	i18n.updateDocument({ extension: cardbookRepository.extension });
-	document.getElementById('customFieldCodeTextBox').value = window.arguments[0].code;
-	document.getElementById('customFieldLabelTextBox').value = window.arguments[0].label;
+	let urlParams = new URLSearchParams(window.location.search);
+	id = urlParams.get("id");
+	type = urlParams.get("type");
+	code = urlParams.get("code");
+	label = urlParams.get("label");
+	validationList = urlParams.get("validationList").split(",");
+
+	i18n.updateDocument();
+	cardbookHTMLRichContext.loadRichContext();
+
+	// input
+	document.getElementById("customFieldCodeTextBox").addEventListener("input", event => {
+		customFieldCheck();
+		validate();
+	});
+	document.getElementById("customFieldLabelTextBox").addEventListener("input", event => validate());
+	// button
+	document.getElementById('cancelButton').addEventListener("click", onCancelDialog);
+	document.getElementById('validateButton').addEventListener("click", onAcceptDialog);
+
+	document.getElementById('customFieldCodeTextBox').value = code;
+	document.getElementById('customFieldLabelTextBox').value = label;
 	document.getElementById('customFieldCodeTextBox').focus();
-	customFieldCheck(document.getElementById('customFieldCodeTextBox'));
+	customFieldCheck();
 	validate();
 };
 
-function onAcceptDialog (aEvent) {
+async function onAcceptDialog (aEvent) {
 	if (validate()) {
-		window.arguments[0].code = document.getElementById('customFieldCodeTextBox').value.trim();
-		window.arguments[0].label = document.getElementById('customFieldLabelTextBox').value.trim();
-		window.arguments[0].typeAction="SAVE";
-		close();
+		let urlParams = {};
+		urlParams.id = id;
+		urlParams.type = type;
+		urlParams.code = document.getElementById('customFieldCodeTextBox').value.trim();
+		urlParams.label = document.getElementById('customFieldLabelTextBox').value.trim();
+		await messenger.runtime.sendMessage({query: "cardbook.conf.saveCustomFields", urlParams: urlParams});
+		onCancelDialog();
 	}
-	aEvent.preventDefault();
 };
 
-function onCancelDialog () {
-	window.arguments[0].typeAction="CANCEL";
-	close();
+async function onCancelDialog () {
+	cardbookHTMLRichContext.closeWindow();
 };
 
-document.addEventListener("DOMContentLoaded", onLoadDialog);
-document.addEventListener("dialogaccept", onAcceptDialog);
-document.addEventListener("dialogcancel", onCancelDialog);
-document.addEventListener("popupshowing", cardbookRichContext.loadRichContext, true);
+onLoadDialog();

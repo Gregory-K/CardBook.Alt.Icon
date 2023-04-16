@@ -114,14 +114,8 @@
 	"showForgottenLabel": {
 		"message": "Vis glemte duplikater"
 	},
-	"showForgottenAccesskey": {
-		"message": "V"
-	},
 	"hideForgottenLabel": {
 		"message": "Skjul glemte duplikater"
-	},
-	"hideForgottenAccesskey": {
-		"message": "S"
 	},
 	"noContactsDuplicated": {
 		"message": "Ingen duplikerede kontakter er blevet fundet"
@@ -3309,6 +3303,12 @@
 	"toLowerCase": {
 		"message": "Sæt i små bogstaver"
 	},
+	"copy": {
+		"message": "Kopier"
+	},
+	"paste": {
+		"message": "Indsæt"
+	},
 	"copyFieldValue": {
 		"message": "Kopier ($P1$)",
         "placeholders": {
@@ -3369,7 +3369,7 @@
 	"wdw_cardbookConfigurationAddEmailsRestrictionTitle": {
 		"message": "Definition af begrænsning for mailkonto"
 	},
-	"wdw_cardbookConfigurationAddEmailsCollectionTitle": {
+	"wdw_cardbookConfigurationAddEmailsEmailsCollectionTitle": {
 		"message": "Definition af indsamling af udgående e-mails for mailkonto"
 	},
 	"ignoreCaseIgnoreDiacriticLabel": {
@@ -3777,6 +3777,9 @@
 	"wizard.back.label": {
 		"message": "Tilbage"
 	},
+	"wizard.cancel.label": {
+		"message": "Annuller"
+	},
 	"wizard.create.label": {
 		"message": "Opret"
 	},
@@ -3800,9 +3803,6 @@
 	},
 	"initialPage.search.label": {
 		"message": "Søg i eksisterende adressebøger"
-	},
-	"initialPage.find.label": {
-		"message": "Søg efter fjerne adressebøger"
 	},
 	"localPage.type.description": {
 		"message": "Lokal adressebogs type:"
@@ -3838,7 +3838,7 @@
 		"message": "Søg"
 	},
 	"remotePage.description": {
-		"message": "Hvilken type er din fjerne adressebog : (Forsigtig: Google overholder IKKE vCard-standarderne) ?"
+		"message": "Hvilken type er din fjerne adressebog : ?"
 	},
 	"remotePage.type.label": {
 		"message": "Type"
@@ -3891,7 +3891,7 @@
 	"rememberPassword": {
 		"message": "Brug Adgangskode-håndteringen til at huske denne adgangskode"
 	},
-	"showHidePassword.tooltip": {
+	"showHidePassword": {
 		"message": "Vis/skjul adgangskode"
 	},
 	"remotePage.validatebutton.label": {
@@ -3903,20 +3903,11 @@
 	"abSearchHeading.label": {
 		"message": "Søg i:"
 	},
-	"abSearchHeading.accesskey": {
-		"message": "ø"
-	},
 	"matchAll.label": {
 		"message": "Match alle de følgende"
 	},
-	"matchAll.accesskey": {
-		"message": "a"
-	},
 	"matchAny.label": {
 		"message": "Match en af følgende"
-	},
-	"matchAny.accesskey": {
-		"message": "e"
 	},
 	"googleOauthPage.wizard.description": {
 		"message": "Google-godkendelse"
@@ -3969,9 +3960,6 @@
 	"name.ABedit.label": {
 		"message": "Navn:"
 	},
-	"name.ABedit.accesskey": {
-		"message": "N"
-	},
 	"nodesLabel": {
 		"message": "Knuder:"
 	},
@@ -3993,9 +3981,6 @@
 	"readonlyLabel": {
 		"message": "Skrivebeskyttet tilstand"
 	},
-	"readonlyAccesskey": {
-		"message": "S"
-	},
 	"urnuuidLabel": {
 		"message": "Brug urn:uuid"
 	},
@@ -4008,14 +3993,8 @@
 	"autoSyncLabel": {
 		"message": "Aktiver periodisk synkronisering"
 	},
-	"autoSyncAccesskey": {
-		"message": "A"
-	},
 	"autoSyncIntervalLabel": {
 		"message": "Interval for periodisk synkronisering (minutter):"
-	},
-	"autoSyncIntervalAccesskey": {
-		"message": "I"
 	},
 	"miscTabLabel": {
 		"message": "Diverse"
@@ -4026,20 +4005,11 @@
 	"fnFormulaLabel": {
 		"message": "Generer vist navn:"
 	},
-	"fnFormulaAccesskey": {
-		"message": "n"
-	},
 	"resetFnFormulaLabel": {
 		"message": "Gendan standardvalg"
 	},
-	"resetFnFormulaAccesskey": {
-		"message": "d"
-	},
 	"applyToABButtonLabel": {
 		"message": "Anvend på…"
-	},
-	"applyToABButtonAccesskey": {
-		"message": "A"
 	},
 	"wdw_adrEditionTitle": {
 		"message": "Adresseredigering"
@@ -4173,53 +4143,26 @@
 	"autocompletionLabel": {
 		"message": "Autofuldførelse af e-mailadresser"
 	},
-	"autocompletionAccesskey": {
-		"message": "A"
-	},
-	"autocompletionTooltip": {
-		"message": "Udvider den almindelige autofuldførelse af kontakter i adressebøger af Thunderbird med en autofuldførelse af kontakter i adressebøger af CardBook."
-	},
 	"autocompleteSortByPopularityLabel": {
 		"message": "Sorter e-mailadresser efter popularitet"
-	},
-	"autocompleteSortByPopularityAccesskey": {
-		"message": "o"
 	},
 	"autocompleteProposeConcatEmailsLabel": {
 		"message": "Foreslå sammenkædede e-mails per kontakt"
 	},
-	"autocompleteProposeConcatEmailsAccesskey": {
-		"message": "F"
-	},
 	"autocompleteShowAddressbookLabel": {
 		"message": "Vis adressebogsnavn"
-	},
-	"autocompleteShowAddressbookAccesskey": {
-		"message": "V"
 	},
 	"autocompleteShowEmailTypeLabel": {
 		"message": "Vis e-mailtype"
 	},
-	"autocompleteShowEmailTypeAccesskey": {
-		"message": "e"
-	},
 	"autocompleteShowPopularityLabel": {
 		"message": "Vis popularitet"
-	},
-	"autocompleteShowPopularityAccesskey": {
-		"message": "p"
 	},
 	"autocompleteWithColorLabel": {
 		"message": "Brug adressebogsfarve"
 	},
-	"autocompleteWithColorAccesskey": {
-		"message": "B"
-	},
 	"autocompleteRestrictSearchLabel": {
 		"message": "Begræns søgefelter"
-	},
-	"autocompleteRestrictSearchAccesskey": {
-		"message": "æ"
 	},
 	"chooseAutocompleteRestrictSearchFieldsButtonLabel": {
 		"message": "Rediger"
@@ -4256,12 +4199,6 @@
 	},
 	"exclusiveLabel": {
 		"message": "Unik kilde til kontakter"
-	},
-	"exclusiveAccesskey": {
-		"message": "U"
-	},
-	"exclusiveTooltip": {
-		"message": "Hvis deaktiveret, tillader denne indstilling at hente kontakter i Thunderbirds almindelige adressebøger til de gule stjerner, til e-mailens viste navn, og til autofuldførelsen af e-mail."
 	},
 	"accountsRestrictionsLabel": {
 		"message": "Mailkontorestriktioner"
@@ -4341,12 +4278,6 @@
 	"debugModeLabel": {
 		"message": "Fejlsøgningstilstand"
 	},
-	"debugModeAccesskey": {
-		"message": "F"
-	},
-	"debugModeTooltip": {
-		"message": "Aktiver fejlsøgningstilstand for udvidet logning."
-	},
 	"statusInformationLineNumberLabel": {
 		"message": "Antal linjer der beholdes i logfilen:"
 	},
@@ -4365,26 +4296,14 @@
 	"listTab.conf.label": {
 		"message": "Lister"
 	},
-	"listTab.conf.accesskey": {
-		"message": "L"
-	},
 	"technicalTab.conf.label": {
 		"message": "Teknisk"
-	},
-	"technicalTab.conf.accesskey": {
-		"message": "T"
 	},
 	"vCardTab.conf.label": {
 		"message": "vCard"
 	},
-	"vCardTab.conf.accesskey": {
-		"message": "V"
-	},
 	"keyTab.conf.label": {
 		"message": "Offentlige nøgler"
-	},
-	"keyTab.conf.accesskey": {
-		"message": "K"
 	},
 	"advancedTab1Label": {
 		"message": "Avanceret"
@@ -4482,9 +4401,6 @@
 	"preferEmailEditionLabel": {
 		"message": "Dobbeltklik på en kontakt redigerer den i stedet for at e-maile den"
 	},
-	"preferEmailEditionAccesskey": {
-		"message": "l"
-	},
 	"dateDisplayedFormatLabel": {
 		"message": "Datoformat:"
 	},
@@ -4493,9 +4409,6 @@
 	},
 	"defaultRegionLabel": {
 		"message": "Standardregion:"
-	},
-	"defaultRegionAccesskey": {
-		"message": "R"
 	},
 	"defaultRegionTooltip": {
 		"message": "Standardregion for adresser og formatering af telefonnumre."
@@ -4641,9 +4554,6 @@
 	"preferIMPPPrefLabel": {
 		"message": "Foretræk internetkommunikation markeret med"
 	},
-	"preferIMPPPrefAccesskey": {
-		"message": "F"
-	},
 	"preferIMPPPrefWarn": {
 		"message": "Hvis ingen adresse er markeret, foreslås en forbindelse til alle kontaktens adresser."
 	},
@@ -4707,9 +4617,6 @@
 	"URLPhoneBackgroundLabel": {
 		"message": "Kør i baggrunden"
 	},
-	"URLPhoneBackgroundAccesskey": {
-		"message": "S"
-	},
 	"encryptionGroupboxLabel": {
 		"message": "Kryptering"
 	},
@@ -4718,9 +4625,6 @@
 	},
 	"localDataEncryptionEnabledLabel": {
 		"message": "Krypter lokalt mellemlagrede kort"
-	},
-	"localDataEncryptionEnabledAccesskey": {
-		"message": "K"
 	},
 	"customFieldRankHeaderLabel": {
 		"message": "Rang"
@@ -4771,7 +4675,7 @@
 		"message": "Feltetiket"
 	},
 	"listPanelLabel": {
-		"message": "Hvis ikke din server understøtter kategorier (som Google, Apple, Zimbra, osv…), er lister en god måde at sende e-mails til grupper. vCard 3.0 har ikke indbygget understøttelse for lister, men det kan afstedkommes med brugerdefinerede felter, så hvis du vil bruge lister i vCard 3.0, er du nødt til at definere disse felter."
+		"message": "Hvis ikke din server understøtter kategorier (som Apple, Zimbra, osv…), er lister en god måde at sende e-mails til grupper. vCard 3.0 har ikke indbygget understøttelse for lister, men det kan afstedkommes med brugerdefinerede felter, så hvis du vil bruge lister i vCard 3.0, er du nødt til at definere disse felter."
 	},
 	"listGroupboxLabel": {
 		"message": "Brugerdefinerede felter til lister"
@@ -4803,14 +4707,8 @@
 	"syncAfterChangeLabel": {
 		"message": "Synkroniser efter ændringer"
 	},
-	"syncAfterChangeAccesskey": {
-		"message": "æ"
-	},
 	"initialSyncLabel": {
 		"message": "Kør synkronisering når Thunderbird starter"
-	},
-	"initialSyncAccesskey": {
-		"message": "K"
 	},
 	"initialSyncDelayLabel": {
 		"message": "Forsinkelse før første synkronisering (sekunder):"
@@ -4872,17 +4770,11 @@
 	"decodeReportLabel": {
 		"message": "Afkod URL'er for REPORT-forespørgsler"
 	},
-	"decodeReportAccesskey": {
-		"message": "d"
-	},
 	"miscEmailGroupboxLabel": {
 		"message": "Afsendelse af e-mails"
 	},
 	"preferEmailPrefLabel": {
 		"message": "Foretræk e-mailadresser markeret PREF"
-	},
-	"preferEmailPrefAccesskey": {
-		"message": "F"
 	},
 	"preferEmailPrefWarn": {
 		"message": "Hvis ingen adresse er markeret „PREF” bliver beskeden sendt til alle kontaktens adresser."
@@ -4890,14 +4782,8 @@
 	"warnEmptyEmailsLabel": {
 		"message": "Advar mig når jeg forsøger at e-maile kontakter uden en e-mailadresse"
 	},
-	"warnEmptyEmailsAccesskey": {
-		"message": "A"
-	},
 	"useOnlyEmailLabel": {
 		"message": "Brug kun e-mailadresser, uden deres viste navne"
-	},
-	"useOnlyEmailAccesskey": {
-		"message": "B"
 	},
 	"attachVCardWarn": {
 		"message": "For automatisk af tilføje et vCard til dine e-mails, vælg et vCard for hver e-mailkonto. Hvis aktiveret, vil CardBook vedlægge dette vCard til hver udgående e-mail fra denne konto."
@@ -4956,26 +4842,14 @@
 	"bday.conf.label": {
 		"message": "Fødselsdag"
 	},
-	"bday.conf.accesskey": {
-		"message": "F"
-	},
 	"anniversary.conf.label": {
 		"message": "Mærkedag (kun for vCard 4.0)"
-	},
-	"anniversary.conf.accesskey": {
-		"message": "M"
 	},
 	"deathdate.conf.label": {
 		"message": "Død dato (kun for vCard 4.0)"
 	},
-	"deathdate.conf.accesskey": {
-		"message": "D"
-	},
 	"eventsLabel": {
 		"message": "Begivenheder"
-	},
-	"eventsAccesskey": {
-		"message": "B"
 	},
 	"gender.conf.label": {
 		"message": "Køn (kun for vCard 4.0)"
@@ -5007,14 +4881,8 @@
 	"showPopupOnStartupLabel": {
 		"message": "Vis pop-op-vindue ved opstart"
 	},
-	"showPopupOnStartupAccesskey": {
-		"message": "V"
-	},
 	"showPeriodicPopupLabel": {
 		"message": "Vis daglig pop-op"
-	},
-	"showPeriodicPopupAccesskey": {
-		"message": "i"
 	},
 	"periodicPopupTimeLabel": {
 		"message": "Tidspunkt for visning (tt:mm):"
@@ -5024,9 +4892,6 @@
 	},
 	"showPopupEvenIfNoBirthdayLabel": {
 		"message": "Vis pop-op-vindue når liste over mærkedage er tom"
-	},
-	"showPopupEvenIfNoBirthdayAccesskey": {
-		"message": "s"
 	},
 	"remindViaLightningGroupboxLabel": {
 		"message": "Påmind via Lightning (kalenderudvidelse til Thunderbird)"
@@ -5039,9 +4904,6 @@
 	},
 	"syncWithLightningOnStartupLabel": {
 		"message": "Synkroniser med Lightning ved opstart"
-	},
-	"syncWithLightningOnStartupAccesskey": {
-		"message": "y"
 	},
 	"calendarEntryTitleLabel": {
 		"message": "Kalenderbegivenheds titel:"
@@ -5061,9 +4923,6 @@
 	"calendarRepeatingEventLabel": {
 		"message": "Gentagende begivenhed"
 	},
-	"calendarRepeatingEventAccesskey": {
-		"message": "e"
-	},
 	"calendarEntryTimeLabel": {
 		"message": "Tidspunkt for kalenderbegivenhed (tt:mm):"
 	},
@@ -5072,9 +4931,6 @@
 	},
 	"calendarEntryWholeDayLabel": {
 		"message": "Kalenderbegivenhed for hele dagen"
-	},
-	"calendarEntryWholeDayAccesskey": {
-		"message": "l"
 	},
 	"calendarEntryAlarmLabel": {
 		"message": "Alarm(er) til n timer for kalenderbegivenhed (Eksempel: 4,+1):"
@@ -5835,9 +5691,6 @@
 	"viewResultEditionLabel": {
 		"message": "Vis resultat"
 	},
-	"viewResultEditionAccesskey": {
-		"message": "V"
-	},
 	"previousEditButton.tooltip": {
 		"message": "Forrige"
 	},
@@ -5883,20 +5736,11 @@
 	"moreEditionLabel": {
 		"message": "Vis mere"
 	},
-	"moreEditionAccesskey": {
-		"message": "e"
-	},
 	"lessEditionLabel": {
 		"message": "Vis mindre"
 	},
-	"lessEditionAccesskey": {
-		"message": "i"
-	},
 	"mergeAllEditionLabel": {
 		"message": "Flet alle"
-	},
-	"mergeAllEditionAccesskey": {
-		"message": "F"
 	},
 	"formatAllEditionLabel": {
 		"message": "Formater alle"
@@ -5906,9 +5750,6 @@
 	},
 	"undoAllEditionLabel": {
 		"message": "Fortryd alle"
-	},
-	"undoAllEditionAccesskey": {
-		"message": "o"
 	},
 	"formatEditionLabel": {
 		"message": "Formater"
@@ -5951,9 +5792,6 @@
 	},
 	"convertVCardsTooltip": {
 		"message": "vCard-versionen af nogle kontakter er forskellig fra vCard-versionen af din adressebog, denne knap kan konvertere disse vCards."
-	},
-	"convertVCardsAccesskey": {
-		"message": "K"
 	},
 	"wdw_findDuplicatesTitle": {
 		"message": "Duplikerede kontakter ($P1$)",
@@ -6016,26 +5854,14 @@
 	"refreshLogEditionLabel": {
 		"message": "Opdater"
 	},
-	"refreshLogEditionAccesskey": {
-		"message": "p"
-	},
 	"flushLogEditionLabel": {
 		"message": "Ryd liste"
-	},
-	"flushLogEditionAccesskey": {
-		"message": "R"
 	},
 	"clipboardLogEditionLabel": {
 		"message": "Kopier til udklipsholder"
 	},
-	"clipboardLogEditionAccesskey": {
-		"message": "K"
-	},
 	"cancelLogEditionLabel": {
 		"message": "O.k."
-	},
-	"cancelLogEditionAccesskey": {
-		"message": "O"
 	},
 	"wdw_mergeCardsTitle": {
 		"message": "Flet kontakter"
@@ -6064,6 +5890,30 @@
 	"wdw_cardbookConfigurationEditFieldTitle": {
 		"message": "Vælg en konverteringsfunktion"
 	},
+	"ContainsOperator": {
+		"message": "indeholder"
+	},
+	"DoesntContainOperator": {
+		"message": "ikke indeholder"
+	},
+	"IsOperator": {
+		"message": "er"
+	},
+	"IsntOperator": {
+		"message": "ikke er"
+	},
+	"BeginsWithOperator": {
+		"message": "begynder med"
+	},
+	"EndsWithOperator": {
+		"message": "slutter med"
+	},
+	"IsEmptyOperator": {
+		"message": "er tom"
+	},
+	"IsntEmptyOperator": {
+		"message": "er ikke tom"
+	},
 	"uppercaseLabel": {
 		"message": "Store bogstaver"
 	},
@@ -6072,5 +5922,821 @@
 	},
 	"capitalizationLabel": {
 		"message": "Store startbogstaver"
+	},
+	"region-name-ad": {
+		"message": "Andorra"
+	},
+	"region-name-ae": {
+		"message": "Forenede Arabiske Emirater"
+	},
+	"region-name-af": {
+		"message": "Afghanistan"
+	},
+	"region-name-ai": {
+		"message": "Anguilla"
+	},
+	"region-name-al": {
+		"message": "Albanien"
+	},
+	"region-name-ag": {
+		"message": "Antigua og Barbuda"
+	},
+	"region-name-am": {
+		"message": "Armenien"
+	},
+	"region-name-ar": {
+		"message": "Argentina"
+	},
+	"region-name-aq": {
+		"message": "Antarktis"
+	},
+	"region-name-ao": {
+		"message": "Angola"
+	},
+	"region-name-at": {
+		"message": "Østrig"
+	},
+	"region-name-az": {
+		"message": "Azerbaijan"
+	},
+	"region-name-ba": {
+		"message": "Bosnien-Hercegovina"
+	},
+	"region-name-bb": {
+		"message": "Barbados"
+	},
+	"region-name-as": {
+		"message": "Amerikansk Samoa"
+	},
+	"region-name-au": {
+		"message": "Australien"
+	},
+	"region-name-bd": {
+		"message": "Bangladesh"
+	},
+	"region-name-be": {
+		"message": "Belgien"
+	},
+	"region-name-aw": {
+		"message": "Aruba"
+	},
+	"region-name-bf": {
+		"message": "Burkina Faso"
+	},
+	"region-name-bm": {
+		"message": "Bermuda"
+	},
+	"region-name-bj": {
+		"message": "Benin"
+	},
+	"region-name-bg": {
+		"message": "Bulgarien"
+	},
+	"region-name-bi": {
+		"message": "Burundi"
+	},
+	"region-name-bh": {
+		"message": "Bahrain"
+	},
+	"region-name-bl": {
+		"message": "Saint-Barthelemy"
+	},
+	"region-name-bn": {
+		"message": "Brunei Darussalam"
+	},
+	"region-name-bo": {
+		"message": "Bolivia"
+	},
+	"region-name-br": {
+		"message": "Brazilien"
+	},
+	"region-name-bq": {
+		"message": "Bonaire, Sint Eustatius, and Saba"
+	},
+	"region-name-bt": {
+		"message": "Bhutan"
+	},
+	"region-name-bs": {
+		"message": "Bahamas"
+	},
+	"region-name-bz": {
+		"message": "Belize"
+	},
+	"region-name-ca": {
+		"message": "Canada"
+	},
+	"region-name-cc": {
+		"message": "Cocosøerne"
+	},
+	"region-name-by": {
+		"message": "Hviderusland"
+	},
+	"region-name-cd": {
+		"message": "Demokratiske Republik Congo"
+	},
+	"region-name-cf": {
+		"message": "Centralafrikanske Republik"
+	},
+	"region-name-bv": {
+		"message": "Bouvetøen"
+	},
+	"region-name-bw": {
+		"message": "Botswana"
+	},
+	"region-name-cl": {
+		"message": "Chile"
+	},
+	"region-name-ci": {
+		"message": "Elfenbenskysten"
+	},
+	"region-name-ch": {
+		"message": "Schweitz"
+	},
+	"region-name-cm": {
+		"message": "Cameroun"
+	},
+	"region-name-ck": {
+		"message": "Cook-øerne"
+	},
+	"region-name-cg": {
+		"message": "Republikken Congo"
+	},
+	"region-name-cn": {
+		"message": "Kina"
+	},
+	"region-name-cp": {
+		"message": "Clipperton Island"
+	},
+	"region-name-co": {
+		"message": "Colombia"
+	},
+	"region-name-cr": {
+		"message": "Costa Rica"
+	},
+	"region-name-cz": {
+		"message": "Tjekkiet"
+	},
+	"region-name-cy": {
+		"message": "Cypern"
+	},
+	"region-name-cx": {
+		"message": "Christmas Island"
+	},
+	"region-name-cv": {
+		"message": "Kap Verde"
+	},
+	"region-name-cu": {
+		"message": "Cuba"
+	},
+	"region-name-cw": {
+		"message": "Curaçao"
+	},
+	"region-name-de": {
+		"message": "Tyskland"
+	},
+	"region-name-dg": {
+		"message": "Diego Garcia"
+	},
+	"region-name-dk": {
+		"message": "Danmark"
+	},
+	"region-name-dj": {
+		"message": "Djibouti"
+	},
+	"region-name-dm": {
+		"message": "Dominica"
+	},
+	"region-name-ec": {
+		"message": "Ecuador"
+	},
+	"region-name-dz": {
+		"message": "Algeriet"
+	},
+	"region-name-do": {
+		"message": "Dominikanske Republik"
+	},
+	"region-name-ee": {
+		"message": "Estland"
+	},
+	"region-name-eg": {
+		"message": "Egypten"
+	},
+	"region-name-eh": {
+		"message": "Vestsahara"
+	},
+	"region-name-et": {
+		"message": "Etiopien"
+	},
+	"region-name-er": {
+		"message": "Eritrea"
+	},
+	"region-name-es": {
+		"message": "Spanien"
+	},
+	"region-name-fi": {
+		"message": "Finland"
+	},
+	"region-name-fj": {
+		"message": "Fiji"
+	},
+	"region-name-fm": {
+		"message": "Mikronesien"
+	},
+	"region-name-fk": {
+		"message": "Falklandsøerne"
+	},
+	"region-name-fo": {
+		"message": "Færøerne"
+	},
+	"region-name-ge": {
+		"message": "Georgien"
+	},
+	"region-name-gb": {
+		"message": "Storbritanien"
+	},
+	"region-name-gd": {
+		"message": "Grenada"
+	},
+	"region-name-fr": {
+		"message": "Frankrig"
+	},
+	"region-name-ga": {
+		"message": "Gabon"
+	},
+	"region-name-gf": {
+		"message": "Fransk Guiana"
+	},
+	"region-name-gl": {
+		"message": "Grønland"
+	},
+	"region-name-gm": {
+		"message": "Gambia"
+	},
+	"region-name-gi": {
+		"message": "Gibraltar"
+	},
+	"region-name-gg": {
+		"message": "Guernsey"
+	},
+	"region-name-gh": {
+		"message": "Ghana"
+	},
+	"region-name-gn": {
+		"message": "Guinea"
+	},
+	"region-name-gp": {
+		"message": "Guadeloupe"
+	},
+	"region-name-gr": {
+		"message": "Grækenland"
+	},
+	"region-name-gq": {
+		"message": "Ækvatorialguinea"
+	},
+	"region-name-gt": {
+		"message": "Guatemala"
+	},
+	"region-name-gw": {
+		"message": "Guinea-Bissau"
+	},
+	"region-name-hk": {
+		"message": "Hong Kong"
+	},
+	"region-name-gu": {
+		"message": "Guam"
+	},
+	"region-name-gs": {
+		"message": "Sydgeorgien og Sydsandwichøerne"
+	},
+	"region-name-gy": {
+		"message": "Guyana"
+	},
+	"region-name-hm": {
+		"message": "Heard- og McDonald-øerne"
+	},
+	"region-name-ht": {
+		"message": "Haiti"
+	},
+	"region-name-hr": {
+		"message": "Kroatien"
+	},
+	"region-name-hn": {
+		"message": "Honduras"
+	},
+	"region-name-in": {
+		"message": "Indien"
+	},
+	"region-name-il": {
+		"message": "Israel"
+	},
+	"region-name-im": {
+		"message": "Isle of Man"
+	},
+	"region-name-ie": {
+		"message": "Irland"
+	},
+	"region-name-hu": {
+		"message": "Ungarn"
+	},
+	"region-name-id": {
+		"message": "Indonesien"
+	},
+	"region-name-io": {
+		"message": "Britiske Territorium i Indiske Ocean"
+	},
+	"region-name-ir": {
+		"message": "Iran"
+	},
+	"region-name-is": {
+		"message": "Island"
+	},
+	"region-name-iq": {
+		"message": "Irak"
+	},
+	"region-name-je": {
+		"message": "Jersey"
+	},
+	"region-name-jp": {
+		"message": "Japan"
+	},
+	"region-name-it": {
+		"message": "Italien"
+	},
+	"region-name-ke": {
+		"message": "Kenya"
+	},
+	"region-name-jo": {
+		"message": "Jordan"
+	},
+	"region-name-jm": {
+		"message": "Jamaica"
+	},
+	"region-name-kg": {
+		"message": "Kirgisistan"
+	},
+	"region-name-ki": {
+		"message": "Kiribati"
+	},
+	"region-name-kh": {
+		"message": "Cambodia"
+	},
+	"region-name-km": {
+		"message": "Comorerne"
+	},
+	"region-name-kn": {
+		"message": "Saint Kitts og Nevis"
+	},
+	"region-name-ky": {
+		"message": "Cayman-øerne"
+	},
+	"region-name-kp": {
+		"message": "Nordkorea"
+	},
+	"region-name-kr": {
+		"message": "Sydkorea"
+	},
+	"region-name-kw": {
+		"message": "Kuwait"
+	},
+	"region-name-kz": {
+		"message": "Kazakhstan"
+	},
+	"region-name-la": {
+		"message": "Laos"
+	},
+	"region-name-lb": {
+		"message": "Libanon"
+	},
+	"region-name-lc": {
+		"message": "Saint Lucia"
+	},
+	"region-name-li": {
+		"message": "Liechtenstein"
+	},
+	"region-name-lk": {
+		"message": "Sri Lanka"
+	},
+	"region-name-lr": {
+		"message": "Liberia"
+	},
+	"region-name-lu": {
+		"message": "Luxembourg"
+	},
+	"region-name-lv": {
+		"message": "Letland"
+	},
+	"region-name-ls": {
+		"message": "Lesotho"
+	},
+	"region-name-ly": {
+		"message": "Libyen"
+	},
+	"region-name-lt": {
+		"message": "Litauen"
+	},
+	"region-name-mc": {
+		"message": "Monaco"
+	},
+	"region-name-md": {
+		"message": "Moldavien"
+	},
+	"region-name-ma": {
+		"message": "Marokko"
+	},
+	"region-name-me": {
+		"message": "Montenegro"
+	},
+	"region-name-mf": {
+		"message": "Saint Martin"
+	},
+	"region-name-mg": {
+		"message": "Madagaskar"
+	},
+	"region-name-mh": {
+		"message": "Marshalløerne"
+	},
+	"region-name-mk": {
+		"message": "Makedonien"
+	},
+	"region-name-ml": {
+		"message": "Mali"
+	},
+	"region-name-mm": {
+		"message": "Myanmar / Burma"
+	},
+	"region-name-mn": {
+		"message": "Mongoliet"
+	},
+	"region-name-mo": {
+		"message": "Macau"
+	},
+	"region-name-mp": {
+		"message": "Nordmarianerne"
+	},
+	"region-name-mt": {
+		"message": "Malta"
+	},
+	"region-name-mu": {
+		"message": "Mauritius"
+	},
+	"region-name-mr": {
+		"message": "Mauritanien"
+	},
+	"region-name-ms": {
+		"message": "Montserrat"
+	},
+	"region-name-mq": {
+		"message": "Martinique"
+	},
+	"region-name-mv": {
+		"message": "Maldiverne"
+	},
+	"region-name-mw": {
+		"message": "Malawi"
+	},
+	"region-name-my": {
+		"message": "Malaysia"
+	},
+	"region-name-mx": {
+		"message": "Mexico"
+	},
+	"region-name-mz": {
+		"message": "Mozambique"
+	},
+	"region-name-na": {
+		"message": "Namibia"
+	},
+	"region-name-nc": {
+		"message": "Ny Kaledonien"
+	},
+	"region-name-ne": {
+		"message": "Niger"
+	},
+	"region-name-nf": {
+		"message": "Norfolkøen"
+	},
+	"region-name-ng": {
+		"message": "Nigeria"
+	},
+	"region-name-ni": {
+		"message": "Nicaragua"
+	},
+	"region-name-nl": {
+		"message": "Holland"
+	},
+	"region-name-no": {
+		"message": "Norge"
+	},
+	"region-name-np": {
+		"message": "Nepal"
+	},
+	"region-name-nr": {
+		"message": "Nauru"
+	},
+	"region-name-pk": {
+		"message": "Pakistan"
+	},
+	"region-name-pl": {
+		"message": "Polen"
+	},
+	"region-name-nz": {
+		"message": "New Zealand"
+	},
+	"region-name-ph": {
+		"message": "Filippinerne"
+	},
+	"region-name-nu": {
+		"message": "Niue"
+	},
+	"region-name-om": {
+		"message": "Oman"
+	},
+	"region-name-pe": {
+		"message": "Peru"
+	},
+	"region-name-pa": {
+		"message": "Panama"
+	},
+	"region-name-pf": {
+		"message": "Fransk Polynesien"
+	},
+	"region-name-pg": {
+		"message": "Ny Guinea"
+	},
+	"region-name-pm": {
+		"message": "Saint-Pierre og Miquelon"
+	},
+	"region-name-pn": {
+		"message": "Pitcairnøerne"
+	},
+	"region-name-pr": {
+		"message": "Puerto Rico"
+	},
+	"region-name-pt": {
+		"message": "Portugal"
+	},
+	"region-name-pw": {
+		"message": "Palau"
+	},
+	"region-name-qm": {
+		"message": "Midway Islands"
+	},
+	"region-name-py": {
+		"message": "Paraguay"
+	},
+	"region-name-qa": {
+		"message": "Qatar"
+	},
+	"region-name-qs": {
+		"message": "Bassas da India"
+	},
+	"region-name-qu": {
+		"message": "Juan de Nova Island"
+	},
+	"region-name-qw": {
+		"message": "Wake Island"
+	},
+	"region-name-qx": {
+		"message": "Glorioso Islands"
+	},
+	"region-name-rs": {
+		"message": "Serbien"
+	},
+	"region-name-ro": {
+		"message": "Rumænien"
+	},
+	"region-name-qz": {
+		"message": "Akrotiri"
+	},
+	"region-name-re": {
+		"message": "Reunion"
+	},
+	"region-name-rw": {
+		"message": "Rwanda"
+	},
+	"region-name-ru": {
+		"message": "Rusland"
+	},
+	"region-name-sa": {
+		"message": "Saudiarabien"
+	},
+	"region-name-sb": {
+		"message": "Salomonøerne"
+	},
+	"region-name-sc": {
+		"message": "Seychellerne"
+	},
+	"region-name-sd": {
+		"message": "Sudan"
+	},
+	"region-name-se": {
+		"message": "Sverige"
+	},
+	"region-name-sg": {
+		"message": "Singapore"
+	},
+	"region-name-sh": {
+		"message": "Sankt Helena"
+	},
+	"region-name-si": {
+		"message": "Slovenien"
+	},
+	"region-name-sk": {
+		"message": "Slovakiet"
+	},
+	"region-name-sl": {
+		"message": "Sierra Leone"
+	},
+	"region-name-sn": {
+		"message": "Senegal"
+	},
+	"region-name-sm": {
+		"message": "San Marino"
+	},
+	"region-name-ss": {
+		"message": "South Sudan"
+	},
+	"region-name-so": {
+		"message": "Somalia"
+	},
+	"region-name-sr": {
+		"message": "Surinam"
+	},
+	"region-name-sx": {
+		"message": "Sint Maarten"
+	},
+	"region-name-st": {
+		"message": "Sao Tome og Principe"
+	},
+	"region-name-sv": {
+		"message": "El Salvador"
+	},
+	"region-name-sy": {
+		"message": "Syrien"
+	},
+	"region-name-sz": {
+		"message": "Swaziland"
+	},
+	"region-name-tc": {
+		"message": "Turks- og Caicosøerne"
+	},
+	"region-name-td": {
+		"message": "Tchad"
+	},
+	"region-name-tg": {
+		"message": "Togo"
+	},
+	"region-name-th": {
+		"message": "Thailand"
+	},
+	"region-name-tf": {
+		"message": "Franske Sydterritorier"
+	},
+	"region-name-tj": {
+		"message": "Tadsjikistan"
+	},
+	"region-name-tk": {
+		"message": "Tokelau"
+	},
+	"region-name-tl": {
+		"message": "Østtimor"
+	},
+	"region-name-tr": {
+		"message": "Tyrkiet"
+	},
+	"region-name-tn": {
+		"message": "Tunesien"
+	},
+	"region-name-to": {
+		"message": "Tonga"
+	},
+	"region-name-tm": {
+		"message": "Turkmenistan"
+	},
+	"region-name-tt": {
+		"message": "Trinidad og Tobago"
+	},
+	"region-name-tv": {
+		"message": "Tuvalu"
+	},
+	"region-name-tw": {
+		"message": "Taiwan"
+	},
+	"region-name-tz": {
+		"message": "Tanzania"
+	},
+	"region-name-ua": {
+		"message": "Ukraine"
+	},
+	"region-name-ug": {
+		"message": "Uganda"
+	},
+	"region-name-us": {
+		"message": "USA"
+	},
+	"region-name-uy": {
+		"message": "Uruguay"
+	},
+	"region-name-va": {
+		"message": "Vatikanstaten"
+	},
+	"region-name-uz": {
+		"message": "Uzbekistan"
+	},
+	"region-name-vc": {
+		"message": "Saint Vincent og Grenadinerne"
+	},
+	"region-name-vg": {
+		"message": "Britiske Jomfruøer"
+	},
+	"region-name-vi": {
+		"message": "Amerikanske Jomfruøer"
+	},
+	"region-name-vu": {
+		"message": "Vanuatu"
+	},
+	"region-name-ve": {
+		"message": "Venezuela"
+	},
+	"region-name-vn": {
+		"message": "Vietnam"
+	},
+	"region-name-wf": {
+		"message": "Wallis- og Futunaøerne"
+	},
+	"region-name-ws": {
+		"message": "Samoa"
+	},
+	"region-name-xa": {
+		"message": "Ashmore and Cartier Islands"
+	},
+	"region-name-xb": {
+		"message": "Baker Island"
+	},
+	"region-name-xc": {
+		"message": "Coral Sea Islands"
+	},
+	"region-name-xd": {
+		"message": "Dhekelia"
+	},
+	"region-name-xe": {
+		"message": "Europa Island"
+	},
+	"region-name-xh": {
+		"message": "Howland Island"
+	},
+	"region-name-xg": {
+		"message": "Gaza"
+	},
+	"region-name-xj": {
+		"message": "Jan Mayen"
+	},
+	"region-name-xk": {
+		"message": "Kosovo"
+	},
+	"region-name-xl": {
+		"message": "Palmyra Atoll"
+	},
+	"region-name-xp": {
+		"message": "Paracel Islands"
+	},
+	"region-name-xm": {
+		"message": "Kingman Reef"
+	},
+	"region-name-xq": {
+		"message": "Jarvis Island"
+	},
+	"region-name-xr": {
+		"message": "Svalbard"
+	},
+	"region-name-xs": {
+		"message": "Spratly Islands"
+	},
+	"region-name-xt": {
+		"message": "Tromelin Island"
+	},
+	"region-name-xv": {
+		"message": "Navassa Island"
+	},
+	"region-name-yt": {
+		"message": "Mayotte"
+	},
+	"region-name-ye": {
+		"message": "Yemen"
+	},
+	"region-name-xw": {
+		"message": "Vestbredden"
+	},
+	"region-name-za": {
+		"message": "Sydafrika"
+	},
+	"region-name-xu": {
+		"message": "Johnston Atoll"
+	},
+	"region-name-zw": {
+		"message": "Zimbabwe"
+	},
+	"region-name-zm": {
+		"message": "Zambia"
 	}
 }

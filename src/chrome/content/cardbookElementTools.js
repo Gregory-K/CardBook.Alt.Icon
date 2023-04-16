@@ -107,12 +107,6 @@ if ("undefined" == typeof(cardbookElementTools)) {
 			}
 		},
 
-		addHTMLPROGRESS: function (aParent, aId, aParameters) {
-			let aProgressmeter = cardbookElementTools.addHTMLElement("progress", aParent, aId, aParameters)
-			aProgressmeter.setAttribute('max', "100");
-			return aProgressmeter;
-		},
-
 		addHBox: function (aType, aIndex, aParent, aParameters) {
 			var aHBox = document.createXULElement('hbox');
 			aParent.appendChild(aHBox);
@@ -150,42 +144,37 @@ if ("undefined" == typeof(cardbookElementTools)) {
 		},
 
 		addHTMLTABLE: function (aParent, aId, aParameters) {
-			let table = cardbookElementTools.addHTMLElement("table", aParent, aId, aParameters)
+			let table = cardbookElementTools.addHTMLElement("table", aParent, aId, aParameters);
 			return table;
 		},
 
 		addHTMLTR: function (aParent, aId, aParameters) {
-			let tr = cardbookElementTools.addHTMLElement("tr", aParent, aId, aParameters)
+			let tr = cardbookElementTools.addHTMLElement("tr", aParent, aId, aParameters);
 			return tr;
 		},
 
 		addHTMLTD: function (aParent, aId, aParameters) {
-			let td = cardbookElementTools.addHTMLElement("td", aParent, aId, aParameters)
+			let td = cardbookElementTools.addHTMLElement("td", aParent, aId, aParameters);
 			return td;
 		},
 
 		addHTMLTHEAD: function (aParent, aId, aParameters) {
-			let thead = cardbookElementTools.addHTMLElement("thead", aParent, aId, aParameters)
+			let thead = cardbookElementTools.addHTMLElement("thead", aParent, aId, aParameters);
 			return thead;
 		},
 
 		addHTMLTBODY: function (aParent, aId, aParameters) {
-			let tbody = cardbookElementTools.addHTMLElement("tbody", aParent, aId, aParameters)
+			let tbody = cardbookElementTools.addHTMLElement("tbody", aParent, aId, aParameters);
 			return tbody;
 		},
 
 		addHTMLTH: function (aParent, aId, aParameters) {
-			let th = cardbookElementTools.addHTMLElement("th", aParent, aId, aParameters)
+			let th = cardbookElementTools.addHTMLElement("th", aParent, aId, aParameters);
 			return th;
 		},
 
 		addHTMLIMAGE: function (aParent, aId, aParameters) {
-			let image = cardbookElementTools.addHTMLElement("img", aParent, aId, aParameters)
-			return image;
-		},
-
-		addHTMLOPTION: function (aParent, aId, aParameters) {
-			let image = cardbookElementTools.addHTMLElement("option", aParent, aId, aParameters)
+			let image = cardbookElementTools.addHTMLElement("img", aParent, aId, aParameters);
 			return image;
 		},
 
@@ -270,20 +259,6 @@ if ("undefined" == typeof(cardbookElementTools)) {
 			return table;
 		},
 
-		addTreeSelect: function (aId, aData, aRowParameters) {
-			let select = document.getElementById(aId);
-			if (aData.length) {
-				for (let i = 0; i < aData.length; i++) {
-					let option = cardbookElementTools.addHTMLOPTION(select, `${aId}_option_${i}`, { "value": aData[i] } );
-					option.textContent = aData[i];
-					if (aRowParameters && aRowParameters.values && aRowParameters.values[i]) {
-						option.setAttribute("data-value", aRowParameters.values[i]);
-					}
-				}
-			}
-			return select;
-		},
-
 		addLabel: function (aOrigBox, aId, aValue, aControl, aParameters) {
 			var aLabel = document.createXULElement('label');
 			aOrigBox.appendChild(aLabel);
@@ -296,7 +271,7 @@ if ("undefined" == typeof(cardbookElementTools)) {
 			return aLabel;
 		},
 
-		addKeyTextbox: function (aParent, aId, aValue, aParameters, aIndex) {
+		addKeyTextbox: function (aParent, aId, aValue, aParameters) {
 			var aKeyTextBox = cardbookElementTools.addHTMLINPUT(aParent, aId, aValue, aParameters);
 			aKeyTextBox.addEventListener("input", cardbookElementTools.checkEditButton, false);
 			return aKeyTextBox;
@@ -332,36 +307,10 @@ if ("undefined" == typeof(cardbookElementTools)) {
 			return aTextarea;
 		},
 
-		loadConvertionFuntions: async function (aPopup, aMenu, aDefaultValue) {
-			var myResult = [];
-			for (let value of [ "uppercase", "lowercase", "capitalization" ]) {
-				myResult.push([value, cardbookRepository.extension.localeData.localizeMessage(`${value}Label`)]);
-			}
-			cardbookRepository.cardbookUtils.sortMultipleArrayByString(myResult,1,1);
-			cardbookElementTools.deleteRows(aPopup.id);
-			var defaultIndex = 0;
-			var menuItem = aMenu.appendItem("", "");
-			var j = 1;
-			var found = false;
-			for (var i = 0; i < myResult.length; i++) {
-				var menuItem = aMenu.appendItem(myResult[i][1], myResult[i][0]);
-				aPopup.appendChild(menuItem);
-				if (!found && aDefaultValue && aDefaultValue != "" && myResult[i][0].toUpperCase() == aDefaultValue.toUpperCase()) {
-					defaultIndex=j;
-					found=true;
-				}
-				j++;
-			}
-			if (found) {
-				aMenu.selectedIndex = defaultIndex;
-			}
-		},
-
-		loadCountries: async function (aPopup, aMenu, aDefaultValue, aAddEmptyCountries, aUseCodeValues) {
-			const loc = new Localization(["toolkit/intl/regionNames.ftl"]);
+		loadCountries: function (aPopup, aMenu, aDefaultValue, aAddEmptyCountries, aUseCodeValues) {
 			var myResult = [];
 			for (let code of cardbookRepository.countriesList) {
-				let country = await loc.formatValue("region-name-" + code);
+				let country = cardbookRepository.extension.localeData.localizeMessage("region-name-" + code);
 				if (aUseCodeValues) {
 					myResult.push([code.toUpperCase(), country]);
 				} else {
@@ -413,28 +362,6 @@ if ("undefined" == typeof(cardbookElementTools)) {
 			}
 		},
 
-		loadInclExcl: function (aPopupName, aMenuName, aDefaultId) {
-			var myPopup = document.getElementById(aPopupName);
-			cardbookElementTools.deleteRows(aPopupName);
-			var defaultIndex = 0;
-			var j = 0;
-			var typeName = [ 'include', 'exclude' ];
-			for (var i = 0; i < typeName.length; i++) {
-				var menuItem = document.createXULElement("menuitem");
-				menuItem.setAttribute("label", cardbookRepository.extension.localeData.localizeMessage(typeName[i] + "Label"));
-				menuItem.setAttribute("value", typeName[i]);
-				menuItem.setAttribute("class", "menuitem-iconic");
-				menuItem.setAttribute("type", "radio");
-				myPopup.appendChild(menuItem);
-				if (typeName[i] == aDefaultId) {
-					defaultIndex=j;
-				}
-				j++;
-			}
-			document.getElementById(aMenuName).selectedIndex = defaultIndex;
-			document.getElementById(aMenuName).selectedItem.setAttribute("checked", "true");
-		},
-
 		loadGender: function (aPopupName, aMenuName, aDefaultId) {
 			var myPopup = document.getElementById(aPopupName);
 			cardbookElementTools.deleteRows(aPopupName);
@@ -452,48 +379,6 @@ if ("undefined" == typeof(cardbookElementTools)) {
 				menuItem.setAttribute("type", "radio");
 				myPopup.appendChild(menuItem);
 				if (myResult[i][0] == aDefaultId) {
-					defaultIndex=j;
-				}
-				j++;
-			}
-			document.getElementById(aMenuName).selectedIndex = defaultIndex;
-			document.getElementById(aMenuName).selectedItem.setAttribute("checked", "true");
-		},
-
-		loadMailAccounts: function (aPopupName, aMenuName, aDefaultId, aAddAllMailAccounts) {
-			var myPopup = document.getElementById(aPopupName);
-			cardbookElementTools.deleteRows(aPopupName);
-			var defaultIndex = 0;
-			var j = 0;
-			if (aAddAllMailAccounts) {
-				var menuItem = document.createXULElement("menuitem");
-				menuItem.setAttribute("label", cardbookRepository.extension.localeData.localizeMessage("allMailAccounts"));
-				menuItem.setAttribute("value", "allMailAccounts");
-				menuItem.setAttribute("class", "menuitem-iconic");
-				menuItem.setAttribute("type", "radio");
-				myPopup.appendChild(menuItem);
-				if ("allMailAccounts" == aDefaultId) {
-					defaultIndex=j;
-				}
-				j++;
-			}
-			var sortedEmailAccounts = [];
-			for (let account of MailServices.accounts.accounts) {
-				for (let identity of account.identities) {
-					if (account.incomingServer.type == "pop3" || account.incomingServer.type == "imap") {
-						sortedEmailAccounts.push([identity.email, identity.key]);
-					}
-				}
-			}
-			cardbookRepository.cardbookUtils.sortMultipleArrayByString(sortedEmailAccounts,0,1);
-			for (var i = 0; i < sortedEmailAccounts.length; i++) {
-				var menuItem = document.createXULElement("menuitem");
-				menuItem.setAttribute("label", sortedEmailAccounts[i][0]);
-				menuItem.setAttribute("value", sortedEmailAccounts[i][1]);
-				menuItem.setAttribute("class", "menuitem-iconic");
-				menuItem.setAttribute("type", "radio");
-				myPopup.appendChild(menuItem);
-				if (sortedEmailAccounts[i][1] == aDefaultId) {
 					defaultIndex=j;
 				}
 				j++;
@@ -559,35 +444,6 @@ if ("undefined" == typeof(cardbookElementTools)) {
 				menuItem.setAttribute("class", "menuitem-iconic");
 				aPopup.appendChild(menuItem);
 				if (sortedAddressBooks[i][1] == aDefaultId) {
-					defaultIndex=j;
-				}
-				j++;
-			}
-			aMenu.selectedIndex = defaultIndex;
-		},
-
-		loadRemotePageTypes: function (aPopup, aMenu, aDefaultId) {
-			cardbookElementTools.deleteRows(aPopup.id);
-			let defaultIndex = 0;
-			let j = 0;
-			let sortedConnections = [];
-			for (let connection of cardbookRepository.supportedConnections) {
-				sortedConnections.push([connection.id, connection.type, connection.url]);
-			}
-
-			cardbookRepository.cardbookUtils.sortMultipleArrayByString(sortedConnections,0,1);
-			for (let connection of sortedConnections) {
-				let menuItem = document.createXULElement("menuitem");
-				let id = connection[0].toLowerCase();
-				let label = cardbookRepository.extension.localeData.localizeMessage(`remotePageType.${id}.label`) ||
-								id[0].toUpperCase() + id.substr(1).toLowerCase();
-				menuItem.setAttribute("label", label);
-				menuItem.setAttribute("value", connection[0]);
-				menuItem.setAttribute("type", connection[1]);
-				menuItem.setAttribute("url", connection[2]);
-				menuItem.setAttribute("class", "menuitem-iconic");
-				aPopup.appendChild(menuItem);
-				if (connection[0] == aDefaultId) {
 					defaultIndex=j;
 				}
 				j++;
@@ -697,61 +553,6 @@ if ("undefined" == typeof(cardbookElementTools)) {
 					defaultIndex=j;
 				}
 				j++;
-			}
-			document.getElementById(aMenuName).selectedIndex = defaultIndex;
-			document.getElementById(aMenuName).selectedItem.setAttribute("checked", "true");
-		},
-
-		loadContacts: function (aPopupName, aMenuName, aDirPrefId, aDefaultId) {
-			var myPopup = document.getElementById(aPopupName);
-			cardbookElementTools.deleteRows(aPopupName);
-			var defaultIndex = 0;
-			var j = 0;
-			var sortedContacts = [];
-			for (let card of cardbookRepository.cardbookDisplayCards[aDirPrefId].cards) {
-				sortedContacts.push([card.fn, card.uid, card.isAList]);
-			}
-			cardbookRepository.cardbookUtils.sortMultipleArrayByString(sortedContacts,0,1);
-			for (var i = 0; i < sortedContacts.length; i++) {
-				var menuItem = document.createXULElement("menuitem");
-				menuItem.setAttribute("label", sortedContacts[i][0]);
-				menuItem.setAttribute("value", sortedContacts[i][1]);
-				menuItem.setAttribute("isAList", sortedContacts[i][2].toString());
-				menuItem.setAttribute("class", "menuitem-iconic");
-				myPopup.appendChild(menuItem);
-				if (sortedContacts[i][1] == aDefaultId) {
-					defaultIndex=j;
-				}
-				j++;
-			}
-			document.getElementById(aMenuName).selectedIndex = defaultIndex;
-		},
-
-		loadVCardVersions: function (aPopupName, aMenuName, aDefaultList) {
-			var myPopup = document.getElementById(aPopupName);
-			cardbookElementTools.deleteRows(aPopupName);
-			if (aDefaultList && aDefaultList.length && aDefaultList.length > 0) {
-				var versions = aDefaultList;
-			} else {
-				var versions = cardbookRepository.supportedVersion;
-			}
-			if (versions.includes("3.0")) {
-				var defaultValue = "3.0";
-			} else {
-				var defaultValue = "4.0";
-			}
-
-			var defaultIndex = 0;
-			for (var i = 0; i < versions.length; i++) {
-				var menuItem = document.createXULElement("menuitem");
-				menuItem.setAttribute("label", versions[i]);
-				menuItem.setAttribute("value", versions[i]);
-				menuItem.setAttribute("class", "menuitem-iconic");
-				menuItem.setAttribute("type", "radio");
-				myPopup.appendChild(menuItem);
-				if (versions[i] == defaultValue) {
-					defaultIndex = i;
-				}
 			}
 			document.getElementById(aMenuName).selectedIndex = defaultIndex;
 			document.getElementById(aMenuName).selectedItem.setAttribute("checked", "true");
@@ -952,111 +753,6 @@ if ("undefined" == typeof(cardbookElementTools)) {
 			setTimeout(function() {
 					cardbookWindowUtils.updateComplexMenulist('type', aMenupopup.id);
 				}, 0);
-		},
-
-		addMenuCaselist: function (aParent, aType, aIndex, aValue, aParameters) {
-			var aMenulist = document.createXULElement('menulist');
-			aParent.appendChild(aMenulist);
-			aMenulist.setAttribute('id', aType + '_' + aIndex + '_menulistCase');
-			aMenulist.setAttribute('sizetopopup', 'none');
-			for (var prop in aParameters) {
-				aMenulist.setAttribute(prop, aParameters[prop]);
-			}
-			
-			var aMenupopup = document.createXULElement('menupopup');
-			aMenulist.appendChild(aMenupopup);
-			aMenupopup.setAttribute('id', aType + '_' + aIndex + '_menupopupCase');
-			cardbookElementTools.deleteRows(aMenupopup.id);
-			var defaultIndex = 0;
-			var caseOperators = [['dig', 'ignoreCaseIgnoreDiacriticLabel'], ['ig', 'ignoreCaseMatchDiacriticLabel'],
-									['dg', 'matchCaseIgnoreDiacriticLabel'], ['g', 'matchCaseMatchDiacriticLabel']]
-			for (var i = 0; i < caseOperators.length; i++) {
-				var menuItem = document.createXULElement("menuitem");
-				menuItem.setAttribute('id', aType + '_' + aIndex + '_menuitemCase_' + i);
-				menuItem.setAttribute("label", cardbookRepository.extension.localeData.localizeMessage(caseOperators[i][1]));
-				menuItem.setAttribute("value", caseOperators[i][0]);
-				menuItem.setAttribute("class", "menuitem-iconic");
-				menuItem.setAttribute("type", "radio");
-				aMenupopup.appendChild(menuItem);
-				if (aValue == caseOperators[i][0]) {
-					defaultIndex = i;
-				}
-			}
-			aMenulist.selectedIndex = defaultIndex;
-			aMenulist.selectedItem.setAttribute("checked", "true");
-		},
-
-		addMenuObjlist: function (aParent, aType, aIndex, aValue, aParameters) {
-			var aMenulist = document.createXULElement('menulist');
-			aParent.appendChild(aMenulist);
-			aMenulist.setAttribute('id', aType + '_' + aIndex + '_menulistObj');
-			aMenulist.setAttribute('sizetopopup', 'none');
-			for (var prop in aParameters) {
-				aMenulist.setAttribute(prop, aParameters[prop]);
-			}
-			
-			var aMenupopup = document.createXULElement('menupopup');
-			aMenulist.appendChild(aMenupopup);
-			aMenupopup.setAttribute('id', aType + '_' + aIndex + '_menupopupObj');
-			cardbookElementTools.deleteRows(aMenupopup.id);
-			var defaultIndex = 0;
-			var myColumns = cardbookRepository.cardbookUtils.getAllAvailableColumns("search");
-			for (var i = 0; i < myColumns.length; i++) {
-				var menuItem = document.createXULElement("menuitem");
-				menuItem.setAttribute('id', aType + '_' + aIndex + '_menuitemObj_' + i);
-				menuItem.setAttribute("label", myColumns[i][1]);
-				menuItem.setAttribute("value", myColumns[i][0]);
-				menuItem.setAttribute("class", "menuitem-iconic");
-				menuItem.setAttribute("type", "radio");
-				aMenupopup.appendChild(menuItem);
-				if (aValue == myColumns[i][0]) {
-					defaultIndex = i;
-				}
-			}
-			aMenulist.selectedIndex = defaultIndex;
-			aMenulist.selectedItem.setAttribute("checked", "true");
-		},
-
-		addMenuTermlist: function (aParent, aType, aIndex, aValue, aParameters) {
-			var aMenulist = document.createXULElement('menulist');
-			aParent.appendChild(aMenulist);
-			aMenulist.setAttribute('id', aType + '_' + aIndex + '_menulistTerm');
-			aMenulist.setAttribute('sizetopopup', 'none');
-			for (var prop in aParameters) {
-				aMenulist.setAttribute(prop, aParameters[prop]);
-			}
-			
-			var aMenupopup = document.createXULElement('menupopup');
-			aMenulist.appendChild(aMenupopup);
-			aMenupopup.setAttribute('id', aType + '_' + aIndex + '_menupopupTerm');
-			cardbookElementTools.deleteRows(aMenupopup.id);
-			var defaultIndex = 0;
-			var operatorsStrBundle = Services.strings.createBundle("chrome://messenger/locale/search-operators.properties");
-			var operators = ['Contains', 'DoesntContain', 'Is', 'Isnt', 'BeginsWith', 'EndsWith', 'IsEmpty', 'IsntEmpty']
-			for (var i = 0; i < operators.length; i++) {
-				var menuItem = document.createXULElement("menuitem");
-				menuItem.setAttribute('id', aType + '_' + aIndex + '_menuitemTerm_' + i);
-				menuItem.setAttribute("label", operatorsStrBundle.GetStringFromName(Components.interfaces.nsMsgSearchOp[operators[i]]));
-				menuItem.setAttribute("value", operators[i]);
-				menuItem.setAttribute("class", "menuitem-iconic");
-				menuItem.setAttribute("type", "radio");
-				aMenupopup.appendChild(menuItem);
-				if (aValue == operators[i]) {
-					defaultIndex = i;
-				}
-			}
-			aMenulist.selectedIndex = defaultIndex;
-			aMenulist.selectedItem.setAttribute("checked", "true");
-
-			function fireMenuTerm(event) {
-				if (document.getElementById(this.id).disabled) {
-					return;
-				}
-				cardbookComplexSearch.showOrHideForEmpty(this.id);
-				var myIdArray = this.id.split('_');
-				cardbookComplexSearch.disableButtons(myIdArray[0], myIdArray[1]);
-			};
-			aMenulist.addEventListener("command", fireMenuTerm, false);
 		},
 
 		addEditButton: function (aParent, aType, aIndex, aButtonType, aButtonName, aFunction) {

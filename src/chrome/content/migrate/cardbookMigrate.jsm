@@ -287,7 +287,7 @@ var cardbookMigrate = {
 
 	importCards: async function (aDirPrefIdSource, aDirPrefIdTarget, aDirPrefIdTargetName, aVersion) {
 		for (let addrbook of MailServices.ab.directories) {
-			if (addrbook.dirPrefId == aDirPrefIdSource) {
+			if (addrbook.UID == aDirPrefIdSource) {
 				cardbookMigrate.allLists[aDirPrefIdTarget] = {};
 				let myDateFormat = cardbookRepository.getDateFormat(aDirPrefIdTarget, aVersion);
 				for (let myABCard of addrbook.childCards) {	

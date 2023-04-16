@@ -135,7 +135,7 @@ var cardbookIDBMailPop = {
 			var store = transaction.objectStore("mailPop");
 			var cursorRequest = store.put(storedMailPop);
 
-			cursorRequest.onsuccess = function(e) {
+			cursorRequest.onsuccess = async function(e) {
 				cardbookIDBMailPop.addMailPopToIndex(aMailPop);
 				if (cardbookIndexedDB.encryptionEnabled) {
 					cardbookRepository.cardbookLog.updateStatusProgressInformationWithDebug2("debug mode : Mail popularity " + aMailPop.email + " written to encrypted MailPopDB");
@@ -143,7 +143,7 @@ var cardbookIDBMailPop = {
 					cardbookRepository.cardbookLog.updateStatusProgressInformationWithDebug2("debug mode : Mail popularity " + aMailPop.email + " written to MailPopDB");
 				}
 				if (aMode) {
-					cardbookActions.fetchCryptoActivity(aMode);
+					await cardbookActions.fetchCryptoActivity(aMode);
 				}
 			};
 
@@ -250,7 +250,7 @@ var cardbookIDBMailPop = {
 					cardbookIDBMailPop.addMailPop(mailPop, "decryption");
 				}
 				catch(e) {
-					cardbookActions.fetchCryptoActivity("decryption");
+					await cardbookActions.fetchCryptoActivity("decryption");
 					cardbookRepository.cardbookLog.updateStatusProgressInformation("debug mode : Decryption failed e : " + e, "Error");
 				}
 			},
@@ -271,7 +271,7 @@ var cardbookIDBMailPop = {
 					cardbookIDBMailPop.addMailPop(mailPop, "encryption");
 				}
 				catch(e) {
-					cardbookActions.fetchCryptoActivity("encryption");
+					await cardbookActions.fetchCryptoActivity("encryption");
 					cardbookRepository.cardbookLog.updateStatusProgressInformation("debug mode : Encryption failed e : " + e, "Error");
 				}
 			},

@@ -1,35 +1,60 @@
-if ("undefined" == typeof(wdw_mergeCards)) {
-	var { Services } = ChromeUtils.import("resource://gre/modules/Services.jsm");
-	var { cardbookRepository } = ChromeUtils.import("chrome://cardbook/content/cardbookRepository.js");
+import { cardbookHTMLTools } from "../cardbookHTMLTools.mjs";
+import { cardbookHTMLRichContext } from "../cardbookHTMLRichContext.mjs";
+import { cardbookHTMLUtils } from "../cardbookHTMLUtils.mjs";
+import { cardbookHTMLTypes } from "../cardbookHTMLTypes.mjs";
+import { cardbookNewPreferences } from "../preferences/cardbookNewPreferences.mjs";
 
+if ("undefined" == typeof(wdw_mergeCards)) {
 	var wdw_mergeCards = {
 		arrayField: {},
 		version: "",
+        hideCreate: false,
 		mode: "CONTACT",
-		
-		createCheckBox1: function (aRow, aName, aValue) {
-			let checkboxData = cardbookElementTools.addHTMLTD(aRow, aName + '.1');
-			let aCheckbox = document.createXULElement('checkbox');
-			checkboxData.appendChild(aCheckbox);
-			aCheckbox.setAttribute('id', aName);
+		source: "",
+        ids: "",
+        actionId: 0,
+		duplicateWinId: "",
+		duplicateDisplayId: "",
+        duplicateLineId: "",
+        cardsIn: [],
+        allColumns: {},
+        customFields: {},
+        newFields: [],
+        multilineFields: [],
+            
+		setReadOnly: function (aElement, aSelected, aDisabled) {
+			if (aSelected) {
+				if (aDisabled) {
+					aElement.setAttribute('readonly', 'true');
+				} else {
+					aElement.removeAttribute('readonly');
+				}
+			} else {
+				aElement.setAttribute('readonly', 'true');
+			}
+        },
+
+        createCheckBox1: function (aRow, aName, aValue) {
+            let checkboxData = cardbookHTMLTools.addHTMLTD(aRow, `${aName}.1`);
+           	let aCheckbox = cardbookHTMLTools.addHTMLINPUT(checkboxData, aName, null, { "type": "checkbox" });
 			aCheckbox.checked = aValue;
-			aCheckbox.setAttribute('flex', '1');
-			aCheckbox.addEventListener("command", function() {
+
+            aCheckbox.addEventListener("click", function() {
 				let field = this.id.replace(/Checkbox.*/,"");
 				let number = this.id.replace(/.*Checkbox/,"");
 				if (this.checked) {
-					for (let j = 0; j < window.arguments[0].cardsIn.length; j++) {
+					for (let j = 0; j < wdw_mergeCards.cardsIn.length; j++) {
 						if (j != number) {
-							if (document.getElementById(field + 'Checkbox' + j)) {
-								let aCheckbox = document.getElementById(field + 'Checkbox' + j);
+							if (document.getElementById(`${field}Checkbox${j}`)) {
+								let aCheckbox = document.getElementById(`${field}Checkbox${j}`);
 								aCheckbox.checked = false;
 							}
 						}
 					}
 				}
-				for (let j = 0; j < window.arguments[0].cardsIn.length; j++) {
-					if (document.getElementById(field + 'Textbox' + j)) {
-						let aTextbox = document.getElementById(field + 'Textbox' + j);
+				for (let j = 0; j < wdw_mergeCards.cardsIn.length; j++) {
+					if (document.getElementById(`${field}Textbox${j}`)) {
+						let aTextbox = document.getElementById(`${field}Textbox${j}`);
 						if (j != number) {
 							aTextbox.setAttribute('mergeSelected', 'false');
 							aTextbox.setAttribute('readonly', 'true');
@@ -48,16 +73,14 @@ if ("undefined" == typeof(wdw_mergeCards)) {
 		},
 
 		createCheckBox2: function (aRow, aName, aValue) {
-			let checkboxData = cardbookElementTools.addHTMLTD(aRow, aName + '.1');
-			let aCheckbox = document.createXULElement('checkbox');
-			checkboxData.appendChild(aCheckbox);
-			aCheckbox.setAttribute('id', aName);
+			let checkboxData = cardbookHTMLTools.addHTMLTD(aRow, `${aName}.1`);
+            let aCheckbox = cardbookHTMLTools.addHTMLINPUT(checkboxData, aName, null, { "type": "checkbox" });
 			aCheckbox.checked = aValue;
-			aCheckbox.setAttribute('flex', '1');
-			aCheckbox.addEventListener("command", function() {
+
+            aCheckbox.addEventListener("click", function() {
 				let field = this.id.replace(/Checkbox.*/,"");
-				if (document.getElementById(field + 'Textbox0')) {
-					let aTextbox = document.getElementById(field + 'Textbox0');
+				if (document.getElementById(`${field}Textbox0`)) {
+					let aTextbox = document.getElementById(`${field}Textbox0`);
 					if (this.checked) {
 						aTextbox.setAttribute('mergeSelected', 'true');
 					} else {
@@ -76,28 +99,26 @@ if ("undefined" == typeof(wdw_mergeCards)) {
 		},
 
 		createCheckBox3: function (aRow, aName, aValue) {
-			let checkboxData = cardbookElementTools.addHTMLTD(aRow, aName + '.1');
-			let aCheckbox = document.createXULElement('checkbox');
-			checkboxData.appendChild(aCheckbox);
-			aCheckbox.setAttribute('id', aName);
+			let checkboxData = cardbookHTMLTools.addHTMLTD(aRow, `${aName}.1`);
+            let aCheckbox = cardbookHTMLTools.addHTMLINPUT(checkboxData, aName, null, { "type": "checkbox" });
 			aCheckbox.checked = aValue;
-			aCheckbox.setAttribute('flex', '1');
-			aCheckbox.addEventListener("command", function() {
+
+            aCheckbox.addEventListener("click", async function() {
 				let field = this.id.replace(/Checkbox.*/,"");
 				let number = this.id.replace(/.*Checkbox/,"");
 				if (this.checked) {
-					for (let j = 0; j < window.arguments[0].cardsIn.length; j++) {
+					for (let j = 0; j < wdw_mergeCards.cardsIn.length; j++) {
 						if (j != number) {
-							if (document.getElementById(field + 'Checkbox' + j)) {
-								let aCheckbox = document.getElementById(field + 'Checkbox' + j);
+							if (document.getElementById(`${field}Checkbox${j}`)) {
+								let aCheckbox = document.getElementById(`${field}Checkbox${j}`);
 								aCheckbox.checked = false;
 							}
 						}
 					}
 				}
-				for (let j = 0; j < window.arguments[0].cardsIn.length; j++) {
-					if (document.getElementById(field + 'Textbox' + j)) {
-						let aTextbox = document.getElementById(field + 'Textbox' + j);
+				for (let j = 0; j < wdw_mergeCards.cardsIn.length; j++) {
+					if (document.getElementById(`${field}Textbox${j}`)) {
+						let aTextbox = document.getElementById(`${field}Textbox${j}`);
 						if (j != number) {
 							aTextbox.setAttribute('mergeSelected', 'false');
 							aTextbox.setAttribute('readonly', 'true');
@@ -112,68 +133,35 @@ if ("undefined" == typeof(wdw_mergeCards)) {
 						}
 					}
 				}
-				wdw_mergeCards.setAddressBookProperties(window.arguments[0].cardsIn[number][field]);
+				await wdw_mergeCards.setAddressBookProperties(wdw_mergeCards.cardsIn[number][field]);
 			}, false);
 		},
 
 		createTextBox: function (aRow, aName, aValue, aSelected, aDisabled, aArrayValue) {
-			let textboxData = cardbookElementTools.addHTMLTD(aRow, aName + '.1');
-			let aTextbox = document.createElementNS("http://www.w3.org/1999/xhtml","html:input");
-			textboxData.appendChild(aTextbox);
-			aTextbox.setAttribute('id', aName);
-			aTextbox.setAttribute('value', aValue);
-			aTextbox.setAttribute('flex', '1');
+			let textboxData = cardbookHTMLTools.addHTMLTD(aRow, `${aName}.1`);
+            let textbox = cardbookHTMLTools.addHTMLINPUT(textboxData, aName, aValue, {"mergeSelected": aSelected});
 			if (aArrayValue) {
 				let field = aName.replace(/Textbox.*/,"");
 				wdw_mergeCards.arrayField[field] = aArrayValue;
 			}
-			aTextbox.setAttribute('mergeSelected', aSelected);
-			if (aSelected) {
-				if (aDisabled) {
-					aTextbox.setAttribute('readonly', 'true');
-				} else {
-					aTextbox.removeAttribute('readonly');
-				}
-			} else {
-				aTextbox.setAttribute('readonly', 'true');
-			}
+            wdw_mergeCards.setReadOnly(textbox, aSelected, aDisabled);
 		},
 
 		createMultilineTextBox: function (aRow, aName, aValue, aSelected, aDisabled, aLength) {
-			let textboxData = cardbookElementTools.addHTMLTD(aRow, aName + '.1');
-			let aTextbox = document.createElementNS("http://www.w3.org/1999/xhtml","html:textarea");
-			textboxData.appendChild(aTextbox);
-			aTextbox.setAttribute('multiline', true);
-			aTextbox.setAttribute('wrap', 'virtual');
-			aTextbox.setAttribute('id', aName);
-			aTextbox.value = aValue;
-			aTextbox.setAttribute('flex', '1');
-			aTextbox.setAttribute('mergeSelected', aSelected);
-			if (aSelected) {
-				if (aDisabled) {
-					aTextbox.setAttribute('readonly', 'true');
-				} else {
-					aTextbox.removeAttribute('readonly');
-				}
-			} else {
-				aTextbox.setAttribute('readonly', 'true');
-			}
-			aTextbox.setAttribute('rows', aLength);
+			let textboxData = cardbookHTMLTools.addHTMLTD(aRow, `${aName}.1`);
+            let textarea = cardbookHTMLTools.addHTMLTEXTAREA(textboxData, aName, aValue, {multiline: "true", rows: aLength, mergeSelected: aSelected});
+            wdw_mergeCards.setReadOnly(textarea, aSelected, aDisabled);
 		},
 
 		createImageBox: function (aRow, aName, aValue, aExtension, aSelected) {
-			let imageData = cardbookElementTools.addHTMLTD(aRow, aName + '.1');
+			let imageData = cardbookHTMLTools.addHTMLTD(aRow, `${aName}.1`);
 			let aVbox = wdw_mergeCards.createVbox(imageData, false);
 			aVbox.setAttribute("width", "170px");
 			let aHbox = wdw_mergeCards.createHbox(aVbox, false);
 			aHbox.setAttribute("height", "170px");
-			let aImageForSizing =  document.createElementNS("http://www.w3.org/1999/xhtml","img");
-			aHbox.appendChild(aImageForSizing);
-			aImageForSizing.setAttribute('id', aName + "ForSizing");
-			aImageForSizing.setAttribute('hidden', "true");
-			let aImage = document.createXULElement('image');
-			aHbox.appendChild(aImage);
-			aImage.setAttribute('id', aName + "Displayed");
+
+            let aImageForSizing = cardbookHTMLTools.addHTMLIMAGE(aHbox, `${aName}ForSizing`, { "class": "hidden" } );
+            let aImage = cardbookHTMLTools.addHTMLIMAGE(aHbox, `${aName}Displayed`);
 			wdw_mergeCards.arrayField[aName] = {};
 			wdw_mergeCards.arrayField[aName].value = aValue;
 			wdw_mergeCards.arrayField[aName].extension = aExtension;
@@ -183,6 +171,8 @@ if ("undefined" == typeof(wdw_mergeCards)) {
 			aImageForSizing.addEventListener("load", function() {
 				let myImageWidth = 170;
 				let myImageHeight = 170;
+				let widthFound = 0;
+				let heightFound = 0;
 				if (this.width >= this.height) {
 					widthFound = myImageWidth + "px" ;
 					heightFound = Math.round(this.height * myImageWidth / this.width) + "px" ;
@@ -200,60 +190,38 @@ if ("undefined" == typeof(wdw_mergeCards)) {
 		},
 
 		createLabel: function (aRow, aName, aValue) {
-			let labelData = cardbookElementTools.addHTMLTD(aRow, aName + '.1');
-			let aLabel = document.createXULElement('label');
-			labelData.appendChild(aLabel);
-			aLabel.setAttribute('id', aName);
-			aLabel.setAttribute('value', cardbookRepository.extension.localeData.localizeMessage(aValue));
+			let labelData = cardbookHTMLTools.addHTMLTD(aRow, `${aName}.1`);
+            let aLabel = cardbookHTMLTools.addHTMLLABEL(labelData, aName, messenger.i18n.getMessage(aValue));
 		},
 
 		createCustomLabel: function (aRow, aName, aValue) {
-			let labelData = cardbookElementTools.addHTMLTD(aRow, aName + '.1');
-			let aLabel = document.createXULElement('label');
-			labelData.appendChild(aLabel);
-			aLabel.setAttribute('id', aName);
-			aLabel.setAttribute('value', aValue);
-		},
-
-		createTableRow: function (aParent, aName) {
-			let aTableRow = document.createElementNS("http://www.w3.org/1999/xhtml","html:tr");
-			aParent.appendChild(aTableRow);
-			aTableRow.setAttribute('id', aName);
-			aTableRow.setAttribute('align', 'center');
-			return aTableRow
+			let labelData = cardbookHTMLTools.addHTMLTD(aRow, `${aName}.1`);
+            let aLabel = cardbookHTMLTools.addHTMLLABEL(labelData, aName, aValue);
 		},
 
 		createHbox: function (aParent, aAddTableData) {
 			let aHbox ;
 			if (aAddTableData && aAddTableData == true) {
-				let boxData = cardbookElementTools.addHTMLTD(aParent);
-				aHbox = document.createXULElement('hbox');
-				boxData.appendChild(aHbox);
+				let boxData = cardbookHTMLTools.addHTMLTD(aParent);
+				aHbox = cardbookHTMLTools.addHTMLDIV(boxData, null, {"class": "hbox"});
 			} else {
-				aHbox = document.createXULElement('hbox');
-				aParent.appendChild(aHbox);
+				aHbox = cardbookHTMLTools.addHTMLDIV(aParent, null, {"class": "hbox"});
 			}
-			aHbox.setAttribute('align', 'center');
-			aHbox.setAttribute('flex', '1');
 			return aHbox
 		},
 
 		createVbox: function (aParent, aAddTableData) {
 			let aVbox ;
 			if (aAddTableData && aAddTableData == true) {
-				let boxData = cardbookElementTools.addHTMLTD(aParent);
-				aVbox = document.createXULElement('vbox');
-				boxData.appendChild(aVbox);
+				let boxData = cardbookHTMLTools.addHTMLTD(aParent);
+				aVbox = cardbookHTMLTools.addHTMLDIV(boxData, null, {"class": "vbox"});
 			} else {
-				aVbox = document.createXULElement('vbox');
-				aParent.appendChild(aVbox);
+				aVbox = cardbookHTMLTools.addHTMLDIV(aParent, null, {"class": "vbox"});
 			}
-			aVbox.setAttribute('align', 'center');
-			aVbox.setAttribute('flex', '1');
 			return aVbox
 		},
 
-		createAddressbook: function (aParent, aListOfCards) {
+		createAddressbook: async function (aParent, aListOfCards) {
 			let dirPrefId = "";
 			let multiples = false;
 			for (let i = 0; i < aListOfCards.length; i++) {
@@ -265,29 +233,30 @@ if ("undefined" == typeof(wdw_mergeCards)) {
 				}
 			}
 			if (multiples) {
-				let row = wdw_mergeCards.createTableRow(aParent, 'ABNameRow');
+				let row = cardbookHTMLTools.addHTMLTR(aParent, 'ABNameRow')
 				wdw_mergeCards.createLabel(row, 'ABNameLabel', 'ABNameLabel');
 				var selected = true;
-				for (let j = 0; j < listOfCards.length; j++) {
-					wdw_mergeCards.createCheckBox3(row, 'dirPrefId' + 'Checkbox' + j, selected);
-					wdw_mergeCards.createTextBox(row, 'dirPrefId' + 'Textbox' + j, cardbookRepository.cardbookUtils.getPrefNameFromPrefId(listOfCards[j]['dirPrefId']), selected, true);
+				for (let j = 0; j < aListOfCards.length; j++) {
+					wdw_mergeCards.createCheckBox3(row, `dirPrefIdCheckbox${j}`, selected);
+                    let name = await cardbookNewPreferences.getName(aListOfCards[j]['dirPrefId']);
+					wdw_mergeCards.createTextBox(row, `dirPrefIdTextbox${j}`, name, selected, true);
 					if (selected) {
-						wdw_mergeCards.setAddressBookProperties(listOfCards[j]['dirPrefId']);
+						await wdw_mergeCards.setAddressBookProperties(aListOfCards[j]['dirPrefId']);
 					}
 					selected = false;
 				}
 			} else {
-				wdw_mergeCards.setAddressBookProperties(dirPrefId);
+				await wdw_mergeCards.setAddressBookProperties(dirPrefId);
 			}
 		},
 
-		setAddressBookProperties: function (aDirPrefId) {
-			wdw_mergeCards.setReadOnlyMode(aDirPrefId);
-			wdw_mergeCards.setVersion(aDirPrefId);
+		setAddressBookProperties: async function (aDirPrefId) {
+			await wdw_mergeCards.setReadOnlyMode(aDirPrefId);
+			await wdw_mergeCards.setVersion(aDirPrefId);
 		},
 
-		setReadOnlyMode: function (aDirPrefId) {
-			if (cardbookRepository.cardbookPreferences.getReadOnly(aDirPrefId)) {
+		setReadOnlyMode: async function (aDirPrefId) {
+			if (await cardbookNewPreferences.getReadOnly(aDirPrefId)) {
 				document.getElementById('viewResultEditionLabel').disabled=true;
 				document.getElementById('createEditionLabel').disabled=true;
 				document.getElementById('createAndReplaceEditionLabel').disabled=true;
@@ -298,24 +267,8 @@ if ("undefined" == typeof(wdw_mergeCards)) {
 			}
 		},
 
-		setHideCreate: function () {
-			if (window.arguments[0].hideCreate) {
-				document.getElementById('createEditionLabel').hidden=true;
-			} else {
-				document.getElementById('createEditionLabel').hidden=false;
-			}
-		},
-
-		setContactOrList: function () {
-			if (window.arguments[0].cardsIn[0].isAList) {
-				wdw_mergeCards.mode="LIST";
-			} else {
-				wdw_mergeCards.mode="CONTACT";
-			}
-		},
-
-		setVersion: function (aDirPrefId) {
-			wdw_mergeCards.version = cardbookRepository.cardbookPreferences.getVCardVersion(aDirPrefId);
+		setVersion: async function (aDirPrefId) {
+			wdw_mergeCards.version = await cardbookNewPreferences.getVCardVersion(aDirPrefId);
 		},
 
 		addRowFromArray: function (aListOfCards, aField) {
@@ -345,91 +298,62 @@ if ("undefined" == typeof(wdw_mergeCards)) {
 				if (card[aField].value != "") {
 					return true;
 				} else {
-					let dirname = cardbookRepository.cardbookPreferences.getName(card.dirPrefId);
-					await cardbookIDBImage.getImage(aField, dirname, card.cbid, card.fn)
-						.then( image => {
-							if (image && image.content && image.extension) {
-								result = true;
-							}
-						})
-						.catch( () => { } );
-				}
-				if (result) {
-					break;
+					let dirname = await cardbookNewPreferences.getName(card.dirPrefId);
+					let image = await messenger.runtime.sendMessage({query: "cardbook.getImage", field: aField, dirName: dirname, cardId: card.cbid, cardName: card.fn});
+					if (image && image.content && image.extension) {
+						return true;
+					}
 				}
 			}
 			return result;
 		},
 
 		load: async function () {
-			i18n.updateDocument({ extension: cardbookRepository.extension });
-			wdw_mergeCards.setHideCreate();
-			wdw_mergeCards.setContactOrList();
+			let urlParams = new URLSearchParams(window.location.search);
+            wdw_mergeCards.hideCreate = (urlParams.get("hideCreate") === "true");
+            wdw_mergeCards.source = urlParams.get("source");
+            wdw_mergeCards.mode = urlParams.get("mode");
+            wdw_mergeCards.ids = urlParams.get("ids");
+            wdw_mergeCards.actionId = urlParams.get("actionId");
 			
-			listOfCards = window.arguments[0].cardsIn;
+            wdw_mergeCards.duplicateWinId = urlParams.get("duplicateWinId");
+            wdw_mergeCards.duplicateDisplayId = urlParams.get("duplicateDisplayId");
+            wdw_mergeCards.duplicateLineId = urlParams.get("duplicateLineId");
+            wdw_mergeCards.cardsIn = await messenger.runtime.sendMessage({query: "cardbook.getCards", cbids: wdw_mergeCards.ids.split(",")});
+			i18n.updateDocument();
+			cardbookHTMLRichContext.loadRichContext();
+
+            document.getElementById('createEditionLabel').hidden = wdw_mergeCards.hideCreate;
+            wdw_mergeCards.allColumns = await messenger.runtime.sendMessage({query: "cardbook.getAllColumns"});
+            wdw_mergeCards.customFields = await messenger.runtime.sendMessage({query: "cardbook.getCustomFields"});
+            wdw_mergeCards.newFields = await messenger.runtime.sendMessage({query: "cardbook.getNewFields"});
+            wdw_mergeCards.multilineFields = await messenger.runtime.sendMessage({query: "cardbook.getMultilineFields"});
+    
+            // button
+        	document.getElementById("viewResultEditionLabel").addEventListener("click", event => wdw_mergeCards.viewResult());
+        	document.getElementById("createEditionLabel").addEventListener("click", event => wdw_mergeCards.create());
+        	document.getElementById("createAndReplaceEditionLabel").addEventListener("click", event => wdw_mergeCards.createAndReplace());
+        	document.getElementById("cancelEditionLabel").addEventListener("click", event => wdw_mergeCards.cancel());
+
+            let listOfCards = wdw_mergeCards.cardsIn;
 			let table = document.getElementById('fieldsTable');
-			wdw_mergeCards.createAddressbook(table, listOfCards);
+			await wdw_mergeCards.createAddressbook(table, listOfCards);
 			for (let i of [ 'photo' ]) {
 				if (await wdw_mergeCards.addRowFromPhoto(listOfCards, i)) {
-					var aRow = wdw_mergeCards.createTableRow(table, i + 'Row');
-					wdw_mergeCards.createLabel(aRow, i + 'Label', i + 'Label');
-					var selected = true;
+                    let aRow = cardbookHTMLTools.addHTMLTR(table, `${i}Row`)
+					wdw_mergeCards.createLabel(aRow, `${i}Label`, `${i}Label`);
+					let selected = true;
 					for (let j = 0; j < listOfCards.length; j++) {
-						let dirname = cardbookRepository.cardbookPreferences.getName(listOfCards[j].dirPrefId);
+						let dirname = await cardbookNewPreferences.getName(listOfCards[j].dirPrefId);
 						if (listOfCards[j][i].value != "") {
-							wdw_mergeCards.createCheckBox1(aRow, i + 'Checkbox' + j, selected);
-							wdw_mergeCards.createImageBox(aRow, i + 'Textbox' + j, listOfCards[j][i].value, listOfCards[j][i].extension, selected, false);
+							wdw_mergeCards.createCheckBox1(aRow, `${i}Checkbox${j}`, selected);
+							wdw_mergeCards.createImageBox(aRow, `${i}Textbox${j}`, listOfCards[j][i].value, listOfCards[j][i].extension, selected, false);
 							selected = false;
 						} else {
-							await cardbookIDBImage.getImage(i, dirname, listOfCards[j].cbid, listOfCards[j].fn)
-							.then( image => {
-								if (image && image.content && image.extension) {
-									wdw_mergeCards.createCheckBox1(aRow, i + 'Checkbox' + j, selected);
-									wdw_mergeCards.createImageBox(aRow, i + 'Textbox' + j, image.content, image.extension, selected, false);
-									selected = false;
-								} else {
-									wdw_mergeCards.createHbox(aRow, true);
-									wdw_mergeCards.createHbox(aRow, true);
-								}
-							}).catch( () => {
-								wdw_mergeCards.createHbox(aRow, true);
-								wdw_mergeCards.createHbox(aRow, true);
-							});
-						}
-					}
-				}
-			}
-			var fields = cardbookRepository.allColumns.display.concat(cardbookRepository.allColumns.personal);
-			fields = fields.concat(cardbookRepository.allColumns.org);
-			for (let i of fields) {
-				if (wdw_mergeCards.addRowFromArray(listOfCards, i)) {
-					var aRow = wdw_mergeCards.createTableRow(table, i + 'Row');
-					wdw_mergeCards.createLabel(aRow, i + 'Label', i + 'Label');
-					var selected = true;
-					for (let j = 0; j < listOfCards.length; j++) {
-						if (listOfCards[j][i]) {
-							wdw_mergeCards.createCheckBox1(aRow, i + 'Checkbox' + j, selected);
-							wdw_mergeCards.createTextBox(aRow, i + 'Textbox' + j, listOfCards[j][i], selected, false);
-							selected = false;
-						} else {
-							wdw_mergeCards.createHbox(aRow, true);
-							wdw_mergeCards.createHbox(aRow, true);
-						}
-					}
-				}
-			}
-			for (let i in cardbookRepository.customFields) {
-				for (let j = 0; j < cardbookRepository.customFields[i].length; j++) {
-					if (wdw_mergeCards.addRowCustomFromArray(listOfCards, cardbookRepository.customFields[i][j][0])) {
-						var prefixRow = i + cardbookRepository.customFields[i][j][2];
-						var aRow = wdw_mergeCards.createTableRow(table, prefixRow + 'Row');
-						wdw_mergeCards.createCustomLabel(aRow, prefixRow + 'Label', cardbookRepository.customFields[i][j][1]);
-						var selected = true;
-						for (let k = 0; k < listOfCards.length; k++) {
-							var customValue = cardbookRepository.cardbookUtils.getCardValueByField(listOfCards[k], cardbookRepository.customFields[i][j][0], false)[0];
-							if (customValue) {
-								wdw_mergeCards.createCheckBox1(aRow, prefixRow + 'Checkbox' + k, selected);
-								wdw_mergeCards.createTextBox(aRow, prefixRow + 'Textbox' + k, customValue, selected, false);
+							let image = await messenger.runtime.sendMessage({query: "cardbook.getImage", field: i, dirName: dirname, cardId: listOfCards[j].cbid, cardName: listOfCards[j].fn});
+							if (image && image.content && image.extension) {
+								wdw_mergeCards.createCheckBox1(aRow, `${i}Checkbox${j}`, selected);
+								wdw_mergeCards.createImageBox(aRow, `${i}Textbox${j}`, image.content, image.extension, selected, false);
 								selected = false;
 							} else {
 								wdw_mergeCards.createHbox(aRow, true);
@@ -439,7 +363,48 @@ if ("undefined" == typeof(wdw_mergeCards)) {
 					}
 				}
 			}
-			for (let i of cardbookRepository.allColumns.categories) {
+			var fields = wdw_mergeCards.allColumns.display.concat(wdw_mergeCards.allColumns.personal);
+			fields = fields.concat(wdw_mergeCards.allColumns.org);
+			for (let i of fields) {
+				if (wdw_mergeCards.addRowFromArray(listOfCards, i)) {
+                    let aRow = cardbookHTMLTools.addHTMLTR(table, `${i}Row`)
+					wdw_mergeCards.createLabel(aRow, `${i}Label`, `${i}Label`);
+					var selected = true;
+					for (let j = 0; j < listOfCards.length; j++) {
+						if (listOfCards[j][i]) {
+							wdw_mergeCards.createCheckBox1(aRow, `${i}Checkbox${j}`, selected);
+							wdw_mergeCards.createTextBox(aRow, `${i}Textbox${j}`, listOfCards[j][i], selected, false);
+							selected = false;
+						} else {
+							wdw_mergeCards.createHbox(aRow, true);
+							wdw_mergeCards.createHbox(aRow, true);
+						}
+					}
+				}
+			}
+			for (let i in wdw_mergeCards.customFields) {
+				for (let j = 0; j < wdw_mergeCards.customFields[i].length; j++) {
+					if (wdw_mergeCards.addRowCustomFromArray(listOfCards, wdw_mergeCards.customFields[i][j][0])) {
+						var prefixRow = i + wdw_mergeCards.customFields[i][j][2];
+                        let aRow = cardbookHTMLTools.addHTMLTR(table, `${prefixRow}Row`)
+						wdw_mergeCards.createCustomLabel(aRow, `${prefixRow}Label`, wdw_mergeCards.customFields[i][j][1]);
+						var selected = true;
+						for (let k = 0; k < listOfCards.length; k++) {
+							let values = await messenger.runtime.sendMessage({query: "cardbook.getCardValueByField", card: listOfCards[k], field: wdw_mergeCards.customFields[i][j][0], includePref: false});
+							let customValue = values[0];
+							if (customValue) {
+								wdw_mergeCards.createCheckBox1(aRow, `${prefixRow}Checkbox${k}`, selected);
+								wdw_mergeCards.createTextBox(aRow, `${prefixRow}Textbox${k}`, customValue, selected, false);
+								selected = false;
+							} else {
+								wdw_mergeCards.createHbox(aRow, true);
+								wdw_mergeCards.createHbox(aRow, true);
+							}
+						}
+					}
+				}
+			}
+			for (let i of wdw_mergeCards.allColumns.categories) {
 				if (wdw_mergeCards.addRowFromArray(listOfCards, i)) {
 					var length = 0
 					for (let j = 0; j < listOfCards.length; j++) {
@@ -449,21 +414,21 @@ if ("undefined" == typeof(wdw_mergeCards)) {
 					}
 					var arrayOfValues = [];
 					for (let j = 0; j < length; j++) {
-						var aRow = wdw_mergeCards.createTableRow(table, i + 'Row' + j);
-						wdw_mergeCards.createLabel(aRow, i + 'Label' + j, i + 'Label');
+                        let aRow = cardbookHTMLTools.addHTMLTR(table, `${i}Row${j}`)
+						wdw_mergeCards.createLabel(aRow, `${i}Label${j}`, `${i}Label`);
 						for (let k = 0; k < listOfCards.length; k++) {
 							if (listOfCards[k][i][j]) {
 								arrayOfValues.push(listOfCards[k][i][j]);
 								var length1 = arrayOfValues.length;
-								arrayOfValues = cardbookRepository.arrayUnique(arrayOfValues);
+								arrayOfValues = cardbookHTMLUtils.arrayUnique(arrayOfValues);
 								var length2 = arrayOfValues.length;
 								if (length1 != length2) {
 									var selected = false;
 								} else {
 									var selected = true;
 								}
-								wdw_mergeCards.createCheckBox2(aRow, i + '_' + j + '_' + k + '_Checkbox0', selected);
-								wdw_mergeCards.createTextBox(aRow, i + '_' + j + '_' + k + '_Textbox0', listOfCards[k][i][j], selected, true, listOfCards[k][i][j]);
+								wdw_mergeCards.createCheckBox2(aRow, `${i}_${j}_${k}_Checkbox0`, selected);
+								wdw_mergeCards.createTextBox(aRow, `${i}_${j}_${k}_Textbox0`, listOfCards[k][i][j], selected, true, listOfCards[k][i][j]);
 							} else {
 								wdw_mergeCards.createHbox(aRow, true);
 								wdw_mergeCards.createHbox(aRow, true);
@@ -473,7 +438,7 @@ if ("undefined" == typeof(wdw_mergeCards)) {
 				}
 			}
 			if (wdw_mergeCards.mode == "CONTACT") {
-				for (let i of cardbookRepository.multilineFields) {
+				for (let i of wdw_mergeCards.multilineFields) {
 					if (wdw_mergeCards.addRowFromArray(listOfCards, i)) {
 						var length = 0
 						for (let j = 0; j < listOfCards.length; j++) {
@@ -483,24 +448,24 @@ if ("undefined" == typeof(wdw_mergeCards)) {
 						}
 						var arrayOfValues = [];
 						for (let j = 0; j < length; j++) {
-							var aRow = wdw_mergeCards.createTableRow(table, i + 'Row' + j);
-							wdw_mergeCards.createLabel(aRow, i + 'Label' + j, i + 'Label');
+                            let aRow = cardbookHTMLTools.addHTMLTR(table, `${i}Row${j}`)
+							wdw_mergeCards.createLabel(aRow, `${i}Label${j}`, `${i}Label`);
 							for (let k = 0; k < listOfCards.length; k++) {
 								if (listOfCards[k][i][j]) {
 									if (i == "tel") {
-										arrayOfValues.push(cardbookRepository.cardbookUtils.formatTelForSearching(listOfCards[k][i][j][0][0]));
+										arrayOfValues.push(cardbookHTMLUtils.formatTelForSearching(listOfCards[k][i][j][0][0]));
 									} else {
 										arrayOfValues.push(listOfCards[k][i][j][0].join(","));
 									}
 									var length1 = arrayOfValues.length;
-									arrayOfValues = cardbookRepository.arrayUnique(arrayOfValues);
+									arrayOfValues = cardbookHTMLUtils.arrayUnique(arrayOfValues);
 									var length2 = arrayOfValues.length;
 									if (length1 != length2) {
 										var selected = false;
 									} else {
 										var selected = true;
 									}
-									wdw_mergeCards.createCheckBox2(aRow, i + '_' + j + '_' + k + '_Checkbox0', selected);
+									wdw_mergeCards.createCheckBox2(aRow, `${i}_${j}_${k}_Checkbox0`, selected);
 									var aHbox = wdw_mergeCards.createHbox(aRow, true);
 									
 									var aCardValue = listOfCards[k][i][j][0];
@@ -508,11 +473,10 @@ if ("undefined" == typeof(wdw_mergeCards)) {
 									var aPgType = listOfCards[k][i][j][3];
 									var aPgName = listOfCards[k][i][j][2];
 									var myInputTypes = [];
-									myInputTypes = cardbookRepository.cardbookUtils.getOnlyTypesFromTypes(aInputTypes);
-									var aPrefImage = document.createXULElement('image');
-									aHbox.appendChild(aPrefImage);
-									aPrefImage.setAttribute('id', i + '_' + j + '_' + k + '_PrefImage');
-									if (cardbookRepository.cardbookUtils.getPrefBooleanFromTypes(aInputTypes)) {
+									myInputTypes = cardbookHTMLUtils.getOnlyTypesFromTypes(aInputTypes);
+
+                                    let aPrefImage = cardbookHTMLTools.addHTMLIMAGE(aHbox, `${i}_${j}_${k}_PrefImage`);
+									if (cardbookHTMLUtils.getPrefBooleanFromTypes(aInputTypes)) {
 										aPrefImage.setAttribute('class', 'cardbookPrefStarClass');
 										aPrefImage.setAttribute('haspref', 'true');
 									} else {
@@ -531,56 +495,56 @@ if ("undefined" == typeof(wdw_mergeCards)) {
 											}
 										}
 										if (!found) {
-											myDisplayedTypes.push(cardbookRepository.cardbookTypes.whichLabelTypeShouldBeChecked(i, listOfCards[k].dirPrefId, myInputTypes));
+											myDisplayedTypes.push(await cardbookHTMLTypes.whichLabelTypeShouldBeChecked(i, listOfCards[k].dirPrefId, myInputTypes));
 										}
 									} else {
-										myDisplayedTypes.push(cardbookRepository.cardbookTypes.whichLabelTypeShouldBeChecked(i, listOfCards[k].dirPrefId, myInputTypes));
+										myDisplayedTypes.push(await cardbookHTMLTypes.whichLabelTypeShouldBeChecked(i, listOfCards[k].dirPrefId, myInputTypes));
 									}
 									if (i == "impp") {
-										var serviceCode = cardbookRepository.cardbookTypes.getIMPPCode(aInputTypes);
-										var serviceProtocol = cardbookRepository.cardbookTypes.getIMPPProtocol(aCardValue);
+										var serviceCode = cardbookHTMLTypes.getIMPPCode(aInputTypes);
+										var serviceProtocol = cardbookHTMLTypes.getIMPPProtocol(aCardValue);
 										var myValue = aCardValue.join(" ");
 										if (serviceCode != "") {
 											var serviceLine = [];
-											serviceLine = cardbookRepository.cardbookTypes.getIMPPLineForCode(serviceCode)
+											serviceLine = await cardbookHTMLTypes.getIMPPLineForCode(serviceCode)
 											if (serviceLine[0]) {
 												myDisplayedTypes = myDisplayedTypes.concat(serviceLine[1]);
-												wdw_mergeCards.createTextBox(aHbox, i + '_' + j + '_' + k + '_Textbox0', cardbookRepository.cardbookUtils.formatTypesForDisplay(myDisplayedTypes), selected, true);
+												wdw_mergeCards.createTextBox(aHbox, `${i}_${j}_${k}_Textbox0`, cardbookHTMLUtils.formatTypesForDisplay(myDisplayedTypes), selected, true);
 												var myRegexp = new RegExp("^" + serviceLine[2] + ":");
 												myValue = myValue.replace(myRegexp, "");
-												wdw_mergeCards.createTextBox(aHbox, i + '_' + j + '_' + k + '_Textbox1', myValue, selected, true, listOfCards[k][i][j]);
+												wdw_mergeCards.createTextBox(aHbox, `${i}_${j}_${k}_Textbox1`, myValue, selected, true, listOfCards[k][i][j]);
 											} else {
 												myDisplayedTypes = myDisplayedTypes.concat(serviceCode);
-												wdw_mergeCards.createTextBox(aHbox, i + '_' + j + '_' + k + '_Textbox0', cardbookRepository.cardbookUtils.formatTypesForDisplay(myDisplayedTypes), selected, true);
-												wdw_mergeCards.createTextBox(aHbox, i + '_' + j + '_' + k + '_Textbox1', myValue, selected, true, listOfCards[k][i][j]);
+												wdw_mergeCards.createTextBox(aHbox, `${i}_${j}_${k}_Textbox0`, cardbookHTMLUtils.formatTypesForDisplay(myDisplayedTypes), selected, true);
+												wdw_mergeCards.createTextBox(aHbox, `${i}_${j}_${k}_Textbox1`, myValue, selected, true, listOfCards[k][i][j]);
 											}
 										} else if (serviceProtocol != "") {
 											var serviceLine = [];
-											serviceLine = cardbookRepository.cardbookTypes.getIMPPLineForProtocol(serviceProtocol)
+											serviceLine = await cardbookHTMLTypes.getIMPPLineForProtocol(serviceProtocol)
 											if (serviceLine[0]) {
 												myDisplayedTypes = myDisplayedTypes.concat(serviceLine[1]);
-												wdw_mergeCards.createTextBox(aHbox, i + '_' + j + '_' + k + '_Textbox0', cardbookRepository.cardbookUtils.formatTypesForDisplay(myDisplayedTypes), selected, true);
+												wdw_mergeCards.createTextBox(aHbox, `${i}_${j}_${k}_Textbox0`, cardbookHTMLUtils.formatTypesForDisplay(myDisplayedTypes), selected, true);
 												var myRegexp = new RegExp("^" + serviceLine[2] + ":");
 												myValue = myValue.replace(myRegexp, "");
-												wdw_mergeCards.createTextBox(aHbox, i + '_' + j + '_' + k + '_Textbox1', myValue, selected, true, listOfCards[k][i][j]);
+												wdw_mergeCards.createTextBox(aHbox, `${i}_${j}_${k}_Textbox1`, myValue, selected, true, listOfCards[k][i][j]);
 											} else {
 												myDisplayedTypes = myDisplayedTypes.concat(serviceCode);
-												wdw_mergeCards.createTextBox(aHbox, i + '_' + j + '_' + k + '_Textbox0', cardbookRepository.cardbookUtils.formatTypesForDisplay(myDisplayedTypes), selected, true);
-												wdw_mergeCards.createTextBox(aHbox, i + '_' + j + '_' + k + '_Textbox1', myValue, selected, true, listOfCards[k][i][j]);
+												wdw_mergeCards.createTextBox(aHbox, `${i}_${j}_${k}_Textbox0`, cardbookHTMLUtils.formatTypesForDisplay(myDisplayedTypes), selected, true);
+												wdw_mergeCards.createTextBox(aHbox, `${i}_${j}_${k}_Textbox1`, myValue, selected, true, listOfCards[k][i][j]);
 											}
 										} else {
-											wdw_mergeCards.createTextBox(aHbox, i + '_' + j + '_' + k + '_Textbox0', cardbookRepository.cardbookUtils.formatTypesForDisplay(myDisplayedTypes), selected, true);
-											wdw_mergeCards.createTextBox(aHbox, i + '_' + j + '_' + k + '_Textbox1', myValue, selected, true, listOfCards[k][i][j]);
+											wdw_mergeCards.createTextBox(aHbox, `${i}_${j}_${k}_Textbox0`, cardbookHTMLUtils.formatTypesForDisplay(myDisplayedTypes), selected, true);
+											wdw_mergeCards.createTextBox(aHbox, `${i}_${j}_${k}_Textbox1`, myValue, selected, true, listOfCards[k][i][j]);
 										}
 									} else {
-										wdw_mergeCards.createTextBox(aHbox, i + '_' + j + '_' + k + '_Textbox0', cardbookRepository.cardbookUtils.formatTypesForDisplay(myDisplayedTypes), selected, true);
+										wdw_mergeCards.createTextBox(aHbox, `${i}_${j}_${k}_Textbox0`, cardbookHTMLUtils.formatTypesForDisplay(myDisplayedTypes), selected, true);
 										if (i == "adr") {
 											var re = /[\n\u0085\u2028\u2029]|\r\n?/;
-											var myAdrResult = await cardbookRepository.cardbookUtils.formatAddress(aCardValue);
+                                            var myAdrResult = await messenger.runtime.sendMessage({query: "cardbook.formatAddress", address: aCardValue});
 											var myAdrResultArray = myAdrResult.split(re);
-											wdw_mergeCards.createMultilineTextBox(aHbox, i + '_' + j + '_' + k + '_Textbox1', myAdrResult, selected, true, myAdrResultArray.length);
+											wdw_mergeCards.createMultilineTextBox(aHbox, `${i}_${j}_${k}_Textbox1`, myAdrResult, selected, true, myAdrResultArray.length);
 										} else {
-											wdw_mergeCards.createTextBox(aHbox, i + '_' + j + '_' + k + '_Textbox1', cardbookRepository.cardbookUtils.cleanArray(aCardValue).join(" "), selected, true);
+											wdw_mergeCards.createTextBox(aHbox, `${i}_${j}_${k}_Textbox1`, cardbookHTMLUtils.cleanArray(aCardValue).join(" "), selected, true);
 										}
 									}
 								} else {
@@ -596,40 +560,38 @@ if ("undefined" == typeof(wdw_mergeCards)) {
 					var arrayOfValues = [];
 					var processedValues = [];
 					for (let card of listOfCards) {
-						var myEvents = cardbookRepository.cardbookUtils.getEventsFromCard(card.note.split("\n"), card.others);
+						var myEvents = cardbookHTMLUtils.getEventsFromCard(card.note.split("\n"), card.others);
 						if (length < myEvents.result.length) {
 							length = myEvents.result.length;
 						}
 						arrayOfValues.push(myEvents.result);
 					}
 					for (let j = 0; j < length; j++) {
-						var aRow = wdw_mergeCards.createTableRow(table, i + 'Row' + j);
-						wdw_mergeCards.createLabel(aRow, i + 'Label' + j, i + 'Label');
+                        let aRow = cardbookHTMLTools.addHTMLTR(table, `${i}Row${j}`)
+						wdw_mergeCards.createLabel(aRow, `${i}Label${j}`, `${i}Label`);
 						for (let k = 0; k < listOfCards.length; k++) {
 							if (arrayOfValues[k][j]) {
 								processedValues.push(arrayOfValues[k][j].join(","));
 								var length1 = processedValues.length;
-								processedValues = cardbookRepository.arrayUnique(processedValues);
+								processedValues = cardbookHTMLUtils.arrayUnique(processedValues);
 								var length2 = processedValues.length;
 								if (length1 != length2) {
 									var selected = false;
 								} else {
 									var selected = true;
 								}
-								wdw_mergeCards.createCheckBox2(aRow, i + '_' + j + '_' + k + '_Checkbox0', selected);
+								wdw_mergeCards.createCheckBox2(aRow, `${i}_${j}_${k}_Checkbox0`, selected);
 								var aHbox = wdw_mergeCards.createHbox(aRow, true);
-								var aPrefImage = document.createXULElement('image');
-								aHbox.appendChild(aPrefImage);
-								aPrefImage.setAttribute('id', i + '_' + j + '_' + k + '_PrefImage');
-								if (arrayOfValues[k][j][2] && cardbookRepository.cardbookUtils.getPrefBooleanFromTypes(arrayOfValues[k][j][2].split(";"))) {
+                                let aPrefImage = cardbookHTMLTools.addHTMLIMAGE(aHbox, `${i}_${j}_${k}_PrefImage`);
+								if (arrayOfValues[k][j][2] && cardbookHTMLUtils.getPrefBooleanFromTypes(arrayOfValues[k][j][2].split(";"))) {
 									aPrefImage.setAttribute('class', 'cardbookPrefStarClass');
 									aPrefImage.setAttribute('haspref', 'true');
 								} else {
 									aPrefImage.setAttribute('class', 'cardbookNoPrefStarClass');
 									aPrefImage.removeAttribute('haspref');
 								}
-								wdw_mergeCards.createTextBox(aHbox, i + '_' + j + '_' + k + '_Textbox0', arrayOfValues[k][j][0], selected, true);
-								wdw_mergeCards.createTextBox(aHbox, i + '_' + j + '_' + k + '_Textbox1', arrayOfValues[k][j][1], selected, true);
+								wdw_mergeCards.createTextBox(aHbox, `${i}_${j}_${k}_Textbox0`, arrayOfValues[k][j][0], selected, true);
+								wdw_mergeCards.createTextBox(aHbox, `${i}_${j}_${k}_Textbox1`, arrayOfValues[k][j][1], selected, true);
 							} else {
 								wdw_mergeCards.createHbox(aRow, true);
 								wdw_mergeCards.createHbox(aRow, true);
@@ -643,29 +605,30 @@ if ("undefined" == typeof(wdw_mergeCards)) {
 					var arrayOfValues = [];
 					var processedValues = [];
 					for (let card of listOfCards) {
-						var myMails = cardbookRepository.cardbookUtils.getMembersFromCard(card).mails;
+						let members = await messenger.runtime.sendMessage({query: "cardbook.getMembersFromCard", card: card});
+						var myMails = members.mails;
 						if (length < myMails.length) {
 							length = myMails.length;
 						}
 						arrayOfValues.push(myMails);
 					}
 					for (let j = 0; j < length; j++) {
-						var aRow = wdw_mergeCards.createTableRow(table, i + 'Row' + j);
-						wdw_mergeCards.createLabel(aRow, i + 'Label' + j, i + 'Label');
+                        let aRow = cardbookHTMLTools.addHTMLTR(table, `${i}Row${j}`)
+						wdw_mergeCards.createLabel(aRow, `${i}Label${j}`, `${i}Label`);
 						for (let k = 0; k < listOfCards.length; k++) {
 							if (arrayOfValues[k][j]) {
 								processedValues.push(arrayOfValues[k][j]);
 								var length1 = processedValues.length;
-								processedValues = cardbookRepository.arrayUnique(processedValues);
+								processedValues = cardbookHTMLUtils.arrayUnique(processedValues);
 								var length2 = processedValues.length;
 								if (length1 != length2) {
 									var selected = false;
 								} else {
 									var selected = true;
 								}
-								wdw_mergeCards.createCheckBox2(aRow, i + '_' + j + '_' + k + '_Checkbox0', selected);
+								wdw_mergeCards.createCheckBox2(aRow, `${i}_${j}_${k}_Checkbox0`, selected);
 								var aHbox = wdw_mergeCards.createHbox(aRow);
-								wdw_mergeCards.createTextBox(aHbox, i + '_' + j + '_' + k + '_Textbox0', arrayOfValues[k][j], selected, true);
+								wdw_mergeCards.createTextBox(aHbox, `${i}_${j}_${k}_Textbox0`, arrayOfValues[k][j], selected, true);
 							} else {
 								wdw_mergeCards.createHbox(aRow, true);
 								wdw_mergeCards.createHbox(aRow, true);
@@ -678,29 +641,30 @@ if ("undefined" == typeof(wdw_mergeCards)) {
 					var arrayOfValues = [];
 					var processedValues = [];
 					for (let card of listOfCards) {
-						var myContacts = cardbookRepository.cardbookUtils.getMembersFromCard(card).uids;
+						let members = await messenger.runtime.sendMessage({query: "cardbook.getMembersFromCard", card: card});
+						var myContacts = members.uids;
 						if (length < myContacts.length) {
 							length = myContacts.length;
 						}
 						arrayOfValues.push(myContacts);
 					}
 					for (let j = 0; j < length; j++) {
-						var aRow = wdw_mergeCards.createTableRow(table, i + 'Row' + j);
-						wdw_mergeCards.createLabel(aRow, i + 'Label' + j, i + 'Label');
+                        let aRow = cardbookHTMLTools.addHTMLTR(table, `${i}Row${j}`)
+						wdw_mergeCards.createLabel(aRow, `${i}Label${j}`, `${i}Label`);
 						for (let k = 0; k < listOfCards.length; k++) {
 							if (arrayOfValues[k][j]) {
 								processedValues.push(arrayOfValues[k][j].cbid);
 								var length1 = processedValues.length;
-								processedValues = cardbookRepository.arrayUnique(processedValues);
+								processedValues = cardbookHTMLUtils.arrayUnique(processedValues);
 								var length2 = processedValues.length;
 								if (length1 != length2) {
 									var selected = false;
 								} else {
 									var selected = true;
 								}
-								wdw_mergeCards.createCheckBox2(aRow, i + '_' + j + '_' + k + '_Checkbox0', selected);
+								wdw_mergeCards.createCheckBox2(aRow, `${i}_${j}_${k}_Checkbox0`, selected);
 								var aHbox = wdw_mergeCards.createHbox(aRow);
-								wdw_mergeCards.createTextBox(aHbox, i + '_' + j + '_' + k + '_Textbox0', arrayOfValues[k][j].fn, selected, true);
+								wdw_mergeCards.createTextBox(aHbox, `${i}_${j}_${k}_Textbox0`, arrayOfValues[k][j].fn, selected, true);
 							} else {
 								wdw_mergeCards.createHbox(aRow, true);
 								wdw_mergeCards.createHbox(aRow, true);
@@ -709,17 +673,17 @@ if ("undefined" == typeof(wdw_mergeCards)) {
 					}
 				}
 			}
-			for (let i of cardbookRepository.allColumns.note) {
+			for (let i of wdw_mergeCards.allColumns.note) {
 				if (wdw_mergeCards.addRowFromArray(listOfCards, i)) {
-					var aRow = wdw_mergeCards.createTableRow(table);
-					wdw_mergeCards.createLabel(aRow, i + 'Label', i + 'Label');
+                    let aRow = cardbookHTMLTools.addHTMLTR(table, 'noteRow')
+					wdw_mergeCards.createLabel(aRow, `${i}Label`, `${i}Label`);
 					var selected = true;
 					for (let j = 0; j < listOfCards.length; j++) {
 						if (listOfCards[j][i]) {
-							wdw_mergeCards.createCheckBox1(aRow, i + 'Checkbox' + j, selected);
+							wdw_mergeCards.createCheckBox1(aRow, `${i}Checkbox${j}`, selected);
 							var re = /[\n\u0085\u2028\u2029]|\r\n?/;
 							var myNoteResultArray = listOfCards[j][i].split(re);
-							wdw_mergeCards.createMultilineTextBox(aRow, i + 'Textbox' + j, listOfCards[j][i], selected, true, myNoteResultArray.length);
+							wdw_mergeCards.createMultilineTextBox(aRow, `${i}Textbox${j}`, listOfCards[j][i], selected, true, myNoteResultArray.length);
 							selected = false;
 						} else {
 							wdw_mergeCards.createHbox(aRow, true);
@@ -730,51 +694,51 @@ if ("undefined" == typeof(wdw_mergeCards)) {
 			}
 		},
 
-		calculateResult: function (aCard) {
-			listOfCards = window.arguments[0].cardsIn;
+		calculateResult: async function (aCard) {
+			let listOfCards = wdw_mergeCards.cardsIn;
 			aCard.etag = "0";
 			aCard.version = wdw_mergeCards.version;
 			aCard.dirPrefId = listOfCards[0].dirPrefId;
 			for (let i of [ 'dirPrefId' ]) {
 				for (let j = 0; j < listOfCards.length; j++) {
-					if (document.getElementById(i + 'Checkbox' + j)) {
-						var myCheckBox = document.getElementById(i + 'Checkbox' + j);
+					if (document.getElementById(`${i}Checkbox${j}`)) {
+						var myCheckBox = document.getElementById(`${i}Checkbox${j}`);
 						if (myCheckBox.checked) {
 							aCard[i] = listOfCards[j][i];
 						}
 					}
 				}
 			}
-			var fields = cardbookRepository.allColumns.display.concat(cardbookRepository.allColumns.personal);
-			fields = fields.concat(cardbookRepository.allColumns.org);
-			fields = fields.concat(cardbookRepository.allColumns.note);
+			var fields = wdw_mergeCards.allColumns.display.concat(wdw_mergeCards.allColumns.personal);
+			fields = fields.concat(wdw_mergeCards.allColumns.org);
+			fields = fields.concat(wdw_mergeCards.allColumns.note);
 			for (let i of fields) {
 				for (let j = 0; j < listOfCards.length; j++) {
-					if ((wdw_mergeCards.version == "4.0" && cardbookRepository.newFields.includes(i)) || (!cardbookRepository.newFields.includes(i))){
-						if (document.getElementById(i + 'Checkbox' + j)) {
-							var myCheckBox = document.getElementById(i + 'Checkbox' + j);
+					if ((wdw_mergeCards.version == "4.0" && wdw_mergeCards.newFields.includes(i)) || (!wdw_mergeCards.newFields.includes(i))){
+						if (document.getElementById(`${i}Checkbox${j}`)) {
+							var myCheckBox = document.getElementById(`${i}Checkbox${j}`);
 							if (myCheckBox.checked) {
-								aCard[i] = document.getElementById(i + 'Textbox' + j).value;
+								aCard[i] = document.getElementById(`${i}Textbox${j}`).value;
 							}
 						}
 					}
 				}
 			}
-			for (let i in cardbookRepository.customFields) {
-				for (let j = 0; j < cardbookRepository.customFields[i].length; j++) {
-					var prefixRow = i + cardbookRepository.customFields[i][j][2];
+			for (let i in wdw_mergeCards.customFields) {
+				for (let j = 0; j < wdw_mergeCards.customFields[i].length; j++) {
+					var prefixRow = i + wdw_mergeCards.customFields[i][j][2];
 					for (let k = 0; k < listOfCards.length; k++) {
-						if (document.getElementById(prefixRow + 'Checkbox' + k)) {
-							var myCheckBox = document.getElementById(prefixRow + 'Checkbox' + k);
+						if (document.getElementById(`${prefixRow}Checkbox${k}`)) {
+							var myCheckBox = document.getElementById(`${prefixRow}Checkbox${k}`);
 							if (myCheckBox.checked) {
-								aCard.others.push(cardbookRepository.customFields[i][j][0] + ":" + document.getElementById(prefixRow + 'Textbox' + k).value);
+								aCard.others.push(wdw_mergeCards.customFields[i][j][0] + ":" + document.getElementById(`${prefixRow}Textbox${k}`).value);
 							}
 						}
 					}
 				}
 			}
 			if (wdw_mergeCards.mode == "CONTACT") {
-				var multilineFields = cardbookRepository.multilineFields.concat(cardbookRepository.allColumns.categories);
+				var multilineFields = wdw_mergeCards.multilineFields.concat(wdw_mergeCards.allColumns.categories);
 				for (let i of multilineFields) {
 					var length = 0
 					for (let j = 0; j < listOfCards.length; j++) {
@@ -784,22 +748,22 @@ if ("undefined" == typeof(wdw_mergeCards)) {
 					}
 					for (let j = 0; j < length; j++) {
 						for (let k = 0; k < listOfCards.length; k++) {
-							if (document.getElementById(i + '_' + j + '_' + k + '_Checkbox0')) {
-								var myCheckBox = document.getElementById(i + '_' + j + '_' + k + '_Checkbox0');
+							if (document.getElementById(`${i}_${j}_${k}_Checkbox0`)) {
+								var myCheckBox = document.getElementById(`${i}_${j}_${k}_Checkbox0`);
 								if (myCheckBox.checked) {
 									aCard[i].push(listOfCards[k][i][j]);
 								}
 							}
 						}
 					}
-					aCard[i] = cardbookRepository.arrayUnique(aCard[i]);
+					aCard[i] = cardbookHTMLUtils.arrayUnique(aCard[i]);
 				}
-				var dateFormat = cardbookRepository.getDateFormat(aCard.dirPrefId, aCard.version);
+				var dateFormat = cardbookHTMLUtils.getDateFormat(aCard.dirPrefId, aCard.version);
 				for (let i of [ 'event' ]) {
 					var length = 0
 					var arrayOfValues = [];
 					for (let card of listOfCards) {
-						var myEvents = cardbookRepository.cardbookUtils.getEventsFromCard(card.note.split("\n"), card.others);
+						var myEvents = cardbookHTMLUtils.getEventsFromCard(card.note.split("\n"), card.others);
 						if (length < myEvents.result.length) {
 							length = myEvents.result.length;
 						}
@@ -807,11 +771,11 @@ if ("undefined" == typeof(wdw_mergeCards)) {
 					}
 					for (let j = 0; j < length; j++) {
 						for (let k = 0; k < listOfCards.length; k++) {
-							if (document.getElementById(i + '_' + j + '_' + k + '_Checkbox0')) {
-								var myCheckBox = document.getElementById(i + '_' + j + '_' + k + '_Checkbox0');
+							if (document.getElementById(`${i}_${j}_${k}_Checkbox0`)) {
+								var myCheckBox = document.getElementById(`${i}_${j}_${k}_Checkbox0`);
 								if (myCheckBox.checked) {
-									var myPGNextNumber = cardbookRepository.cardbookTypes.rebuildAllPGs(aCard);
-									cardbookRepository.cardbookUtils.addEventstoCard(aCard, [arrayOfValues[k][j]], myPGNextNumber, dateFormat);
+									var myPGNextNumber = cardbookHTMLUtils.rebuildAllPGs(aCard);
+									cardbookHTMLUtils.addEventstoCard(aCard, [arrayOfValues[k][j]], myPGNextNumber, dateFormat);
 								}
 							}
 						}
@@ -819,7 +783,7 @@ if ("undefined" == typeof(wdw_mergeCards)) {
 				}
 			} else {
 				aCard.isAList = true;
-				var multilineFields = cardbookRepository.allColumns.categories;
+				var multilineFields = wdw_mergeCards.allColumns.categories;
 				for (let i of multilineFields) {
 					var length = 0
 					for (let j = 0; j < listOfCards.length; j++) {
@@ -829,22 +793,23 @@ if ("undefined" == typeof(wdw_mergeCards)) {
 					}
 					for (let j = 0; j < length; j++) {
 						for (let k = 0; k < listOfCards.length; k++) {
-							if (document.getElementById(i + '_' + j + '_' + k + '_Checkbox0')) {
-								var myCheckBox = document.getElementById(i + '_' + j + '_' + k + '_Checkbox0');
+							if (document.getElementById(`${i}_${j}_${k}_Checkbox0`)) {
+								var myCheckBox = document.getElementById(`${i}_${j}_${k}_Checkbox0`);
 								if (myCheckBox.checked) {
 									aCard[i].push(listOfCards[k][i][j]);
 								}
 							}
 						}
 					}
-					aCard[i] = cardbookRepository.arrayUnique(aCard[i]);
+					aCard[i] = cardbookHTMLUtils.arrayUnique(aCard[i]);
 				}
 				let myMembers = [];
 				for (let i of [ 'email' ]) {
 					var length = 0
 					var arrayOfValues = [];
 					for (let card of listOfCards) {
-						var myMails = cardbookRepository.cardbookUtils.getMembersFromCard(card).mails;
+						let members = await messenger.runtime.sendMessage({query: "cardbook.getMembersFromCard", card: card});
+						var myMails = members.mails;
 						if (length < myMails.length) {
 							length = myMails.length;
 						}
@@ -852,8 +817,8 @@ if ("undefined" == typeof(wdw_mergeCards)) {
 					}
 					for (let j = 0; j < length; j++) {
 						for (let k = 0; k < listOfCards.length; k++) {
-							if (document.getElementById(i + '_' + j + '_' + k + '_Checkbox0')) {
-								var myCheckBox = document.getElementById(i + '_' + j + '_' + k + '_Checkbox0');
+							if (document.getElementById(`${i}_${j}_${k}_Checkbox0`)) {
+								var myCheckBox = document.getElementById(`${i}_${j}_${k}_Checkbox0`);
 								if (myCheckBox.checked) {
 									myMembers.push("mailto:" + arrayOfValues[k][j]);
 								}
@@ -865,7 +830,8 @@ if ("undefined" == typeof(wdw_mergeCards)) {
 					var length = 0
 					var arrayOfValues = [];
 					for (let card of listOfCards) {
-						var myContacts = cardbookRepository.cardbookUtils.getMembersFromCard(card).uids;
+						let members = await messenger.runtime.sendMessage({query: "cardbook.getMembersFromCard", card: card});
+						var myContacts = members.uids;
 						if (length < myContacts.length) {
 							length = myContacts.length;
 						}
@@ -873,8 +839,8 @@ if ("undefined" == typeof(wdw_mergeCards)) {
 					}
 					for (let j = 0; j < length; j++) {
 						for (let k = 0; k < listOfCards.length; k++) {
-							if (document.getElementById(i + '_' + j + '_' + k + '_Checkbox0')) {
-								var myCheckBox = document.getElementById(i + '_' + j + '_' + k + '_Checkbox0');
+							if (document.getElementById(`${i}_${j}_${k}_Checkbox0`)) {
+								var myCheckBox = document.getElementById(`${i}_${j}_${k}_Checkbox0`);
 								if (myCheckBox.checked) {
 									myMembers.push("urn:uuid:" + arrayOfValues[k][j].uid);
 								}
@@ -882,61 +848,62 @@ if ("undefined" == typeof(wdw_mergeCards)) {
 						}
 					}
 				}
-				cardbookRepository.cardbookUtils.addMemberstoCard(aCard, myMembers);
+				await cardbookHTMLUtils.addMemberstoCard(aCard, myMembers);
 			}
 			for (let i of [ 'photo' ]) {
 				for (let j = 0; j < listOfCards.length; j++) {
-					if (document.getElementById(i + 'Checkbox' + j)) {
-						var myCheckBox = document.getElementById(i + 'Checkbox' + j);
+					if (document.getElementById(`${i}Checkbox${j}`)) {
+						var myCheckBox = document.getElementById(`${i}Checkbox${j}`);
 						if (myCheckBox.checked) {
-							aCard[i].value = wdw_mergeCards.arrayField[i + 'Textbox' + j].value;
-							aCard[i].extension = wdw_mergeCards.arrayField[i + 'Textbox' + j].extension;
+							aCard[i].value = wdw_mergeCards.arrayField[`${i}Textbox${j}`].value;
+							aCard[i].extension = wdw_mergeCards.arrayField[`${i}Textbox${j}`].extension;
 						}
 					}
 				}
 			}
 		},
 
-		viewResult: function () {
-			var myOutCard = new cardbookCardParser();
-			wdw_mergeCards.calculateResult(myOutCard);
-			if (window.arguments[0].hideCreate) {
-				var myViewResultArgs = {cardIn: myOutCard, cardOut: {}, editionMode: "ViewResultHideCreate", cardEditionAction: ""};
-			} else {
-				var myViewResultArgs = {cardIn: myOutCard, cardOut: {}, editionMode: "ViewResult", cardEditionAction: ""};
-			}
-			var myWindow = Services.wm.getMostRecentWindow("mail:3pane").openDialog("chrome://cardbook/content/cardEdition/wdw_cardEdition.xhtml", "", cardbookRepository.modalWindowParams, myViewResultArgs);
-			if (myViewResultArgs.cardEditionAction == "CREATE" || myViewResultArgs.cardEditionAction == "CREATEANDREPLACE") {
-				window.arguments[0].action = myViewResultArgs.cardEditionAction;
-				window.arguments[0].cardsOut = [myViewResultArgs.cardOut];
-				close();
-			}
+		viewResult: async function () {
+			var myOutCard = await messenger.runtime.sendMessage({query: "cardbook.getCardParser"});
+			await wdw_mergeCards.calculateResult(myOutCard);
+			await messenger.runtime.sendMessage({query: "cardbook.mergeCards.viewCardResult", source: wdw_mergeCards.source, ids: wdw_mergeCards.ids, duplicateWinId: wdw_mergeCards.duplicateWinId, duplicateDisplayId: wdw_mergeCards.duplicateDisplayId, duplicateLineId: wdw_mergeCards.duplicateLineId, actionId: wdw_mergeCards.actionId, card: myOutCard, hideCreate: wdw_mergeCards.hideCreate});
 		},
 
-		create: function () {
-			window.arguments[0].action = "CREATE";
-			wdw_mergeCards.save();
+		create: async function () {
+			await wdw_mergeCards.save("CREATE");
 		},
 
-		createAndReplace: function () {
-			window.arguments[0].action = "CREATEANDREPLACE";
-			wdw_mergeCards.save();
+		createAndReplace: async function () {
+			await wdw_mergeCards.save("CREATEANDREPLACE");
 		},
 
-		save: function () {
-			var myOutCard = new cardbookCardParser();
-			wdw_mergeCards.calculateResult(myOutCard);
-			window.arguments[0].cardsOut = [myOutCard];
-			close();
+		cancel: async function () {
+			await wdw_mergeCards.save("CANCEL");
 		},
 
-		cancel: function () {
-			window.arguments[0].action = "CANCEL";
-			close();
+		save: async function (aAction) {
+			var myOutCard = await messenger.runtime.sendMessage({query: "cardbook.getCardParser"});
+			await wdw_mergeCards.calculateResult(myOutCard);
+			await messenger.runtime.sendMessage({query: "cardbook.mergeCards.mergeFinished", source: wdw_mergeCards.source, ids: wdw_mergeCards.ids, duplicateWinId: wdw_mergeCards.duplicateWinId, duplicateDisplayId: wdw_mergeCards.duplicateDisplayId, duplicateLineId: wdw_mergeCards.duplicateLineId, action: aAction, actionId: wdw_mergeCards.actionId, cardOut: myOutCard});
+			cardbookHTMLRichContext.closeWindow();
 		}
-
 	};
-
 };
 
-document.addEventListener("DOMContentLoaded", wdw_mergeCards.load);
+messenger.runtime.onMessage.addListener( (info) => {
+	switch (info.query) {
+		case "cardbook.mergeCards.closeViewCardResult":
+			if (wdw_mergeCards.ids == info.ids) {
+				let promise = new Promise( async (resolve, reject) => {
+					await messenger.runtime.sendMessage({query: "cardbook.mergeCards.mergeFinished", source: wdw_mergeCards.source, ids: info.ids, duplicateWinId: wdw_mergeCards.duplicateWinId, duplicateDisplayId: wdw_mergeCards.duplicateDisplayId, duplicateLineId: wdw_mergeCards.duplicateLineId, action: info.action, actionId: info.actionId, cardOut: info.cardOut});
+					resolve();
+				});
+				promise.then(e => {
+					cardbookHTMLRichContext.closeWindow();
+				});
+			}
+			break;
+		}
+});
+
+await wdw_mergeCards.load();

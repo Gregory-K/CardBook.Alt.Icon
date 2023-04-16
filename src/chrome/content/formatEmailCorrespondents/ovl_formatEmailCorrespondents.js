@@ -82,8 +82,8 @@ if ("undefined" == typeof(ovl_formatEmailCorrespondents)) {
 		},
 
 		getDisplayNameColumn: function(aEmails, aContext) {
-			let showCondensedAddresses = cardbookRepository.cardbookPreferences.getBoolPref("mail.showCondensedAddresses");
-			let exclusive = cardbookRepository.cardbookPreferences.getBoolPref("extensions.cardbook.exclusive");
+			let showCondensedAddresses = Services.prefs.getBoolPref("mail.showCondensedAddresses");
+			let exclusive = cardbookRepository.cardbookPrefs["exclusive"];
 			let results = [];
 			let myCardBookResult = {};
 			let addresses = MailServices.headerParser.parseEncodedHeaderW(aEmails);
@@ -279,7 +279,7 @@ myFormatObserver.register();
 		// Override a function.
 		DisplayNameUtils.formatDisplayName = function() {
 			
-			var exclusive = cardbookRepository.cardbookPreferences.getBoolPref("extensions.cardbook.exclusive");
+			var exclusive = cardbookRepository.cardbookPrefs["exclusive"];
 			var myCardBookResult = {};
 			myCardBookResult = ovl_formatEmailCorrespondents.getCardBookDisplayNameFromEmail(arguments[0], arguments[1]);
 			if (myCardBookResult.found) {

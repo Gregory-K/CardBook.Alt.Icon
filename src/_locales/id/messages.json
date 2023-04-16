@@ -114,14 +114,8 @@
 	"showForgottenLabel": {
 		"message": "Tampilkan duplikat yang terlupakan"
 	},
-	"showForgottenAccesskey": {
-		"message": "T"
-	},
 	"hideForgottenLabel": {
 		"message": "Sembunyikan duplikat yang terlupakan"
-	},
-	"hideForgottenAccesskey": {
-		"message": "S"
 	},
 	"noContactsDuplicated": {
 		"message": "Tidak ada kontak duplikat yang ditemukan."
@@ -3309,6 +3303,12 @@
 	"toLowerCase": {
 		"message": "Konversikan ke huruf kecil"
 	},
+	"copy": {
+		"message": "Salin"
+	},
+	"paste": {
+		"message": "Tempel"
+	},
 	"copyFieldValue": {
 		"message": "Salin ($P1$)",
         "placeholders": {
@@ -3369,7 +3369,7 @@
 	"wdw_cardbookConfigurationAddEmailsRestrictionTitle": {
 		"message": "Definisi Pembatasan Akun"
 	},
-	"wdw_cardbookConfigurationAddEmailsCollectionTitle": {
+	"wdw_cardbookConfigurationAddEmailsEmailsCollectionTitle": {
 		"message": "Definisi Pengumpulan Email Alamat Terkumpul Akun"
 	},
 	"ignoreCaseIgnoreDiacriticLabel": {
@@ -3773,10 +3773,13 @@
 	},
 	"wizard.next.label": {
 		"message": "Selanjutnya"
-	},	
+	},
 	"wizard.back.label": {
 		"message": "Kembali"
-	},	
+	},
+	"wizard.cancel.label": {
+		"message": "Batal"
+	},
 	"wizard.create.label": {
 		"message": "Buat"
 	},
@@ -3800,9 +3803,6 @@
 	},
 	"initialPage.search.label": {
 		"message": "Cari ke dalam buku alamat yang ada"
-	},
-	"initialPage.find.label": {
-		"message": "??Search for remote address books??"
 	},
 	"localPage.type.description": {
 		"message": "Jenis buku alamat lokal:"
@@ -3838,7 +3838,7 @@
 		"message": "Jelajahi"
 	},
 	"remotePage.description": {
-		"message": "Apa jenis buku alamat jauh Anda (Perhatian: Google TIDAK sesuai dengan standar vKartu)?"
+		"message": "Apa jenis buku alamat jauh Anda?"
 	},
 	"remotePage.type.label": {
 		"message": "Jenis"
@@ -3891,7 +3891,7 @@
 	"rememberPassword": {
 		"message": "Gunakan Pengelola Sandi untuk mengingat sandi ini"
 	},
-	"showHidePassword.tooltip": {
+	"showHidePassword": {
 		"message": "Tampilkan/Sembunyikan sandi"
 	},
 	"remotePage.validatebutton.label": {
@@ -3903,20 +3903,11 @@
 	"abSearchHeading.label": {
 		"message": "Cari di:"
 	},
-	"abSearchHeading.accesskey": {
-		"message": "C"
-	},
 	"matchAll.label": {
 		"message": "Sesuai dengan yang berikut"
 	},
-	"matchAll.accesskey": {
-		"message": "d"
-	},
 	"matchAny.label": {
 		"message": "Sesuai dengan salah satu dari"
-	},
-	"matchAny.accesskey": {
-		"message": "u"
 	},
 	"googleOauthPage.wizard.description": {
 		"message": "Otentikasi Google"
@@ -3969,9 +3960,6 @@
 	"name.ABedit.label": {
 		"message": "Nama:"
 	},
-	"name.ABedit.accesskey": {
-		"message": "N"
-	},
 	"nodesLabel": {
 		"message": "??Nodes:??"
 	},
@@ -3993,9 +3981,6 @@
 	"readonlyLabel": {
 		"message": "Mode baca-saja"
 	},
-	"readonlyAccesskey": {
-		"message": "M"
-	},
 	"urnuuidLabel": {
 		"message": "Gunakan urn:uuid"
 	},
@@ -4008,14 +3993,8 @@
 	"autoSyncLabel": {
 		"message": "Aktifkan sinkronisasi berkala"
 	},
-	"autoSyncAccesskey": {
-		"message": "A"
-	},
 	"autoSyncIntervalLabel": {
 		"message": "Interval antara sinkronisasi periodik (menit):"
-	},
-	"autoSyncIntervalAccesskey": {
-		"message": "I"
 	},
 	"miscTabLabel": {
 		"message": "Serba Aneka"
@@ -4026,20 +4005,11 @@
 	"fnFormulaLabel": {
 		"message": "Menghasilkan Nama Tampilan:"
 	},
-	"fnFormulaAccesskey": {
-		"message": "M"
-	},
 	"resetFnFormulaLabel": {
 		"message": "Kembalikan Nilai Default"
 	},
-	"resetFnFormulaAccesskey": {
-		"message": "K"
-	},
 	"applyToABButtonLabel": {
 		"message": "??Apply to…??"
-	},
-	"applyToABButtonAccesskey": {
-		"message": "A"
 	},
 	"wdw_adrEditionTitle": {
 		"message": "Editor Alamat"
@@ -4173,53 +4143,26 @@
 	"autocompletionLabel": {
 		"message": "Pelengkapan otomatis alamat email"
 	},
-	"autocompletionAccesskey": {
-		"message": "P"
-	},
-	"autocompletionTooltip": {
-		"message": "Memperluas pelengkapan otomatis kontak dalam buku alamat Thunderbird dengan pelengkapan otomatis kontak di buku alamat Kontak."
-	},
 	"autocompleteSortByPopularityLabel": {
 		"message": "Urutkan alamat email dengan popularitas"
-	},
-	"autocompleteSortByPopularityAccesskey": {
-		"message": "U"
 	},
 	"autocompleteProposeConcatEmailsLabel": {
 		"message": "Mengusulkan email menggabungkan setiap kontak"
 	},
-	"autocompleteProposeConcatEmailsAccesskey": {
-		"message": "m"
-	},
 	"autocompleteShowAddressbookLabel": {
 		"message": "Tampilkan nama buku alamat"
-	},
-	"autocompleteShowAddressbookAccesskey": {
-		"message": "T"
 	},
 	"autocompleteShowEmailTypeLabel": {
 		"message": "??Show email type??"
 	},
-	"autocompleteShowEmailTypeAccesskey": {
-		"message": "e"
-	},
 	"autocompleteShowPopularityLabel": {
 		"message": "??Show popularity??"
-	},
-	"autocompleteShowPopularityAccesskey": {
-		"message": "y"
 	},
 	"autocompleteWithColorLabel": {
 		"message": "Gunakan warna buku alamat"
 	},
-	"autocompleteWithColorAccesskey": {
-		"message": "w"
-	},
 	"autocompleteRestrictSearchLabel": {
 		"message": "Batasi bidang pencarian"
-	},
-	"autocompleteRestrictSearchAccesskey": {
-		"message": "B"
 	},
 	"chooseAutocompleteRestrictSearchFieldsButtonLabel": {
 		"message": "Ubah"
@@ -4256,12 +4199,6 @@
 	},
 	"exclusiveLabel": {
 		"message": "Sumber unik untuk kontak"
-	},
-	"exclusiveAccesskey": {
-		"message": "u"
-	},
-	"exclusiveTooltip": {
-		"message": "Jika dinonaktifkan, opsi ini memungkinkan untuk mengambil kontak di buku alamat standar Thunderbird untuk bintang kuning, untuk nama tampilan email dan untuk pelengkapan otomatis email."
 	},
 	"accountsRestrictionsLabel": {
 		"message": "Pembatasan Akun"
@@ -4341,12 +4278,6 @@
 	"debugModeLabel": {
 		"message": "Mode debug"
 	},
-	"debugModeAccesskey": {
-		"message": "M"
-	},
-	"debugModeTooltip": {
-		"message": "Aktifkan mode debug untuk penebangan yang diperpanjang."
-	},
 	"statusInformationLineNumberLabel": {
 		"message": "Jumlah baris yang tersimpan dalam file log:"
 	},
@@ -4365,26 +4296,14 @@
 	"listTab.conf.label": {
 		"message": "Daftar"
 	},
-	"listTab.conf.accesskey": {
-		"message": "D"
-	},
 	"technicalTab.conf.label": {
 		"message": "Teknis"
-	},
-	"technicalTab.conf.accesskey": {
-		"message": "T"
 	},
 	"vCardTab.conf.label": {
 		"message": "vKartu"
 	},
-	"vCardTab.conf.accesskey": {
-		"message": "v"
-	},
 	"keyTab.conf.label": {
 		"message": "??Public Keys??"
-	},
-	"keyTab.conf.accesskey": {
-		"message": "K"
 	},
 	"advancedTab1Label": {
 		"message": "Canggih"
@@ -4482,9 +4401,6 @@
 	"preferEmailEditionLabel": {
 		"message": "Klik dua kali pada kontak yang mengeditnya alih-alih email itu"
 	},
-	"preferEmailEditionAccesskey": {
-		"message": "K"
-	},
 	"dateDisplayedFormatLabel": {
 		"message": "Format Teks Tanggal:"
 	},
@@ -4493,9 +4409,6 @@
 	},
 	"defaultRegionLabel": {
 		"message": "??Default Region:??"
-	},
-	"defaultRegionAccesskey": {
-		"message": "D"
 	},
 	"defaultRegionTooltip": {
 		"message": "??Default region for addresses and formatting phone numbers.??"
@@ -4641,9 +4554,6 @@
 	"preferIMPPPrefLabel": {
 		"message": "Lebih suka Komunikasi Internet yang ditandai dengan"
 	},
-	"preferIMPPPrefAccesskey": {
-		"message": "L"
-	},
 	"preferIMPPPrefWarn": {
 		"message": "Jika tidak ada alamat yang ditandai, sebuah sambungan akan diajukan untuk semua alamat kontak."
 	},
@@ -4707,9 +4617,6 @@
 	"URLPhoneBackgroundLabel": {
 		"message": "??Run in background??"
 	},
-	"URLPhoneBackgroundAccesskey": {
-		"message": "R"
-	},
 	"encryptionGroupboxLabel": {
 		"message": "Enkripsi"
 	},
@@ -4718,9 +4625,6 @@
 	},
 	"localDataEncryptionEnabledLabel": {
 		"message": "??Encrypt locally cached cards??"
-	},
-	"localDataEncryptionEnabledAccesskey": {
-		"message": "E"
 	},
 	"customFieldRankHeaderLabel": {
 		"message": "Pangkat"
@@ -4771,7 +4675,7 @@
 		"message": "Label Lapangan"
 	},
 	"listPanelLabel": {
-		"message": "Jika server Anda tidak mendukung kategori (sebagai contoh Google, Apple, Zimbra dan sebagainya), daftar adalah cara yang baik untuk mengirim email ke grup. VKartu 3,0 tidak secara native mendukung daftar, namun hal ini dapat dicapai dengan bidang kustom, jadi jika Anda ingin menggunakan daftar di vKartu 3,0, Anda harus menentukan bidang ini."
+		"message": "Jika server Anda tidak mendukung kategori (sebagai contoh Apple, Zimbra dan sebagainya), daftar adalah cara yang baik untuk mengirim email ke grup. VKartu 3,0 tidak secara native mendukung daftar, namun hal ini dapat dicapai dengan bidang kustom, jadi jika Anda ingin menggunakan daftar di vKartu 3,0, Anda harus menentukan bidang ini."
 	},
 	"listGroupboxLabel": {
 		"message": "Bidang khusus untuk daftar"
@@ -4803,14 +4707,8 @@
 	"syncAfterChangeLabel": {
 		"message": "??Synchronize after changes??"
 	},
-	"syncAfterChangeAccesskey": {
-		"message": "c"
-	},
 	"initialSyncLabel": {
 		"message": "Jalankan sinkronisasi di Thunderbird startup"
-	},
-	"initialSyncAccesskey": {
-		"message": "J"
 	},
 	"initialSyncDelayLabel": {
 		"message": "Keterlambatan sinkronisasi awal (detik):"
@@ -4872,17 +4770,11 @@
 	"decodeReportLabel": {
 		"message": "Decode alamat URL untuk permintaan MELAPORKAN"
 	},
-	"decodeReportAccesskey": {
-		"message": "D"
-	},
 	"miscEmailGroupboxLabel": {
 		"message": "Mengirim Email"
 	},
 	"preferEmailPrefLabel": {
 		"message": "Lebih suka alamat email yang ditandai dengan"
-	},
-	"preferEmailPrefAccesskey": {
-		"message": "L"
 	},
 	"preferEmailPrefWarn": {
 		"message": "Jika tidak ada alamat yang ditandai, pesan akan dikirim ke semua alamat kontak."
@@ -4890,14 +4782,8 @@
 	"warnEmptyEmailsLabel": {
 		"message": "Peringatkan saya saat mencoba email kontak tanpa alamat email"
 	},
-	"warnEmptyEmailsAccesskey": {
-		"message": "P"
-	},
 	"useOnlyEmailLabel": {
 		"message": "Gunakan hanya alamat email, tanpa Nama Tampilannya"
-	},
-	"useOnlyEmailAccesskey": {
-		"message": "t"
 	},
 	"attachVCardWarn": {
 		"message": "Untuk menambahkan vKartu secara otomatis ke email Anda, pilih vKartu untuk setiap akun email. Jika diaktifkan, CardBook akan melampirkan vKartu ini ke setiap email keluar dari akun ini."
@@ -4956,26 +4842,14 @@
 	"bday.conf.label": {
 		"message": "Ulang Tahun"
 	},
-	"bday.conf.accesskey": {
-		"message": "U"
-	},
 	"anniversary.conf.label": {
 		"message": "Ulang Tahu (hanya untuk vKartu 4.0)"
-	},
-	"anniversary.conf.accesskey": {
-		"message": "l"
 	},
 	"deathdate.conf.label": {
 		"message": "Tanggal Kematian (hanya untuk vKartu 4.0)"
 	},
-	"deathdate.conf.accesskey": {
-		"message": "g"
-	},
 	"eventsLabel": {
 		"message": "Acara"
-	},
-	"eventsAccesskey": {
-		"message": "A"
 	},
 	"gender.conf.label": {
 		"message": "Jenis Kelamin (hanya untuk vKartu 4.0)"
@@ -5007,14 +4881,8 @@
 	"showPopupOnStartupLabel": {
 		"message": "Tampilkan jendela popup saat startup"
 	},
-	"showPopupOnStartupAccesskey": {
-		"message": "T"
-	},
 	"showPeriodicPopupLabel": {
 		"message": "Tampilkan popup harian"
-	},
-	"showPeriodicPopupAccesskey": {
-		"message": "h"
 	},
 	"periodicPopupTimeLabel": {
 		"message": "Waktu tampilan (JJ:MM):"
@@ -5024,9 +4892,6 @@
 	},
 	"showPopupEvenIfNoBirthdayLabel": {
 		"message": "Tampilkan jendela popup saat daftar peringatan kosong"
-	},
-	"showPopupEvenIfNoBirthdayAccesskey": {
-		"message": "k"
 	},
 	"remindViaLightningGroupboxLabel": {
 		"message": "Ingatkan melalui ekstensi kalender Thunderbird Lightning"
@@ -5039,9 +4904,6 @@
 	},
 	"syncWithLightningOnStartupLabel": {
 		"message": "Sinkronkan dengan Lightning saat startup"
-	},
-	"syncWithLightningOnStartupAccesskey": {
-		"message": "L"
 	},
 	"calendarEntryTitleLabel": {
 		"message": "Judul untuk acara kalender:"
@@ -5061,9 +4923,6 @@
 	"calendarRepeatingEventLabel": {
 		"message": "Acara berulang"
 	},
-	"calendarRepeatingEventAccesskey": {
-		"message": "b"
-	},
 	"calendarEntryTimeLabel": {
 		"message": "Waktu untuk acara kalender (JJ:MM):"
 	},
@@ -5072,9 +4931,6 @@
 	},
 	"calendarEntryWholeDayLabel": {
 		"message": "Acara kalender sepanjang hari"
-	},
-	"calendarEntryWholeDayAccesskey": {
-		"message": "s"
 	},
 	"calendarEntryAlarmLabel": {
 		"message": "Alarm sampai n jam untuk acara kalender (contoh: 4,+1):"
@@ -5835,9 +5691,6 @@
 	"viewResultEditionLabel": {
 		"message": "Tampilan Hasil"
 	},
-	"viewResultEditionAccesskey": {
-		"message": "T"
-	},
 	"previousEditButton.tooltip": {
 		"message": "Sebelumnya"
 	},
@@ -5883,20 +5736,11 @@
 	"moreEditionLabel": {
 		"message": "Lebih banyak"
 	},
-	"moreEditionAccesskey": {
-		"message": "b"
-	},
 	"lessEditionLabel": {
 		"message": "Lebih sedikit"
 	},
-	"lessEditionAccesskey": {
-		"message": "s"
-	},
 	"mergeAllEditionLabel": {
 		"message": "??Merge All??"
-	},
-	"mergeAllEditionAccesskey": {
-		"message": "M"
 	},
 	"formatAllEditionLabel": {
 		"message": "??Format all??"
@@ -5906,9 +5750,6 @@
 	},
 	"undoAllEditionLabel": {
 		"message": "??Undo all??"
-	},
-	"undoAllEditionAccesskey": {
-		"message": "U"
 	},
 	"formatEditionLabel": {
 		"message": "??Format??"
@@ -5951,9 +5792,6 @@
 	},
 	"convertVCardsTooltip": {
 		"message": "??The vCard version of some contacts is different from the vCard version of your address book, this button may convert these vCards??"
-	},
-	"convertVCardsAccesskey": {
-		"message": "C"
 	},
 	"wdw_findDuplicatesTitle": {
 		"message": "Kontak duplikat ($P1$)",
@@ -6016,26 +5854,14 @@
 	"refreshLogEditionLabel": {
 		"message": "Muat Ulang"
 	},
-	"refreshLogEditionAccesskey": {
-		"message": "U"
-	},
 	"flushLogEditionLabel": {
 		"message": "Bersihkan Daftar"
-	},
-	"flushLogEditionAccesskey": {
-		"message": "D"
 	},
 	"clipboardLogEditionLabel": {
 		"message": "Salin ke Papan Klip"
 	},
-	"clipboardLogEditionAccesskey": {
-		"message": "P"
-	},
 	"cancelLogEditionLabel": {
 		"message": "Oke"
-	},
-	"cancelLogEditionAccesskey": {
-		"message": "O"
 	},
 	"wdw_mergeCardsTitle": {
 		"message": "Kontak Menggabungkan"
@@ -6064,6 +5890,30 @@
 	"wdw_cardbookConfigurationEditFieldTitle": {
 		"message": "??Choose a conversion function??"
 	},
+	"ContainsOperator": {
+		"message": "mengandung"
+	},
+	"DoesntContainOperator": {
+		"message": "tidak mengandung"
+	},
+	"IsOperator": {
+		"message": "sama dengan"
+	},
+	"IsntOperator": {
+		"message": "tidak sama dengan"
+	},
+	"BeginsWithOperator": {
+		"message": "dimulai dengan"
+	},
+	"EndsWithOperator": {
+		"message": "diakhiri dengan"
+	},
+	"IsEmptyOperator": {
+		"message": "kosong"
+	},
+	"IsntEmptyOperator": {
+		"message": "tidak kosong"
+	},
 	"uppercaseLabel": {
 		"message": "??Uppercase??"
 	},
@@ -6072,5 +5922,821 @@
 	},
 	"capitalizationLabel": {
 		"message": "??Capitalization??"
+	},
+	"region-name-ad": {
+		"message": "Andorra"
+	},
+	"region-name-ae": {
+		"message": "Uni Emirat Arab"
+	},
+	"region-name-af": {
+		"message": "Afganistan"
+	},
+	"region-name-ai": {
+		"message": "Anguilla"
+	},
+	"region-name-al": {
+		"message": "Albania"
+	},
+	"region-name-ag": {
+		"message": "Antigua dan Barbuda"
+	},
+	"region-name-am": {
+		"message": "Armenia"
+	},
+	"region-name-ar": {
+		"message": "Argentina"
+	},
+	"region-name-aq": {
+		"message": "Antarktika"
+	},
+	"region-name-ao": {
+		"message": "Angola"
+	},
+	"region-name-at": {
+		"message": "Austria"
+	},
+	"region-name-az": {
+		"message": "Azerbaijan"
+	},
+	"region-name-ba": {
+		"message": "Bosnia dan Herzegovina"
+	},
+	"region-name-bb": {
+		"message": "Barbados"
+	},
+	"region-name-as": {
+		"message": "Samoa Amerika"
+	},
+	"region-name-au": {
+		"message": "Australia"
+	},
+	"region-name-bd": {
+		"message": "Bangladesh"
+	},
+	"region-name-be": {
+		"message": "Belgia"
+	},
+	"region-name-aw": {
+		"message": "Aruba"
+	},
+	"region-name-bf": {
+		"message": "Burkina Faso"
+	},
+	"region-name-bm": {
+		"message": "Bermuda"
+	},
+	"region-name-bj": {
+		"message": "Benin"
+	},
+	"region-name-bg": {
+		"message": "Bulgaria"
+	},
+	"region-name-bi": {
+		"message": "Burundi"
+	},
+	"region-name-bh": {
+		"message": "Bahrain"
+	},
+	"region-name-bl": {
+		"message": "Saint Barthelemy"
+	},
+	"region-name-bn": {
+		"message": "Brunei"
+	},
+	"region-name-bo": {
+		"message": "Bolivia"
+	},
+	"region-name-br": {
+		"message": "Brasil"
+	},
+	"region-name-bq": {
+		"message": "Bonaire, Sint Eustatius dan Saba"
+	},
+	"region-name-bt": {
+		"message": "Bhutan"
+	},
+	"region-name-bs": {
+		"message": "Bahamas"
+	},
+	"region-name-bz": {
+		"message": "Belize"
+	},
+	"region-name-ca": {
+		"message": "Kanada"
+	},
+	"region-name-cc": {
+		"message": "Kepulauan Cocos (Keeling)"
+	},
+	"region-name-by": {
+		"message": "Belarusia"
+	},
+	"region-name-cd": {
+		"message": "Kongo-Kinshasa"
+	},
+	"region-name-cf": {
+		"message": "Afrika Tengah, Republik"
+	},
+	"region-name-bv": {
+		"message": "Bouvet, Pulau"
+	},
+	"region-name-bw": {
+		"message": "Botswana"
+	},
+	"region-name-cl": {
+		"message": "Chili"
+	},
+	"region-name-ci": {
+		"message": "Côte d’Ivoire"
+	},
+	"region-name-ch": {
+		"message": "Swiss"
+	},
+	"region-name-cm": {
+		"message": "Kamerun"
+	},
+	"region-name-ck": {
+		"message": "Cook, Kepulauan"
+	},
+	"region-name-cg": {
+		"message": "Kongo-Brazzaville"
+	},
+	"region-name-cn": {
+		"message": "Tiongkok"
+	},
+	"region-name-cp": {
+		"message": "Kepulauan Clipperton"
+	},
+	"region-name-co": {
+		"message": "Kolombia"
+	},
+	"region-name-cr": {
+		"message": "Kosta Rika"
+	},
+	"region-name-cz": {
+		"message": "Ceko, Republik"
+	},
+	"region-name-cy": {
+		"message": "Siprus"
+	},
+	"region-name-cx": {
+		"message": "Natal, Pulau"
+	},
+	"region-name-cv": {
+		"message": "Tanjung Verde"
+	},
+	"region-name-cu": {
+		"message": "Kuba"
+	},
+	"region-name-cw": {
+		"message": "Curaçao"
+	},
+	"region-name-de": {
+		"message": "Jerman"
+	},
+	"region-name-dg": {
+		"message": "Diego Garcia"
+	},
+	"region-name-dk": {
+		"message": "Denmark"
+	},
+	"region-name-dj": {
+		"message": "Djibouti"
+	},
+	"region-name-dm": {
+		"message": "Dominika"
+	},
+	"region-name-ec": {
+		"message": "Ekuador"
+	},
+	"region-name-dz": {
+		"message": "Aljazair"
+	},
+	"region-name-do": {
+		"message": "Dominika, Republik"
+	},
+	"region-name-ee": {
+		"message": "Estonia"
+	},
+	"region-name-eg": {
+		"message": "Mesir"
+	},
+	"region-name-eh": {
+		"message": "Sahara Barat"
+	},
+	"region-name-et": {
+		"message": "Ethiopia"
+	},
+	"region-name-er": {
+		"message": "Eritrea"
+	},
+	"region-name-es": {
+		"message": "Spanyol"
+	},
+	"region-name-fi": {
+		"message": "Finlandia"
+	},
+	"region-name-fj": {
+		"message": "Fiji"
+	},
+	"region-name-fm": {
+		"message": "Negara Federasi Micronesia"
+	},
+	"region-name-fk": {
+		"message": "Kepulauan Falkland (Islas Malvinas)"
+	},
+	"region-name-fo": {
+		"message": "Faroe, Kepulauan"
+	},
+	"region-name-ge": {
+		"message": "Georgia"
+	},
+	"region-name-gb": {
+		"message": "Britania Raya"
+	},
+	"region-name-gd": {
+		"message": "Grenada"
+	},
+	"region-name-fr": {
+		"message": "Perancis"
+	},
+	"region-name-ga": {
+		"message": "Gabon"
+	},
+	"region-name-gf": {
+		"message": "Guyana Perancis"
+	},
+	"region-name-gl": {
+		"message": "Greenland"
+	},
+	"region-name-gm": {
+		"message": "Gambia"
+	},
+	"region-name-gi": {
+		"message": "Gibraltar"
+	},
+	"region-name-gg": {
+		"message": "Guernsey"
+	},
+	"region-name-gh": {
+		"message": "Ghana"
+	},
+	"region-name-gn": {
+		"message": "Guinea"
+	},
+	"region-name-gp": {
+		"message": "Guadeloupe"
+	},
+	"region-name-gr": {
+		"message": "Yunani"
+	},
+	"region-name-gq": {
+		"message": "Guinea Khatulistiwa"
+	},
+	"region-name-gt": {
+		"message": "Guatemala"
+	},
+	"region-name-gw": {
+		"message": "Guinea-Bissau"
+	},
+	"region-name-hk": {
+		"message": "Hong Kong"
+	},
+	"region-name-gu": {
+		"message": "Guam"
+	},
+	"region-name-gs": {
+		"message": "Georgia Selatan dan Kepulauan Sandwich Selatan"
+	},
+	"region-name-gy": {
+		"message": "Guyana"
+	},
+	"region-name-hm": {
+		"message": "Heard dan Kepulauan McDonald, Pulau"
+	},
+	"region-name-ht": {
+		"message": "Haiti"
+	},
+	"region-name-hr": {
+		"message": "Kroasia"
+	},
+	"region-name-hn": {
+		"message": "Honduras"
+	},
+	"region-name-in": {
+		"message": "India"
+	},
+	"region-name-il": {
+		"message": "Israel"
+	},
+	"region-name-im": {
+		"message": "Man, Pulau"
+	},
+	"region-name-ie": {
+		"message": "Irlandia"
+	},
+	"region-name-hu": {
+		"message": "Hongaria"
+	},
+	"region-name-id": {
+		"message": "Indonesia"
+	},
+	"region-name-io": {
+		"message": "Britania di Samudera Hindia, Teritorial"
+	},
+	"region-name-ir": {
+		"message": "Iran"
+	},
+	"region-name-is": {
+		"message": "Islandia"
+	},
+	"region-name-iq": {
+		"message": "Irak"
+	},
+	"region-name-je": {
+		"message": "Jersey"
+	},
+	"region-name-jp": {
+		"message": "Jepang"
+	},
+	"region-name-it": {
+		"message": "Italia"
+	},
+	"region-name-ke": {
+		"message": "Kenya"
+	},
+	"region-name-jo": {
+		"message": "Yordania"
+	},
+	"region-name-jm": {
+		"message": "Jamaika"
+	},
+	"region-name-kg": {
+		"message": "Kirgizstan"
+	},
+	"region-name-ki": {
+		"message": "Kiribati"
+	},
+	"region-name-kh": {
+		"message": "Kamboja"
+	},
+	"region-name-km": {
+		"message": "Komoro"
+	},
+	"region-name-kn": {
+		"message": "Saint Kitts dan Nevis"
+	},
+	"region-name-ky": {
+		"message": "Cayman, Kepulauan"
+	},
+	"region-name-kp": {
+		"message": "Korea Utara"
+	},
+	"region-name-kr": {
+		"message": "Korea Selatan"
+	},
+	"region-name-kw": {
+		"message": "Kuwait"
+	},
+	"region-name-kz": {
+		"message": "Kazakhstan"
+	},
+	"region-name-la": {
+		"message": "Laos"
+	},
+	"region-name-lb": {
+		"message": "Lebanon"
+	},
+	"region-name-lc": {
+		"message": "Saint Lucia"
+	},
+	"region-name-li": {
+		"message": "Liechtenstein"
+	},
+	"region-name-lk": {
+		"message": "Sri Lanka"
+	},
+	"region-name-lr": {
+		"message": "Liberia"
+	},
+	"region-name-lu": {
+		"message": "Luksemburg"
+	},
+	"region-name-lv": {
+		"message": "Latvia"
+	},
+	"region-name-ls": {
+		"message": "Lesotho"
+	},
+	"region-name-ly": {
+		"message": "Libya"
+	},
+	"region-name-lt": {
+		"message": "Lituania"
+	},
+	"region-name-mc": {
+		"message": "Monako"
+	},
+	"region-name-md": {
+		"message": "Moldova"
+	},
+	"region-name-ma": {
+		"message": "Maroko"
+	},
+	"region-name-me": {
+		"message": "Montenegro"
+	},
+	"region-name-mf": {
+		"message": "Saint Martin"
+	},
+	"region-name-mg": {
+		"message": "Madagaskar"
+	},
+	"region-name-mh": {
+		"message": "Marshall, Kepulauan"
+	},
+	"region-name-mk": {
+		"message": "Macedonia"
+	},
+	"region-name-ml": {
+		"message": "Mali"
+	},
+	"region-name-mm": {
+		"message": "Birma"
+	},
+	"region-name-mn": {
+		"message": "Mongolia"
+	},
+	"region-name-mo": {
+		"message": "Makau"
+	},
+	"region-name-mp": {
+		"message": "Mariana Utara, Kepulauan"
+	},
+	"region-name-mt": {
+		"message": "Malta"
+	},
+	"region-name-mu": {
+		"message": "Mauritius"
+	},
+	"region-name-mr": {
+		"message": "Mauritania"
+	},
+	"region-name-ms": {
+		"message": "Montserrat"
+	},
+	"region-name-mq": {
+		"message": "Martinik"
+	},
+	"region-name-mv": {
+		"message": "Maladewa"
+	},
+	"region-name-mw": {
+		"message": "Malawi"
+	},
+	"region-name-my": {
+		"message": "Malaysia"
+	},
+	"region-name-mx": {
+		"message": "Meksiko"
+	},
+	"region-name-mz": {
+		"message": "Mozambik"
+	},
+	"region-name-na": {
+		"message": "Namibia"
+	},
+	"region-name-nc": {
+		"message": "Kaledonia Baru"
+	},
+	"region-name-ne": {
+		"message": "Niger"
+	},
+	"region-name-nf": {
+		"message": "Norfolk, Pulau"
+	},
+	"region-name-ng": {
+		"message": "Nigeria"
+	},
+	"region-name-ni": {
+		"message": "Nikaragua"
+	},
+	"region-name-nl": {
+		"message": "Belanda"
+	},
+	"region-name-no": {
+		"message": "Norwegia"
+	},
+	"region-name-np": {
+		"message": "Nepal"
+	},
+	"region-name-nr": {
+		"message": "Nauru"
+	},
+	"region-name-pk": {
+		"message": "Pakistan"
+	},
+	"region-name-pl": {
+		"message": "Polandia"
+	},
+	"region-name-nz": {
+		"message": "Selandia Baru"
+	},
+	"region-name-ph": {
+		"message": "Filipina"
+	},
+	"region-name-nu": {
+		"message": "Niue"
+	},
+	"region-name-om": {
+		"message": "Oman"
+	},
+	"region-name-pe": {
+		"message": "Peru"
+	},
+	"region-name-pa": {
+		"message": "Panama"
+	},
+	"region-name-pf": {
+		"message": "Polinesia Perancis"
+	},
+	"region-name-pg": {
+		"message": "Papua Nugini"
+	},
+	"region-name-pm": {
+		"message": "Saint Pierre dan Miquelon"
+	},
+	"region-name-pn": {
+		"message": "Kepulauan Pitcairn"
+	},
+	"region-name-pr": {
+		"message": "Puerto Riko"
+	},
+	"region-name-pt": {
+		"message": "Portugal"
+	},
+	"region-name-pw": {
+		"message": "Palau"
+	},
+	"region-name-qm": {
+		"message": "Kepulauan Midway"
+	},
+	"region-name-py": {
+		"message": "Paraguay"
+	},
+	"region-name-qa": {
+		"message": "Qatar"
+	},
+	"region-name-qs": {
+		"message": "Bassas da India"
+	},
+	"region-name-qu": {
+		"message": "Pulau Juan de Nova"
+	},
+	"region-name-qw": {
+		"message": "Pulau Wake"
+	},
+	"region-name-qx": {
+		"message": "Pulau Glorioso"
+	},
+	"region-name-rs": {
+		"message": "Serbia"
+	},
+	"region-name-ro": {
+		"message": "Rumania"
+	},
+	"region-name-qz": {
+		"message": "Akrotiri"
+	},
+	"region-name-re": {
+		"message": "Réunion"
+	},
+	"region-name-rw": {
+		"message": "Rwanda"
+	},
+	"region-name-ru": {
+		"message": "Rusia"
+	},
+	"region-name-sa": {
+		"message": "Arab Saudi"
+	},
+	"region-name-sb": {
+		"message": "Solomon, Kepulauan"
+	},
+	"region-name-sc": {
+		"message": "Seychelles"
+	},
+	"region-name-sd": {
+		"message": "Sudan"
+	},
+	"region-name-se": {
+		"message": "Swedia"
+	},
+	"region-name-sg": {
+		"message": "Singapura"
+	},
+	"region-name-sh": {
+		"message": "Saint Helena, Ascension, dan Tristan da Cunha"
+	},
+	"region-name-si": {
+		"message": "Slovenia"
+	},
+	"region-name-sk": {
+		"message": "Slowakia"
+	},
+	"region-name-sl": {
+		"message": "Sierra Leone"
+	},
+	"region-name-sn": {
+		"message": "Senegal"
+	},
+	"region-name-sm": {
+		"message": "San Marino"
+	},
+	"region-name-ss": {
+		"message": "Sudan Selatan"
+	},
+	"region-name-so": {
+		"message": "Somalia"
+	},
+	"region-name-sr": {
+		"message": "Suriname"
+	},
+	"region-name-sx": {
+		"message": "Saint Martin"
+	},
+	"region-name-st": {
+		"message": "Sao Tome dan Principe"
+	},
+	"region-name-sv": {
+		"message": "El Salvador"
+	},
+	"region-name-sy": {
+		"message": "Suriah"
+	},
+	"region-name-sz": {
+		"message": "Swaziland"
+	},
+	"region-name-tc": {
+		"message": "Turks dan Caicos, Kepulauan"
+	},
+	"region-name-td": {
+		"message": "Chad"
+	},
+	"region-name-tg": {
+		"message": "Togo"
+	},
+	"region-name-th": {
+		"message": "Thailand"
+	},
+	"region-name-tf": {
+		"message": "Perancis, Wilayah Bagian Selatan dan Antartika"
+	},
+	"region-name-tj": {
+		"message": "Tajikistan"
+	},
+	"region-name-tk": {
+		"message": "Tokelau"
+	},
+	"region-name-tl": {
+		"message": "Timor Leste"
+	},
+	"region-name-tr": {
+		"message": "Turki"
+	},
+	"region-name-tn": {
+		"message": "Tunisia"
+	},
+	"region-name-to": {
+		"message": "Tonga"
+	},
+	"region-name-tm": {
+		"message": "Turkmenistan"
+	},
+	"region-name-tt": {
+		"message": "Trinidad dan Tobago"
+	},
+	"region-name-tv": {
+		"message": "Tuvalu"
+	},
+	"region-name-tw": {
+		"message": "Taiwan"
+	},
+	"region-name-tz": {
+		"message": "Tanzania"
+	},
+	"region-name-ua": {
+		"message": "Ukraina"
+	},
+	"region-name-ug": {
+		"message": "Uganda"
+	},
+	"region-name-us": {
+		"message": "Amerika Serikat"
+	},
+	"region-name-uy": {
+		"message": "Uruguay"
+	},
+	"region-name-va": {
+		"message": "Vatikan"
+	},
+	"region-name-uz": {
+		"message": "Uzbekistan"
+	},
+	"region-name-vc": {
+		"message": "Saint Vincent dan Grenadines"
+	},
+	"region-name-vg": {
+		"message": "Kepulauan Virgin, Inggris"
+	},
+	"region-name-vi": {
+		"message": "Kepulauan Virgin (Amerika)"
+	},
+	"region-name-vu": {
+		"message": "Vanuatu"
+	},
+	"region-name-ve": {
+		"message": "Venezuela"
+	},
+	"region-name-vn": {
+		"message": "Vietnam"
+	},
+	"region-name-wf": {
+		"message": "Wallis dan Futuna"
+	},
+	"region-name-ws": {
+		"message": "Samoa"
+	},
+	"region-name-xa": {
+		"message": "Kepulauan Ashmore dan Cartier"
+	},
+	"region-name-xb": {
+		"message": "Pulau Baker"
+	},
+	"region-name-xc": {
+		"message": "Kepulauan Coral Sea"
+	},
+	"region-name-xd": {
+		"message": "Dhekelia"
+	},
+	"region-name-xe": {
+		"message": "Pulau Europa"
+	},
+	"region-name-xh": {
+		"message": "Pulau Howland"
+	},
+	"region-name-xg": {
+		"message": "Jalur Gaza"
+	},
+	"region-name-xj": {
+		"message": "Jan Mayen"
+	},
+	"region-name-xk": {
+		"message": "Kosovo"
+	},
+	"region-name-xl": {
+		"message": "Palmyra Atoll"
+	},
+	"region-name-xp": {
+		"message": "Pulau Paracel"
+	},
+	"region-name-xm": {
+		"message": "Kingman Reef"
+	},
+	"region-name-xq": {
+		"message": "Pulau Jarvis"
+	},
+	"region-name-xr": {
+		"message": "Svalbard"
+	},
+	"region-name-xs": {
+		"message": "Kepualau Spratly"
+	},
+	"region-name-xt": {
+		"message": "Pulau Tromelin"
+	},
+	"region-name-xv": {
+		"message": "Pulau Navassa"
+	},
+	"region-name-yt": {
+		"message": "Mayotte"
+	},
+	"region-name-ye": {
+		"message": "Yaman"
+	},
+	"region-name-xw": {
+		"message": "Tepi Barat"
+	},
+	"region-name-za": {
+		"message": "Afrika Selatan"
+	},
+	"region-name-xu": {
+		"message": "Johnston Atoll"
+	},
+	"region-name-zw": {
+		"message": "Zimbabwe"
+	},
+	"region-name-zm": {
+		"message": "Zambia"
 	}
 }
