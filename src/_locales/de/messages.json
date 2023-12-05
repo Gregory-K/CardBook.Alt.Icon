@@ -5381,6 +5381,9 @@
 	"PreferMailFormat.label": {
 		"message": "Folgendes Nachrichtenformat bevorzugen:"
 	},
+	"PreferMailFormat.accesskey": {
+		"message": "B"
+	},
 	"Unknown.label": {
 		"message": "Unbekannt"
 	},
@@ -5723,17 +5726,32 @@
 	"createEditionLabel": {
 		"message": "Erstellen"
 	},
+	"createEditionAccesskey": {
+		"message": "E"
+	},
 	"createAndReplaceEditionLabel": {
 		"message": "Erstellen und Ersetzen"
+	},
+	"createAndReplaceEditionAccesskey": {
+		"message": "Z"
 	},
 	"saveEditionLabel": {
 		"message": "Speichern"
 	},
+	"saveEditionAccesskey": {
+		"message": "S"
+	},
 	"validateEditionLabel": {
 		"message": "Übernehmen"
 	},
+	"validateEditionAccesskey": {
+		"message": "Ü"
+	},
 	"cancelEditionLabel": {
 		"message": "Abbrechen"
+	},
+	"cancelEditionAccesskey": {
+		"message": "A"
 	},
 	"closeEditionLabel": {
 		"message": "Schließen"
@@ -5831,6 +5849,9 @@
 	},
 	"kind.edit.label": {
 		"message": "Typ"
+	},
+	"kind.edit.accesskey": {
+		"message": "T"
 	},
 	"addEmailGroupboxLabel": {
 		"message": "E-Mail-Adresse"

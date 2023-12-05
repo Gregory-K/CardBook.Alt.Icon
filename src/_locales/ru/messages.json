@@ -5381,6 +5381,9 @@
 	"PreferMailFormat.label": {
 		"message": "Предпочитает получать почту в формате:"
 	},
+	"PreferMailFormat.accesskey": {
+		"message": "р"
+	},
 	"Unknown.label": {
 		"message": "Неизвестно"
 	},
@@ -5723,17 +5726,32 @@
 	"createEditionLabel": {
 		"message": "Создать"
 	},
+	"createEditionAccesskey": {
+		"message": "С"
+	},
 	"createAndReplaceEditionLabel": {
 		"message": "Создать и заменить"
+	},
+	"createAndReplaceEditionAccesskey": {
+		"message": "з"
 	},
 	"saveEditionLabel": {
 		"message": "Сохранить"
 	},
+	"saveEditionAccesskey": {
+		"message": "х"
+	},
 	"validateEditionLabel": {
 		"message": "Проверить"
 	},
+	"validateEditionAccesskey": {
+		"message": "в"
+	},
 	"cancelEditionLabel": {
 		"message": "Отменить"
+	},
+	"cancelEditionAccesskey": {
+		"message": "О"
 	},
 	"closeEditionLabel": {
 		"message": "Закрыть"
@@ -5831,6 +5849,9 @@
 	},
 	"kind.edit.label": {
 		"message": "Тип"
+	},
+	"kind.edit.accesskey": {
+		"message": "Т"
 	},
 	"addEmailGroupboxLabel": {
 		"message": "Адрес электронной почты"

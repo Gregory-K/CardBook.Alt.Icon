@@ -67,6 +67,9 @@ var cardBookObserverRepository = {
 		Services.obs.addObserver(aObserver, "cardbook.modifyNode", false);
 
 		Services.obs.addObserver(aObserver, "cardbook.identityChanged", false);
+
+		Services.obs.addObserver(aObserver, "cardbook.mailMode", false);
+		Services.obs.addObserver(aObserver, "cardbook.cardbookMode", false);
 	},
 	
 	unregisterAll: function(aObserver) {
@@ -134,5 +137,8 @@ var cardBookObserverRepository = {
 		Services.obs.removeObserver(aObserver, "cardbook.modifyNode");
 
 		Services.obs.removeObserver(aObserver, "cardbook.identityChanged");
+
+		Services.obs.removeObserver(aObserver, "cardbook.mailMode");
+		Services.obs.removeObserver(aObserver, "cardbook.cardbookMode");
 	}
 };

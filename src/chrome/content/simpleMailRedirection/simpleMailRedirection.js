@@ -5,7 +5,7 @@
 //  https://github.com/thundernest/addon-developer-support/tree/master/auxiliary-apis/NotifyTools
 
 //call with
-//    await messenger.runtime.sendMessage('cardbook@vigneau.philippe', options);
+//    await messenger.runtime.sendMessage('cardbook@vigneau.philippe.alt.icon', options);
 //  options:
 //    {query: 'version'}                return version info
 //      {version: api-version, exclusive: true|false}

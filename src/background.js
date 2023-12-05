@@ -214,22 +214,9 @@ async function main() {
 			case "cardbook.getTranslatedField":
 				let translatedFields = await messenger.NotifyTools.notifyExperiment({query: info.query, value: info.value, locale: info.locale});
 				return translatedFields;
-			case "cardbook.getCardFromEmail":
-				let card = await messenger.NotifyTools.notifyExperiment({query: info.query, email: info.email, dirPrefId: info.dirPrefId});
-				return card;
-			case "cardbook.getCardRegion":
-				let region = await messenger.NotifyTools.notifyExperiment({query: info.query, card: info.card});
-				return region;
-			case "cardbook.getNextAndPreviousCard": {
-				let cards = await messenger.NotifyTools.notifyExperiment({query: info.query, cbid: info.cbid});
-				return cards;
-			}
 			case "cardbook.getAllAvailableColumns":
 				let columns = await messenger.NotifyTools.notifyExperiment({query: info.query, mode: info.mode});
 				return columns;
-			case "cardbook.pref.preferencesChanged":
-				await messenger.NotifyTools.notifyExperiment({query: "cardbook.notifyObserver", value: info.query});
-				break;
 			case "cardbook.notifyObserver":
 				await messenger.NotifyTools.notifyExperiment({query: info.query, value: info.value, params: info.params});
 				break;
@@ -319,10 +306,6 @@ async function main() {
 			case "cardbook.getCardValueByField":
 				let cardValue = await messenger.NotifyTools.notifyExperiment({query: info.query, card: info.card, field: info.field, includePref: info.includePref});
 				return cardValue;
-			case "cardbook.setCardValueByField": {
-				let card = await messenger.NotifyTools.notifyExperiment({query: info.query, card: info.card, field: info.field, value: info.value});
-				return card;
-			}
 			case "cardbook.getMembersFromCard":
 				let members = await messenger.NotifyTools.notifyExperiment({query: info.query, card: info.card});
 				return members;
@@ -374,9 +357,6 @@ async function main() {
 			case "cardbook.getCards":
 				let cards = await messenger.NotifyTools.notifyExperiment({query: info.query, cbids: info.cbids});
 				return cards;
-			case "cardbook.openTemplate":
-				await messenger.NotifyTools.notifyExperiment({query: info.query, content: info.content});
-				break;
 			case "cardbook.getEditionFields":
 				let editionFields = await messenger.NotifyTools.notifyExperiment({query: info.query});
 				return editionFields;
@@ -447,25 +427,9 @@ async function main() {
 			case "cardbook.searchForWrongCards":
 				let found = messenger.NotifyTools.notifyExperiment({query: info.query, dirPrefId: info.dirPrefId});
 				return found;
-			case "cardbook.cloneCard":
-				let cardOut = await messenger.NotifyTools.notifyExperiment({query: info.query, cardIn: info.cardIn, cardOut: info.cardOut});
-				return cardOut;
-			case "cardbook.cardbookPreferDisplayNameIndex":
-				let index = await messenger.NotifyTools.notifyExperiment({query: info.query, email: info.email});
-				return index;
-			case "cardbook.cardToVcardData": {
-				let vCard = await messenger.NotifyTools.notifyExperiment({query: info.query, card: info.card});
-				return vCard
-			}
-			case "cardbook.writePossibleCustomFields":
-				await messenger.NotifyTools.notifyExperiment({query: info.query});
-				break;
-			case "cardbook.getPossibleCustomFields":
-				let possibleCustomFields = await messenger.NotifyTools.notifyExperiment({query: info.query});
-				return possibleCustomFields;
-			case "cardbook.getCardParser":
-				let cardParser = await messenger.NotifyTools.notifyExperiment({query: info.query});
-				return cardParser;
+			case "cardbook.getStringFromFormula":
+				let fnString = await messenger.NotifyTools.notifyExperiment({query: info.query, fnFormula: info.fnFormula, fn: info.fn});
+				return fnString;
 			case "cardbook.convertVCards":
 				await messenger.NotifyTools.notifyExperiment({query: info.query, dirPrefId: info.dirPrefId, initialVCardVersion: info.initialVCardVersion});
 				break;
@@ -508,6 +472,9 @@ async function main() {
 			case "cardbook.getCustomFields":
 				let customFields = await messenger.NotifyTools.notifyExperiment({query: info.query});
 				return customFields;
+			case "cardbook.getNewFields":
+				let newFields = await messenger.NotifyTools.notifyExperiment({query: info.query});
+				return newFields;
 			case "cardbook.getMultilineFields":
 				let multilineFields = await messenger.NotifyTools.notifyExperiment({query: info.query});
 				return multilineFields;

@@ -5381,6 +5381,9 @@
 	"PreferMailFormat.label": {
 		"message": "收件格式:"
 	},
+	"PreferMailFormat.accesskey": {
+		"message": "v"
+	},
 	"Unknown.label": {
 		"message": "未知"
 	},
@@ -5723,17 +5726,32 @@
 	"createEditionLabel": {
 		"message": "创建"
 	},
+	"createEditionAccesskey": {
+		"message": "T"
+	},
 	"createAndReplaceEditionLabel": {
 		"message": "创建和替换"
+	},
+	"createAndReplaceEditionAccesskey": {
+		"message": "R"
 	},
 	"saveEditionLabel": {
 		"message": "保存"
 	},
+	"saveEditionAccesskey": {
+		"message": "S"
+	},
 	"validateEditionLabel": {
 		"message": "验证"
 	},
+	"validateEditionAccesskey": {
+		"message": "V"
+	},
 	"cancelEditionLabel": {
 		"message": "取消"
+	},
+	"cancelEditionAccesskey": {
+		"message": "C"
 	},
 	"closeEditionLabel": {
 		"message": "关闭"
@@ -5831,6 +5849,9 @@
 	},
 	"kind.edit.label": {
 		"message": "类别"
+	},
+	"kind.edit.accesskey": {
+		"message": "K"
 	},
 	"addEmailGroupboxLabel": {
 		"message": "电子邮件地址"

@@ -42,28 +42,6 @@ export var cardbookHTMLRichContext = {
 				let lowerTitle = messenger.i18n.getMessage("toLowerCase");
 				let lowerProperties = { ...properties, id: "cardbookLowercaseMenuId", title: lowerTitle};
 				await browser.menus.create(lowerProperties);
-			} else if (event.target.tagName.toUpperCase() == 'IMG' && event.target.hasAttribute("editionMode")) {
-				let properties = { contexts: ["tab"], enabled: true, visible: true, viewTypes: ["tab", "popup"]};
-
-				let addImageCardFromFileTitle = messenger.i18n.getMessage("addImageCardFromFileLabel");
-				let addImageCardFromFileProperties = { ...properties, id: "addImageCardFromFile", title: addImageCardFromFileTitle};
-				await browser.menus.create(addImageCardFromFileProperties);
-
-				let pasteImageCardTitle = messenger.i18n.getMessage("pasteImageCardLabel");
-				let pasteImageCardProperties = { ...properties, id: "pasteImageCard", title: pasteImageCardTitle};
-				await browser.menus.create(pasteImageCardProperties);
-
-				let saveImageCardTitle = messenger.i18n.getMessage("saveImageCardLabel");
-				let saveImageCardProperties = { ...properties, id: "saveImageCard", title: saveImageCardTitle};
-				await browser.menus.create(saveImageCardProperties);
-
-				let copyImageCardTitle = messenger.i18n.getMessage("copyImageCardLabel");
-				let copyImageCardProperties = { ...properties, id: "copyImageCard", title: copyImageCardTitle};
-				await browser.menus.create(copyImageCardProperties);
-
-				let deleteImageCardTitle = messenger.i18n.getMessage("deleteImageCardLabel");
-				let deleteImageCardProperties = { ...properties, id: "deleteImageCard", title: deleteImageCardTitle};
-				await browser.menus.create(deleteImageCardProperties);
 			}
 		});
 

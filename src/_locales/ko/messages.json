@@ -5381,6 +5381,9 @@
 	"PreferMailFormat.label": {
 		"message": "메일 받기 형식:"
 	},
+	"PreferMailFormat.accesskey": {
+		"message": "v"
+	},
 	"Unknown.label": {
 		"message": "알 수 없음"
 	},
@@ -5723,17 +5726,32 @@
 	"createEditionLabel": {
 		"message": "생성"
 	},
+	"createEditionAccesskey": {
+		"message": "T"
+	},
 	"createAndReplaceEditionLabel": {
 		"message": "생성 및 교체"
+	},
+	"createAndReplaceEditionAccesskey": {
+		"message": "R"
 	},
 	"saveEditionLabel": {
 		"message": "저장"
 	},
+	"saveEditionAccesskey": {
+		"message": "S"
+	},
 	"validateEditionLabel": {
 		"message": "유효성 확인"
 	},
+	"validateEditionAccesskey": {
+		"message": "V"
+	},
 	"cancelEditionLabel": {
 		"message": "취소"
+	},
+	"cancelEditionAccesskey": {
+		"message": "C"
 	},
 	"closeEditionLabel": {
 		"message": "닫기"
@@ -5831,6 +5849,9 @@
 	},
 	"kind.edit.label": {
 		"message": "종류"
+	},
+	"kind.edit.accesskey": {
+		"message": "K"
 	},
 	"addEmailGroupboxLabel": {
 		"message": "이메일 주소"

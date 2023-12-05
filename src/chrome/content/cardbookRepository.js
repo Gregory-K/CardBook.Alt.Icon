@@ -13,7 +13,7 @@ var cardbookRepository = {
 	cardbookImageDatabase: {},
 	cardbookDuplicateDatabase: {},
 
-	extension: ExtensionParent.GlobalManager.getExtension("cardbook@vigneau.philippe"),
+	extension: ExtensionParent.GlobalManager.getExtension("cardbook@vigneau.philippe.alt.icon"),
 	
 	windowParams: "chrome,titlebar,resizable,all,dialog=no",
 	modalWindowParams: "modal,chrome,titlebar,resizable,minimizable=no",
@@ -2185,7 +2185,10 @@ var cardbookRepository = {
 			params.set("mergeId", mergeId);
 			let win = await notifyTools.notifyBackground({query: "cardbook.openWindow",
 													url: `${url}?${params.toString()}`,
-													type: "popup"});
+													type: "popup",
+													ids: ids.join(","),
+													actionId: aActionId,
+													source: aSource});
 			if (aSource != "IMPORT") {
 				resolve();
 			} else {

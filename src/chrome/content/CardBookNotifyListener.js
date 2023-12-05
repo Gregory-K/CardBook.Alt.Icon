@@ -206,12 +206,6 @@ let id = notifyTools.addListener(async (message) => {
 		case "cardbook.getTranslatedField":
 			return cardbookRepository.cardbookUtils.getTranslatedField(message.value, message.locale);
 			break;
-		case "cardbook.getCardFromEmail":
-			return cardbookRepository.cardbookUtils.getCardFromEmail(message.email, message.dirPrefId);
-			break;
-		case "cardbook.getCardRegion":
-			return cardbookRepository.cardbookUtils.getCardRegion(message.card);
-			break;
 		case "cardbook.getAllAvailableColumns":
 			return cardbookRepository.cardbookUtils.getAllAvailableColumns(message.mode);
 			break;
@@ -270,26 +264,9 @@ let id = notifyTools.addListener(async (message) => {
 				}
 			}
 			return found;
-		case "cardbook.cloneCard":
-			message.cardOut = new cardbookCardParser();
-			await cardbookRepository.cardbookUtils.cloneCard(message.cardIn, message.cardOut);
-			return message.cardOut;
-		case "cardbook.cardbookPreferDisplayNameIndex":
-			if (cardbookRepository.cardbookPreferDisplayNameIndex[message.email]) {
-				return cardbookRepository.cardbookPreferDisplayNameIndex[message.email];
-			} else {
-				return null;
-			}
-		case "cardbook.cardToVcardData":
-			let vCard = await cardbookRepository.cardbookUtils.cardToVcardData(message.card); 
-			return vCard
-		case "cardbook.writePossibleCustomFields":
-			cardbookRepository.writePossibleCustomFields();
-			break;
-		case "cardbook.getPossibleCustomFields":
-			return cardbookRepository.possibleCustomFields;
-		case "cardbook.getCardParser":
-			return new cardbookCardParser(message.content, "", "", message.dirPrefId);
+		case "cardbook.getStringFromFormula":
+			let formula = cardbookRepository.cardbookUtils.getStringFromFormula(message.fnFormula, message.fn);
+			return formula;
 		case "cardbook.convertVCards":
 			Services.tm.currentThread.dispatch({ run: async function() {
 				let convertTopic = "cardsConverted";
@@ -607,30 +584,13 @@ let id = notifyTools.addListener(async (message) => {
 			await cardbookActions.endAction(message.actionId);
 			break;
 		case "cardbook.getAdrElements":
-			return cardbookRepository.adrElements;
-		case "cardbook.getNextAndPreviousCard": {
-			let result = {};
-			let previous = 0;
-			let next = 0;
-			for (let index in cardbookRepository.displayedIds) {
-				if (cardbookRepository.displayedIds[index] == message.cbid) {
-					previous = parseInt(index)-1;
-					next = parseInt(index)+1;
-					break;
-				}
-			}
-			if (cardbookRepository.displayedIds[previous]) {
-				result.previous = cardbookRepository.cardbookCards[cardbookRepository.displayedIds[previous]];
-			}
-			if (cardbookRepository.displayedIds[next]) {
-				result.next = cardbookRepository.cardbookCards[cardbookRepository.displayedIds[next]];
-			}
-			return result;
-		}
+				return cardbookRepository.adrElements;
 		case "cardbook.getAllColumns":
 			return cardbookRepository.allColumns;
 		case "cardbook.getCustomFields":
 			return cardbookRepository.customFields;
+		case "cardbook.getNewFields":
+			return cardbookRepository.newFields;
 		case "cardbook.getMultilineFields":
 			return cardbookRepository.multilineFields;
 		case "cardbook.isMyAccountRemote":
@@ -809,16 +769,13 @@ let id = notifyTools.addListener(async (message) => {
 			break;
 		case "cardbook.getCardValueByField":
 			return cardbookRepository.cardbookUtils.getCardValueByField(message.card, message.field, message.includePref);
-		case "cardbook.setCardValueByField":
-			cardbookRepository.cardbookUtils.setCardValueByField(message.card, message.field, message.value);
-			return message.card;
 		case "cardbook.getMembersFromCard":
 			return cardbookRepository.cardbookUtils.getMembersFromCard(message.card)
 		case "cardbook.getImage":
 			let image = await cardbookIDBImage.getImage(message.field, message.dirName, message.cardId, message.cardName);
 			return image
 		case "cardbook.getCardParser":
-			return new cardbookCardParser(message.content, "", "", message.dirPrefId);
+			return new cardbookCardParser();
 		case "cardbook.mergeCards.viewCardResult":
 			if (message.hideCreate) {
 				var myViewResultArgs = {cardIn: message.card, cardOut: {}, editionMode: "ViewResultHideCreate", cardEditionAction: "CANCEL"};
@@ -968,19 +925,14 @@ let id = notifyTools.addListener(async (message) => {
 					result.push([country, country]);
 				}
 			}
-            cardbookRepository.cardbookUtils.sortMultipleArrayByString(result,1,1);
 			return result;
 		case "cardbook.getCards":
 			let cardslist = [];
 			for (let cbid of message.cbids) {
-				if (cardbookRepository.cardbookCards[cbid]) {
-					cardslist.push(cardbookRepository.cardbookCards[cbid]);
-				}
+				let card = await cardbookIDBCard.getCard(cbid);
+				cardslist.push(card);
 			}
 			return cardslist;
-		case "cardbook.openTemplate":
-			await cardbookWindowUtils.openEditionWindow(null, "EditTemplate", message.content);
-			break;
 		case "cardbook.getAllURLsToDiscover":
 			return cardbookRepository.cardbookSynchronization.getAllURLsToDiscover();
 		case "cardbook.openExternalURL":
@@ -1168,7 +1120,7 @@ let id = notifyTools.addListener(async (message) => {
 				let removed = myDisplayNameArray.splice(myDisplayNameArray.length - 1, 1);
 				myNewCard.firstname = myDisplayNameArray.join(" ");
 			}
-			await cardbookWindowUtils.openEditionWindow(myNewCard, "AddEmail");
+			cardbookWindowUtils.openEditionWindow(myNewCard, "AddEmail");
 			break;
 		case "cardbook.addAttachments":
 			cardbookAttachmentUtils.loadAttachment(message.attachment, message.dirPrefId);

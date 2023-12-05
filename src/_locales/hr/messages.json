@@ -5381,6 +5381,9 @@
 	"PreferMailFormat.label": {
 		"message": "Preferira primati poruke oblikovane kao:"
 	},
+	"PreferMailFormat.accesskey": {
+		"message": "v"
+	},
 	"Unknown.label": {
 		"message": "Nepoznato"
 	},
@@ -5723,17 +5726,32 @@
 	"createEditionLabel": {
 		"message": "Kreiraj"
 	},
+	"createEditionAccesskey": {
+		"message": "T"
+	},
 	"createAndReplaceEditionLabel": {
 		"message": "kreiraj i zamijeni"
+	},
+	"createAndReplaceEditionAccesskey": {
+		"message": "R"
 	},
 	"saveEditionLabel": {
 		"message": "Sačuvaj"
 	},
+	"saveEditionAccesskey": {
+		"message": "S"
+	},
 	"validateEditionLabel": {
 		"message": "Potvrdi"
 	},
+	"validateEditionAccesskey": {
+		"message": "V"
+	},
 	"cancelEditionLabel": {
 		"message": "Poništi"
+	},
+	"cancelEditionAccesskey": {
+		"message": "C"
 	},
 	"closeEditionLabel": {
 		"message": "Zatvori"
@@ -5831,6 +5849,9 @@
 	},
 	"kind.edit.label": {
 		"message": "Vrsta"
+	},
+	"kind.edit.accesskey": {
+		"message": "K"
 	},
 	"addEmailGroupboxLabel": {
 		"message": "Adresa e-pošte"

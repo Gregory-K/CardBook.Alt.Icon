@@ -5381,6 +5381,9 @@
 	"PreferMailFormat.label": {
 		"message": "Raje prejema sporočila, oblikovana kot:"
 	},
+	"PreferMailFormat.accesskey": {
+		"message": "b"
+	},
 	"Unknown.label": {
 		"message": "vseeno"
 	},
@@ -5723,17 +5726,32 @@
 	"createEditionLabel": {
 		"message": "Ustvari"
 	},
+	"createEditionAccesskey": {
+		"message": "U"
+	},
 	"createAndReplaceEditionLabel": {
 		"message": "Ustvari in zamenjaj"
+	},
+	"createAndReplaceEditionAccesskey": {
+		"message": "a"
 	},
 	"saveEditionLabel": {
 		"message": "Shrani"
 	},
+	"saveEditionAccesskey": {
+		"message": "S"
+	},
 	"validateEditionLabel": {
 		"message": "Potrdi"
 	},
+	"validateEditionAccesskey": {
+		"message": "o"
+	},
 	"cancelEditionLabel": {
 		"message": "Prekliči"
+	},
+	"cancelEditionAccesskey": {
+		"message": "P"
 	},
 	"closeEditionLabel": {
 		"message": "Zapri"
@@ -5831,6 +5849,9 @@
 	},
 	"kind.edit.label": {
 		"message": "Vrsta"
+	},
+	"kind.edit.accesskey": {
+		"message": "V"
 	},
 	"addEmailGroupboxLabel": {
 		"message": "E-naslov"

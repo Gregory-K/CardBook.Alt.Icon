@@ -9,7 +9,7 @@ export var cardbookNewPreferences = {
 	prefCardBookEmailsCollection: "emailsCollection.",
 	prefCardBookCustomTypes: "customTypes.",
 	changedPrefs: {
-		"addonVersion": "92.2.1",
+		"addonVersion": "92.0.1",
 	},
 	defaultPrefs: {
 		"autocompletion": true,
@@ -106,7 +106,6 @@ export var cardbookNewPreferences = {
 		"cardbookAccountsTreeWidth": "300",
 		"cardbookCardsTreeWidth": "500",
 		"cardbookCardsTreeHeight": "500",
-		"exportDelimiter": ";",
 		"window.wdw_cardbookConfigurationAddCustomField.html.state": {"width": 500, "height": 300},
 		"window.wdw_csvTranslator.html.state": {"width": 700, "height": 600},
 		"window.wdw_cardbookConfigurationEditField.html.state": {"width": 600, "height": 500},
@@ -124,7 +123,6 @@ export var cardbookNewPreferences = {
 		"window.wdw_birthdayList.html.state": {"width": 600, "height": 500},
 		"window.wdw_birthdaySync.html.state": {"width": 400, "height": 300},
 		"window.wdw_cardbookEventContacts.html.state": {"width": 600, "height": 500},
-		"window.wdw_cardEdition.html.state": {"width": 600, "height": 700},
 	},
 
 	initPrefs: async function () {

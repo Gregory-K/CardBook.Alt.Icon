@@ -4,11 +4,11 @@ if ("undefined" == typeof(wdw_templateEdition)) {
 
 	var wdw_templateEdition = {
 		
-		createTemplate: async function () {
+		createTemplate: function () {
 			let myCard = new cardbookCardParser();
 			myCard.dirPrefId = wdw_cardEdition.workingCard.dirPrefId;
 			myCard.fn = cardbookRepository.cardbookPreferences.getFnFormula(wdw_cardEdition.workingCard.dirPrefId);
-			await cardbookWindowUtils.openEditionWindow(myCard, "EditTemplate");
+			cardbookWindowUtils.openEditionWindow(myCard, "EditTemplate");
 		},
 
 		loadTemplate: function () {
@@ -26,7 +26,7 @@ if ("undefined" == typeof(wdw_templateEdition)) {
 			}
 		},
 
-		loadTemplateNext2: async function (aContent) {
+		loadTemplateNext2: function (aContent) {
 			if (aContent) {
 				let re = /[\n\u0085\u2028\u2029]|\r\n?/;
 				let fileContentArray = cardbookRepository.cardbookUtils.cleanArrayWithoutTrim(aContent.split(re));
@@ -44,7 +44,7 @@ if ("undefined" == typeof(wdw_templateEdition)) {
 							return;
 						}
 						myTemplateCard.dirPrefId = wdw_cardEdition.workingCard.dirPrefId;
-						await cardbookWindowUtils.openEditionWindow(myTemplateCard, "EditTemplate");
+						cardbookWindowUtils.openEditionWindow(myTemplateCard, "EditTemplate");
 						// first vCard shown
 						return;
 					} else if (fileContentArray[i] == "") {
@@ -56,7 +56,7 @@ if ("undefined" == typeof(wdw_templateEdition)) {
 			}
 		},
 
-		saveTemplate: function (aCardOut) {
+		saveTemplate: function (aCardIn, aCardOut, aMode) {
 			cardbookWindowUtils.callFilePicker("fileCreationTPLTitle", "SAVE", "TPL", "", "", wdw_templateEdition.saveTemplateNext, aCardOut);
 		},
 

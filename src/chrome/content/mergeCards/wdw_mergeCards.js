@@ -20,6 +20,7 @@ if ("undefined" == typeof(wdw_mergeCards)) {
         cardsIn: [],
         allColumns: {},
         customFields: {},
+        newFields: [],
         multilineFields: [],
             
 		setReadOnly: function (aElement, aSelected, aDisabled) {
@@ -327,6 +328,7 @@ if ("undefined" == typeof(wdw_mergeCards)) {
             document.getElementById('createEditionLabel').hidden = wdw_mergeCards.hideCreate;
             wdw_mergeCards.allColumns = await messenger.runtime.sendMessage({query: "cardbook.getAllColumns"});
             wdw_mergeCards.customFields = await messenger.runtime.sendMessage({query: "cardbook.getCustomFields"});
+            wdw_mergeCards.newFields = await messenger.runtime.sendMessage({query: "cardbook.getNewFields"});
             wdw_mergeCards.multilineFields = await messenger.runtime.sendMessage({query: "cardbook.getMultilineFields"});
     
             // button
@@ -714,7 +716,7 @@ if ("undefined" == typeof(wdw_mergeCards)) {
 			fields = fields.concat(wdw_mergeCards.allColumns.note);
 			for (let i of fields) {
 				for (let j = 0; j < listOfCards.length; j++) {
-					if ((wdw_mergeCards.version == "4.0" && cardbookHTMLUtils.newFields.includes(i)) || (!cardbookHTMLUtils.newFields.includes(i))){
+					if ((wdw_mergeCards.version == "4.0" && wdw_mergeCards.newFields.includes(i)) || (!wdw_mergeCards.newFields.includes(i))){
 						if (document.getElementById(`${i}Checkbox${j}`)) {
 							var myCheckBox = document.getElementById(`${i}Checkbox${j}`);
 							if (myCheckBox.checked) {

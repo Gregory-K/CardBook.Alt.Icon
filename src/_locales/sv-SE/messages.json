@@ -5381,6 +5381,9 @@
 	"PreferMailFormat.label": {
 		"message": "Föredrar att få meddelanden kodade som:"
 	},
+	"PreferMailFormat.accesskey": {
+		"message": "F"
+	},
 	"Unknown.label": {
 		"message": "Okänt"
 	},
@@ -5723,17 +5726,32 @@
 	"createEditionLabel": {
 		"message": "Skapa"
 	},
+	"createEditionAccesskey": {
+		"message": "k"
+	},
 	"createAndReplaceEditionLabel": {
 		"message": "Skapa och ersätt"
+	},
+	"createAndReplaceEditionAccesskey": {
+		"message": "e"
 	},
 	"saveEditionLabel": {
 		"message": "Spara"
 	},
+	"saveEditionAccesskey": {
+		"message": "S"
+	},
 	"validateEditionLabel": {
 		"message": "Verifiera"
 	},
+	"validateEditionAccesskey": {
+		"message": "V"
+	},
 	"cancelEditionLabel": {
 		"message": "Avbryt"
+	},
+	"cancelEditionAccesskey": {
+		"message": "A"
 	},
 	"closeEditionLabel": {
 		"message": "Stäng"
@@ -5831,6 +5849,9 @@
 	},
 	"kind.edit.label": {
 		"message": "Sort"
+	},
+	"kind.edit.accesskey": {
+		"message": "S"
 	},
 	"addEmailGroupboxLabel": {
 		"message": "E-postadress"

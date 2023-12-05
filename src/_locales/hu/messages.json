@@ -5381,6 +5381,9 @@
 	"PreferMailFormat.label": {
 		"message": "Az üzeneteket a következő formátumban szereti megkapni:"
 	},
+	"PreferMailFormat.accesskey": {
+		"message": "k"
+	},
 	"Unknown.label": {
 		"message": "Ismeretlen"
 	},
@@ -5723,17 +5726,32 @@
 	"createEditionLabel": {
 		"message": "Létrehoz"
 	},
+	"createEditionAccesskey": {
+		"message": "L"
+	},
 	"createAndReplaceEditionLabel": {
 		"message": "Létrehozása és cseréje"
+	},
+	"createAndReplaceEditionAccesskey": {
+		"message": "c"
 	},
 	"saveEditionLabel": {
 		"message": "Mentés"
 	},
+	"saveEditionAccesskey": {
+		"message": "M"
+	},
 	"validateEditionLabel": {
 		"message": "Érvényesít"
 	},
+	"validateEditionAccesskey": {
+		"message": "É"
+	},
 	"cancelEditionLabel": {
 		"message": "Mégse"
+	},
+	"cancelEditionAccesskey": {
+		"message": "M"
 	},
 	"closeEditionLabel": {
 		"message": "Bezárás"
@@ -5831,6 +5849,9 @@
 	},
 	"kind.edit.label": {
 		"message": "Fajta"
+	},
+	"kind.edit.accesskey": {
+		"message": "F"
 	},
 	"addEmailGroupboxLabel": {
 		"message": "E-mail cím"

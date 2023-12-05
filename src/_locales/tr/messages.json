@@ -5381,6 +5381,9 @@
 	"PreferMailFormat.label": {
 		"message": "Tercih ettiği ileti alma biçimi:"
 	},
+	"PreferMailFormat.accesskey": {
+		"message": "b"
+	},
 	"Unknown.label": {
 		"message": "Bilinmiyor"
 	},
@@ -5723,17 +5726,32 @@
 	"createEditionLabel": {
 		"message": "Oluştur"
 	},
+	"createEditionAccesskey": {
+		"message": "T"
+	},
 	"createAndReplaceEditionLabel": {
 		"message": "Oluştur ve değiştir"
+	},
+	"createAndReplaceEditionAccesskey": {
+		"message": "R"
 	},
 	"saveEditionLabel": {
 		"message": "Kaydet"
 	},
+	"saveEditionAccesskey": {
+		"message": "S"
+	},
 	"validateEditionLabel": {
 		"message": "Geçerli"
 	},
+	"validateEditionAccesskey": {
+		"message": "V"
+	},
 	"cancelEditionLabel": {
 		"message": "İptal"
+	},
+	"cancelEditionAccesskey": {
+		"message": "C"
 	},
 	"closeEditionLabel": {
 		"message": "Kapat"
@@ -5831,6 +5849,9 @@
 	},
 	"kind.edit.label": {
 		"message": "Tür"
+	},
+	"kind.edit.accesskey": {
+		"message": "K"
 	},
 	"addEmailGroupboxLabel": {
 		"message": "E-posta Adresi"

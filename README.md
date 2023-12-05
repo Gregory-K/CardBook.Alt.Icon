@@ -19,9 +19,9 @@ GitHub (main) - https://github.com/Gregory-K/CardBook.Alt.Icon
 GitLab (alt.) - https://gitlab.com/Gregory.K/CardBook.Alt.Icon
 
 Version:  
-**92.2.1**  
+**92.0.1**  
 Compatibility:  
-113.0a1 <= Thunderbird version >= 116.*
+113.0a1 <= Thunderbird version <= 116.*
 
 
 ## Branches
@@ -48,10 +48,13 @@ _(drag 'n drop OR "gear menu > Install Add-on From File...")_
 Repeat for updates.  
 _The "CardBook Alt.Icon" follows the official "CardBook" releases by adding an extra decimal place at the end._
 
+Settings.  
+Due to the now altered plugin ID, it does not load the official's extension settings. It has to be reconfigured.
+
 
 ## Caution
 
-This altered extension was only intended for the author's personal use, and it doesn't offer anything more than a different main icon design. It was plain experimentation now being offered "as is" for anyone to try. It is neither digitally signed nor distributed via the official Thunderbird channels.
+This altered extension was only intended for the author's personal use, and it doesn't offer anything more than a different main icon design. It was plain experimentation now being offered "as is" for anyone to try it. It is neither digitally signed nor distributed via the official Thunderbird channels.
 
 You should not use unsigned Add-ons outside the official [Thunderbird Add-ons Repository](https://addons.thunderbird.net/thunderbird/), unless you trust the author/developer or you're able to inspect the source code. It is a serious security risk. The author of the present extension disclaims any responsibility for any damage caused to your Thunderbird installation and CardBook data.
 

@@ -58,6 +58,7 @@ let JSMs = [
 	"chrome://cardbook/content/mergeCards/wdw_mergeCards.js",
 	"chrome://cardbook/content/migrate/cardbookMigrate.jsm",
 	"chrome://cardbook/content/observers/cardBookComposeMsgObserver.js",
+	"chrome://cardbook/content/observers/cardBookEditionObserver.js",
 	"chrome://cardbook/content/observers/cardBookLightningObserver.js",
 	"chrome://cardbook/content/observers/cardBookObserver.js",
 	"chrome://cardbook/content/observers/cardBookObserverRepository.js",

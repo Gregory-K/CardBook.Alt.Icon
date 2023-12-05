@@ -1,5 +1,5 @@
-import { cardbookHTMLUtils } from "../cardbookHTMLUtils.mjs";
 import { cardbookHTMLTools } from "../cardbookHTMLTools.mjs";
+import { cardbookHTMLUtils } from "../cardbookHTMLUtils.mjs";
 import { cardbookHTMLDates } from "../cardbookHTMLDates.mjs";
 import { cardbookHTMLNotification } from "../cardbookHTMLNotification.mjs";
 import { cardbookHTMLRichContext } from "../cardbookHTMLRichContext.mjs";
@@ -2248,8 +2248,11 @@ var wdw_cardbookConfiguration = {
 	},
 
 	loadCountries: async function () {
+		let countryList = await messenger.runtime.sendMessage({query: "cardbook.getCountries", useCodeValues: true});
+        cardbookHTMLUtils.sortMultipleArrayByString(countryList,1,1);
+		let countryMenu = document.getElementById('defaultRegionMenulist');
 		let country = await cardbookHTMLUtils.getPrefValue("defaultRegion");
-		await cardbookHTMLTools.loadCountries("defaultRegionMenulist", country)
+		await cardbookHTMLTools.loadOptions(countryMenu, countryList, country, true);
 	},
 
 	validateCountries: async function () {
@@ -2575,14 +2578,14 @@ var wdw_cardbookConfiguration = {
 			case "bool":
 			case "checkbox":
 				await cardbookHTMLUtils.setPrefValue(prefName, aNode.checked);
-				await messenger.runtime.sendMessage({query: "cardbook.pref.preferencesChanged"});
+				await messenger.runtime.sendMessage({query: "cardbook.notifyObserver", value: "cardbook.pref.preferencesChanged"});
 				break;
 			case "string":
 			case "text":
 			case "number":
 			case "radio":
 				await cardbookHTMLUtils.setPrefValue(prefName, aNode.value);
-				await messenger.runtime.sendMessage({query: "cardbook.pref.preferencesChanged"});
+				await messenger.runtime.sendMessage({query: "cardbook.notifyObserver", value: "cardbook.pref.preferencesChanged"});
 				break;
 			default:
 				throw new Error("saveInstantApply : prefType null or unknown : " + prefType);
@@ -2677,7 +2680,7 @@ var wdw_cardbookConfiguration = {
 				await wdw_cardbookConfiguration.validateEventEntryWholeDay();
 				break;
 		}
-		await messenger.runtime.sendMessage({query: "cardbook.pref.preferencesChanged"});
+		await messenger.runtime.sendMessage({query: "cardbook.notifyObserver", value: "cardbook.pref.preferencesChanged"});
 	}
 };
 

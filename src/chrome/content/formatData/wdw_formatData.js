@@ -23,6 +23,7 @@ if ("undefined" == typeof(wdw_formatData)) {
 
 		loadCountries: async function () {
             wdw_formatData.countries = await messenger.runtime.sendMessage({query: "cardbook.getCountries", useCodeValues: true});
+            cardbookHTMLUtils.sortMultipleArrayByString(wdw_formatData.countries,1,1);
 		},
 
 		getNewFormat: function (aId, aValue, aType, aParam) {

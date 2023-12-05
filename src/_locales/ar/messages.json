@@ -5381,6 +5381,9 @@
 	"PreferMailFormat.label": {
 		"message": "يفضل استقبال الرسائل المنسقة ك‍:"
 	},
+	"PreferMailFormat.accesskey": {
+		"message": "س"
+	},
 	"Unknown.label": {
 		"message": "مجهول"
 	},
@@ -5723,17 +5726,32 @@
 	"createEditionLabel": {
 		"message": "إنشاء"
 	},
+	"createEditionAccesskey": {
+		"message": "T"
+	},
 	"createAndReplaceEditionLabel": {
 		"message": "إنشاء واستبدال"
+	},
+	"createAndReplaceEditionAccesskey": {
+		"message": "R"
 	},
 	"saveEditionLabel": {
 		"message": "حفظ"
 	},
+	"saveEditionAccesskey": {
+		"message": "S"
+	},
 	"validateEditionLabel": {
 		"message": "تحقق"
 	},
+	"validateEditionAccesskey": {
+		"message": "V"
+	},
 	"cancelEditionLabel": {
 		"message": "إلغاء"
+	},
+	"cancelEditionAccesskey": {
+		"message": "C"
 	},
 	"closeEditionLabel": {
 		"message": "إغلاق"
@@ -5831,6 +5849,9 @@
 	},
 	"kind.edit.label": {
 		"message": "نوع"
+	},
+	"kind.edit.accesskey": {
+		"message": "K"
 	},
 	"addEmailGroupboxLabel": {
 		"message": "بريد إلكتروني"

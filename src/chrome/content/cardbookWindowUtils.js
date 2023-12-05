@@ -159,35 +159,26 @@ if ("undefined" == typeof(cardbookWindowUtils)) {
 			}
 		},
 
-		openEditionWindow: async function(aCard, aMode, aCardContent) {
+		openEditionWindow: function(aCard, aMode) {
 			try {
-				let url = "chrome/content/cardEdition/wdw_cardEdition.html";
-				let params = new URLSearchParams();
-				params.set("cbIdIn", aCard.cbid);
-				params.set("editionMode", aMode);
-				params.set("cardContent", aCardContent);
-				let win = await notifyTools.notifyBackground({query: "cardbook.openWindow",
-														url: `${url}?${params.toString()}`,
-														type: "popup"});
-				// let windowsList = Services.wm.getEnumerator("CardBook:contactEditionWindow");
-				// let found = false;
-				// while (windowsList.hasMoreElements()) {
-				// 	let myWindow = windowsList.getNext();
-				// 	if (myWindow.arguments[0] && myWindow.arguments[0].cardIn && myWindow.arguments[0].cardIn.cbid == aCard.cbid) {
-				// 		myWindow.focus();
-				// 		found = true;
-				// 		break;
-				// 	}
-				// }
-				// if (!found) {
-				// 	let callback = cardbookWindowUtils.saveEditionWindow;
-				// 	if (aMode == "EditTemplate") {
-				// 		callback = wdw_templateEdition.saveTemplate;
-				// 	}
-				// 	let myArgs = {cardIn: aCard, cardOut: {}, editionMode: aMode, cardEditionAction: "", editionCallback: callback};
-				// 	Services.wm.getMostRecentWindow(null).openDialog("chrome://cardbook/content/cardEdition/wdw_cardEdition.xhtml", "", cardbookRepository.windowParams, myArgs);
-				// 
-				// }
+				let windowsList = Services.wm.getEnumerator("CardBook:contactEditionWindow");
+				let found = false;
+				while (windowsList.hasMoreElements()) {
+					let myWindow = windowsList.getNext();
+					if (myWindow.arguments[0] && myWindow.arguments[0].cardIn && myWindow.arguments[0].cardIn.cbid == aCard.cbid) {
+						myWindow.focus();
+						found = true;
+						break;
+					}
+				}
+				if (!found) {
+					let callback = cardbookWindowUtils.saveEditionWindow;
+					if (aMode == "EditTemplate") {
+						callback = wdw_templateEdition.saveTemplate;
+					}
+					let myArgs = {cardIn: aCard, cardOut: {}, editionMode: aMode, cardEditionAction: "", editionCallback: callback};
+					Services.wm.getMostRecentWindow(null).openDialog("chrome://cardbook/content/cardEdition/wdw_cardEdition.xhtml", "", cardbookRepository.windowParams, myArgs);
+				}
 			}
 			catch (e) {
 				cardbookRepository.cardbookLog.updateStatusProgressInformation("cardbookWindowUtils.openEditionWindow error : " + e, "Error");
@@ -2573,9 +2564,9 @@ if ("undefined" == typeof(cardbookWindowUtils)) {
 					var myType = "Contact";
 				}
 				if (cardbookRepository.cardbookPreferences.getReadOnly(aCard.dirPrefId)) {
-					await cardbookWindowUtils.openEditionWindow(myOutCard, "View" + myType);
+					cardbookWindowUtils.openEditionWindow(myOutCard, "View" + myType);
 				} else {
-					await cardbookWindowUtils.openEditionWindow(myOutCard, "Edit" + myType);
+					cardbookWindowUtils.openEditionWindow(myOutCard, "Edit" + myType);
 				}
 			}
 		},

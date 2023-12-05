@@ -1,5 +1,5 @@
 // Set this to the ID of your add-on, or call notifyTools.setAddonID().
-var ADDON_ID = "cardbook@vigneau.philippe";
+var ADDON_ID = "cardbook@vigneau.philippe.alt.icon";
 
 /*
  * This file is provided by the addon-developer-support repository at

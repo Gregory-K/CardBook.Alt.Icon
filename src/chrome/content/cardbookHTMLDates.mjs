@@ -433,6 +433,21 @@ export var cardbookHTMLDates = {
 		}
 	},
 
+	addEventstoCard: function(aCard, aEventsArray, aPGNextNumber, aDateFormat) {
+		var myEventsArray = [];
+		for (var i = 0; i < aEventsArray.length; i++) {
+			var myValue = cardbookHTMLDates.getVCardDateFromDateString(aEventsArray[i][0], aDateFormat);
+			if (aEventsArray[i][2]) {
+				myEventsArray.push("ITEM" + aPGNextNumber + ".X-ABDATE;TYPE=PREF:" + myValue);
+			} else {
+				myEventsArray.push("ITEM" + aPGNextNumber + ".X-ABDATE:" + myValue);
+			}
+			myEventsArray.push("ITEM" + aPGNextNumber + ".X-ABLABEL:" + aEventsArray[i][1]);
+			aPGNextNumber++;
+		}
+		aCard.others = myEventsArray.concat(aCard.others);
+	},
+
 	convertCardDate: async function (aCard, aDirPrefName, aSourceDateFormat, aTargetDateFormat) {
 		var eventInNoteEventPrefix = messenger.i18n.getMessage("eventInNoteEventPrefix");
 		// date fields
@@ -470,7 +485,7 @@ export var cardbookHTMLDates = {
 			aCard.others = myEvents.remainingOthers;
 			aCard.note = myEvents.remainingNote.join("\n");
 			var myPGNextNumber = cardbookHTMLUtils.rebuildAllPGs(aCard);
-			cardbookHTMLUtils.addEventstoCard(aCard, myEvents.result, myPGNextNumber, aTargetDateFormat);
+			cardbookHTMLDates.addEventstoCard(aCard, myEvents.result, myPGNextNumber, aTargetDateFormat);
 			eventsChanged = true;
 		}
 

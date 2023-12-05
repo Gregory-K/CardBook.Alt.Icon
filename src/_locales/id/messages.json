@@ -5381,6 +5381,9 @@
 	"PreferMailFormat.label": {
 		"message": "Memilih menerima pesan dalam format:"
 	},
+	"PreferMailFormat.accesskey": {
+		"message": "v"
+	},
 	"Unknown.label": {
 		"message": "Tidak diketahui"
 	},
@@ -5723,17 +5726,32 @@
 	"createEditionLabel": {
 		"message": "Buat"
 	},
+	"createEditionAccesskey": {
+		"message": "B"
+	},
 	"createAndReplaceEditionLabel": {
 		"message": "Buat dan Ganti"
+	},
+	"createAndReplaceEditionAccesskey": {
+		"message": "G"
 	},
 	"saveEditionLabel": {
 		"message": "Simpan"
 	},
+	"saveEditionAccesskey": {
+		"message": "S"
+	},
 	"validateEditionLabel": {
 		"message": "Mengesahkan"
 	},
+	"validateEditionAccesskey": {
+		"message": "M"
+	},
 	"cancelEditionLabel": {
 		"message": "Batal"
+	},
+	"cancelEditionAccesskey": {
+		"message": "B"
 	},
 	"closeEditionLabel": {
 		"message": "Tutup"
@@ -5831,6 +5849,9 @@
 	},
 	"kind.edit.label": {
 		"message": "Jenis"
+	},
+	"kind.edit.accesskey": {
+		"message": "J"
 	},
 	"addEmailGroupboxLabel": {
 		"message": "Alamat Email"

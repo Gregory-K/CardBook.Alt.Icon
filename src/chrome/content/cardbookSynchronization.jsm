@@ -603,7 +603,10 @@ var cardbookSynchronization = {
 				params.set("buttons", choice);
 				let win = await notifyTools.notifyBackground({query: "cardbook.openWindow",
 														url: `${url}?${params.toString()}`,
-														type: "popup"});
+														type: "popup",
+														dirPrefId: aDirPrefId,
+														message: aMessage,
+														buttons: choice});
 
 				cardbookRepository.importConflictChoice[aDirPrefId][choice][aMessage].timer = Components.classes["@mozilla.org/timer;1"].createInstance(Components.interfaces.nsITimer);
 				let waitTimer = cardbookRepository.importConflictChoice[aDirPrefId][choice][aMessage].timer;

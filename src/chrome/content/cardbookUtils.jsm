@@ -956,9 +956,6 @@ var cardbookUtils = {
 	},
 
 	cloneCard: async function(sourceCard, targetCard) {
-		if (Object.keys(sourceCard).length === 0) {
-			return;
-		}
 		targetCard.dirPrefId = sourceCard.dirPrefId;
 		targetCard.cardurl = sourceCard.cardurl;
 		targetCard.etag = sourceCard.etag;
@@ -1055,8 +1052,7 @@ var cardbookUtils = {
 						} else if (type == "notype") {
 							if (aCard[myField]) {
 								for (var i = 0; i < aCard[myField].length; i++) {
-									let inputTypes = cardbookUtils.getOnlyTypesFromTypes(aCard[myField][i][1]);
-									let emptyType = inputTypes.length == 0 || inputTypes[0] == "";
+									let emptyType = aCard[myField][i][1].length == 0 || aCard[myField][i][1][0] == "";
 									if (emptyType && aCard[myField][i][3].length == 0 && aCard[myField][i][2] == "") {
 										if (aCard[myField][i][0][subField]) {
 											result.push(aCard[myField][i][0][subField]);
@@ -1112,8 +1108,7 @@ var cardbookUtils = {
 						} else if (type == "notype") {
 							if (aCard[myField]) {
 								for (var i = 0; i < aCard[myField].length; i++) {
-									let inputTypes = cardbookUtils.getOnlyTypesFromTypes(aCard[myField][i][1]);
-									let emptyType = inputTypes.length == 0 || inputTypes[0] == "";
+									let emptyType = aCard[myField][i][1].length == 0 || aCard[myField][i][1][0] == "";
 									if (emptyType && aCard[myField][i][3].length == 0 && aCard[myField][i][2] == "") {
 										let address = cardbookRepository.cardbookUtils.formatAddress(aCard[myField][i][0]);
 										if (address) {
@@ -1179,8 +1174,7 @@ var cardbookUtils = {
 						var ABTypeFormat = cardbookRepository.getABTypeFormat(ABType);
 						for (var i = 0; i < aCard[myField].length; i++) {
 							if (myType == "notype") {
-								let inputTypes = cardbookUtils.getOnlyTypesFromTypes(aCard[myField][i][1]);
-								let emptyType = inputTypes.length == 0 || inputTypes[0] == "";
+								let emptyType = aCard[myField][i][1].length == 0 || aCard[myField][i][1][0] == "";
 								if (emptyType && aCard[myField][i][3].length == 0 && aCard[myField][i][2] == "") {
 									result.push(aCard[myField][i][0][myPosition]);
 								}

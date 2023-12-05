@@ -3,7 +3,6 @@ import { cardbookHTMLRichContext } from "../cardbookHTMLRichContext.mjs";
 import { cardbookHTMLUtils } from "../cardbookHTMLUtils.mjs";
 import { cardbookHTMLTools } from "../cardbookHTMLTools.mjs";
 import { cardbookHTMLDates } from "../cardbookHTMLDates.mjs";
-import { cardbookHTMLFormulas } from "../cardbookHTMLFormulas.mjs";
 
 var dirPrefId = "";
 var initialVCardVersion = "";
@@ -71,10 +70,10 @@ async function loadFnFormula () {
 	let textboxRoleData = cardbookHTMLTools.addHTMLTD(rowRole, 'formulaSampleTableData.' + count + '.2', {class: "cardbook-td-input"});
 	let textboxRole = cardbookHTMLTools.addHTMLINPUT(textboxRoleData, 'formulaSampleTextBox' + count, messenger.i18n.getMessage("roleLabel"), {});
 	textboxRole.addEventListener("input", changeFnPreview);
-	changeFnPreview();
+	await changeFnPreview();
 };
 
-function changeFnPreview () {
+async function changeFnPreview () {
 	let fnFormula = document.getElementById('fnFormulaTextBox').value.replace(/\\n/g, "\n").trim();
 	let fn = [];
 	let i = 1;
@@ -86,7 +85,7 @@ function changeFnPreview () {
 			break;
 		}
 	}
-	document.getElementById('fnPreviewTextBox').value = cardbookHTMLFormulas.getStringFromFormula(fnFormula, fn);
+	document.getElementById('fnPreviewTextBox').value = await messenger.runtime.sendMessage({query: "cardbook.getStringFromFormula", fnFormula: fnFormula, fn: fn});
 };
 
 function populateApplyToAB () {
@@ -104,7 +103,7 @@ async function applyApplyToAB (aEvent) {
 
 async function resetFnFormula () {
 	document.getElementById('fnFormulaTextBox').value = await cardbookNewPreferences.getDefaultFnFormula();
-	changeFnPreview();
+	await changeFnPreview();
 };
 
 function showAutoSyncInterval () {
@@ -222,7 +221,7 @@ async function onLoadDialog () {
 
 async function onAcceptDialog () {
 	let prop = cardbookNewPreferences.prefCardBookData + dirPrefId + ".";
-	let interval = document.getElementById('autoSyncIntervalTextBox').value == 0 ? 1 : document.getElementById('autoSyncIntervalTextBox').value;
+	let interval = document.getElementById('autoSyncIntervalTextBox').value;
 	let name = document.getElementById('nameTextBox').value;
 
 	await cardbookHTMLUtils.setPrefValue(prop + "autoSyncEnabled", document.getElementById('autoSyncCheckBox').checked);

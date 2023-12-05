@@ -310,18 +310,18 @@ if ("undefined" == typeof(wdw_cardbook)) {
 			}
 		},
 
-		createContact: async function () {
+		createContact: function () {
 			var myNewCard = new cardbookCardParser();
-			await wdw_cardbook.createCard(myNewCard, "CreateContact");
+			wdw_cardbook.createCard(myNewCard, "CreateContact");
 		},
 
-		createList: async function () {
+		createList: function () {
 			var myNewCard = new cardbookCardParser();
 			myNewCard.isAList = true;
-			await wdw_cardbook.createCard(myNewCard, "CreateList");
+			wdw_cardbook.createCard(myNewCard, "CreateList");
 		},
 
-		createTemplate: async function () {
+		createTemplate: function () {
 			var myNewCard = new cardbookCardParser();
 			let dirPrefId = "";
 			for (let account of cardbookRepository.cardbookAccounts) {
@@ -333,11 +333,11 @@ if ("undefined" == typeof(wdw_cardbook)) {
 			if (dirPrefId) {
 				myNewCard.dirPrefId = dirPrefId;
 				myNewCard.fn = cardbookRepository.cardbookPreferences.getFnFormula(wdw_cardEdition.workingCard.dirPrefId);
-				await wdw_cardbook.createCard(myNewCard, "EditTemplate");
+				wdw_cardbook.createCard(myNewCard, "EditTemplate");
 			}
 		},
 
-		createCard: async function (aCard, aEditionMode) {
+		createCard: function (aCard, aEditionMode) {
 			if (document.getElementById('cardbookAccountsTree').selectedRow) {
 				let myId = document.getElementById('cardbookAccountsTree').selectedRow.id;
 				// to be sure that this accountId is defined : in search mode, it's possible to have weird results
@@ -363,7 +363,7 @@ if ("undefined" == typeof(wdw_cardbook)) {
 			} else {
 				return;
 			}
-			await cardbookWindowUtils.openEditionWindow(aCard, aEditionMode);
+			cardbookWindowUtils.openEditionWindow(aCard, aEditionMode);
 		},
 
 		editCard: async function () {
@@ -387,8 +387,10 @@ if ("undefined" == typeof(wdw_cardbook)) {
 				params.set("mergeId", cardbookRepository.cardbookUtils.getUUID());
 				let win = await notifyTools.notifyBackground({query: "cardbook.openWindow",
 														url: `${url}?${params.toString()}`,
-														type: "popup"});
-			}
+														type: "popup",
+														ids: ids.join(","),
+														source: "MERGE"});
+					}
 			catch (e) {
 				cardbookRepository.cardbookLog.updateStatusProgressInformation("wdw_cardbook.mergeCards error : " + e, "Error");
 			}
@@ -670,13 +672,14 @@ if ("undefined" == typeof(wdw_cardbook)) {
 					params.set("mode", "export");
 					params.set("includePref", false);
 					params.set("lineHeader", true);
-					params.set("columnSeparator", cardbookRepository.cardbookPrefs["exportDelimiter"]);
+					params.set("columnSeparator", ";");
 					params.set("actionId", myActionId);
 					params.set("filename", aFile.leafName);
 					params.set("filepath", aFile.path);
 					let win = await notifyTools.notifyBackground({query: "cardbook.openWindow",
 															url: `${url}?${params.toString()}`,
-															type: "popup"});
+															type: "popup",
+															actionId: myActionId});
 				} else {
 					await wdw_cardbook.bulkOperation(myActionId);
 					await cardbookRepository.cardbookSynchronization.writeCardsToFile(aFile.path, aListOfSelectedCard, myActionId, aListOfSelectedCard.length);
@@ -689,7 +692,6 @@ if ("undefined" == typeof(wdw_cardbook)) {
 
 		writeCardsToCSVFile: async function (aExportData) {
 			try {
-				cardbookRepository.cardbookPreferences.setStringPref("exportDelimiter", aExportData.columnSeparator);
 				await wdw_cardbook.bulkOperation(aExportData.actionId);
 				let output = "";
 				let k = 0;
@@ -885,7 +887,8 @@ if ("undefined" == typeof(wdw_cardbook)) {
 
 					let win = await notifyTools.notifyBackground({query: "cardbook.openWindow",
 														url: `${url}?${params.toString()}`,
-														type: "popup"});
+														type: "popup",
+														actionId: aParams.aActionId});
 				} else {
 					cardbookRepository.cardbookUtils.formatStringForOutput("fileEmpty", [aParams.aFile.path]);
 					wdw_cardbook.finishCSV(aParams.aActionId);
@@ -1247,7 +1250,7 @@ if ("undefined" == typeof(wdw_cardbook)) {
 			}
 		},
 
-		doubleClickCards: async function (aEvent) {
+		doubleClickCards: function (aEvent) {
 			if (aEvent.button != 0 || aEvent.ctrlKey || aEvent.metaKey || aEvent.shiftKey || aEvent.altKey) {
 				return;
 			}
@@ -1261,7 +1264,7 @@ if ("undefined" == typeof(wdw_cardbook)) {
 				let dirPrefId = document.getElementById('cardbookAccountsTree').selectedRow.root;
 				if (!cardbookRepository.cardbookPreferences.getReadOnly(dirPrefId) && cardbookRepository.cardbookPreferences.getEnabled(dirPrefId)) {
 					if (cardbookRepository.cardbookUtils.getAvailableAccountNumber() !== 0) {
-						await wdw_cardbook.createContact();
+						wdw_cardbook.createContact();
 					}
 				}
 			}
@@ -1822,7 +1825,8 @@ if ("undefined" == typeof(wdw_cardbook)) {
 					params.set("dirPrefId", myPrefId);
 					let win = await notifyTools.notifyBackground({query: "cardbook.openWindow",
 															url: `${url}?${params.toString()}`,
-															type: "popup"});
+															type: "popup",
+															dirPrefId: myPrefId});
 				}
 			}
 		},
@@ -1940,11 +1944,11 @@ if ("undefined" == typeof(wdw_cardbook)) {
 			}
 		},
 
-		newKey: async function () {
+		newKey: function () {
 			if (document.getElementById('cardbookAccountsTree').selectedRow) {
 				var myDirPrefId = document.getElementById('cardbookAccountsTree').selectedRow.root;
 				if (!cardbookRepository.cardbookPreferences.getReadOnly(myDirPrefId) && cardbookRepository.cardbookPreferences.getEnabled(myDirPrefId)) {
-					await wdw_cardbook.createContact();
+					wdw_cardbook.createContact();
 				}
 			}
 		},

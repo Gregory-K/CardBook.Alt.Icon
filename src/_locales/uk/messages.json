@@ -5381,6 +5381,9 @@
 	"PreferMailFormat.label": {
 		"message": "Вважає за краще отримувати пошту у форматі:"
 	},
+	"PreferMailFormat.accesskey": {
+		"message": "в"
+	},
 	"Unknown.label": {
 		"message": "Невідомо"
 	},
@@ -5723,17 +5726,32 @@
 	"createEditionLabel": {
 		"message": "Створити"
 	},
+	"createEditionAccesskey": {
+		"message": "С"
+	},
 	"createAndReplaceEditionLabel": {
 		"message": "Створіть і замініть"
+	},
+	"createAndReplaceEditionAccesskey": {
+		"message": "v"
 	},
 	"saveEditionLabel": {
 		"message": "Зберегти"
 	},
+	"saveEditionAccesskey": {
+		"message": "б"
+	},
 	"validateEditionLabel": {
 		"message": "Завірити"
 	},
+	"validateEditionAccesskey": {
+		"message": "а"
+	},
 	"cancelEditionLabel": {
 		"message": "Скасувати"
+	},
+	"cancelEditionAccesskey": {
+		"message": "к"
 	},
 	"closeEditionLabel": {
 		"message": "Закрити"
@@ -5831,6 +5849,9 @@
 	},
 	"kind.edit.label": {
 		"message": "Вид"
+	},
+	"kind.edit.accesskey": {
+		"message": "В"
 	},
 	"addEmailGroupboxLabel": {
 		"message": "Адреса електронної пошти"

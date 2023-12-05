@@ -5381,6 +5381,9 @@
 	"PreferMailFormat.label": {
 		"message": "Preferuje príjem správ vo formáte:"
 	},
+	"PreferMailFormat.accesskey": {
+		"message": "v"
+	},
 	"Unknown.label": {
 		"message": "Nie je známe"
 	},
@@ -5723,17 +5726,32 @@
 	"createEditionLabel": {
 		"message": "Vytvoriť"
 	},
+	"createEditionAccesskey": {
+		"message": "V"
+	},
 	"createAndReplaceEditionLabel": {
 		"message": "Vytvoriť a nahradiť"
+	},
+	"createAndReplaceEditionAccesskey": {
+		"message": "N"
 	},
 	"saveEditionLabel": {
 		"message": "Uložiť"
 	},
+	"saveEditionAccesskey": {
+		"message": "U"
+	},
 	"validateEditionLabel": {
 		"message": "Overiť"
 	},
+	"validateEditionAccesskey": {
+		"message": "O"
+	},
 	"cancelEditionLabel": {
 		"message": "Zrušiť"
+	},
+	"cancelEditionAccesskey": {
+		"message": "Z"
 	},
 	"closeEditionLabel": {
 		"message": "Zavrieť"
@@ -5831,6 +5849,9 @@
 	},
 	"kind.edit.label": {
 		"message": "Druh"
+	},
+	"kind.edit.accesskey": {
+		"message": "D"
 	},
 	"addEmailGroupboxLabel": {
 		"message": "Emailová adresa"

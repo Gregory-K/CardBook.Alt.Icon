@@ -5381,6 +5381,9 @@
 	"PreferMailFormat.label": {
 		"message": "Verkiest berichten te ontvangen opgesteld als:"
 	},
+	"PreferMailFormat.accesskey": {
+		"message": "k"
+	},
 	"Unknown.label": {
 		"message": "Onbekend"
 	},
@@ -5723,17 +5726,32 @@
 	"createEditionLabel": {
 		"message": "Maken"
 	},
+	"createEditionAccesskey": {
+		"message": "M"
+	},
 	"createAndReplaceEditionLabel": {
 		"message": "Maken en vervangen"
+	},
+	"createAndReplaceEditionAccesskey": {
+		"message": "V"
 	},
 	"saveEditionLabel": {
 		"message": "Opslaan"
 	},
+	"saveEditionAccesskey": {
+		"message": "O"
+	},
 	"validateEditionLabel": {
 		"message": "Valideren"
 	},
+	"validateEditionAccesskey": {
+		"message": "V"
+	},
 	"cancelEditionLabel": {
 		"message": "Annuleren"
+	},
+	"cancelEditionAccesskey": {
+		"message": "A"
 	},
 	"closeEditionLabel": {
 		"message": "Sluiten"
@@ -5831,6 +5849,9 @@
 	},
 	"kind.edit.label": {
 		"message": "Soort"
+	},
+	"kind.edit.accesskey": {
+		"message": "S"
 	},
 	"addEmailGroupboxLabel": {
 		"message": "E-mailadres"

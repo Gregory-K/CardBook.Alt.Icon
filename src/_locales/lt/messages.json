@@ -5381,6 +5381,9 @@
 	"PreferMailFormat.label": {
 		"message": "Laiškus pageidauja gauti šiuo formatu:"
 	},
+	"PreferMailFormat.accesskey": {
+		"message": "v"
+	},
 	"Unknown.label": {
 		"message": "Nežinoma"
 	},
@@ -5723,17 +5726,32 @@
 	"createEditionLabel": {
 		"message": "Sukurti"
 	},
+	"createEditionAccesskey": {
+		"message": "S"
+	},
 	"createAndReplaceEditionLabel": {
 		"message": "Sukurti ir pakeisti"
+	},
+	"createAndReplaceEditionAccesskey": {
+		"message": "Uždaryti"
 	},
 	"saveEditionLabel": {
 		"message": "Įrašyti"
 	},
+	"saveEditionAccesskey": {
+		"message": "r"
+	},
 	"validateEditionLabel": {
 		"message": "Patvirtinti"
 	},
+	"validateEditionAccesskey": {
+		"message": "P"
+	},
 	"cancelEditionLabel": {
 		"message": "Atisakyti"
+	},
+	"cancelEditionAccesskey": {
+		"message": "A"
 	},
 	"closeEditionLabel": {
 		"message": "Uždaryti"
@@ -5831,6 +5849,9 @@
 	},
 	"kind.edit.label": {
 		"message": "Rūšis"
+	},
+	"kind.edit.accesskey": {
+		"message": "R"
 	},
 	"addEmailGroupboxLabel": {
 		"message": "El. pašto adresas"

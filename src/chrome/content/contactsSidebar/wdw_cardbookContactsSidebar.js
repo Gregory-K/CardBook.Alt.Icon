@@ -503,9 +503,9 @@ if ("undefined" == typeof(wdw_cardbookContactsSidebar)) {
 					var myType = "Contact";
 				}
 				if (cardbookRepository.cardbookPreferences.getReadOnly(myCard.dirPrefId)) {
-					await cardbookWindowUtils.openEditionWindow(myOutCard, "View" + myType);
+					cardbookWindowUtils.openEditionWindow(myOutCard, "View" + myType);
 				} else {
-					await cardbookWindowUtils.openEditionWindow(myOutCard, "Edit" + myType);
+					cardbookWindowUtils.openEditionWindow(myOutCard, "Edit" + myType);
 				}
 			} else if (listOfUid[0][0] === "CARDCORE") {
 				var AB =  MailServices.ab.getDirectoryFromId(listOfUid[0][2]);
@@ -528,17 +528,17 @@ if ("undefined" == typeof(wdw_cardbookContactsSidebar)) {
 			wdw_cardbookContactsSidebar.search();
 		},
 
-		newCard: async function () {
-			let myNewCard = new cardbookCardParser();
+		newCard: function () {
+			var myNewCard = new cardbookCardParser();
 			myNewCard.dirPrefId = document.getElementById('CardBookABMenulist').value
-			await cardbookWindowUtils.openEditionWindow(myNewCard, "CreateContact");
+			cardbookWindowUtils.openEditionWindow(myNewCard, "CreateContact");
 		},
 
-		newList: async function () {
-			let myNewCard = new cardbookCardParser();
+		newList: function () {
+			var myNewCard = new cardbookCardParser();
 			myNewCard.isAList = true;
 			myNewCard.dirPrefId = document.getElementById('CardBookABMenulist').value
-			await cardbookWindowUtils.openEditionWindow(myNewCard, "CreateList");
+			cardbookWindowUtils.openEditionWindow(myNewCard, "CreateList");
 		},
 
 		selectAllKey: function () {

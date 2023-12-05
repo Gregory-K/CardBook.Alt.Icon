@@ -5381,6 +5381,9 @@
 	"PreferMailFormat.label": {
 		"message": "Preferă să primească mesaje în format:"
 	},
+	"PreferMailFormat.accesskey": {
+		"message": "r"
+	},
 	"Unknown.label": {
 		"message": "Necunoscut"
 	},
@@ -5723,17 +5726,32 @@
 	"createEditionLabel": {
 		"message": "Creează"
 	},
+	"createEditionAccesskey": {
+		"message": "r"
+	},
 	"createAndReplaceEditionLabel": {
 		"message": "Creează și înlocuiește"
+	},
+	"createAndReplaceEditionAccesskey": {
+		"message": "n"
 	},
 	"saveEditionLabel": {
 		"message": "Salvează"
 	},
+	"saveEditionAccesskey": {
+		"message": "S"
+	},
 	"validateEditionLabel": {
 		"message": "Validează"
 	},
+	"validateEditionAccesskey": {
+		"message": "V"
+	},
 	"cancelEditionLabel": {
 		"message": "Anulează"
+	},
+	"cancelEditionAccesskey": {
+		"message": "u"
 	},
 	"closeEditionLabel": {
 		"message": "Închide"
@@ -5831,6 +5849,9 @@
 	},
 	"kind.edit.label": {
 		"message": "Fel"
+	},
+	"kind.edit.accesskey": {
+		"message": "F"
 	},
 	"addEmailGroupboxLabel": {
 		"message": "Adresă de email"

@@ -63,7 +63,7 @@ if ("undefined" == typeof(ovl_cardbookAboutMessage)) {
 			cardbookWindowUtils.addToCardBookMenuSubMenu(aMenuName, ovl_cardbookAboutMessage.getIdentityKey(), aCallbackFunction, {"emailHeaderNode" : "true"});
 		},
 
-		addToCardBook: async function(aDirPrefId, aEmailAddress, aDisplayName) {
+		addToCardBook: function(aDirPrefId, aEmailAddress, aDisplayName) {
 			try {
 				let myNewCard = new cardbookCardParser();
 				myNewCard.dirPrefId = aDirPrefId;
@@ -78,7 +78,7 @@ if ("undefined" == typeof(ovl_cardbookAboutMessage)) {
 					let removed = myDisplayNameArray.splice(myDisplayNameArray.length - 1, 1);
 					myNewCard.firstname = myDisplayNameArray.join(" ");
 				}
-				await cardbookWindowUtils.openEditionWindow(myNewCard, "AddEmail");
+				cardbookWindowUtils.openEditionWindow(myNewCard, "AddEmail");
 			}
 			catch (e) {
 				var errorTitle = "addToCardBook";
@@ -94,9 +94,9 @@ if ("undefined" == typeof(ovl_cardbookAboutMessage)) {
 				type = "List";
 			}
 			if (cardbookRepository.cardbookPreferences.getReadOnly(myOutCard.dirPrefId)) {
-				await cardbookWindowUtils.openEditionWindow(myOutCard, "View" + type);
+				cardbookWindowUtils.openEditionWindow(myOutCard, "View" + type);
 			} else {
-				await cardbookWindowUtils.openEditionWindow(myOutCard, "Edit" + type);
+				cardbookWindowUtils.openEditionWindow(myOutCard, "Edit" + type);
 			}
 		},
 
@@ -159,10 +159,10 @@ if ("undefined" == typeof(ovl_cardbookAboutMessage)) {
 	
 	// Override a function.
 	// addToAddressBook
-	customElements.get("header-recipient").prototype.addToAddressBook = async function() {
+	customElements.get("header-recipient").prototype.addToAddressBook = function() {
 		let account = cardbookRepository.cardbookUtils.getFirstAvailableAccount();
 		if (account != "-1") {
-			await ovl_cardbookAboutMessage.addToCardBook(account, this.emailAddress, this.displayName);
+			ovl_cardbookAboutMessage.addToCardBook(account, this.emailAddress, this.displayName);
 		} else {
 			ovl_cardbookAboutMessage.origFunctions.addToAddressBook.apply(null, arguments);
 		}

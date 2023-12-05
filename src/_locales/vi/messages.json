@@ -5381,6 +5381,9 @@
 	"PreferMailFormat.label": {
 		"message": "Ưu tiên nhận tin nhắn được định dạng là:"
 	},
+	"PreferMailFormat.accesskey": {
+		"message": "v"
+	},
 	"Unknown.label": {
 		"message": "Không rõ"
 	},
@@ -5723,17 +5726,32 @@
 	"createEditionLabel": {
 		"message": "Tạo"
 	},
+	"createEditionAccesskey": {
+		"message": "T"
+	},
 	"createAndReplaceEditionLabel": {
 		"message": "Tạo và Thay thế"
+	},
+	"createAndReplaceEditionAccesskey": {
+		"message": "y"
 	},
 	"saveEditionLabel": {
 		"message": "Lưu"
 	},
+	"saveEditionAccesskey": {
+		"message": "L"
+	},
 	"validateEditionLabel": {
 		"message": "Xác thực"
 	},
+	"validateEditionAccesskey": {
+		"message": "c"
+	},
 	"cancelEditionLabel": {
 		"message": "Hủy bỏ"
+	},
+	"cancelEditionAccesskey": {
+		"message": "H"
 	},
 	"closeEditionLabel": {
 		"message": "Đóng"
@@ -5831,6 +5849,9 @@
 	},
 	"kind.edit.label": {
 		"message": "Loại"
+	},
+	"kind.edit.accesskey": {
+		"message": "L"
 	},
 	"addEmailGroupboxLabel": {
 		"message": "Địa chỉ Email"

@@ -38,7 +38,7 @@ var ovl_cardbookComposeMsg = {
 		}
 	},
 
-	newInCardBook: async function() {
+	newInCardBook: function() {
 		try {
 			let myNewCard = new cardbookCardParser();
 			let dirPrefId = "";
@@ -50,7 +50,7 @@ var ovl_cardbookComposeMsg = {
 			}
 			if (dirPrefId) {
 				myNewCard.dirPrefId = dirPrefId;
-				await cardbookWindowUtils.openEditionWindow(myNewCard, "CreateContact");
+				cardbookWindowUtils.openEditionWindow(myNewCard, "CreateContact");
 			}
 		}
 		catch (e) {
@@ -76,8 +76,8 @@ var ovl_cardbookComposeMsg = {
 
 		var myMenuItem = document.createXULElement("menuitem");
 		myMenuItem.setAttribute("id", "newCardBookCardFromMsgMenu");
-		myMenuItem.addEventListener("command", async function(aEvent) {
-				await ovl_cardbookComposeMsg.newInCardBook();
+		myMenuItem.addEventListener("command", function(aEvent) {
+				ovl_cardbookComposeMsg.newInCardBook();
 				aEvent.stopPropagation();
 			}, false);
 		myMenuItem.setAttribute("label", cardbookRepository.extension.localeData.localizeMessage("newCardBookCardMenuLabel"));

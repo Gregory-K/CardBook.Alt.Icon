@@ -2,10 +2,6 @@ import { cardbookHTMLDates } from "./cardbookHTMLDates.mjs";
 import { cardbookNewPreferences } from "./preferences/cardbookNewPreferences.mjs";
 
 export var cardbookHTMLUtils = {
-
-	newFields: [ 'gender', 'birthplace', 'anniversary', 'deathdate', 'deathplace' ],
-	defaultEmailFormat: "X-MOZILLA-HTML",
-
 	sortArrayByString: function (aArray, aInvert) {
 		function compare(a, b) { return a.localeCompare(b)*aInvert; };
 		return aArray.sort(compare);
@@ -42,34 +38,8 @@ export var cardbookHTMLUtils = {
 		return newArray;
 	},
 
-	cleanArrayWithoutTrim: function (vArray) {
-		var newArray = [];
-		for(let i = 0; i<vArray.length; i++){
-			if (vArray[i] && vArray[i] != ""){
-				newArray.push(vArray[i]);
-			}
-		}
-		return newArray;
-	},
-	
 	escapeString: function (vString) {
 		return vString.replace(/\\;/g,"@ESCAPEDSEMICOLON@").replace(/\\,/g,"@ESCAPEDCOMMA@");
-	},
-
-	escapeString1: function (vString) {
-		return vString.replace(/\\\(/g,"@ESCAPEDLEFTPARENTHESIS@").replace(/\\\)/g,"@ESCAPEDRIGHTPARENTHESIS@").replace(/\\\|/g,"@ESCAPEDPIPE@"); 
-	},
-
-	escapeArray2: function (vArray) {
-		var result = []
-		for (let i = 0; i<vArray.length; i++){
-			if (vArray[i] && vArray[i] != ""){
-				result[i] = vArray[i].replace(/\(/g,"@ESCAPEDLEFTPARENTHESIS@").replace(/\)/g,"@ESCAPEDRIGHTPARENTHESIS@").replace(/\|/g,"@ESCAPEDPIPE@");
-			} else {
-				result[i] = "";
-			}
-		}
-		return result;
 	},
 
 	escapeStringSemiColon: function (vString) {
@@ -82,10 +52,6 @@ export var cardbookHTMLUtils = {
 
 	unescapeString: function (vString) {
 		return vString.replace(/@ESCAPEDSEMICOLON@/g,";").replace(/\\;/g,";").replace(/@ESCAPEDCOMMA@/g,",").replace(/\\,/g,",");
-	},
-
-	unescapeString1: function (vString) {
-		return vString.replace(/@ESCAPEDLEFTPARENTHESIS@/g,"(").replace(/@ESCAPEDRIGHTPARENTHESIS@/g,")").replace(/@ESCAPEDPIPE@/g,"|");
 	},
 
 	unescapeArray: function (vArray) {
@@ -216,35 +182,6 @@ export var cardbookHTMLUtils = {
 		} else {
 			return aVersion;
 		}
-	},
-
-	cleanCategories: function (aCategoryList) {
-		function filterCategories(element) {
-			return (element != cardbookRepository.cardbookPrefs["uncategorizedCards"]);
-		}
-		return cardbookRepository.arrayUnique(aCategoryList.filter(filterCategories));
-	},
-
-	// 2 : HTML, 1 : PlainText, 0 : Unknown
-	getMailFormatFromCard: function (aCard) {
-		if (aCard) {
-			for (let other of aCard.others) {
-				let localDelim1 = other.indexOf(":",0);
-				if (localDelim1 >= 0) {
-					let header = other.substr(0,localDelim1).toUpperCase();
-					let trailer = other.substr(localDelim1+1, other.length).toUpperCase();
-					if (header == cardbookHTMLUtils.defaultEmailFormat) {
-						if (trailer == "TRUE") {
-							return 2;
-						} else if (trailer == "FALSE") {
-							return 1;
-						}
-						break;
-					}
-				}
-			}
-		}
-		return 0;
 	},
 
 	addEventstoCard: function(aCard, aEventsArray, aPGNextNumber, aDateFormat) {
@@ -438,72 +375,6 @@ export var cardbookHTMLUtils = {
 	formatTypesForDisplay: function (aTypeList) {
 		aTypeList = cardbookHTMLUtils.cleanArray(aTypeList);
 		return cardbookHTMLUtils.sortArrayByString(aTypeList, 1).join("    ");
-	},
-
-	convertVCard: async function (aCard, aTargetName, aTargetVersion, aDateFormatSource, aDateFormatTarget) {
-		let converted = false;
-		let possibleCustomFields = await messenger.runtime.sendMessage({query: "cardbook.getPossibleCustomFields"});
-		// basic fields
-		if (aCard.version != aTargetVersion) {
-			converted = true;
-			aCard.version = aTargetVersion;
-			for (let newField of cardbookHTMLUtils.newFields) {
-				let oldField = 'X-' + newField.toUpperCase();
-				if (aTargetVersion == "3.0") {
-					if (aCard[newField] != "") {
-						aCard.others.push(oldField + ":" + aCard[newField]);
-						if (!possibleCustomFields[oldField].add && !possibleCustomFields[oldField].added) {
-							possibleCustomFields[oldField].add = true;
-						}
-						aCard[newField] = "";
-					}
-				} else if (aTargetVersion == "4.0") {
-					for (let k = 0; k < aCard.others.length; k++) {
-						if (aCard.others[k].startsWith(oldField + ":")) {
-							let newFieldRegExp = new RegExp("^" + oldField + ":");
-							aCard[newField] = aCard.others[k].replace(newFieldRegExp, "");
-							aCard.others.splice(k,1);
-							break;
-						}
-					}
-				}
-			}
-
-			// lists
-			let kindCustom = await cardbookHTMLUtils.getPrefValue("kindCustom");
-			let memberCustom = await cardbookHTMLUtils.getPrefValue("memberCustom");
-			if (aCard.isAList) {
-				if (aTargetVersion == "3.0") {
-					cardbookHTMLUtils.addMemberstoCard(aCard, aCard.member, aCard.kind);
-					aCard.member = "";
-					aCard.kind = "";
-				} else if (aTargetVersion == "4.0") {
-					let myMembers = [];
-					let myGroup = "";
-					for (let j = 0; j < aCard.others.length; j++) {
-						if (aCard.others[j].startsWith(memberCustom + ":")) {
-							let myFieldRegExp = new RegExp("^" + memberCustom + ":");
-							myMembers.push(aCard.others[j].replace(myFieldRegExp, ""));
-							aCard.others.splice(j,1);
-							j--;
-						} else if (aCard.others[j].startsWith(kindCustom + ":")) {
-							let myFieldRegExp = new RegExp("^" + kindCustom + ":");
-							myGroup = aCard.others[j].replace(myFieldRegExp, "");
-							aCard.others.splice(j,1);
-							j--;
-						}
-					}
-					cardbookHTMLUtils.addMemberstoCard(aCard, myMembers, myGroup);
-				}
-			}
-		}
-		// date fields
-		if (aDateFormatSource != aDateFormatTarget) {
-			if (await cardbookHTMLDates.convertCardDate(aCard, aTargetName, aDateFormatSource, aDateFormatTarget)) {
-				converted = true;
-			}
-		}
-		return converted;
 	},
 
 	addMemberstoCard: async function(aCard, aMemberLines, aKindValue) {

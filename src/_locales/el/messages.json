@@ -5381,6 +5381,9 @@
 	"PreferMailFormat.label": {
 		"message": "Προτιμώμενη μορφή ληφθέντων μηνυμάτων:"
 	},
+	"PreferMailFormat.accesskey": {
+		"message": "μ"
+	},
 	"Unknown.label": {
 		"message": "Άγνωστη"
 	},
@@ -5723,17 +5726,32 @@
 	"createEditionLabel": {
 		"message": "Δημιουργία"
 	},
+	"createEditionAccesskey": {
+		"message": "Δ"
+	},
 	"createAndReplaceEditionLabel": {
 		"message": "Δημιουργία και αντικατάσταση"
+	},
+	"createAndReplaceEditionAccesskey": {
+		"message": "α"
 	},
 	"saveEditionLabel": {
 		"message": "Αποθήκευση"
 	},
+	"saveEditionAccesskey": {
+		"message": "θ"
+	},
 	"validateEditionLabel": {
 		"message": "Επικυρώνω"
 	},
+	"validateEditionAccesskey": {
+		"message": "Ε"
+	},
 	"cancelEditionLabel": {
 		"message": "Ακύρωση"
+	},
+	"cancelEditionAccesskey": {
+		"message": "Α"
 	},
 	"closeEditionLabel": {
 		"message": "Κλείσιμο"
@@ -5831,6 +5849,9 @@
 	},
 	"kind.edit.label": {
 		"message": "Είδος"
+	},
+	"kind.edit.accesskey": {
+		"message": "Ε"
 	},
 	"addEmailGroupboxLabel": {
 		"message": "Διεύθυνση Email"

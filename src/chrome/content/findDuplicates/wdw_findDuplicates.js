@@ -130,7 +130,9 @@ if ("undefined" == typeof(wdw_findDuplicates)) {
 				params.set("mergeId", mergeId);
 				let win = await messenger.runtime.sendMessage({query: "cardbook.openWindow",
 														url: `${url}?${params.toString()}`,
-														type: "popup"});
+														type: "popup",
+														ids: ids.join(","),
+														source: "DUPLICATE"});
 			};
 			aButton.addEventListener("click", fireButton, false);
 		},

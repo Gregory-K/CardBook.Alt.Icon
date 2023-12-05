@@ -5381,6 +5381,9 @@
 	"PreferMailFormat.label": {
 		"message": "Foretrækker at modtage meddelelser formateret som:"
 	},
+	"PreferMailFormat.accesskey": {
+		"message": "r"
+	},
 	"Unknown.label": {
 		"message": "Ukendt"
 	},
@@ -5723,17 +5726,32 @@
 	"createEditionLabel": {
 		"message": "Opret"
 	},
+	"createEditionAccesskey": {
+		"message": "O"
+	},
 	"createAndReplaceEditionLabel": {
 		"message": "Opret og erstat"
+	},
+	"createAndReplaceEditionAccesskey": {
+		"message": "e"
 	},
 	"saveEditionLabel": {
 		"message": "Gem"
 	},
+	"saveEditionAccesskey": {
+		"message": "G"
+	},
 	"validateEditionLabel": {
 		"message": "Valider"
 	},
+	"validateEditionAccesskey": {
+		"message": "V"
+	},
 	"cancelEditionLabel": {
 		"message": "Annuller"
+	},
+	"cancelEditionAccesskey": {
+		"message": "A"
 	},
 	"closeEditionLabel": {
 		"message": "Luk"
@@ -5831,6 +5849,9 @@
 	},
 	"kind.edit.label": {
 		"message": "Type"
+	},
+	"kind.edit.accesskey": {
+		"message": "T"
 	},
 	"addEmailGroupboxLabel": {
 		"message": "E-mailadresse"
