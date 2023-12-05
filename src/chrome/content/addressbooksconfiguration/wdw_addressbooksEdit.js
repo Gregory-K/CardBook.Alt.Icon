@@ -2,10 +2,13 @@ import { cardbookNewPreferences } from "../preferences/cardbookNewPreferences.mj
 import { cardbookHTMLRichContext } from "../cardbookHTMLRichContext.mjs";
 import { cardbookHTMLUtils } from "../cardbookHTMLUtils.mjs";
 import { cardbookHTMLTools } from "../cardbookHTMLTools.mjs";
+import { cardbookHTMLDates } from "../cardbookHTMLDates.mjs";
+import { cardbookHTMLFormulas } from "../cardbookHTMLFormulas.mjs";
 
 var dirPrefId = "";
 var initialVCardVersion = "";
 var initialNodeType = "";
+var initialColor = "";
 
 async function convertVCards () {
 	await messenger.runtime.sendMessage({query: "cardbook.convertVCards", dirPrefId: dirPrefId, initialVCardVersion: initialVCardVersion});
@@ -68,10 +71,10 @@ async function loadFnFormula () {
 	let textboxRoleData = cardbookHTMLTools.addHTMLTD(rowRole, 'formulaSampleTableData.' + count + '.2', {class: "cardbook-td-input"});
 	let textboxRole = cardbookHTMLTools.addHTMLINPUT(textboxRoleData, 'formulaSampleTextBox' + count, messenger.i18n.getMessage("roleLabel"), {});
 	textboxRole.addEventListener("input", changeFnPreview);
-	await changeFnPreview();
+	changeFnPreview();
 };
 
-async function changeFnPreview () {
+function changeFnPreview () {
 	let fnFormula = document.getElementById('fnFormulaTextBox').value.replace(/\\n/g, "\n").trim();
 	let fn = [];
 	let i = 1;
@@ -83,7 +86,7 @@ async function changeFnPreview () {
 			break;
 		}
 	}
-	document.getElementById('fnPreviewTextBox').value = await messenger.runtime.sendMessage({query: "cardbook.getStringFromFormula", fnFormula: fnFormula, fn: fn});
+	document.getElementById('fnPreviewTextBox').value = cardbookHTMLFormulas.getStringFromFormula(fnFormula, fn);
 };
 
 function populateApplyToAB () {
@@ -101,7 +104,7 @@ async function applyApplyToAB (aEvent) {
 
 async function resetFnFormula () {
 	document.getElementById('fnFormulaTextBox').value = await cardbookNewPreferences.getDefaultFnFormula();
-	await changeFnPreview();
+	changeFnPreview();
 };
 
 function showAutoSyncInterval () {
@@ -176,7 +179,8 @@ async function onLoadDialog () {
 		node.checked = (node.value == initialNodeType);
 	}
 
-	document.getElementById("colorInput").value = await cardbookNewPreferences.getColor(dirPrefId);
+    initialColor = await cardbookNewPreferences.getColor(dirPrefId);
+	document.getElementById("colorInput").value = initialColor;
 	document.getElementById("typeTextBox").textContent = await cardbookNewPreferences.getType(dirPrefId);
 
 	document.getElementById("urlTextBox").textContent = await cardbookNewPreferences.getUrl(dirPrefId);
@@ -189,6 +193,13 @@ async function onLoadDialog () {
 
 	let isRemote = await messenger.runtime.sendMessage({query: "cardbook.isMyAccountRemote", type: document.getElementById("typeTextBox").textContent});	
 	if (isRemote && document.getElementById("DBCachedCheckBox").checked) {
+		let lastSyncBox = document.getElementById('lastsync');
+		let lastSyncDate = await cardbookNewPreferences.getLastSync(dirPrefId);
+		if (lastSyncDate) {
+			let date = cardbookHTMLDates.getCorrectDatetime(lastSyncDate);
+			let lastsyncFormatted = cardbookHTMLDates.getFormattedDateTimeForDateTimeString(date, "2");
+			cardbookHTMLTools.addHTMLLABEL(lastSyncBox, "lastSyncLabel", messenger.i18n.getMessage("lastSync", [ lastsyncFormatted ]), {});
+		}
 		document.getElementById('syncTab').classList.remove("hidden");
 		document.getElementById("autoSyncCheckBox").checked =  await cardbookNewPreferences.getAutoSyncEnabled(dirPrefId);
 		document.getElementById("autoSyncIntervalTextBox").value = await cardbookNewPreferences.getAutoSyncInterval(dirPrefId);
@@ -211,10 +222,9 @@ async function onLoadDialog () {
 
 async function onAcceptDialog () {
 	let prop = cardbookNewPreferences.prefCardBookData + dirPrefId + ".";
-	let interval = document.getElementById('autoSyncIntervalTextBox').value;
+	let interval = document.getElementById('autoSyncIntervalTextBox').value == 0 ? 1 : document.getElementById('autoSyncIntervalTextBox').value;
 	let name = document.getElementById('nameTextBox').value;
 
-	await cardbookHTMLUtils.setPrefValue(prop + "color", document.getElementById('colorInput').value);
 	await cardbookHTMLUtils.setPrefValue(prop + "autoSyncEnabled", document.getElementById('autoSyncCheckBox').checked);
 	await cardbookHTMLUtils.setPrefValue(prop + "autoSyncInterval", interval);
 	await cardbookHTMLUtils.setPrefValue(prop + "fnFormula", document.getElementById('fnFormulaTextBox').value);
@@ -224,22 +234,28 @@ async function onAcceptDialog () {
 		await messenger.runtime.sendMessage({query: "cardbook.addPeriodicSync", dirPrefId: dirPrefId, name: name, interval: interval});
 	}
 
-	let radioValue = cardbookHTMLUtils.getRadioValue("nodeRadiogroup");
-	if (initialNodeType != radioValue) {
-		await cardbookHTMLUtils.setPrefValue(prop + "node", radioValue);
-		await messenger.runtime.sendMessage({query: "cardbook.convertNodes", dirPrefId: dirPrefId, radioValue: radioValue});
-	}
-
 	let urlParams = {};
 	urlParams.dirPrefId = dirPrefId;
 	urlParams.name = document.getElementById('nameTextBox').value.trim();
 	urlParams.readonly = document.getElementById('readonlyCheckBox').checked;
 	urlParams.enabled = document.getElementById('AB-enabled-checkbox').checked;
+	let color = document.getElementById('colorInput').value;
+	if (initialColor != color) {
+		urlParams.color = color;
+	}
+	let radioValue = cardbookHTMLUtils.getRadioValue("nodeRadiogroup");
+	if (initialNodeType != radioValue) {
+		urlParams.node = radioValue;
+	}
+
 	await messenger.runtime.sendMessage({query: "cardbook.notifyObserver", value: "cardbook.AB.saveEditAB", params: JSON.stringify(urlParams)});
 	cardbookHTMLRichContext.closeWindow();
 };
 
 async function onCancelDialog () {
+	let urlParams = {};
+	urlParams.dirPrefId = dirPrefId;
+	await messenger.runtime.sendMessage({query: "cardbook.notifyObserver", value: "cardbook.AB.cancelEditAB", params: JSON.stringify(urlParams)});
 	cardbookHTMLRichContext.closeWindow();
 };
 
@@ -263,6 +279,17 @@ function showPane (paneID) {
 		}
 	}
 };
+
+window.addEventListener("resize", async function() {
+	await cardbookHTMLRichContext.saveWindowSize();
+});
+
+// run when clicking on the cross button or with the escape key
+window.addEventListener("beforeunload", async function() {
+	let urlParams = {};
+	urlParams.dirPrefId = dirPrefId;
+	await messenger.runtime.sendMessage({query: "cardbook.notifyObserver", value: "cardbook.AB.cancelEditAB", params: JSON.stringify(urlParams)});
+});
 
 await onLoadDialog();
 

@@ -22,7 +22,7 @@ function validate () {
 	} else {
 		var myValidationList = JSON.parse(JSON.stringify(validationList));
 		function filterOriginal(element) {
-			return (element != value);
+			return (element.toUpperCase() != value.toUpperCase());
 		}
 		myValidationList = myValidationList.filter(filterOriginal);
 		if (myValidationList.length != validationList.length) {
@@ -72,7 +72,6 @@ async function onLoadDialog () {
         let orgStructure = await cardbookHTMLUtils.getPrefValue("orgStructure");
         if (orgStructure != "") {
 			let tmpArray = cardbookHTMLUtils.unescapeArray(cardbookHTMLUtils.escapeString(orgStructure).split(";"));
-			console.log(id)
 			let idArray = id.split("::");
 			document.getElementById('nameLabel').textContent = messenger.i18n.getMessage("wdw_cardbookRenameField" + context + "Label", [tmpArray[idArray.length - 3]]);
 		} else {
@@ -83,7 +82,6 @@ async function onLoadDialog () {
 	}
 
 	if (showColor == "true") {
-		console.debug(color)
 		document.getElementById('useColorCheck').checked = color ? true : false;
 		document.getElementById('colorInput').value = color;
 	} else {
@@ -129,5 +127,9 @@ async function onAcceptDialog (aEvent) {
 function onCancelDialog () {
     cardbookHTMLRichContext.closeWindow();
 };
+
+window.addEventListener("resize", async function() {
+	await cardbookHTMLRichContext.saveWindowSize();
+});
 
 await onLoadDialog();

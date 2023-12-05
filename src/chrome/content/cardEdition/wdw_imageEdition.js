@@ -2,7 +2,7 @@ if ("undefined" == typeof(wdw_imageEdition)) {
 	var { Services } = ChromeUtils.import("resource://gre/modules/Services.jsm");
 	var { NetUtil } = ChromeUtils.import("resource://gre/modules/NetUtil.jsm");
 	var { FileUtils } = ChromeUtils.import("resource://gre/modules/FileUtils.jsm");
-	var { AppConstants } = ChromeUtils.import("resource://gre/modules/AppConstants.jsm");
+	// var { AppConstants } = ChromeUtils.import("resource://gre/modules/AppConstants.jsm");
 	var { cardbookRepository } = ChromeUtils.import("chrome://cardbook/content/cardbookRepository.js");
 	
 	var loader = Services.scriptloader;
@@ -130,12 +130,12 @@ if ("undefined" == typeof(wdw_imageEdition)) {
 					if (data.flavor.startsWith("image/")) {
 						let extension = data.flavor == "image/png" ? "png" : (data.flavor == "image/gif" ? "gif" : "jpg");
 						let inputStream = data.data;
-						if (AppConstants.platform == 'Linux') {
-							// does not work on Windows
-							let binaryImage = NetUtil.readInputStreamToString(inputStream, inputStream.available());
-							let image = btoa(binaryImage);
-							wdw_imageEdition.resizeImageCard({extension: extension, content: image}, true);
-						} else {
+						// if (AppConstants.platform == 'Linux') {
+						// 	// does not work on Windows
+						// 	let binaryImage = NetUtil.readInputStreamToString(inputStream, inputStream.available());
+						// 	let image = btoa(binaryImage);
+						// 	wdw_imageEdition.resizeImageCard({extension: extension, content: image}, true);
+						// } else {
 							let myFile = Services.dirsvc.get("TmpD", Components.interfaces.nsIFile);
 							myFile.append(cardbookRepository.cardbookUtils.getUUID() + "." + extension);
 							let ostream = FileUtils.openSafeFileOutputStream(myFile)
@@ -145,7 +145,7 @@ if ("undefined" == typeof(wdw_imageEdition)) {
 									myFile.remove(true);
 								}
 							});
-						}
+						// }
 					} else if (data.flavor == "application/x-moz-file") {
 						let myFile = data.data.QueryInterface(Components.interfaces.nsIFile);
 						wdw_imageEdition.addImageCard(myFile);

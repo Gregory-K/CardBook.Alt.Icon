@@ -16,6 +16,7 @@ var cardbookeditlists = {};
 var blankColumn = "";
 var nIntervId = "";
 var gFilePickerId = "";
+var resultGiven = false;
 
 function getIndexFromName (aName) {
 	let tmpArray = aName.split("_");
@@ -161,7 +162,7 @@ async function validateImportColumns () {
 	if (cardbookeditlists.foundColumnsTable.length != cardbookeditlists.addedColumnsTable.length) {
 		let confirmTitle = messenger.i18n.getMessage("confirmTitle");
 		let confirmMsg = messenger.i18n.getMessage("missingColumnsConfirmMessage");
-		let response = await messenger.runtime.sendMessage({query: "cardbook.promptConfirm", title: confirmTitle, message: confirmMsg});
+		let response = await messenger.runtime.sendMessage({query: "cardbook.promptConfirm", window: window, title: confirmTitle, message: confirmMsg});
 		if (!response) {
 			return false;
 		}
@@ -353,7 +354,7 @@ async function onLoadDialog () {
 	gFilePickerId = await messenger.runtime.sendMessage({query: "cardbook.getUUID"});
 	
 	if (mode == "choice") {
-		document.getElementById("foundColumnsVBox").classList.add("hidden");
+		document.getElementById("foundColumnsTable").classList.add("hidden");
 		document.getElementById("fieldDelimiterLabel").classList.add("hidden");
 		document.getElementById("fieldDelimiterTextBox").classList.add("hidden");
 		document.getElementById("includePrefLabel").classList.add("hidden");
@@ -364,7 +365,7 @@ async function onLoadDialog () {
 		document.getElementById("saveTemplateButton").classList.add("hidden");
 		document.getElementById("guesslistavailableColumnsButton").classList.add("hidden");
 	} else if (mode == "export") {
-		document.getElementById("foundColumnsVBox").classList.add("hidden");
+		document.getElementById("foundColumnsTable").classList.add("hidden");
 		document.getElementById("lineHeaderLabel").classList.add("hidden");
 		document.getElementById("lineHeaderCheckBox").classList.add("hidden");
 		document.getElementById("guesslistavailableColumnsButton").classList.add("hidden");
@@ -374,7 +375,7 @@ async function onLoadDialog () {
 			document.getElementById('foundColumnsTable').classList.add("active");
 			document.getElementById('foundColumnsGroupboxLabel').textContent = messenger.i18n.getMessage(mode + "foundColumnsGroupboxLabel");
 		} else {
-			document.getElementById("foundColumnsVBox").classList.add("hidden");
+			document.getElementById("foundColumnsTable").classList.add("hidden");
 		}
 		document.getElementById("includePrefLabel").classList.add("hidden");
 		document.getElementById("includePrefCheckBox").classList.add("hidden");
@@ -462,6 +463,7 @@ async function onAcceptDialog () {
 	if (mode == "import" && !validateImportColumns()) {
 		return;
 	}
+	resultGiven = true;
 	let urlParams = {};
 	urlParams.mode = mode;
 	urlParams.columnSeparator = document.getElementById('fieldDelimiterTextBox').value || ";";
@@ -479,14 +481,17 @@ async function onAcceptDialog () {
 	} else if (mode == "import") {
 		await messenger.runtime.sendMessage({query: "cardbook.notifyObserver", value: "cardbook.loadCSVFile", params: JSON.stringify(urlParams)});
 	}
-	onCancelDialog();
-};
-
-async function onCancelDialog () {
 	cardbookHTMLRichContext.closeWindow();
 };
 
-onLoadDialog();
+async function onCancelDialog () {
+	if (resultGiven === false) {
+		let urlParams = {};
+		urlParams.actionId = actionId;
+		await messenger.runtime.sendMessage({query: "cardbook.notifyObserver", value: "cardbook.finishCSV", params: JSON.stringify(urlParams)});
+	}
+	cardbookHTMLRichContext.closeWindow();
+};
 
 messenger.runtime.onMessage.addListener( (info) => {
 	switch (info.query) {
@@ -495,3 +500,18 @@ messenger.runtime.onMessage.addListener( (info) => {
 			break;
 	}
 });
+
+window.addEventListener("resize", async function() {
+	await cardbookHTMLRichContext.saveWindowSize();
+});
+
+// run when clicking on the cross button or with the escape key
+window.addEventListener("beforeunload", async function() {
+	if (resultGiven === false) {
+		let urlParams = {};
+		urlParams.actionId = actionId;
+		await messenger.runtime.sendMessage({query: "cardbook.notifyObserver", value: "cardbook.finishCSV", params: JSON.stringify(urlParams)});
+	}
+});
+
+onLoadDialog();

@@ -1,15 +1,6 @@
 <!-- This Source Code Form is subject to the terms of the Mozilla Public
    - License, v. 2.0. If a copy of the MPL was not distributed with this
    - file, You can obtain one at http://mozilla.org/MPL/2.0/. -->
-<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="150" height="150" viewBox="0 0 150 150">
-	<defs>
-		<linearGradient gradientUnits="userSpaceOnUse" y2="33" x2="1" y1="53" x1="62" id="lg1" xlink:href="#lg2"/>
-		<linearGradient id="lg2">
-		  <stop offset="0" stop-color="#a7a7a7" stop-opacity="1"/>
-		  <stop offset="1" stop-color="#a7a7a7" stop-opacity="0.15"/>
-		</linearGradient>
-	</defs>
-	<rect fill="#ffffff" y="0" x="0" height="150" width="150"/>
-	<rect fill="url(#lg1)" y="8" x="8" height="134" width="134"/>
-	<path fill="#000000" d="M8 142v-11L53 111.8c1.7-4.8 2.2-9.7-.4-16.3C49 92.1 47.3 86 46.3 80a40.3 40.3 0 01-6.9-22.5c.2-1.9 3.1-3.3 4.6 0-1-8.5-.6-17 1.2-25.2l2.7 2.3 13.9-17.7-.6 6.6 17.3-4.3L95 23.9l-2.5 2.8 17.8 6.4-8.5 2.6 6.7 9.7-5 .3c1 4.2.8 8 .3 12 1.3-1.3 3.7-2.3 3.9 1.2-.1 8-2.8 20.1-6 20.3a25 25 0 01-7.2 16.2 40.5 40.5 0 00-.5 16.8l48 20v10z"/>
+<svg xmlns="http://www.w3.org/2000/svg" fill-opacity="context-fill-opacity" viewBox="0 0 16 16" height="16" width="16">
+    <path d="M7.996 3.007A3.008 3.008 0 0 0 5 6.01a.5.5 0 0 0 0 .002c.003.782.368 1.483.904 2.035C4.856 8.105 4 8.947 4 10.008v2.5a.5.5 0 0 0 .5.5.5.5 0 0 0 .5-.5v-2.5c0-.562.437-1 1-1h.5a.5.5 0 0 0 .5-.5v-.507a.5.5 0 0 0-.2-.4 1.999 1.999 0 0 1-.8-1.59v-.003c0-1.109.887-1.998 1.996-2A1.994 1.994 0 0 1 10 6.003v.002a2 2 0 0 1-.8 1.594.5.5 0 0 0-.2.4v.508a.5.5 0 0 0 .5.5h.5c.563 0 1 .438 1 1v2.5a.5.5 0 0 0 .5.5.5.5 0 0 0 .5-.5v-2.5c0-1.062-.856-1.903-1.904-1.96.537-.554.902-1.255.904-2.038a.5.5 0 0 0 0-.002v-.006a.5.5 0 0 0 0-.002 3.006 3.006 0 0 0-3.004-2.992Z" fill="context-stroke"/>
 </svg>

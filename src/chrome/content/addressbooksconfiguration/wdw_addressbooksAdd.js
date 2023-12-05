@@ -131,10 +131,13 @@ async function onLoadDialog () {
 
 async function loadLocalStandardAB () {
 	let remoteAB = await messenger.runtime.sendMessage({query: "cardbook.getRemoteStandardAB"});
+	let LDAPAB = await messenger.runtime.sendMessage({query: "cardbook.getLDAPStandardAB"});
 	let remoteUid = Array.from(remoteAB, row => row.uid);
 	let collectedAB = await messenger.runtime.sendMessage({query: "cardbook.getCollectedStandardAB"});
 	for (let addrbook of await browser.addressBooks.list()) {
 		if (remoteUid.includes(addrbook.id)) {
+			continue
+		} else if (LDAPAB.includes(addrbook.id)) {
 			continue
 		}
 		let collected = addrbook.name == collectedAB;
@@ -317,6 +320,7 @@ async function localPageURIInput () {
 };
 
 function localPageAdvance () {
+	cardbookHTMLTools.deleteTableRows('findTable', 'findHeadersRow');
 	gAccountsFound = [];
 	let localPageType = cardbookHTMLUtils.getRadioValue("localPageType");
 	switch(localPageType) {
@@ -528,10 +532,10 @@ function remotePageSelect () {
 		document.getElementById('rememberPasswordCheckboxLabel').classList.add("disabled");
 		rememberPasswordCheckboxLabel
 	} else {
-		if (connection[0].url) {
+		if (connection[0].url.length) {
 			document.getElementById('remotePageUriLabel').classList.add("disabled");
 			document.getElementById('remotePageURI').disabled=true;
-			document.getElementById('remotePageURI').value = connection[0].url;
+			document.getElementById('remotePageURI').value = connection[0].url.join("|");
 		} else {
 			document.getElementById('remotePageUriLabel').classList.remove("disabled");
 			document.getElementById('remotePageURI').disabled=false;
@@ -565,7 +569,7 @@ function remotePageShow () {
 	gAccountsFound = [];
 	let sortedConnections = [];
 	for (let connection of supportedConnections) {
-		sortedConnections.push([connection.id, connection.type, connection.url]);
+		sortedConnections.push([connection.id, connection.type, connection.url.join("|")]);
 	}
 	cardbookHTMLUtils.sortMultipleArrayByString(sortedConnections,0,1);
 	let remotePageTypeMenulist = document.getElementById('remotePageTypeMenulist');
@@ -578,7 +582,7 @@ function remotePageShow () {
 
 async function constructComplexSearch () {
 	let ABList = document.getElementById('addressbookMenulist');
-	cardbookHTMLTools.loadAddressBooks(ABList, gSearchDefinition.searchAB, true, true, true, false, false);
+	await cardbookHTMLTools.loadAddressBooks(ABList, gSearchDefinition.searchAB, true, true, true, false, false);
 	cardbookHTMLComplexSearch.loadMatchAll(gSearchDefinition.matchAll);
 	await cardbookHTMLComplexSearch.constructDynamicRows("searchTerms", gSearchDefinition.rules, "3.0");
 	document.getElementById('searchTerms_0_valueBox').focus();
@@ -682,15 +686,19 @@ async function launchRequests (aDirPrefId, aType, aUrl, aUsername, aPassword, aK
 	if (aType == 'GOOGLE2' || aType == 'GOOGLE3') {
 		url = cardbookOAuthData[aType].ROOT_API;
 	} else if (aType == 'EWS' || aType == 'OFFICE365' || aType == 'HOTMAIL' || aType == 'OUTLOOK') {
+		gCardDAVURLs[aDirPrefId] = [];
 		url = aUrl;
 	} else {
-		url = aUrl.replace("%EMAILADDRESS%", aUsername);
-		let url1 = await messenger.runtime.sendMessage({query: "cardbook.getSlashedUrl", url: url});
 		gCardDAVURLs[aDirPrefId] = [];
-		gCardDAVURLs[aDirPrefId].push([url1, false]); // [url, discovery]
-		gCardDAVURLs[aDirPrefId].push([url1, true]);
-		let url2 = await messenger.runtime.sendMessage({query: "cardbook.getWellKnownUrl", url: url});
-		gCardDAVURLs[aDirPrefId].push([url2, true]);
+		let urls = aUrl.split("|");
+		for (let url of urls) {
+			url = url.replace("%EMAILADDRESS%", aUsername);
+			let url1 = await messenger.runtime.sendMessage({query: "cardbook.getSlashedUrl", url: url});
+			gCardDAVURLs[aDirPrefId].push([url1, false]); // [url, discovery]
+			gCardDAVURLs[aDirPrefId].push([url1, true]);
+			let url2 = await messenger.runtime.sendMessage({query: "cardbook.getWellKnownUrl", url: url});
+			gCardDAVURLs[aDirPrefId].push([url2, true]);
+		}
 	}
 	if (aType == 'GOOGLE2' || aType == 'GOOGLE3') {
 		if (aNotification) {
@@ -751,8 +759,8 @@ function waitForDiscoveryFinished (aDirPrefId, aUsername, aType, aValidationButt
 				await messenger.runtime.sendMessage({query: "cardbook.updateStatusProgressInformation", string: `${gValidateDescription} : debug mode : cardbookServerDiscoveryError : ${cardbookServerDiscoveryError[aDirPrefId]}`});
 				await messenger.runtime.sendMessage({query: "cardbook.updateStatusProgressInformation", string: `${gValidateDescription} : debug mode : cardbookServerValidation : ${cardbookServerValidation[aDirPrefId]}`});
 				if (cardbookServerDiscoveryError[aDirPrefId] >= 1) {
-					gCardDAVURLs[aDirPrefId].shift();
 					if (cardbookServerValidation[aDirPrefId] && cardbookServerValidation[aDirPrefId].length == 0) {
+						gCardDAVURLs[aDirPrefId].shift();
 						await messenger.runtime.sendMessage({query: "cardbook.finishMultipleOperations", dirPrefId: aDirPrefId});
 						if (gCardDAVURLs[aDirPrefId].length == 0) {
 							setResultsFlags(aDirPrefId, 0, aValidationButton, aNotification);
@@ -775,8 +783,8 @@ function waitForDiscoveryFinished (aDirPrefId, aUsername, aType, aValidationButt
 				} else if (cardbookServerDiscoveryRequest[aDirPrefId] !== cardbookServerDiscoveryResponse[aDirPrefId] || cardbookServerDiscoveryResponse[aDirPrefId] === 0) {
 					setResultsFlags(aDirPrefId, 1, aValidationButton, aNotification);
 				} else {
-					gCardDAVURLs[aDirPrefId].shift();
 					if (cardbookServerValidation[aDirPrefId] && cardbookServerValidation[aDirPrefId].length == 0) {
+						gCardDAVURLs[aDirPrefId].shift();
 						await messenger.runtime.sendMessage({query: "cardbook.finishMultipleOperations", dirPrefId: aDirPrefId});
 						if (gCardDAVURLs[aDirPrefId].length == 0) {
 							setResultsFlags(aDirPrefId, 0, aValidationButton, aNotification);
@@ -893,7 +901,8 @@ function createBoxesForNames (aType, aURL, aName, aVersionList, aUsername, aActi
 		}, false);
 
 	let colorData = cardbookHTMLTools.addHTMLTD(aRow, `namesTableData.${aId}.3`);
-	let colorbox = cardbookHTMLTools.addHTMLINPUT(colorData, `serverColorInput${aId}`, cardbookHTMLUtils.randomColor(100), {"type": "color"});
+	let colorbox = cardbookHTMLTools.addHTMLINPUT(colorData, `serverColorInput${aId}`, cardbookHTMLUtils.randomColor(100),
+					 {"type": "color", "title": messenger.i18n.getMessage("colorAccountsTooltip")});
 	
 	let menuData = cardbookHTMLTools.addHTMLTD(aRow, `namesTableData.${aId}.4`);
 	let menuList = cardbookHTMLTools.addHTMLSELECT(menuData, `vCardVersionPageName${aId}`, "", {"type": "color"});
@@ -905,7 +914,7 @@ function createBoxesForNames (aType, aURL, aName, aVersionList, aUsername, aActi
 	let checkbox1Data = cardbookHTMLTools.addHTMLTD(aRow, `namesTableData.${aId}.6`);
 	let checkbox1 = cardbookHTMLTools.addHTMLINPUT(checkbox1Data, `DBCachedCheckbox${aId}`, null, { "type": "checkbox", "checked": "true"});
 	if (aType == "CARDDAV") {
-		checkbox1.setAttribute('disabled', false);
+		checkbox1.setAttribute('enabled', false);
 	} else {
 		checkbox1.setAttribute('disabled', true);
 	}
@@ -1037,7 +1046,7 @@ async function loadRemoteStandardAB () {
 		let found = false;
 		// first OAuth 
 		for (var j in cardbookOAuthData) {
-			if (j == "GOOGLE" || j == "GOOGLE3"){
+			if (j == "GOOGLE3"){
 				continue;
 			}
 			if (cardbookOAuthData[j].EMAIL_TYPE && email.endsWith(cardbookOAuthData[j].EMAIL_TYPE)) {
@@ -1055,14 +1064,14 @@ async function loadRemoteStandardAB () {
 			if (connections.length) {
 				let connection = connections[0];
 				let password = await messenger.runtime.sendMessage({query: "cardbook.getDomainPassword", domain: domain});
-				let url = connection.url.replace("%EMAILADDRESS%", email);
+				let url = connection.url.join("|").replace("%EMAILADDRESS%", email);
 				await createBoxesForFinds(connection.type, email, password, connection.vCard, url, email);
 			} else {
 				connections = supportedConnections.filter(connection => connection.id == domain.toUpperCase());
 				if (connections.length) {
 					let connection = connections[0];
 					let password = await messenger.runtime.sendMessage({query: "cardbook.getDomainPassword", domain: domain});
-					let url = connection.url.replace("%EMAILADDRESS%", email);
+					let url = connection.url.join("|").replace("%EMAILADDRESS%", email);
 					await createBoxesForFinds(connection.type, email, password, connection.vCard, url, email);
 				}
 			}
@@ -1162,7 +1171,7 @@ async function prepareAddressbooks () {
 					// the discover should be redone at every sync
 					if (myType == 'APPLE' || myType == 'YAHOO') {
 						let connection = supportedConnections.filter(connection => connection.id == myType);
-						aAddressbookURL = connection[0].url;
+						aAddressbookURL = connection[0].url[0];
 					}
 					if (myType == 'GOOGLE3' || aAddressbookUsername == "") {
 						aAddressbookReadOnly = true;
@@ -1233,6 +1242,10 @@ async function finishWizard () {
 	await createAddressbook();
 	await cancelWizard();
 };
+
+window.addEventListener("resize", async function() {
+	await cardbookHTMLRichContext.saveWindowSize();
+});
 
 await onLoadDialog();
 

@@ -518,4 +518,4 @@ if ("undefined" == typeof(ovl_filters)) {
 	};
 };
 
-window.document.addEventListener("DOMOverlayLoaded_cardbook@vigneau.philippe.alt.icon", function(e) { ovl_filters.onLoad(e); }, false);
+window.document.addEventListener("DOMOverlayLoaded_cardbook@vigneau.philippe", function(e) { ovl_filters.onLoad(e); }, false);

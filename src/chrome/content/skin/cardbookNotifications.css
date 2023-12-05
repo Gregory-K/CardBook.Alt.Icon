@@ -3,7 +3,6 @@
 
 .notificationMessage {
     display: list-item;
-    flex: 1;
     list-style-position: inside;
 }
 

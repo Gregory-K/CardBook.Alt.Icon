@@ -32,7 +32,7 @@ if ("undefined" == typeof(cardbookCollection)) {
 					for (let i = 0; i < resultEmailsCollections.length; i++) {
 						let dirPrefId = resultEmailsCollections[i][2];
 						// check for the address book
-						let account = cardbookRepository.cardbookAccounts.filter(child => dirPrefId == child[4]);
+						let account = cardbookRepository.cardbookAccounts.filter(child => dirPrefId == child[1]);
 						if (account.length == 0) {
 							cardbookRepository.cardbookLog.updateStatusProgressInformation("Email collection : wrong dirPrefId : " + dirPrefId, "Error");
 							continue;

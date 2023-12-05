@@ -28,7 +28,8 @@ var cardBookWindowObserver = {
 				await wdw_cardbook.createCategory(categoryData);
 				break;
 			case "cardbook.finishCSV":
-				wdw_cardbook.finishCSV(aData);
+				let finishActionId = JSON.parse(aData);
+				wdw_cardbook.finishCSV(finishActionId.actionId);
 				break;
 			case "cardbook.writeCardsToCSVFile":
 				let exportData = JSON.parse(aData);
@@ -40,12 +41,10 @@ var cardBookWindowObserver = {
 				break;
 			case "cardbook.pref.preferencesChanged":
 				ovl_cardbookLayout.orientPanes();
+				cardbookHTMLCardsTree.init();
 				ovl_cardbookLayout.resizePanes();
 				wdw_cardbook.showCorrectTabs();
 				wdw_cardbook.loadCssRules();
-				var myColumns = cardbookTreeUtils.getColumnsState().split(',');
-				wdw_cardbook.addTreeColumns();
-				cardbookTreeUtils.setColumnsState(myColumns);
 				wdw_cardbook.refreshWindow();
 				break;
 			case "cardbook.accountsLoaded":
@@ -58,9 +57,10 @@ var cardBookWindowObserver = {
 			case "cardbook.complexSearchLoaded":
 				wdw_cardbook.loadCssRules();
 			case "cardbook.syncFisnished":
-				wdw_cardbook.setSearchRemoteHboxOnSyncFinished(aData);
-			case "cardbook.syncRunning":
 				wdw_cardbook.refreshWindow(aData);
+				break;
+			case "cardbook.syncRunning":
+				cardbookHTMLDirTree.setSyncingIcon(aData);
 				break;
 			case "cardbook.cardCreated":
 			case "cardbook.cardEdited":
@@ -97,32 +97,32 @@ var cardBookWindowObserver = {
 	}
 };
 
-var cardBookWindowMutationObserver = {
+var cardbookAccountsTreeMutationObserver = {
 	register: function() {
 		var observer = new MutationObserver(function handleMutations(mutations) {
-			if (cardbookRepository.cardbookReorderMode == "NOREORDER") {
-				cardbookTreeUtils.saveColumnsState();
-			}
+			cardbookHTMLDirTree.saveAccountsTreeWidth();
 		});
-		observer.observe(document.getElementById("cardsTreecols"), {
+		observer.observe(document.getElementById("leftPaneVbox1"), {
 			attributes: true,
 			subtree: true,
-			attributeFilter: ["hidden", "ordinal", "width"]
+			attributeFilter: ["width"]
 		});
 	}
 };
 
-var cardsTreeMutationObserver = {
+var cardbookCardsTreeMutationObserver = {
 	register: function() {
 		var observer = new MutationObserver(function handleMutations(mutations) {
-			if (cardbookRepository.cardbookReorderMode == "NOREORDER") {
-				cardbookTreeUtils.saveColumnsSort();
+			if (mutations[0].attributeName == "width") {
+				cardbookHTMLCardsTree.saveCardsTreeWidth();
+			} else if (mutations[0].attributeName == "height") {
+				cardbookHTMLCardsTree.saveCardsTreeHeight();
 			}
 		});
-		observer.observe(document.getElementById("cardsTree"), {
+		observer.observe(document.getElementById("rightPaneUpHbox1"), {
 			attributes: true,
 			subtree: true,
-			attributeFilter: ["sortDirection", "sortResource"]
+			attributeFilter: ["height", "width"]
 		});
 	}
 };

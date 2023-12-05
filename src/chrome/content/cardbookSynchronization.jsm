@@ -1,7 +1,6 @@
 var { Services } = ChromeUtils.import("resource://gre/modules/Services.jsm");
 var { PluralForm } = ChromeUtils.import("resource://gre/modules/PluralForm.jsm");
 var { FileUtils } = ChromeUtils.import("resource://gre/modules/FileUtils.jsm");
-var { AppConstants } = ChromeUtils.import("resource://gre/modules/AppConstants.jsm");
 
 var loader = Services.scriptloader;
 loader.loadSubScript("chrome://cardbook/content/indexedDB/cardbookIndexedDB.js", this);
@@ -417,7 +416,7 @@ var cardbookSynchronization = {
 				cardbookRepository.cardbookServerCreatedCardRequest[aPrefId] +
 				cardbookRepository.cardbookServerDeletedCardRequest[aPrefId];
 	},
-	
+
 	finishOpenFile: function(aPrefId, aPrefName) {
 		var errorNum = cardbookRepository.cardbookServerUpdatedCardError[aPrefId] + cardbookRepository.cardbookServerCreatedCardError[aPrefId];
 		if (errorNum === 0) {
@@ -438,7 +437,7 @@ var cardbookSynchronization = {
 				if (errorNum === 0) {
 					cardbookActions.finishSyncActivityOK(aPrefId, aPrefName);
 					cardbookRepository.cardbookUtils.formatStringForOutput("synchroFinishedResult", [aPrefName]);
-					if (aPrefType == "GOOGLE" || aPrefType == "GOOGLE2" || aPrefType == "GOOGLE3") {
+					if (aPrefType == "GOOGLE2" || aPrefType == "GOOGLE3") {
 						cardbookRepository.cardbookUtils.formatStringForOutput("synchroCategoriesUpToDate", [aPrefName, cardbookRepository.cardbookServerSyncNotUpdatedCat[aPrefId]]);
 						cardbookRepository.cardbookUtils.formatStringForOutput("synchroCategoriesNewOnServer", [aPrefName, cardbookRepository.cardbookServerSyncNewCatOnServer[aPrefId]]);
 						cardbookRepository.cardbookUtils.formatStringForOutput("synchroCategoriesUpdatedOnServer", [aPrefName, cardbookRepository.cardbookServerSyncUpdatedCatOnServer[aPrefId]]);
@@ -492,12 +491,6 @@ var cardbookSynchronization = {
 		}
 	},
 
-	finishImport: function(aPrefId, aPrefName) {
-		cardbookRepository.cardbookUtils.formatStringForOutput("importFinishedResult", [aPrefName]);
-		cardbookRepository.cardbookUtils.formatStringForOutput("importCardsOK", [aPrefName, cardbookRepository.cardbookServerCardSyncDone[aPrefId] - cardbookRepository.cardbookServerCardSyncError[aPrefId]]);
-		cardbookRepository.cardbookUtils.formatStringForOutput("importCardsKO", [aPrefName, cardbookRepository.cardbookServerCardSyncError[aPrefId]]);
-	},
-
 	finishExportToFile: function (aWindow, aListOfSelectedCardLength, aFileName) {
 		let alertTitle = cardbookRepository.extension.localeData.localizeMessage("exportCardToFileLabel");
 		let message = cardbookRepository.extension.localeData.localizeMessage("exportCardToFileMessagePF", [aListOfSelectedCardLength, aFileName]);
@@ -519,14 +512,18 @@ var cardbookSynchronization = {
 		Services.prompt.alert(aWindow, alertTitle, alertMessage);
 	},
 
-	finishImportFromFile: function (aWindow, aListOfSelectedCardLength, aFileName) {
+	finishImportFromFile: function (aWindow, aListOfSelectedCardLength, aFileName, aPrefname) {
+		cardbookRepository.cardbookUtils.formatStringForOutput("importFinishedResult", [aPrefname]);
+		cardbookRepository.cardbookUtils.formatStringForOutput("importCardsOK", [aPrefname, aListOfSelectedCardLength]);
 		let alertTitle = cardbookRepository.extension.localeData.localizeMessage("importCardFromFileLabel");
 		let message = cardbookRepository.extension.localeData.localizeMessage("importCardFromFileMessagePF", [aListOfSelectedCardLength, aFileName]);
 		let alertMessage = PluralForm.get(aListOfSelectedCardLength, message);
 		Services.prompt.alert(aWindow, alertTitle, alertMessage);
 	},
 
-	finishImportFromDir: function (aWindow, aListOfSelectedCardLength, aDirName) {
+	finishImportFromDir: function (aWindow, aListOfSelectedCardLength, aDirName, aPrefname) {
+		cardbookRepository.cardbookUtils.formatStringForOutput("importFinishedResult", [aPrefname]);
+		cardbookRepository.cardbookUtils.formatStringForOutput("importCardsOK", [aPrefname, aListOfSelectedCardLength]);
 		let alertTitle = cardbookRepository.extension.localeData.localizeMessage("importCardFromDirLabel");
 		let message = cardbookRepository.extension.localeData.localizeMessage("importCardFromDirMessagePF", [aListOfSelectedCardLength, aDirName]);
 		let alertMessage = PluralForm.get(aListOfSelectedCardLength, message);
@@ -604,12 +601,9 @@ var cardbookSynchronization = {
 				params.set("type", aType);
 				params.set("message", aMessage);
 				params.set("buttons", choice);
-				let win = await notifyTools.notifyBackground({query: "cardbook.openAskUserWindow",
+				let win = await notifyTools.notifyBackground({query: "cardbook.openWindow",
 														url: `${url}?${params.toString()}`,
-														type: "popup",
-														dirPrefId: aDirPrefId,
-														message: aMessage,
-														buttons: choice});
+														type: "popup"});
 
 				cardbookRepository.importConflictChoice[aDirPrefId][choice][aMessage].timer = Components.classes["@mozilla.org/timer;1"].createInstance(Components.interfaces.nsITimer);
 				let waitTimer = cardbookRepository.importConflictChoice[aDirPrefId][choice][aMessage].timer;
@@ -834,24 +828,11 @@ var cardbookSynchronization = {
 						cardbookRepository.cardbookServerSyncAgain[aConnection.connPrefId] = true;
 						cardbookRepository.cardbookUtils.formatStringForOutput("serverCardUpdatedOnServerWithoutEtag", [aConnection.connDescription, aModifiedCard.fn]);
 					}
-					if (aPrefIdType == "GOOGLE") {
-						let connection = {connUser: aConnection.connUser, connPrefId: aConnection.connPrefId, connUrl: cardbookRepository.cardbookOAuthData.GOOGLE.REFRESH_REQUEST_URL, connDescription: aConnection.connDescription};
-						let params = {aNewCard: aModifiedCard, aActionType: "PUT"};
-						cardbookRepository.cardbookServerSyncRequest[aConnection.connPrefId]++;
-						// let some time for processing the update before requerying
-						if ("undefined" == typeof(setTimeout)) {
-							var { setTimeout } = ChromeUtils.import("resource://gre/modules/Timer.jsm");
-						}
-						setTimeout(function() {
-								cardbookSynchronizationGoogle.getNewAccessTokenForGoogleClassic(connection, params, cardbookRepository.cardbookSynchronizationGoogle.serverGetCardLabels);
-						}, 2000);
-					} else {
-						cardbookRepository.cardbookServerCardSyncDone[aConnection.connPrefId]++;
-						await cardbookRepository.cardbookUtils.changeMediaFromFileToContent(aModifiedCard);
-						await cardbookRepository.removeCardFromRepository(aCard, true);
-						cardbookRepository.cardbookUtils.setCacheURIFromValue(aModifiedCard, cardbookRepository.cardbookUtils.getFileNameFromUrl(aConnection.connUrl))
-						await cardbookRepository.addCardToRepository(aModifiedCard, true);
-					}
+					cardbookRepository.cardbookServerCardSyncDone[aConnection.connPrefId]++;
+					await cardbookRepository.cardbookUtils.changeMediaFromFileToContent(aModifiedCard);
+					await cardbookRepository.removeCardFromRepository(aCard, true);
+					cardbookRepository.cardbookUtils.setCacheURIFromValue(aModifiedCard, cardbookRepository.cardbookUtils.getFileNameFromUrl(aConnection.connUrl))
+					await cardbookRepository.addCardToRepository(aModifiedCard, true);
 				} else {
 					cardbookRepository.cardbookUtils.addTagUpdated(aModifiedCard);
 					cardbookRepository.cardbookServerCardSyncDone[aConnection.connPrefId]++;
@@ -889,9 +870,6 @@ var cardbookSynchronization = {
 					} else {
 						cardbookRepository.cardbookServerSyncAgain[aConnection.connPrefId] = true;
 						cardbookRepository.cardbookUtils.formatStringForOutput("serverCardCreatedOnServerWithoutEtag", [aConnection.connDescription, aCard.fn]);
-					}
-					if (aPrefIdType == "GOOGLE") {
-						cardbookRepository.cardbookServerSyncAgain[aConnection.connPrefId] = true;
 					}
 					cardbookRepository.cardbookUtils.nullifyTagModification(aCard);
 					cardbookRepository.cardbookUtils.setCacheURIFromValue(aCard, cardbookRepository.cardbookUtils.getFileNameFromUrl(aConnection.connUrl))
@@ -988,24 +966,15 @@ var cardbookSynchronization = {
 												}
 												continue;
 											}
-											if (aPrefIdType == "GOOGLE") {
-												let whyGet = "NEWONSERVER";
-												if (cardbookRepository.cardbookCards[myCard.dirPrefId+"::"+myCard.uid]) {
-													whyGet = "UPDATEDONSERVER";
-												}
-												let params = {aNewCard: myCard, aActionType: "GET", aWhyGet: whyGet};
-												cardbookRepository.cardbookServerMultiGetGoogleArray[aConnection.connPrefId][myCard.uid] = {params: params};
-											} else {
-												if (cardbookRepository.cardbookCards[myCard.dirPrefId+"::"+myCard.uid]) {
-													let myOldCard = cardbookRepository.cardbookCards[myCard.dirPrefId+"::"+myCard.uid];
-													await cardbookRepository.removeCardFromRepository(myOldCard, true);
-												}
-												cardbookRepository.cardbookUtils.setCacheURIFromValue(myCard, cardbookRepository.cardbookUtils.getFileNameFromUrl(aConnection.connUrl + href))
-												await cardbookRepository.addCardToRepository(myCard, true);
-												cardbookRepository.cardbookUtils.formatStringForOutput("serverCardGetOK", [aConnection.connDescription, myCard.fn]);
-												cardbookRepository.cardbookServerCardSyncDone[aConnection.connPrefId]++;
-												cardbookRepository.cardbookServerGetCardResponse[aConnection.connPrefId]++;
+											if (cardbookRepository.cardbookCards[myCard.dirPrefId+"::"+myCard.uid]) {
+												let myOldCard = cardbookRepository.cardbookCards[myCard.dirPrefId+"::"+myCard.uid];
+												await cardbookRepository.removeCardFromRepository(myOldCard, true);
 											}
+											cardbookRepository.cardbookUtils.setCacheURIFromValue(myCard, cardbookRepository.cardbookUtils.getFileNameFromUrl(aConnection.connUrl + href))
+											await cardbookRepository.addCardToRepository(myCard, true);
+											cardbookRepository.cardbookUtils.formatStringForOutput("serverCardGetOK", [aConnection.connDescription, myCard.fn]);
+											cardbookRepository.cardbookServerCardSyncDone[aConnection.connPrefId]++;
+											cardbookRepository.cardbookServerGetCardResponse[aConnection.connPrefId]++;
 										} else {
 											cardbookRepository.cardbookServerCardSyncDone[aConnection.connPrefId]++;
 											cardbookRepository.cardbookServerGetCardResponse[aConnection.connPrefId]++;
@@ -1032,11 +1001,6 @@ var cardbookSynchronization = {
 				} else {
 					cardbookRepository.cardbookServerCardSyncDone[aConnection.connPrefId] = cardbookRepository.cardbookServerCardSyncDone[aConnection.connPrefId] + length;
 					cardbookRepository.cardbookServerMultiGetError[aConnection.connPrefId]++;
-				}
-				if (aPrefIdType == "GOOGLE" && (cardbookRepository.cardbookServerMultiGetRequest[aConnection.connPrefId]-1 == cardbookRepository.cardbookServerMultiGetResponse[aConnection.connPrefId])) {
-					let connection = {connUser: aConnection.connUser, connPrefId: aConnection.connPrefId, connUrl: cardbookRepository.cardbookOAuthData.GOOGLE.REFRESH_REQUEST_URL, connDescription: aConnection.connDescription};
-					cardbookRepository.cardbookServerSyncRequest[aConnection.connPrefId]++;
-					cardbookSynchronizationGoogle.getNewAccessTokenForGoogleClassic(connection, null, cardbookRepository.cardbookSynchronizationGoogle.serverGetAllCardsLabels);
 				}
 				cardbookRepository.cardbookServerMultiGetResponse[aConnection.connPrefId]++;
 			}
@@ -1107,6 +1071,9 @@ var cardbookSynchronization = {
 					cardbookRepository.cardbookServerCardSyncDone[aDirPrefId]++;
 				}
 			}
+			if (aImportMode == "IMPORTDIR" && cardbookRepository.currentAction[aActionId]) {
+				cardbookRepository.currentAction[aActionId]["status"] = "FINISHED";
+			}
 			cardbookRepository.cardbookDirResponse[aDirPrefId]++;
 		}}, Components.interfaces.nsIEventTarget.DISPATCH_NORMAL);
 	},
@@ -1144,17 +1111,7 @@ var cardbookSynchronization = {
 							cardbookRepository.cardbookServerCreatedCardRequest[aConnection.connPrefId]++;
 							var aCreateConnection = JSON.parse(JSON.stringify(aConnection));
 							cardbookRepository.cardbookUtils.nullifyEtag(aCard);
-							// Google requires a fresh uid
-							if (aPrefIdType == "GOOGLE") {
-								let myNewCard = new cardbookCardParser();
-								await cardbookRepository.cardbookUtils.cloneCard(aCard, myNewCard);
-								cardbookRepository.cardbookUtils.setCardUUID(myNewCard);
-								await cardbookRepository.removeCardFromRepository(aCard, true);
-								await cardbookRepository.addCardToRepository(myNewCard, true);
-								cardbookSynchronization.serverCreateCard(aCreateConnection, myNewCard, aPrefIdType);
-							} else {
-								cardbookSynchronization.serverCreateCard(aCreateConnection, aCard, aPrefIdType);
-							}
+							cardbookSynchronization.serverCreateCard(aCreateConnection, aCard, aPrefIdType);
 							break;
 						case "delete":
 							await cardbookRepository.removeCardFromRepository(aCard, true);
@@ -1708,8 +1665,6 @@ var cardbookSynchronization = {
 													cardbookRepository.cardbookServerValidation[aConnection.connPrefId][aConnection.connUrl].readOnly = readOnly;
 													var aABConnection = {connPrefId: aConnection.connPrefId, connUser: aConnection.connUser, connUrl: aConnection.connUrl, connDescription: aConnection.connDescription};
 													cardbookSynchronization.discoverPhase4(aABConnection, aRootUrl, aOperationType, aParams);
-												} else if (aOperationType == "GOOGLE") {
-													cardbookRepository.cardbookSynchronizationGoogle.googleSyncCards(aConnection, aParams.aPrefIdType, aParams.aValue);
 												} else if (aOperationType == "SYNCSERVER") {
 													cardbookSynchronization.serverSyncCards(aConnection, aParams.aPrefIdType, aParams.aValue);
 												}
@@ -1908,11 +1863,11 @@ var cardbookSynchronization = {
 	},
 
 	setPeriodicSyncs: function (aDirPrefId) {
-		for (let account of cardbookRepository.cardbookAccounts.filter(child => aDirPrefId == child[4] || true)) {
+		for (let account of cardbookRepository.cardbookAccounts.filter(child => aDirPrefId == child[1] || true)) {
 			let dirPrefName = account[0];
-			let dirPrefId = account[4];
-			let enabled = account[5];
-			let dirPrefType = account[6];
+			let dirPrefId = account[1];
+			let enabled = account[2];
+			let dirPrefType = account[3];
 			if (enabled && cardbookRepository.cardbookUtils.isMyAccountRemote(dirPrefType)
 				&& cardbookRepository.cardbookPreferences.getDBCached(dirPrefId)) {
 				var autoSync = cardbookRepository.cardbookPreferences.getAutoSyncEnabled(dirPrefId);
@@ -1990,14 +1945,7 @@ var cardbookSynchronization = {
 					if (!myPrefDBCached) {
 						params.aValue = cardbookRepository.cardbookPreferences.getLastSearch(aPrefId);
 					}
-					if (myPrefIdType == "GOOGLE") {
-						cardbookActions.initSyncActivity(aPrefId, myPrefIdName);
-						cardbookSynchronization.initMultipleOperations(aPrefId);
-						cardbookRepository.cardbookServerSyncRequest[aPrefId]++;
-						var connection = {connUser: myPrefIdUser, connPrefId: aPrefId, connUrl: cardbookRepository.cardbookOAuthData.GOOGLE.REFRESH_REQUEST_URL, connDescription: myPrefIdName};
-						cardbookRepository.cardbookServerSyncParams[aPrefId] = [ connection, myPrefIdType ];
-						cardbookRepository.cardbookSynchronizationGoogle.getNewAccessTokenForGoogleClassic(connection, params, cardbookSynchronizationGoogle.googleSyncLabels);
-					} else if (myPrefIdType == "GOOGLE2" || myPrefIdType == "GOOGLE3") {
+					if (myPrefIdType == "GOOGLE2" || myPrefIdType == "GOOGLE3") {
 						cardbookActions.initSyncActivity(aPrefId, myPrefIdName);
 						cardbookSynchronization.initMultipleOperations(aPrefId);
 						cardbookRepository.cardbookServerSyncRequest[aPrefId]++;
@@ -2021,12 +1969,7 @@ var cardbookSynchronization = {
 						cardbookRepository.cardbookSynchronizationOffice365.office365SyncContactsInit(connection);
 					} else if (myPrefIdType == "CARDDAV" && !myPrefDBCached) {
 						if (params.aValue) {
-							cardbookActions.initSyncActivity(aPrefId, myPrefIdName);
-							cardbookSynchronization.initMultipleOperations(aPrefId);
-							cardbookRepository.cardbookServerSyncRequest[aPrefId]++;
-							var connection = {connUser: myPrefIdUser, connPrefId: aPrefId, connUrl: myPrefIdUrl, connDescription: myPrefIdName};
-							cardbookRepository.cardbookServerSyncParams[aPrefId] = [ connection, myPrefIdType ];
-							cardbookSynchronization.serverSyncCards(connection, myPrefIdType, params.aValue);
+							cardbookSynchronization.searchRemote(aPrefId, params.aValue);
 						}
 					} else {
 						cardbookActions.initSyncActivity(aPrefId, myPrefIdName);
@@ -2042,13 +1985,11 @@ var cardbookSynchronization = {
 							cardbookSynchronization.serverSyncCards(connection, myPrefIdType);
 						}
 					}
-					if (myPrefIdType == "GOOGLE") {
-						cardbookSynchronizationGoogle.waitForGoogleSyncFinished(aPrefId, myPrefIdName);
-					} else if (myPrefIdType == "GOOGLE2" || myPrefIdType == "GOOGLE3") {
+					if (myPrefIdType == "GOOGLE2" || myPrefIdType == "GOOGLE3") {
 						cardbookSynchronizationGoogle2.waitForGoogleSyncFinished(aPrefId, myPrefIdName);
 					} else if (myPrefIdType == "OFFICE365") {
 						cardbookSynchronizationOffice365.waitForOffice365SyncFinished(aPrefId, myPrefIdName);
-					} else {
+					} else if (myPrefIdType != "CARDDAV" || myPrefDBCached) {
 						cardbookSynchronization.waitForSyncFinished(aPrefId, myPrefIdName);
 					}
 				}
@@ -2061,22 +2002,18 @@ var cardbookSynchronization = {
 
 	searchRemote: async function (aPrefId, aValue) {
 		try {
-			await cardbookRepository.removeAccountFromComplexSearch(aPrefId);
-			cardbookRepository.emptyAccountFromRepository(aPrefId);
 			var myPrefIdType = cardbookRepository.cardbookPreferences.getType(aPrefId);
 			var myPrefIdUrl = cardbookRepository.cardbookPreferences.getUrl(aPrefId);
 			var myPrefIdName = cardbookRepository.cardbookPreferences.getName(aPrefId);
 			var myPrefIdUser = cardbookRepository.cardbookPreferences.getUser(aPrefId);
-			var myPrefEnabled = cardbookRepository.cardbookPreferences.getEnabled(aPrefId);
-			var myPrefDBCached = cardbookRepository.cardbookPreferences.getDBCached(aPrefId);
-			if (myPrefEnabled && !myPrefDBCached && cardbookRepository.cardbookUtils.isMyAccountRemote(myPrefIdType)) {
-				cardbookActions.initSyncActivity(aPrefId, myPrefIdName);
-				cardbookSynchronization.initMultipleOperations(aPrefId);
-				cardbookRepository.cardbookServerSyncRequest[aPrefId]++;
-				var connection = {connUser: myPrefIdUser, connPrefId: aPrefId, connUrl: myPrefIdUrl, connDescription: myPrefIdName};
-				cardbookSynchronization.serverSearchRemote(connection, aValue, myPrefIdType);
-				cardbookSynchronization.waitForSyncFinished(aPrefId, myPrefIdName);
-			}
+			cardbookActions.initSyncActivity(aPrefId, myPrefIdName);
+			cardbookSynchronization.initMultipleOperations(aPrefId);
+			cardbookSynchronization.waitForSyncFinished(aPrefId, myPrefIdName);
+			await cardbookRepository.removeAccountFromComplexSearch(aPrefId);
+			cardbookRepository.emptyAccountFromRepository(aPrefId);
+			cardbookRepository.cardbookServerSyncRequest[aPrefId]++;
+			var connection = {connUser: myPrefIdUser, connPrefId: aPrefId, connUrl: myPrefIdUrl, connDescription: myPrefIdName};
+			cardbookSynchronization.serverSearchRemote(connection, aValue, myPrefIdType);
 		}
 		catch (e) {
 			cardbookRepository.cardbookLog.updateStatusProgressInformation("cardbookSynchronization.searchRemote error : " + e, "Error");
@@ -2093,7 +2030,7 @@ var cardbookSynchronization = {
 						if (cardbookRepository.cardbookServerSyncCompareCardWithCacheDone[aPrefId] == cardbookRepository.cardbookServerSyncCompareCardWithCacheTotal[aPrefId]) {
 							cardbookRepository.cardbookServerSyncCompareCardWithCacheDone[aPrefId] = 0;
 							cardbookRepository.cardbookServerSyncCompareCardWithCacheTotal[aPrefId] = 0;
-							if (cardbookRepository.cardbookServerMultiGetArray[aPrefId].length != 0) {
+							if (cardbookRepository.cardbookServerMultiGetArray[aPrefId] && cardbookRepository.cardbookServerMultiGetArray[aPrefId].length != 0) {
 								cardbookSynchronization.serverMultiGet(cardbookRepository.cardbookServerSyncParams[aPrefId][0], myPrefIdType);
 							}
 						}
@@ -2105,13 +2042,22 @@ var cardbookSynchronization = {
 							cardbookActions.fetchSyncActivity(aPrefId, cardbookRepository.cardbookServerCardSyncDone[aPrefId], cardbookRepository.cardbookServerCardSyncTotal[aPrefId]);
 						}
 						if (request == response) {
-							cardbookSynchronization.finishSync(aPrefId, aPrefName, myPrefIdType);
 							if (cardbookRepository.cardbookServerSyncAgain[aPrefId]) {
 								cardbookSynchronization.finishMultipleOperations(aPrefId);
+								cardbookSynchronization.finishSync(aPrefId, aPrefName, myPrefIdType);
 								cardbookRepository.cardbookUtils.formatStringForOutput("synchroForcedToResync", [aPrefName]);
 								cardbookSynchronization.syncAccount(aPrefId, true);
 							} else {
+								if (cardbookSynchronization.getError(aPrefId) == 0) {
+									let sysdate = cardbookRepository.cardbookDates.getDateUTC();
+									let syncdate = sysdate.year + sysdate.month + sysdate.day + "T" + sysdate.hour + sysdate.min + sysdate.sec + "Z";
+									cardbookRepository.cardbookPreferences.setLastSync(aPrefId, syncdate);
+									cardbookRepository.cardbookPreferences.setSyncFailed(aPrefId, false);
+								} else {
+									cardbookRepository.cardbookPreferences.setSyncFailed(aPrefId, true);
+								}
 								cardbookSynchronization.finishMultipleOperations(aPrefId);
+								cardbookSynchronization.finishSync(aPrefId, aPrefName, myPrefIdType);
 								var total = cardbookSynchronization.getRequest() + cardbookSynchronization.getTotal() + cardbookSynchronization.getResponse() + cardbookSynchronization.getDone();
 								// all sync are finished
 								if (total === 0) {
@@ -2204,8 +2150,8 @@ var cardbookSynchronization = {
 							}
 							lTimerDir.cancel();
 						} else {
-							cardbookSynchronization.finishSync(aPrefId, aPrefName, myPrefIdType);
 							cardbookSynchronization.finishMultipleOperations(aPrefId);
+							cardbookSynchronization.finishSync(aPrefId, aPrefName, myPrefIdType);
 							// all loads and syncs are finished
 							var total = cardbookSynchronization.getRequest() + cardbookSynchronization.getTotal() + cardbookSynchronization.getResponse() + cardbookSynchronization.getDone();
 							if (total == 0) {
@@ -2221,25 +2167,16 @@ var cardbookSynchronization = {
 				}, 1000, Components.interfaces.nsITimer.TYPE_REPEATING_SLACK);
 	},
 
-	waitForImportFinished: function (aPrefId, aPrefName, aActionId, aFinishParams) {
+	waitForImportFinished: function (aPrefId, aActionId, aFinishParams) {
 		cardbookRepository.lTimerImportAll[aPrefId] = Components.classes["@mozilla.org/timer;1"].createInstance(Components.interfaces.nsITimer);
 		var lTimerImport = cardbookRepository.lTimerImportAll[aPrefId];
 		lTimerImport.initWithCallback({ notify: function(lTimerImport) {
-					cardbookRepository.cardbookUtils.notifyObservers("syncRunning", aPrefId);
-					var request = cardbookSynchronization.getRequest(aPrefId, aPrefName) + cardbookSynchronization.getTotal(aPrefId, aPrefName);
-					var response = cardbookSynchronization.getResponse(aPrefId, aPrefName) + cardbookSynchronization.getDone(aPrefId, aPrefName);
-					if (request == response) {
-						cardbookSynchronization.finishImport(aPrefId, aPrefName);
-						cardbookSynchronization.finishMultipleOperations(aPrefId);
-						var total = cardbookSynchronization.getRequest() + cardbookSynchronization.getTotal() + cardbookSynchronization.getResponse() + cardbookSynchronization.getDone();
-						if (total === 0) {
-							cardbookRepository.cardbookUtils.formatStringForOutput("importAllFinished");
-						}
-						cardbookActions.endAsyncAction(aActionId, aFinishParams);
-						lTimerImport.cancel();
-					}
-				}
-				}, 1000, Components.interfaces.nsITimer.TYPE_REPEATING_SLACK);
+			if (cardbookRepository.currentAction[aActionId]["status"] == "FINISHED") {
+				cardbookActions.endAsyncAction(aActionId, aFinishParams);
+				lTimerImport.cancel();
+			}
+		}
+		}, 1000, Components.interfaces.nsITimer.TYPE_REPEATING_SLACK);
 	},
 
 	waitForComplexSearchFinished: function (aPrefId, aPrefName) {
@@ -2357,7 +2294,6 @@ var cardbookSynchronization = {
 			var myPrefUser = cardbookRepository.cardbookPreferences.getUser(aDirPrefId);
 			var myPrefColor = cardbookRepository.cardbookPreferences.getColor(aDirPrefId);
 			var myPrefEnabled = cardbookRepository.cardbookPreferences.getEnabled(aDirPrefId);
-			var myPrefExpanded = cardbookRepository.cardbookPreferences.getExpanded(aDirPrefId);
 			var myPrefVCard = cardbookRepository.cardbookPreferences.getVCardVersion(aDirPrefId);
 			var myPrefReadOnly = cardbookRepository.cardbookPreferences.getReadOnly(aDirPrefId);
 			var myPrefUrnuuid = cardbookRepository.cardbookPreferences.getUrnuuid(aDirPrefId);
@@ -2366,7 +2302,7 @@ var cardbookSynchronization = {
 			var myPrefAutoSyncEnabled = cardbookRepository.cardbookPreferences.getAutoSyncEnabled(aDirPrefId);
 			var myPrefAutoSyncInterval = cardbookRepository.cardbookPreferences.getAutoSyncInterval(aDirPrefId);
 			if (aAddAccount) {
-				cardbookRepository.addAccountToRepository(aDirPrefId, myPrefName, myPrefType, myPrefUrl, myPrefUser, myPrefColor, myPrefEnabled, myPrefExpanded,
+				cardbookRepository.addAccountToRepository(aDirPrefId, myPrefName, myPrefType, myPrefUrl, myPrefUser, myPrefColor, myPrefEnabled,
 															myPrefVCard, myPrefReadOnly, myPrefUrnuuid, myPrefSourceId, myPrefDBCached, myPrefAutoSyncEnabled, myPrefAutoSyncInterval, false);
 				cardbookRepository.cardbookUtils.formatStringForOutput("addressbookOpened", [myPrefName]);
 			}
@@ -2442,7 +2378,7 @@ var cardbookSynchronization = {
 				var myCurrentAccounts = [];
 				myCurrentAccounts = JSON.parse(JSON.stringify(cardbookRepository.cardbookAccounts));
 				function onlyCardDAV(element) {
-					return (element[6] == "CARDDAV");
+					return (element[3] == "CARDDAV");
 				}
 				myCurrentAccounts = myCurrentAccounts.filter(onlyCardDAV);
 				cardbookRepository.cardbookLog.updateStatusProgressInformationWithDebug1(cardbookRepository.gDiscoveryDescription + " : debug mode : myCurrentAccounts : ", myCurrentAccounts);
@@ -2455,11 +2391,11 @@ var cardbookSynchronization = {
 								continue;
 							}
 							for (var i = 0; i < myCurrentAccounts.length; i++) {
-								var myCurrentUrl = cardbookRepository.cardbookPreferences.getUrl(myCurrentAccounts[i][4]);
-								var myCurrentUser = cardbookRepository.cardbookPreferences.getUser(myCurrentAccounts[i][4]);
+								var myCurrentUrl = cardbookRepository.cardbookPreferences.getUrl(myCurrentAccounts[i][1]);
+								var myCurrentUser = cardbookRepository.cardbookPreferences.getUser(myCurrentAccounts[i][1]);
 								if ((myCurrentUser == cardbookRepository.cardbookServerValidation[dirPrefId].user) && (myCurrentUrl == cardbookRepository.cardbookUtils.decodeURL(url))) {
 									cardbookRepository.cardbookServerValidation[dirPrefId][url].forget = true;
-									myCurrentAccounts[i][6] = "CARDDAVFOUND";
+									myCurrentAccounts[i][3] = "CARDDAVFOUND";
 								}
 							}
 						}
@@ -2471,8 +2407,8 @@ var cardbookSynchronization = {
 				var myCurrentAccountsNotFound = [];
 				myCurrentAccountsNotFound = myCurrentAccounts.filter(onlyCardDAV);
 				for (var i = 0; i < myCurrentAccountsNotFound.length; i++) {
-					var myCurrentUrl = cardbookRepository.cardbookPreferences.getUrl(myCurrentAccountsNotFound[i][4]);
-					var myCurrentUser = cardbookRepository.cardbookPreferences.getUser(myCurrentAccountsNotFound[i][4]);
+					var myCurrentUrl = cardbookRepository.cardbookPreferences.getUrl(myCurrentAccountsNotFound[i][1]);
+					var myCurrentUser = cardbookRepository.cardbookPreferences.getUser(myCurrentAccountsNotFound[i][1]);
 					var myCurrentShortUrl = cardbookSynchronization.getShortUrl(myCurrentUrl);
 					for (var dirPrefId in cardbookRepository.cardbookServerValidation) {
 						for (var url in cardbookRepository.cardbookServerValidation[dirPrefId]) {
@@ -2480,7 +2416,7 @@ var cardbookSynchronization = {
 								continue;
 							}
 							if ((myCurrentUser == cardbookRepository.cardbookServerValidation[dirPrefId].user) && (myCurrentShortUrl == cardbookSynchronization.getShortUrl(cardbookRepository.cardbookUtils.decodeURL(url)))) {
-								myAccountsToRemove.push(myCurrentAccountsNotFound[i][4]);
+								myAccountsToRemove.push(myCurrentAccountsNotFound[i][1]);
 								break;
 							}
 						}
@@ -2612,10 +2548,16 @@ var cardbookSynchronization = {
 				cardbookRepository.cardbookServerCardSyncDone[aParams.aPrefId]++;
 				cardbookRepository.cardbookUtils.formatStringForOutput("fileEmpty", [aParams.aFile.path]);
 			}
+			if (aParams.aImportMode == "IMPORTFILE" && cardbookRepository.currentAction[aParams.aActionId]) {
+				cardbookRepository.currentAction[aParams.aActionId]["status"] = "FINISHED";
+			}
 			cardbookRepository.cardbookFileResponse[aParams.aPrefId]++;
 		}
 		catch (e) {
 			cardbookRepository.cardbookLog.updateStatusProgressInformation("cardbookSynchronization.loadFileAsync error : " + e, "Error");
+			if (aParams.aImportMode == "IMPORTFILE" && cardbookRepository.currentAction[aParams.aActionId]) {
+				cardbookRepository.currentAction[aParams.aActionId]["status"] = "FINISHED";
+			}
 			cardbookRepository.cardbookFileResponse[aParams.aPrefId]++;
 		}
 	},
@@ -2634,7 +2576,7 @@ var cardbookSynchronization = {
 				cardbookRepository.writePossibleCustomFields();
 			}
 			await cardbookRepository.cardbookUtils.changeMediaFromFileToContent(aNewCard);
-			
+
 			var myNodeType = "";
 			var myNodeName = "";
 			var mySepPosition = aTarget.indexOf("::",0);

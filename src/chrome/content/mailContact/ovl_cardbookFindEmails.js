@@ -7,14 +7,14 @@ if ("undefined" == typeof(ovl_cardbookFindEmails)) {
 	var ovl_cardbookFindEmails = {
 
 		findEmailsFromEmail: function(emailAddressNode) {
-			let email = ovl_cardbookMailContacts.getEmailFromEmailAddressNode(emailAddressNode);
+			let email = ovl_cardbookAboutMessage.getEmailFromEmailAddressNode(emailAddressNode);
 			ovl_cardbookFindEmails.findEmails(null, [email]);
 		},
 
 		findAllEmailsFromContact: function(emailAddressNode) {
-			let email = ovl_cardbookMailContacts.getEmailFromEmailAddressNode(emailAddressNode);
-			if (ovl_cardbookMailContacts) {
-				var isEmailRegistered = cardbookRepository.isEmailRegistered(email, ovl_cardbookMailContacts.getIdentityKey());
+			let email = ovl_cardbookAboutMessage.getEmailFromEmailAddressNode(emailAddressNode);
+			if (ovl_cardbookAboutMessage) {
+				var isEmailRegistered = cardbookRepository.isEmailRegistered(email, ovl_cardbookAboutMessage.getIdentityKey());
 			} else {
 				var isEmailRegistered = cardbookRepository.isEmailRegistered(email);
 			}

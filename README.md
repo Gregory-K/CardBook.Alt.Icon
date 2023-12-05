@@ -19,12 +19,19 @@ GitHub (main) - https://github.com/Gregory-K/CardBook.Alt.Icon
 GitLab (alt.) - https://gitlab.com/Gregory.K/CardBook.Alt.Icon
 
 Version:  
-**85.5.1**  
+**92.2.1**  
 Compatibility:  
-102.0a1 <= Thunderbird version >= 102.*
+113.0a1 <= Thunderbird version >= 116.*
 
 
 ## Branches
+
+### Active
+
+['**T115**'](https://github.com/Gregory-K/CardBook.Alt.Icon/tree/T115) (current):  
+113.0a1 <= Thunderbird version >= 116.*
+
+### Archived
 
 ['**T102**'](https://github.com/Gregory-K/CardBook.Alt.Icon/tree/T102) (current):  
 102.0a1 <= Thunderbird version >= 102.*
@@ -71,6 +78,8 @@ e.g. `62.9` (official) `62.9.1` (Alt.Icon)
 
 
 ## Official README
+
+***CardBook*** – *a new Thunderbird address book based on the CardDAV and vCard standards*
 
 ### Features
 
@@ -137,12 +146,10 @@ stars, possibility to edit|remove|add standard and CardBook contacts)
 * [@CardBook](https://twitter.com/CardBookAddon) twitter
 * *And many more…*
 
-
 ### Installation
 
 1. [Download CardBook from the official Thunderbird add-on page](https://addons.thunderbird.net/addon/cardbook/)
 2. [Installing an Add-on in Thunderbird](https://support.mozilla.org/en-US/kb/installing-addon-thunderbird)
-
 
 ### Installation for Thunderbird Alpha (aka Daily/Nightly) and Beta
 
@@ -154,7 +161,6 @@ The CardBook add-on is also available for:
 By giving the CardBook add-on developers your feedback [here](https://gitlab.com/CardBook/CardBook/issues/574), you’ll help make the CardBook add-on better for you and your fellow users.
 Thanking you in advance.
 
-
 ### Standalone
 
 Once installed, CardBook can also run as a standalone program:<br>
@@ -163,7 +169,6 @@ OSX `thunderbird -cardbook`<br>
 Linux `thunderbird -cardbook`
 
 Note: This feature does not currently work with Thunderbird 68+. See [Bug 1552459 not possible to add custom command handler (like thunderbird.exe -test)](https://bugzilla.mozilla.org/show_bug.cgi?id=1552459)
-
 
 ### Compatible and complementary add-ons
 
@@ -176,7 +181,6 @@ Note: This feature does not currently work with Thunderbird 68+. See [Bug 155245
 [Quicktext](https://addons.thunderbird.net/addon/quicktext/),
 [Simple Mail Redirection](https://addons.thunderbird.net/addon/simple-mail-redirection/)
 and more
-
 
 ### Supports
 
@@ -226,7 +230,6 @@ macOS Contacts Server,
 [Zoho](https://www.zoho.com/), 
 and more
 
-
 ### Automatic configuration
 
 [aol.com](https://mail.aol.com/), 
@@ -245,7 +248,6 @@ and more
 [yandex.ru](https://yandex.ru/), 
 [zoho.com](https://www.zoho.com/) 
 
-
 ### Implemented standards
 
 * [RFC 2425 A MIME Content-Type for Directory Information](https://tools.ietf.org/html/rfc2425)
@@ -255,7 +257,6 @@ and more
 * [RFC 6352 CardDAV: vCard Extensions to Web Distributed Authoring and Versioning (WebDAV)](https://tools.ietf.org/html/rfc6352)
 * [RFC 6578 Collection Synchronization for Web Distributed Authoring and Versioning (WebDAV)](https://tools.ietf.org/html/rfc6578)
 * [RFC 6764 Locating Services for Calendaring Extensions to WebDAV (CalDAV) and vCard Extensions to WebDAV (CardDAV)](https://tools.ietf.org/html/rfc6764)
-
 
 ### Issues
 
@@ -271,7 +272,6 @@ When you are creating an issue, please provide the following information:
 * your operating system and version
 * if possible: the **relevant** output of the error console (found at `Tools → Developer Tools → Error Console` / `Ctrl-Shift-J`)
 
-
 ### [Manual](https://gitlab.com/CardBook/CardBook/wikis/home)
 
 CardBook provides an integrated contact management solution with a fully functional and logical [UX](https://en.wikipedia.org/wiki/User_experience) and [UI](https://en.wikipedia.org/wiki/User_interface).
@@ -282,13 +282,11 @@ You are encouraged to contribute to the [CardBook Manual](https://gitlab.com/Car
 * writing a page about a [feature](https://gitlab.com/CardBook/CardBook#features)
 * something else
 
-
 ### Roadmap
 
 * Displays the contact photo/image/picture of the sender/recipient while reading or composing a message, eg. [Display Contact Photo](https://addons.thunderbird.net/addon/display-contact-photo/)
 * Better integration with the standard Thunderbird address book
 * About the future of Thunderbird, whatever would be the path to the new Thunderbird, I’m [[Philippe Vigneau](https://mail.mozilla.org/pipermail/tb-planning/2017-April/005378.html)] ready and open to work to make [CardBook the new Thunderbird Address Book](https://gitlab.com/CardBook/CardBook#cardbook-the-new-thunderbird-address-book)
-
 
 ### Contribution
 
@@ -304,7 +302,6 @@ You are welcomed to contribute to this project by:
 * spreading the word about this great add-on
 * improving the [CardBook Manual](https://gitlab.com/CardBook/CardBook/wikis/home)
 * adding or improving the localizations (i.e. translations) of the [CardBook Manual](https://gitlab.com/CardBook/CardBook/wikis/home)
-
 
 ### Coders
 
@@ -327,7 +324,6 @@ You are welcomed to contribute to this project by:
 * Lukáš Tyrychtr
 * [YUKI "Piro" Hiroshi (結城 洋志)](https://gitlab.com/piroor)
 * Marco Zehe
-
 
 ### Translators
 
@@ -382,11 +378,9 @@ You are welcomed to contribute to this project by:
 * [KDE Localization](https://l10n.kde.org/dictionary/search-translations.php)
 * [Microsoft International Terminology](https://www.microsoft.com/language)
 
-
 #### Trailblazer
 
 * [Thomas McWork](https://github.com/thomas-mc-work): midwife for the public git repository
-
 
 ### CardBook the new Thunderbird Address Book
 
@@ -431,7 +425,6 @@ Supporters who would like to see CardBook as the new Thunderbird Address Book:
 [whatevsz](https://addons.thunderbird.net/thunderbird/user/whatevsz/), 
 and others
 
-
 ### Vote to replace the Thunderbird Address Book with CardBook
 1. [Click here](https://bugzilla.mozilla.org/show_bug.cgi?id=1372580)
 2. Log in
@@ -440,7 +433,6 @@ and others
 5. Follow the prompts
 
 Thank you
-
 
 ### License
 

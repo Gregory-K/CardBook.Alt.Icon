@@ -1,0 +1,27 @@
+test
+overflow:auto;
+PreferMailFormatPopup --> list
+
+style=
+input-container
+class readonly
+oncommand
+panelTextboxKeydown
+panelMenupopupHiding
+panelMenulistKeydown
+updateComplexMenulist
+oninput
+
+				onpopuphiding="wdw_cardEdition.changeEditionFields();return event.explicitOriginalTarget.localName != 'menuitem'" ignorekeys="true">
+
+cardEditionAction
+
+ajouter pays manuellement
+
+cardbookElementTools
+
+data-field-name
+
+cardbookProcessClass et autoConvertField
+
+addressbook remove from editionFields

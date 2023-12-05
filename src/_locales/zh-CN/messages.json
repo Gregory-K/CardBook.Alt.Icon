@@ -18,6 +18,34 @@
 	"statusProgressInformationTooltip": {
 		"message": "点击查看日志"
 	},
+	"columnsSortBy": {
+		"message": "顺序： $P1$",
+        "placeholders": {
+            "P1": {
+                "content": "$1"
+            }
+        }
+	},
+	"columnPickerTitle": {
+		"message": "选择要显示的列"
+	},
+	"columnPickerRestoreColumnOrder": {
+		"message": "恢复各列的原始次序"
+	},
+	"columnPickerApplyCurrentViewTo": {
+		"message": "将当前视图应用到…"
+	},
+	"columnPickerApplyCurrentViewToConfirmMsg": {
+		"message": "将本文件夹的列设定应用至 $P1$ 吗？",
+        "placeholders": {
+            "P1": {
+                "content": "$1"
+            }
+        }
+	},
+	"columnPickerApplyCurrentViewToConfirmTitle": {
+		"message": "应用更改？"
+	},
 	"imageSelectionTitle": {
 		"message": "图像选择"
 	},
@@ -645,6 +673,25 @@
 	},
 	"synchroAllFinished": {
 		"message": "已完成所有同步"
+	},
+	"lastSync": {
+		"message": "上次同步: $P1$",
+        "placeholders": {
+            "P1": {
+                "content": "$1"
+            }
+        }
+	},
+	"syncFailedNeverSynced": {
+		"message": "同步失败。上次同步：从未"
+	},
+	"syncFailedLastSync": {
+		"message": "同步失败。上次成功：$P1$",
+        "placeholders": {
+            "P1": {
+                "content": "$1"
+            }
+        }
 	},
 	"discoveryRunning": {
 		"message": "$P1$ : 正运行通讯录自动发现",
@@ -2520,7 +2567,7 @@
 		"message": "后缀"
 	},
 	"fnLabel": {
-		"message": "姓名"
+		"message": "名称"
 	},
 	"nicknameLabel": {
 		"message": "昵称"
@@ -2755,7 +2802,7 @@
         }
 	},
 	"eventEntryTitleMessage": {
-		"message": "%1$S 的周年纪念日"
+		"message": "%1$S 的周年纪念日 (%5$S)"
 	},
 	"anniversaryCategory": {
 		"message": "纪念"
@@ -3747,12 +3794,6 @@
 	"findEventsFromEmailMessengerAccesskey": {
 		"message": "e"
 	},
-	"mailContext-addToCardBookMenuLabel": {
-		"message": "新增 CardBook 联系人…"
-	},
-	"mailContext-addToCardBookMenuAccesskey": {
-		"message": "d"
-	},
 	"addAllAttachementsToCardBookMenuLabel": {
 		"message": "至 CardBook 全部…"
 	},
@@ -3981,6 +4022,9 @@
 	"readonlyLabel": {
 		"message": "只读模式"
 	},
+	"syncingLabel": {
+		"message": "正在同步…"
+	},
 	"urnuuidLabel": {
 		"message": "使用 urn:uuid"
 	},
@@ -4000,7 +4044,7 @@
 		"message": "杂项"
 	},
 	"fnFormulaCaption": {
-		"message": "姓名"
+		"message": "名称"
 	},
 	"fnFormulaLabel": {
 		"message": "显示名称公式:"
@@ -4038,14 +4082,8 @@
 	"sendEmailLabel": {
 		"message": "编写新消息"
 	},
-	"sendEmailAccesskey": {
-		"message": "E"
-	},
 	"syncLightningMenuItemLabel": {
 		"message": "同步 Lightning"
-	},
-	"syncLightningMenuAccesskey": {
-		"message": "S"
 	},
 	"calendarNameLabel": {
 		"message": "日历"
@@ -5220,12 +5258,6 @@
 	"cardbookToolbarAppMenuButtonTooltip": {
 		"message": "CardBook 菜单"
 	},
-	"cardbookToolbarSearchBoxLabel": {
-		"message": "联系人搜索结果"
-	},
-	"cardbookToolbarSearchBoxTooltip": {
-		"message": "联系人搜索结果"
-	},
 	"cardbookToolbarComplexSearchLabel": {
 		"message": "保存的搜索结果"
 	},
@@ -5348,9 +5380,6 @@
 	},
 	"PreferMailFormat.label": {
 		"message": "收件格式:"
-	},
-	"PreferMailFormat.accesskey": {
-		"message": "v"
 	},
 	"Unknown.label": {
 		"message": "未知"
@@ -5493,9 +5522,6 @@
 	"editEventLabel": {
 		"message": "编辑事件"
 	},
-	"editEventAccesskey": {
-		"message": "E"
-	},
 	"eventsTableTitleLabel": {
 		"message": "标题"
 	},
@@ -5534,9 +5560,6 @@
 	},
 	"createEventLabel": {
 		"message": "新建事件"
-	},
-	"createEventAccesskey": {
-		"message": "N"
 	},
 	"adrFormulaExplanation": {
 		"message": "你可以自定义 CardBook 格式化地址的方式。公式包含在“()”中，其中不同部分以“|”隔开。"
@@ -5590,7 +5613,7 @@
 		"message": "要打印的字段"
 	},
 	"displayLabel": {
-		"message": "姓名"
+		"message": "名称"
 	},
 	"displayAccesskey": {
 		"message": "D"
@@ -5700,38 +5723,20 @@
 	"createEditionLabel": {
 		"message": "创建"
 	},
-	"createEditionAccesskey": {
-		"message": "T"
-	},
 	"createAndReplaceEditionLabel": {
 		"message": "创建和替换"
-	},
-	"createAndReplaceEditionAccesskey": {
-		"message": "R"
 	},
 	"saveEditionLabel": {
 		"message": "保存"
 	},
-	"saveEditionAccesskey": {
-		"message": "S"
-	},
 	"validateEditionLabel": {
 		"message": "验证"
-	},
-	"validateEditionAccesskey": {
-		"message": "V"
 	},
 	"cancelEditionLabel": {
 		"message": "取消"
 	},
-	"cancelEditionAccesskey": {
-		"message": "C"
-	},
 	"closeEditionLabel": {
 		"message": "关闭"
-	},
-	"closeEditionAccesskey": {
-		"message": "C"
 	},
 	"moreEditionLabel": {
 		"message": "显示更多"
@@ -5827,9 +5832,6 @@
 	"kind.edit.label": {
 		"message": "类别"
 	},
-	"kind.edit.accesskey": {
-		"message": "K"
-	},
 	"addEmailGroupboxLabel": {
 		"message": "电子邮件地址"
 	},
@@ -5922,6 +5924,20 @@
 	},
 	"capitalizationLabel": {
 		"message": "大写"
+	},
+	"searchinAB": {
+		"message": "搜索保存于 $P1$ 的登录信息",
+        "placeholders": {
+            "P1": {
+                "content": "$1"
+            }
+        }
+	},
+	"searchinAllAB": {
+		"message": "搜索所有通讯录"
+	},
+	"searchingABPlaceholder": {
+		"message": "正在搜索…"
 	},
 	"region-name-ad": {
 		"message": "安道尔"

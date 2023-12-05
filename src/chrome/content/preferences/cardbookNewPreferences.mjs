@@ -9,7 +9,7 @@ export var cardbookNewPreferences = {
 	prefCardBookEmailsCollection: "emailsCollection.",
 	prefCardBookCustomTypes: "customTypes.",
 	changedPrefs: {
-		"addonVersion": "85.5.1",
+		"addonVersion": "92.2.1",
 	},
 	defaultPrefs: {
 		"autocompletion": true,
@@ -46,6 +46,7 @@ export var cardbookNewPreferences = {
 		"fieldsNameList": "allFields",
 		"fieldsNameListUpdate1": true,
 		"fieldsNameListUpdate2": true,
+		"fieldsNameListUpdate3": false,
 		"autoComputeFn": true,
 		"usePreferenceValue": false,
 		"firstRun": true,
@@ -101,6 +102,11 @@ export var cardbookNewPreferences = {
 		"accountShown": "",
 		"supportedVersion": ["3.0", "4.0"],
 		"prefs.lastSelected": "cardbook-generalPane",
+		"searchAllAB": "allAB",
+		"cardbookAccountsTreeWidth": "300",
+		"cardbookCardsTreeWidth": "500",
+		"cardbookCardsTreeHeight": "500",
+		"exportDelimiter": ";",
 		"window.wdw_cardbookConfigurationAddCustomField.html.state": {"width": 500, "height": 300},
 		"window.wdw_csvTranslator.html.state": {"width": 700, "height": 600},
 		"window.wdw_cardbookConfigurationEditField.html.state": {"width": 600, "height": 500},
@@ -109,12 +115,16 @@ export var cardbookNewPreferences = {
 		"window.wdw_cardbookConfigurationRenameField.html.state": {"width": 500, "height": 300},
 		"window.wdw_cardbookConfigurationAddIMPP.html.state": {"width": 600, "height": 300},
 		"window.wdw_cardbookConfiguration.html.state": {"width": 600, "height": 500},
-		"window.wdw_addressbooksAdd.html.state": {"width": 900, "height": 600},
+		"window.wdw_addressbooksAdd.html.state": {"width": 900, "height": 800},
 		"window.wdw_formatData.html.state": {"width": 900, "height": 600},
 		"window.wdw_logEdition.html.state": {"width": 900, "height": 600},
 		"window.wdw_cardbookRenameField.html.state": {"width": 400, "height": 100},
 		"window.wdw_cardbookAskUser.html.state": {"width": 900, "height": 300},
 		"window.wdw_bulkOperation.html.state": {"width": 400, "height": 200},
+		"window.wdw_birthdayList.html.state": {"width": 600, "height": 500},
+		"window.wdw_birthdaySync.html.state": {"width": 400, "height": 300},
+		"window.wdw_cardbookEventContacts.html.state": {"width": 600, "height": 500},
+		"window.wdw_cardEdition.html.state": {"width": 600, "height": 700},
 	},
 
 	initPrefs: async function () {
@@ -298,10 +308,6 @@ export var cardbookNewPreferences = {
 		return await this.getABProperty(aDirPrefId, "enabled");
 	},
 
-	getNode: async function (aDirPrefId) {
-		return await this.getABProperty(aDirPrefId, "node");
-	},
-
 	getVCardVersion: async function (aDirPrefId) {
 		return await this.getABProperty(aDirPrefId, "vCard");
 	},
@@ -332,6 +338,10 @@ export var cardbookNewPreferences = {
 
 	getAutoSyncEnabled: async function (aDirPrefId) {
 		return await this.getABProperty(aDirPrefId, "autoSyncEnabled");
+	},
+
+	getLastSync: async function (aDirPrefId) {
+		return await this.getABProperty(aDirPrefId, "lastsync");
 	},
 
 	getAutoSyncInterval: async function (aDirPrefId) {

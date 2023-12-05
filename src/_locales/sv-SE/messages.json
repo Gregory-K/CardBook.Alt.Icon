@@ -18,6 +18,34 @@
 	"statusProgressInformationTooltip": {
 		"message": "Klicka här för att se loggar"
 	},
+	"columnsSortBy": {
+		"message": "Sortera efter: $P1$",
+        "placeholders": {
+            "P1": {
+                "content": "$1"
+            }
+        }
+	},
+	"columnPickerTitle": {
+		"message": "Välj kolumner att visa"
+	},
+	"columnPickerRestoreColumnOrder": {
+		"message": "Återställ kolumnordning"
+	},
+	"columnPickerApplyCurrentViewTo": {
+		"message": "Tillämpa nuvarande vy på…"
+	},
+	"columnPickerApplyCurrentViewToConfirmMsg": {
+		"message": "Använd aktuell mapps kolumner på $P1$?",
+        "placeholders": {
+            "P1": {
+                "content": "$1"
+            }
+        }
+	},
+	"columnPickerApplyCurrentViewToConfirmTitle": {
+		"message": "Verkställ ändringarna?"
+	},
 	"imageSelectionTitle": {
 		"message": "Bildval"
 	},
@@ -645,6 +673,25 @@
 	},
 	"synchroAllFinished": {
 		"message": "All synckronisering är klar"
+	},
+	"lastSync": {
+		"message": "Senaste synkroniserad: $P1$",
+        "placeholders": {
+            "P1": {
+                "content": "$1"
+            }
+        }
+	},
+	"syncFailedNeverSynced": {
+		"message": "Synkroniseringen misslyckades. Senast synkad: aldrig"
+	},
+	"syncFailedLastSync": {
+		"message": "Synkroniseringen misslyckades. Lyckades senast: $P1$",
+        "placeholders": {
+            "P1": {
+                "content": "$1"
+            }
+        }
 	},
 	"discoveryRunning": {
 		"message": "$P1$ : Automatisk upptäckt av adressbok körs",
@@ -2755,7 +2802,7 @@
 		}
 	},
 	"eventEntryTitleMessage": {
-		"message": "Årsdagen av %1$S"
+		"message": "Årsdagen av %1$S (%5$S)"
 	},
 	"anniversaryCategory": {
 		"message": "Årsdag"
@@ -3747,12 +3794,6 @@
 	"findEventsFromEmailMessengerAccesskey": {
 		"message": "e"
 	},
-	"mailContext-addToCardBookMenuLabel": {
-		"message": "Lägg till CardBook kontakt…"
-	},
-	"mailContext-addToCardBookMenuAccesskey": {
-		"message": "d"
-	},
 	"addAllAttachementsToCardBookMenuLabel": {
 		"message": "Till CardBook alla…"
 	},
@@ -3981,6 +4022,9 @@
 	"readonlyLabel": {
 		"message": "Skrivskyddat läge"
 	},
+	"syncingLabel": {
+		"message": "Synkroniserar…"
+	},
 	"urnuuidLabel": {
 		"message": "Använd urn:uuid"
 	},
@@ -4038,14 +4082,8 @@
 	"sendEmailLabel": {
 		"message": "Skicka ett mejl"
 	},
-	"sendEmailAccesskey": {
-		"message": "m"
-	},
 	"syncLightningMenuItemLabel": {
 		"message": "Synkronisera med kalender"
-	},
-	"syncLightningMenuAccesskey": {
-		"message": "S"
 	},
 	"calendarNameLabel": {
 		"message": "Kalender"
@@ -5220,12 +5258,6 @@
 	"cardbookToolbarAppMenuButtonTooltip": {
 		"message": "CardBook meny"
 	},
-	"cardbookToolbarSearchBoxLabel": {
-		"message": "Kontakt sök"
-	},
-	"cardbookToolbarSearchBoxTooltip": {
-		"message": "Kontakt sök"
-	},
 	"cardbookToolbarComplexSearchLabel": {
 		"message": "Avancerad sökning"
 	},
@@ -5348,9 +5380,6 @@
 	},
 	"PreferMailFormat.label": {
 		"message": "Föredrar att få meddelanden kodade som:"
-	},
-	"PreferMailFormat.accesskey": {
-		"message": "F"
 	},
 	"Unknown.label": {
 		"message": "Okänt"
@@ -5493,9 +5522,6 @@
 	"editEventLabel": {
 		"message": "Redigera händelse"
 	},
-	"editEventAccesskey": {
-		"message": "R"
-	},
 	"eventsTableTitleLabel": {
 		"message": "Titel"
 	},
@@ -5534,9 +5560,6 @@
 	},
 	"createEventLabel": {
 		"message": "Ny Händelse"
-	},
-	"createEventAccesskey": {
-		"message": "N"
 	},
 	"adrFormulaExplanation": {
 		"message": "Det är möjligt att anpassa hur CardBook skapar adresser. Denna formel består av block inneslutna av \"()\". I dessa block kan det finnas flera delar avgränsade med \"|\"."
@@ -5700,38 +5723,20 @@
 	"createEditionLabel": {
 		"message": "Skapa"
 	},
-	"createEditionAccesskey": {
-		"message": "k"
-	},
 	"createAndReplaceEditionLabel": {
 		"message": "Skapa och ersätt"
-	},
-	"createAndReplaceEditionAccesskey": {
-		"message": "e"
 	},
 	"saveEditionLabel": {
 		"message": "Spara"
 	},
-	"saveEditionAccesskey": {
-		"message": "S"
-	},
 	"validateEditionLabel": {
 		"message": "Verifiera"
-	},
-	"validateEditionAccesskey": {
-		"message": "V"
 	},
 	"cancelEditionLabel": {
 		"message": "Avbryt"
 	},
-	"cancelEditionAccesskey": {
-		"message": "A"
-	},
 	"closeEditionLabel": {
 		"message": "Stäng"
-	},
-	"closeEditionAccesskey": {
-		"message": "t"
 	},
 	"moreEditionLabel": {
 		"message": "Visa mer"
@@ -5827,9 +5832,6 @@
 	"kind.edit.label": {
 		"message": "Sort"
 	},
-	"kind.edit.accesskey": {
-		"message": "S"
-	},
 	"addEmailGroupboxLabel": {
 		"message": "E-postadress"
 	},
@@ -5922,6 +5924,20 @@
 	},
 	"capitalizationLabel": {
 		"message": "Första Bokstaven Versal "
+	},
+	"searchinAB": {
+		"message": "Sök efter $P1$",
+        "placeholders": {
+            "P1": {
+                "content": "$1"
+            }
+        }
+	},
+	"searchinAllAB": {
+		"message": "Sök i alla adressböcker"
+	},
+	"searchingABPlaceholder": {
+		"message": "Söker…"
 	},
 	"region-name-ad": {
 		"message": "Andorra"

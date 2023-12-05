@@ -9,40 +9,37 @@
 		<link rel='stylesheet' type='text/css' href="chrome://messenger/skin/shared/themeableDialog.css">
         <link rel='stylesheet' type='text/css' href="chrome://messenger/skin/accountSetup.css">
 
-		<link rel='stylesheet' type='text/css' href="../skin/cardbookHTML.css">
-        <link rel='stylesheet' type='text/css' href="../skin/cardbookTableTree.css">
         <link rel='stylesheet' type='text/css' href="../skin/cardbookMain.css">
+        <link rel='stylesheet' type='text/css' href="../skin/cardbookGrid.css">
+        <link rel='stylesheet' type='text/css' href="../skin/cardbookHTML.css">
+        <link rel='stylesheet' type='text/css' href="../skin/cardbookTableTree.css">
         <link rel='stylesheet' type='text/css' href="../skin/cardbookFindDuplicates.css">
         <link rel='stylesheet' type='text/css' href="../skin/cardbookFindDuplicates2.css">
 		<title></title>
 	</head>
 
 	<body id="wdw_findDuplicatesBody" xmlns="http://www.mozilla.org/keymaster/gatekeeper/there.is.only.xul">
-        <div class="fullContainer cardbookFindDuplicatesClass">
-            <div class="flex-pad-x">
-                <div class="flex-pad-y">
-                    <div class="flex-grow-y alignCenter justifyCenter">
-                        <div id="noContactsFoundDescVbox" class="hidden">
-                            <label id="noContactsFoundDesc">
-                        </div>
-                        <div id="recordsHbox">
-                            <table id="fieldsTable"></table>
-                        </div>
-                        <div id="progressBox" class="hidden">
-                            <progress id="data-progressmeter" value="0" max="100"></progress>
-                        </div>
-                    </div>
-                    <div class="hbox fullline1">
-                        <div class="hbox">
-                            <label id="numberLinesFoundDesc">
-                        </div>
-                        <div class="hbox">
-                            <button id="mergeAllLabel" disabled>__MSG_mergeAllEditionLabel__</button>
-                            <button id="hideOrShowForgottenLabel">__MSG_showForgottenLabel__</button>
-                            <button id="moreOrLessLabel" state="more">__MSG_lessEditionLabel__</button>
-                            <button id="cancelEditionLabel">__MSG_cancelEditionLabel__</button>
-                        </div>
-                    </div>
+        <div class="grid-container-1 cardbookFindDuplicatesClass">
+            <div class="hbox header-container">
+            </div>
+            <div class="hbox body-container vcentered">
+                <div class="vbox alignCenter">
+                    <table id="fieldsTable"></table>
+                </div>
+                <div class="hbox vcentered">
+                    <label id="noContactsFoundDesc" class="hidden"></label>
+                    <progress id="data-progressmeter" value="0" max="100"></progress>
+                </div>
+            </div>
+            <div class="hbox footer-container left-to-right">
+                <div class="hbox">
+                    <label id="numberLinesFoundDesc">
+                </div>
+                <div class="hbox">
+                    <button id="mergeAllLabel" disabled>__MSG_mergeAllEditionLabel__</button>
+                    <button id="hideOrShowForgottenLabel">__MSG_showForgottenLabel__</button>
+                    <button id="moreOrLessLabel" state="more">__MSG_lessEditionLabel__</button>
+                    <button id="cancelEditionLabel">__MSG_cancelEditionLabel__</button>
                 </div>
             </div>
         </div>

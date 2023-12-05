@@ -51,8 +51,8 @@ if ("undefined" == typeof(ovl_formatEmailCorrespondents)) {
 					found = true;
 				} else {
 					for (let account of cardbookRepository.cardbookAccounts) {
-						if (account[1] && account[5] && account[6] != "SEARCH") {
-							var myDirPrefId = account[4];
+						if (account[2] && account[3] != "SEARCH") {
+							var myDirPrefId = account[1];
 							if (cardbookRepository.cardbookCardEmails[myDirPrefId]) {
 								if (cardbookRepository.cardbookCardEmails[myDirPrefId][myTestString]) {
 									myResult = cardbookRepository.cardbookCardEmails[myDirPrefId][myTestString][0].fn;
@@ -148,7 +148,7 @@ if ("undefined" == typeof(ovl_formatEmailCorrespondents)) {
 		}
 	};
 };
-
+/*
 function cardbookSenderHandler() {
 };
 
@@ -268,7 +268,7 @@ var myFormatObserver = {
 	}
 };
 myFormatObserver.register();
-
+*/
 // DisplayNameUtils.formatDisplayName
 (function() {
 	// for the standalone window, does not exist
@@ -278,7 +278,6 @@ myFormatObserver.register();
 		
 		// Override a function.
 		DisplayNameUtils.formatDisplayName = function() {
-			
 			var exclusive = cardbookRepository.cardbookPrefs["exclusive"];
 			var myCardBookResult = {};
 			myCardBookResult = ovl_formatEmailCorrespondents.getCardBookDisplayNameFromEmail(arguments[0], arguments[1]);

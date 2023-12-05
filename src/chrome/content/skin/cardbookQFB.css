@@ -1,2 +1,70 @@
-.cardbookQFB{
+#qfb-cardbook {
+	background-image: url("chrome://cardbook/content/skin/cardbook.svg");
 }
+
+.qfb-cardbook-button[inverted] {
+	text-decoration: line-through;
+}
+
+#qfb-cardbook-boolean-mode {
+	line-height: unset;
+	min-height: 0;
+	margin: 3px;
+	padding-block: 3px;
+}
+  
+.qfb-cardbook-button {
+	--tag-color: currentColor;
+	--tag-contrast-color: currentColor;
+	--button-padding: 3px;
+	--button-margin: 3px;
+	background-color: transparent;
+	color: var(--tag-color);
+	border-color: var(--tag-color);
+	border-radius: 100px;
+	padding-inline: 9px;
+	min-height: 0;
+	min-width: 0;
+	line-height: 1;
+  }
+  
+  .qfb-cardbook-button:enabled:hover:not([aria-pressed="true"]) {
+	color: var(--tag-color);
+	background-color: color-mix(in srgb, var(--tag-color) 20%, transparent);
+	border-color: var(--tag-color);
+  }
+  
+  .qfb-cardbook-button[aria-pressed="true"]:enabled:hover {
+	color: var(--tag-contrast-color);
+	background-color: color-mix(in srgb, var(--tag-color) 70%, white);
+	border-color: color-mix(in srgb, var(--tag-color) 60%, black);
+  }
+  
+  .qfb-cardbook-button[aria-pressed="true"] {
+	--tag-color: currentColor;
+	color: var(--tag-contrast-color);
+	background-color: var(--tag-color);
+	border-color: color-mix(in srgb, var(--tag-color) 60%, black);
+	border-radius: 100px;
+	box-shadow: none;
+  }
+  
+  .qfb-cardbook-button:enabled:hover:active {
+	background-color: color-mix(in srgb, var(--tag-color) 80%, black);
+	border-color: color-mix(in srgb, var(--tag-color) 60%, black);
+  }
+  
+  .qfb-cardbook-button[inverted] {
+	background-color: transparent;
+	color: var(--tag-color);
+	border-color: var(--tag-color);
+	text-decoration: line-through;
+  }
+  
+  .qfb-cardbook-button[inverted]:enabled:hover {
+	color: var(--tag-color);
+	background-color: color-mix(in srgb, var(--tag-color) 20%, transparent);
+	border-color: var(--tag-color);
+  }
+  
+  

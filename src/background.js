@@ -1,73 +1,16 @@
 import { cardbookNewPreferences } from "./chrome/content/preferences/cardbookNewPreferences.mjs";
 // to be deleted when the beforeunload event would be OK
 async function main() {
-	function waitForCloseAskUser(windowId, dirPrefId, buttons, message) {
-		this._setTimer(windowId, dirPrefId, buttons, message);
-	}
-	waitForCloseAskUser.prototype = {
-		_setTimer: function (windowId, dirPrefId, buttons, message) {
-			let timer = setInterval( async () => {
-				let tabs = await browser.tabs.query({windowId: windowId});
-				if (!tabs.length) {
-					setTimeout(async function() {
-						await messenger.NotifyTools.notifyExperiment({query: "cardbook.askUser.sendChoice", dirPrefId: dirPrefId, buttons: buttons, message: message,
-												result: "cancel", confirm: false});
-						clearInterval(timer);
-					}, 200);
-				}
-			}, 200);
-		},
-	};
-
-	function waitForCloseAB(windowId, dirPrefId) {
-		this._setTimer(windowId, dirPrefId);
-	}
-	waitForCloseAB.prototype = {
-		_setTimer: function (windowId, dirPrefId) {
-			let timer = setInterval( async () => {
-				let tabs = await browser.tabs.query({windowId: windowId});
-				if (!tabs.length) {
-					messenger.NotifyTools.notifyExperiment({query: "cardbook.notifyObserver", value: "cardbook.AB.cancelEditAB", params: dirPrefId});
-					clearInterval(timer);
-				}
-			}, 500);
-		},
-	};
-
-	function waitForCloseCSV(windowId, actionId) {
-		this._setTimer(windowId, actionId);
-	}
-	waitForCloseCSV.prototype = {
-		_setTimer: function (windowId, actionId) {
-			let timer = setInterval( async () => {
-				let tabs = await browser.tabs.query({windowId: windowId});
-				if (!tabs.length) {
-					messenger.NotifyTools.notifyExperiment({query: "cardbook.notifyObserver", value: "cardbook.finishCSV", params: actionId});
-					clearInterval(timer);
-				}
-			}, 1500);
-		},
-	};
-
-	function waitForCloseMerge(windowId, info) {
-		this._setTimer(windowId, info);
-	}
-	waitForCloseMerge.prototype = {
-		_setTimer: function (windowId, info) {
-			let timer = setInterval( async () => {
-				let tabs = await browser.tabs.query({windowId: windowId});
-				if (!tabs.length) {
-					setTimeout(e => {
-						messenger.NotifyTools.notifyExperiment({query: "cardbook.mergeCards.mergeFinished", source: info.source, ids: info.ids, action: "CANCEL", actionId: info.actionId});
-					}, 1500);
-					clearInterval(timer);
-				}
-			}, 500);
-		},
-	};
-
 	messenger.NotifyTools.onNotifyBackground.addListener(async (info) => {
 		switch (info.query) {
+			case "cardbook.getAttachmentContent": {
+					let tabs = await browser.tabs.query({type: "mail"});
+					let displayedMessage = await browser.messageDisplay.getDisplayedMessage(tabs[0].id);
+					let attachments = await browser.messages.listAttachments(displayedMessage.id);
+					let file = await browser.messages.getAttachmentFile(displayedMessage.id, info.attachmentId);
+					let content = await file.text();
+					return content;
+				}
 			case "cardbook.clipboardSetText":
 				await navigator.clipboard.writeText(info.text);
 				break;
@@ -111,7 +54,7 @@ async function main() {
 			case "cardbook.conf.addProgressBar":
 				await messenger.runtime.sendMessage({query: info.query, type: info.type, total: info.total, done: info.done});
 				break;
-			case "cardbook.openTab":
+			case "cardbook.openCBTab":
 				break;
 			case "cardbook.pref.initPrefs":
 				await cardbookNewPreferences.initPrefs();
@@ -142,6 +85,28 @@ async function main() {
 					return "OK";
 				} catch {return "KO"};
 				break;
+			case "cardbook.displayEvents":
+				await messenger.runtime.sendMessage({query: info.query});
+				break;
+			case "cardbook.getGoogleRedirectURI":
+				let redirectURI = await browser.identity.getRedirectURL();
+				let hostname = (new URL(redirectURI)).hostname;
+				let redirectId = hostname.split(".")[0];
+				return "http://127.0.0.1/mozoauth2/" + redirectId;
+			case "cardbook.getRefreshToken":
+				return new Promise(async (resolve, reject) => {
+					function validateState(url) {
+						if (url) {
+							let searchParams = url.replace(info.redirectURL, "");
+							let urlParams = new URLSearchParams(searchParams);
+							let code = urlParams.get("code");
+							resolve(code);
+						} else {
+							resolve("");
+						}
+					}
+					let authorizingURL = await browser.identity.launchWebAuthFlow({interactive: true, url: info.url}, validateState);
+				});
 			case "cardbook.processData.cardsLoaded":
 				await messenger.runtime.sendMessage({query: info.query, winId: info.winId, displayId: info.displayId, cardsLoaded: info.cardsLoaded});
 				break;
@@ -184,100 +149,6 @@ async function main() {
 			case "cardbook.askUser.importConflictChoicePersist":
 				await messenger.runtime.sendMessage({query: info.query, dirPrefId: info.dirPrefId, buttons: info.buttons});
 				break;
-			case "cardbook.openAskUserWindow":
-				let AskUserUrl = browser.runtime.getURL(info.url) + "*";
-				let AskUserTabs = await browser.tabs.query({url: AskUserUrl});
-				let AskUserwindowId = "";
-				if (AskUserTabs.length) {
-					await browser.windows.update(AskUserTabs[0].windowId, {focused: true});
-					AskUserwindowId = AskUserTabs[0].windowId;
-				} else {
-					let state = {};
-					try {
-						let winPath = info.url.split("?")[0];
-						let winName = winPath.split("/").pop();
-						let prefName = `window.${winName}.state`;
-						let pref = await cardbookNewPreferences.getPrefs([prefName]);
-						state = Object.values(pref)[0];
-					} catch(e) {}
-					let winParams = { ...state, type: info.type, url: info.url, allowScriptsToClose: true};
-					let win = await browser.windows.create(winParams);
-					AskUserwindowId = win.id;
-				}
-				let timer = new waitForCloseAskUser(AskUserwindowId, info.dirPrefId, info.buttons, info.message);
-				break;
-			case "cardbook.openABWindow":
-				let ABUrl = browser.runtime.getURL(info.url) + "*";
-				let ABTabs = await browser.tabs.query({url: ABUrl});
-				let ABwindowId = "";
-				if (ABTabs.length) {
-					await browser.windows.update(ABTabs[0].windowId, {focused: true});
-					ABwindowId = ABTabs[0].windowId;
-				} else {
-					let state = {};
-					try {
-						let winPath = info.url.split("?")[0];
-						let winName = winPath.split("/").pop();
-						let prefName = `window.${winName}.state`;
-						let pref = await cardbookNewPreferences.getPrefs([prefName]);
-						state = Object.values(pref)[0];
-					} catch(e) {}
-					let winParams = { ...state, type: info.type, url: info.url, allowScriptsToClose: true};
-					let win = await browser.windows.create(winParams);
-					ABwindowId = win.id;
-				}
-				if (info.dirPrefId) {
-					let timer = new waitForCloseAB(ABwindowId, info.dirPrefId);
-				}
-				break;
-			case "cardbook.openCSVWindow":
-				let CSVUrl = browser.runtime.getURL(info.url) + "*";
-				let CSVTabs = await browser.tabs.query({url: CSVUrl});
-				let CSVwindowId = "";
-				if (CSVTabs.length) {
-					await browser.windows.update(CSVTabs[0].windowId, {focused: true});
-					CSVwindowId = CSVTabs[0].windowId;
-				} else {
-					let state = {};
-					try {
-						let winPath = info.url.split("?")[0];
-						let winName = winPath.split("/").pop();
-						let prefName = `window.${winName}.state`;
-						let pref = await cardbookNewPreferences.getPrefs([prefName]);
-						state = Object.values(pref)[0];
-					} catch(e) {}
-					let winParams = { ...state, type: info.type, url: info.url, allowScriptsToClose: true};
-					let win = await browser.windows.create(winParams);
-					CSVwindowId = win.id;
-				}
-				if (info.actionId) {
-					let timer = new waitForCloseCSV(CSVwindowId, info.actionId);
-				}
-				break;
-			case "cardbook.openMergeWindow":
-				let mergeUrl = browser.runtime.getURL(info.url) + "*";
-				let mergeTabs = await browser.tabs.query({url: mergeUrl});
-				let mergeWindowId = "";
-				if (mergeTabs.length) {
-					await browser.windows.update(mergeTabs[0].windowId, {focused: true});
-					mergeWindowId = mergeTabs[0].windowId;
-				} else {
-					let state = {};
-					try {
-						let winPath = info.url.split("?")[0];
-						let winName = winPath.split("/").pop();
-						let prefName = `window.${winName}.state`;
-						let pref = await cardbookNewPreferences.getPrefs([prefName]);
-						state = Object.values(pref)[0];
-					} catch(e) {}
-					let winParams = { ...state, type: info.type, url: info.url, allowScriptsToClose: true};
-					let win = await browser.windows.create(winParams);
-					mergeWindowId = win.id;
-				}
-				if (info.source) {
-					let timer = new waitForCloseMerge(mergeWindowId, info);
-				}
-				break;
 			case "cardbook.openWindow":
 				let url = browser.runtime.getURL(info.url) + "*";
 				let tabs = await browser.tabs.query({url});
@@ -297,7 +168,19 @@ async function main() {
 					let win = await browser.windows.create(winParams);
 					return win.id;
 				}
+			case "cardbook.openTab": {
+				let url = browser.runtime.getURL(info.url);
+				let tabs = await browser.tabs.query({url});
+				if (tabs.length) {
+					await browser.tabs.update(tabs[0].id, {active: true});
+					return tabs[0].id;
+				} else {
+					let tabParams = {url: url};
+					let tab = await browser.tabs.create(tabParams);
+					return tab.id;
+				}
 			}
+		}
 	});
 
 	messenger.runtime.onMessage.addListener(async (info) => {
@@ -315,14 +198,38 @@ async function main() {
 				await messenger.NotifyTools.notifyExperiment({query: info.query, link: info.link});
 				break;
 			case "cardbook.promptConfirm":
-				await messenger.NotifyTools.notifyExperiment({query: info.query, title: info.title, message: info.message});
+				await messenger.NotifyTools.notifyExperiment({query: info.query, window: info.window, title: info.title, message: info.message});
+				break;
+			case "cardbook.promptAlert":
+				await messenger.NotifyTools.notifyExperiment({query: info.query, window: info.window, title: info.title, message: info.message});
+				break;
+			case "cardbook.emailCards":
+				let tab2 = await messenger.compose.beginNew();
+				let composeDetails = {};
+				for (let compField of info.compFields) {
+					composeDetails[compField.field] = compField.value;
+				}
+				messenger.compose.setComposeDetails(tab2.id, composeDetails);
 				break;
 			case "cardbook.getTranslatedField":
 				let translatedFields = await messenger.NotifyTools.notifyExperiment({query: info.query, value: info.value, locale: info.locale});
 				return translatedFields;
+			case "cardbook.getCardFromEmail":
+				let card = await messenger.NotifyTools.notifyExperiment({query: info.query, email: info.email, dirPrefId: info.dirPrefId});
+				return card;
+			case "cardbook.getCardRegion":
+				let region = await messenger.NotifyTools.notifyExperiment({query: info.query, card: info.card});
+				return region;
+			case "cardbook.getNextAndPreviousCard": {
+				let cards = await messenger.NotifyTools.notifyExperiment({query: info.query, cbid: info.cbid});
+				return cards;
+			}
 			case "cardbook.getAllAvailableColumns":
 				let columns = await messenger.NotifyTools.notifyExperiment({query: info.query, mode: info.mode});
 				return columns;
+			case "cardbook.pref.preferencesChanged":
+				await messenger.NotifyTools.notifyExperiment({query: "cardbook.notifyObserver", value: info.query});
+				break;
 			case "cardbook.notifyObserver":
 				await messenger.NotifyTools.notifyExperiment({query: info.query, value: info.value, params: info.params});
 				break;
@@ -412,6 +319,10 @@ async function main() {
 			case "cardbook.getCardValueByField":
 				let cardValue = await messenger.NotifyTools.notifyExperiment({query: info.query, card: info.card, field: info.field, includePref: info.includePref});
 				return cardValue;
+			case "cardbook.setCardValueByField": {
+				let card = await messenger.NotifyTools.notifyExperiment({query: info.query, card: info.card, field: info.field, value: info.value});
+				return card;
+			}
 			case "cardbook.getMembersFromCard":
 				let members = await messenger.NotifyTools.notifyExperiment({query: info.query, card: info.card});
 				return members;
@@ -425,7 +336,7 @@ async function main() {
 				await messenger.NotifyTools.notifyExperiment({query: info.query, source: info.source, ids: info.ids, duplicateWinId: info.duplicateWinId, duplicateDisplayId: info.duplicateDisplayId, duplicateLineId: info.duplicateLineId, actionId: info.actionId, card: info.card, hideCreate: info.hideCreate});
 				break;
 			case "cardbook.mergeCards.mergeFinished":
-				await messenger.NotifyTools.notifyExperiment({query: info.query, source: info.source, ids: info.ids, duplicateWinId: info.duplicateWinId, duplicateDisplayId: info.duplicateDisplayId, duplicateLineId: info.duplicateLineId, action: info.action, actionId: info.actionId, cardOut: info.cardOut});
+				await messenger.NotifyTools.notifyExperiment({query: info.query, source: info.source, ids: info.ids, duplicateWinId: info.duplicateWinId, duplicateDisplayId: info.duplicateDisplayId, duplicateLineId: info.duplicateLineId, action: info.action, actionId: info.actionId, cardOut: info.cardOut, mergeId: info.mergeId});
 				break;
 			case "cardbook.formatStringForOutput":
 				await messenger.NotifyTools.notifyExperiment({query: info.query, string: info.string, values: info.values, error: info.error});
@@ -433,6 +344,9 @@ async function main() {
 			case "cardbook.getCollectedStandardAB":
 				let collectedAB = await messenger.NotifyTools.notifyExperiment({query: info.query});
 				return collectedAB;
+			case "cardbook.getLDAPStandardAB":
+				let localAB = await messenger.NotifyTools.notifyExperiment({query: info.query});
+				return localAB;
 			case "cardbook.getRemoteStandardAB":
 				let remoteAB = await messenger.NotifyTools.notifyExperiment({query: info.query});
 				return remoteAB;
@@ -454,27 +368,48 @@ async function main() {
 			case "cardbook.rememberPassword":
 				await messenger.NotifyTools.notifyExperiment({query: info.query, user: info.user, url: info.url, pwd: info.pwd, save: info.save});
 				break;
-			case "cardbook.convertDateToDateString":
-				let date1 = await messenger.NotifyTools.notifyExperiment({query: info.query, date: info.date, version: info.version});
-				return date1;
-			case "cardbook.getFormattedDateForDateString":
-				let date2 = await messenger.NotifyTools.notifyExperiment({query: info.query, date: info.date, version: info.version, format: info.format});
-				return date2;
 			case "cardbook.getCountries":
 				let countries = await messenger.NotifyTools.notifyExperiment({query: info.query, useCodeValues: info.useCodeValues});
 				return countries;
 			case "cardbook.getCards":
 				let cards = await messenger.NotifyTools.notifyExperiment({query: info.query, cbids: info.cbids});
 				return cards;
+			case "cardbook.openTemplate":
+				await messenger.NotifyTools.notifyExperiment({query: info.query, content: info.content});
+				break;
 			case "cardbook.getEditionFields":
 				let editionFields = await messenger.NotifyTools.notifyExperiment({query: info.query});
 				return editionFields;
 			case "cardbook.getAllURLsToDiscover":
 				let urls = await messenger.NotifyTools.notifyExperiment({query: info.query});
 				return urls;
+			case "cardbook.syncWithLightning":
+				await messenger.NotifyTools.notifyExperiment({query: info.query});
+				break;
+			case "cardbook.getBirthdaysListLength":
+				let birthdaysListLength = await messenger.NotifyTools.notifyExperiment({query: info.query});
+				return birthdaysListLength;
+			case "cardbook.getCalendarsListLength":
+				let calendarsListLength = await messenger.NotifyTools.notifyExperiment({query: info.query});
+				return calendarsListLength;
+			case "cardbook.getBirthdaySyncResult":
+				let birthdaysSyncResult = await messenger.NotifyTools.notifyExperiment({query: info.query});
+				return birthdaysSyncResult;
+			case "cardbook.getEvents":
+				let events = await messenger.NotifyTools.notifyExperiment({query: info.query, emails: info.emails, column: info.column, order: info.order});
+				return events;
+			case "cardbook.editEvent":
+				await messenger.NotifyTools.notifyExperiment({query: info.query, eventId: info.eventId, calendarId: info.calendarId});
+				break;
+			case "cardbook.createEvent":
+				await messenger.NotifyTools.notifyExperiment({query: info.query, emails: info.emails, displayName: info.displayName});
+				break;
 			case "cardbook.getCalendars":
 				let calendars = await messenger.NotifyTools.notifyExperiment({query: info.query});
 				return calendars;
+			case "cardbook.getBirthdays":
+				let birthdays = await messenger.NotifyTools.notifyExperiment({query: info.query, days: info.days});
+				return birthdays;
 			case "cardbook.getCoreTypes":
 				let coreTypes = await messenger.NotifyTools.notifyExperiment({query: info.query});
 				return coreTypes;
@@ -503,18 +438,34 @@ async function main() {
 			case "cardbook.getEncryptorVersion":
 				let version = await messenger.NotifyTools.notifyExperiment({query: info.query});
 				return version;
+			case "cardbook.getGoogleOAuthURLForGooglePeople":
+				let oauthURL = await messenger.NotifyTools.notifyExperiment({query: info.query, email: info.email, type: info.type});
+				return oauthURL;
 			case "cardbook.getvCard":
 				let vCard = await messenger.NotifyTools.notifyExperiment({query: info.query, dirPrefId: info.dirPrefId, contactId: info.contactId});
 				return vCard;
-			case "cardbook.convertNodes":
-				await messenger.NotifyTools.notifyExperiment({query: info.query, dirPrefId: info.dirPrefId, radioValue: info.radioValue});
-				break;
 			case "cardbook.searchForWrongCards":
 				let found = messenger.NotifyTools.notifyExperiment({query: info.query, dirPrefId: info.dirPrefId});
 				return found;
-			case "cardbook.getStringFromFormula":
-				let fnString = await messenger.NotifyTools.notifyExperiment({query: info.query, fnFormula: info.fnFormula, fn: info.fn});
-				return fnString;
+			case "cardbook.cloneCard":
+				let cardOut = await messenger.NotifyTools.notifyExperiment({query: info.query, cardIn: info.cardIn, cardOut: info.cardOut});
+				return cardOut;
+			case "cardbook.cardbookPreferDisplayNameIndex":
+				let index = await messenger.NotifyTools.notifyExperiment({query: info.query, email: info.email});
+				return index;
+			case "cardbook.cardToVcardData": {
+				let vCard = await messenger.NotifyTools.notifyExperiment({query: info.query, card: info.card});
+				return vCard
+			}
+			case "cardbook.writePossibleCustomFields":
+				await messenger.NotifyTools.notifyExperiment({query: info.query});
+				break;
+			case "cardbook.getPossibleCustomFields":
+				let possibleCustomFields = await messenger.NotifyTools.notifyExperiment({query: info.query});
+				return possibleCustomFields;
+			case "cardbook.getCardParser":
+				let cardParser = await messenger.NotifyTools.notifyExperiment({query: info.query});
+				return cardParser;
 			case "cardbook.convertVCards":
 				await messenger.NotifyTools.notifyExperiment({query: info.query, dirPrefId: info.dirPrefId, initialVCardVersion: info.initialVCardVersion});
 				break;
@@ -557,9 +508,6 @@ async function main() {
 			case "cardbook.getCustomFields":
 				let customFields = await messenger.NotifyTools.notifyExperiment({query: info.query});
 				return customFields;
-			case "cardbook.getNewFields":
-				let newFields = await messenger.NotifyTools.notifyExperiment({query: info.query});
-				return newFields;
 			case "cardbook.getMultilineFields":
 				let multilineFields = await messenger.NotifyTools.notifyExperiment({query: info.query});
 				return multilineFields;
@@ -599,30 +547,6 @@ async function main() {
 			case "cardbook.askUser.sendChoice":
 				await messenger.NotifyTools.notifyExperiment({query: info.query, dirPrefId: info.dirPrefId, buttons: info.buttons, message: info.message, result: info.result, confirm: info.confirm});
 				break;
-			case "cardbook.openMergeWindow":
-				let mergeUrl = browser.runtime.getURL(info.url) + "*";
-				let mergeTabs = await browser.tabs.query({url: mergeUrl});
-				let mergeWindowId = "";
-				if (mergeTabs.length) {
-					await browser.windows.update(mergeTabs[0].windowId, {focused: true});
-					mergeWindowId = mergeTabs[0].windowId;
-				} else {
-					let state = {};
-					try {
-						let winPath = info.url.split("?")[0];
-						let winName = winPath.split("/").pop();
-						let prefName = `window.${winName}.state`;
-						let pref = await cardbookNewPreferences.getPrefs([prefName]);
-						state = Object.values(pref)[0];
-					} catch(e) {}
-					let winParams = { ...state, type: info.type, url: info.url, allowScriptsToClose: true};
-					let win = await browser.windows.create(winParams);
-					mergeWindowId = win.id;
-				}
-				if (info.source) {
-					let timer = new waitForCloseMerge(mergeWindowId, info);
-				}
-				break;
 			case "cardbook.openWindow":
 				let url = browser.runtime.getURL(info.url) + "*";
 				let tabs = await browser.tabs.query({url});
@@ -659,10 +583,16 @@ async function main() {
 	
 	// support for customizing toolbars
 	messenger.WindowListener.registerWindow("chrome://messenger/content/customizeToolbar.xhtml", "chrome://cardbook/content/customizeToolbar/wl_customizeToolbar.js");
+
+	// about message (contextual menus)
+	messenger.WindowListener.registerWindow("about:message", "chrome://cardbook/content/wl_cardbookAboutMessage.js");
+	
+	// about 3 panes (quick filter bar)
+	messenger.WindowListener.registerWindow("about:3pane", "chrome://cardbook/content/wl_cardbookAbout3Pane.js");
 	
 	// support for CardBook, yellow stars, creation from emails, formatting email fields
 	messenger.WindowListener.registerWindow("chrome://messenger/content/messenger.xhtml", "chrome://cardbook/content/wl_cardbookMessenger.js");
-	
+
 	// support for the message window
 	messenger.WindowListener.registerWindow("chrome://messenger/content/messageWindow.xhtml", "chrome://cardbook/content/wl_cardbookMessenger.js");
 	
@@ -683,26 +613,30 @@ async function main() {
 
 	messenger.WindowListener.startListening();
 
-	/* SimpleMailRedirection */
 	async function externalListener(message, sender, sendResponse) {
 		if (message?.query) {
 			switch (message.query) {
-				// sender.id='simplemailredirection@ggbs.de'
+				// mailmerge@example.net
+				case "mailmerge.getAddressBooks":
+				case "mailmerge.getContacts":
+					let mailmergeData = await messenger.NotifyTools.notifyExperiment(message);
+					return mailmergeData;
+				// simplemailredirection@ggbs.de
 				case "simpleMailRedirection.version":
+				case "simpleMailRedirection.getAddressBooks":
 				case "simpleMailRedirection.lists":
 				case "simpleMailRedirection.contacts":
 				case "simpleMailRedirection.openBook":
 					let simpleMailRedirectionData = await messenger.NotifyTools.notifyExperiment(message);
 					return simpleMailRedirectionData;
+				// smarttemplate4@thunderbird.extension
 				case "smartTemplates.getContactsFromMail":
-					let smartTemplatesGetContactsFromMail = await messenger.NotifyTools.notifyExperiment(message);
-					return smartTemplatesGetContactsFromMail;
 				case "smartTemplates.getAccounts":
-					let smartTemplatesGetAccounts = await messenger.NotifyTools.notifyExperiment(message);
-					return smartTemplatesGetAccounts;
-				}
+					let smartTemplatesData = await messenger.NotifyTools.notifyExperiment(message);
+					return smartTemplatesData;
+			}
+			return {};
 		}
-		return {};
 	}
 	messenger.runtime.onMessageExternal.addListener(externalListener);
 
@@ -733,21 +667,115 @@ async function main() {
 	});
 
 	browser.browserAction.onClicked.addListener(() => {
-		messenger.NotifyTools.notifyExperiment({query: "cardbook.openTab"});
+		messenger.NotifyTools.notifyExperiment({query: "cardbook.openCBTab"});
 	});
 
 	browser.composeAction.onClicked.addListener(() => {
-		messenger.NotifyTools.notifyExperiment({query: "cardbook.openTab"});
+		messenger.NotifyTools.notifyExperiment({query: "cardbook.openCBTab"});
 	});
 
-	// messenger.windows.onCreated.addListener(async (window) => {
-	// 	if (window.type == "messageCompose") {
-	// 		let infos = {populate: true};
-	// 		let windowInfo = await messenger.windows.get(window.id, infos);
-	// 		let composeDetail = await messenger.compose.getComposeDetails(windowInfo.tabs[0].id)
-	// 		messenger.NotifyTools.notifyExperiment({query: "cardbook.identitySet", windowId: window.id, identityId: composeDetail.identityId});
-	// 	}
-	// });
+	messenger.messageDisplay.onMessageDisplayed.addListener(async (tab, message) => {
+		function addSubMenus(aMenuId, aABs) {
+			for (let account of aABs) {
+				let menuProps = {
+					onclick: async (event) => {
+						let subMenuId = event.menuItemId;
+						let parentMenuId = event.parentMenuItemId;
+						let dirPrefId = subMenuId.replace(`${parentMenuId}-`, "")
+						if (event.linkUrl && event.linkUrl.includes("mailto:")) {
+							let email = event.linkUrl.replace("mailto:", "");
+							await messenger.NotifyTools.notifyExperiment({query: "cardbook.addEmail", dirPrefId: dirPrefId, email: email, fn: event.linkText});
+						} else if (event.attachments) {
+							for (let attachment of event.attachments) {
+								await messenger.NotifyTools.notifyExperiment({query: "cardbook.addAttachments", attachment: attachment, dirPrefId: dirPrefId});
+							}
+						}
+					},
+					enabled: true,
+					id: `${aMenuId}-${account[1]}`,
+					parentId: aMenuId,
+					title: account[0]
+				}
+				messenger.menus.create(menuProps);
+			}
+		}
+
+		let tabs = await browser.tabs.query({type: "mail"});
+		let displayedMessage = await browser.messageDisplay.getDisplayedMessage(tabs[0].id);
+		let accountId = displayedMessage.folder.accountId;
+		let accounts = await messenger.accounts.list();
+		let identity = accounts.filter(x => x.id == accountId)[0].identities[0]?.email;
+		let ABsWithIdentity = await messenger.NotifyTools.notifyExperiment({query: "cardbook.getABsWithIdentity", identity: identity});
+
+		let menuId = "addToCardBookMenu";
+		let menuAttId = "addAttToCardBookMenu";
+		let menuAllAttId = "addAllAttToCardBookMenu";
+		messenger.menus.remove(menuId);
+		messenger.menus.remove(menuAttId);
+		messenger.menus.remove(menuAllAttId);
+		if (!ABsWithIdentity.length) {
+			return;
+		}
+
+		// add contacts for links
+		let menuLabel = messenger.i18n.getMessage("addToCardBookMenuLabel");
+		let menuProps = {
+			contexts: ["link"],
+			icons: "chrome/content/skin/cardbook.svg",
+			enabled: true,
+			id: menuId,
+			title: menuLabel
+		}
+		messenger.menus.create(menuProps);
+		addSubMenus(menuId, ABsWithIdentity);
+
+		// add attachment import
+		let attachments = await browser.messages.listAttachments(displayedMessage.id);
+		let interestingAtt = attachments.some(x => {
+			let extension = x.name.split(".").pop();
+			return (extension.toLowerCase() == "vcf")
+		});
+		if (!interestingAtt) {
+			return;
+		}
+
+		let menuAttLabel = messenger.i18n.getMessage("addAttachementToCardBookMenuLabel");
+		let menuAttProps = {
+			contexts: ["message_attachments"],
+			icons: "chrome/content/skin/cardbook.svg",
+			enabled: true,
+			id: menuAttId,
+			title: menuAttLabel
+		}
+		messenger.menus.create(menuAttProps);
+		addSubMenus(menuAttId, ABsWithIdentity);
+
+		let menuAllAttLabel = messenger.i18n.getMessage("addAllAttachementsToCardBookMenuLabel");
+		let menuAllAttProps = {
+			contexts: ["all_message_attachments"],
+			icons: "chrome/content/skin/cardbook.svg",
+			enabled: true,
+			id: menuAllAttId,
+			title: menuAllAttLabel
+		}
+		messenger.menus.create(menuAllAttProps);
+		addSubMenus(menuAllAttId, ABsWithIdentity);
+	});
+
+	/*messenger.addressBooks.provider.onSearchRequest.addListener(
+		async (node, searchString, query) => {
+			return {
+				isCompleteResult: true,
+				// Return an array of ContactProperties as results.
+				results: await messenger.NotifyTools.notifyExperiment({query: "cardbook.provider", searchString: searchString})
+			};
+		},
+		{
+			addressBookName: "CardBook",
+			isSecure: true,
+		}
+	);*/
+
 };
 
 main();

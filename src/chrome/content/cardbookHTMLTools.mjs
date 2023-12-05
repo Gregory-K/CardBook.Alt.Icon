@@ -37,13 +37,13 @@ export var cardbookHTMLTools = {
 
     addHTMLElement: function (aElement, aParent, aId, aParameters) {
         let element = document.createElementNS("http://www.w3.org/1999/xhtml", `${aElement}`);
-        aParent.appendChild(element);
         if (aId) {
             element.setAttribute("id", aId);
         }
         for (let prop in aParameters) {
             element.setAttribute(prop, aParameters[prop]);
         }
+        aParent.appendChild(element);
         return element;
     },
 
@@ -67,7 +67,7 @@ export var cardbookHTMLTools = {
 
     addHTMLINPUT: function (aParent, aId, aValue, aParameters) {
         let input = this.addHTMLElement("input", aParent, aId, aParameters);
-        input.setAttribute('value', aValue);
+        input.setAttribute("value", aValue);
         return input;
     },
 
@@ -85,7 +85,7 @@ export var cardbookHTMLTools = {
 
     addHTMLPROGRESS: function (aParent, aId, aParameters) {
         let progress = this.addHTMLElement("progress", aParent, aId, aParameters);
-        progress.setAttribute('max', "100");
+        progress.setAttribute("max", "100");
         return progress;
     },
 
@@ -144,7 +144,7 @@ export var cardbookHTMLTools = {
 
         let selectedRows = table.querySelectorAll("tr[rowSelected='true']");
         let selectedValues = [];
-        if (typeof aDataId !== 'undefined' && aDataId) {
+        if (typeof aDataId !== "undefined" && aDataId) {
             selectedValues = Array.from(selectedRows, row => row.cells[aDataId].textContent);
         } else {
             selectedValues = Array.from(selectedRows, row => Array.from(row.cells, cell => cell.textContent).join());
@@ -158,10 +158,9 @@ export var cardbookHTMLTools = {
                 let th = this.addHTMLTH(tr, `${aId}_thead_th_${i}`);
                 th.textContent = messenger.i18n.getMessage(`${aHeaders[i]}Label`);
                 th.setAttribute("data-value", aHeaders[i]);
-                try {
-                    let tooltip = messenger.i18n.getMessage(`${aHeaders[i]}Tooltip`);
-                    th.setAttribute("title", tooltip);
-                } catch (e) {}
+                if (aSortFunction) {
+                    th.setAttribute("title", messenger.i18n.getMessage("columnsSortBy", [th.textContent]));
+                }
                 if (aHeaders[i] == sortColumn) {
                     let sortImg;
                     if (orderColumn == "ascending" ) {
@@ -183,7 +182,7 @@ export var cardbookHTMLTools = {
             for (let i = 0; i < aData.length; i++) {
                 let tr = this.addHTMLTR(tbody, `${aId}_thead_tr_${i}`, {"tabindex": "0"});
                 let trValue = "";
-                if (typeof aDataId !== 'undefined') {
+                if (typeof aDataId !== "undefined") {
                     trValue = aData[i][aDataId];
                 } else {
                     trValue = aData[i].join();
@@ -220,12 +219,12 @@ export var cardbookHTMLTools = {
                 table.addEventListener(event[0], event[1], false);
             }
         }
-        if (typeof aDragAndDrop !== 'undefined') {
-            if (typeof aDragAndDrop.dragStart !== 'undefined') {
+        if (typeof aDragAndDrop !== "undefined") {
+            if (typeof aDragAndDrop.dragStart !== "undefined") {
                 table.setAttribute("draggable", "true");
                 table.addEventListener("dragstart", aDragAndDrop.dragStart, false);
             }
-            if (typeof aDragAndDrop.drop !== 'undefined') {
+            if (typeof aDragAndDrop.drop !== "undefined") {
                 table.addEventListener("dragover", event => event.preventDefault(), false);
                 table.addEventListener("drop", aDragAndDrop.drop, false);
             }
@@ -373,6 +372,7 @@ export var cardbookHTMLTools = {
     loadConvertionFuntions: function (aSelect, aDefaultValue) {
         let id = aSelect.id;
         this.deleteRows(id);
+        let option = this.addHTMLOPTION(aSelect, `${id}_option_no`, "", "");
         let i = 0;
         for (let value of [ "uppercase", "lowercase", "capitalization" ]) {
             let option = this.addHTMLOPTION(aSelect, `${id}_option_${i}`, value, messenger.i18n.getMessage(`${value}Label`));
@@ -428,8 +428,8 @@ export var cardbookHTMLTools = {
     },
 
     addMenuCaselist: function (aParent, aType, aIndex, aValue, aParameters) {
-        let caseOperators = [['dig', 'ignoreCaseIgnoreDiacriticLabel'], ['ig', 'ignoreCaseMatchDiacriticLabel'],
-                                ['dg', 'matchCaseIgnoreDiacriticLabel'], ['g', 'matchCaseMatchDiacriticLabel']]
+        let caseOperators = [["dig", "ignoreCaseIgnoreDiacriticLabel"], ["ig", "ignoreCaseMatchDiacriticLabel"],
+                                ["dg", "matchCaseIgnoreDiacriticLabel"], ["g", "matchCaseMatchDiacriticLabel"]]
 
         let select = this.addHTMLSELECT(aParent, `${aType}_${aIndex}_menulistCase`, "", aParameters);
         let i = 0;
@@ -458,10 +458,10 @@ export var cardbookHTMLTools = {
     addMenuTermlist: function (aParent, aType, aIndex, aValue, aParameters) {
         let select = this.addHTMLSELECT(aParent, `${aType}_${aIndex}_menulistTerm`, "", aParameters);
 
-        let operators = ['Contains', 'DoesntContain', 'Is', 'Isnt', 'BeginsWith', 'EndsWith', 'IsEmpty', 'IsntEmpty']
+        let operators = ["Contains", "DoesntContain", "Is", "Isnt", "BeginsWith", "EndsWith", "IsEmpty", "IsntEmpty"]
         let i = 0;
         for (let operator of operators) {
-            let option = this.addHTMLOPTION(select, `${aType}_${aIndex}_menulistTerm_${i}`, operator, messenger.i18n.getMessage(operator + 'Operator'));
+            let option = this.addHTMLOPTION(select, `${aType}_${aIndex}_menulistTerm_${i}`, operator, messenger.i18n.getMessage(`${operator}Operator`));
             if (aValue.toUpperCase() == operator.toUpperCase()) {
                 option.selected = true;
             }
@@ -469,6 +469,30 @@ export var cardbookHTMLTools = {
         }
         return select;
     },
+
+    loadGender: async function (menuname, value) {
+        let genderLookup = [ [ "F", messenger.i18n.getMessage("types.gender.f") ],
+                                    [ "M", messenger.i18n.getMessage("types.gender.m") ],
+                                    [ "N", messenger.i18n.getMessage("types.gender.n") ],
+                                    [ "O", messenger.i18n.getMessage("types.gender.o") ],
+                                    [ "U", messenger.i18n.getMessage("types.gender.u") ] ];
+		let menu = document.getElementById(menuname);
+		await cardbookHTMLTools.loadOptions(menu, genderLookup, value, true);
+   },
+
+   loadPreferMailFormat: async function (menuname, value) {
+        let list = [ [ "0", messenger.i18n.getMessage("Unknown.label") ],
+                    [ "1", messenger.i18n.getMessage("PlainText.label") ],
+                    [ "2", messenger.i18n.getMessage("HTML.label") ] ];
+        let menu = document.getElementById(menuname);
+        await cardbookHTMLTools.loadOptions(menu, list, value, true);
+    },
+
+	loadCountries: async function (menuname, value) {
+		let countryList = await messenger.runtime.sendMessage({query: "cardbook.getCountries", useCodeValues: true});
+        let menu = document.getElementById(menuname);
+		await cardbookHTMLTools.loadOptions(menu, countryList, value, true);
+	},
 
     addTreeSelect: function (aSelect, aData, aRowParameters) {
         if (aData.length) {
@@ -483,7 +507,7 @@ export var cardbookHTMLTools = {
     },
 
     checkEditButton: function (event) {
-        let idArray = this.id.split('_');
+        let idArray = this.id.split("_");
         let type = idArray[0];
         let index = idArray[1];
         let prevIndex = parseInt(index) - 1;
@@ -506,6 +530,23 @@ export var cardbookHTMLTools = {
             document.getElementById(`${type }_${index }_downButton`).disabled = false;
             document.getElementById(`${type }_${nextIndex}_upButton`).disabled = false;
         }
+    },
+
+    addCategoriesRow: function (aParent, aCategories) {
+        this.deleteRows(aParent.id);
+
+        for (let category of aCategories) {
+            let parameters = {class: "tagvalue cardbookCategoryClass", type : "category_" + cardbookRepository.cardbookUtils.formatCategoryForCss(category)}
+            this.addHTMLLABEL(aParent, category + 'Label', category, parameters);
+        }
+    },
+
+    addProcessButton: function (aParent, aId) {
+        let processButton = this.addHTMLBUTTON(aParent, aId);
+        processButton.setAttribute("class", "cardbookProcessClass");
+        processButton.setAttribute("autoConvertField", "true");
+        processButton.addEventListener("command", wdw_cardEdition.setConvertFunction, false);
+        processButton.setAttribute("title", messenger.i18n.getMessage("dontAutoConvertField"));
     },
 
 };

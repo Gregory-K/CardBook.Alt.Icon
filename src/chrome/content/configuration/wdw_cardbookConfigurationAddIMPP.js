@@ -52,10 +52,11 @@ async function onAcceptDialog (aEvent) {
 };
 
 async function onCancelDialog () {
-	cardbookHTMLRichContext.closeWindow();
+	window.close();
 };
 
+window.addEventListener("resize", async function() {
+	await cardbookHTMLRichContext.saveWindowSize();
+});
+
 await onLoadDialog();
-
-
-// to do cardbookRichContext

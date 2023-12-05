@@ -18,6 +18,34 @@
 	"statusProgressInformationTooltip": {
 		"message": "Nhấp vào đây để xem nhật ký"
 	},
+	"columnsSortBy": {
+		"message": "Sắp xếp theo: $P1$",
+        "placeholders": {
+            "P1": {
+                "content": "$1"
+            }
+        }
+	},
+	"columnPickerTitle": {
+		"message": "Chọn các cột để hiển thị"
+	},
+	"columnPickerRestoreColumnOrder": {
+		"message": "Khôi phục thứ tự cột"
+	},
+	"columnPickerApplyCurrentViewTo": {
+		"message": "Áp dụng chế độ xem hiện tại cho…"
+	},
+	"columnPickerApplyCurrentViewToConfirmMsg": {
+		"message": "Áp dụng các cột của thư mục hiện tại cho $P1$?",
+        "placeholders": {
+            "P1": {
+                "content": "$1"
+            }
+        }
+	},
+	"columnPickerApplyCurrentViewToConfirmTitle": {
+		"message": "Áp dụng các thay đổi?"
+	},
 	"imageSelectionTitle": {
 		"message": "Lựa chọn hình ảnh"
 	},
@@ -645,6 +673,25 @@
 	},
 	"synchroAllFinished": {
 		"message": "Tất cả đồng bộ hóa đã hoàn tất"
+	},
+	"lastSync": {
+		"message": "Đồng bộ hóa lần cuối: $P1$",
+        "placeholders": {
+            "P1": {
+                "content": "$1"
+            }
+        }
+	},
+	"syncFailedNeverSynced": {
+		"message": "Đồng bộ hóa thất bại. Đồng bộ hóa lần cuối: không rõ"
+	},
+	"syncFailedLastSync": {
+		"message": "Đồng bộ hóa thất bại. Thành công lần cuối: $P1$",
+        "placeholders": {
+            "P1": {
+                "content": "$1"
+            }
+        }
 	},
 	"discoveryRunning": {
 		"message": "$P1$ : Tác vụ khám phá tự động của sổ địa chỉ đang chạy",
@@ -2755,7 +2802,7 @@
         }
 	},
 	"eventEntryTitleMessage": {
-		"message": "Lễ kỷ niệm %1$S"
+		"message": "Lễ kỷ niệm %1$S (%5$S)"
 	},
 	"anniversaryCategory": {
 		"message": "Lễ kỉ niệm"
@@ -3747,12 +3794,6 @@
 	"findEventsFromEmailMessengerAccesskey": {
 		"message": "e"
 	},
-	"mailContext-addToCardBookMenuLabel": {
-		"message": "Thêm địa chỉ liên hệ Danh bạ…"
-	},
-	"mailContext-addToCardBookMenuAccesskey": {
-		"message": "d"
-	},
 	"addAllAttachementsToCardBookMenuLabel": {
 		"message": "Để Danh bạ Tất cả…"
 	},
@@ -3981,6 +4022,9 @@
 	"readonlyLabel": {
 		"message": "Chế độ chỉ đọc"
 	},
+	"syncingLabel": {
+		"message": "Đang đồng bộ hóa…"
+	},
 	"urnuuidLabel": {
 		"message": "Sử dụng urn:uuid"
 	},
@@ -4038,14 +4082,8 @@
 	"sendEmailLabel": {
 		"message": "Viết một thư mới"
 	},
-	"sendEmailAccesskey": {
-		"message": "V"
-	},
 	"syncLightningMenuItemLabel": {
 		"message": "Đồng bộ với Lightning"
-	},
-	"syncLightningMenuAccesskey": {
-		"message": "L"
 	},
 	"calendarNameLabel": {
 		"message": "Lịch"
@@ -5220,12 +5258,6 @@
 	"cardbookToolbarAppMenuButtonTooltip": {
 		"message": "Trình đơn Danh bạ"
 	},
-	"cardbookToolbarSearchBoxLabel": {
-		"message": "Tìm kiếm danh bạ"
-	},
-	"cardbookToolbarSearchBoxTooltip": {
-		"message": "Tìm kiếm danh bạ"
-	},
 	"cardbookToolbarComplexSearchLabel": {
 		"message": "Tìm kiếm Được lưu"
 	},
@@ -5348,9 +5380,6 @@
 	},
 	"PreferMailFormat.label": {
 		"message": "Ưu tiên nhận tin nhắn được định dạng là:"
-	},
-	"PreferMailFormat.accesskey": {
-		"message": "v"
 	},
 	"Unknown.label": {
 		"message": "Không rõ"
@@ -5493,9 +5522,6 @@
 	"editEventLabel": {
 		"message": "Chỉnh sửa Sự kiện"
 	},
-	"editEventAccesskey": {
-		"message": "C"
-	},
 	"eventsTableTitleLabel": {
 		"message": "Tiêu đề"
 	},
@@ -5534,9 +5560,6 @@
 	},
 	"createEventLabel": {
 		"message": "Sự kiện Mới"
-	},
-	"createEventAccesskey": {
-		"message": "M"
 	},
 	"adrFormulaExplanation": {
 		"message": "Có thể tùy chỉnh cách thức Danh bạ định dạng Địa chỉ của nó. Công thức này bao gồm các khối kèm theo “()”. ??In these blocks there might be many parts delimited by “|”.??"
@@ -5700,38 +5723,20 @@
 	"createEditionLabel": {
 		"message": "Tạo"
 	},
-	"createEditionAccesskey": {
-		"message": "T"
-	},
 	"createAndReplaceEditionLabel": {
 		"message": "Tạo và Thay thế"
-	},
-	"createAndReplaceEditionAccesskey": {
-		"message": "y"
 	},
 	"saveEditionLabel": {
 		"message": "Lưu"
 	},
-	"saveEditionAccesskey": {
-		"message": "L"
-	},
 	"validateEditionLabel": {
 		"message": "Xác thực"
-	},
-	"validateEditionAccesskey": {
-		"message": "c"
 	},
 	"cancelEditionLabel": {
 		"message": "Hủy bỏ"
 	},
-	"cancelEditionAccesskey": {
-		"message": "H"
-	},
 	"closeEditionLabel": {
 		"message": "Đóng"
-	},
-	"closeEditionAccesskey": {
-		"message": "g"
 	},
 	"moreEditionLabel": {
 		"message": "Xem thêm"
@@ -5827,9 +5832,6 @@
 	"kind.edit.label": {
 		"message": "Loại"
 	},
-	"kind.edit.accesskey": {
-		"message": "L"
-	},
 	"addEmailGroupboxLabel": {
 		"message": "Địa chỉ Email"
 	},
@@ -5922,6 +5924,20 @@
 	},
 	"capitalizationLabel": {
 		"message": "??Capitalization??"
+	},
+	"searchinAB": {
+		"message": "Tìm kiếm $P1$",
+        "placeholders": {
+            "P1": {
+                "content": "$1"
+            }
+        }
+	},
+	"searchinAllAB": {
+		"message": "Tìm kiếm tất cả các sổ địa chỉ"
+	},
+	"searchingABPlaceholder": {
+		"message": "Đang tìm kiếm…"
 	},
 	"region-name-ad": {
 		"message": "Andorra"

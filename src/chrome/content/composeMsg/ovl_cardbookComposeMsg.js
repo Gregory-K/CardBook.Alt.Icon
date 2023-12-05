@@ -38,19 +38,19 @@ var ovl_cardbookComposeMsg = {
 		}
 	},
 
-	newInCardBook: function() {
+	newInCardBook: async function() {
 		try {
 			let myNewCard = new cardbookCardParser();
 			let dirPrefId = "";
 			for (let account of cardbookRepository.cardbookAccounts) {
-				if (account[1] && account[5] && (account[6] != "SEARCH")) {
-					dirPrefId = account[4];
+				if (account[2] && (account[3] != "SEARCH")) {
+					dirPrefId = account[1];
 					break;
 				}
 			}
 			if (dirPrefId) {
 				myNewCard.dirPrefId = dirPrefId;
-				cardbookWindowUtils.openEditionWindow(myNewCard, "CreateContact");
+				await cardbookWindowUtils.openEditionWindow(myNewCard, "CreateContact");
 			}
 		}
 		catch (e) {
@@ -76,8 +76,8 @@ var ovl_cardbookComposeMsg = {
 
 		var myMenuItem = document.createXULElement("menuitem");
 		myMenuItem.setAttribute("id", "newCardBookCardFromMsgMenu");
-		myMenuItem.addEventListener("command", function(aEvent) {
-				ovl_cardbookComposeMsg.newInCardBook();
+		myMenuItem.addEventListener("command", async function(aEvent) {
+				await ovl_cardbookComposeMsg.newInCardBook();
 				aEvent.stopPropagation();
 			}, false);
 		myMenuItem.setAttribute("label", cardbookRepository.extension.localeData.localizeMessage("newCardBookCardMenuLabel"));
@@ -91,6 +91,7 @@ var ovl_cardbookComposeMsg = {
 		// functions
 		GenericSendMessage = ovl_cardbookComposeMsg.origFunctions.GenericSendMessage;
 		setContactsSidebarVisibility = ovl_cardbookComposeMsg.origFunctions.setContactsSidebarVisibility;
+		focusContactsSidebarSearchInput = ovl_cardbookComposeMsg.origFunctions.focusContactsSidebarSearchInput;
 
 		expandRecipients = ovl_list.origFunctions.expandRecipients;
 		updateSendLock = ovl_list.origFunctions.updateSendLock;

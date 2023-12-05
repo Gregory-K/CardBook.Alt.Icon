@@ -516,6 +516,22 @@ var cardbookPreferences = {
 		this.setBoolPref(this.prefCardBookData + aDirPrefId + "." + "readonly", readonly);
 	},
 
+	getSyncFailed: function (aDirPrefId) {
+		return this.getBoolPref(this.prefCardBookData + aDirPrefId + "." + "syncfailed", false);
+	},
+
+	setSyncFailed: function (aDirPrefId, syncfailed) {
+		this.setBoolPref(this.prefCardBookData + aDirPrefId + "." + "syncfailed", syncfailed);
+	},
+
+	getLastSync: function (aDirPrefId) {
+		return this.getBoolPref(this.prefCardBookData + aDirPrefId + "." + "lastsync", "");
+	},
+
+	setLastSync: function (aDirPrefId, lastSync) {
+		this.setBoolPref(this.prefCardBookData + aDirPrefId + "." + "lastsync", lastSync);
+	},
+	
 	getExpanded: function (aDirPrefId) {
 		return this.getBoolPref(this.prefCardBookData + aDirPrefId + "." + "expanded", true);
 	},
@@ -524,7 +540,7 @@ var cardbookPreferences = {
 		this.setBoolPref(this.prefCardBookData + aDirPrefId + "." + "expanded", expanded);
 	},
 
-   getColor: function (aDirPrefId) {
+    getColor: function (aDirPrefId) {
 		let color = this.getStringPref(this.prefCardBookData + aDirPrefId + "." + "color");
 		if (color) {
 			return color;

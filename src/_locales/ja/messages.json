@@ -18,6 +18,34 @@
 	"statusProgressInformationTooltip": {
 		"message": "ログを表示するにはここをクリック"
 	},
+	"columnsSortBy": {
+		"message": "並べ替え: $P1$",
+        "placeholders": {
+            "P1": {
+                "content": "$1"
+            }
+        }
+	},
+	"columnPickerTitle": {
+		"message": "表示する列を選択します"
+	},
+	"columnPickerRestoreColumnOrder": {
+		"message": "列を元の順序に戻す"
+	},
+	"columnPickerApplyCurrentViewTo": {
+		"message": "現在のビューを適用..."
+	},
+	"columnPickerApplyCurrentViewToConfirmMsg": {
+		"message": "現在の列表示を $P1$ フォルダーに適用しますか？",
+        "placeholders": {
+            "P1": {
+                "content": "$1"
+            }
+        }
+	},
+	"columnPickerApplyCurrentViewToConfirmTitle": {
+		"message": "変更の適用"
+	},
 	"imageSelectionTitle": {
 		"message": "画像選択"
 	},
@@ -645,6 +673,25 @@
 	},
 	"synchroAllFinished": {
 		"message": "すべての同期が完了しました"
+	},
+	"lastSync": {
+		"message": "最終同期日時: $P1$",
+        "placeholders": {
+            "P1": {
+                "content": "$1"
+            }
+        }
+	},
+	"syncFailedNeverSynced": {
+		"message": "同期に失敗しました。最終同期日時: なし"
+	},
+	"syncFailedLastSync": {
+		"message": "同期に失敗しました。最終同期日時: $P1$",
+        "placeholders": {
+            "P1": {
+                "content": "$1"
+            }
+        }
 	},
 	"discoveryRunning": {
 		"message": "$P1$ : アドレス帳の自動検出の実行",
@@ -2755,7 +2802,7 @@
         }
 	},
 	"eventEntryTitleMessage": {
-		"message": "%1$S周年"
+		"message": "%1$S周年 (%5$S)"
 	},
 	"anniversaryCategory": {
 		"message": "記念日"
@@ -3747,12 +3794,6 @@
 	"findEventsFromEmailMessengerAccesskey": {
 		"message": "E"
 	},
-	"mailContext-addToCardBookMenuLabel": {
-		"message": "CardBookの連絡先を追加"
-	},
-	"mailContext-addToCardBookMenuAccesskey": {
-		"message": "D"
-	},
 	"addAllAttachementsToCardBookMenuLabel": {
 		"message": "すべてCardBookの連絡先に追加…"
 	},
@@ -3981,6 +4022,9 @@
 	"readonlyLabel": {
 		"message": "読み取り専用モード"
 	},
+	"syncingLabel": {
+		"message": "同期中..."
+	},
 	"urnuuidLabel": {
 		"message": "urn：uuidを使う"
 	},
@@ -4038,14 +4082,8 @@
 	"sendEmailLabel": {
 		"message": "新しいメッセージを作成します"
 	},
-	"sendEmailAccesskey": {
-		"message": "E"
-	},
 	"syncLightningMenuItemLabel": {
 		"message": "Lightningと同期"
-	},
-	"syncLightningMenuAccesskey": {
-		"message": "S"
 	},
 	"calendarNameLabel": {
 		"message": "カレンダー"
@@ -5220,12 +5258,6 @@
 	"cardbookToolbarAppMenuButtonTooltip": {
 		"message": "CardBookメニュー"
 	},
-	"cardbookToolbarSearchBoxLabel": {
-		"message": "連絡先を検索"
-	},
-	"cardbookToolbarSearchBoxTooltip": {
-		"message": "連絡先を検索"
-	},
 	"cardbookToolbarComplexSearchLabel": {
 		"message": "検索フオルダー"
 	},
@@ -5348,9 +5380,6 @@
 	},
 	"PreferMailFormat.label": {
 		"message": "使用メール形式:"
-	},
-	"PreferMailFormat.accesskey": {
-		"message": "v"
 	},
 	"Unknown.label": {
 		"message": "不明"
@@ -5493,9 +5522,6 @@
 	"editEventLabel": {
 		"message": "イベントの編集"
 	},
-	"editEventAccesskey": {
-		"message": "E"
-	},
 	"eventsTableTitleLabel": {
 		"message": "件名"
 	},
@@ -5534,9 +5560,6 @@
 	},
 	"createEventLabel": {
 		"message": "新しいイベント"
-	},
-	"createEventAccesskey": {
-		"message": "N"
 	},
 	"adrFormulaExplanation": {
 		"message": "CardBookがアドレスを表示するときの表示形式をカスタマイズできます。この式は 「()」で囲まれ、「 |」で区切られたブロックで構成されます。"
@@ -5700,38 +5723,20 @@
 	"createEditionLabel": {
 		"message": "作成"
 	},
-	"createEditionAccesskey": {
-		"message": "T"
-	},
 	"createAndReplaceEditionLabel": {
 		"message": "作成と置換"
-	},
-	"createAndReplaceEditionAccesskey": {
-		"message": "R"
 	},
 	"saveEditionLabel": {
 		"message": "保存"
 	},
-	"saveEditionAccesskey": {
-		"message": "S"
-	},
 	"validateEditionLabel": {
 		"message": "検証"
-	},
-	"validateEditionAccesskey": {
-		"message": "V"
 	},
 	"cancelEditionLabel": {
 		"message": "キャンセル"
 	},
-	"cancelEditionAccesskey": {
-		"message": "C"
-	},
 	"closeEditionLabel": {
 		"message": "閉じる"
-	},
-	"closeEditionAccesskey": {
-		"message": "C"
 	},
 	"moreEditionLabel": {
 		"message": "さらに表示"
@@ -5827,9 +5832,6 @@
 	"kind.edit.label": {
 		"message": "種類"
 	},
-	"kind.edit.accesskey": {
-		"message": "K"
-	},
 	"addEmailGroupboxLabel": {
 		"message": "メールアドレス"
 	},
@@ -5922,6 +5924,20 @@
 	},
 	"capitalizationLabel": {
 		"message": "??Capitalization??"
+	},
+	"searchinAB": {
+		"message": "$P1$ を検索",
+        "placeholders": {
+            "P1": {
+                "content": "$1"
+            }
+        }
+	},
+	"searchinAllAB": {
+		"message": "すべてのアドレス帳を検索"
+	},
+	"searchingABPlaceholder": {
+		"message": "検索しています..."
 	},
 	"region-name-ad": {
 		"message": "アンドラ"

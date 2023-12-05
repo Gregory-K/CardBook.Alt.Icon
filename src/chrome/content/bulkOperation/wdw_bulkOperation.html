@@ -9,16 +9,20 @@
 		<link rel='stylesheet' type='text/css' href="chrome://messenger/skin/shared/themeableDialog.css">
         <link rel='stylesheet' type='text/css' href="chrome://messenger/skin/accountSetup.css">
 
-		<link rel='stylesheet' type='text/css' href="../skin/cardbookHTML.css">
         <link rel='stylesheet' type='text/css' href="../skin/cardbookMain.css">
+        <link rel='stylesheet' type='text/css' href="../skin/cardbookGrid.css">
+        <link rel='stylesheet' type='text/css' href="../skin/cardbookHTML.css">
 		<title>__MSG_wdw_bulkOperationTitle__</title>
 	</head>
 
 	<body xmlns="http://www.mozilla.org/keymaster/gatekeeper/there.is.only.xul">
-        <div class="vbox">
-            <table id="bulkOperationTable"></table>
-
-			<div class="hbox fullline2">
+        <div class="grid-container-1">
+            <div class="hbox header-container">
+            </div>
+            <div class="hbox body-container vcentered">
+                <table id="bulkOperationTable"></table>
+            </div>
+            <div class="hbox footer-container vright">
                 <button id="closeEditionLabel">__MSG_closeEditionLabel__</button>
             </div>
         </div>

@@ -9,47 +9,39 @@
 		<link rel='stylesheet' type='text/css' href="chrome://messenger/skin/shared/themeableDialog.css">
         <link rel='stylesheet' type='text/css' href="chrome://messenger/skin/accountSetup.css">
 
-		<link rel='stylesheet' type='text/css' href="../skin/cardbookHTML.css">
         <link rel='stylesheet' type='text/css' href="../skin/cardbookMain.css">
+        <link rel='stylesheet' type='text/css' href="../skin/cardbookGrid.css">
+        <link rel='stylesheet' type='text/css' href="../skin/cardbookHTML.css">
         <link rel='stylesheet' type='text/css' href="../skin/cardbookFormatCards.css">
 		<title></title>
 	</head>
 
 	<body id="wdw_formatDataBody" xmlns="http://www.mozilla.org/keymaster/gatekeeper/there.is.only.xul">
-        <div class="fullContainer">
-            <div class="flex-pad-x">
-                <div class="flex-pad-y">
-                    <div class="vbox">
-                        <div class="hbox vcentered" id="cardbookFormatButtonsBox">
-                            <button id="email" class="cardbookContactButtons" visuallyselected="true">__MSG_emailLabel__</button>
-                            <button id="tel" class="cardbookContactButtons">__MSG_telLabel__</button>
-                            <button id="fields" class="cardbookContactButtons">__MSG_fieldsLabel__</button>
-                        </div>
-                    </div>
-                    <div class="flex-grow-y alignCenter justifyCenter">
-                        <div id="noLinesFoundDescVbox" class="hidden">
-                            <label id="noLinesFoundDesc">
-                        </div>
-                        <div id="fieldsBox" class="hidden">
-                        </div>
-                        <div id="recordsHbox" class="hidden">
-                            <table id="fieldsTable"></table>
-                        </div>
-                        <div id="progressBox">
-                            <progress id="data-progressmeter" value="0" max="100"></progress>
-                        </div>
-                    </div>
-                    <div class="hbox fullline1">
-                        <div class="hbox">
-                            <label id="numberLinesFoundDesc">
-                        </div>
-                        <div class="hbox">
-                            <button id="formatAllLabel">__MSG_formatAllEditionLabel__</button>
-                            <button id="undoAllLabel">__MSG_undoAllEditionLabel__</button>
-                            <button id="cancelEditionLabel">__MSG_cancelEditionLabel__</button>
-                            <button id="saveEditionLabel">__MSG_saveEditionLabel__</button>
-                        </div>
-                    </div>
+        <div class="grid-container-1">
+            <div class="hbox header-container vcentered">
+                <button id="email" class="cardbookContactButtons" visuallyselected="true">__MSG_emailLabel__</button>
+                <button id="tel" class="cardbookContactButtons">__MSG_telLabel__</button>
+                <button id="fields" class="cardbookContactButtons">__MSG_fieldsLabel__</button>
+            </div>
+            <div class="hbox body-container vcentered">
+                <div class="vbox alignCenter">
+                    <div id="fieldsBox" class="hidden"></div>
+                    <table id="fieldsTable"></table>
+                </div>
+                <div class="hbox vcentered">
+                    <label id="noLinesFoundDesc" class="hidden"></label>
+                    <progress id="data-progressmeter" value="0" max="100" class="hidden"></progress>
+                </div>
+            </div>
+            <div class="hbox footer-container left-to-right">
+                <div class="hbox">
+                    <label id="numberLinesFoundDesc">
+                </div>
+                <div class="hbox">
+                    <button id="formatAllLabel">__MSG_formatAllEditionLabel__</button>
+                    <button id="undoAllLabel">__MSG_undoAllEditionLabel__</button>
+                    <button id="cancelEditionLabel">__MSG_cancelEditionLabel__</button>
+                    <button id="saveEditionLabel">__MSG_saveEditionLabel__</button>
                 </div>
             </div>
         </div>

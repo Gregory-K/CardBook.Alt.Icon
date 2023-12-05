@@ -1,7 +1,7 @@
 var { Services } = ChromeUtils.import("resource://gre/modules/Services.jsm");
 
 var cardbookIDBSearch = {
-	cardbookSearchDatabaseVersion: "1",
+	cardbookSearchDatabaseVersion: "8",
 	cardbookSearchDatabaseName: "cardbookSearch",
 	doUpgrade: false,
 
@@ -22,6 +22,8 @@ var cardbookIDBSearch = {
 					db.deleteObjectStore("search");
 				}
 				let store = db.createObjectStore("search", {keyPath: "dirPrefId", autoIncrement: false});
+			}
+			if (e.oldVersion < 8) {
 				cardbookIDBSearch.doUpgrade = true;
 			}
 		};
@@ -29,58 +31,35 @@ var cardbookIDBSearch = {
 		// when success, call the observer for starting the load cache and maybe the sync
 		request.onsuccess = async function(e) {
 			cardbookRepository.cardbookSearchDatabase.db = e.target.result;
+
 			if (cardbookIDBSearch.doUpgrade) {
-				let cacheDir = cardbookRepository.getLocalDirectory();
-				let dirIterator = new OS.File.DirectoryIterator(cacheDir.path);
-				let ABlist = [];
-				dirIterator.forEach(entry => {
-					if (entry.isDir) {
-						ABlist.push(entry.name);
-					}
-				}).then( async function read() {
-					for (let name of ABlist) {
-						let myFile = Components.classes["@mozilla.org/file/local;1"].createInstance(Components.interfaces.nsIFile);
-						myFile.initWithPath(cacheDir.path);
-						myFile.append(name);
-						myFile.append(name + ".rul");
-						if (myFile.exists() && myFile.isFile()) {
-							let promise = await OS.File.read(myFile.path).then(
-								function onSuccess(array) {
-									let decoder = new TextDecoder();
-									let content = decoder.decode(array);
-									let relativeHeader = content.match("^searchAB:([^:]*):searchAll:([^:]*)(.*)");
-									if (!relativeHeader) {
-										return;
-									}
-									let searchAB = relativeHeader[1];
-									let matchAll = false;
-									if (relativeHeader[2] == "true") {
-										matchAll = true;
-									}
-									let ruleArray = relativeHeader[3].split(/:case:/);
-									let rules = [];
-									for (let rule of ruleArray) {
-										if (rule) {
-											let relative = rule.match("([^:]*):field:([^:]*):term:([^:]*):value:([^:]*)");
-											if (relative[4]) {
-												rules.push({ case: relative[1], field: relative[2], term: relative[3], value: relative[4] });
-											} else {
-												rules.push({ case: relative[1], field: relative[2], term: relative[3] });
-											}
-										}
-									}
-									cardbookIDBSearch.addSearch( {dirPrefId: name, searchAB: searchAB, matchAll: matchAll, rules: rules} );
-								},
-								function onError() {
+				let db = cardbookRepository.cardbookSearchDatabase.db;
+				let transaction = db.transaction(["search"], "readonly");
+				let store = transaction.objectStore("search");
+				let cursorRequest = store.getAll();
+				cursorRequest.onsuccess = async function(e) {
+					let results = e.target.result;
+					if (results) {
+						for (let result of results) {
+							let newrules = [];
+							for (let rule of result.rules) {
+								if (rule.value) {
+									newrules.push({case: rule.case, field: rule.field.replaceAll(".", "_"), term: rule.term, value: rule.value});
+								} else {
+									newrules.push({case: rule.case, field: rule.field.replaceAll(".", "_"), term: rule.term});
 								}
-							);
+							}
+							await cardbookIDBSearch.removeSearch(result.dirPrefId);
+							await cardbookIDBSearch.addSearch({dirPrefId: result.dirPrefId, searchAB: result.searchAB, matchAll: result.matchAll, rules: newrules});
 						}
 					}
-				}).then( () => {;
 					cardbookIDBSearch.doUpgrade = false;
-				});;
+					cardbookRepository.cardbookUtils.notifyObservers("searchDBOpen");
+				};
+				cursorRequest.onerror = cardbookRepository.cardbookSearchDatabase.onerror;
+			} else {
+				cardbookRepository.cardbookUtils.notifyObservers("searchDBOpen");
 			}
-			cardbookRepository.cardbookUtils.notifyObservers("searchDBOpen");
 		};
 		
 		// when error, call the observer for starting the load cache and maybe the sync
@@ -92,7 +71,7 @@ var cardbookIDBSearch = {
 
 	// add or override the search to the cache
 	addSearch: function(aSearch) {
-		try {
+		return new Promise( function(resolve, reject) {
 			var db = cardbookRepository.cardbookSearchDatabase.db;
 			var transaction = db.transaction(["search"], "readwrite");
 			var store = transaction.objectStore("search");
@@ -100,26 +79,34 @@ var cardbookIDBSearch = {
 
 			cursorRequest.onsuccess = function(e) {
 				cardbookRepository.cardbookLog.updateStatusProgressInformationWithDebug2("debug mode : Search " + aSearch.dirPrefId + " written to searchDB");
+				resolve();
 			};
 
-			cursorRequest.onerror = cardbookRepository.cardbookSearchDatabase.onerror;
-		} catch(e) {
-			cardbookRepository.cardbookSearchDatabase.onerror(e);
-		}
+			cursorRequest.onerror = function(e) {
+				cardbookRepository.cardbookSearchDatabase.onerror(e);
+				resolve();
+			};
+		});
 	},
 
 	// delete the search
 	removeSearch: function(aDirPrefId) {
-		var db = cardbookRepository.cardbookSearchDatabase.db;
-		var transaction = db.transaction(["search"], "readwrite");
-		var store = transaction.objectStore("search");
-		var keyRange = IDBKeyRange.bound(aDirPrefId, aDirPrefId + '\uffff');
-		var cursorDelete = store.delete(keyRange);
-		
-		cursorDelete.onsuccess = async function(e) {
-			cardbookRepository.cardbookLog.updateStatusProgressInformationWithDebug2("debug mode : Search " + aDirPrefId + " deleted from searchDB");
-		};
-		cursorDelete.onerror = cardbookRepository.cardbookSearchDatabase.onerror;
+		return new Promise( function(resolve, reject) {
+			var db = cardbookRepository.cardbookSearchDatabase.db;
+			var transaction = db.transaction(["search"], "readwrite");
+			var store = transaction.objectStore("search");
+			var keyRange = IDBKeyRange.bound(aDirPrefId, aDirPrefId + '\uffff');
+			var cursorDelete = store.delete(keyRange);
+			
+			cursorDelete.onsuccess = async function(e) {
+				cardbookRepository.cardbookLog.updateStatusProgressInformationWithDebug2("debug mode : Search " + aDirPrefId + " deleted from searchDB");
+				resolve();
+			};
+			cursorDelete.onerror = function(e) {
+				cardbookRepository.cardbookSearchDatabase.onerror(e);
+				resolve();
+			};
+		});
 	},
 
 	// once the DB is open, this is the second step 

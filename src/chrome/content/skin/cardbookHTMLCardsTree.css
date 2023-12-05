@@ -1,0 +1,594 @@
+:root {
+    --listbox-selected-outline: none;
+    --tree-header-table-height: 30px;
+    --tree-header-cell-padding: 6px;
+    --tree-header-cell-indent: 0;
+    --list-item-min-height: 26px;
+    --list-item-buttons-size: 22px;
+    --table-header-cell-icon-width: 24px;
+    --table-header-cell-icon-min-width: 24px;
+    --table-row-cell-img-margin-inline-start: 6px;
+    --table-row-cell-button-margin-inline-start: 4px;
+    --in-content-button-height: 2.2em;
+    --in-content-box-border-color: color-mix(in srgb, currentColor 41%, transparent);
+    --in-content-button-border-radius: 3px;
+    --in-content-box-background: #fff;
+}
+
+:root[uidensity="compact"] {
+    --tree-header-table-height: 27px;
+    --tree-header-cell-padding: 3px;
+    --tree-header-cell-indent: 3px;
+    --list-item-min-height: 18px;
+    --list-item-buttons-size: 18px;
+    --table-header-cell-icon-width: 18px;
+    --table-header-cell-icon-min-width: 18px;
+    --table-header-cell-icon-button-padding: 0;
+    --table-row-cell-img-margin-inline-start: 3px;
+    --table-row-cell-button-margin-inline-start: 1px;
+}
+
+:root[uidensity="touch"] {
+    --tree-header-table-height: 36px;
+    --tree-header-cell-padding: 9px;
+    --tree-header-cell-indent: -3px;
+    --list-item-min-height: 32px;
+    --table-header-cell-icon-width: 33px;
+    --table-header-cell-icon-min-width: 33px;
+    --table-row-cell-img-margin-inline-start: 11px;
+    --table-row-cell-button-margin-inline-start: 9px;
+}
+
+@media not (prefers-contrast) {
+    :root {
+        --listbox-color: var(--color-gray-80);
+        --listbox-selected-bg: var(--color-gray-20);
+        --listbox-focused-selected-bg: var(--selected-item-color);
+        --listbox-selected-color: var(--selected-item-text-color);
+        --listbox-focused-selected-color: var(--selected-item-text-color);
+        --listbox-hover: color-mix(in srgb, transparent 80%, var(--listbox-focused-selected-bg));
+        --listbox-border-type: dashed;
+        --tree-view-bg: var(--color-white);
+        --tree-view-color: var(--color-ink-90);
+        --tree-view-header-hover-bg: var(--color-gray-20);
+        --tree-view-header-hover-active-bg: var(--color-gray-30);
+        --tree-view-header-border-color: var(--color-gray-30);
+        --tree-row-delete-button-color: var(--color-red-60);
+    }
+
+    @media (prefers-color-scheme: dark) {
+        :root {
+            --listbox-color: var(--color-gray-05);
+            --listbox-selected-bg: var(--color-gray-70);
+            --listbox-focused-selected-bg: var(--color-blue-60);
+            --tree-view-bg: var(--color-gray-90);
+            --tree-view-color: var(--color-gray-30);
+            --tree-view-header-hover-bg: var(--color-gray-70);
+            --tree-view-header-hover-active-bg: var(--color-gray-90);
+            --tree-view-header-border-color: var(--splitter-color);
+            --tree-row-delete-button-color: var(--color-red-40);
+            --in-content-box-background: rgb(35, 34, 43);
+        }
+    }
+}
+
+@media (prefers-contrast) {
+    :root {
+        --listbox-color: currentColor;
+        --listbox-selected-color: SelectedItemText;
+        --listbox-focused-selected-bg: SelectedItem;
+        --listbox-selected-bg: color-mix(in srgb, transparent 80%, var(--listbox-focused-selected-bg));
+        --listbox-selected-outline: 2px solid SelectedItem;
+        --listbox-border-type: solid;
+        --tree-view-bg: Field;
+        --tree-view-color: FieldText;
+        --tree-view-header-hover-bg: color-mix(in srgb, Field 70%, hsl(0, 0%, 50%));
+        --tree-view-header-border-color: ThreeDShadow;
+        --in-content-box-border-color: -moz-DialogText;
+        --in-content-box-background: -moz-Dialog;
+    }
+}
+
+:root[lwt-tree] {
+    --listbox-selected-bg: color-mix(in srgb, transparent 70%, var(--sidebar-highlight-background-color));
+    --listbox-hover: color-mix(in srgb, transparent 80%, var(--sidebar-highlight-background-color));
+    --listbox-focused-selected-bg: var(--sidebar-highlight-background-color, var(--selected-item-color));
+    --listbox-selected-color: var(--sidebar-highlight-text-color, var(--selected-item-text-color));
+}
+
+.tree-view-scrollable-container {
+    display: flex;
+    align-items: start;
+    overflow-y: scroll;
+    overscroll-behavior-y: none;
+    height: 100%;
+}
+
+[is="cb-tree-view-table"] img {
+    -moz-context-properties: fill, stroke;
+    fill: color-mix(in srgb, currentColor 20%, transparent);
+    stroke: currentColor;
+}
+
+[is="cb-tree-view-table-body"]:focus {
+    outline: none;
+}
+
+[is="cb-tree-view-table-body"] > * {
+    cursor: default;
+}
+
+[is="cb-tree-view-table-body"] > *:hover {
+    background-color: var(--listbox-hover);
+}
+
+@media (prefers-contrast) {
+    [is="cb-tree-view-table-body"] > *:hover {
+        outline: var(--listbox-selected-outline);
+        outline-offset: -2px;
+    }
+}
+
+[is="cb-tree-view-table-body"] > .selected {
+    background-color: var(--listbox-selected-bg);
+}
+
+[is="cb-tree-view-table-body"]:focus > .selected,
+[is="cb-tree-view-table-body"]:focus-within > .selected {
+    color: var(--listbox-selected-color);
+}
+
+[is="cb-tree-view-table-body"]:focus > .current:not(.selected),
+[is="cb-tree-view-table-body"]:focus-within > .current:not(.selected) {
+    outline: 1px var(--listbox-border-type) var(--listbox-focused-selected-bg);
+    outline-offset: -1px;
+}
+
+[is="cb-tree-view-table-body"]:focus > .selected,
+[is="cb-tree-view-table-body"]:focus-within > .selected,
+[is="cb-tree-view-table-body"] > .selected:focus-within {
+    color: var(--listbox-selected-color);
+    background-color: var(--listbox-focused-selected-bg);
+}
+
+.multi-selected [is="cb-tree-view-table-body"] > .selected.current,
+.multi-selected [is="cb-tree-view-table-body"]:focus > .selected.current {
+    outline: 1px var(--listbox-border-type) var(--listbox-selected-color);
+    outline-offset: -1px;
+}
+
+[is="cb-tree-view-table-body"]:focus > .selected img,
+[is="cb-tree-view-table-body"]:focus-within > .selected img,
+[is="cb-tree-view-table-body"] > .selected:focus-within img {
+    fill: color-mix(in srgb, currentColor 40%, transparent);
+    stroke: currentColor;
+}
+
+[is="cb-tree-view-table-body"]:focus > .selected .tree-view-row-thread img,
+[is="cb-tree-view-table-body"]:focus-within > .selected .tree-view-row-thread img {
+    stroke: var(--listbox-selected-color);
+}
+
+tr:is([is="thread-row"], [is="thread-card"]).selected .twisty {
+    color: currentColor;
+}
+
+/* Resizable table columns */
+
+table[is="cb-tree-view-table"] {
+    table-layout: fixed;
+    flex: 1 0 100%;
+    border-spacing: 0;
+    line-height: 1;
+    font-size: 1rem;
+    background-color: var(--tree-view-bg);
+    color: var(--tree-view-color);
+}
+
+/*body:not(.layout-table) thead[is="cb-tree-view-table-header"] {
+    display: none;
+}*/
+
+thead[is="cb-tree-view-table-header"] {
+    height: var(--tree-header-table-height);
+    position: sticky;
+    inset-inline: 0;
+    inset-block-start: 0;
+    z-index: 1;
+}
+
+thead[is="cb-tree-view-table-header"]::after {
+    content: '';
+    position: absolute;
+    inset-inline: 0;
+    height: 0;
+    z-index: 1;
+    border-bottom: 1px solid var(--sidebar-border-color, var(--tree-view-header-border-color));
+}
+
+thead[is="cb-tree-view-table-header"] hr[is="cb-pane-splitter"] {
+    position: absolute;
+    inset-inline-end: 4px;
+    inset-block: 3px;
+}
+
+thead[is="cb-tree-view-table-header"] hr[is="cb-pane-splitter"]:hover:not(:active,[disabled]) {
+    background-color: var(--selected-item-color);
+}
+
+th[is="cb-tree-view-table-header-cell"] {
+    height: var(--tree-header-table-height);
+    min-width: 7ch;
+    padding: 0;
+    position: relative;
+    overflow: hidden;
+    background-color: var(--tree-view-bg);
+}
+
+th[is="cb-tree-view-table-header-cell"][data-type="icon"] {
+    width: var(--table-header-cell-icon-width);
+    min-width: var(--table-header-cell-icon-min-width);
+}
+
+th[is="cb-tree-view-table-header-cell"][data-type="icon"] button {
+    padding: var(--table-header-cell-icon-button-padding, var(--tree-header-cell-padding));
+}
+
+th[is="cb-tree-view-table-header-cell"][data-type="icon"] img {
+    display: block;
+    margin-inline: auto;
+}
+
+th[is="cb-tree-view-table-header-cell"] hr[is="cb-pane-splitter"] {
+    border-inline-start-style: none !important;
+    border-inline-end-style: solid;
+}
+
+/* Select column */
+
+#selectColButton {
+    padding-inline: 0;
+}
+
+:is(.tree-view-header-select, .tree-view-row-select) img {
+    color: var(--tree-view-color);
+    content: var(--icon-checkbox);
+    -moz-context-properties: fill, fill-opacity, stroke, stroke-opacity;
+    fill: currentColor;
+    fill-opacity: 0;
+    stroke-opacity: 0;
+}
+
+[is="cb-tree-view-table-body"]:focus >
+.selected :is(.tree-view-header-select, .tree-view-row-select) img,
+[is="cb-tree-view-table-body"]:focus-within >
+.selected :is(.tree-view-header-select, .tree-view-row-select) img,
+[is="cb-tree-view-table-body"] > .selected:focus-within
+:is(.tree-view-header-select, .tree-view-row-select) img {
+    color: currentColor;
+}
+
+.tree-view-row-select img {
+    display: block;
+    margin-inline: auto;
+}
+
+.some-selected .tree-view-header-select img {
+    stroke-opacity: 1;
+}
+
+:is(.all-selected, .selected) :is(.tree-view-header-select, .tree-view-row-select) img {
+    fill-opacity: 1;
+}
+
+[is="cb-tree-view-table-body"]:focus .selected > .tree-view-row-select img,
+[is="cb-tree-view-table-body"]:focus-within .selected > .tree-view-row-select img,
+[is="cb-tree-view-table-body"] .selected:focus-within > .tree-view-row-select img {
+    fill: currentColor;
+}
+
+/* Delete column */
+
+.tree-table-cell-container button.tree-view-header-delete {
+    text-align: center;
+}
+
+.tree-view-row-delete button {
+    color: var(--tree-view-color);
+    opacity: 0.8;
+}
+
+.tree-view-row-delete button:hover {
+    opacity: 1;
+    color: var(--tree-row-delete-button-color);
+}
+
+[is="cb-tree-view-table-body"]:focus .selected .tree-view-row-delete button,
+[is="cb-tree-view-table-body"]:focus-within .selected .tree-view-row-delete button,
+[is="cb-tree-view-table-body"] .selected:focus-within .tree-view-row-delete button {
+    color: currentColor;
+}
+
+.tree-view-header-delete img,
+.tree-view-row-delete img {
+    content: var(--icon-trash-sm);
+    pointer-events: none;
+}
+
+.tree-table-cell {
+    position: absolute;
+    inset-block: 0;
+    inset-inline: 0 1px;
+}
+
+th[data-resizable="false"] .tree-table-cell {
+    inset-inline: 0;
+}
+
+.tree-table-cell-container button {
+    font-size: 1rem;
+    font-weight: normal;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    text-indent: var(--tree-header-cell-indent);
+    white-space: nowrap;
+    text-align: start;
+    padding: var(--tree-header-cell-padding);
+    margin: 0;
+    width: 100%;
+    height: 100%;
+    min-width: auto;
+    min-height: auto;
+    color: inherit;
+    border: none;
+    border-radius: 0;
+    background-color: transparent;
+    background-position: right 6px center;
+    background-repeat: no-repeat;
+    -moz-context-properties: stroke;
+    stroke: currentColor;
+}
+
+.tree-table-cell-container button:hover {
+    background-color: var(--tree-view-header-hover-bg);
+}
+
+.tree-table-cell-container button:hover:active {
+    background-color: var(--tree-view-header-hover-active-bg);
+}
+
+.tree-table-cell-container button:focus-visible {
+    outline: 2px solid var(--selected-item-color);
+    outline-offset: -2px;
+    border-radius: var(--button-border-radius);
+}
+
+.tree-table-cell-container button.sorting {
+    background-image: var(--icon-nav-up-sm);
+    padding-inline-end: 18px;
+}
+
+.tree-table-cell-container button.sorting.descending {
+    background-image: var(--icon-nav-down-sm);
+}
+
+@media (-moz-platform: linux) {
+    .tree-table-cell-container button.sorting {
+        background-image: var(--icon-nav-down-sm);
+    }
+
+    .tree-table-cell-container button.sorting.descending {
+        background-image: var(--icon-nav-up-sm);
+    }
+}
+
+th[data-type="icon"] .tree-table-cell-container button.sorting {
+    background-image: none;
+    padding-inline-end: var(--tree-header-cell-padding);
+}
+
+th[is="cb-tree-view-table-column-picker"] {
+    position: relative;
+    width: 25px;
+    min-width: 25px;
+    padding: 0;
+    background-color: var(--tree-view-bg);
+}
+
+@media (-moz-overlay-scrollbars) {
+    th[is="cb-tree-view-table-column-picker"] {
+        padding-inline-end: env(scrollbar-inline-size);
+    }
+}
+
+.button-column-picker {
+    position: absolute;
+    inset: 0;
+}
+
+.button-column-picker img {
+    content: var(--icon-column-menu);
+    margin-inline: 0;
+}
+
+/* Table body */
+
+table[is="cb-tree-view-table"] td {
+    max-width: 0;
+    height: inherit;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    padding: 0 6px;
+    position: relative;
+    user-select: none;
+    box-sizing: border-box;
+}
+
+table[is="cb-tree-view-table"] td:is(.button-column, .tree-view-row-select) {
+    padding: 0;
+    text-align: center;
+}
+
+table[is="cb-tree-view-table"] td.button-column[colspan="2"] {
+    text-align: start;
+}
+
+table[is="cb-tree-view-table"] td.button-column[colspan="2"] img {
+    margin-inline-start: var(--table-row-cell-img-margin-inline-start);
+}
+
+#threadTree table[is="cb-tree-view-table"] td.button-column[colspan="2"] button {
+    margin-inline-start: var(--table-row-cell-button-margin-inline-start);
+}
+
+#threadTree table[is="cb-tree-view-table"] td.button-column[colspan="2"] button.tree-button-delete {
+    margin-inline-start: calc(var(--table-row-cell-button-margin-inline-start) + 2px);
+}
+
+table[is="cb-tree-view-table"] td div:not(.recipient-avatar) {
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+/* Placeholder */
+
+slot[name="placeholders"] {
+    position: absolute;
+    display: none;
+    box-sizing: border-box;
+    inset: 120px 0 auto;
+    padding: 0 40px;
+    opacity: 0.5;
+    text-align: center;
+}
+
+slot[name="placeholders"].show {
+    display: block;
+}
+
+slot[name="placeholders"] > div {
+    font-size: 1.5rem;
+    line-height: 1.2;
+    font-weight: 600;
+    margin-block-end: 12px;
+    text-shadow: 0 1px 0 var(--sidebar-background-color, var(--tree-view-bg));
+}
+
+slot[name="placeholders"] div::before {
+    content: "";
+    display: block;
+    height: 32px;
+    margin-block-end: 9px;
+    background-position: center top;
+    background-size: contain;
+    background-repeat: no-repeat;
+    -moz-context-properties: fill, stroke, fill-opacity;
+    fill: color-mix(in srgb, currentColor 20%, transparent);
+    stroke: currentColor;
+    fill-opacity: var(--toolbarbutton-icon-fill-opacity);
+}
+
+#searchingABPlaceholder::before {
+    background-image: url("chrome://messenger/skin/icons/new/compact/search.svg");
+}
+
+/* Transitions and animations */
+@media (prefers-reduced-motion: no-preference) {
+    .tree-view-scrollable-container {
+        scroll-behavior: smooth;
+    }
+
+    thead[is="cb-tree-view-table-header"] hr[is="cb-pane-splitter"] {
+        transition: background-color var(--transition-duration) var(--transition-timing);
+    }
+
+    table[is="cb-tree-view-table"] tbody tr {
+        transition: color var(--transition-duration) var(--transition-timing),
+        background-color var(--transition-duration) var(--transition-timing);
+    }
+
+    table[is="cb-tree-view-table"] tbody tr img {
+        transition:
+        color var(--transition-duration) var(--transition-timing),
+        fill var(--transition-duration) var(--transition-timing),
+        stroke var(--transition-duration) var(--transition-timing);
+    }
+}
+
+:is(ul, ol):is([role="tree"],
+[role="group"]) li > div {
+    min-height: var(--list-item-min-height);
+}
+
+.no-overscroll {
+    overscroll-behavior-y: none;
+}
+
+/* Drag and Drop */
+
+th.column-dragging {
+    opacity: 0.7;
+    z-index: 2;
+}
+
+
+#searchRemoteHbox {
+    display: flex;
+    margin-block-end: 8px;
+    margin-inline: 6px;
+    align-items: center;
+}
+  
+#cardbookSearchInput {
+    height: var(--in-content-button-height);
+    flex: 1;
+    margin-block: 0;
+    margin-inline: 0 6px;
+    padding-inline: 8px;
+    box-sizing: border-box;
+    border: 1px solid var(--in-content-box-border-color);
+    border-radius: var(--in-content-button-border-radius);
+    color: inherit;
+    background-color: var(--in-content-box-background);
+}
+  
+#cardbookSearchInput:focus {
+    border-color: transparent;
+    outline: 2px solid var(--color-blue-60);
+    outline-offset: -1px;
+}
+
+tr[is="ab-table-card-row"].Changed {
+	font-weight: bold;
+}
+
+tr[is="ab-table-card-row"] > td.cardicon-column {
+    position: relative;
+    width: 16px;
+    height: 16px;
+    background-repeat: no-repeat;
+    -moz-context-properties: fill;
+    fill: currentColor;
+    background-image: url("chrome://cardbook/content/skin/icons/abcontact.svg");
+    background-position: center;
+}
+tr[is="ab-table-card-row"].MailList > td.cardicon-column {
+    background-image: url("chrome://cardbook/content/skin/icons/ablist.svg");
+}
+
+#searchAllAB {
+    -moz-context-properties: fill;
+    fill: currentColor;
+    position: relative;
+    width: 16px;
+    height: 16px;
+    background-repeat: no-repeat;
+}
+
+#searchAllAB.allAB {
+    background-image: url("chrome://cardbook/content/skin/icons/allAB.svg");
+}
+#searchAllAB.oneAB {
+    background-image: url("chrome://cardbook/content/skin/icons/oneAB.svg");
+}

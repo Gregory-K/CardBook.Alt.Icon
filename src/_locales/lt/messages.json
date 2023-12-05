@@ -18,6 +18,34 @@
 	"statusProgressInformationTooltip": {
 		"message": "Spauskite čia norėdami peržiūrėti žurnalus"
 	},
+	"columnsSortBy": {
+		"message": "Rikiuoti pagal: $P1$",
+        "placeholders": {
+            "P1": {
+                "content": "$1"
+            }
+        }
+	},
+	"columnPickerTitle": {
+		"message": "Rinktis rodomus stulpelius"
+	},
+	"columnPickerRestoreColumnOrder": {
+		"message": "Atkurti stulpelių tvarką"
+	},
+	"columnPickerApplyCurrentViewTo": {
+		"message": "??Apply current view to…??"
+	},
+	"columnPickerApplyCurrentViewToConfirmMsg": {
+		"message": "Ar pritaikyti šio aplanko stulpelių išdėstymą aplankui „$P1$“?",
+        "placeholders": {
+            "P1": {
+                "content": "$1"
+            }
+        }
+	},
+	"columnPickerApplyCurrentViewToConfirmTitle": {
+		"message": "Pritaikyti pakeitimus?"
+	},
 	"imageSelectionTitle": {
 		"message": "Vaizdo atranka"
 	},
@@ -645,6 +673,25 @@
 	},
 	"synchroAllFinished": {
 		"message": "Visos sinchronizacijos baigtos"
+	},
+	"lastSync": {
+		"message": "Paskiausiai sinchronizuota: $P1$",
+        "placeholders": {
+            "P1": {
+                "content": "$1"
+            }
+        }
+	},
+	"syncFailedNeverSynced": {
+		"message": "Sinchronizavimas nepavyko. Paskiausiai sinchronizuota: niekada"
+	},
+	"syncFailedLastSync": {
+		"message": "Sinchronizavimas nepavyko. Paskiausiai pavykę: $P1$",
+        "placeholders": {
+            "P1": {
+                "content": "$1"
+            }
+        }
 	},
 	"discoveryRunning": {
 		"message": "$P1$ : Adresų knygos automatinis atradimas veikia",
@@ -2755,7 +2802,7 @@
         }
 	},
 	"eventEntryTitleMessage": {
-		"message": "%1$S jubiliejus"
+		"message": "%1$S jubiliejus (%5$S)"
 	},
 	"anniversaryCategory": {
 		"message": "Jubiliejus"
@@ -3747,12 +3794,6 @@
 	"findEventsFromEmailMessengerAccesskey": {
 		"message": "e"
 	},
-	"mailContext-addToCardBookMenuLabel": {
-		"message": "Įterpti Kontaktų kontaktą"
-	},
-	"mailContext-addToCardBookMenuAccesskey": {
-		"message": "t"
-	},
 	"addAllAttachementsToCardBookMenuLabel": {
 		"message": "Siųsti visus į Kontaktus…"
 	},
@@ -3981,6 +4022,9 @@
 	"readonlyLabel": {
 		"message": "Tik skaitymo režimas"
 	},
+	"syncingLabel": {
+		"message": "Sinchronizuojama…"
+	},
 	"urnuuidLabel": {
 		"message": "Naudokite urn:uuid"
 	},
@@ -4038,14 +4082,8 @@
 	"sendEmailLabel": {
 		"message": "Rašyti naują žinutę"
 	},
-	"sendEmailAccesskey": {
-		"message": "R"
-	},
 	"syncLightningMenuItemLabel": {
 		"message": "Sinchronizuoti su Lightning"
-	},
-	"syncLightningMenuAccesskey": {
-		"message": "S"
 	},
 	"calendarNameLabel": {
 		"message": "Kalendorius"
@@ -5220,12 +5258,6 @@
 	"cardbookToolbarAppMenuButtonTooltip": {
 		"message": "Kontaktai meniu"
 	},
-	"cardbookToolbarSearchBoxLabel": {
-		"message": "Kontaktai ieškoti"
-	},
-	"cardbookToolbarSearchBoxTooltip": {
-		"message": "Kontaktai ieškoti"
-	},
 	"cardbookToolbarComplexSearchLabel": {
 		"message": "Paieška įrašant radinius"
 	},
@@ -5348,9 +5380,6 @@
 	},
 	"PreferMailFormat.label": {
 		"message": "Laiškus pageidauja gauti šiuo formatu:"
-	},
-	"PreferMailFormat.accesskey": {
-		"message": "v"
 	},
 	"Unknown.label": {
 		"message": "Nežinoma"
@@ -5493,9 +5522,6 @@
 	"editEventLabel": {
 		"message": "Keisti įvykį"
 	},
-	"editEventAccesskey": {
-		"message": "K"
-	},
 	"eventsTableTitleLabel": {
 		"message": "Pavadinimas"
 	},
@@ -5534,9 +5560,6 @@
 	},
 	"createEventLabel": {
 		"message": "Naujas įvykis"
-	},
-	"createEventAccesskey": {
-		"message": "N"
 	},
 	"adrFormulaExplanation": {
 		"message": "Galima pritaikyti, kaip „Kontaktai“ formato savo adresus. Ši formulė susideda iš blokų, kuriuos apima skliausteliai „()“. ??In these blocks there might be many parts delimited by „|“.??"
@@ -5700,37 +5723,19 @@
 	"createEditionLabel": {
 		"message": "Sukurti"
 	},
-	"createEditionAccesskey": {
-		"message": "S"
-	},
 	"createAndReplaceEditionLabel": {
 		"message": "Sukurti ir pakeisti"
-	},
-	"createAndReplaceEditionAccesskey": {
-		"message": "Uždaryti"
 	},
 	"saveEditionLabel": {
 		"message": "Įrašyti"
 	},
-	"saveEditionAccesskey": {
-		"message": "r"
-	},
 	"validateEditionLabel": {
 		"message": "Patvirtinti"
-	},
-	"validateEditionAccesskey": {
-		"message": "P"
 	},
 	"cancelEditionLabel": {
 		"message": "Atisakyti"
 	},
-	"cancelEditionAccesskey": {
-		"message": "A"
-	},
 	"closeEditionLabel": {
-		"message": "Uždaryti"
-	},
-	"closeEditionAccesskey": {
 		"message": "Uždaryti"
 	},
 	"moreEditionLabel": {
@@ -5827,9 +5832,6 @@
 	"kind.edit.label": {
 		"message": "Rūšis"
 	},
-	"kind.edit.accesskey": {
-		"message": "R"
-	},
 	"addEmailGroupboxLabel": {
 		"message": "El. pašto adresas"
 	},
@@ -5922,6 +5924,20 @@
 	},
 	"capitalizationLabel": {
 		"message": "??Capitalization??"
+	},
+	"searchinAB": {
+		"message": "Ieškoti „$P1$“",
+        "placeholders": {
+            "P1": {
+                "content": "$1"
+            }
+        }
+	},
+	"searchinAllAB": {
+		"message": "Ieškoti visose adresų knygose"
+	},
+	"searchingABPlaceholder": {
+		"message": "??Searching…??"
 	},
 	"region-name-ad": {
 		"message": "Andora"

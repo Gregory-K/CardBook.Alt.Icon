@@ -37,7 +37,7 @@ if ("undefined" == typeof(ovl_birthdays)) {
 			}
 		}},
 	
-		onLoad: function() {
+		onLoad: async function() {
 			if (cardbookRepository.cardbookPrefs["showPopupOnStartup"]) {
 				ovl_birthdays.onShowPopup();
 			}
@@ -47,28 +47,26 @@ if ("undefined" == typeof(ovl_birthdays)) {
 			}
 		},
 	
-		displayBirthdayList: function() {
-			if (cardbookRepository.cardbookBirthdayPopup == 0) {
-				cardbookRepository.cardbookBirthdayPopup++;
-				Services.wm.getMostRecentWindow("mail:3pane").openDialog("chrome://cardbook/content/birthdays/wdw_birthdayList.xhtml", "", cardbookRepository.modalWindowParams);
-				cardbookRepository.cardbookBirthdayPopup--;
-			}
+		displayBirthdayList: async function() {
+			let url = "chrome/content/birthdays/wdw_birthdayList.html";
+			let win = await notifyTools.notifyBackground({query: "cardbook.openWindow",
+															url: url,
+															type: "popup"});
 		},
 	
-		displaySyncList: function() {
-			Services.wm.getMostRecentWindow("mail:3pane").openDialog("chrome://cardbook/content/birthdays/wdw_birthdaySync.xhtml", "", cardbookRepository.modalWindowParams);
-		},
-	
-		onShowPopup: function() {
-			var maxDaysUntilNextBirthday = cardbookRepository.cardbookPrefs["numberOfDaysForSearching"];
-			cardbookBirthdaysUtils.loadBirthdays(maxDaysUntilNextBirthday);
-			var lshowPopupEvenIfNoBirthday = cardbookRepository.cardbookPrefs["showPopupEvenIfNoBirthday"];
-			if ((cardbookBirthdaysUtils.lBirthdayList.length>0) || lshowPopupEvenIfNoBirthday) {
-				ovl_birthdays.displayBirthdayList();
+		onShowPopup: async function() {
+			let maxDaysUntilNextBirthday = cardbookRepository.cardbookPrefs["numberOfDaysForSearching"];
+			let birthdayList = cardbookBirthdaysUtils.loadBirthdays(maxDaysUntilNextBirthday);
+			let showPopupEvenIfNoBirthday = cardbookRepository.cardbookPrefs["showPopupEvenIfNoBirthday"];
+			if ((birthdayList.length>0) || showPopupEvenIfNoBirthday) {
+				await ovl_birthdays.displayBirthdayList();
 			}
 		}
 	};
 	
-	ovl_birthdays.lTimerPopup = Components.classes["@mozilla.org/timer;1"].createInstance(Components.interfaces.nsITimer);
-	ovl_birthdays.lTimerPopup.initWithCallback(ovl_birthdays.lEventTimerPopup, 10000, Components.interfaces.nsITimer.TYPE_REPEATING_SLACK);
+	if (!cardbookRepository.birthdayTimerCreated) {
+		ovl_birthdays.lTimerPopup = Components.classes["@mozilla.org/timer;1"].createInstance(Components.interfaces.nsITimer);
+		ovl_birthdays.lTimerPopup.initWithCallback(ovl_birthdays.lEventTimerPopup, 10000, Components.interfaces.nsITimer.TYPE_REPEATING_SLACK);
+		cardbookRepository.birthdayTimerCreated = true;
+	}
 }

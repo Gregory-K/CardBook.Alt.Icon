@@ -43,10 +43,10 @@ if (!customElements.get("cardbookABActionPicker")) {
 			var found = false;
 			var k = 0;
 			for (let account of cardbookRepository.cardbookAccounts) {
-				if (account[5] && account[6] != "SEARCH" && !cardbookRepository.cardbookPreferences.getReadOnly(account[4])) {
-					var dirPrefId = account[4];
+				if (account[2] && account[3] != "SEARCH" && !cardbookRepository.cardbookPreferences.getReadOnly(account[1])) {
+					var dirPrefId = account[1];
 					var dirPrefName = account[0];
-					this.addDirectories(menupopup, dirPrefId, dirPrefName, account[6]);
+					this.addDirectories(menupopup, dirPrefId, dirPrefName, account[3]);
 					if (!found) {
 						defaultValue = dirPrefId;
 						found = true;
@@ -171,10 +171,10 @@ function patchCardBookABSelector(es) {
 		addDirectories(menuPopup, "allAddressBooks", cardbookRepository.extension.localeData.localizeMessage("allAddressBooks"), "");
 		k++;
 		for (let account of cardbookRepository.cardbookAccounts) {
-			if (account[5] && account[6] != "SEARCH") {
-				var dirPrefId = account[4];
+			if (account[2] && account[3] != "SEARCH") {
+				var dirPrefId = account[1];
 				var dirPrefName = account[0];
-				addDirectories(menuPopup, dirPrefId, dirPrefName, account[6]);
+				addDirectories(menuPopup, dirPrefId, dirPrefName, account[3]);
 				if (!found) {
 					found = true;
 				}

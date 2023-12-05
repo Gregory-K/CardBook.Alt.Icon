@@ -1,5 +1,6 @@
 var { Services } = ChromeUtils.import("resource://gre/modules/Services.jsm");
-var { PromptUtils } = ChromeUtils.import("resource://gre/modules/SharedPromptUtils.jsm");
+var { PromptUtils } = ChromeUtils.importESModule("resource://gre/modules/PromptUtils.sys.mjs");
+
 
 var EXPORTED_SYMBOLS = ["cardbookPasswordManager"];
 var cardbookPasswordManager = {
@@ -107,9 +108,7 @@ var cardbookPasswordManager = {
 		if (cardbookRepository.logins[aUsername] && cardbookRepository.logins[aUsername][myRootUrl]) {
 			return cardbookRepository.logins[aUsername][myRootUrl];
 		} else {
-			if (aUrl == cardbookRepository.cardbookOAuthData.GOOGLE.AUTH_PREFIX_CONTACTS ||
-				aUrl == cardbookRepository.cardbookOAuthData.GOOGLE.AUTH_PREFIX_LABELS ||
-				aUrl == cardbookRepository.cardbookOAuthData.GOOGLE2.AUTH_PREFIX_CONTACTS ||
+			if (aUrl == cardbookRepository.cardbookOAuthData.GOOGLE2.AUTH_PREFIX_CONTACTS ||
 				aUrl == cardbookRepository.cardbookOAuthData.GOOGLE3.AUTH_PREFIX_CONTACTS) {
 				var logins = Services.logins.findLogins(aUrl, "User Refresh Token", null);
 			} else {

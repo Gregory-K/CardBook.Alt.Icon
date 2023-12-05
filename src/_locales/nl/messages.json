@@ -18,6 +18,34 @@
 	"statusProgressInformationTooltip": {
 		"message": "Logbestanden bekijken"
 	},
+	"columnsSortBy": {
+		"message": "Sorteren op: $P1$",
+        "placeholders": {
+            "P1": {
+                "content": "$1"
+            }
+        }
+	},
+	"columnPickerTitle": {
+		"message": "Weer te geven kolommen selecteren"
+	},
+	"columnPickerRestoreColumnOrder": {
+		"message": "Kolomvolgorde herstellen"
+	},
+	"columnPickerApplyCurrentViewTo": {
+		"message": "Huidige weergave toepassen op…"
+	},
+	"columnPickerApplyCurrentViewToConfirmMsg": {
+		"message": "De huidige mapkolommen toepassen op $P1$?",
+        "placeholders": {
+            "P1": {
+                "content": "$1"
+            }
+        }
+	},
+	"columnPickerApplyCurrentViewToConfirmTitle": {
+		"message": "Wijzigingen toepassen?"
+	},
 	"imageSelectionTitle": {
 		"message": "Afbeelding kiezen"
 	},
@@ -645,6 +673,25 @@
 	},
 	"synchroAllFinished": {
 		"message": "Alle synchronisaties afgerond"
+	},
+	"lastSync": {
+		"message": "Laatst gesynchroniseerd: $P1$",
+        "placeholders": {
+            "P1": {
+                "content": "$1"
+            }
+        }
+	},
+	"syncFailedNeverSynced": {
+		"message": "Synchronisatie mislukt. Laatst gesynchroniseerd: nooit"
+	},
+	"syncFailedLastSync": {
+		"message": "Synchronisatie mislukt. Laatste succes: $P1$",
+        "placeholders": {
+            "P1": {
+                "content": "$1"
+            }
+        }
 	},
 	"discoveryRunning": {
 		"message": "$P1$ : Automatische adresboeken-controle op server…",
@@ -2755,7 +2802,7 @@
 		}
 	},
 	"eventEntryTitleMessage": {
-		"message": "Verjaardag van %1$S"
+		"message": "Verjaardag van %1$S (%5$S)"
 	},
 	"anniversaryCategory": {
 		"message": "Jubileum"
@@ -3747,12 +3794,6 @@
 	"findEventsFromEmailMessengerAccesskey": {
 		"message": "a"
 	},
-	"mailContext-addToCardBookMenuLabel": {
-		"message": "Toevoegen aan CardBook…"
-	},
-	"mailContext-addToCardBookMenuAccesskey": {
-		"message": "o"
-	},
 	"addAllAttachementsToCardBookMenuLabel": {
 		"message": "Alle toevoegen aan CardBook…"
 	},
@@ -3981,6 +4022,9 @@
 	"readonlyLabel": {
 		"message": "Alleen lezen-modus"
 	},
+	"syncingLabel": {
+		"message": "Synchroniseren…"
+	},
 	"urnuuidLabel": {
 		"message": "Gebruik maken van urn:uuid"
 	},
@@ -4038,14 +4082,8 @@
 	"sendEmailLabel": {
 		"message": "Nieuw bericht aanmaken"
 	},
-	"sendEmailAccesskey": {
-		"message": "E"
-	},
 	"syncLightningMenuItemLabel": {
 		"message": "Synchroniseren met Lightning"
-	},
-	"syncLightningMenuAccesskey": {
-		"message": "Y"
 	},
 	"calendarNameLabel": {
 		"message": "Agenda"
@@ -5220,12 +5258,6 @@
 	"cardbookToolbarAppMenuButtonTooltip": {
 		"message": "CardBook menu"
 	},
-	"cardbookToolbarSearchBoxLabel": {
-		"message": "Contactpersonen zoeken"
-	},
-	"cardbookToolbarSearchBoxTooltip": {
-		"message": "Contactpersonen zoeken"
-	},
 	"cardbookToolbarComplexSearchLabel": {
 		"message": "Geavanceerd zoeken"
 	},
@@ -5348,9 +5380,6 @@
 	},
 	"PreferMailFormat.label": {
 		"message": "Verkiest berichten te ontvangen opgesteld als:"
-	},
-	"PreferMailFormat.accesskey": {
-		"message": "k"
 	},
 	"Unknown.label": {
 		"message": "Onbekend"
@@ -5493,9 +5522,6 @@
 	"editEventLabel": {
 		"message": "Gebeurtenis bewerken"
 	},
-	"editEventAccesskey": {
-		"message": "B"
-	},
 	"eventsTableTitleLabel": {
 		"message": "Titel"
 	},
@@ -5534,9 +5560,6 @@
 	},
 	"createEventLabel": {
 		"message": "Nieuwe gebeurtenis"
-	},
-	"createEventAccesskey": {
-		"message": "N"
 	},
 	"adrFormulaExplanation": {
 		"message": "Het is mogelijk om de manier waarop CardBook de adressen genereert, zelf samen te stellen. Dat gebeurt met een formule die bestaat uit blokken, omsloten door haakjes “()”. In deze blokken mogen verschillende onderdelen gescheiden worden door “|”."
@@ -5700,38 +5723,20 @@
 	"createEditionLabel": {
 		"message": "Maken"
 	},
-	"createEditionAccesskey": {
-		"message": "M"
-	},
 	"createAndReplaceEditionLabel": {
 		"message": "Maken en vervangen"
-	},
-	"createAndReplaceEditionAccesskey": {
-		"message": "V"
 	},
 	"saveEditionLabel": {
 		"message": "Opslaan"
 	},
-	"saveEditionAccesskey": {
-		"message": "O"
-	},
 	"validateEditionLabel": {
 		"message": "Valideren"
-	},
-	"validateEditionAccesskey": {
-		"message": "V"
 	},
 	"cancelEditionLabel": {
 		"message": "Annuleren"
 	},
-	"cancelEditionAccesskey": {
-		"message": "A"
-	},
 	"closeEditionLabel": {
 		"message": "Sluiten"
-	},
-	"closeEditionAccesskey": {
-		"message": "S"
 	},
 	"moreEditionLabel": {
 		"message": "Meer tonen"
@@ -5827,9 +5832,6 @@
 	"kind.edit.label": {
 		"message": "Soort"
 	},
-	"kind.edit.accesskey": {
-		"message": "S"
-	},
 	"addEmailGroupboxLabel": {
 		"message": "E-mailadres"
 	},
@@ -5922,6 +5924,20 @@
 	},
 	"capitalizationLabel": {
 		"message": "Beginnen met hoofdletter"
+	},
+	"searchinAB": {
+		"message": "$P1$ doorzoeken",
+        "placeholders": {
+            "P1": {
+                "content": "$1"
+            }
+        }
+	},
+	"searchinAllAB": {
+		"message": "Alle adresboeken doorzoeken"
+	},
+	"searchingABPlaceholder": {
+		"message": "Zoeken…"
 	},
 	"region-name-ad": {
 		"message": "Andorra"

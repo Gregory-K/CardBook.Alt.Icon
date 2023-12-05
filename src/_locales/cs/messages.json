@@ -18,6 +18,34 @@
 	"statusProgressInformationTooltip": {
 		"message": "Klikněte zde pro zobrazení protokolů"
 	},
+	"columnsSortBy": {
+		"message": "Seřadit podle: $P1$",
+        "placeholders": {
+            "P1": {
+                "content": "$1"
+            }
+        }
+	},
+	"columnPickerTitle": {
+		"message": "Vyberte sloupce, které chcete zobrazit"
+	},
+	"columnPickerRestoreColumnOrder": {
+		"message": "Obnovit pořadí sloupců"
+	},
+	"columnPickerApplyCurrentViewTo": {
+		"message": "Použít současné zobrazení pro…"
+	},
+	"columnPickerApplyCurrentViewToConfirmMsg": {
+		"message": "Použít sloupce z aktuální složky na složku $P1$?",
+        "placeholders": {
+            "P1": {
+                "content": "$1"
+            }
+        }
+	},
+	"columnPickerApplyCurrentViewToConfirmTitle": {
+		"message": "Změnit sloupce"
+	},
 	"imageSelectionTitle": {
 		"message": "Výběr obrázku"
 	},
@@ -645,6 +673,25 @@
 	},
 	"synchroAllFinished": {
 		"message": "Všechny synchronizace dokončeny"
+	},
+	"lastSync": {
+		"message": "Poslední synchronizace: $P1$",
+        "placeholders": {
+            "P1": {
+                "content": "$1"
+            }
+        }
+	},
+	"syncFailedNeverSynced": {
+		"message": "Synchronizace selhala. Poslední úspěch: nikdy"
+	},
+	"syncFailedLastSync": {
+		"message": "Synchronizace selhala. Poslední úspěch: $P1$",
+        "placeholders": {
+            "P1": {
+                "content": "$1"
+            }
+        }
 	},
 	"discoveryRunning": {
 		"message": "$P1$ : Probíhá automatické zjišťování adresářů",
@@ -2755,7 +2802,7 @@
         }
 	},
 	"eventEntryTitleMessage": {
-		"message": "Narozeniny %1$S"
+		"message": "Narozeniny %1$S (%5$S)"
 	},
 	"anniversaryCategory": {
 		"message": "Cesta"
@@ -3747,12 +3794,6 @@
 	"findEventsFromEmailMessengerAccesskey": {
 		"message": "e"
 	},
-	"mailContext-addToCardBookMenuLabel": {
-		"message": "Přidat do CardBooku…"
-	},
-	"mailContext-addToCardBookMenuAccesskey": {
-		"message": "P"
-	},
 	"addAllAttachementsToCardBookMenuLabel": {
 		"message": "Vše do CardBooku…"
 	},
@@ -3981,6 +4022,9 @@
 	"readonlyLabel": {
 		"message": "Režim jen pro čtení"
 	},
+	"syncingLabel": {
+		"message": "Probíhá synchronizace…"
+	},
 	"urnuuidLabel": {
 		"message": "Použít urn:uuid"
 	},
@@ -4038,14 +4082,8 @@
 	"sendEmailLabel": {
 		"message": "Vytvořit novou zprávu"
 	},
-	"sendEmailAccesskey": {
-		"message": "E"
-	},
 	"syncLightningMenuItemLabel": {
 		"message": "Synch. s Lightningem"
-	},
-	"syncLightningMenuAccesskey": {
-		"message": "S"
 	},
 	"calendarNameLabel": {
 		"message": "Kalendář"
@@ -5220,12 +5258,6 @@
 	"cardbookToolbarAppMenuButtonTooltip": {
 		"message": "Menu CardBooku"
 	},
-	"cardbookToolbarSearchBoxLabel": {
-		"message": "Hledání v kontaktech"
-	},
-	"cardbookToolbarSearchBoxTooltip": {
-		"message": "Hledání v kontaktech"
-	},
 	"cardbookToolbarComplexSearchLabel": {
 		"message": "Pokročilé vyhledávání"
 	},
@@ -5348,9 +5380,6 @@
 	},
 	"PreferMailFormat.label": {
 		"message": "Upřednostňovaný formát zpráv:"
-	},
-	"PreferMailFormat.accesskey": {
-		"message": "r"
 	},
 	"Unknown.label": {
 		"message": "Neznámý"
@@ -5493,9 +5522,6 @@
 	"editEventLabel": {
 		"message": "Upravit událost"
 	},
-	"editEventAccesskey": {
-		"message": "U"
-	},
 	"eventsTableTitleLabel": {
 		"message": "Název"
 	},
@@ -5534,9 +5560,6 @@
 	},
 	"createEventLabel": {
 		"message": "Nová událost"
-	},
-	"createEventAccesskey": {
-		"message": "N"
 	},
 	"adrFormulaExplanation": {
 		"message": "Formátování adres v CardBooku je možné přizpůsobit. Tento vzorec se skládá z bloků uzavřených v “()”. V těchto blocích může být více částí oddělených “|”."
@@ -5700,38 +5723,20 @@
 	"createEditionLabel": {
 		"message": "Vytvořit"
 	},
-	"createEditionAccesskey": {
-		"message": "T"
-	},
 	"createAndReplaceEditionLabel": {
 		"message": "Vytvořit a nahradit"
-	},
-	"createAndReplaceEditionAccesskey": {
-		"message": "N"
 	},
 	"saveEditionLabel": {
 		"message": "Uložit"
 	},
-	"saveEditionAccesskey": {
-		"message": "U"
-	},
 	"validateEditionLabel": {
 		"message": "Ověřit"
-	},
-	"validateEditionAccesskey": {
-		"message": "O"
 	},
 	"cancelEditionLabel": {
 		"message": "Zrušit"
 	},
-	"cancelEditionAccesskey": {
-		"message": "Z"
-	},
 	"closeEditionLabel": {
 		"message": "Zavřít"
-	},
-	"closeEditionAccesskey": {
-		"message": "Z"
 	},
 	"moreEditionLabel": {
 		"message": "Zobrazit víc"
@@ -5827,9 +5832,6 @@
 	"kind.edit.label": {
 		"message": "Druh"
 	},
-	"kind.edit.accesskey": {
-		"message": "D"
-	},
 	"addEmailGroupboxLabel": {
 		"message": "E-mailová adresa"
 	},
@@ -5922,6 +5924,20 @@
 	},
 	"capitalizationLabel": {
 		"message": "Velká první písmena"
+	},
+	"searchinAB": {
+		"message": "Hledat v aplikaci $P1$",
+        "placeholders": {
+            "P1": {
+                "content": "$1"
+            }
+        }
+	},
+	"searchinAllAB": {
+		"message": "Prohledat všechny složky kontaktů"
+	},
+	"searchingABPlaceholder": {
+		"message": "Hledání…"
 	},
 	"region-name-ad": {
 		"message": "Andorra"

@@ -1,0 +1,36 @@
+<?xml version="1.0"?>
+<!DOCTYPE html>
+
+<html id="wdw_birthdaySync">
+	<head>
+        <meta charset="UTF-8">
+		<link rel='stylesheet' type='text/css' href="chrome://messenger/skin/messenger.css">
+		<link rel='stylesheet' type='text/css' href="chrome://global/skin/in-content/common.css">
+		<link rel='stylesheet' type='text/css' href="chrome://messenger/skin/shared/themeableDialog.css">
+        <link rel='stylesheet' type='text/css' href="chrome://messenger/skin/accountSetup.css">
+
+        <link rel='stylesheet' type='text/css' href="../skin/cardbookMain.css">
+        <link rel='stylesheet' type='text/css' href="../skin/cardbookGrid.css">
+        <link rel='stylesheet' type='text/css' href="../skin/cardbookHTML.css">
+        <link rel='stylesheet' type='text/css' href="../skin/cardbookTableTree.css">
+		<title></title>
+	</head>
+
+	<body xmlns="http://www.mozilla.org/keymaster/gatekeeper/there.is.only.xul">
+        <div class="grid-container-1">
+            <div class="hbox header-container">
+                <label id="noneFound"></label>
+            </div>
+            <div class="hbox body-container">
+                <table id="syncListTable" class="tableTree" 
+                    data-sort-order="ascending" data-sort-column="calendarName">
+                </table>
+            </div>
+            <div class="hbox footer-container vright">
+                <button id="closeEditionLabel">__MSG_closeEditionLabel__</button>
+            </div>
+        </div>
+        <script src="../scripts/i18n.js"></script>
+		<script type="module" src="../birthdays/wdw_birthdaySync.js"></script>
+    </body>
+</html>

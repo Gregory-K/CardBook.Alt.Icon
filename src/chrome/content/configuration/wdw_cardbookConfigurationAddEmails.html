@@ -10,52 +10,59 @@
         <link rel='stylesheet' type='text/css' href="chrome://messenger/skin/accountSetup.css">
 
         <link rel='stylesheet' type='text/css' href="../skin/cardbookHTML.css">
+        <link rel='stylesheet' type='text/css' href="../skin/cardbookGrid.css">
         <link rel='stylesheet' type='text/css' href="../skin/cardbookAddressBooks.css">
 		<link rel='stylesheet' type='text/css' href="../skin/cardbookConfiguration.css">
 		<title></title>
 	</head>
 
 	<body xmlns="http://www.mozilla.org/keymaster/gatekeeper/there.is.only.xul">
-		<div class="hbox">
-			<table>
-				<tr id="typeRow">
-					<td>
-						<label>__MSG_typeLabel__</label>
-					</td>
-					<td>
-						<select id="typeMenulist"></select>
-					</td>
-				</tr>
-				<tr>
-					<td>
-						<label>__MSG_mailAccountLabel__</label>
-					</td>
-					<td>
-						<select id="mailAccountMenulist"></select>
-					</td>
-				</tr>
-				<tr>
-					<td>
-						<label>__MSG_addressbookLabel__</label>
-					</td>
-					<td>
-						<select id="CardBookABMenulist"></select>
-					</td>
-				</tr>
-				<tr>
-					<td>
-						<label>__MSG_categoryLabel__</label>
-					</td>
-					<td>
-						<select id="categoryMenulist"></select>
-					</td>
-				</tr>
-			</table>
-		</div>
-		<div class="hbox vright">
-			<button id="cancelButton">__MSG_cancelEditionLabel__</button>
-			<button id="validateButton">__MSG_validateEditionLabel__</button>
-		</div>
+        <div class="grid-container-1">
+            <div class="hbox header-container">
+            </div>
+            <div class="hbox body-container vcentered">
+                <div class="vbox alignCenter">
+					<table>
+						<tr id="typeRow">
+							<td>
+								<label>__MSG_typeLabel__</label>
+							</td>
+							<td>
+								<select id="typeMenulist"></select>
+							</td>
+						</tr>
+						<tr>
+							<td>
+								<label>__MSG_mailAccountLabel__</label>
+							</td>
+							<td>
+								<select id="mailAccountMenulist"></select>
+							</td>
+						</tr>
+						<tr>
+							<td>
+								<label>__MSG_addressbookLabel__</label>
+							</td>
+							<td>
+								<select id="CardBookABMenulist"></select>
+							</td>
+						</tr>
+						<tr>
+							<td>
+								<label>__MSG_categoryLabel__</label>
+							</td>
+							<td>
+								<select id="categoryMenulist"></select>
+							</td>
+						</tr>
+					</table>
+                </div>
+            </div>
+            <div class="hbox footer-container vright">
+				<button id="cancelButton">__MSG_cancelEditionLabel__</button>
+				<button id="validateButton">__MSG_validateEditionLabel__</button>
+			</div>
+        </div>
         <script src="../scripts/i18n.js"></script>
 		<script type="module" src="../cardbookHTMLTools.mjs"></script>
 		<script type="module" src="wdw_cardbookConfigurationAddEmails.js"></script>

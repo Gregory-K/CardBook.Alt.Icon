@@ -1,5 +1,4 @@
 var { Services } = ChromeUtils.import("resource://gre/modules/Services.jsm");
-var { MailE10SUtils } = ChromeUtils.import("resource:///modules/MailE10SUtils.jsm");
 var loader = Services.scriptloader;
 loader.loadSubScript("chrome://cardbook/content/cardbookWebDAV.js", this);
 
@@ -10,107 +9,37 @@ var cardbookSynchronizationGoogle2 = {
 	labelsList: {},
 	contacts: {},
 
-	getGoogleOAuthURLForGooglePeople: function (aEmail, aType) {
+	getGoogleOAuthURLForGooglePeople: function (aEmail, aType, aRedirectURL) {
 		return cardbookRepository.cardbookOAuthData[aType].OAUTH_URL +
 			"?response_type=" + cardbookRepository.cardbookOAuthData[aType].RESPONSE_TYPE +
 			"&client_id=" + cardbookRepository.cardbookOAuthData[aType].CLIENT_ID +
-			"&redirect_uri=" + cardbookRepository.cardbookOAuthData[aType].REDIRECT_URI +
+			"&redirect_uri=" + aRedirectURL +
 			"&scope=" + cardbookRepository.cardbookOAuthData[aType].SCOPE_CONTACTS +
 			"&login_hint=" + aEmail;
 	},
 
-	requestNewRefreshTokenForGooglePeople: function (aConnection, aCallback, aFollowAction) {
+	requestNewRefreshTokenForGooglePeople: async function (aConnection, aCallback, aFollowAction) {
 		cardbookRepository.cardbookRefreshTokenRequest[aConnection.connPrefId]++;
-		var myArgs = {email: aConnection.connUser, dirPrefId: aConnection.connPrefId, clientID: cardbookRepository.cardbookOAuthData[aConnection.connType].CLIENT_ID, scopeURL: cardbookRepository.cardbookOAuthData[aConnection.connType].SCOPE_CONTACTS};
-		var wizard = Services.wm.getMostRecentWindow("mail:3pane").openDialog("chrome://cardbook/content/addressbooksconfiguration/wdw_newToken.xhtml", "", cardbookRepository.windowParams, myArgs);
-		wizard.addEventListener("load", function onloadListener() {
-			var browser = wizard.document.getElementById("browser");
-			var url = cardbookSynchronizationGoogle2.getGoogleOAuthURLForGooglePeople(aConnection.connUser, aConnection.connType);
-			var reporterListener = {
-				QueryInterface: function(aIID) {
-					if (aIID.equals(Components.interfaces.nsIWebProgressListener)   ||
-					aIID.equals(Components.interfaces.nsISupportsWeakReference) ||
-					aIID.equals(Components.interfaces.nsISupports)) {
-						return this;
-					}
-					throw Components.results.NS_NOINTERFACE;
-				},
-				onStateChange: function(/*in nsIWebProgress*/ aWebProgress,
-										/*in nsIRequest*/ aRequest,
-										/*in unsigned long*/ aStateFlags,
-										/*in nsresult*/ aStatus) {
-				},
-				onProgressChange: function(/*in nsIWebProgress*/ aWebProgress,
-											/*in nsIRequest*/ aRequest,
-											/*in long*/ aCurSelfProgress,
-											/*in long */aMaxSelfProgress,
-											/*in long */aCurTotalProgress,
-											/*in long */aMaxTotalProgress) {
-				},
-				onLocationChange: function(/*in nsIWebProgress*/ aWebProgress,
-											/*in nsIRequest*/ aRequest,
-											/*in nsIURI*/ aLocation) {
-				},
-				onStatusChange: function(/*in nsIWebProgress*/ aWebProgress,
-											/*in nsIRequest*/ aRequest,
-											/*in nsresult*/ aStatus,
-											/*in wstring*/ aMessage) {
-				},
-				onSecurityChange: function(/*in nsIWebProgress*/ aWebProgress,
-											/*in nsIRequest*/ aRequest,
-											/*in unsigned long*/ aState) {
+		let redirectURL = await notifyTools.notifyBackground({query: "cardbook.getGoogleRedirectURI"})
+		let url = cardbookSynchronizationGoogle2.getGoogleOAuthURLForGooglePeople(aConnection.connUser, aConnection.connType, redirectURL);
+		let code = await notifyTools.notifyBackground({query: "cardbook.getRefreshToken", url: url, redirectURL: redirectURL})
+		if (code) {
+			cardbookRepository.cardbookUtils.formatStringForOutput("googleNewRefreshTokenOK", [aConnection.connDescription, code]);
+			var connection = {connUser: "", connType: aConnection.connType, connUrl: cardbookRepository.cardbookOAuthData[aConnection.connType].TOKEN_REQUEST_URL, connPrefId: aConnection.connPrefId, connDescription: aConnection.connDescription};
+			cardbookSynchronizationGoogle2.getNewRefreshTokenForGooglePeople(connection, code, redirectURL, function callback(aResponse) {
+				cardbookRepository.cardbookPasswordManager.rememberPassword(aConnection.connUser, cardbookRepository.cardbookOAuthData[aConnection.connType].AUTH_PREFIX_CONTACTS, aResponse.refresh_token, true);
+				if (aCallback) {
+					aCallback(aConnection, aFollowAction);
 				}
-			};
-			browser.addProgressListener(reporterListener, Components.interfaces.nsIWebProgress.NOTIFY_ALL);
-			MailE10SUtils.loadURI(browser, url);
-
-			function loaded(aWindow, aWebProgress) {
-				this._listener = {
-					window: aWindow,
-					webProgress: aWebProgress,
-
-					QueryInterface: ChromeUtils.generateQI(["nsIWebProgressListener", "nsISupportsWeakReference"]),
-
-					_checkForRedirect(url) {
-						let redirectURL = cardbookRepository.cardbookOAuthData[aConnection.connType].REDIRECT_URI;
-						if (!url.startsWith(redirectURL)) {
-							return;
-						}
-						let params = new URLSearchParams(url.split("?", 2)[1]);
-						if (params.has("code")) {
-							let code = params.get("code");
-							cardbookRepository.cardbookUtils.formatStringForOutput("googleNewRefreshTokenOK", [aConnection.connDescription, code]);
-							var connection = {connUser: "", connType: aConnection.connType, connUrl: cardbookRepository.cardbookOAuthData[aConnection.connType].TOKEN_REQUEST_URL, connPrefId: aConnection.connPrefId, connDescription: aConnection.connDescription};
-							cardbookSynchronizationGoogle2.getNewRefreshTokenForGooglePeople(connection, code, function callback(aResponse) {
-								wizard.close();
-								cardbookRepository.cardbookPasswordManager.rememberPassword(aConnection.connUser, cardbookRepository.cardbookOAuthData[aConnection.connType].AUTH_PREFIX_CONTACTS, aResponse.refresh_token, true);
-								if (aCallback) {
-									aCallback(aConnection, aFollowAction);
-								}
-							});
-						}
-					},
-
-					onStateChange(aWebProgress, aRequest, aStateFlags, aStatus) {
-						const wpl = Components.interfaces.nsIWebProgressListener;
-						if (aStateFlags & (wpl.STATE_START | wpl.STATE_IS_NETWORK)) {
-							this._checkForRedirect(aRequest.name);
-						}
-					},
-					onLocationChange(aWebProgress, aRequest, aLocation) {
-						this._checkForRedirect(aLocation.spec);
-					},
-					onProgressChange() {},
-					onStatusChange() {},
-					onSecurityChange() {},
-				};
-				aWebProgress.addProgressListener(this._listener, Components.interfaces.nsIWebProgress.NOTIFY_ALL);
-			};
-			loaded(wizard.document.getElementById("wdw_newToken"), browser.webProgress);
-		});
+			});
+		} else {
+			cardbookRepository.cardbookRefreshTokenError[aConnection.connPrefId]++;
+			cardbookRepository.cardbookRefreshTokenResponse[aConnection.connPrefId]++;
+			cardbookRepository.cardbookServerSyncResponse[aConnection.connPrefId]++;
+		}
 	},
 
-	getNewRefreshTokenForGooglePeople: function(aConnection, aCode, aCallback) {
+	getNewRefreshTokenForGooglePeople: function(aConnection, aCode, aRedirectURL, aCallback) {
 		var listener_getRefreshToken = {
 			onDAVQueryComplete: function(status, response, askCertificate) {
 				if (status > 199 && status < 400) {
@@ -136,7 +65,7 @@ var cardbookSynchronizationGoogle2 = {
 		};
 		cardbookRepository.cardbookUtils.formatStringForOutput("googleRequestRefreshToken", [aConnection.connDescription, aConnection.connUrl]);
 		let params = {"code": aCode, "client_id": cardbookRepository.cardbookOAuthData[aConnection.connType].CLIENT_ID, "client_secret": cardbookRepository.cardbookOAuthData[aConnection.connType].CLIENT_SECRET,
-						"redirect_uri": cardbookRepository.cardbookOAuthData[aConnection.connType].REDIRECT_URI, "grant_type": cardbookRepository.cardbookOAuthData[aConnection.connType].TOKEN_REQUEST_GRANT_TYPE};
+						"redirect_uri": aRedirectURL, "grant_type": cardbookRepository.cardbookOAuthData[aConnection.connType].TOKEN_REQUEST_GRANT_TYPE};
 		let headers = { "Content-Type": "application/x-www-form-urlencoded", "GData-Version": "3" };
 		aConnection.accessToken = "NOACCESSTOKEN";
 		let request = new cardbookWebDAV(aConnection, listener_getRefreshToken);
@@ -145,7 +74,7 @@ var cardbookSynchronizationGoogle2 = {
 
 	getNewAccessTokenForGooglePeople: function(aConnection, aFollowAction) {
 		var listener_getAccessToken = {
-			onDAVQueryComplete: function(status, response, askCertificate) {
+			onDAVQueryComplete: async function(status, response, askCertificate) {
 				if (status > 199 && status < 400) {
 					try {
 						var responseText = JSON.parse(response);
@@ -1790,10 +1719,10 @@ var cardbookSynchronizationGoogle2 = {
 									cardbookSynchronizationGoogle2.getNewAccessTokenForGooglePeople(connection, cardbookSynchronizationGoogle2.googleSyncContactsInit);
 								}
 							} else {
-								cardbookSynchronization.finishSync(aPrefId, aPrefName, type);
 								if (cardbookRepository.cardbookServerSyncAgain[aPrefId] && cardbookSynchronization.getError(aPrefId) == 0) {
 									cardbookRepository.cardbookUtils.formatStringForOutput("synchroForcedToResync", [aPrefName]);
 									cardbookSynchronization.finishMultipleOperations(aPrefId);
+									cardbookSynchronization.finishSync(aPrefId, aPrefName, type);
 									// to avoid other sync during the wait time
 									cardbookRepository.cardbookSyncMode[aPrefId] = 1;
 									if ("undefined" == typeof(setTimeout)) {
@@ -1803,7 +1732,16 @@ var cardbookSynchronizationGoogle2 = {
 											cardbookSynchronization.syncAccount(aPrefId, true);
 										}, 10000);               
 								} else {
+									if (cardbookSynchronization.getError(aPrefId) == 0) {
+										let sysdate = cardbookRepository.cardbookDates.getDateUTC();
+										let syncdate = sysdate.year + sysdate.month + sysdate.day + "T" + sysdate.hour + sysdate.min + sysdate.sec + "Z";
+										cardbookRepository.cardbookPreferences.setLastSync(aPrefId, syncdate);
+										cardbookRepository.cardbookPreferences.setSyncFailed(aPrefId, false);
+									} else {
+										cardbookRepository.cardbookPreferences.setSyncFailed(aPrefId, true);
+									}
 									cardbookSynchronization.finishMultipleOperations(aPrefId);
+									cardbookSynchronization.finishSync(aPrefId, aPrefName, type);
 									var total = cardbookSynchronization.getRequest() + cardbookSynchronization.getTotal() + cardbookSynchronization.getResponse() + cardbookSynchronization.getDone();
 									// all sync are finished
 									if (total === 0) {

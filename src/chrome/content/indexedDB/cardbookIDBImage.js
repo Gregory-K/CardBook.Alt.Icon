@@ -83,7 +83,7 @@ var cardbookIDBImage = {
 				}).then( () => {
 					cardbookIDBImage.doUpgrade = false;
 				});
-			}                 
+			}
 			cardbookRepository.cardbookUtils.notifyObservers("imageDBOpen");
 		};
 		

@@ -18,6 +18,34 @@
 	"statusProgressInformationTooltip": {
 		"message": "Klik di sini untuk melihat jurnal"
 	},
+	"columnsSortBy": {
+		"message": "Urutkan berdasarkan: $P1$",
+        "placeholders": {
+            "P1": {
+                "content": "$1"
+            }
+        }
+	},
+	"columnPickerTitle": {
+		"message": "Pilih kolom yang ditampilkan"
+	},
+	"columnPickerRestoreColumnOrder": {
+		"message": "Kembalikan Urutan Kolom"
+	},
+	"columnPickerApplyCurrentViewTo": {
+		"message": "??Apply current view to…??"
+	},
+	"columnPickerApplyCurrentViewToConfirmMsg": {
+		"message": "Terapkan setelan kolom folder ini untuk $P1$?",
+        "placeholders": {
+            "P1": {
+                "content": "$1"
+            }
+        }
+	},
+	"columnPickerApplyCurrentViewToConfirmTitle": {
+		"message": "Terapkan Perubahan?"
+	},
 	"imageSelectionTitle": {
 		"message": "Pemilihan gambar"
 	},
@@ -645,6 +673,25 @@
 	},
 	"synchroAllFinished": {
 		"message": "Semua sinkronisasi sudah selesai"
+	},
+	"lastSync": {
+		"message": "Terakhir disinkronkan: $P1$",
+        "placeholders": {
+            "P1": {
+                "content": "$1"
+            }
+        }
+	},
+	"syncFailedNeverSynced": {
+		"message": "Sinkronisasi gagal. Terakhir disinkronkan: tidak pernah"
+	},
+	"syncFailedLastSync": {
+		"message": "Sinkronisasi gagal. Terakhir berhasil: $P1$",
+        "placeholders": {
+            "P1": {
+                "content": "$1"
+            }
+        }
 	},
 	"discoveryRunning": {
 		"message": "$P1$ : Alamat buku penemuan otomatis berjalan",
@@ -2755,7 +2802,7 @@
         }
 	},
 	"eventEntryTitleMessage": {
-		"message": "Ulang tahun %1$S"
+		"message": "Ulang tahun %1$S (%5$S)"
 	},
 	"anniversaryCategory": {
 		"message": "Perayaan"
@@ -3747,12 +3794,6 @@
 	"findEventsFromEmailMessengerAccesskey": {
 		"message": "e"
 	},
-	"mailContext-addToCardBookMenuLabel": {
-		"message": "Tambah Kontak…"
-	},
-	"mailContext-addToCardBookMenuAccesskey": {
-		"message": "b"
-	},
 	"addAllAttachementsToCardBookMenuLabel": {
 		"message": "Kepada Semua Kontak…"
 	},
@@ -3981,6 +4022,9 @@
 	"readonlyLabel": {
 		"message": "Mode baca-saja"
 	},
+	"syncingLabel": {
+		"message": "Menyinkronkan…"
+	},
 	"urnuuidLabel": {
 		"message": "Gunakan urn:uuid"
 	},
@@ -4038,14 +4082,8 @@
 	"sendEmailLabel": {
 		"message": "Tulis pesan baru"
 	},
-	"sendEmailAccesskey": {
-		"message": "T"
-	},
 	"syncLightningMenuItemLabel": {
 		"message": "Sinkronkan dengan Lightning"
-	},
-	"syncLightningMenuAccesskey": {
-		"message": "S"
 	},
 	"calendarNameLabel": {
 		"message": "Kalender"
@@ -5220,12 +5258,6 @@
 	"cardbookToolbarAppMenuButtonTooltip": {
 		"message": "Menu Kontak"
 	},
-	"cardbookToolbarSearchBoxLabel": {
-		"message": "Pencarian Kontak"
-	},
-	"cardbookToolbarSearchBoxTooltip": {
-		"message": "Pencarian Kontak"
-	},
 	"cardbookToolbarComplexSearchLabel": {
 		"message": "Pencarian Tersimpan"
 	},
@@ -5348,9 +5380,6 @@
 	},
 	"PreferMailFormat.label": {
 		"message": "Memilih menerima pesan dalam format:"
-	},
-	"PreferMailFormat.accesskey": {
-		"message": "v"
 	},
 	"Unknown.label": {
 		"message": "Tidak diketahui"
@@ -5493,9 +5522,6 @@
 	"editEventLabel": {
 		"message": "Acara Ubah"
 	},
-	"editEventAccesskey": {
-		"message": "U"
-	},
 	"eventsTableTitleLabel": {
 		"message": "Judul"
 	},
@@ -5534,9 +5560,6 @@
 	},
 	"createEventLabel": {
 		"message": "Acara Baru"
-	},
-	"createEventAccesskey": {
-		"message": "B"
 	},
 	"adrFormulaExplanation": {
 		"message": "Hal ini dimungkinkan untuk menyesuaikan cara format Kontak alamatnya. Formula ini terdiri dari blok yang dilingkupi “()”. ??In these blocks there might be many parts delimited by “|”.??"
@@ -5700,38 +5723,20 @@
 	"createEditionLabel": {
 		"message": "Buat"
 	},
-	"createEditionAccesskey": {
-		"message": "B"
-	},
 	"createAndReplaceEditionLabel": {
 		"message": "Buat dan Ganti"
-	},
-	"createAndReplaceEditionAccesskey": {
-		"message": "G"
 	},
 	"saveEditionLabel": {
 		"message": "Simpan"
 	},
-	"saveEditionAccesskey": {
-		"message": "S"
-	},
 	"validateEditionLabel": {
 		"message": "Mengesahkan"
-	},
-	"validateEditionAccesskey": {
-		"message": "M"
 	},
 	"cancelEditionLabel": {
 		"message": "Batal"
 	},
-	"cancelEditionAccesskey": {
-		"message": "B"
-	},
 	"closeEditionLabel": {
 		"message": "Tutup"
-	},
-	"closeEditionAccesskey": {
-		"message": "T"
 	},
 	"moreEditionLabel": {
 		"message": "Lebih banyak"
@@ -5827,9 +5832,6 @@
 	"kind.edit.label": {
 		"message": "Jenis"
 	},
-	"kind.edit.accesskey": {
-		"message": "J"
-	},
 	"addEmailGroupboxLabel": {
 		"message": "Alamat Email"
 	},
@@ -5922,6 +5924,20 @@
 	},
 	"capitalizationLabel": {
 		"message": "??Capitalization??"
+	},
+	"searchinAB": {
+		"message": "Cari $P1$",
+        "placeholders": {
+            "P1": {
+                "content": "$1"
+            }
+        }
+	},
+	"searchinAllAB": {
+		"message": "??Search all address books??"
+	},
+	"searchingABPlaceholder": {
+		"message": "??Searching…??"
 	},
 	"region-name-ad": {
 		"message": "Andorra"

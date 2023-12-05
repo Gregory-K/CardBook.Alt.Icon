@@ -18,6 +18,34 @@
 	"statusProgressInformationTooltip": {
 		"message": "Κάντε κλικ εδώ για να δείτε τα αρχεία καταγραφής"
 	},
+	"columnsSortBy": {
+		"message": "Ταξινόμηση: $P1$",
+        "placeholders": {
+            "P1": {
+                "content": "$1"
+            }
+        }
+	},
+	"columnPickerTitle": {
+		"message": "Επιλέξτε στήλες προς εμφάνιση"
+	},
+	"columnPickerRestoreColumnOrder": {
+		"message": "Επαναφορά σειράς στηλών"
+	},
+	"columnPickerApplyCurrentViewTo": {
+		"message": "Εφαρμογή τρέχουσας προβολής σε…"
+	},
+	"columnPickerApplyCurrentViewToConfirmMsg": {
+		"message": "Εφαρμογή στηλών τρέχοντος φακέλου στο «$P1$»;",
+        "placeholders": {
+            "P1": {
+                "content": "$1"
+            }
+        }
+	},
+	"columnPickerApplyCurrentViewToConfirmTitle": {
+		"message": "Εφαρμογή αλλαγών?"
+	},
 	"imageSelectionTitle": {
 		"message": "Επιλογή εικόνας"
 	},
@@ -645,6 +673,25 @@
 	},
 	"synchroAllFinished": {
 		"message": "Όλοι οι συγχρονισμοί τελειώθηκαν"
+	},
+	"lastSync": {
+		"message": "Τελευταίος συγχρονισμός: $P1$",
+        "placeholders": {
+            "P1": {
+                "content": "$1"
+            }
+        }
+	},
+	"syncFailedNeverSynced": {
+		"message": "Αποτυχία συγχρονισμού. Τελευταίος συγχρονισμός: ποτέ"
+	},
+	"syncFailedLastSync": {
+		"message": "Αποτυχία συγχρονισμού. Τελευταία επιτυχία: $P1$",
+        "placeholders": {
+            "P1": {
+                "content": "$1"
+            }
+        }
 	},
 	"discoveryRunning": {
 		"message": "$P1$ : Αυτόματη ανακάλυψη βιβλίου διευθύνσεων σε εξέλιξη",
@@ -2755,7 +2802,7 @@
         }
 	},
 	"eventEntryTitleMessage": {
-		"message": "Επέτειος του %1$S"
+		"message": "Επέτειος του %1$S (%5$S)"
 	},
 	"anniversaryCategory": {
 		"message": "Αγαπημένα"
@@ -3747,12 +3794,6 @@
 	"findEventsFromEmailMessengerAccesskey": {
 		"message": "δ"
 	},
-	"mailContext-addToCardBookMenuLabel": {
-		"message": "Προσθέστε επαφή…"
-	},
-	"mailContext-addToCardBookMenuAccesskey": {
-		"message": "Π"
-	},
 	"addAllAttachementsToCardBookMenuLabel": {
 		"message": "Στο Επαφές όλα…"
 	},
@@ -3981,6 +4022,9 @@
 	"readonlyLabel": {
 		"message": "Λειτουργία μόνο για ανάγνωση"
 	},
+	"syncingLabel": {
+		"message": "Συγχρονισμός…"
+	},
 	"urnuuidLabel": {
 		"message": "Χρησιμοποιήστε το urn:uuid"
 	},
@@ -4038,14 +4082,8 @@
 	"sendEmailLabel": {
 		"message": "Γράψτε ένα νέο μήνυμα"
 	},
-	"sendEmailAccesskey": {
-		"message": "Γ"
-	},
 	"syncLightningMenuItemLabel": {
 		"message": "Συγχρονίστε με την Αστραπή (Lightning)"
-	},
-	"syncLightningMenuAccesskey": {
-		"message": "Σ"
 	},
 	"calendarNameLabel": {
 		"message": "Ημερολόγιο"
@@ -5220,12 +5258,6 @@
 	"cardbookToolbarAppMenuButtonTooltip": {
 		"message": "Μενού Επαφές"
 	},
-	"cardbookToolbarSearchBoxLabel": {
-		"message": "Επαφές αναζήτησης"
-	},
-	"cardbookToolbarSearchBoxTooltip": {
-		"message": "Επαφές αναζήτησης"
-	},
 	"cardbookToolbarComplexSearchLabel": {
 		"message": "Αποθηκευμένη αναζήτηση"
 	},
@@ -5348,9 +5380,6 @@
 	},
 	"PreferMailFormat.label": {
 		"message": "Προτιμώμενη μορφή ληφθέντων μηνυμάτων:"
-	},
-	"PreferMailFormat.accesskey": {
-		"message": "μ"
 	},
 	"Unknown.label": {
 		"message": "Άγνωστη"
@@ -5493,9 +5522,6 @@
 	"editEventLabel": {
 		"message": "Επεξεργασία συμβάντος"
 	},
-	"editEventAccesskey": {
-		"message": "Ε"
-	},
 	"eventsTableTitleLabel": {
 		"message": "Τίτλος"
 	},
@@ -5534,9 +5560,6 @@
 	},
 	"createEventLabel": {
 		"message": "Νέο γεγονός"
-	},
-	"createEventAccesskey": {
-		"message": "Ν"
 	},
 	"adrFormulaExplanation": {
 		"message": "Είναι δυνατό να προσαρμόσετε τον τρόπο με τον οποίο οι επαφές διαμορφώνουν τις διευθύνσεις του. Αυτός ο τύπος συνίσταται σε μπλοκ που περικλείονται από το «()». ??In these blocks there might be many parts delimited by «|».??"
@@ -5700,38 +5723,20 @@
 	"createEditionLabel": {
 		"message": "Δημιουργία"
 	},
-	"createEditionAccesskey": {
-		"message": "Δ"
-	},
 	"createAndReplaceEditionLabel": {
 		"message": "Δημιουργία και αντικατάσταση"
-	},
-	"createAndReplaceEditionAccesskey": {
-		"message": "α"
 	},
 	"saveEditionLabel": {
 		"message": "Αποθήκευση"
 	},
-	"saveEditionAccesskey": {
-		"message": "θ"
-	},
 	"validateEditionLabel": {
 		"message": "Επικυρώνω"
-	},
-	"validateEditionAccesskey": {
-		"message": "Ε"
 	},
 	"cancelEditionLabel": {
 		"message": "Ακύρωση"
 	},
-	"cancelEditionAccesskey": {
-		"message": "Α"
-	},
 	"closeEditionLabel": {
 		"message": "Κλείσιμο"
-	},
-	"closeEditionAccesskey": {
-		"message": "Κ"
 	},
 	"moreEditionLabel": {
 		"message": "Εμφάνιση περισσότερων"
@@ -5827,9 +5832,6 @@
 	"kind.edit.label": {
 		"message": "Είδος"
 	},
-	"kind.edit.accesskey": {
-		"message": "Ε"
-	},
 	"addEmailGroupboxLabel": {
 		"message": "Διεύθυνση Email"
 	},
@@ -5922,6 +5924,20 @@
 	},
 	"capitalizationLabel": {
 		"message": "??Capitalization??"
+	},
+	"searchinAB": {
+		"message": "Αναζήτηση $P1$",
+        "placeholders": {
+            "P1": {
+                "content": "$1"
+            }
+        }
+	},
+	"searchinAllAB": {
+		"message": "Αναζήτηση σε όλα τα ευρετήρια"
+	},
+	"searchingABPlaceholder": {
+		"message": "Αναζήτηση…"
 	},
 	"region-name-ad": {
 		"message": "Ανδόρα"

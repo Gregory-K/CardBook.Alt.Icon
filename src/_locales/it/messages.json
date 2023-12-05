@@ -18,6 +18,34 @@
 	"statusProgressInformationTooltip": {
 		"message": "Clicca qui per visualizzare i registri"
 	},
+	"columnsSortBy": {
+		"message": "Ordina per: $P1$",
+        "placeholders": {
+            "P1": {
+                "content": "$1"
+            }
+        }
+	},
+	"columnPickerTitle": {
+		"message": "Selezionare le colonne da mostrare"
+	},
+	"columnPickerRestoreColumnOrder": {
+		"message": "Ripristina l’ordine delle colonne"
+	},
+	"columnPickerApplyCurrentViewTo": {
+		"message": "Utilizza la vista corrente per…"
+	},
+	"columnPickerApplyCurrentViewToConfirmMsg": {
+		"message": "Applicare le colonne della cartella corrente a $P1$?",
+        "placeholders": {
+            "P1": {
+                "content": "$1"
+            }
+        }
+	},
+	"columnPickerApplyCurrentViewToConfirmTitle": {
+		"message": "Applicare le modifiche?"
+	},
 	"imageSelectionTitle": {
 		"message": "Selezione immagine"
 	},
@@ -147,7 +175,7 @@
 		"message": "URL malformato"
 	},
 	"ValidatingURILabel": {
-		"message": "Digitare o incollare un URL"
+		"message": "Digita o incolla un URL"
 	},
 	"ValidatingURIFailedLabel": {
 		"message": "URL non valido"
@@ -645,6 +673,25 @@
 	},
 	"synchroAllFinished": {
 		"message": "Tutte le sincronizzazioni terminate"
+	},
+	"lastSync": {
+		"message": "Ultima sincronizzazione: $P1$",
+        "placeholders": {
+            "P1": {
+                "content": "$1"
+            }
+        }
+	},
+	"syncFailedNeverSynced": {
+		"message": "Sincronizzazione non riuscita. Ultima sincronizzazione: mai"
+	},
+	"syncFailedLastSync": {
+		"message": "Sincronizzazione non riuscita. Ultima sincronizzazione: $P1$",
+        "placeholders": {
+            "P1": {
+                "content": "$1"
+            }
+        }
 	},
 	"discoveryRunning": {
 		"message": "$P1$ : Rilevazione automatica della rubrica in esecuzione",
@@ -2755,7 +2802,7 @@
         }
 	},
 	"eventEntryTitleMessage": {
-		"message": "Compleanno di %1$S"
+		"message": "Compleanno di %1$S (%5$S)"
 	},
 	"anniversaryCategory": {
 		"message": "Anniversari"
@@ -3370,7 +3417,7 @@
 		"message": "Definizione restrizioni di indirizzo postale"
 	},
 	"wdw_cardbookConfigurationAddEmailsEmailsCollectionTitle": {
-		"message": "Indirizzo postale in partenza Emails collezione definizione"
+		"message": "Definizione collezione e-mail in uscita dall'account"
 	},
 	"ignoreCaseIgnoreDiacriticLabel": {
 		"message": "Ignorare il caso, ignora i segni diacritici"
@@ -3747,12 +3794,6 @@
 	"findEventsFromEmailMessengerAccesskey": {
 		"message": "c"
 	},
-	"mailContext-addToCardBookMenuLabel": {
-		"message": "Aggiungi a CardBook…"
-	},
-	"mailContext-addToCardBookMenuAccesskey": {
-		"message": "g"
-	},
 	"addAllAttachementsToCardBookMenuLabel": {
 		"message": "Aggiungi TUTTI a CardBook"
 	},
@@ -3838,16 +3879,16 @@
 		"message": "Sfoglia"
 	},
 	"remotePage.description": {
-		"message": "Di che tipo è la tua rubrica remota?"
+		"message": "Quale è il tipo della tua rubrica remota?"
 	},
 	"remotePage.type.label": {
 		"message": "Tipo"
 	},
 	"remotePageType.carddav.label": {
-		"message": "CardDAV (Digitare o incollare un URL)"
+		"message": "CardDAV (Digita o incolla un URL)"
 	},
 	"remotePageType.ews.label": {
-		"message": "EWS (Digitare o incollare un URL)"
+		"message": "EWS (Digita o incolla un URL)"
 	},
 	"remotePageType.google2.label": {
 		"message": "Google"
@@ -3981,6 +4022,9 @@
 	"readonlyLabel": {
 		"message": "Modalità sola lettura"
 	},
+	"syncingLabel": {
+		"message": "Sincronizzazione in corso…"
+	},
 	"urnuuidLabel": {
 		"message": "Usa urn:uuid"
 	},
@@ -4038,14 +4082,8 @@
 	"sendEmailLabel": {
 		"message": "Scrivi un nuovo messaggio"
 	},
-	"sendEmailAccesskey": {
-		"message": "E"
-	},
 	"syncLightningMenuItemLabel": {
 		"message": "Sincronizza con Lightning"
-	},
-	"syncLightningMenuAccesskey": {
-		"message": "S"
 	},
 	"calendarNameLabel": {
 		"message": "Calendario"
@@ -5220,12 +5258,6 @@
 	"cardbookToolbarAppMenuButtonTooltip": {
 		"message": "Menu CardBook"
 	},
-	"cardbookToolbarSearchBoxLabel": {
-		"message": "Ricerca contatti"
-	},
-	"cardbookToolbarSearchBoxTooltip": {
-		"message": "Ricerca contatti"
-	},
 	"cardbookToolbarComplexSearchLabel": {
 		"message": "Ricerca avanzata"
 	},
@@ -5348,9 +5380,6 @@
 	},
 	"PreferMailFormat.label": {
 		"message": "Formato preferito per i messaggi di posta:"
-	},
-	"PreferMailFormat.accesskey": {
-		"message": "o"
 	},
 	"Unknown.label": {
 		"message": "Sconosciuto"
@@ -5493,9 +5522,7 @@
 	"editEventLabel": {
 		"message": "Modifica evento"
 	},
-	"editEventAccesskey": {
-		"message": "M"
-	},
+
 	"eventsTableTitleLabel": {
 		"message": "Titolo"
 	},
@@ -5534,9 +5561,6 @@
 	},
 	"createEventLabel": {
 		"message": "Nuovo evento"
-	},
-	"createEventAccesskey": {
-		"message": "N"
 	},
 	"adrFormulaExplanation": {
 		"message": "È possibile personalizzare il modo in cui CardBook formatta i suoi indirizzi. Questa formula consiste in blocchi racchiusi tra «()». In questi blocchi potrebbero esserci molte parti delimitate da «|»."
@@ -5700,38 +5724,20 @@
 	"createEditionLabel": {
 		"message": "Crea"
 	},
-	"createEditionAccesskey": {
-		"message": "T"
-	},
 	"createAndReplaceEditionLabel": {
 		"message": "Crea e sostituisci"
-	},
-	"createAndReplaceEditionAccesskey": {
-		"message": "R"
 	},
 	"saveEditionLabel": {
 		"message": "Salva"
 	},
-	"saveEditionAccesskey": {
-		"message": "S"
-	},
 	"validateEditionLabel": {
 		"message": "Convalida"
-	},
-	"validateEditionAccesskey": {
-		"message": "V"
 	},
 	"cancelEditionLabel": {
 		"message": "Annulla"
 	},
-	"cancelEditionAccesskey": {
-		"message": "C"
-	},
 	"closeEditionLabel": {
 		"message": "Chiudi"
-	},
-	"closeEditionAccesskey": {
-		"message": "C"
 	},
 	"moreEditionLabel": {
 		"message": "Visualizza dettagli"
@@ -5827,9 +5833,6 @@
 	"kind.edit.label": {
 		"message": "Tipologia"
 	},
-	"kind.edit.accesskey": {
-		"message": "K"
-	},
 	"addEmailGroupboxLabel": {
 		"message": "Indirizzo email"
 	},
@@ -5922,6 +5925,20 @@
 	},
 	"capitalizationLabel": {
 		"message": "Iniziali maiuscole"
+	},
+	"searchinAB": {
+		"message": "Cerca in $P1$",
+        "placeholders": {
+            "P1": {
+                "content": "$1"
+            }
+        }
+	},
+	"searchinAllAB": {
+		"message": "Cerca in tutte le rubriche"
+	},
+	"searchingABPlaceholder": {
+		"message": "Ricerca in corso…"
 	},
 	"region-name-ad": {
 		"message": "Andorra"

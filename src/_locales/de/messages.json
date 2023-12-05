@@ -18,6 +18,34 @@
 	"statusProgressInformationTooltip": {
 		"message": "Hier klicken, um das Protokoll anzuzeigen"
 	},
+	"columnsSortBy": {
+		"message": "Sortieren nach: $P1$",
+		"placeholders": {
+			"P1": {
+				"content": "$1"
+			}
+		}
+	},
+	"columnPickerTitle": {
+		"message": "Anzuzeigende Spalten auswählen"
+	},
+	"columnPickerRestoreColumnOrder": {
+		"message": "Spaltenreihenfolge zurücksetzen"
+	},
+	"columnPickerApplyCurrentViewTo": {
+		"message": "Aktuelle Ansicht übernehmen für…"
+	},
+	"columnPickerApplyCurrentViewToConfirmMsg": {
+		"message": "Spalteneinstellungen des aktuellen Ordners für „$P1$“ übernehmen?",
+		"placeholders": {
+			"P1": {
+				"content": "$1"
+			}
+		}
+	},
+	"columnPickerApplyCurrentViewToConfirmTitle": {
+		"message": "Änderungen anwenden?"
+	},
 	"imageSelectionTitle": {
 		"message": "Bild auswählen"
 	},
@@ -645,6 +673,25 @@
 	},
 	"synchroAllFinished": {
 		"message": "Alle Synchronisationen beendet."
+	},
+	"lastSync": {
+		"message": "Letzte Synchronisation: $P1$",
+		"placeholders": {
+			"P1": {
+				"content": "$1"
+			}
+		}
+	},
+	"syncFailedNeverSynced": {
+		"message": "Synchronisierung fehlgeschlagen. Zuletzt synchronisiert: nie"
+	},
+	"syncFailedLastSync": {
+		"message": "Synchronisierung fehlgeschlagen. Letzte erfolgreiche Synchronisation: $P1$",
+		"placeholders": {
+			"P1": {
+				"content": "$1"
+			}
+		}
 	},
 	"discoveryRunning": {
 		"message": "$P1$: Auto-Discovery für Adressbücher läuft",
@@ -2755,7 +2802,7 @@
 		}
 	},
 	"eventEntryTitleMessage": {
-		"message": "Geburtstag von %1$S"
+		"message": "Geburtstag von %1$S (%5$S)"
 	},
 	"anniversaryCategory": {
 		"message": "Jubiläum"
@@ -3034,19 +3081,19 @@
 	},
 	"wdw_cardEditionViewResultTitle": {
 		"message": "Bearbeitung des resultierenden Kontakts: $P1$",
-        "placeholders": {
-            "P1": {
-                "content": "$1"
-            }
-        }
+		"placeholders": {
+			"P1": {
+				"content": "$1"
+			}
+		}
 	},
 	"wdw_cardEditionViewResultHideCreateTitle": {
 		"message": "Bearbeitung des resultierenden Kontakts: $P1$",
-        "placeholders": {
-            "P1": {
-                "content": "$1"
-            }
-        }
+		"placeholders": {
+			"P1": {
+				"content": "$1"
+			}
+		}
 	},
 	"wdw_cardEditionAddEmailTitle": {
 		"message": "Neue E-Mail-Adresse hinzufügen"
@@ -3059,51 +3106,51 @@
 	},
 	"wdw_cardEditionEditContactTitle": {
 		"message": "Kontakt bearbeiten: $P1$",
-        "placeholders": {
-            "P1": {
-                "content": "$1"
-            }
-        }
+		"placeholders": {
+			"P1": {
+				"content": "$1"
+			}
+		}
 	},
 	"wdw_cardEditionEditListTitle": {
 		"message": "Liste bearbeiten: $P1$",
-        "placeholders": {
-            "P1": {
-                "content": "$1"
-            }
-        }
+		"placeholders": {
+			"P1": {
+				"content": "$1"
+			}
+		}
 	},
 	"wdw_cardEditionAddLineTitle": {
 		"message": "Kontakt bearbeiten: $P1$",
-        "placeholders": {
-            "P1": {
-                "content": "$1"
-            }
-        }
+		"placeholders": {
+			"P1": {
+				"content": "$1"
+			}
+		}
 	},
 	"wdw_cardEditionViewContactTitle": {
 		"message": "Kontakt anzeigen: $P1$",
-        "placeholders": {
-            "P1": {
-                "content": "$1"
-            }
-        }
+		"placeholders": {
+			"P1": {
+				"content": "$1"
+			}
+		}
 	},
 	"wdw_cardEditionViewListTitle": {
 		"message": "Liste anzeigen: $P1$",
-        "placeholders": {
-            "P1": {
-                "content": "$1"
-            }
-        }
+		"placeholders": {
+			"P1": {
+				"content": "$1"
+			}
+		}
 	},
 	"wdw_cardEditionEditTemplateTitle": {
 		"message": "Vorlage bearbeiten: $P1$",
-        "placeholders": {
-            "P1": {
-                "content": "$1"
-            }
-        }
+		"placeholders": {
+			"P1": {
+				"content": "$1"
+			}
+		}
 	},
 	"wdw_cardbookPrintTitleLong": {
 		"message": "Druckvorschau von $P1$ - CardBook - Thunderbird",
@@ -3747,12 +3794,6 @@
 	"findEventsFromEmailMessengerAccesskey": {
 		"message": "T"
 	},
-	"mailContext-addToCardBookMenuLabel": {
-		"message": "Zu CardBook hinzufügen…"
-	},
-	"mailContext-addToCardBookMenuAccesskey": {
-		"message": "Z"
-	},
 	"addAllAttachementsToCardBookMenuLabel": {
 		"message": "Alle Anhänge zu CardBook…"
 	},
@@ -3832,7 +3873,7 @@
 		"message": "Verzeichnis oder Datei:"
 	},
 	"localPage.uri.description": {
-		"message": "Wählen Sie den Speicherort für das neue lokale Adressbuch. Falls Sie eine neue Datei erstellen, sollten Sie .vcf als Dateiendung verwenden."
+		"message": "Wählen Sie den Speicherort für das neue lokale Adressbuch. Wenn Sie eine neue Datei erstellen, sollten Sie .vcf als Dateiendung verwenden."
 	},
 	"localPage.uributton.label": {
 		"message": "Durchsuchen"
@@ -3981,6 +4022,9 @@
 	"readonlyLabel": {
 		"message": "Schreibgeschützter Modus"
 	},
+	"syncingLabel": {
+		"message": "Wird synchronisiert…"
+	},
 	"urnuuidLabel": {
 		"message": "urn:uuid benutzen"
 	},
@@ -4038,14 +4082,8 @@
 	"sendEmailLabel": {
 		"message": "Neue Nachricht verfassen"
 	},
-	"sendEmailAccesskey": {
-		"message": "N"
-	},
 	"syncLightningMenuItemLabel": {
 		"message": "Mit Lightning synchronisieren"
-	},
-	"syncLightningMenuAccesskey": {
-		"message": "L"
 	},
 	"calendarNameLabel": {
 		"message": "Kalender"
@@ -4177,7 +4215,7 @@
 		"message": "Z"
 	},
 	"useColorLabel": {
-		"message": "Benutze die Farbe des Adressbuchs als:"
+		"message": "Farbe des Adressbuchs benutzen als:"
 	},
 	"useColorBackgroundLabel": {
 		"message": "Hintergrundfarbe"
@@ -4240,7 +4278,7 @@
 		"message": "Sammlung ausgehender E-Mail-Adressen"
 	},
 	"emailsCollectionTooltip": {
-		"message": "Erweitert die standardmäßige Sammlung ausgehender E-Mail-Adressen in Thunderbird. Falls aktiviert, werden E-Mail-Adressen, die nicht in einem Adressbuch von CardBook vorhanden sind, automatisch den ausgewählten Adressbüchern hinzugefügt."
+		"message": "Erweitert die standardmäßige Sammlung ausgehender E-Mail-Adressen in Thunderbird. Wenn aktiviert, werden E-Mail-Adressen, die in keinem CardBook-Adressbuch vorhanden sind, den ausgewählten Adressbüchern hinzugefügt."
 	},
 	"emailsCollectionEnabledLabel": {
 		"message": "Aktiviert"
@@ -4675,7 +4713,7 @@
 		"message": "Feldlabel"
 	},
 	"listPanelLabel": {
-		"message": "Falls Ihr Server keine Kategorien unterstützt (z. B. Apple, Zimbra etc.), dann sind Listen eine gute Alternative, um E-Mails an Gruppen zu senden. vCard 3.0 hat keine native Unterstützung für Listen, stattdessen können benutzerdefinierte Felder verwendet werden. Wenn Sie Listen in vCard 3.0 benutzen möchten, dann müssen Sie diese Felder definieren."
+		"message": "Wenn Ihr Server keine Kategorien unterstützt (wie Apple, Zimbra usw.), dann sind Listen eine gute Alternative, um E-Mails an Gruppen zu senden. vCard 3.0 hat keine native Unterstützung für Listen, stattdessen können benutzerdefinierte Felder verwendet werden. Wenn Sie Listen in vCard 3.0 benutzen möchten, dann müssen Sie diese Felder definieren."
 	},
 	"listGroupboxLabel": {
 		"message": "Benutzerdefinierte Felder für Listen"
@@ -4717,7 +4755,7 @@
 		"message": "V"
 	},
 	"solveConflictsLabel": {
-		"message": "Falls ein Kontakt sowohl lokal als auch serverseitig geändert worden ist:"
+		"message": "Wenn ein Kontakt sowohl auf serverseitig als auch lokal aktualisiert wurde:"
 	},
 	"solveConflictsLocalLabel": {
 		"message": "Lokale Änderung bevorzugen"
@@ -4774,10 +4812,10 @@
 		"message": "E-Mail-Versand"
 	},
 	"preferEmailPrefLabel": {
-		"message": "E-Mail-Adressen mit dem Typ “pref” bevorzugen"
+		"message": "E-Mail-Adressen bevorzugen, die markiert sind mit einem"
 	},
 	"preferEmailPrefWarn": {
-		"message": "Ist keine Adresse mit dem Typ “pref” vorhanden, so werden alle Adressen genutzt."
+		"message": "Wenn keine Adresse markiert ist, wird die Nachricht an alle Adressen des Kontakts gesendet."
 	},
 	"warnEmptyEmailsLabel": {
 		"message": "Mich warnen, wenn ich versuche, an einen Kontakt zu senden, zu dem keine E-Mail-Adresse gespeichert ist"
@@ -4786,7 +4824,7 @@
 		"message": "Nur die E-Mail-Adressen verwenden"
 	},
 	"attachVCardWarn": {
-		"message": "Automatisch vCard an E-Mails anhängen: Eine vCard pro E-Mail-Konto auswählen. Falls aktiviert, wird diese vCard an jede ausgehende E-Mail angehängt."
+		"message": "Automatisch vCard an E-Mails anhängen: Eine vCard pro E-Mail-Konto auswählen. Wenn aktiviert, wird diese vCard an jede ausgehende E-Mail dieses Kontos angehängt."
 	},
 	"attachVCardGroupboxLabel": {
 		"message": "Einer vCard hinzufügen"
@@ -4870,7 +4908,7 @@
 		"message": "Erinnerungen"
 	},
 	"remindViaPopupWindowGroupboxLabel": {
-		"message": "Erinnerung mit Popup-Fenster"
+		"message": "Erinnerung mit Pop-up-Fenster"
 	},
 	"numberOfDaysForSearchingLabel": {
 		"message": "Anzahl der Tage zum Prüfen der Geburtstage:"
@@ -4879,10 +4917,10 @@
 		"message": "A"
 	},
 	"showPopupOnStartupLabel": {
-		"message": "Popup-Fenster beim Start anzeigen"
+		"message": "Pop-up-Fenster beim Start anzeigen"
 	},
 	"showPeriodicPopupLabel": {
-		"message": "Popup-Fenster täglich anzeigen"
+		"message": "Pop-up-Fenster täglich anzeigen"
 	},
 	"periodicPopupTimeLabel": {
 		"message": "Zeit (hh:mm):"
@@ -4891,7 +4929,7 @@
 		"message": "Z"
 	},
 	"showPopupEvenIfNoBirthdayLabel": {
-		"message": "Popup-Fenster anzeigen, wenn die Liste der Geburtstage leer ist"
+		"message": "Pop-up-Fenster anzeigen, wenn die Liste der Geburtstage leer ist"
 	},
 	"remindViaLightningGroupboxLabel": {
 		"message": "Erinnerung mit Lightning"
@@ -4909,7 +4947,7 @@
 		"message": "Titel für Termin:"
 	},
 	"calendarEntryTitleTooltip": {
-		"message": "Das Feld sollte zwei Platzhalter &#37;S für Namen und Alter enthalten. Falls leer, wird eine Standardnachricht verwendet."
+		"message": "Das Feld sollte zwei Platzhalter &#37;S für Namen und Alter enthalten. Wenn leer, wird eine Standardnachricht verwendet."
 	},
 	"calendarEntryTitleAccesskey": {
 		"message": "T"
@@ -4936,7 +4974,7 @@
 		"message": "Erinnerung(en) n Stunden (Beispiel: 4,+1):"
 	},
 	"calendarEntryAlarmTooltip": {
-		"message": "Wie viele Stunden vor dem Geburtstag soll die Erinnerung angezeigt werden. Falls leer, gibt es keine Erinnerung. Wenn Sie mehrere Erinnerungen wünschen, geben Sie diese durch Kommas getrennt ein."
+		"message": "Wie viele Stunden vor dem Geburtstag soll die Erinnerung angezeigt werden. Wenn leer, gibt es keine Erinnerung. Wenn Sie mehrere Erinnerungen wünschen, geben Sie diese durch Kommas getrennt ein."
 	},
 	"calendarEntryAlarmAccesskey": {
 		"message": "E"
@@ -4945,7 +4983,7 @@
 		"message": "Kategorie(n) für Termin:"
 	},
 	"calendarEntryCategoriesTooltip": {
-		"message": "Eine Kategorie bzw. mehrere durch Komma getrennte Kategorien. Falls leer, keine Kategorie."
+		"message": "Eine bzw. mehrere durch Komma getrennte Kategorien. Wenn leer, gibt es keine Kategorie."
 	},
 	"calendarEntryCategoriesAccesskey": {
 		"message": "K"
@@ -5220,12 +5258,6 @@
 	"cardbookToolbarAppMenuButtonTooltip": {
 		"message": "CardBook-Menü"
 	},
-	"cardbookToolbarSearchBoxLabel": {
-		"message": "Suche Kontakte"
-	},
-	"cardbookToolbarSearchBoxTooltip": {
-		"message": "Suche Kontakte"
-	},
 	"cardbookToolbarComplexSearchLabel": {
 		"message": "Erweiterte Suche"
 	},
@@ -5348,9 +5380,6 @@
 	},
 	"PreferMailFormat.label": {
 		"message": "Folgendes Nachrichtenformat bevorzugen:"
-	},
-	"PreferMailFormat.accesskey": {
-		"message": "B"
 	},
 	"Unknown.label": {
 		"message": "Unbekannt"
@@ -5493,9 +5522,6 @@
 	"editEventLabel": {
 		"message": "Termin bearbeiten"
 	},
-	"editEventAccesskey": {
-		"message": "B"
-	},
 	"eventsTableTitleLabel": {
 		"message": "Titel"
 	},
@@ -5535,17 +5561,14 @@
 	"createEventLabel": {
 		"message": "Neuer Termin"
 	},
-	"createEventAccesskey": {
-		"message": "N"
-	},
 	"adrFormulaExplanation": {
-		"message": "Die Formatierung der Adresse kann in CardBook angepasst werden. Die Formel besteht aus Blöcken, die in Klammern “()” eingeschlossen werden. Innerhalb dieser Blöcke können mehrere Elemente durch “|” voneinander abgegrenzt werden."
+		"message": "Die Formatierung der Adresse kann in CardBook angepasst werden. Die Formel besteht aus Blöcken, die in Klammern „()“ eingeschlossen werden. Innerhalb dieser Blöcke können mehrere Elemente durch „|“ voneinander abgegrenzt werden."
 	},
 	"fnFormulaExplanation": {
-		"message": "Man kann in CardBook einstellen, wie der Anzeigename dargestellt wird. Die Formel besteht aus Blöcken, die in Klammern “()” eingeschlossen werden. Innerhalb dieser Blöcke können mehrere Elemente durch “|” voneinander abgegrenzt werden."
+		"message": "Man kann in CardBook einstellen, wie der Anzeigename dargestellt wird. Die Formel besteht aus Blöcken, die in Klammern „()“ eingeschlossen werden. Innerhalb dieser Blöcke können mehrere Elemente durch „|“ voneinander abgegrenzt werden."
 	},
 	"templateFormulaExplanation": {
-		"message": "Es ist möglich, Vorlagen mit vordefinierten Feldern zu erstellen. Zum Beispiel eine Vorlage mit der E-Mail “({{2}}).({{4}})@mycompany.org”. Wird diese auf einen Kontakt mit dem Vornamen “John” und Nachnamen “Doe” angewendet, wird die E-Mail “john.doe@mycompany.org” hinzugefügt."
+		"message": "Es ist möglich, Vorlagen mit vordefinierten Feldern zu erstellen. Zum Beispiel eine Vorlage mit der E-Mail „({{2}}).({{4}})@mycompany.org“. Wird diese auf einen Kontakt mit dem Vornamen „John“ und Nachnamen „Doe“ angewendet, wird die E-Mail „john.doe@mycompany.org“ hinzugefügt."
 	},
 	"formulaExplanation1": {
 		"message": "({{1}}|{{2}}) : Wenn {{1}} leer ist, wird es durch {{2}} ersetzt."
@@ -5700,38 +5723,20 @@
 	"createEditionLabel": {
 		"message": "Erstellen"
 	},
-	"createEditionAccesskey": {
-		"message": "E"
-	},
 	"createAndReplaceEditionLabel": {
 		"message": "Erstellen und Ersetzen"
-	},
-	"createAndReplaceEditionAccesskey": {
-		"message": "Z"
 	},
 	"saveEditionLabel": {
 		"message": "Speichern"
 	},
-	"saveEditionAccesskey": {
-		"message": "S"
-	},
 	"validateEditionLabel": {
 		"message": "Übernehmen"
-	},
-	"validateEditionAccesskey": {
-		"message": "Ü"
 	},
 	"cancelEditionLabel": {
 		"message": "Abbrechen"
 	},
-	"cancelEditionAccesskey": {
-		"message": "A"
-	},
 	"closeEditionLabel": {
 		"message": "Schließen"
-	},
-	"closeEditionAccesskey": {
-		"message": "S"
 	},
 	"moreEditionLabel": {
 		"message": "Mehr anzeigen"
@@ -5827,9 +5832,6 @@
 	"kind.edit.label": {
 		"message": "Typ"
 	},
-	"kind.edit.accesskey": {
-		"message": "T"
-	},
 	"addEmailGroupboxLabel": {
 		"message": "E-Mail-Adresse"
 	},
@@ -5922,6 +5924,20 @@
 	},
 	"capitalizationLabel": {
 		"message": "Großschreibung"
+	},
+	"searchinAB": {
+		"message": "$P1$ durchsuchen",
+		"placeholders": {
+			"P1": {
+				"content": "$1"
+			}
+		}
+	},
+	"searchinAllAB": {
+		"message": "In allen Adressbüchern suchen"
+	},
+	"searchingABPlaceholder": {
+		"message": "Suche wird durchgeführt…"
 	},
 	"region-name-ad": {
 		"message": "Andorra"

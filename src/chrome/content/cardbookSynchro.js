@@ -23,15 +23,15 @@ var cardbookSynchro = {
 			// there is no unregister launched
 			cardBookObserver.register();
 
+			// query for some images
+			cardbookIDBImage.openImageDB();
+
 			// once openDB is finished, it will fire an event
 			// and then load the cache and maybe sync the accounts
 			cardbookIDBCat.openCatDB();
 
 			// query for some undos
 			cardbookIDBUndo.openUndoDB();
-
-			// query for some undos
-			cardbookIDBImage.openImageDB();
 
 			// mail popularity
 			cardbookIDBMailPop.openMailPopDB();

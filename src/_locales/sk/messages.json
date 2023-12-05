@@ -18,6 +18,34 @@
 	"statusProgressInformationTooltip": {
 		"message": "Kliknite sem pre zobrazenie záznamov"
 	},
+	"columnsSortBy": {
+		"message": "Zoradiť podľa: $P1$",
+        "placeholders": {
+            "P1": {
+                "content": "$1"
+            }
+        }
+	},
+	"columnPickerTitle": {
+		"message": "Zvoliť stĺpce, ktoré chcete zobraziť"
+	},
+	"columnPickerRestoreColumnOrder": {
+		"message": "Obnoviť poradie stĺpcov"
+	},
+	"columnPickerApplyCurrentViewTo": {
+		"message": "Použiť aktuálne zobrazenie na…"
+	},
+	"columnPickerApplyCurrentViewToConfirmMsg": {
+		"message": "Použiť nastavenia stĺpcov aktuálneho priečinka aj na priečinok $P1$?",
+        "placeholders": {
+            "P1": {
+                "content": "$1"
+            }
+        }
+	},
+	"columnPickerApplyCurrentViewToConfirmTitle": {
+		"message": "Použiť zmeny?"
+	},
 	"imageSelectionTitle": {
 		"message": "Výber obrázka"
 	},
@@ -645,6 +673,25 @@
 	},
 	"synchroAllFinished": {
 		"message": "Všetky synchronizácie dokončené"
+	},
+	"lastSync": {
+		"message": "Posledná synchronizácia: $P1$",
+        "placeholders": {
+            "P1": {
+                "content": "$1"
+            }
+        }
+	},
+	"syncFailedNeverSynced": {
+		"message": "Synchronizácia zlyhala. Posledná synchronizácia: nikdy"
+	},
+	"syncFailedLastSync": {
+		"message": "Synchronizácia zlyhala. Posledná synchronizácia: $P1$",
+        "placeholders": {
+            "P1": {
+                "content": "$1"
+            }
+        }
 	},
 	"discoveryRunning": {
 		"message": "$P1$ : Automatické zisťovanie adresára je spustené",
@@ -2755,7 +2802,7 @@
         }
 	},
 	"eventEntryTitleMessage": {
-		"message": "Výročie %1$S"
+		"message": "Výročie %1$S (%5$S)"
 	},
 	"anniversaryCategory": {
 		"message": "Výročie"
@@ -3747,12 +3794,6 @@
 	"findEventsFromEmailMessengerAccesskey": {
 		"message": "e"
 	},
-	"mailContext-addToCardBookMenuLabel": {
-		"message": "Pridať CardBook kontakt…"
-	},
-	"mailContext-addToCardBookMenuAccesskey": {
-		"message": "P"
-	},
 	"addAllAttachementsToCardBookMenuLabel": {
 		"message": "Všetko do CardBooku…"
 	},
@@ -3981,6 +4022,9 @@
 	"readonlyLabel": {
 		"message": "Režim iba na čítanie"
 	},
+	"syncingLabel": {
+		"message": "Synchronizuje sa…"
+	},
 	"urnuuidLabel": {
 		"message": "Použiť urn:uuid"
 	},
@@ -4038,14 +4082,8 @@
 	"sendEmailLabel": {
 		"message": "Napísať novú správu"
 	},
-	"sendEmailAccesskey": {
-		"message": "E"
-	},
 	"syncLightningMenuItemLabel": {
 		"message": "Synchronizovať s doplnkom Lightning"
-	},
-	"syncLightningMenuAccesskey": {
-		"message": "S"
 	},
 	"calendarNameLabel": {
 		"message": "Kalendár"
@@ -5220,12 +5258,6 @@
 	"cardbookToolbarAppMenuButtonTooltip": {
 		"message": "Ponuka CardBook"
 	},
-	"cardbookToolbarSearchBoxLabel": {
-		"message": "Hľadanie v kontaktoch"
-	},
-	"cardbookToolbarSearchBoxTooltip": {
-		"message": "Hľadanie v kontaktoch"
-	},
 	"cardbookToolbarComplexSearchLabel": {
 		"message": "Uložené hľadania"
 	},
@@ -5348,9 +5380,6 @@
 	},
 	"PreferMailFormat.label": {
 		"message": "Preferuje príjem správ vo formáte:"
-	},
-	"PreferMailFormat.accesskey": {
-		"message": "v"
 	},
 	"Unknown.label": {
 		"message": "Nie je známe"
@@ -5493,9 +5522,6 @@
 	"editEventLabel": {
 		"message": "Upraviť udalosť"
 	},
-	"editEventAccesskey": {
-		"message": "U"
-	},
 	"eventsTableTitleLabel": {
 		"message": "Názov"
 	},
@@ -5534,9 +5560,6 @@
 	},
 	"createEventLabel": {
 		"message": "Nová udalosť"
-	},
-	"createEventAccesskey": {
-		"message": "N"
 	},
 	"adrFormulaExplanation": {
 		"message": "Je možné prispôsobiť spôsob, akým CardBook formátuje adresy. Tento vzorec pozostáva z blokov ohraničených znakmi „()“. V týchto blokoch môže byť viac častí oddelených znakom „|“."
@@ -5700,38 +5723,20 @@
 	"createEditionLabel": {
 		"message": "Vytvoriť"
 	},
-	"createEditionAccesskey": {
-		"message": "V"
-	},
 	"createAndReplaceEditionLabel": {
 		"message": "Vytvoriť a nahradiť"
-	},
-	"createAndReplaceEditionAccesskey": {
-		"message": "N"
 	},
 	"saveEditionLabel": {
 		"message": "Uložiť"
 	},
-	"saveEditionAccesskey": {
-		"message": "U"
-	},
 	"validateEditionLabel": {
 		"message": "Overiť"
-	},
-	"validateEditionAccesskey": {
-		"message": "O"
 	},
 	"cancelEditionLabel": {
 		"message": "Zrušiť"
 	},
-	"cancelEditionAccesskey": {
-		"message": "Z"
-	},
 	"closeEditionLabel": {
 		"message": "Zavrieť"
-	},
-	"closeEditionAccesskey": {
-		"message": "A"
 	},
 	"moreEditionLabel": {
 		"message": "Zobraziť viac"
@@ -5827,9 +5832,6 @@
 	"kind.edit.label": {
 		"message": "Druh"
 	},
-	"kind.edit.accesskey": {
-		"message": "D"
-	},
 	"addEmailGroupboxLabel": {
 		"message": "Emailová adresa"
 	},
@@ -5922,6 +5924,20 @@
 	},
 	"capitalizationLabel": {
 		"message": "Kapitálky"
+	},
+	"searchinAB": {
+		"message": "Hľadať v aplikácii $P1$",
+        "placeholders": {
+            "P1": {
+                "content": "$1"
+            }
+        }
+	},
+	"searchinAllAB": {
+		"message": "Hľadať vo všetkých adresároch"
+	},
+	"searchingABPlaceholder": {
+		"message": "Vyhľadáva sa…"
 	},
 	"region-name-ad": {
 		"message": "Andorra"

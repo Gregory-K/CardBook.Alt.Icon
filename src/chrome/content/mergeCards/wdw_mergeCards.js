@@ -12,6 +12,7 @@ if ("undefined" == typeof(wdw_mergeCards)) {
 		mode: "CONTACT",
 		source: "",
         ids: "",
+		mergeId: "",
         actionId: 0,
 		duplicateWinId: "",
 		duplicateDisplayId: "",
@@ -19,7 +20,6 @@ if ("undefined" == typeof(wdw_mergeCards)) {
         cardsIn: [],
         allColumns: {},
         customFields: {},
-        newFields: [],
         multilineFields: [],
             
 		setReadOnly: function (aElement, aSelected, aDisabled) {
@@ -315,6 +315,7 @@ if ("undefined" == typeof(wdw_mergeCards)) {
             wdw_mergeCards.mode = urlParams.get("mode");
             wdw_mergeCards.ids = urlParams.get("ids");
             wdw_mergeCards.actionId = urlParams.get("actionId");
+            wdw_mergeCards.mergeId = urlParams.get("mergeId");
 			
             wdw_mergeCards.duplicateWinId = urlParams.get("duplicateWinId");
             wdw_mergeCards.duplicateDisplayId = urlParams.get("duplicateDisplayId");
@@ -326,7 +327,6 @@ if ("undefined" == typeof(wdw_mergeCards)) {
             document.getElementById('createEditionLabel').hidden = wdw_mergeCards.hideCreate;
             wdw_mergeCards.allColumns = await messenger.runtime.sendMessage({query: "cardbook.getAllColumns"});
             wdw_mergeCards.customFields = await messenger.runtime.sendMessage({query: "cardbook.getCustomFields"});
-            wdw_mergeCards.newFields = await messenger.runtime.sendMessage({query: "cardbook.getNewFields"});
             wdw_mergeCards.multilineFields = await messenger.runtime.sendMessage({query: "cardbook.getMultilineFields"});
     
             // button
@@ -714,7 +714,7 @@ if ("undefined" == typeof(wdw_mergeCards)) {
 			fields = fields.concat(wdw_mergeCards.allColumns.note);
 			for (let i of fields) {
 				for (let j = 0; j < listOfCards.length; j++) {
-					if ((wdw_mergeCards.version == "4.0" && wdw_mergeCards.newFields.includes(i)) || (!wdw_mergeCards.newFields.includes(i))){
+					if ((wdw_mergeCards.version == "4.0" && cardbookHTMLUtils.newFields.includes(i)) || (!cardbookHTMLUtils.newFields.includes(i))){
 						if (document.getElementById(`${i}Checkbox${j}`)) {
 							var myCheckBox = document.getElementById(`${i}Checkbox${j}`);
 							if (myCheckBox.checked) {
@@ -758,7 +758,7 @@ if ("undefined" == typeof(wdw_mergeCards)) {
 					}
 					aCard[i] = cardbookHTMLUtils.arrayUnique(aCard[i]);
 				}
-				var dateFormat = cardbookHTMLUtils.getDateFormat(aCard.dirPrefId, aCard.version);
+				var dateFormat = await cardbookHTMLUtils.getDateFormat(aCard.dirPrefId, aCard.version);
 				for (let i of [ 'event' ]) {
 					var length = 0
 					var arrayOfValues = [];
@@ -884,7 +884,11 @@ if ("undefined" == typeof(wdw_mergeCards)) {
 		save: async function (aAction) {
 			var myOutCard = await messenger.runtime.sendMessage({query: "cardbook.getCardParser"});
 			await wdw_mergeCards.calculateResult(myOutCard);
-			await messenger.runtime.sendMessage({query: "cardbook.mergeCards.mergeFinished", source: wdw_mergeCards.source, ids: wdw_mergeCards.ids, duplicateWinId: wdw_mergeCards.duplicateWinId, duplicateDisplayId: wdw_mergeCards.duplicateDisplayId, duplicateLineId: wdw_mergeCards.duplicateLineId, action: aAction, actionId: wdw_mergeCards.actionId, cardOut: myOutCard});
+			await messenger.runtime.sendMessage({query: "cardbook.mergeCards.mergeFinished", source: wdw_mergeCards.source,
+								ids: wdw_mergeCards.ids, duplicateWinId: wdw_mergeCards.duplicateWinId,
+								duplicateDisplayId: wdw_mergeCards.duplicateDisplayId,
+								duplicateLineId: wdw_mergeCards.duplicateLineId, action: aAction, actionId: wdw_mergeCards.actionId,
+								cardOut: myOutCard, mergeId: wdw_mergeCards.mergeId});
 			cardbookHTMLRichContext.closeWindow();
 		}
 	};
@@ -895,7 +899,11 @@ messenger.runtime.onMessage.addListener( (info) => {
 		case "cardbook.mergeCards.closeViewCardResult":
 			if (wdw_mergeCards.ids == info.ids) {
 				let promise = new Promise( async (resolve, reject) => {
-					await messenger.runtime.sendMessage({query: "cardbook.mergeCards.mergeFinished", source: wdw_mergeCards.source, ids: info.ids, duplicateWinId: wdw_mergeCards.duplicateWinId, duplicateDisplayId: wdw_mergeCards.duplicateDisplayId, duplicateLineId: wdw_mergeCards.duplicateLineId, action: info.action, actionId: info.actionId, cardOut: info.cardOut});
+					await messenger.runtime.sendMessage({query: "cardbook.mergeCards.mergeFinished", source: wdw_mergeCards.source,
+										ids: info.ids, duplicateWinId: wdw_mergeCards.duplicateWinId,
+										duplicateDisplayId: wdw_mergeCards.duplicateDisplayId,
+										duplicateLineId: wdw_mergeCards.duplicateLineId, action: info.action, actionId: info.actionId,
+										cardOut: info.cardOut, mergeId: wdw_mergeCards.mergeId});
 					resolve();
 				});
 				promise.then(e => {
@@ -904,6 +912,26 @@ messenger.runtime.onMessage.addListener( (info) => {
 			}
 			break;
 		}
+});
+
+window.addEventListener("resize", async function() {
+	await cardbookHTMLRichContext.saveWindowSize();
+});
+
+// run when clicking on the cross button or with the escape key
+// Big issue here : 
+// does not guarantee its full execution. 
+// After the first await is hit, the event is considered "done" and the window may close.
+// should be fixed when the migration process to html will be complete
+window.addEventListener("beforeunload", async function() {
+	let aAction = "CANCEL";
+	let myOutCard = await messenger.runtime.sendMessage({query: "cardbook.getCardParser"});
+	await wdw_mergeCards.calculateResult(myOutCard);
+	await messenger.runtime.sendMessage({query: "cardbook.mergeCards.mergeFinished", source: wdw_mergeCards.source, 
+						ids: wdw_mergeCards.ids, duplicateWinId: wdw_mergeCards.duplicateWinId,
+						duplicateDisplayId: wdw_mergeCards.duplicateDisplayId, duplicateLineId: wdw_mergeCards.duplicateLineId,
+						action: aAction, actionId: wdw_mergeCards.actionId, cardOut: myOutCard,
+						mergeId: wdw_mergeCards.mergeId});
 });
 
 await wdw_mergeCards.load();

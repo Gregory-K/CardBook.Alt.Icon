@@ -172,16 +172,45 @@
 	overflow-y: auto;
 }
 
+#birthdayListTable {
+	max-width: 1000px;
+	overflow-x: auto;
+	display: block;
+	height: 400px;
+	overflow-y: auto;
+}
+
+#syncListTable {
+	max-width: 600px;
+	overflow-x: auto;
+	display: block;
+	height: 200px;
+	overflow-y: auto;
+}
+
+#eventsTable {
+	max-width: 1000px;
+	overflow-x: auto;
+	display: block;
+	height: 300px;
+	overflow-y: auto;
+}
+
+
 .tableTree {
 	width: 100%;
 	overflow-y: auto;
 	overflow-x: hidden;
+}
+
+.tableTree:not(.hidden) {
 	border: 1px solid currentColor;
 	border-top-right-radius: 4px;
 	border-top-left-radius: 4px;
 	border-bottom-right-radius: 4px;
 	border-bottom-left-radius: 4px;
 }
+
 
 .tableTree tr {
 	height: 30px;
@@ -193,6 +222,7 @@
 }
 
 .tableTree thead th {
+	width: 100%;
 	font-weight: bold;
 	text-align: left;
 	background-color: var(--in-content-button-background);

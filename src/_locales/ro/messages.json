@@ -18,6 +18,34 @@
 	"statusProgressInformationTooltip": {
 		"message": "Clic aici pentru a vizualiza registul de evenimente"
 	},
+	"columnsSortBy": {
+		"message": "Sortează după: $P1$",
+        "placeholders": {
+            "P1": {
+                "content": "$1"
+            }
+        }
+	},
+	"columnPickerTitle": {
+		"message": "Selectează coloanele de afișat"
+	},
+	"columnPickerRestoreColumnOrder": {
+		"message": "Restaurează ordinea coloanelor"
+	},
+	"columnPickerApplyCurrentViewTo": {
+		"message": "??Apply current view to…??"
+	},
+	"columnPickerApplyCurrentViewToConfirmMsg": {
+		"message": "Aplici coloanele dosarului actual la $P1$?",
+        "placeholders": {
+            "P1": {
+                "content": "$1"
+            }
+        }
+	},
+	"columnPickerApplyCurrentViewToConfirmTitle": {
+		"message": "Aplici modificările?"
+	},
 	"imageSelectionTitle": {
 		"message": "Selectare imagine"
 	},
@@ -645,6 +673,25 @@
 	},
 	"synchroAllFinished": {
 		"message": "Toate sincronizările au fost terminate"
+	},
+	"lastSync": {
+		"message": "Ultima sincronizare: $P1$",
+        "placeholders": {
+            "P1": {
+                "content": "$1"
+            }
+        }
+	},
+	"syncFailedNeverSynced": {
+		"message": "Sincronizarea a eșuat. Ultima sincronizare: niciodată"
+	},
+	"syncFailedLastSync": {
+		"message": "Sincronizarea a eșuat. Ultima sincronizare reușită: $P1$",
+        "placeholders": {
+            "P1": {
+                "content": "$1"
+            }
+        }
 	},
 	"discoveryRunning": {
 		"message": "$P1$ : Se execută descoperirea automată a agendelor",
@@ -2755,7 +2802,7 @@
 		}
 	},
 	"eventEntryTitleMessage": {
-		"message": "Aniversarea lui %1$S"
+		"message": "Aniversarea lui %1$S (%5$S)"
 	},
 	"anniversaryCategory": {
 		"message": "Aniversare"
@@ -3747,12 +3794,6 @@
 	"findEventsFromEmailMessengerAccesskey": {
 		"message": "e"
 	},
-	"mailContext-addToCardBookMenuLabel": {
-		"message": "Adaugă contact în CardBook…"
-	},
-	"mailContext-addToCardBookMenuAccesskey": {
-		"message": "d"
-	},
 	"addAllAttachementsToCardBookMenuLabel": {
 		"message": "Adaugă-le pe toate în CardBook…"
 	},
@@ -3981,6 +4022,9 @@
 	"readonlyLabel": {
 		"message": "Mod numai citire"
 	},
+	"syncingLabel": {
+		"message": "Se sincronizează…"
+	},
 	"urnuuidLabel": {
 		"message": "Utilizează urn:uuid"
 	},
@@ -4038,14 +4082,8 @@
 	"sendEmailLabel": {
 		"message": "Scrie un mesaj nou"
 	},
-	"sendEmailAccesskey": {
-		"message": "m"
-	},
 	"syncLightningMenuItemLabel": {
 		"message": "Sincronizează cu Lightning"
-	},
-	"syncLightningMenuAccesskey": {
-		"message": "S"
 	},
 	"calendarNameLabel": {
 		"message": "Calendar"
@@ -5220,12 +5258,6 @@
 	"cardbookToolbarAppMenuButtonTooltip": {
 		"message": "Meniu CardBook"
 	},
-	"cardbookToolbarSearchBoxLabel": {
-		"message": "Caută contacte"
-	},
-	"cardbookToolbarSearchBoxTooltip": {
-		"message": "Caută contacte"
-	},
 	"cardbookToolbarComplexSearchLabel": {
 		"message": "Căutare salvată"
 	},
@@ -5348,9 +5380,6 @@
 	},
 	"PreferMailFormat.label": {
 		"message": "Preferă să primească mesaje în format:"
-	},
-	"PreferMailFormat.accesskey": {
-		"message": "r"
 	},
 	"Unknown.label": {
 		"message": "Necunoscut"
@@ -5493,9 +5522,6 @@
 	"editEventLabel": {
 		"message": "Editează evenimentul"
 	},
-	"editEventAccesskey": {
-		"message": "E"
-	},
 	"eventsTableTitleLabel": {
 		"message": "Titlu"
 	},
@@ -5534,9 +5560,6 @@
 	},
 	"createEventLabel": {
 		"message": "Eveniment nou"
-	},
-	"createEventAccesskey": {
-		"message": "n"
 	},
 	"adrFormulaExplanation": {
 		"message": "Este posibil să personalizezi modul în care CardBook generează adresele. Această formulă constă în blocuri închise de „()”. În aceste blocuri pot exista mai multe părți delimitate de „|”."
@@ -5700,38 +5723,20 @@
 	"createEditionLabel": {
 		"message": "Creează"
 	},
-	"createEditionAccesskey": {
-		"message": "r"
-	},
 	"createAndReplaceEditionLabel": {
 		"message": "Creează și înlocuiește"
-	},
-	"createAndReplaceEditionAccesskey": {
-		"message": "n"
 	},
 	"saveEditionLabel": {
 		"message": "Salvează"
 	},
-	"saveEditionAccesskey": {
-		"message": "S"
-	},
 	"validateEditionLabel": {
 		"message": "Validează"
-	},
-	"validateEditionAccesskey": {
-		"message": "V"
 	},
 	"cancelEditionLabel": {
 		"message": "Anulează"
 	},
-	"cancelEditionAccesskey": {
-		"message": "u"
-	},
 	"closeEditionLabel": {
 		"message": "Închide"
-	},
-	"closeEditionAccesskey": {
-		"message": "i"
 	},
 	"moreEditionLabel": {
 		"message": "Afișează mai multe"
@@ -5827,9 +5832,6 @@
 	"kind.edit.label": {
 		"message": "Fel"
 	},
-	"kind.edit.accesskey": {
-		"message": "F"
-	},
 	"addEmailGroupboxLabel": {
 		"message": "Adresă de email"
 	},
@@ -5922,6 +5924,20 @@
 	},
 	"capitalizationLabel": {
 		"message": "Capitalizare"
+	},
+	"searchinAB": {
+		"message": "Caută în $P1$",
+        "placeholders": {
+            "P1": {
+                "content": "$1"
+            }
+        }
+	},
+	"searchinAllAB": {
+		"message": "??Search all address books??"
+	},
+	"searchingABPlaceholder": {
+		"message": "??Searching…??"
 	},
 	"region-name-ad": {
 		"message": "Andora"

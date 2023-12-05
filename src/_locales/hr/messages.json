@@ -18,6 +18,34 @@
 	"statusProgressInformationTooltip": {
 		"message": "Kliknite ovdje da biste vidjeli zapise"
 	},
+	"columnsSortBy": {
+		"message": "Poredaj po: $P1$",
+        "placeholders": {
+            "P1": {
+                "content": "$1"
+            }
+        }
+	},
+	"columnPickerTitle": {
+		"message": "Odaberite stupce za prikaz"
+	},
+	"columnPickerRestoreColumnOrder": {
+		"message": "Vrati raspored stupaca"
+	},
+	"columnPickerApplyCurrentViewTo": {
+		"message": "Primijeni trenutni prikaz na…"
+	},
+	"columnPickerApplyCurrentViewToConfirmMsg": {
+		"message": "Primijeni stupce trenutne mape na $P1$?",
+        "placeholders": {
+            "P1": {
+                "content": "$1"
+            }
+        }
+	},
+	"columnPickerApplyCurrentViewToConfirmTitle": {
+		"message": "Primijeniti promjene?"
+	},
 	"imageSelectionTitle": {
 		"message": "Odabir slike"
 	},
@@ -645,6 +673,25 @@
 	},
 	"synchroAllFinished": {
 		"message": "Sve su sinkronizacije završene"
+	},
+	"lastSync": {
+		"message": "Zadnja sinkronizacija: $P1$",
+        "placeholders": {
+            "P1": {
+                "content": "$1"
+            }
+        }
+	},
+	"syncFailedNeverSynced": {
+		"message": "Neuspjela sinkronizacija. Zadnja sinkronizacija: nikada"
+	},
+	"syncFailedLastSync": {
+		"message": "Neuspjela sinkronizacija. Zadnja uspjela: $P1$",
+        "placeholders": {
+            "P1": {
+                "content": "$1"
+            }
+        }
 	},
 	"discoveryRunning": {
 		"message": "$P1$ : Pokretanje automatskog otkrivanja adresara",
@@ -2755,7 +2802,7 @@
         }
 	},
 	"eventEntryTitleMessage": {
-		"message": "Obljetnica %1$S"
+		"message": "Obljetnica %1$S (%5$S)"
 	},
 	"anniversaryCategory": {
 		"message": "Godišnjica"
@@ -3747,12 +3794,6 @@
 	"findEventsFromEmailMessengerAccesskey": {
 		"message": "e"
 	},
-	"mailContext-addToCardBookMenuLabel": {
-		"message": "Dodaj CardBook kontakt…"
-	},
-	"mailContext-addToCardBookMenuAccesskey": {
-		"message": "d"
-	},
 	"addAllAttachementsToCardBookMenuLabel": {
 		"message": "U CardBook All…"
 	},
@@ -3981,6 +4022,9 @@
 	"readonlyLabel": {
 		"message": "Moguće je samo čitati"
 	},
+	"syncingLabel": {
+		"message": "Sinkroniziranje…"
+	},
 	"urnuuidLabel": {
 		"message": "Koristite urn:uuid"
 	},
@@ -4038,14 +4082,8 @@
 	"sendEmailLabel": {
 		"message": "Napiši novu poruku"
 	},
-	"sendEmailAccesskey": {
-		"message": "E"
-	},
 	"syncLightningMenuItemLabel": {
 		"message": "Sinhroniziraj s Lightning-om"
-	},
-	"syncLightningMenuAccesskey": {
-		"message": "S"
 	},
 	"calendarNameLabel": {
 		"message": "Kalendar"
@@ -5220,12 +5258,6 @@
 	"cardbookToolbarAppMenuButtonTooltip": {
 		"message": "Kontakti meni"
 	},
-	"cardbookToolbarSearchBoxLabel": {
-		"message": "Potraga kontakata"
-	},
-	"cardbookToolbarSearchBoxTooltip": {
-		"message": "Potraga kontakata"
-	},
 	"cardbookToolbarComplexSearchLabel": {
 		"message": "Spremljene pretrage"
 	},
@@ -5348,9 +5380,6 @@
 	},
 	"PreferMailFormat.label": {
 		"message": "Preferira primati poruke oblikovane kao:"
-	},
-	"PreferMailFormat.accesskey": {
-		"message": "v"
 	},
 	"Unknown.label": {
 		"message": "Nepoznato"
@@ -5493,9 +5522,6 @@
 	"editEventLabel": {
 		"message": "Uredi događaj"
 	},
-	"editEventAccesskey": {
-		"message": "E"
-	},
 	"eventsTableTitleLabel": {
 		"message": "Naslov"
 	},
@@ -5534,9 +5560,6 @@
 	},
 	"createEventLabel": {
 		"message": "Novi događaj"
-	},
-	"createEventAccesskey": {
-		"message": "N"
 	},
 	"adrFormulaExplanation": {
 		"message": "Moguće je prilagoditi način na koji Kontakti oblikuje svoje adrese. Formula se satoji od blokova unutar znaka „()”. ??In these blocks there might be many parts delimited by „|”.??"
@@ -5700,38 +5723,20 @@
 	"createEditionLabel": {
 		"message": "Kreiraj"
 	},
-	"createEditionAccesskey": {
-		"message": "T"
-	},
 	"createAndReplaceEditionLabel": {
 		"message": "kreiraj i zamijeni"
-	},
-	"createAndReplaceEditionAccesskey": {
-		"message": "R"
 	},
 	"saveEditionLabel": {
 		"message": "Sačuvaj"
 	},
-	"saveEditionAccesskey": {
-		"message": "S"
-	},
 	"validateEditionLabel": {
 		"message": "Potvrdi"
-	},
-	"validateEditionAccesskey": {
-		"message": "V"
 	},
 	"cancelEditionLabel": {
 		"message": "Poništi"
 	},
-	"cancelEditionAccesskey": {
-		"message": "C"
-	},
 	"closeEditionLabel": {
 		"message": "Zatvori"
-	},
-	"closeEditionAccesskey": {
-		"message": "C"
 	},
 	"moreEditionLabel": {
 		"message": "Prikaži više"
@@ -5827,9 +5832,6 @@
 	"kind.edit.label": {
 		"message": "Vrsta"
 	},
-	"kind.edit.accesskey": {
-		"message": "K"
-	},
 	"addEmailGroupboxLabel": {
 		"message": "Adresa e-pošte"
 	},
@@ -5922,6 +5924,20 @@
 	},
 	"capitalizationLabel": {
 		"message": "??Capitalization??"
+	},
+	"searchinAB": {
+		"message": "Pretraži $P1$",
+        "placeholders": {
+            "P1": {
+                "content": "$1"
+            }
+        }
+	},
+	"searchinAllAB": {
+		"message": "Pretraži sve adresare"
+	},
+	"searchingABPlaceholder": {
+		"message": "Pretraživanje…"
 	},
 	"region-name-ad": {
 		"message": "Andora"

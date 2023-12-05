@@ -1,8 +1,7 @@
+import { cardbookHTMLRichContext } from "../cardbookHTMLRichContext.mjs";
+import { cardbookHTMLTools } from "../cardbookHTMLTools.mjs";
+
 if ("undefined" == typeof(wdw_cardbookEventContacts)) {
-	var { Services } = ChromeUtils.import("resource://gre/modules/Services.jsm");
-	var { cardbookRepository } = ChromeUtils.import("chrome://cardbook/content/cardbookRepository.js");
-	var { cal } = ChromeUtils.import("resource:///modules/calendar/calUtils.jsm");
-	
 	var wdw_cardbookEventContacts = {
 		allEvents: [],
 		emailArray: [],
@@ -21,7 +20,7 @@ if ("undefined" == typeof(wdw_cardbookEventContacts)) {
 		},
 
 		clickTree: function (aEvent) {
-			if (aEvent.target.tagName == "html:td") {
+            if (aEvent.target.tagName.toLowerCase() == "td") {
 				let row = aEvent.target.closest("tr");
 				let tbody = aEvent.target.closest("tbody");
 				for (let child of tbody.childNodes) {
@@ -32,20 +31,8 @@ if ("undefined" == typeof(wdw_cardbookEventContacts)) {
 			}
 		},
 
-		sortTable: function (aTableName) {
-			let table = document.getElementById(aTableName);
-			let order = table.getAttribute("data-sort-order") == "ascending" ? 1 : -1;
-			let columnName = table.getAttribute("data-sort-column");
-			
-			let columnSort = wdw_cardbookEventContacts.getTableMapColumn(columnName);
-
-			cal.unifinder.sortItems(wdw_cardbookEventContacts.allEvents, columnSort, order);
-
-			wdw_cardbookEventContacts.displayEvents();
-		},
-	
-		clickToSort: function (aEvent) {
-			if (aEvent.target.tagName == "html:th" || aEvent.target.tagName == "html:img") {
+		clickToSort: async function (aEvent) {
+            if (aEvent.target.tagName.toLowerCase() == "th" || aEvent.target.tagName.toLowerCase() == "img") {
 				let column = aEvent.target.closest("th");
 				let columnName = column.getAttribute("data-value");
 				let table = column.closest("table");
@@ -59,7 +46,7 @@ if ("undefined" == typeof(wdw_cardbookEventContacts)) {
 					table.setAttribute("data-sort-column", columnName);
 					table.setAttribute("data-sort-order", "ascending");
 				}
-				wdw_cardbookEventContacts.sortTable(table.id);
+                await wdw_cardbookEventContacts.displayEvents();
 			}
 			aEvent.stopImmediatePropagation();
 		},
@@ -80,43 +67,37 @@ if ("undefined" == typeof(wdw_cardbookEventContacts)) {
 			}
 		},
 
-		doubleClickTree: function (aEvent) {
-			if (aEvent.target.tagName == "html:th") {
+		doubleClickTree: async function (aEvent) {
+            if (aEvent.target.tagName.toLowerCase() == "th") {
 				return;
-			} else if (aEvent.target.tagName == "html:td") {
-				wdw_cardbookEventContacts.editEvent();
+            } else if (aEvent.target.tagName.toLowerCase() == "td") {
+				await wdw_cardbookEventContacts.editEvent();
 			} else {
-				wdw_cardbookEventContacts.createEvent();
+				await wdw_cardbookEventContacts.createEvent();
 			}
 		},
 
-		displayEvents: function () {
-			function getEventEndDate (x) {
-				let eventEndDate = x.endDate.clone();
-				if (x.startDate.isDate) {
-					eventEndDate.day = eventEndDate.day - 1;
-				}
-				return eventEndDate;
-			}
+		displayEvents: async function () {
+			let table = document.getElementById("eventsTable");
+			let order = table.getAttribute("data-sort-order") == "ascending" ? 1 : -1;
+			let columnName = table.getAttribute("data-sort-column");
+			let columnSort = wdw_cardbookEventContacts.getTableMapColumn(columnName);
 
 			let headers = [ "eventsTableTitle", "eventsTableStartdate", "eventsTableEnddate", "eventsTableCategories", "eventsTableLocation", "eventsTableCalendarname" ];
-			let data = wdw_cardbookEventContacts.allEvents.map(x => [ (x.title ? x.title.replace(/\n/g, ' ') : ""),
-																		wdw_cardbookEventContacts.formatEventDateTime(x.startDate),
-																		wdw_cardbookEventContacts.formatEventDateTime(getEventEndDate(x)),
-																		x.getCategories({}).join(", "),
-																		x.getProperty("LOCATION"),
-																		x.calendar.name ]);
+			if (wdw_cardbookEventContacts.emailArray[0] != "") {
+            	wdw_cardbookEventContacts.allEvents = await messenger.runtime.sendMessage({query: "cardbook.getEvents", emails: wdw_cardbookEventContacts.emailArray, column: columnSort, order: order});
+			}
+            let data = wdw_cardbookEventContacts.allEvents.map(x => [ x[0], x[1], x[2], x[3], x[4], x[5] ])
 			let dataParameters = [];
 			let rowParameters = {};
-			let sortFunction = wdw_cardbookEventContacts.clickToSort;
-			cardbookElementTools.addTreeTable("eventsTable", headers, data, dataParameters, rowParameters, sortFunction);
+            let tableParameters = { "events": [ [ "click", wdw_cardbookEventContacts.clickTree ],
+                                                [ "dblclick", wdw_cardbookEventContacts.doubleClickTree ],
+                                                [ "keydown", wdw_cardbookEventContacts.chooseActionForKey ] ] };
+            let sortFunction = wdw_cardbookEventContacts.clickToSort;
+			cardbookHTMLTools.addTreeTable("eventsTable", headers, data, dataParameters, rowParameters, tableParameters, sortFunction);
 			wdw_cardbookEventContacts.buttonShowing();
 		},
 
-		formatEventDateTime: function (aDatetime) {
-			return cal.dtz.formatter.formatDateTime(aDatetime.getInTimezone(cal.dtz.defaultTimezone));
-		},
-		
 		buttonShowing: function () {
 			var btnEdit = document.getElementById("editEventLabel");
 			let currentIndex = wdw_cardbookEventContacts.getTableCurrentIndex("eventsTable");
@@ -127,68 +108,18 @@ if ("undefined" == typeof(wdw_cardbookEventContacts)) {
 			}
 		},
 
-		// code taken from modifyEventWithDialog
-		editEvent: function() {
+		editEvent: async function() {
 			let currentIndex = wdw_cardbookEventContacts.getTableCurrentIndex("eventsTable");
 			if (currentIndex) {
-				var myItem = wdw_cardbookEventContacts.allEvents[currentIndex];
-				let dlg = cal.item.findWindow(myItem);
-				if (dlg) {
-					dlg.focus();
-					disposeJob(null);
-					return;
-				}
-
-				var editListener = {
-					onOperationComplete: function(aCalendar, aStatus, aOperationType, aId, aDetail) {
-						wdw_cardbookEventContacts.loadEvents();
-					}
-				};
-
-				var onModifyItem = function(item, calendar, originalItem, listener, extresponse=null) {
-					doTransaction('modify', item, calendar, originalItem, editListener, extresponse);
-					// as the editlistener does not work, bug seems solved
-					// wdw_cardbookEventContacts.loadEvents();
-				};
-
-				let item = myItem;
-				let response;
-				[item, , response] = promptOccurrenceModification(item, true, "edit");
-				
-				if (item && (response || response === undefined)) {
-					openEventDialog(item, item.calendar, "modify", onModifyItem, null, null, null);
-				} else {
-					disposeJob(null);
-				}
+				let eventId = wdw_cardbookEventContacts.allEvents[currentIndex][6];
+				let calendarId = wdw_cardbookEventContacts.allEvents[currentIndex][7];
+                await messenger.runtime.sendMessage({query: "cardbook.editEvent", eventId: eventId, calendarId: calendarId});
 			}
 		},
 
 		// code taken from createEventWithDialog
-		createEvent: function() {
-			var createListener = {
-				onOperationComplete: function(aCalendar, aStatus, aOperationType, aId, aDetail) {
-					wdw_cardbookEventContacts.loadEvents();
-				}
-			};
-
-			var onNewEvent = function(item, calendar, originalItem, listener) {
-				if (item.id) {
-					// If the item already has an id, then this is the result of
-					// saving the item without closing, and then saving again.
-					doTransaction('modify', item, calendar, originalItem, createListener);
-				} else {
-					// Otherwise, this is an addition
-					doTransaction('add', item, calendar, null, createListener);
-				}
-				// as the createListener does not work, bug seems solved
-				// wdw_cardbookEventContacts.loadEvents();
-			};
-		
-			let contacts = [];
-			for (let email of wdw_cardbookEventContacts.emailArray) {
-				contacts.push(["mailto:" + email, wdw_cardbookEventContacts.displayName]);
-			}
-			cardbookLightning.createLightningEvent(contacts, onNewEvent);
+		createEvent: async function() {
+			await messenger.runtime.sendMessage({query: "cardbook.createEvent", emails: wdw_cardbookEventContacts.emailArray, displayName: wdw_cardbookEventContacts.displayName});
 		},
 
 		chooseActionForKey: function (aEvent) {
@@ -198,55 +129,21 @@ if ("undefined" == typeof(wdw_cardbookEventContacts)) {
 			}
 		},
 		
-		addItemsFromCompositeCalendarInternal: function (eventArray) {
-			wdw_cardbookEventContacts.allEvents = wdw_cardbookEventContacts.allEvents.concat(eventArray);
+		load: async function () {
+            let urlParams = new URLSearchParams(window.location.search);
+            wdw_cardbookEventContacts.displayName = urlParams.get("displayName");
+            wdw_cardbookEventContacts.emailArray = urlParams.get("listOfEmail").split(",");
+        
+			i18n.updateDocument();
+			cardbookHTMLRichContext.loadRichContext();
+			document.title = messenger.i18n.getMessage("eventContactsWindowLabel", [wdw_cardbookEventContacts.displayName]);
 
-			// filter does not work
-			for (var i = 0; i < wdw_cardbookEventContacts.allEvents.length; i++) {
-				let found = false;
-				let attendeesArray = cal.email.createRecipientList(wdw_cardbookEventContacts.allEvents[i].getAttendees({})).split(', ');
-				for (let j = 0; !found && j < attendeesArray.length; j++) {
-					for (let k = 0; !found && k < wdw_cardbookEventContacts.emailArray.length; k++) {
-						if (attendeesArray[j].toLowerCase().indexOf(wdw_cardbookEventContacts.emailArray[k].toLowerCase()) >= 0) {
-							found = true;
-						}
-					}
-				}
-				if (!found) {
-					wdw_cardbookEventContacts.allEvents.splice(i,1);
-					i--;
-				}
-			}
-			wdw_cardbookEventContacts.sortTable("eventsTable");
-		},
+           	// button
+            document.getElementById("createEventLabel").addEventListener("click", event => wdw_cardbookEventContacts.createEvent());
+            document.getElementById("editEventLabel").addEventListener("click", event => wdw_cardbookEventContacts.editEvent());
+            document.getElementById("closeEditionLabel").addEventListener("click", event => wdw_cardbookEventContacts.do_close());
 
-		loadEvents: async function () {
-			wdw_cardbookEventContacts.allEvents = [];
-			let cals = cal.manager.getCalendars();
-			for (let calendar of cals) {
-				if (!calendar.getProperty("disabled")) {
-					let filter = 0;
-					filter |= calendar.ITEM_FILTER_TYPE_EVENT;
-					let iterator = cal.iterate.streamValues(
-						calendar.getItems(filter, 0, null, null)
-					);
-					
-					let allItems = [];
-					for await (let items of iterator) {
-						allItems = allItems.concat(items);
-					}		
-					wdw_cardbookEventContacts.addItemsFromCompositeCalendarInternal(allItems);
-				}
-			}
-		},
-
-		load: function () {
-			i18n.updateDocument({ extension: cardbookRepository.extension });
-			wdw_cardbookEventContacts.emailArray = window.arguments[0].listOfEmail;
-			wdw_cardbookEventContacts.displayName = window.arguments[0].displayName;
-			document.title = cardbookRepository.extension.localeData.localizeMessage("eventContactsWindowLabel", [wdw_cardbookEventContacts.displayName]);
-
-			wdw_cardbookEventContacts.loadEvents();
+            await wdw_cardbookEventContacts.displayEvents();
 		},
 	
 		do_close: function () {
@@ -255,7 +152,16 @@ if ("undefined" == typeof(wdw_cardbookEventContacts)) {
 	};
 };
 
-function ensureCalendarVisible(aCalendar) {};
-function goUpdateCommand(aCommand) {};
+window.addEventListener("resize", async function() {
+	await cardbookHTMLRichContext.saveWindowSize();
+});
 
-document.addEventListener("DOMContentLoaded", wdw_cardbookEventContacts.load);
+messenger.runtime.onMessage.addListener( (info) => {
+	switch (info.query) {
+		case "cardbook.displayEvents":
+			wdw_cardbookEventContacts.displayEvents();
+			break;
+		}
+});
+
+await wdw_cardbookEventContacts.load()

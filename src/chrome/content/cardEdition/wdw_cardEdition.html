@@ -1,0 +1,610 @@
+
+
+<!--
+<?xml-stylesheet href="chrome://global/skin/global.css" type="text/css"?>
+<?xml-stylesheet href="chrome://cardbook/content/skin/cardbookMain.css" type="text/css"?>
+<?xml-stylesheet href="chrome://cardbook/content/skin/cardbookImage.css" type="text/css"?>
+<?xml-stylesheet href="chrome://cardbook/content/skin/cardbookLittleIcons.css" type="text/css"?>
+<?xml-stylesheet href="chrome://cardbook/content/skin/cardbookEdition.css" type="text/css"?>
+<?xml-stylesheet href="chrome://cardbook/content/skin/cardbookAddressBooks.css" type="text/css"?>
+<?xml-stylesheet href="chrome://cardbook/content/skin/cardbookEmpty.css" type="text/css"?>
+<?xml-stylesheet href="chrome://cardbook/content/skin/cardbookMenuIcons.css" type="text/css"?>
+<?xml-stylesheet href="chrome://messenger/skin/searchDialog.css" type="text/css"?>
+<?xml-stylesheet type="text/css" href="chrome://calendar/skin/shared/widgets/minimonth.css"?>
+<?xml-stylesheet type="text/css" href="chrome://calendar/skin/shared/datetimepickers.css"?>
+<?xml-stylesheet href="chrome://cardbook/content/skin/cardbookPrefStar.css" type="text/css"?>
+<?xml-stylesheet href="chrome://messenger/content/bindings.css" type="text/css"?>
+<?xml-stylesheet href="chrome://messenger/content/notification.css" type="text/css"?>
+<?xml-stylesheet type="text/css" href="chrome://messenger/skin/input-fields.css"?>
+<?xml-stylesheet type="text/css" href="chrome://messenger/skin/themeableDialog.css"?>
+<?xml-stylesheet href="chrome://messenger/skin/messageHeader.css" type="text/css"?>
+-->
+	
+
+
+
+<?xml version="1.0"?>
+<!DOCTYPE html>
+
+<html id="wdw_cardEdition">
+	<head>
+        <meta charset="UTF-8">
+		<link rel='stylesheet' type='text/css' href="chrome://messenger/skin/messenger.css">
+		<link rel='stylesheet' type='text/css' href="chrome://global/skin/in-content/common.css">
+		<link rel='stylesheet' type='text/css' href="chrome://messenger/skin/shared/themeableDialog.css">
+        <link rel='stylesheet' type='text/css' href="chrome://messenger/skin/accountSetup.css">
+
+        <link rel='stylesheet' type='text/css' href="../skin/cardbookEdition1.css">
+        <link rel='stylesheet' type='text/css' href="../skin/cardbookGrid.css">
+        <link rel='stylesheet' type='text/css' href="../skin/cardbookHTML.css">
+		<title></title>
+	</head>
+	<menupopup id="imageCardContextMenu" onpopupshowing="wdw_imageEdition.imageCardContextShowing();">
+		<menuitem id="addImageCardFromFile" label="__MSG_addImageCardFromFileLabel__" oncommand="wdw_imageEdition.addImageCardFromFile();"/>
+		<menuitem id="pasteImageCard" label="__MSG_pasteImageCardLabel__" oncommand="wdw_imageEdition.pasteImageCard();"/>
+		<menuitem id="saveImageCard" label="__MSG_saveImageCardLabel__" oncommand="wdw_imageEdition.saveImageCard();"/>
+		<menuitem id="copyImageCard" label="__MSG_copyImageCardLabel__" oncommand="wdw_imageEdition.copyImageCard();"/>
+		<menuitem id="deleteImageCard" label="__MSG_deleteImageCardLabel__" oncommand="wdw_imageEdition.deleteImageCard();"/>
+	</menupopup>
+
+	<menupopup id="availableCardsTreeContextMenu" onpopupshowing="return wdw_cardEdition.availableCardsTreeContextShowing(event);">
+		<menuitem id="appendlistavailableCardsTreeMenu" label="__MSG_appendContactLabel__" oncommand="wdw_cardEdition.modifyLists(this);"/>
+	</menupopup>
+
+	<menupopup id="addedCardsTreeContextMenu" onpopupshowing="return cardbookWindowUtils.displayColumnsPicker(event);">
+		<menuitem id="deletelistaddedCardsTreeMenu" label="__MSG_deletelistTreeLabel__" oncommand="wdw_cardEdition.modifyLists(this);"/>
+	</menupopup>
+
+
+	<body id="wdw_cardEditionBody" xmlns="http://www.mozilla.org/keymaster/gatekeeper/there.is.only.xul">
+        <div class="grid-container-2">
+			<div id="cardbookContactButtonsBox" class="hbox header-container vcentered">
+				<button id="generalTab" class="cardbookContactButtons" visuallyselected="true">__MSG_generalTabLabel__</button>
+				<button id="noteTab" class="cardbookContactButtons">__MSG_noteTabLabel__</button>
+				<button id="listTab" class="cardbookContactButtons">__MSG_listsTabLabel__</button>
+				<button id="keyTab" class="cardbookContactButtons">__MSG_keyTabLabel__</button>
+				<button id="helpTab" class="cardbookContactButtons">__MSG_helpTabLabel__</button>
+			</div>
+            <div id="rightPaneDownHbox2" class="vbox body-container vcentered">
+				<div class="vbox">
+					<div id="generalTabPanel" class="cardbookTab vbox">
+						<div class="hbox">
+							<div class="vbox">
+								<div class="hbox">
+									<div class="vbox">
+										<div class="hbox vcentered" id="addressbookRow">
+											<label id="addressbookHeader" class="boldFont">__MSG_addressbookHeader__</label>
+											<select id="addressbookMenulist"></select>
+											<label id="addressbookInputLabel"></label>
+										</div>
+										<div class="hbox vcentered" id="categoriesRow">
+											<label id="categoriesLabel" class="boldFont">__MSG_categoriesHeader__</label>
+											<cb-multi-input id="categoriesMultiTextbox" loaded="false">
+												<input list="categories" placeholder="__MSG_categoriesTextboxLabel__">
+												<datalist id="categories">
+												</datalist>
+											</cb-multi-input>
+											<div id="categoriesDiv"></div>
+										</div>
+										<div class="vbox" id="existingDataGroupbox">
+											<label class="header">__MSG_existingDataGroupboxLabel__</label>
+											<div class="hbox hcentered">
+												<select id="contactMenulist"></select>
+											</div>
+										</div>
+									</div>
+								</div>
+							</div>
+							<div class="vbox vcentered">
+								<div class="hbox hcentered" id="imageBox">
+									<img id="imageForSizing" hidden="true"/>
+									<img id="defaultCardImage" editionMode/>
+								</div>
+							</div>
+						</div>
+						<div class="vbox" id="fnGroupbox">
+							<label id="fnLabel" class="boldFont">__MSG_fnLabel__</label>
+							<div class="hbox">
+								<button id="autoComputeFnButton" class="cardbookProcessFnClass"></button>
+								<input id="fnInputText">
+								<label id="fnInputLabel"></label>
+								<label>
+									<input type="checkbox" id="preferDisplayNameCheckBox">
+									__MSG_preferDisplayNameCheckBoxLabel__
+								</label>
+							</div>
+						</div>
+						<div class="hbox">
+							<div class="vbox" id="personalGroupbox">
+								<div class="hbox hcentered">
+									<img id="expandPersonalImage" class="twisty-icon" expanded="true"/>
+									<label class="boldFont">__MSG_persTitleLabel__</label>
+								</div>
+								<table id="personalTable">
+									<tr id="lastnameRow">
+										<td>
+											<label id="lastnameLabel" class="boldFont">__MSG_lastnameLabel__</label>
+										</td>
+										<td>
+											<div class="hbox hcentered">
+												<input id="lastnameInputText" data-field-name="lastname">
+												<label id="lastnameInputLabel" data-field-name="lastname"></label>
+												<button id="cardbookSwitchButtonDown" class="cardbookSwitchButtonDownClass" title="__MSG_cardbookSwitchButtonTooltip__"></button>
+												<button id="lastnameProcessButton" class="cardbookProcessClass" autoConvertField="true"></button>
+											</div>
+										</td>
+									</tr>
+									<tr id="firstnameRow">
+										<td>
+											<label id="firstnameLabel" class="boldFont">__MSG_firstnameLabel__</label>
+										</td>
+										<td>
+											<div class="hbox hcentered">
+												<input id="firstnameInputText" data-field-name="firstname">
+												<label id="firstnameInputLabel" data-field-name="firstname"></label>
+												<button id="cardbookSwitchButtonUp" class="cardbookSwitchButtonUpClass" title="__MSG_cardbookSwitchButtonTooltip__"></button>
+												<button id="firstnameProcessButton" class="cardbookProcessClass" autoConvertField="true"></button>
+											</div>
+										</td>
+									</tr>
+									<tr id="othernameRow">
+										<td>
+											<label id="othernameLabel" class="boldFont">__MSG_othernameLabel__</label>
+										</td>
+										<td>
+											<div class="hbox hcentered">
+												<input id="othernameInputText" data-field-name="othername">
+												<label id="othernameInputLabel" data-field-name="othername"></label>
+												<button id="othernameProcessButton" class="cardbookProcessClass" autoConvertField="true"></button>
+											</div>
+										</td>
+									</tr>
+									<tr id="prefixnameRow">
+										<td>
+											<label id="prefixnameLabel" class="boldFont">__MSG_prefixnameLabel__</label>
+										</td>
+										<td>
+											<div class="hbox hcentered">
+												<input id="prefixnameInputText" data-field-name="prefixname">
+												<label id="prefixnameInputLabel" data-field-name="prefixname"></label>
+												<button id="prefixnameProcessButton" class="cardbookProcessClass" autoConvertField="true"></button>
+											</div>
+										</td>
+									</tr>
+									<tr id="suffixnameRow">
+										<td>
+											<label id="suffixnameLabel" class="boldFont">__MSG_suffixnameLabel__</label>
+										</td>
+										<td>
+											<div class="hbox hcentered">
+												<input id="suffixnameInputText" data-field-name="suffixname">
+												<label id="suffixnameInputLabel" data-field-name="suffixname"></label>
+												<button id="suffixnameProcessButton" class="cardbookProcessClass" autoConvertField="true"></button>
+											</div>
+										</td>
+									</tr>
+									<tr id="nicknameRow">
+										<td>
+											<label id="nicknameLabel" class="boldFont">__MSG_nicknameLabel__</label>
+										</td>
+										<td>
+											<div class="hbox hcentered">
+												<input id="nicknameInputText" data-field-name="nickname">
+												<label id="nicknameInputLabel" data-field-name="nickname"></label>
+												<button id="nicknameProcessButton" class="cardbookProcessClass" autoConvertField="true"></button>
+											</div>
+										</td>
+									</tr>
+									<tr id="genderRow">
+										<td>
+											<label id="genderLabel" class="boldFont">__MSG_genderLabel__</label>
+										</td>
+										<td>
+											<div class="hbox hcentered">
+												<select id="genderMenulist"></select>
+												<label id="genderInputLabel"></label>
+											</div>
+										</td>
+									</tr>
+									<tr id="bdayRow">
+										<td>
+											<label id="bdayLabel" class="boldFont">__MSG_bdayLabel__</label>
+										</td>
+										<td>
+											<div class="hbox hcentered">
+												<input id="bdayInputText" type="date">
+												<label id="bdayInputLabel"></label>
+											</div>
+										</td>
+									</tr>
+									<tr id="birthplaceRow">
+										<td>
+											<label id="birthplaceLabel" class="boldFont">__MSG_birthplaceLabel__</label>
+										</td>
+										<td>
+											<div class="hbox hcentered">
+												<input id="birthplaceInputText" data-field-name="birthplace">
+												<label id="birthplaceInputLabel" data-field-name="birthplace"></label>
+												<button id="birthplaceProcessButton" class="cardbookProcessClass" autoConvertField="true"></button>
+											</div>
+										</td>
+									</tr>
+									<tr id="deathdateRow">
+										<td>
+											<label id="deathdateLabel" class="boldFont">__MSG_deathdateLabel__</label>
+										</td>
+										<td>
+											<div class="hbox hcentered">
+												<input id="deathdateInputText" type="date">
+												<label id="deathdateInputLabel"></label>
+											</div>
+										</td>
+									</tr>
+									<tr id="deathplaceRow">
+										<td>
+											<label id="deathplaceLabel" class="boldFont">__MSG_deathplaceLabel__</label>
+										</td>
+										<td>
+											<div class="hbox hcentered">
+												<input id="deathplaceInputText" data-field-name="deathplace">
+												<label id="deathplaceInputLabel" data-field-name="deathplace"></label>
+												<button id="deathplaceProcessButton" class="cardbookProcessClass" autoConvertField="true"></button>
+											</div>
+										</td>
+									</tr>
+									<tr id="anniversaryRow">
+										<td>
+											<label id="anniversaryLabel" class="boldFont">__MSG_anniversaryLabel__</label>
+										</td>
+										<td>
+											<div class="hbox hcentered">
+												<input id="anniversaryInputText" type="date">
+												<label id="anniversaryInputLabel"></label>
+											</div>
+										</td>
+									</tr>
+								</table>
+							</div>
+							<div class="vbox" id="orgGroupbox">
+								<div class="hbox hcentered">
+									<img id="expandOrgImage" class="twisty-icon" expanded="true"/>
+									<label class="boldFont">__MSG_orgTitleLabel__</label>
+								</div>
+								<table id="orgTable"></table>
+							</div>
+						</div>
+						<div class="vbox" id="contactGroupbox">
+							<div class="vbox" id="readWriteTypesVbox">
+								<div class="vbox" id="emailGroupbox"></div>
+								<div class="vbox" id="telGroupbox"></div>
+								<div class="vbox" id="adrGroupbox"></div>
+								<div class="vbox" id="imppGroupbox"></div>
+								<div class="vbox" id="urlGroupbox"></div>
+								<div class="vbox" id="eventGroupbox"></div>
+								<div class="vbox" id="tzGroupbox"></div>
+							</div>
+							<div id="adrPanel">
+								<div class="vbox">
+									<div class="hbox">
+										<div class="vbox">
+											<table>
+												<tr id="postOfficeRow">
+													<td>
+														<label class="boldFont">__MSG_postOfficeLabel__</label>
+													</td>
+													<td>
+														<input id="postOfficeTextBox" data-field-name="postOffice" placeholder="__MSG_deprecatedLabel__">
+														<button id="postOfficeProcessButton" class="cardbookProcessClass" autoConvertField="true"></button>
+													</td>
+												</tr>
+												<tr id="extendedAddrRow">
+													<td>
+														<label class="boldFont">__MSG_extendedAddrLabel__</label>
+													</td>
+													<td>
+														<input id="extendedAddrTextBox" data-field-name="extendedAddr" placeholder="__MSG_deprecatedLabel__">
+														<button id="extendedAddrProcessButton" class="cardbookProcessClass" autoConvertField="true"></button>
+													</td>
+												</tr>
+												<tr id="streetRow">
+													<td>
+														<label class="boldFont">__MSG_streetLabel__</label>
+													</td>
+													<td>
+														<textarea id="streetTextBox" data-field-name="street"></textarea>
+														<button id="streetProcessButton" class="cardbookProcessClass" autoConvertField="true"></button>
+													</td>
+												</tr>
+												<tr id="localityRow">
+													<td>
+														<label class="boldFont">__MSG_localityLabel__</label>
+													</td>
+													<td>
+														<input id="localityTextBox" data-field-name="locality" class="padded">
+														<button id="localityProcessButton" class="cardbookProcessClass" autoConvertField="true"></button>
+													</td>
+												</tr>
+												<tr id="regionRow">
+													<td>
+														<label class="boldFont">__MSG_regionLabel__</label>
+													</td>
+													<td>
+														<input id="regionTextBox" data-field-name="region" class="padded">
+														<button id="regionProcessButton" class="cardbookProcessClass" autoConvertField="true"></button>
+													</td>
+												</tr>
+												<tr id="postalCodeRow">
+													<td>
+														<label class="boldFont">__MSG_postalCodeLabel__</label>
+													</td>
+													<td>
+														<input id="postalCodeTextBox" data-field-name="postalCode" class="padded">
+														<button id="postalCodeProcessButton" class="cardbookProcessClass" autoConvertField="true"></button>
+													</td>
+												</tr>
+												<tr id="countryRow">
+													<td>
+														<label class="boldFont">__MSG_countryLabel__</label>
+													</td>
+													<td>
+														<select id="countryMenulist">
+														</select>
+													</td>
+												</tr>
+											</table>
+										</div>
+									</div>
+									<div class="hbox">
+										<button id="validateEditionLabel" label="__MSG_validateEditionLabel__" oncommand="cardbookWindowUtils.closeAdrPanel();"/>
+									</div>
+								</div>
+							</div>
+						</div>
+						<div class="vbox" id="listGroupbox">
+							<div class="vbox" id="listReadOnlyGroupbox">
+								<div class="vbox" id="addedCardsGroupbox">
+								</div>
+							</div>
+							<div class="vbox" id="listReadWriteGroupbox">
+								<div class="hbox hcentered" hidden="true">
+									<label class="boldFont">__MSG_kind.edit.label__</label>
+									<input id="kindTextBox"/>
+								</div>
+								<div class="hbox">
+									<div class="vbox">
+										<div class="vbox" id="addEmailGroupbox">
+											<label class="boldFont">__MSG_addEmailGroupboxLabel__</label>
+											<input id="addEmailInput"/>
+										</div>
+										<div class="vbox" id="availableCardsGroupbox">
+											<label class="boldFont">__MSG_availableCardsGroupboxLabel__</label>
+											<div class="vbox">
+												<search-textbox id="searchAvailableCardsInput"
+													class="searchBox"
+													oncommand="wdw_cardEdition.searchAvailableCards(null);"/>
+											</div>
+											<div class="hbox" ondragover="event.preventDefault();" ondrop="wdw_cardEdition.dragCards(event, 'availableCardsTree');">
+												<tree id="availableCardsTree" context="availableCardsTreeContextMenu" enableColumnDrag="true"
+													hidecolumnpicker="false" persist="height sortDirection sortResource" sortDirection="ascending" sortResource="availableCardsTreeName"
+													onclick="wdw_cardEdition.sortTrees(event, 'availableCardsTree');">
+													<treecols id="availableCardsTreeCols">
+														<treecol id="availableCardsTreeName" label="__MSG_nameLabel__" persist="width ordinal hidden" style="text-align:left" sortDirection="ascending" closemenu="none"/>
+														<splitter class="tree-splitter"/>
+														<treecol id="availableCardsTreeUid" label="__MSG_uidLabel__" persist="width ordinal hidden" hidden="true" style="text-align:left" sortDirection="ascending" closemenu="none"/>
+														<splitter class="tree-splitter"/>
+														<treecol id="availableCardsTreeFn" label="__MSG_fnLabel__" persist="width ordinal hidden" hidden="true" style="text-align:left" sortDirection="ascending" closemenu="none"/>
+														<splitter class="tree-splitter"/>
+														<treecol id="availableCardsTreeLastname" label="__MSG_lastnameLabel__" persist="width ordinal hidden" hidden="true" style="text-align:left" sortDirection="ascending" closemenu="none"/>
+														<splitter class="tree-splitter"/>
+														<treecol id="availableCardsTreeFirstname" label="__MSG_firstnameLabel__" persist="width ordinal hidden" hidden="true" style="text-align:left" sortDirection="ascending" closemenu="none"/>
+													</treecols>
+													<treechildren id="availableCardsTreeChildren" ondblclick="wdw_cardEdition.modifyLists(this);" ondragstart="wdw_cardEdition.startDrag(event, this);"/>
+												</tree>
+											</div>
+										</div>
+									</div>
+									<div class="vbox vcentered">
+										<div class="hbox hcentered">
+											<div class="vbox vcentered">
+												<button id="appendCardButton" label="__MSG_buttonAppendToListLabel__"
+													oncommand="wdw_cardEdition.modifyLists(this);"/>
+												<button id="appendCardEmailsButton" label="__MSG_buttonAppendEmailsToListLabel__"
+													oncommand="wdw_cardEdition.modifyLists(this);"/>
+												<button id="deleteListButton" label="__MSG_buttonRemoveFromListLabel__"
+													oncommand="wdw_cardEdition.modifyLists(this);"/>
+											</div>
+										</div>
+									</div>
+									<div class="vbox">
+										<label class="boldFont">__MSG_addedCardsGroupboxLabel__</label>
+										<div class="hbox" ondragover="event.preventDefault();" ondrop="wdw_cardEdition.dragCards(event, 'addedCardsTree');">
+											<tree id="addedCardsTree" context="addedCardsTreeContextMenu" enableColumnDrag="true"
+												hidecolumnpicker="false" persist="height sortDirection sortResource" sortDirection="ascending" sortResource="addedCardsTreeName"
+												onclick="wdw_cardEdition.sortTrees(event, 'addedCardsTree');">
+												<treecols id="addedCardsTreeCols">
+													<treecol id="addedCardsTreeName" label="__MSG_nameOrEmailLabel__" persist="width ordinal hidden" style="text-align:left" sortDirection="ascending" closemenu="none"/>
+													<splitter class="tree-splitter"/>
+													<treecol id="addedCardsTreeUid" label="__MSG_uidLabel__" persist="width ordinal hidden" hidden="true" style="text-align:left" sortDirection="ascending" closemenu="none"/>
+													<splitter class="tree-splitter"/>
+													<treecol id="addedCardsTreeFn" label="__MSG_fnLabel__" persist="width ordinal hidden" hidden="true" style="text-align:left" sortDirection="ascending" closemenu="none"/>
+													<splitter class="tree-splitter"/>
+													<treecol id="addedCardsTreeLastname" label="__MSG_lastnameLabel__" persist="width ordinal hidden" hidden="true" style="text-align:left" sortDirection="ascending" closemenu="none"/>
+													<splitter class="tree-splitter"/>
+													<treecol id="addedCardsTreeFirstname" label="__MSG_firstnameLabel__" persist="width ordinal hidden" hidden="true" style="text-align:left" sortDirection="ascending" closemenu="none"/>
+												</treecols>
+												<treechildren id="addedCardsTreeChildren" ondblclick="wdw_cardEdition.modifyLists(this);" ondragstart="wdw_cardEdition.startDrag(event, this);"/>
+											</tree>
+										</div>
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
+
+					<div id="noteTabPanel" class="cardbookTab vbox" hidden="true">	
+						<div class="hbox" id="noteGroupbox">
+							<textarea id="noteTextBox"></textarea>
+						</div>
+						<div id="hiddenRow" class="hidden">
+							<input id="versionTextBox">
+							<input id="dirPrefIdTextBox">
+						</div>
+					</div>
+
+					<div id="listTabPanel" class="cardbookTab vbox" hidden="true">	
+						<div class="vbox" id="PreferMailFormatGroupbox">
+							<label class="boldFont">__MSG_PreferMailFormatGroupbox.label__</label>
+							<div class="hbox hcentered" class="indent">
+								<label>
+									__MSG_PreferMailFormat.label__
+									<select id="preferMailFormatMenulist"></select>
+									<label id="preferMailFormatInputLabel"></label>
+								</label>
+							</div>
+						</div>
+						<div class="vbox" id="emailpropertyGroupbox">
+						</div>
+					</div>
+
+					<div id="keyTabPanel" class="cardbookTab vbox" hidden="true">	
+						<div class="vbox vcentered" id="keyReadWriteToolsVbox">
+							<div class="hbox hcentered">
+								<button id="searchForOnlineKeyEditButton" title="__MSG_searchForOnlineKeyEditButton.tooltip__"></button>
+								<button id="searchForThKeyEditButton" title="__MSG_searchForThKeyEditButton.tooltip__"></button>
+								<button id="searchForLocalKeyEditButton" title="__MSG_searchForLocalKeyEditButton.tooltip__"></button>
+							</div>
+						</div>
+						<div class="hbox" id="keyReadWriteHbox">
+							<div class="vbox" id="keyReadWriteGroupbox">
+							</div>
+						</div>
+						<div class="hbox" id="keyReadOnlyHbox">
+							<div class="vbox" id="keyReadOnlyGroupbox">
+							</div>
+						</div>
+					</div>
+
+					<div id="helpTabPanel" class="cardbookTab vbox" hidden="true">	
+						<div class="vbox">
+							<div class="hbox">
+								<label><h2>__MSG_definitionLabel__</h2></label>
+							</div>
+							<label class="indent">__MSG_templateFormulaExplanation__</label>
+						</div>
+						<div class="separator"></div>
+						<div class="vbox">
+							<div class="hbox">
+								<label><h2>__MSG_fieldsLabel__</h2></label>
+							</div>
+							<div class="hbox">
+								<div class="vbox" class="indent">
+									<table id="formulaSampleTable">
+										<tr>
+											<td>
+												<label id="formulaMemberLabel1"></label>
+											</td>
+										</tr>
+										<tr>
+											<td>
+												<label id="formulaMemberLabel2"></label>
+											</td>
+										</tr>
+										<tr>
+											<td>
+												<label id="formulaMemberLabel3"></label>
+											</td>
+										</tr>
+										<tr>
+											<td>
+												<label id="formulaMemberLabel4"></label>
+											</td>
+										</tr>
+										<tr>
+											<td>
+												<label id="formulaMemberLabel5"></label>
+											</td>
+										</tr>
+										<tr>
+											<td>
+												<label id="formulaMemberLabel6"></label>
+											</td>
+										</tr>
+									</table>
+								</div>
+							</div>
+						</div>
+						<div class="separator"></div>
+						<div class="vbox">
+							<div class="hbox">
+								<label><h2>__MSG_formulasLabel__</h2></label>
+							</div>
+							<label class="indent">__MSG_formulaExplanation1__</label>
+							<label class="indent">__MSG_formulaExplanation2__</label>
+							<label class="indent">__MSG_formulaExplanation3__</label>
+							<label class="indent">__MSG_formulaExplanation4__</label>
+							<label class="indent">__MSG_formulaExplanation5__</label>
+							<label class="indent">__MSG_formulaExplanation6__</label>
+						</div>
+					</div>
+				</div>
+				<div class="hbox">
+					<label id="notificationMessage" type="OK" class="notificationMessage"></label>
+				</div>
+			</div>
+			<div class="hbox footer-container left-to-right">
+				<div class="hbox">
+					<button id="createTemplateButton" title="__MSG_createTemplateLabel__"></button>
+					<button id="openTemplateButton" title="__MSG_loadTemplateLabel__"></button>
+					<button id="applyTemplateButton" title="__MSG_applyTemplateLabel__"></button>
+					<button id="previousEditButton" title="__MSG_previousEditButton.tooltip__"></button>
+					<button id="nextEditButton" title="__MSG_nextEditButton.tooltip__"></button>
+					<select id="fieldsMenulist">
+					</select>
+				</div>
+				<div class="hbox">
+					<button id="createEditionButton">__MSG_createEditionLabel__</button>
+					<button id="createAndReplaceEditionButton">__MSG_createAndReplaceEditionLabel__</button>
+					<button id="saveEditionButton">__MSG_saveEditionLabel__</button>
+					<button id="cancelButton">__MSG_cancelEditionLabel__</button>
+				</div>
+			</div>
+		</div>
+		<script src="../scripts/i18n.js"></script>
+		<script src="../cardbookHTMLMultiInput.js"></script>
+		<script type="module" src="./wdw_cardEdition1.js"></script>
+	</body>
+</html>
+
+
+<!--
+<script type="application/x-javascript" src="chrome://cardbook/content/cardbookRichContext.js"/>
+<script type="application/x-javascript" src="chrome://cardbook/content/cardbookClipboard.js"/>
+<script type="application/x-javascript" src="chrome://cardbook/content/cardbookNotifications.js"/>
+<script type="application/x-javascript" src="chrome://cardbook/content/cardbookElementTools.js"/>
+<script type="application/x-javascript" src="chrome://cardbook/content/cardbookWindowUtils.js"/>
+<script type="application/x-javascript" src="chrome://cardbook/content/indexedDB/cardbookEncryptor.js"/>
+<script type="application/x-javascript" src="chrome://cardbook/content/indexedDB/cardbookIndexedDB.js"/>
+<script type="application/x-javascript" src="chrome://cardbook/content/indexedDB/cardbookIDBCard.js"/>
+<script type="application/x-javascript" src="chrome://cardbook/content/indexedDB/cardbookIDBCat.js"/>
+<script type="application/x-javascript" src="chrome://cardbook/content/indexedDB/cardbookIDBUndo.js"/>
+<script type="application/x-javascript" src="chrome://cardbook/content/indexedDB/cardbookIDBImage.js"/>
+<script type="application/x-javascript" src="chrome://cardbook/content/indexedDB/cardbookIDBMailPop.js"/>
+<script type="application/x-javascript" src="chrome://cardbook/content/indexedDB/cardbookIDBPrefDispName.js"/>
+<script type="application/x-javascript" src="chrome://cardbook/content/indexedDB/cardbookIDBSearch.js"/>
+<script type="application/x-javascript" src="chrome://cardbook/content/cardbookActions.js"/>
+<script type="application/x-javascript" src="chrome://cardbook/content/cardbookCardParser.js"/>
+<script type="application/x-javascript" src="chromecardbookHTMLMultiInput.mjs://cardbook/content/cardEdition/wdw_imageEdition.js"/>
+<script type="application/x-javascript" src="chrome://cardbook/content/cardEdition/wdw_templateEdition.js"/>
+<script type="application/x-javascript" src="chrome://cardbook/content/cardEdition/wdw_cardEdition.js"/>
+<script type="application/x-javascript" src="chrome://cardbook/content/cardEdition/wdw_cardEditionEvents.js"/>
+<script type="application/x-javascript" src="chrome://cardbook/content/cardEdition/wdw_cardEditionValidations.js"/>
+<script type="application/x-javascript" src="chrome://cardbook/content/scripts/i18n.js"/>
+<script type="application/x-javascript" src="chrome://cardbook/content/enigmail/cardbookEnigmail.js"/>
+
+<script type="application/x-javascript" src="chrome://calendar/content/calendar-ui-utils.js"/>
+<script type="application/x-javascript" src="chrome://cardbook/content/cardbookDatePicker.js"/>
+<script type="application/x-javascript" src="chrome://messenger/content/customElements.js"/>
+<script type="application/x-javascript" src="chrome://calendar/content/widgets/calendar-minimonth.js"/>
+<script type="application/x-javascript" src="chrome://global/content/globalOverlay.js"/>
+<script type="application/x-javascript" src="chrome://global/content/editMenuOverlay.js"/>
+-->

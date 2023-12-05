@@ -10,33 +10,36 @@
         <link rel='stylesheet' type='text/css' href="chrome://messenger/skin/accountSetup.css">
 
         <link rel='stylesheet' type='text/css' href="../skin/cardbookHTML.css">
+        <link rel='stylesheet' type='text/css' href="../skin/cardbookGrid.css">
         <link rel='stylesheet' type='text/css' href="../skin/cardbookRenameField.css">
         <link rel='stylesheet' type='text/css' href="../skin/cardbookNotifications.css">
 		<title></title>
 	</head>
 
 	<body xmlns="http://www.mozilla.org/keymaster/gatekeeper/there.is.only.xul">
-		<div class="vbox">
-			<div class="hbox">
-				<table>
-					<tr>
-						<td>
-							<label id="typeLabel"></label>
-						</td>
-						<td class="cardbook-td-input cardbook-large2-column">
-							<input id="typeTextBox"/>
-						</td>
-					</tr>
-				</table>
-			</div>
-			<div class="vbox hcentered vcentered">
-				<label id="notificationMessage" type="OK" class="notificationMessage"></label>
-			</div>
-			<div class="hbox vright">
+        <div class="grid-container-1">
+            <div class="hbox header-container">
+            </div>
+            <div class="hbox body-container vcentered">
+                <div class="vbox alignCenter">
+					<table>
+						<tr>
+							<td>
+								<label id="typeLabel"></label>
+							</td>
+							<td class="cardbook-td-input cardbook-large2-column">
+								<input id="typeTextBox"/>
+							</td>
+						</tr>
+					</table>
+					<label id="notificationMessage" type="OK" class="notificationMessage"></label>
+                </div>
+            </div>
+            <div class="hbox footer-container vright">
 				<button id="cancelButton">__MSG_cancelEditionLabel__</button>
 				<button id="validateButton">__MSG_validateEditionLabel__</button>
-			</div>
-		</div>
+            </div>
+        </div>
         <script src="../scripts/i18n.js"></script>
 		<script type="module" src="../cardbookHTMLNotification.mjs"></script>
 		<script type="module" src="wdw_cardbookConfigurationRenameField.js"></script>

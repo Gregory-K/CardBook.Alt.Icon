@@ -1,0 +1,5 @@
+from :
+var { PromptUtils } = ChromeUtils.import("resource://gre/modules/SharedPromptUtils.jsm");
+to : 
+var { PromptUtils } = ChromeUtils.importESModule("resource://gre/modules/PromptUtils.sys.mjs");
+

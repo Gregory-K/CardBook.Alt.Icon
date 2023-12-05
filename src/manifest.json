@@ -1,6 +1,6 @@
 {
 	"name": "__MSG_extName__ Alt.Icon",
-	"version": "85.5.1",
+	"version": "92.2.1",
 	"description": "__MSG_extDesc__ -- An alternative icon version/fork (**CAUTION**: visit 'Homepage' bellow). --",
 	"homepage_url": "https://github.com/Gregory-K/CardBook.Alt.Icon",
 	"author": "Philippe VIGNEAU",
@@ -8,8 +8,8 @@
 	"applications": {
 		"gecko": {
 			"id": "cardbook@vigneau.philippe.alt.icon",
-			"strict_min_version": "102.0a1",
-			"strict_max_version": "102.*"
+			"strict_min_version": "113.0a1",
+			"strict_max_version": "116.*"
 		}
 	},
 	"icons": {
@@ -23,6 +23,7 @@
 	"permissions": [
 		"compose",
 		"accountsRead",
+		"messagesRead",
 		"addressBooks",
 		"clipboardRead",
 		"clipboardWrite",
@@ -30,7 +31,8 @@
 		"unlimitedStorage",
 		"tabs",
 		"menus",
-		"menus.overrideContext"
+		"menus.overrideContext",
+		"identity"
 	],
 	"browser_action": {
 		"default_label": "__MSG_cardbookToolbarButtonLabel__",
@@ -71,7 +73,7 @@
 	},
 	"options_ui": {
 		"page": "chrome/content/configuration/wdw_cardbookConfiguration.html",
-		"open_in_tab": false
+		"open_in_tab": true
 	},
 	"manifest_version": 2
 }

@@ -1,20 +1,38 @@
-notifyTools.enable();
 var processDataDisplayId = {};
 
 var loader = Services.scriptloader;
 loader.loadSubScript("chrome://cardbook/content/findDuplicates/cardbookDuplicate.js", this);
+loader.loadSubScript("chrome://cardbook/content/birthdays/cardbookBirthdaysUtils.js", this);
+loader.loadSubScript("chrome://cardbook/content/lightning/cardbookLightning.js", this);
+loader.loadSubScript("chrome://calendar/content/calendar-item-editing.js", this);
+loader.loadSubScript("chrome://cardbook/content/cardbookWindowUtils.js", this);
+loader.loadSubScript("chrome://cardbook/content/attachments/cardbookAttachmentUtils.js", this);
 
-let id = notifyTools.registerListener(async (message) => {
+let id = notifyTools.addListener(async (message) => {
 
 	switch (message.query) {
+		case "mailmerge.getAddressBooks":
+			return new Promise((resolve, reject) => {
+				let addressbooks = cardbookRepository.cardbookAccounts;
+				addressbooks = addressbooks.map((e) => { return { name: e[0], id: e[1], enabled: e[2], type: e[3], readonly: e[4] } });
+				resolve(addressbooks);
+			});
+		case "mailmerge.getContacts":
+			return new Promise((resolve, reject) => {
+				let contacts = cardbookRepository.cardbookDisplayCards[message.id].cards;
+				resolve(contacts);
+			});
 		case "simpleMailRedirection.version":
 			return simpleMailRedirection.version();
+			break;
+		case "simpleMailRedirection.getAddressBooks":
+			return simpleMailRedirection.addressbooks();
 			break;
 		case "simpleMailRedirection.lists":
 			return simpleMailRedirection.lists(message.id);  //all lists if exists, else emails of list with id
 			break;
 		case "simpleMailRedirection.contacts":
-			return simpleMailRedirection.contacts(message.search);
+			return simpleMailRedirection.contacts(message.search, message.books);
 			break;
 		case "simpleMailRedirection.openBook":
 			let m3p = Services.wm.getMostRecentWindow("mail:3pane");
@@ -28,8 +46,8 @@ let id = notifyTools.registerListener(async (message) => {
 			break;
 		case "smartTemplates.getContactsFromMail":
 			for (let account of cardbookRepository.cardbookAccounts) {
-				if (account[1] && account[5] && account[6] != "SEARCH") {
-					let dirPrefId = account[4];
+				if (account[1] && account[2] && account[3] != "SEARCH") {
+					let dirPrefId = account[1];
 					if (message.dirPrefId) {
 						if (dirPrefId != message.dirPrefId) {
 							continue;
@@ -58,8 +76,122 @@ let id = notifyTools.registerListener(async (message) => {
 		case "cardbook.identityChanged":
 			cardbookRepository.cardbookUtils.notifyObservers("identityChanged", message.windowId);
 			break;
-		case "cardbook.openTab":
-			cardbookRepository.cardbookUtils.notifyObservers("openTab");
+		case "cardbook.openCBTab":
+			cardbookRepository.cardbookUtils.notifyObservers("openCBTab");
+			break;
+		case "cardbook.syncWithLightning":
+			cardbookBirthdaysUtils.syncWithLightning();
+			break;
+		case "cardbook.getBirthdaysListLength":
+			return cardbookBirthdaysUtils.lBirthdayList.length;
+		case "cardbook.getCalendarsListLength":
+			return cardbookBirthdaysUtils.lCalendarList.length;
+		case "cardbook.getBirthdaySyncResult":
+			return cardbookBirthdaysUtils.lBirthdaySyncResult;
+		case "cardbook.getEvents":
+			function formatEventDateTime(aDatetime) {
+				return cal.dtz.formatter.formatDateTime(aDatetime.getInTimezone(cal.dtz.defaultTimezone));
+			};
+			function getEventEndDate(x) {
+				let eventEndDate = x.endDate.clone();
+				if (x.startDate.isDate) {
+					eventEndDate.day = eventEndDate.day - 1;
+				}
+				return eventEndDate;
+			};
+			let events = []
+			let calendars = cal.manager.getCalendars();
+			for (let calendar of calendars) {
+				if (!calendar.getProperty("disabled")) {
+					let filter = 0;
+					filter |= calendar.ITEM_FILTER_TYPE_EVENT;
+					let iterator = cal.iterate.streamValues(
+						calendar.getItems(filter, 0, null, null)
+					);
+					
+					let allItems = [];
+					for await (let items of iterator) {
+						allItems = allItems.concat(items);
+					}		
+
+                    for (let item of allItems) {
+                        let found = false;
+                        let attendees = cal.email.createRecipientList(item.getAttendees({})).split(', ');
+                        for (let attendee of attendees) {
+                            if (!found) {
+                                for (let email of message.emails) {
+                                    if (!found && attendee.toLowerCase().indexOf(email.toLowerCase()) >= 0) {
+                                        found = true;
+                                        events.push(item);
+                                    }
+                                }
+                            }
+                        }
+                    }
+				}
+			}
+			cal.unifinder.sortItems(events, message.column, message.order);
+			let dataFromEvents = events.map(x => [ (x.title ? x.title.replace(/\n/g, ' ') : ""),
+																		formatEventDateTime(x.startDate),
+																		formatEventDateTime(getEventEndDate(x)),
+																		x.getCategories({}).join(", "),
+																		x.getProperty("LOCATION"),
+																		x.calendar.name,
+																		x.hashId.replace("##" + x.calendar.id, ""),
+																		x.calendar.id ]);
+			return dataFromEvents;
+		case "cardbook.editEvent":
+			// code taken from modifyEventWithDialog
+			let calendar = cal.manager.getCalendarById(message.calendarId);
+			let eventFound = await calendar.getItem(message.eventId);
+
+			let dlg = cal.item.findWindow(eventFound);
+			if (dlg) {
+				dlg.focus();
+				return;
+			}
+
+			var editListener = {
+				onTransactionComplete: async function(item, oldItem) {
+					await notifyTools.notifyBackground({query: "cardbook.displayEvents"});
+				}
+			};
+
+			var onModifyItem = function(eventFound, calendar, originalItem, listener, extresponse=null) {
+				cardbookLightning.doTransaction('modify', eventFound, calendar, originalItem, editListener, extresponse);
+			};
+
+			let item = eventFound;
+			let response;
+			[item, , response] = promptOccurrenceModification(item, true, "edit");
+			
+			if (item && (response || response === undefined)) {
+				cardbookLightning.modifyLightningEvent(item, item.calendar, "modify", onModifyItem, null, null, null);
+			}
+			break;
+		case "cardbook.createEvent":
+			var createListener = {
+				onTransactionComplete: async function(item, oldItem) {
+					await notifyTools.notifyBackground({query: "cardbook.displayEvents"});
+				}
+			};
+
+			var onNewEvent = function(item, calendar, originalItem, listener) {
+				if (item.id) {
+					// If the item already has an id, then this is the result of
+					// saving the item without closing, and then saving again.
+					cardbookLightning.doTransaction('modify', item, calendar, originalItem, createListener);
+				} else {
+					// Otherwise, this is an addition
+					cardbookLightning.doTransaction('add', item, calendar, null, createListener);
+				}
+			};
+		
+			let attendee = [];
+			for (let email of message.emails) {
+				attendee.push(["mailto:" + email, message.displayName]);
+			}
+			cardbookLightning.createLightningEvent(attendee, onNewEvent);
 			break;
 		case "cardbook.getCalendars":
 			let tmpArray = [];
@@ -69,9 +201,16 @@ let id = notifyTools.registerListener(async (message) => {
 			}
 			cardbookRepository.cardbookUtils.sortMultipleArrayByString(tmpArray,0,1);
 			return tmpArray;
-			break;
+		case "cardbook.getBirthdays":
+			return cardbookBirthdaysUtils.loadBirthdays(message.days);
 		case "cardbook.getTranslatedField":
 			return cardbookRepository.cardbookUtils.getTranslatedField(message.value, message.locale);
+			break;
+		case "cardbook.getCardFromEmail":
+			return cardbookRepository.cardbookUtils.getCardFromEmail(message.email, message.dirPrefId);
+			break;
+		case "cardbook.getCardRegion":
+			return cardbookRepository.cardbookUtils.getCardRegion(message.card);
 			break;
 		case "cardbook.getAllAvailableColumns":
 			return cardbookRepository.cardbookUtils.getAllAvailableColumns(message.mode);
@@ -118,17 +257,6 @@ let id = notifyTools.registerListener(async (message) => {
 					await notifyTools.notifyBackground({query: "cardbook.conf.addProgressBar", type: "changePrefEmail", done: total});
 				}}, Components.interfaces.nsIEventTarget.DISPATCH_NORMAL);
 			break;
-		case "cardbook.convertNodes":
-			if (message.radioValue == "categories") {
-				cardbookRepository.cardbookAccountsNodes[message.dirPrefId] = [];
-			} else {
-				Services.tm.currentThread.dispatch({ run: function() {
-					for (let card of cardbookRepository.cardbookDisplayCards[message.dirPrefId].cards) {
-						cardbookRepository.addCardToOrg(card, message.dirPrefId);
-					}
-				}}, Components.interfaces.nsIEventTarget.DISPATCH_SYNC);
-			}
-			break;
 		case "cardbook.searchForWrongCards":
 			try {
 				cardbookRepository.cardbookPreferences.delBranch(cardbookRepository.cardbookPreferences.prefCardBookData + message.dirPrefId + "." + "dateFormat");
@@ -142,9 +270,26 @@ let id = notifyTools.registerListener(async (message) => {
 				}
 			}
 			return found;
-		case "cardbook.getStringFromFormula":
-			let formula = cardbookRepository.cardbookUtils.getStringFromFormula(message.fnFormula, message.fn);
-			return formula;
+		case "cardbook.cloneCard":
+			message.cardOut = new cardbookCardParser();
+			await cardbookRepository.cardbookUtils.cloneCard(message.cardIn, message.cardOut);
+			return message.cardOut;
+		case "cardbook.cardbookPreferDisplayNameIndex":
+			if (cardbookRepository.cardbookPreferDisplayNameIndex[message.email]) {
+				return cardbookRepository.cardbookPreferDisplayNameIndex[message.email];
+			} else {
+				return null;
+			}
+		case "cardbook.cardToVcardData":
+			let vCard = await cardbookRepository.cardbookUtils.cardToVcardData(message.card); 
+			return vCard
+		case "cardbook.writePossibleCustomFields":
+			cardbookRepository.writePossibleCustomFields();
+			break;
+		case "cardbook.getPossibleCustomFields":
+			return cardbookRepository.possibleCustomFields;
+		case "cardbook.getCardParser":
+			return new cardbookCardParser(message.content, "", "", message.dirPrefId);
 		case "cardbook.convertVCards":
 			Services.tm.currentThread.dispatch({ run: async function() {
 				let convertTopic = "cardsConverted";
@@ -201,6 +346,25 @@ let id = notifyTools.registerListener(async (message) => {
 				}
 				let i = 0;
 				switch(message.fields) {
+					case "postOffice":
+					case "extendedAddr":
+					case "street":
+					case "locality":
+					case "region":
+					case "postalCode":
+					case "country":
+						let adrIndex = cardbookRepository.adrElements.indexOf(message.fields);
+						for (let adrLine of card.adr) {
+							if (processDataDisplayId[message.winId] != message.displayId) {
+								return
+							}
+							await notifyTools.notifyBackground({query: "cardbook.formatData.displayCardLineFields", winId: message.winId, displayId: message.displayId, record: [lines, card.cbid, card.fn, adrLine[0][adrIndex], adrLine[0][adrIndex], i]});
+							lines++;
+							i++;
+						}
+						rowFormatDoneGet++;
+						await notifyTools.notifyBackground({query: "cardbook.processData.rowDone", winId: message.winId, displayId: message.displayId, rowDone: rowFormatDoneGet});
+						break;
 					case "tel":
 						let country = cardbookRepository.cardbookUtils.getCardRegion(card);
 						for (let telLine of card.tel) {
@@ -302,6 +466,9 @@ let id = notifyTools.registerListener(async (message) => {
 						if (value) {
 							if (message.fields == "tel" || message.fields == "email") {
 								myOutCard[message.fields][index][0] = [value];
+							} else if (cardbookRepository.adrElements.includes(message.fields)) {
+								let adrIndex = cardbookRepository.adrElements.indexOf(message.fields);
+								myOutCard.adr[index][0][adrIndex] = value;
 							} else {
 								if (fieldTypeSave == "string") {
 									myOutCard[message.fields] = value;
@@ -427,7 +594,7 @@ let id = notifyTools.registerListener(async (message) => {
 				cardbookRepository.currentAction[myActionId].totalCards = cardbookRepository.currentAction[myActionId].totalCards + message.cards.length;
 				cardbookRepository.asyncDeleteCards(message.cards, myActionId);
 				cardbookActions.endAsyncAction(myActionId);
-				await notifyTools.notifyBackground({query: "cardbook.findDuplicates.finishDeleteAction", winId: info.winId, displayId: message.displayId, lineId: message.lineId});
+				await notifyTools.notifyBackground({query: "cardbook.findDuplicates.finishDeleteAction", winId: message.winId, displayId: message.displayId, lineId: message.lineId});
 			}
 			break;
 		case "cardbook.processData.setDisplayId":
@@ -440,23 +607,38 @@ let id = notifyTools.registerListener(async (message) => {
 			await cardbookActions.endAction(message.actionId);
 			break;
 		case "cardbook.getAdrElements":
-				return cardbookRepository.adrElements;
+			return cardbookRepository.adrElements;
+		case "cardbook.getNextAndPreviousCard": {
+			let result = {};
+			let previous = 0;
+			let next = 0;
+			for (let index in cardbookRepository.displayedIds) {
+				if (cardbookRepository.displayedIds[index] == message.cbid) {
+					previous = parseInt(index)-1;
+					next = parseInt(index)+1;
+					break;
+				}
+			}
+			if (cardbookRepository.displayedIds[previous]) {
+				result.previous = cardbookRepository.cardbookCards[cardbookRepository.displayedIds[previous]];
+			}
+			if (cardbookRepository.displayedIds[next]) {
+				result.next = cardbookRepository.cardbookCards[cardbookRepository.displayedIds[next]];
+			}
+			return result;
+		}
 		case "cardbook.getAllColumns":
 			return cardbookRepository.allColumns;
 		case "cardbook.getCustomFields":
 			return cardbookRepository.customFields;
-		case "cardbook.getNewFields":
-			return cardbookRepository.newFields;
 		case "cardbook.getMultilineFields":
 			return cardbookRepository.multilineFields;
 		case "cardbook.isMyAccountRemote":
 			return cardbookRepository.cardbookUtils.isMyAccountRemote(message.type);
 		case "cardbook.applyFormulaToAllAB":
 			for (let account of cardbookRepository.cardbookAccounts) {
-				if (account[1]) {
-					if ((account[4] == message.dirPrefId) || ("allAddressBooks" == message.dirPrefId)) {
-						cardbookRepository.cardbookPreferences.setFnFormula(account[4], message.formula);
-					}
+				if ((account[1] == message.dirPrefId) || ("allAddressBooks" == message.dirPrefId)) {
+					cardbookRepository.cardbookPreferences.setFnFormula(account[1], message.formula);
 				}
 			}
 			break;
@@ -487,13 +669,8 @@ let id = notifyTools.registerListener(async (message) => {
 		case "cardbook.getCurrentActions":
 			return cardbookRepository.currentAction;
 		case "cardbook.notifyObserver":
-			// bug : this command is run twice !
 			Services.obs.notifyObservers(null, message.value, message.params);
 			break;
-		case "cardbook.convertDateToDateString":
-			return cardbookRepository.cardbookDates.convertDateToDateString(message.date, message.version);
-		case "cardbook.getFormattedDateForDateString":
-			return cardbookRepository.cardbookDates.getFormattedDateForDateString(message.date, message.version, message.format);
 		case "cardbook.getEditionFields":
 			return cardbookRepository.cardbookUtils.getEditionFields();
 		case "cardbook.setDefaultImppTypes":
@@ -632,13 +809,16 @@ let id = notifyTools.registerListener(async (message) => {
 			break;
 		case "cardbook.getCardValueByField":
 			return cardbookRepository.cardbookUtils.getCardValueByField(message.card, message.field, message.includePref);
+		case "cardbook.setCardValueByField":
+			cardbookRepository.cardbookUtils.setCardValueByField(message.card, message.field, message.value);
+			return message.card;
 		case "cardbook.getMembersFromCard":
 			return cardbookRepository.cardbookUtils.getMembersFromCard(message.card)
 		case "cardbook.getImage":
 			let image = await cardbookIDBImage.getImage(message.field, message.dirName, message.cardId, message.cardName);
 			return image
 		case "cardbook.getCardParser":
-			return new cardbookCardParser();
+			return new cardbookCardParser(message.content, "", "", message.dirPrefId);
 		case "cardbook.mergeCards.viewCardResult":
 			if (message.hideCreate) {
 				var myViewResultArgs = {cardIn: message.card, cardOut: {}, editionMode: "ViewResultHideCreate", cardEditionAction: "CANCEL"};
@@ -648,9 +828,8 @@ let id = notifyTools.registerListener(async (message) => {
 			var resultWindow = Services.wm.getMostRecentWindow("mail:3pane").openDialog("chrome://cardbook/content/cardEdition/wdw_cardEdition.xhtml", "", cardbookRepository.modalWindowParams, myViewResultArgs);
 			await notifyTools.notifyBackground({query: "cardbook.mergeCards.closeViewCardResult", ids: message.ids, duplicateWinId: message.duplicateWinId, duplicateDisplayId: message.duplicateDisplayId, duplicateLineId: message.duplicateLineId, action: myViewResultArgs.cardEditionAction, actionId: message.actionId, cardOut: myViewResultArgs.cardOut});
 			break;
-		case "cardbook.mergeCards.mergeFinished":
+		case "cardbook.mergeCards.mergeFinished": {
 			// source : MERGE, DUPLICATE, SYNC, IMPORT
-			if (true) {
 				let uid = message.ids.split(",")[0].split("::")[1];
 				let dirPrefId = message.ids.split(",")[0].split("::")[0];
 				if (message.action == "CANCEL") {
@@ -664,26 +843,33 @@ let id = notifyTools.registerListener(async (message) => {
 						}
 						cardbookRepository.cardbookServerCardSyncDone[dirPrefId]++;
 					}
+					if (message.source == "IMPORT") {
+						cardbookRepository.currentAction[message.actionId].params[message.mergeId].status = "FINISHED";
+					}
 					return;
 				}
 				if (message.source != "SYNC") {
 					var mergeActionId = message.actionId || cardbookActions.startAction("cardsMerged", null, null);
 					switch (message.action) {
 						case "CREATEANDREPLACE":
-							let listOfCards = [];
 							for (let cbid of message.ids.split(",")) {
-								listOfCards.push(cardbookRepository.cardbookCards[cbid]);
-							}
-							await cardbookRepository.deleteCards(listOfCards, mergeActionId);
-							if (message.actionId) {
-								cardbookRepository.currentAction[mergeActionId].totalCards++;
+								let card = await cardbookIDBCard.getCard(cbid);
+								if (cardbookRepository.cardbookCards[card.cbid]) {
+									await cardbookRepository.deleteCards([card], mergeActionId);
+									cardbookRepository.currentAction[mergeActionId].totalCards++;
+								} else {
+									// temporary card
+									await cardbookRepository.deleteCards([card], null);
+								}
 							}
 						case "CREATE":
 							await cardbookRepository.saveCardFromUpdate({}, message.cardOut, mergeActionId, true);
 							break;
 					}
-					if (!message.actionId) {
+					if (message.source == "DUPLICATE" || message.source == "MERGE") {
 						await cardbookActions.endAction(mergeActionId);
+					} else {
+						cardbookRepository.currentAction[mergeActionId].params[message.mergeId].status = "FINISHED";
 					}
 				}
 				if (message.action == "CREATE" || message.action == "CREATEANDREPLACE") {
@@ -707,8 +893,6 @@ let id = notifyTools.registerListener(async (message) => {
 							} else {
 								await cardbookRepository.cardbookSynchronization.serverUpdateCard(connection, cacheCard, message.cardOut, prefIdType);
 							}
-						} else if (message.source == "IMPORT") {
-							cardbookRepository.cardbookServerCardSyncDone[dirPrefId]++;
 						}
 						// remove the temporary card
 						let tempCard = cardbookRepository.cardbookServerSyncMerge[dirPrefId][uid].tempCard;
@@ -716,8 +900,8 @@ let id = notifyTools.registerListener(async (message) => {
 						cardbookRepository.cardbookServerSyncMerge[dirPrefId][uid] = null;
 					}
 				}
+				break;
 			}
-			break;
 		case "cardbook.formatStringForOutput":
 			cardbookRepository.cardbookUtils.formatStringForOutput(message.string, message.values, message.error);
 			break;
@@ -726,19 +910,29 @@ let id = notifyTools.registerListener(async (message) => {
 			// return Services.prefs.getStringPref("ldap_2.servers.history.uid");
 			var ABBundle = Services.strings.createBundle("chrome://messenger/locale/addressbook/addressBook.properties");
 			return ABBundle.GetStringFromName("ldap_2.servers.history.description");
+		case "cardbook.getLDAPStandardAB": {
+			let localAB = [];
+			let prefs = Services.prefs.getChildList("ldap_2.servers");
+			prefs = prefs.filter(x => x.endsWith("filename"));
+			for (let pref of prefs) {
+				if (Services.prefs.getStringPref(pref, "").includes("ldap")) {
+					let uid = pref.replace(/filename$/, "uid");
+					localAB.push(Services.prefs.getStringPref(uid));
+				}
+			}
+			return localAB; }
 		case "cardbook.getRemoteStandardAB":
 			let remoteAB = [];
 			let prefs = Services.prefs.getChildList("ldap_2.servers");
+			prefs = prefs.filter(x => x.endsWith("carddav.url"));
 			for (let pref of prefs) {
-				if (pref.endsWith("carddav.url")) {
-					let user = pref.replace("carddav.url", "carddav.username");
-					let name = pref.replace("carddav.url", "description");
-					let uid = pref.replace("carddav.url", "uid");
-					remoteAB.push({"user": Services.prefs.getStringPref(user),
-									"url": Services.prefs.getStringPref(pref), 
-									"name": Services.prefs.getStringPref(name),
-									"uid": Services.prefs.getStringPref(uid)});
-				}
+				let user = pref.replace(/carddav.url$/, "carddav.username");
+				let name = pref.replace(/carddav.url$/, "description");
+				let uid = pref.replace(/carddav.url$/, "uid");
+				remoteAB.push({"user": Services.prefs.getStringPref(user),
+								"url": Services.prefs.getStringPref(pref), 
+								"name": Services.prefs.getStringPref(name),
+								"uid": Services.prefs.getStringPref(uid)});
 			}
 			return remoteAB;
 		case "cardbook.getFn":
@@ -774,22 +968,28 @@ let id = notifyTools.registerListener(async (message) => {
 					result.push([country, country]);
 				}
 			}
+            cardbookRepository.cardbookUtils.sortMultipleArrayByString(result,1,1);
 			return result;
 		case "cardbook.getCards":
 			let cardslist = [];
 			for (let cbid of message.cbids) {
-				let card = await cardbookIDBCard.getCard(cbid);
-				cardslist.push(card);
+				if (cardbookRepository.cardbookCards[cbid]) {
+					cardslist.push(cardbookRepository.cardbookCards[cbid]);
+				}
 			}
 			return cardslist;
+		case "cardbook.openTemplate":
+			await cardbookWindowUtils.openEditionWindow(null, "EditTemplate", message.content);
+			break;
 		case "cardbook.getAllURLsToDiscover":
 			return cardbookRepository.cardbookSynchronization.getAllURLsToDiscover();
 		case "cardbook.openExternalURL":
 			cardbookRepository.cardbookUtils.openExternalURL(message.link);
 			break;
 		case "cardbook.promptConfirm":
-			return Services.prompt.confirm(window, message.title, message.message);
-			break;
+			return Services.prompt.confirm(message.window, message.title, message.message);
+		case "cardbook.promptAlert":
+			return Services.prompt.alert(message.window, message.title, message.message);
 		case "cardbook.pref.setLegacyPref":
 			cardbookRepository.cardbookPrefs[message.key] = message.value;
 			break;
@@ -801,18 +1001,18 @@ let id = notifyTools.registerListener(async (message) => {
 		case "cardbook.getABs":
 			let sortedAddressBooks = [];
 			for (let account of cardbookRepository.cardbookAccounts) {
-				if (account[1] && (message.includeDisabled || account[5])
-						&& (message.includeReadOnly || !account[7])
-						&& (message.includeSearch || (account[6] !== "SEARCH"))) {
-					if (message.exclRestrictionList && message.exclRestrictionList[account[4]]) {
+				if ((message.includeDisabled || account[2])
+						&& (message.includeReadOnly || !account[4])
+						&& (message.includeSearch || (account[3] !== "SEARCH"))) {
+					if (message.exclRestrictionList && message.exclRestrictionList[account[1]]) {
 						continue;
 					}
 					if (message.inclRestrictionList && message.inclRestrictionList.length > 0) {
-						if (message.inclRestrictionList[account[4]]) {
-							sortedAddressBooks.push([account[0], account[4], cardbookRepository.getABIconType(account[6])]);
+						if (message.inclRestrictionList[account[1]]) {
+							sortedAddressBooks.push([account[0], account[1], cardbookRepository.getABIconType(account[3])]);
 						}
 					} else {
-						sortedAddressBooks.push([account[0], account[4], cardbookRepository.getABIconType(account[6])]);
+						sortedAddressBooks.push([account[0], account[1], cardbookRepository.getABIconType(account[3])]);
 					}
 				}
 			}
@@ -833,6 +1033,64 @@ let id = notifyTools.registerListener(async (message) => {
 			}
 			cardbookRepository.cardbookUtils.sortMultipleArrayByString(sortedAddressBooks,0,1);
 			return sortedAddressBooks;
+		case "cardbook.getABsWithIdentity": {
+				let ABInclRestrictions = {};
+				let ABExclRestrictions = {};
+				let catInclRestrictions = {};
+				let catExclRestrictions = {};
+
+				function _loadRestrictions(aIdentityKey) {
+					let result = [];
+					result = cardbookRepository.cardbookPreferences.getAllRestrictions();
+					ABInclRestrictions = {};
+					ABExclRestrictions = {};
+					catInclRestrictions = {};
+					catExclRestrictions = {};
+					if (!aIdentityKey) {
+						ABInclRestrictions["length"] = 0;
+						return;
+					}
+					for (var i = 0; i < result.length; i++) {
+						var resultArray = result[i];
+						if ((resultArray[0] == "true") && (resultArray[3] != "") && ((resultArray[2] == aIdentityKey) || (resultArray[2] == "allMailAccounts"))) {
+							if (resultArray[1] == "include") {
+								ABInclRestrictions[resultArray[3]] = 1;
+								if (resultArray[4]) {
+									if (!(catInclRestrictions[resultArray[3]])) {
+										catInclRestrictions[resultArray[3]] = {};
+									}
+									catInclRestrictions[resultArray[3]][resultArray[4]] = 1;
+								}
+							} else {
+								if (resultArray[4]) {
+									if (!(catExclRestrictions[resultArray[3]])) {
+										catExclRestrictions[resultArray[3]] = {};
+									}
+									catExclRestrictions[resultArray[3]][resultArray[4]] = 1;
+								} else {
+									ABExclRestrictions[resultArray[3]] = 1;
+								}
+							}
+						}
+					}
+					ABInclRestrictions["length"] = cardbookRepository.cardbookUtils.sumElements(ABInclRestrictions);
+				};
+
+				_loadRestrictions(message.identity);
+
+				let sortedAddressBooks = [];
+				for (let account of cardbookRepository.cardbookAccounts) {
+					if (account[2] && !account[4] && (account[3] != "SEARCH")) {
+						let name = account[0];
+						let dirPrefId = account[1];
+						if (cardbookRepository.verifyABRestrictions(dirPrefId, "allAddressBooks", ABExclRestrictions, ABInclRestrictions)) {
+							sortedAddressBooks.push([name, dirPrefId]);
+						}
+					}
+				}
+				cardbookRepository.cardbookUtils.sortMultipleArrayByString(sortedAddressBooks,0,1);
+				return sortedAddressBooks;
+			}
 		case "cardbook.getCategories":
 			let sortedCategories = [];
 			if (cardbookRepository.cardbookAccountsCategories[message.defaultPrefId]) {
@@ -858,6 +1116,8 @@ let id = notifyTools.registerListener(async (message) => {
 			}
 			cardbookRepository.cardbookUtils.sortMultipleArrayByString(contacts,0,1);
 			return contacts;
+		case "cardbook.getGoogleOAuthURLForGooglePeople":
+			return cardbookSynchronizationGoogle2.getGoogleOAuthURLForGooglePeople(message.email, message.type);
 		case "cardbook.getvCard":
 			return cardbookRepository.cardbookUtils.getvCardForEmail(cardbookRepository.cardbookCards[message.dirPrefId+"::"+message.contactId]);
 		case "cardbook.getNodesForCreation":
@@ -893,6 +1153,50 @@ let id = notifyTools.registerListener(async (message) => {
 					cardbookRepository.importConflictChoice[message.dirPrefId][message.buttons][message.message].result = message.result;
 				}
 			}
+			break;
+		case "cardbook.addEmail":
+			let myNewCard = new cardbookCardParser();
+			myNewCard.dirPrefId = message.dirPrefId;
+			myNewCard.email.push([[message.email], [], "", []]);
+			myNewCard.fn = message.fn;
+			if (message.fn == message.email) {
+				myNewCard.fn = message.email.substr(0, message.email.indexOf("@")).replace("."," ").replace("_"," ");
+			}
+			let myDisplayNameArray = myNewCard.fn.split(" ");
+			if (myDisplayNameArray.length > 1) {
+				myNewCard.lastname = myDisplayNameArray[myDisplayNameArray.length - 1];
+				let removed = myDisplayNameArray.splice(myDisplayNameArray.length - 1, 1);
+				myNewCard.firstname = myDisplayNameArray.join(" ");
+			}
+			await cardbookWindowUtils.openEditionWindow(myNewCard, "AddEmail");
+			break;
+		case "cardbook.addAttachments":
+			cardbookAttachmentUtils.loadAttachment(message.attachment, message.dirPrefId);
+			break;
+		case "cardbook.provider":
+			let cardResults = [];
+			let searchArray = cardbookRepository.cardbookCardLongSearch;
+			if (cardbookRepository.cardbookPrefs["autocompleteRestrictSearch"]) {
+				searchArray = cardbookRepository.cardbookCardShortSearch;
+			}
+			let newSearchString = cardbookRepository.makeSearchString(message.searchString);
+			for (let account of cardbookRepository.cardbookAccounts) {
+				if (account[2] && account[3] != "SEARCH") {
+					let dirPrefId = account[1];
+					for (var j in searchArray[dirPrefId]) {
+						if (j.indexOf(newSearchString) >= 0 || newSearchString == "") {
+							for (let card of searchArray[dirPrefId][j]) {
+								let emails = cardbookRepository.cardbookUtils.getEmailsFromCard(card, true);
+								let DisplayName = card.fn;
+								let PrimaryEmail = emails.length ? emails[0] : "";
+								let SecondEmail = emails.length > 1 ? emails[1] : "";
+								cardResults.push({ DisplayName, PrimaryEmail, SecondEmail});
+							}
+						}
+					}
+				}
+			}
+			return cardResults;
 			break;
 		}
 });

@@ -1,3 +1,7 @@
+#wdw_addressbooksEditBody {
+	overflow: auto;
+}
+
 /* textarea */
 #fnPreviewWrapper {
     display: flex;

@@ -18,6 +18,34 @@
 	"statusProgressInformationTooltip": {
 		"message": "Kattintson ide a részletekért"
 	},
+	"columnsSortBy": {
+		"message": "Rendezés: $P1$",
+        "placeholders": {
+            "P1": {
+                "content": "$1"
+            }
+        }
+	},
+	"columnPickerTitle": {
+		"message": "Jelölje ki a megjelenítendő oszlopokat"
+	},
+	"columnPickerRestoreColumnOrder": {
+		"message": "Oszlopsorrend visszaállítása"
+	},
+	"columnPickerApplyCurrentViewTo": {
+		"message": "Jelenlegi nézet alkalmazása…"
+	},
+	"columnPickerApplyCurrentViewToConfirmMsg": {
+		"message": "Alkalmazza az aktuális mappa oszlopait erre: $P1$?",
+        "placeholders": {
+            "P1": {
+                "content": "$1"
+            }
+        }
+	},
+	"columnPickerApplyCurrentViewToConfirmTitle": {
+		"message": "Alkalmazza a módosításokat?"
+	},
 	"imageSelectionTitle": {
 		"message": "Kép kiválasztása"
 	},
@@ -645,6 +673,25 @@
 	},
 	"synchroAllFinished": {
 		"message": "Minden összehangolás kész"
+	},
+	"lastSync": {
+		"message": "Legutóbb szinkronizálva: $P1$",
+        "placeholders": {
+            "P1": {
+                "content": "$1"
+            }
+        }
+	},
+	"syncFailedNeverSynced": {
+		"message": "Szinkronizálás sikertelen. Legutóbb szinkronizálva: soha"
+	},
+	"syncFailedLastSync": {
+		"message": "Szinkronizálás sikertelen. Legutóbb szinkronizálva: $P1$",
+        "placeholders": {
+            "P1": {
+                "content": "$1"
+            }
+        }
 	},
 	"discoveryRunning": {
 		"message": "$P1$ : Névjegytár mappák önműködők felfedezése fut",
@@ -2755,7 +2802,7 @@
 		}
 	},
 	"eventEntryTitleMessage": {
-		"message": "%1$S évfordulója"
+		"message": "%1$S évfordulója (%5$S)"
 	},
 	"anniversaryCategory": {
 		"message": "Évforduló"
@@ -3747,12 +3794,6 @@
 	"findEventsFromEmailMessengerAccesskey": {
 		"message": "r"
 	},
-	"mailContext-addToCardBookMenuLabel": {
-		"message": "Felvétel a névjegyzékbe (Névjegyzék)…"
-	},
-	"mailContext-addToCardBookMenuAccesskey": {
-		"message": "v"
-	},
 	"addAllAttachementsToCardBookMenuLabel": {
 		"message": "Összes mentése névjegyzékbe"
 	},
@@ -3981,6 +4022,9 @@
 	"readonlyLabel": {
 		"message": "Mód: csak olvasható"
 	},
+	"syncingLabel": {
+		"message": "Szinkronizálás…"
+	},
 	"urnuuidLabel": {
 		"message": "Használ urn:uuid"
 	},
@@ -4038,14 +4082,8 @@
 	"sendEmailLabel": {
 		"message": "Új üzenet létrehozása"
 	},
-	"sendEmailAccesskey": {
-		"message": "ü"
-	},
 	"syncLightningMenuItemLabel": {
 		"message": "Naptár összehangolása"
-	},
-	"syncLightningMenuAccesskey": {
-		"message": "ö"
 	},
 	"calendarNameLabel": {
 		"message": "Naptár"
@@ -5220,12 +5258,6 @@
 	"cardbookToolbarAppMenuButtonTooltip": {
 		"message": "A névjegyzék megjelenítése"
 	},
-	"cardbookToolbarSearchBoxLabel": {
-		"message": "Névjegyzék keresése"
-	},
-	"cardbookToolbarSearchBoxTooltip": {
-		"message": "Névjegyzék keresése"
-	},
 	"cardbookToolbarComplexSearchLabel": {
 		"message": "Mentett keresés"
 	},
@@ -5348,9 +5380,6 @@
 	},
 	"PreferMailFormat.label": {
 		"message": "Az üzeneteket a következő formátumban szereti megkapni:"
-	},
-	"PreferMailFormat.accesskey": {
-		"message": "k"
 	},
 	"Unknown.label": {
 		"message": "Ismeretlen"
@@ -5493,9 +5522,6 @@
 	"editEventLabel": {
 		"message": "Esemény szerkesztése"
 	},
-	"editEventAccesskey": {
-		"message": "s"
-	},
 	"eventsTableTitleLabel": {
 		"message": "Cím"
 	},
@@ -5534,9 +5560,6 @@
 	},
 	"createEventLabel": {
 		"message": "Új esemény létrehozása"
-	},
-	"createEventAccesskey": {
-		"message": "e"
 	},
 	"adrFormulaExplanation": {
 		"message": "Lehetőség van arra, hogy személyre szabja a Névjegyzék formátumát a címek formátumában. Ez a képlet áll blokkok által közrezárt „()”. Ezekben a blokkokban sok rész lehet, amelyeket „|” határol."
@@ -5700,38 +5723,20 @@
 	"createEditionLabel": {
 		"message": "Létrehoz"
 	},
-	"createEditionAccesskey": {
-		"message": "L"
-	},
 	"createAndReplaceEditionLabel": {
 		"message": "Létrehozása és cseréje"
-	},
-	"createAndReplaceEditionAccesskey": {
-		"message": "c"
 	},
 	"saveEditionLabel": {
 		"message": "Mentés"
 	},
-	"saveEditionAccesskey": {
-		"message": "M"
-	},
 	"validateEditionLabel": {
 		"message": "Érvényesít"
-	},
-	"validateEditionAccesskey": {
-		"message": "É"
 	},
 	"cancelEditionLabel": {
 		"message": "Mégse"
 	},
-	"cancelEditionAccesskey": {
-		"message": "M"
-	},
 	"closeEditionLabel": {
 		"message": "Bezárás"
-	},
-	"closeEditionAccesskey": {
-		"message": "B"
 	},
 	"moreEditionLabel": {
 		"message": "Több megjelenítése"
@@ -5827,9 +5832,6 @@
 	"kind.edit.label": {
 		"message": "Fajta"
 	},
-	"kind.edit.accesskey": {
-		"message": "F"
-	},
 	"addEmailGroupboxLabel": {
 		"message": "E-mail cím"
 	},
@@ -5922,6 +5924,20 @@
 	},
 	"capitalizationLabel": {
 		"message": "Nagybetűs írás"
+	},
+	"searchinAB": {
+		"message": "$P1$ keresés",
+        "placeholders": {
+            "P1": {
+                "content": "$1"
+            }
+        }
+	},
+	"searchinAllAB": {
+		"message": "Keresés az összes címjegyzékben"
+	},
+	"searchingABPlaceholder": {
+		"message": "Keresés…"
 	},
 	"region-name-ad": {
 		"message": "Andorra"

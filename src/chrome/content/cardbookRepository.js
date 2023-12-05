@@ -1,6 +1,5 @@
 var { MailServices } = ChromeUtils.import("resource:///modules/MailServices.jsm");
 var { Services } = ChromeUtils.import("resource://gre/modules/Services.jsm");
-var { AppConstants } = ChromeUtils.import("resource://gre/modules/AppConstants.jsm");
 var { ExtensionParent } = ChromeUtils.import("resource://gre/modules/ExtensionParent.jsm");
 
 var EXPORTED_SYMBOLS = ["cardbookRepository"];
@@ -14,14 +13,10 @@ var cardbookRepository = {
 	cardbookImageDatabase: {},
 	cardbookDuplicateDatabase: {},
 
-	extension: ExtensionParent.GlobalManager.getExtension("cardbook@vigneau.philippe.alt.icon"),
+	extension: ExtensionParent.GlobalManager.getExtension("cardbook@vigneau.philippe"),
 	
 	windowParams: "chrome,titlebar,resizable,all,dialog=no",
 	modalWindowParams: "modal,chrome,titlebar,resizable,minimizable=no",
-	// Workaround for Bug 1151440 - the HTML color picker won't work
-	// in linux when opened from modal dialog
-	colorPickableDialogParams: (AppConstants.platform == 'Linux') ? "chrome,resizable,centerscreen" : "modal,chrome,resizable,centerscreen",
-	colorPickableModalDialogParams: (AppConstants.platform == 'Linux') ? "chrome,titlebar,resizable,minimizable=no" : "modal,chrome,titlebar,resizable,minimizable=no",
 	countriesList: ["ad","ae","af","ag","ai","al","am","ao","aq","ar","as","at","au","aw","az","ba","bb","bd","be","bf","bg",
 						"bh","bi","bj","bl","bm","bn","bo","bq","br","bs","bt","bv","bw","by","bz","ca","cc","cd","cf","cg","ch",
 						"ci","ck","cl","cm","cn","co","cp","cr","cu","cv","cw","cx","cy","cz","de","dg","dj","dk","dm","do","dz",
@@ -62,9 +57,9 @@ var cardbookRepository = {
 	prefCSVPrefix: "*:",
 
 	openedNodes: [],
-	defaultDisplayedColumns: "cardIcon,fn,email.0.all,tel.0.all,bday,rev",
-	defaultSortDirection: "fn",
-	defaultSortResource: "ascending",
+	defaultDisplayedColumns: "cardIcon,fn:150,email_0_all:200,tel_0_all:200,bday:100,rev:150",
+	defaultSortDirection: "ascending",
+	defaultSortResource: "fn",
 	defaultFnFormula: "({{1}} |)({{2}} |)({{3}} |)({{4}} |)({{5}} |)({{6}} |)({{7}}|)",
 	defaultEmailFormat: "X-MOZILLA-HTML",
 	defaultKindCustom: "X-ADDRESSBOOKSERVER-KIND",
@@ -76,13 +71,7 @@ var cardbookRepository = {
 							"X-ANNIVERSARY": {add: false}, "X-DEATHDATE": {add: false}, "X-DEATHPLACE": {add: false}, "X-GENDER": {add: false} },
 					
 	cardbookGenderLookup: { "F": "", "M": "", "N": "", "O": "", "U": "" },
-	cardbookCoreTypes: { "GOOGLE": { "adr" : [ ["hometype", "HOME"], ["worktype", "WORK"] ],
-										"email" : [ ["hometype", "HOME"], ["worktype", "WORK"] ],
-										"tel" : [ ["hometype", "HOME"], ["worktype", "WORK"], ["celltype", "CELL"], ["faxtype", "FAX"], ["pagertype", "PAGER"], ["workfaxtype", "FAX,WORK"], ["homefaxtype", "FAX,HOME"] ],
-										"url" : [ ["hometype", "HOME"], ["worktype", "WORK"], ["blogtype", "BLOG", "PG"], ["homepagetype", "HOMEPAGE", "PG"], ["profiletype", "PROFILE", "PG"] ],
-										"impp" : [ ["hometype", "HOME"], ["worktype", "WORK"] ],
-										"addnew" : true },
-						"GOOGLE2": { "adr" : [ ["hometype", "home"], ["worktype", "work"], ["othertype", "other"] ],
+	cardbookCoreTypes: { "GOOGLE2": { "adr" : [ ["hometype", "home"], ["worktype", "work"], ["othertype", "other"] ],
 										"email" : [ ["hometype", "home"], ["worktype", "work"], ["othertype", "other"] ],
 										"tel" : [ ["hometype", "home"], ["worktype", "work"], ["celltype", "mobile"], ["pagertype", "pager"], ["workfaxtype", "workFax"], ["homefaxtype", "homeFax"], ["othertype", "other"], ["maintype", "main"] ],
  										"url" : [ ["hometype", "home"], ["worktype", "work"], ["othertype", "other"], ["blogtype", "blog"], ["homepagetype", "homePage"], ["profiletype", "profile"] ],
@@ -268,18 +257,16 @@ var cardbookRepository = {
 	
 	cardbookServerChangedPwd: {},
 	
-	cardbookReorderMode: "NOREORDER",
-	cardbookSearchMode: "NOSEARCH",
-	cardbookSearchValue: "",
 	cardbookComplexSearchMode: "NOSEARCH",
-	cardbookComplexSearchPrefId: "",
 	currentAccountId: "",
+	displayedIds: {},
 	// used to copy and paste 
 	currentCopiedEntry: [],
 	currentCopiedEntryValue: "",
 	currentCopiedEntryName: "",
 	currentCopiedEntryLabel: "",
 
+	birthdayTimerCreated: false,
 	autoSync: {},
 	autoSyncInterval: {},
 	autoSyncId: {},
@@ -309,36 +296,11 @@ var cardbookRepository = {
 
 	oauthPrefix: "chrome://cardbook/oauth",
 
-	cardbookOAuthData: {"GOOGLE": {
+	cardbookOAuthData: {"GOOGLE2": {
 							EMAIL_TYPE:                 "@gmail.com",
 							VCARD_VERSIONS:             [ "3.0" ],
 							CLIENT_ID:                  "779554755808-957jloa2c3c8n0rrm1a5304fkik7onf0.apps.googleusercontent.com",
 							CLIENT_SECRET:              "h3NUkhofCKAW2E1X_NKSn4C_",
-							REDIRECT_URI:               "urn:ietf:wg:oauth:2.0:oob",
-							REDIRECT_TITLE:             "Success code=",
-							RESPONSE_TYPE:              "code",
-							SCOPE_CONTACTS:             "https://www.googleapis.com/auth/carddav",
-							AUTH_PREFIX_CONTACTS:       "chrome://cardbook/oauth",
-							SCOPE_LABELS:               "https://www.google.com/m8/feeds/",
-							AUTH_PREFIX_LABELS:         "chrome://cardbook/oauth/labels",
-							LABEL_URL:                  "https://www.google.com/m8/feeds/groups/",
-							LABELS_URL:                 "https://www.google.com/m8/feeds/groups/default/full?max-results=1000",
-							CONTACT_URL:                "https://www.google.com/m8/feeds/contacts/",
-							BATCH:                      "https://www.google.com/m8/feeds/contacts/default/full/batch",
-							OAUTH_URL:                  "https://accounts.google.com/o/oauth2/auth",
-							TOKEN_REQUEST_URL:          "https://accounts.google.com/o/oauth2/token",
-							TOKEN_REQUEST_TYPE:         "POST",
-							TOKEN_REQUEST_GRANT_TYPE:   "authorization_code",
-							REFRESH_REQUEST_URL:        "https://accounts.google.com/o/oauth2/token",
-							REFRESH_REQUEST_TYPE:       "POST",
-							REFRESH_REQUEST_GRANT_TYPE: "refresh_token",
-							ROOT_API:                   "https://www.googleapis.com"},
-						"GOOGLE2": {
-							EMAIL_TYPE:                 "@gmail.com",
-							VCARD_VERSIONS:             [ "3.0" ],
-							CLIENT_ID:                  "779554755808-957jloa2c3c8n0rrm1a5304fkik7onf0.apps.googleusercontent.com",
-							CLIENT_SECRET:              "h3NUkhofCKAW2E1X_NKSn4C_",
-							REDIRECT_URI:               "http://localhost",
 							RESPONSE_TYPE:              "code",
 							SCOPE_CONTACTS:             "https://www.googleapis.com/auth/contacts",
 							AUTH_PREFIX_CONTACTS:       "chrome://cardbook/oauth/people",
@@ -369,7 +331,6 @@ var cardbookRepository = {
 							VCARD_VERSIONS:             [ "3.0" ],
 							CLIENT_ID:                  "779554755808-957jloa2c3c8n0rrm1a5304fkik7onf0.apps.googleusercontent.com",
 							CLIENT_SECRET:              "h3NUkhofCKAW2E1X_NKSn4C_",
-							REDIRECT_URI:               "http://localhost",
 							RESPONSE_TYPE:              "code",
 							SCOPE_CONTACTS:             "https://www.googleapis.com/auth/directory.readonly",
 							AUTH_PREFIX_CONTACTS:       "chrome://cardbook/oauth/directory",
@@ -400,37 +361,35 @@ var cardbookRepository = {
 							},
 
 	supportedConnections:[
-							{ id: "GOOGLE2", type: "GOOGLE2", url: "", vCard: [ "3.0" ]},
-							{ id: "GOOGLE3", type: "GOOGLE3", url: "", vCard: [ "3.0" ]},
-							{ id: "CARDDAV", type: "CARDDAV", url: ""},
-							{ id: "APPLE", type: "APPLE", url: "https://contacts.icloud.com", vCard: [ "3.0" ], pwdapp: "true"},
-							{ id: "YAHOO", type: "YAHOO", url: "https://carddav.address.yahoo.com", vCard: [ "3.0" ], pwdapp: "true"},
-							{ id: "AOL.COM", type: "CARDDAV", url: "https://carddav.aol.com", vCard: [ "3.0" ], pwdapp: "true"},
-							{ id: "ECLIPSO", type: "CARDDAV", url: "https://www.eclipso.de", vCard: [ "3.0" ]},
-							{ id: "EWS", type: "OFFICE365", url: "", vCard: [ "3.0" ], pwdapp: "false"},
-							{ id: "FASTMAIL", type: "CARDDAV", url: "https://carddav.fastmail.com", vCard: [ "3.0" ], pwdapp: "true"},
-							{ id: "FRUUX", type: "CARDDAV", url: "https://dav.fruux.com", vCard: [ "3.0" ], pwdapp: "false"},
-							{ id: "GMX", type: "CARDDAV", url: "https://carddav.gmx.net", vCard: [ "3.0" ]},
-							{ id: "HOTMAIL", type: "OFFICE365", url: "https://outlook.office365.com/EWS/Exchange.asmx", vCard: [ "3.0" ], pwdapp: "false"},
-							{ id: "LAPOSTE.NET", type: "CARDDAV", url: "https://webmail.laposte.net/dav/%EMAILADDRESS%/contacts", vCard: [ "3.0" ]},
-							{ id: "LIBERTA.VIP", type: "CARDDAV", url: "https://cloud.liberta.vip/", vCard: [ "3.0" ], pwdapp: "false"},
-							{ id: "MAIL.DE", type: "CARDDAV", url: "https://adressbuch.mail.de", vCard: [ "3.0" ]},
-							{ id: "MAILBOX.ORG", type: "CARDDAV", url: "https://dav.mailbox.org", vCard: [ "3.0" ]},
-							{ id: "MAILFENCE.COM", type: "CARDDAV", url: "https://mailfence.com", vCard: [ "3.0" ]},
-							{ id: "MYKOLAB.COM", type: "CARDDAV", url: "https://carddav.mykolab.com", vCard: [ "3.0" ]},
-							{ id: "OFFICE365", type: "OFFICE365", url: "https://outlook.office365.com/EWS/Exchange.asmx", vCard: [ "3.0" ], pwdapp: "false"},
-							{ id: "OUTLOOK", type: "OFFICE365", url: "https://outlook.office365.com/EWS/Exchange.asmx", vCard: [ "3.0" ], pwdapp: "false"},
-							{ id: "ORANGE.FR", type: "CARDDAV", url: "https://carddav.orange.fr/addressbooks/%EMAILADDRESS%", vCard: [ "3.0" ]},
-							{ id: "POSTEO", type: "CARDDAV", url: "https://posteo.de:8843", vCard: [ "3.0" ]},
-							{ id: "WEB.DE", type: "CARDDAV", url: "https://carddav.web.de", vCard: [ "3.0" ]},
-							{ id: "YANDEX.RU", type: "CARDDAV", url: "https://carddav.yandex.ru/addressbook/%EMAILADDRESS%/addressbook", vCard: [ "3.0" ]},
-							{ id: "ZACLYS", type: "CARDDAV", url: "https://ncloud.zaclys.com", vCard: [ "3.0" ], pwdapp: "false"},
-							{ id: "ZOHO.COM", type: "CARDDAV", url: "https://contacts.zoho.com", vCard: [ "3.0" ]},
-							{ id: "ZIGGO.NL", type: "CARDDAV", url: "https://sync.ziggo.nl", vCard: [ "3.0" ], pwdapp: "false"}
+							{ id: "GOOGLE2", type: "GOOGLE2", url: [ ], vCard: [ "3.0" ]},
+							{ id: "GOOGLE3", type: "GOOGLE3", url: [ ], vCard: [ "3.0" ]},
+							{ id: "CARDDAV", type: "CARDDAV", url: [ ]},
+							{ id: "APPLE", type: "APPLE", url: [ "https://contacts.icloud.com" ], vCard: [ "3.0" ], pwdapp: "true"},
+							{ id: "YAHOO", type: "YAHOO", url: [ "https://carddav.address.yahoo.com" ], vCard: [ "3.0" ], pwdapp: "true"},
+							{ id: "AOL.COM", type: "CARDDAV", url: [ "https://carddav.aol.com" ], vCard: [ "3.0" ], pwdapp: "true"},
+							{ id: "ECLIPSO", type: "CARDDAV", url: [ "https://www.eclipso.de" ], vCard: [ "3.0" ]},
+							{ id: "EWS", type: "OFFICE365", url: [ ], vCard: [ "3.0" ], pwdapp: "false"},
+							{ id: "FASTMAIL", type: "CARDDAV", url: [ "https://carddav.fastmail.com" ], vCard: [ "3.0" ], pwdapp: "true"},
+							{ id: "FRUUX", type: "CARDDAV", url: [ "https://dav.fruux.com" ], vCard: [ "3.0" ], pwdapp: "false"},
+							{ id: "GMX", type: "CARDDAV", url: [ "https://carddav.gmx.net", "https://carddav.gmx.com" ], vCard: [ "3.0" ]},
+							{ id: "HOTMAIL", type: "OFFICE365", url: [ "https://outlook.office365.com/EWS/Exchange.asmx" ], vCard: [ "3.0" ], pwdapp: "false"},
+							{ id: "LAPOSTE.NET", type: "CARDDAV", url: [ "https://webmail.laposte.net/dav/%EMAILADDRESS%/contacts" ], vCard: [ "3.0" ]},
+							{ id: "LIBERTA.VIP", type: "CARDDAV", url: [ "https://cloud.liberta.vip/" ], vCard: [ "3.0" ], pwdapp: "false"},
+							{ id: "MAIL.DE", type: "CARDDAV", url: [ "https://adressbuch.mail.de" ], vCard: [ "3.0" ]},
+							{ id: "MAILBOX.ORG", type: "CARDDAV", url: [ "https://dav.mailbox.org" ], vCard: [ "3.0" ]},
+							{ id: "MAILFENCE.COM", type: "CARDDAV", url: [ "https://mailfence.com" ], vCard: [ "3.0" ]},
+							{ id: "MYKOLAB.COM", type: "CARDDAV", url: [ "https://carddav.mykolab.com" ], vCard: [ "3.0" ]},
+							{ id: "OFFICE365", type: "OFFICE365", url: [ "https://outlook.office365.com/EWS/Exchange.asmx" ], vCard: [ "3.0" ], pwdapp: "false"},
+							{ id: "OUTLOOK", type: "OFFICE365", url: [ "https://outlook.office365.com/EWS/Exchange.asmx" ], vCard: [ "3.0" ], pwdapp: "false"},
+							{ id: "ORANGE.FR", type: "CARDDAV", url: [ "https://carddav.orange.fr/addressbooks/%EMAILADDRESS%" ], vCard: [ "3.0" ]},
+							{ id: "POSTEO", type: "CARDDAV", url: [ "https://posteo.de:8843" ], vCard: [ "3.0" ]},
+							{ id: "WEB.DE", type: "CARDDAV", url: [ "https://carddav.web.de" ], vCard: [ "3.0" ]},
+							{ id: "YANDEX.RU", type: "CARDDAV", url: [ "https://carddav.yandex.ru/addressbook/%EMAILADDRESS%/addressbook" ], vCard: [ "3.0" ]},
+							{ id: "ZACLYS", type: "CARDDAV", url: [ "https://ncloud.zaclys.com" ], vCard: [ "3.0" ], pwdapp: "false"},
+							{ id: "ZOHO.COM", type: "CARDDAV", url: [ "https://contacts.zoho.com" ], vCard: [ "3.0" ]},
+							{ id: "ZIGGO.NL", type: "CARDDAV", url: [ "https://sync.ziggo.nl" ], vCard: [ "3.0" ], pwdapp: "false"}
 						],
 	
-	cardbookBirthdayPopup: 0,
-
 	// actions
 	currentActionId: 0,
 	currentAction: {},
@@ -488,9 +447,9 @@ var cardbookRepository = {
 		}
 	},
 
-    updateFieldsNameList: function () {
+    updateFieldsNameList: async function () {
 		if (cardbookRepository.cardbookPrefs["fieldsNameListUpdate1"] === false) {
-			let fields = cardbookRepository.cardbookPrefs["fieldsNameList"]
+			let fields = cardbookRepository.cardbookPrefs["fieldsNameList"];
 			if (fields != "allFields") {
 				let prefs = cardbookRepository.cardbookUtils.escapeString(fields).split(";");
 				prefs = prefs.concat(cardbookRepository.adrElements);
@@ -499,7 +458,7 @@ var cardbookRepository = {
 			cardbookRepository.cardbookPreferences.setBoolPref("fieldsNameListUpdate1", true);
 		}
 		if (cardbookRepository.cardbookPrefs["fieldsNameListUpdate2"] === false) {
-			let fields = cardbookRepository.cardbookPrefs["fieldsNameList"]
+			let fields = cardbookRepository.cardbookPrefs["fieldsNameList"] ;
 			let prefs = cardbookRepository.cardbookUtils.escapeString(fields).split(";");
 			prefs = cardbookRepository.cardbookUtils.unescapeArray(prefs);
 			if (prefs[0] != "allFields") {
@@ -510,6 +469,42 @@ var cardbookRepository = {
 				cardbookRepository.cardbookPreferences.setStringPref("fieldsNameList", JSON.stringify(result));
 			}
 			cardbookRepository.cardbookPreferences.setBoolPref("fieldsNameListUpdate2", true);
+		}
+		if (cardbookRepository.cardbookPrefs["fieldsNameListUpdate3"] === false) {
+			if (cardbookRepository.cardbookPrefs["fieldsNameList"] != "allFields") {
+				let fields = JSON.parse(cardbookRepository.cardbookPrefs["fieldsNameList"]);
+				let result = {};
+				for (let pref in fields) {
+					if (pref.includes(".")) {
+						let newpref = pref.replaceAll(".", "_");
+						result[newpref] = fields[pref];
+					} else {
+						result[pref] = fields[pref];
+					}
+				}
+				cardbookRepository.cardbookPreferences.setStringPref("fieldsNameList", JSON.stringify(result));
+			}
+			for (const [key, value] of Object.entries(cardbookRepository.cardbookPrefs)) {
+				if (key.endsWith(".displayedColumns")) {
+					let columns = value.split(",");
+					let result = [];
+					for (let column of columns) {
+						let fields = column.split(":");
+						if (fields[0].includes(".")) {
+							result.push(fields[0].replaceAll(".", "_") + ":" + fields[1]);
+						} else {
+							result.push(column);
+						}
+					}
+					await cardbookRepository.cardbookPreferences.setStringPref(key, result.join(","));
+				} else if (key.endsWith(".sortResource")) {
+					if (value.includes(".")) {
+						let newvalue = value.replaceAll(".", "_");
+						await cardbookRepository.cardbookPreferences.setStringPref(key, newvalue);
+					}
+				}
+			}
+			cardbookRepository.cardbookPreferences.setBoolPref("fieldsNameListUpdate3", true);
 		}
 	},
 
@@ -610,7 +605,7 @@ var cardbookRepository = {
 	},
 
 	makeSearchString: function (aString) {
-		return this.normalizeString(aString.replace(/([\\\/\:\*\?\"\'\-\<\>\| ]+)/g, "").toUpperCase());
+		return this.normalizeString(aString.replace(/([\\\/\:\*\?\"\'\-\<\>\| ]+)/g, "").toLowerCase());
 	},
 
 	makeSearchStringWithoutNumber: function (aString) {
@@ -688,8 +683,11 @@ var cardbookRepository = {
 		}
 	},
 	
-	addAccountToRepository: function(aAccountId, aAccountName, aAccountType, aAccountUrl, aAccountUser, aColor, aEnabled, aExpanded, aVCard, aReadOnly, aUrnuuid,
+	addAccountToRepository: function(aAccountId, aAccountName, aAccountType, aAccountUrl, aAccountUser, aColor, aEnabled, aVCard, aReadOnly, aUrnuuid,
 										aSourceId, aDBcached, aAutoSyncEnabled, aAutoSyncInterval, aPrefInsertion) {
+		if (cardbookRepository.cardbookAccounts.some(account => account[1] == aAccountId)) {
+			return;
+		}
 		var cacheDir = cardbookRepository.getLocalDirectory();
 		cacheDir.append(aAccountId);
 		if (!cacheDir.exists() || !cacheDir.isDirectory()) {
@@ -705,7 +703,6 @@ var cardbookRepository = {
 			cardbookRepository.cardbookPreferences.setUser(aAccountId, aAccountUser);
 			cardbookRepository.cardbookPreferences.setColor(aAccountId, aColor);
 			cardbookRepository.cardbookPreferences.setEnabled(aAccountId, aEnabled);
-			cardbookRepository.cardbookPreferences.setExpanded(aAccountId, aExpanded);
 			cardbookRepository.cardbookPreferences.setVCardVersion(aAccountId, aVCard);
 			cardbookRepository.cardbookPreferences.setReadOnly(aAccountId, aReadOnly);
 			cardbookRepository.cardbookPreferences.setUrnuuid(aAccountId, aUrnuuid);
@@ -715,7 +712,7 @@ var cardbookRepository = {
 			cardbookRepository.cardbookPreferences.setAutoSyncInterval(aAccountId, aAutoSyncInterval);
 		}
 		
-		cardbookRepository.cardbookAccounts.push([aAccountName, true, aExpanded, true, aAccountId, aEnabled, aAccountType, aReadOnly, aAccountId]);
+		cardbookRepository.cardbookAccounts.push([aAccountName, aAccountId, aEnabled, aAccountType, aReadOnly, aAccountId]);
 		cardbookRepository.cardbookUtils.sortMultipleArrayByString(cardbookRepository.cardbookAccounts,0,1);
 		cardbookRepository.cardbookDisplayCards[aAccountId] = {modified: 0, cards: []};
 		cardbookRepository.cardbookAccountsCategories[aAccountId] = [];
@@ -745,7 +742,7 @@ var cardbookRepository = {
 		}
 
 		function searchCard2(element) {
-			return (element[4] != aAccountId);
+			return (element[1] != aAccountId);
 		}
 		cardbookRepository.cardbookAccounts = cardbookRepository.cardbookAccounts.filter(searchCard2, aAccountId);
 
@@ -782,7 +779,7 @@ var cardbookRepository = {
 		}
 
 		function searchCard2(element) {
-			return (element[4] != aAccountId);
+			return (element[1] != aAccountId);
 		}
 		cardbookRepository.cardbookAccounts = cardbookRepository.cardbookAccounts.filter(searchCard2, aAccountId);
 
@@ -1050,19 +1047,6 @@ var cardbookRepository = {
 
 	addCardToRepository: async function (aCard, aMode) {
 		try {
-			// needed only once when using > 55.2
-			if ((cardbookRepository.cardbookPreferences.getType(aCard.dirPrefId) == "GOOGLE")
-					&& !aCard.created && !aCard.updated) {
-				for (let category of aCard.categories) {
-					if (!cardbookRepository.cardbookCategories[aCard.dirPrefId+"::"+category]) {
-						cardbookRepository.cardbookUtils.addTagUpdated(aCard);
-						break;
-					} else if (cardbookRepository.cardbookCategories[aCard.dirPrefId+"::"+category].created === true) {
-						cardbookRepository.cardbookUtils.addTagUpdated(aCard);
-						break;
-					}
-				}
-			}
 			cardbookRepository.addCardToEmails(aCard);
 			cardbookRepository.addCardToLongSearch(aCard);
 			cardbookRepository.addCardToShortSearch(aCard);
@@ -1241,12 +1225,6 @@ var cardbookRepository = {
 		} else {
 			await addProcess(aDirPrefId+"::categories::"+cardbookRepository.cardbookPrefs["uncategorizedCards"], cardbookRepository.cardbookPrefs["uncategorizedCards"]);
 		}
-		if (cardbookRepository.cardbookSearchMode === "SEARCH") {
-			if (cardbookRepository.getLongSearchString(aCard).indexOf(cardbookRepository.cardbookSearchValue) >= 0) {
-				cardbookRepository.cardbookDisplayCards[cardbookRepository.cardbookSearchValue].cards.push(aCard);
-				cardbookRepository.addCardToDisplayModified(aCard, cardbookRepository.cardbookSearchValue);
-			}
-		}
 		cardbookRepository.setEmptyContainer(aDirPrefId);
 	},
 		
@@ -1298,13 +1276,6 @@ var cardbookRepository = {
 				await deleteProcessUncategorized(aDirPrefId+"::categories::"+cardbookRepository.cardbookPrefs["uncategorizedCards"]);
 			}
 		}
-		if (cardbookRepository.cardbookSearchMode === "SEARCH") {
-			function searchCard(element) {
-				return (element.dirPrefId + element.uid != aDirPrefId + aCard.uid);
-			}
-			cardbookRepository.cardbookDisplayCards[cardbookRepository.cardbookSearchValue].cards = cardbookRepository.cardbookDisplayCards[cardbookRepository.cardbookSearchValue].cards.filter(searchCard);
-			cardbookRepository.removeCardFromDisplayModified(aCard, cardbookRepository.cardbookSearchValue);
-		}
 		cardbookRepository.setEmptyContainer(aDirPrefId);
 	},
 
@@ -1336,32 +1307,27 @@ var cardbookRepository = {
 		if (cardbookRepository.cardbookPreferences.getNode(aDirPrefId) != "org") {
 			return;
 		}
-		function addProcess(aId, aName, aParentId) {
+		function addProcess(aId, aName) {
 			let orgExists = cardbookRepository.cardbookAccountsNodes[aDirPrefId].find(child => child.id == aId);
 			if (!orgExists) {
-				cardbookRepository.cardbookAccountsNodes[aDirPrefId].push({ data: aName, id: aId, children: []});
-				cardbookRepository.cardbookUtils.sortMultipleArrayByString(cardbookRepository.cardbookAccountsNodes[aDirPrefId], "data", 1);
+				cardbookRepository.cardbookAccountsNodes[aDirPrefId].push({ name: aName, id: aId});
+				cardbookRepository.cardbookUtils.sortMultipleArrayByString(cardbookRepository.cardbookAccountsNodes[aDirPrefId], "id", 1);
 				cardbookRepository.cardbookDisplayCards[aId] = {modified: 0, cards: []};
 			}
 			cardbookRepository.cardbookDisplayCards[aId].cards.push(aCard);
-			let parentNodeExists = cardbookRepository.cardbookAccountsNodes[aDirPrefId].find(child => child.id == aParentId);
-			if (parentNodeExists && !parentNodeExists.children.includes(aName)) {
-				parentNodeExists.children.push(aName);
-				cardbookRepository.cardbookUtils.sortArrayByString(parentNodeExists.children, 1);
-			}
 		}
 		let parent = aDirPrefId + "::org";
 		if (aCard.org) {
 			let orgArray = cardbookRepository.cardbookUtils.unescapeArray(cardbookRepository.cardbookUtils.escapeString(aCard.org).split(";"));
 			for (let org of orgArray) {
 				let id = parent + "::" + org;
-				addProcess(id, org, parent);
+				addProcess(id, org);
 				parent = id;
 			}
 		} else {
 			let uncategorizedCards = cardbookRepository.cardbookPrefs["uncategorizedCards"];
 			let id = parent + "::" + uncategorizedCards;
-			addProcess(id, uncategorizedCards, parent);
+			addProcess(id, uncategorizedCards);
 		}
 		cardbookRepository.setEmptyContainer(aDirPrefId);
 	},
@@ -1467,8 +1433,8 @@ var cardbookRepository = {
 	renameUncategorized: async function(aOldCategoryName, aNewCategoryName) {
 		cardbookRepository.cardbookPreferences.setStringPref("uncategorizedCards", aNewCategoryName);
 		for (let account of cardbookRepository.cardbookAccounts) {
-			if (account[1] && account[5]) {
-				let myDirPrefId = account[4];
+			if (account[2]) {
+				let myDirPrefId = account[1];
 				for (let category of cardbookRepository.cardbookAccountsCategories[myDirPrefId]) {
 					if (category == aOldCategoryName) {
 						category = aNewCategoryName;
@@ -1720,8 +1686,8 @@ var cardbookRepository = {
 		if (aEmail) {
 			var myEmail = aEmail.toLowerCase();
 			for (let account of cardbookRepository.cardbookAccounts) {
-				if (account[1] && account[5] && (account[6] != "SEARCH")) {
-					var myDirPrefId = account[4];
+				if (account[2] && (account[3] != "SEARCH")) {
+					var myDirPrefId = account[1];
 					if (cardbookRepository.verifyABRestrictions(myDirPrefId, "allAddressBooks", ABExclRestrictions, ABInclRestrictions)) {
 						if (cardbookRepository.cardbookCardEmails[myDirPrefId]) {
 							if (cardbookRepository.cardbookCardEmails[myDirPrefId][myEmail]) {
@@ -1889,7 +1855,6 @@ var cardbookRepository = {
 			}
 
 			var myDirPrefIdName = cardbookRepository.cardbookPreferences.getName(aNewCat.dirPrefId);
-			var myDirPrefIdType = cardbookRepository.cardbookPreferences.getType(aNewCat.dirPrefId);
 			// Existing category
 			if (aOldCat.dirPrefId && cardbookRepository.cardbookCategories[aOldCat.cbid]) {
 				await cardbookRepository.removeCategoryFromRepository(aOldCat, true, aOldCat.dirPrefId);
@@ -1935,7 +1900,7 @@ var cardbookRepository = {
 				}
 				var myDirPrefIdName = cardbookRepository.cardbookPreferences.getName(myDirPrefId);
 				var myDirPrefIdType = cardbookRepository.cardbookPreferences.getType(myDirPrefId);
-				if (myDirPrefIdType == "GOOGLE" || myDirPrefIdType == "GOOGLE2" || myDirPrefIdType == "GOOGLE3") {
+				if (myDirPrefIdType == "GOOGLE2" || myDirPrefIdType == "GOOGLE3") {
 					if (aListOfCategories[i].created) {
 						await cardbookRepository.removeCategoryFromRepository(aListOfCategories[i], true, myDirPrefId);
 					} else {
@@ -2153,7 +2118,7 @@ var cardbookRepository = {
 			}}, Components.interfaces.nsIEventTarget.DISPATCH_NORMAL);
 		}
 		catch (e) {
-			cardbookRepository.cardbookLog.updateStatusProgressInformation("cardbookRepository.deleteCards error : " + e, "Error");
+			cardbookRepository.cardbookLog.updateStatusProgressInformation("cardbookRepository.asyncDeleteCards error : " + e, "Error");
 		}
 	},
 
@@ -2174,50 +2139,68 @@ var cardbookRepository = {
 	},
 
 	mergeCardsFromSync: async function (aCacheCard, aTempCard, aConnection, aEtag, aSource, aActionId = null) {
-		try {
-			aTempCard.uid = cardbookRepository.cardbookUtils.getUUID();
-			aTempCard.cbid = aCacheCard.dirPrefId+"::"+aTempCard.uid;
-			cardbookRepository.cardbookUtils.addTagDeleted(aTempCard);
-			aTempCard.cardurl = "";
-			aTempCard.cacheuri = "";
-			await cardbookRepository.addCardToCache(aTempCard, true);
-			await cardbookRepository.removeCardFromRepository(aTempCard, false);
-			cardbookRepository.cardbookServerSyncMerge[aCacheCard.dirPrefId][aCacheCard.uid] = {};
-			cardbookRepository.cardbookServerSyncMerge[aCacheCard.dirPrefId][aCacheCard.uid].etag = aEtag;
-			cardbookRepository.cardbookServerSyncMerge[aCacheCard.dirPrefId][aCacheCard.uid].connection = aConnection;
-			cardbookRepository.cardbookServerSyncMerge[aCacheCard.dirPrefId][aCacheCard.uid].prefIdType = cardbookRepository.cardbookPreferences.getType(aCacheCard.dirPrefId);
-			cardbookRepository.cardbookServerSyncMerge[aCacheCard.dirPrefId][aCacheCard.uid].cacheCard = aCacheCard;
-			cardbookRepository.cardbookServerSyncMerge[aCacheCard.dirPrefId][aCacheCard.uid].tempCard = aTempCard;
-		} catch (e) {
-			cardbookRepository.cardbookServerCardSyncDone[aCacheCard.dirPrefId]++;
-			cardbookRepository.cardbookServerGetCardForMergeResponse[aCacheCard.dirPrefId]++;
-			cardbookRepository.cardbookServerGetCardForMergeError[aCacheCard.dirPrefId]++;
-			let name = cardbookRepository.cardbookPreferences.getName(aCacheCard.dirPrefId);
-			if (e.message == "") {
-				cardbookRepository.cardbookUtils.formatStringForOutput("parsingCardError", [name, cardbookRepository.extension.localeData.localizeMessage(e.code), aTempCard], "Error");
-			} else {
-				cardbookRepository.cardbookUtils.formatStringForOutput("parsingCardError", [name, e.message, aTempCard], "Error");
+		let mergeCardsPromise = new Promise( async function(resolve, reject) {
+			try {
+				aTempCard.uid = cardbookRepository.cardbookUtils.getUUID();
+				aTempCard.cbid = aCacheCard.dirPrefId+"::"+aTempCard.uid;
+				cardbookRepository.cardbookUtils.addTagDeleted(aTempCard);
+				aTempCard.cardurl = "";
+				aTempCard.cacheuri = "";
+				await cardbookRepository.addCardToCache(aTempCard, true);
+				await cardbookRepository.removeCardFromRepository(aTempCard, false);
+				cardbookRepository.cardbookServerSyncMerge[aCacheCard.dirPrefId][aCacheCard.uid] = {};
+				cardbookRepository.cardbookServerSyncMerge[aCacheCard.dirPrefId][aCacheCard.uid].etag = aEtag;
+				cardbookRepository.cardbookServerSyncMerge[aCacheCard.dirPrefId][aCacheCard.uid].connection = aConnection;
+				cardbookRepository.cardbookServerSyncMerge[aCacheCard.dirPrefId][aCacheCard.uid].prefIdType = cardbookRepository.cardbookPreferences.getType(aCacheCard.dirPrefId);
+				cardbookRepository.cardbookServerSyncMerge[aCacheCard.dirPrefId][aCacheCard.uid].cacheCard = aCacheCard;
+				cardbookRepository.cardbookServerSyncMerge[aCacheCard.dirPrefId][aCacheCard.uid].tempCard = aTempCard;
+			} catch (e) {
+				cardbookRepository.cardbookServerCardSyncDone[aCacheCard.dirPrefId]++;
+				cardbookRepository.cardbookServerGetCardForMergeResponse[aCacheCard.dirPrefId]++;
+				cardbookRepository.cardbookServerGetCardForMergeError[aCacheCard.dirPrefId]++;
+				let name = cardbookRepository.cardbookPreferences.getName(aCacheCard.dirPrefId);
+				if (e.message == "") {
+					cardbookRepository.cardbookUtils.formatStringForOutput("parsingCardError", [name, cardbookRepository.extension.localeData.localizeMessage(e.code), aTempCard], "Error");
+				} else {
+					cardbookRepository.cardbookUtils.formatStringForOutput("parsingCardError", [name, e.message, aTempCard], "Error");
+				}
+				return;
 			}
-			return;
-		}
-		let ids = [];
-		ids.push(aCacheCard.cbid);
-		ids.push(aTempCard.cbid);
-		let mode = aCacheCard.isAList ? "LIST" : "CONTACT";
-		let url = "chrome/content/mergeCards/wdw_mergeCards.html";
-		let params = new URLSearchParams();
-		let hideCreate = (aSource == "SYNC") ? true : false;
-		params.set("hideCreate", hideCreate);
-		params.set("source", aSource);
-		params.set("mode", mode);
-		params.set("ids", ids.join(","));
-		params.set("actionId", aActionId);
-		let win = await notifyTools.notifyBackground({query: "cardbook.openMergeWindow",
-												url: `${url}?${params.toString()}`,
-												type: "popup",
-												ids: ids.join(","),
-												actionId: aActionId,
-												source: aSource});
+			let ids = [];
+			ids.push(aCacheCard.cbid);
+			ids.push(aTempCard.cbid);
+			let mergeId = cardbookRepository.cardbookUtils.getUUID();
+			if (aSource == "IMPORT") {
+				cardbookRepository.currentAction[aActionId].params[mergeId] = {mergeId: mergeId, status: "STARTED"};
+			}
+			let mode = aCacheCard.isAList ? "LIST" : "CONTACT";
+			let url = "chrome/content/mergeCards/wdw_mergeCards.html";
+			let params = new URLSearchParams();
+			let hideCreate = (aSource == "SYNC") ? true : false;
+			params.set("hideCreate", hideCreate);
+			params.set("source", aSource);
+			params.set("mode", mode);
+			params.set("ids", ids.join(","));
+			params.set("actionId", aActionId);
+			params.set("mergeId", mergeId);
+			let win = await notifyTools.notifyBackground({query: "cardbook.openWindow",
+													url: `${url}?${params.toString()}`,
+													type: "popup"});
+			if (aSource != "IMPORT") {
+				resolve();
+			} else {
+				let waitTimer = Components.classes["@mozilla.org/timer;1"].createInstance(Components.interfaces.nsITimer);
+				waitTimer.initWithCallback({ notify: function(waitTimer) {
+					if (cardbookRepository.currentAction[aActionId].params[mergeId].status == "FINISHED") {
+						resolve();
+						waitTimer.cancel();
+					}
+				}
+				}, 100, Components.interfaces.nsITimer.TYPE_REPEATING_SLACK);
+			}
+		});
+		let result = await mergeCardsPromise;
+		return result;
 	},
 
 	reWriteFiles: async function (aListOfFiles) {
@@ -2242,12 +2225,12 @@ var cardbookRepository = {
 		cardbookIDBMailPop.updateMailPop(aEmail, aValue);
 	},
 
-	addSearch: function (aSearch) {
-		cardbookIDBSearch.addSearch(aSearch);
+	addSearch: async function (aSearch) {
+		await cardbookIDBSearch.addSearch(aSearch);
 	},
 
-	removeSearch: function (aDirPrefId) {
-		cardbookIDBSearch.removeSearch(aDirPrefId);
+	removeSearch: async function (aDirPrefId) {
+		await cardbookIDBSearch.removeSearch(aDirPrefId);
 	},
 
 	getTextColorFromBackgroundColor: function (aHexBackgroundColor) {
@@ -2266,27 +2249,85 @@ var cardbookRepository = {
 	modifyAddressbook: async function (aAccount) {
 		cardbookRepository.cardbookSynchronization.finishMultipleOperations(aAccount.dirPrefId);
 		var changed = false;
+		var activityAdded = false;
 		for (let account of cardbookRepository.cardbookAccounts) {
-			if (account[4] === aAccount.dirPrefId) {
+			if (account[1] === aAccount.dirPrefId) {
 				if (aAccount.name != account[0]) {
 					cardbookRepository.cardbookPreferences.setName(aAccount.dirPrefId, aAccount.name);
 					account[0] = aAccount.name;
 					changed = true;
 				}
-				if (aAccount.readonly != account[7]) {
+				if (aAccount.readonly != account[4]) {
 					cardbookRepository.cardbookPreferences.setReadOnly(aAccount.dirPrefId, aAccount.readonly);
-					account[7] = aAccount.readonly;
+					account[4] = aAccount.readonly;
+					if (aAccount.readonly) {
+						cardbookRepository.removeAccountFromCollected(aAccount.dirPrefId);
+						cardbookRepository.cardbookUtils.formatStringForOutput("addressbookReadOnly", [aAccount.name]);
+						cardbookRepository.cardbookActions.addActivity("addressbookReadOnly", [aAccount.name], "editItem");
+					} else {
+						cardbookRepository.cardbookUtils.formatStringForOutput("addressbookReadWrite", [aAccount.name]);
+						cardbookRepository.cardbookActions.addActivity("addressbookReadWrite", [aAccount.name], "editItem");
+					}
+					activityAdded = true;
 					changed = true;
 				}
-				if (aAccount.enabled != account[5]) {
-					account[5] = aAccount.enabled;
-					await wdw_cardbook.enableOrDisableAddressbook(aAccount.dirPrefId, aAccount.enabled);
+				if (aAccount.enabled != account[2]) {
+					cardbookRepository.cardbookPreferences.setEnabled(aAccount.dirPrefId, aAccount.enabled);
+					account[2] = aAccount.enabled;
+					cardbookRepository.enableOrDisableAccountFromCollected(aAccount.dirPrefId, aAccount.enabled);
+					cardbookRepository.enableOrDisableAccountFromRestrictions(aAccount.dirPrefId, aAccount.enabled);
+					cardbookRepository.enableOrDisableAccountFromBirthday(aAccount.dirPrefId, aAccount.enabled);
+					cardbookRepository.enableOrDisableAccountFromVCards(aAccount.dirPrefId, aAccount.enabled);
+					if (!aAccount.enabled) {
+						cardbookRepository.removeAccountFromDiscovery(aAccount.dirPrefId);
+					}
+					var myDirPrefIdType = cardbookRepository.cardbookPreferences.getType(aAccount.dirPrefId);
+					cardbookRepository.cardbookSynchronization.setPeriodicSyncs(aAccount.dirPrefId);
+					if (aAccount.enabled) {
+						if (myDirPrefIdType == "SEARCH") {
+							await cardbookRepository.cardbookSynchronization.loadComplexSearchAccount(aAccount.dirPrefId);
+						} else {
+							cardbookRepository.cardbookSynchronization.loadAccount(aAccount.dirPrefId, true, false);
+						}
+						cardbookRepository.cardbookUtils.formatStringForOutput("addressbookEnabled", [aAccount.name]);
+						cardbookRepository.cardbookActions.addActivity("addressbookEnabled", [aAccount.name], "editItem");
+					} else {
+						cardbookRepository.cardbookSynchronization.initMultipleOperations(aAccount.dirPrefId);
+						if (myDirPrefIdType != "SEARCH") {
+							await cardbookRepository.removeAccountFromComplexSearch(aAccount.dirPrefId);
+							cardbookRepository.emptyAccountFromRepository(aAccount.dirPrefId);
+						} else {
+							cardbookRepository.emptyComplexSearchFromRepository(aAccount.dirPrefId);
+						}
+						cardbookRepository.cardbookUtils.formatStringForOutput("addressbookDisabled", [aAccount.name]);
+						cardbookRepository.cardbookActions.addActivity("addressbookDisabled", [aAccount.name], "editItem");
+						cardbookRepository.cardbookSynchronization.finishMultipleOperations(aAccount.dirPrefId);
+					}
+					activityAdded = true;
 					changed = true;
 				}
+				if ("color" in aAccount) {
+					cardbookRepository.cardbookPreferences.setColor(aAccount.dirPrefId, aAccount.color);
+					changed = true;
+				}
+				if ("node" in aAccount) {
+					cardbookRepository.cardbookPreferences.setNode(aAccount.dirPrefId, aAccount.node);
+					if (aAccount.node == "categories") {
+						cardbookRepository.cardbookAccountsNodes[aAccount.dirPrefId] = [];
+					} else {
+						for (let card of cardbookRepository.cardbookDisplayCards[aAccount.dirPrefId].cards) {
+							cardbookRepository.addCardToOrg(card, aAccount.dirPrefId);
+						}
+					}
+					changed = true;
+				}
+		
 				if (changed) {
 					cardbookRepository.cardbookUtils.sortMultipleArrayByString(cardbookRepository.cardbookAccounts,0,1);
-					cardbookRepository.cardbookUtils.formatStringForOutput("addressbookModified", [aAccount.name]);
-					cardbookRepository.cardbookActions.addActivity("addressbookModified", [aAccount.name], "editItem");
+					if (!activityAdded){
+						cardbookRepository.cardbookUtils.formatStringForOutput("addressbookModified", [aAccount.name]);
+						cardbookRepository.cardbookActions.addActivity("addressbookModified", [aAccount.name], "editItem");
+					}
 					cardbookRepository.cardbookUtils.notifyObservers("addressbookModified", aAccount.dirPrefId);
 				}
 				break;
@@ -2294,8 +2335,8 @@ var cardbookRepository = {
 		}
 	},
 
-	cancelModifyAddressbook: function (aDirPrefId) {
-		cardbookRepository.cardbookSynchronization.finishMultipleOperations(aDirPrefId);
+	cancelModifyAddressbook: function (aAccount) {
+		cardbookRepository.cardbookSynchronization.finishMultipleOperations(aAccount.dirPrefId);
 	},
 
 	modifySearchAddressbook: async function (aAccount) {
@@ -2308,14 +2349,14 @@ var cardbookRepository = {
 		cardbookRepository.cardbookPreferences.setReadOnly(aAccount.dirPrefId, aAccount.readonly);
 		cardbookRepository.cardbookPreferences.setUrnuuid(aAccount.dirPrefId, aAccount.urnuuid);
 		for (let account of cardbookRepository.cardbookAccounts) {
-			if (account[4] === aAccount.dirPrefId) {
+			if (account[1] === aAccount.dirPrefId) {
 				account[0] = aAccount.name;
-				account[7] = aAccount.readonly;
+				account[4] = aAccount.readonly;
 				break;
 			}
 		}
 		aAccount.search.dirPrefId = aAccount.dirPrefId;
-		cardbookRepository.addSearch(aAccount.search);
+		await cardbookRepository.addSearch(aAccount.search);
 		cardbookRepository.cardbookUtils.formatStringForOutput("addressbookModified", [aAccount.name]);
 		cardbookRepository.cardbookActions.addActivity("addressbookModified", [aAccount.name], "editItem");
 		cardbookRepository.cardbookUtils.notifyObservers("addressbookModified", aAccount.dirPrefId);
@@ -2330,14 +2371,14 @@ var cardbookRepository = {
 		}
 		if (aAccount.type === "SEARCH") {
 			aAccount.search.dirPrefId = aAccount.dirPrefId;
-			cardbookRepository.addSearch(aAccount.search);	
+			await cardbookRepository.addSearch(aAccount.search);	
 			cardbookRepository.addAccountToRepository(aAccount.dirPrefId, aAccount.name, aAccount.type, "", aAccount.username, aAccount.color,
-														aAccount.enabled, true, aAccount.vcard, false, false,
+														aAccount.enabled, aAccount.vcard, false, false,
 														"", aAccount.DBcached, false, "0", true);
 			await cardbookRepository.cardbookSynchronization.loadComplexSearchAccount(aAccount.dirPrefId, aAccount.search);
 		} else if (cardbookRepository.cardbookUtils.isMyAccountRemote(aAccount.type)) {
 			cardbookRepository.addAccountToRepository(aAccount.dirPrefId, aAccount.name, aAccount.type, aAccount.url, aAccount.username, aAccount.color,
-														true, true, aAccount.vcard, aAccount.readonly, aAccount.urnuuid,
+														true, aAccount.vcard, aAccount.readonly, aAccount.urnuuid,
 														aAccount.sourceDirPrefId, aAccount.DBcached, true, "60", true);
 			cardbookRepository.cardbookSynchronization.syncAccount(aAccount.dirPrefId);	
 		} else if (aAccount.type === "STANDARD") {
@@ -2345,7 +2386,7 @@ var cardbookRepository = {
 				cardbookRepository.addAccountToCollected(aAccount.dirPrefId)
 			}
 			cardbookRepository.addAccountToRepository(aAccount.dirPrefId, aAccount.name, "LOCALDB", "", aAccount.username, aAccount.color,
-														true, true, aAccount.vcard, aAccount.readonly, false,
+														true, aAccount.vcard, aAccount.readonly, false,
 														"", aAccount.DBcached, true, "60", true);
 			cardbookRepository.cardbookSynchronization.initMultipleOperations(aAccount.dirPrefId);
 			cardbookRepository.cardbookDBCardRequest[aAccount.dirPrefId]++;
@@ -2358,11 +2399,11 @@ var cardbookRepository = {
 			}
 		} else if (aAccount.type === "LOCALDB") {
 			cardbookRepository.addAccountToRepository(aAccount.dirPrefId, aAccount.name, aAccount.type, "", aAccount.username, aAccount.color,
-														true, true, aAccount.vcard, aAccount.readonly, false,
+														true, aAccount.vcard, aAccount.readonly, false,
 														"", aAccount.DBcached, true, "60", true);
 		} else if (aAccount.type === "FILE") {
 			cardbookRepository.addAccountToRepository(aAccount.dirPrefId, aAccount.name, aAccount.type, aAccount.filepath, aAccount.username, aAccount.color,
-														true, true, aAccount.vcard, aAccount.readonly, false,
+														true, aAccount.vcard, aAccount.readonly, false,
 														"", aAccount.DBcached, true, "60", true);
 			cardbookRepository.cardbookSynchronization.initMultipleOperations(aAccount.dirPrefId);
 			cardbookRepository.cardbookFileRequest[aAccount.dirPrefId]++;
@@ -2411,7 +2452,7 @@ var cardbookRepository = {
 				}
 			}
 			cardbookRepository.addAccountToRepository(aAccount.dirPrefId, aAccount.name, aAccount.type, myDir.path, aAccount.username, aAccount.color,
-														true, true, aAccount.vcard, aAccount.readonly, false,
+														true, aAccount.vcard, aAccount.readonly, false,
 														"", aAccount.DBcached, true, "60", true);
 			cardbookRepository.cardbookSynchronization.initMultipleOperations(aAccount.dirPrefId);
 			cardbookRepository.cardbookDirRequest[aAccount.dirPrefId]++;
@@ -2438,14 +2479,6 @@ var cardbookRepository = {
 		var ruleIndex = aStyleSheet.insertRule(ruleString, aStyleSheet.cssRules.length);
 	},
 
-	createCssAccountRules: function (aStyleSheet, aDirPrefId, aColor) {
-		var ruleString = ".cardbookAccountTreeClass treechildren::-moz-tree-image(accountColor color_" + aDirPrefId + ") {\
-							list-style-image: url('chrome://cardbook/content/skin/icons/circle.svg');\
-							-moz-context-properties: fill;\
-							fill: " + aColor + ";}";
-		var ruleIndex = aStyleSheet.insertRule(ruleString, aStyleSheet.cssRules.length);
-	},
-
 	createCssCategoryRules: function (aStyleSheet, aDirPrefId, aColor) {
 		var oppositeColor = cardbookRepository.getTextColorFromBackgroundColor(aColor);
 		var ruleString1 = ".cardbookCategoryClass[type=\"" + aDirPrefId + "\"] {background-color: " + aColor + ";}";
@@ -2461,45 +2494,16 @@ var cardbookRepository = {
 	createCssCardRules: function (aStyleSheet, aDirPrefId, aColor) {
 		var oppositeColor = cardbookRepository.getTextColorFromBackgroundColor(aColor);
 		if (cardbookRepository.cardbookPrefs["useColor"] == "text") {
-			var ruleString1 = ".cardbookCardsTreeClass treechildren::-moz-tree-cell-text(SEARCH color_" + aDirPrefId + ") {color: " + aColor + " !important;}";
-			var ruleIndex1 = aStyleSheet.insertRule(ruleString1, aStyleSheet.cssRules.length);
-
-			var ruleString2 = ".cardbookCardsTreeClass treechildren::-moz-tree-row(SEARCH color_" + aDirPrefId + ") {background-color: " + oppositeColor + " !important;}";
-			var ruleIndex2 = aStyleSheet.insertRule(ruleString2, aStyleSheet.cssRules.length);
-			
-			var ruleString3 = ".cardbookCardsTreeClass treechildren::-moz-tree-cell-text(SEARCH color_" + aDirPrefId + ", selected, focus) {color: HighlightText !important;}";
-			var ruleIndex3 = aStyleSheet.insertRule(ruleString3, aStyleSheet.cssRules.length);
-
-			var ruleString4 = ".cardbookCardsTreeClass treechildren::-moz-tree-row(SEARCH color_" + aDirPrefId + ", selected, focus) {background-color: Highlight !important;}";
-			var ruleIndex4 = aStyleSheet.insertRule(ruleString4, aStyleSheet.cssRules.length);
-		} else if (cardbookRepository.cardbookPrefs["useColor"] == "background") {
-			var ruleString1 = ".cardbookCardsTreeClass treechildren::-moz-tree-row(SEARCH color_" + aDirPrefId + ") {background-color: " + aColor + " !important;}";
-			var ruleIndex1 = aStyleSheet.insertRule(ruleString1, aStyleSheet.cssRules.length);
-
-			var ruleString2 = ".cardbookCardsTreeClass treechildren::-moz-tree-cell-text(SEARCH color_" + aDirPrefId + ") {color: " + oppositeColor + " !important;}";
-			var ruleIndex2 = aStyleSheet.insertRule(ruleString2, aStyleSheet.cssRules.length);
-
-			var ruleString3 = ".cardbookCardsTreeClass treechildren::-moz-tree-row(SEARCH color_" + aDirPrefId + ", selected, focus) {background-color: Highlight !important;}";
-			var ruleIndex3 = aStyleSheet.insertRule(ruleString3, aStyleSheet.cssRules.length);
-
-			var ruleString4 = ".cardbookCardsTreeClass treechildren::-moz-tree-cell-text(SEARCH color_" + aDirPrefId + ", selected, focus) {color: HighlightText !important;}";
-			var ruleIndex4 = aStyleSheet.insertRule(ruleString4, aStyleSheet.cssRules.length);
-		}
-	},
-
-	createCssCardRulesForTable: function (aStyleSheet, aDirPrefId, aColor) {
-		let oppositeColor = cardbookRepository.getTextColorFromBackgroundColor(aColor);
-		if ( cardbookRepository.cardbookPrefs["useColor"] == "text") {
-			let ruleString1 = ".tableTree tr[data-value='SEARCH color_" + aDirPrefId + "']:not([rowSelected='true']) {color: " + aColor + " !important;}";
+			let ruleString1 = "tr[is=\"ab-table-card-row\"].color_" + aDirPrefId + " {color: " + aColor + ";}";
 			let ruleIndex1 = aStyleSheet.insertRule(ruleString1, aStyleSheet.cssRules.length);
 
-			let ruleString2 = ".tableTree tr[data-value='SEARCH color_" + aDirPrefId + "']:not([rowSelected='true']) {background-color: " + oppositeColor + " !important;}";
+			let ruleString2 = "tr[is=\"ab-table-card-row\"].color_" + aDirPrefId + " {background-color: " + oppositeColor + ";}";
 			let ruleIndex2 = aStyleSheet.insertRule(ruleString2, aStyleSheet.cssRules.length);
 		} else if (cardbookRepository.cardbookPrefs["useColor"] == "background") {
-			let ruleString1 = ".tableTree tr[data-value='SEARCH color_" + aDirPrefId + "']:not([rowSelected='true']) {background-color: " + aColor + " !important;}";
+			let ruleString1 = "tr[is=\"ab-table-card-row\"].color_" + aDirPrefId + " {background-color: " + aColor + ";}";
 			let ruleIndex1 = aStyleSheet.insertRule(ruleString1, aStyleSheet.cssRules.length);
 
-			let ruleString2 = ".tableTree tr[data-value='SEARCH color_" + aDirPrefId + "']:not([rowSelected='true']) {color: " + oppositeColor + " !important;}";
+			let ruleString2 = "tr[is=\"ab-table-card-row\"].color_" + aDirPrefId + " {color: " + oppositeColor + ";}";
 			let ruleIndex2 = aStyleSheet.insertRule(ruleString2, aStyleSheet.cssRules.length);
 		}
 	},
@@ -2523,7 +2527,7 @@ var cardbookRepository = {
 
 	getDateFormat: function (aDirPrefId, aVersion) {
 		var myType = cardbookRepository.cardbookPreferences.getType(aDirPrefId);
-		if ( myType == 'GOOGLE' || myType == 'APPLE' || myType == 'YAHOO') {
+		if (myType == 'APPLE' || myType == 'YAHOO') {
 			return "YYYY-MM-DD";
 		} else {
 			return aVersion;
@@ -2543,7 +2547,6 @@ var cardbookRepository = {
 				break;
 			case "APPLE":
 			case "CARDDAV":
-			case "GOOGLE":
 			case "GOOGLE2":
 			case "GOOGLE3":
 			case "OFFICE365":
@@ -2575,9 +2578,11 @@ var cardbookRepository = {
 
 	getABStatusType: function (aDirPrefId) {
 		if (cardbookRepository.cardbookUtils.isMyAccountSyncing(aDirPrefId)) {
-				return "syncing";
+			return "syncing";
 		} else if (cardbookRepository.cardbookPreferences.getReadOnly(aDirPrefId)) {
 			return "readonly";
+		} else if (cardbookRepository.cardbookPreferences.getSyncFailed(aDirPrefId)) {
+			return "syncfailed";
 		} else {
 			return "readwrite";
 		}
@@ -2589,7 +2594,6 @@ var loader = Services.scriptloader;
 loader.loadSubScript("chrome://cardbook/content/preferences/cardbookPreferences.jsm", cardbookRepository);
 loader.loadSubScript("chrome://cardbook/content/cardbookUtils.jsm", cardbookRepository);
 loader.loadSubScript("chrome://cardbook/content/cardbookSynchronization.jsm", cardbookRepository);
-loader.loadSubScript("chrome://cardbook/content/cardbookSynchronizationGoogle.jsm", cardbookRepository);
 loader.loadSubScript("chrome://cardbook/content/cardbookSynchronizationGoogle2.jsm", cardbookRepository);
 loader.loadSubScript("chrome://cardbook/content/cardbookSynchronizationOffice365.jsm", cardbookRepository);
 loader.loadSubScript("chrome://cardbook/content/cardbookLog.jsm", cardbookRepository);

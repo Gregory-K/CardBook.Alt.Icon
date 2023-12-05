@@ -97,8 +97,12 @@ async function onAcceptDialog () {
 };
 
 async function onCancelDialog () {
-	cardbookHTMLRichContext.closeWindow();
+	window.close();
 };
+
+window.addEventListener("resize", async function() {
+	await cardbookHTMLRichContext.saveWindowSize();
+});
 
 await onLoadDialog();
 

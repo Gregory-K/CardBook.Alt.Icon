@@ -77,7 +77,7 @@ async function onLoadDialog () {
 
 	await loadMailAccounts();
 	await loadAB();
-	loadContacts();
+	await loadContacts();
 	if (fileName != "") {
 		document.getElementById('filenameTextbox').value = fileName;
 	}
@@ -100,8 +100,11 @@ async function onAcceptDialog () {
 };
 
 async function onCancelDialog () {
-	cardbookHTMLRichContext.closeWindow();
+	window.close();
 };
 
-await onLoadDialog();
+window.addEventListener("resize", async function() {
+	await cardbookHTMLRichContext.saveWindowSize();
+});
 
+await onLoadDialog();

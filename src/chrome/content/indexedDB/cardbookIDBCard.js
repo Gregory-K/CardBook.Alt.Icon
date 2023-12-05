@@ -205,9 +205,7 @@ var cardbookIDBCard = {
 			var result = e.target.result;
 			if (result) {
 				for (var card of result) {
-					Services.tm.currentThread.dispatch({ run: function() {
-						handleCard(card);
-					}}, Components.interfaces.nsIEventTarget.DISPATCH_SYNC);
+					await handleCard(card);
 				}
 			}
 		};

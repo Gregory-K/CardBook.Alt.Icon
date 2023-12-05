@@ -18,6 +18,34 @@
 	"statusProgressInformationTooltip": {
 		"message": "إضغط هنا لعرض السجلات"
 	},
+	"columnsSortBy": {
+		"message": "افرز حسب: $P1$",
+        "placeholders": {
+            "P1": {
+                "content": "$1"
+            }
+        }
+	},
+	"columnPickerTitle": {
+		"message": "اختر الأعمدة التي ستعرض"
+	},
+	"columnPickerRestoreColumnOrder": {
+		"message": "استعد ترتيب الأعمدة"
+	},
+	"columnPickerApplyCurrentViewTo": {
+		"message": "??Apply current view to…??"
+	},
+	"columnPickerApplyCurrentViewToConfirmMsg": {
+		"message": "أتريد تطبيق أعمدة المجلد الحالي على $P1$ ؟",
+        "placeholders": {
+            "P1": {
+                "content": "$1"
+            }
+        }
+	},
+	"columnPickerApplyCurrentViewToConfirmTitle": {
+		"message": "أتريد تطبيق التغييرات؟"
+	},
 	"imageSelectionTitle": {
 		"message": "إختيار الصورة"
 	},
@@ -645,6 +673,25 @@
 	},
 	"synchroAllFinished": {
 		"message": "تم الانتهاء من جميع عمليات المزامنة"
+	},
+	"lastSync": {
+		"message": "تاريخ آخر مزامنة: $P1$",
+        "placeholders": {
+            "P1": {
+                "content": "$1"
+            }
+        }
+	},
+	"syncFailedNeverSynced": {
+		"message": "فشلت المزامنة. تاريخ آخر مزامنة: لم تحدث"
+	},
+	"syncFailedLastSync": {
+		"message": "فشلت المزامنة. آخر نجاح: $P1$",
+        "placeholders": {
+            "P1": {
+                "content": "$1"
+            }
+        }
 	},
 	"discoveryRunning": {
 		"message": "$P1$ : الاكتشاف التلقائي لدفتر العناوين قيد التشغيل",
@@ -2755,7 +2802,7 @@
         }
 	},
 	"eventEntryTitleMessage": {
-		"message": "ذكرى %1$S"
+		"message": "ذكرى %1$S (%5$S)"
 	},
 	"anniversaryCategory": {
 		"message": "سنوية"
@@ -3747,12 +3794,6 @@
 	"findEventsFromEmailMessengerAccesskey": {
 		"message": "e"
 	},
-	"mailContext-addToCardBookMenuLabel": {
-		"message": "إضافة جهة اتصال CardBook…"
-	},
-	"mailContext-addToCardBookMenuAccesskey": {
-		"message": "d"
-	},
 	"addAllAttachementsToCardBookMenuLabel": {
 		"message": "الجميع إلى CardBook…"
 	},
@@ -3981,6 +4022,9 @@
 	"readonlyLabel": {
 		"message": "وضع القراءة فقط"
 	},
+	"syncingLabel": {
+		"message": "يُزامن…"
+	},
 	"urnuuidLabel": {
 		"message": "إستخدم urn:uuid"
 	},
@@ -4038,14 +4082,8 @@
 	"sendEmailLabel": {
 		"message": "إكتب رسالة جديدة"
 	},
-	"sendEmailAccesskey": {
-		"message": "E"
-	},
 	"syncLightningMenuItemLabel": {
 		"message": "مزامنة بإستخدام Lightning"
-	},
-	"syncLightningMenuAccesskey": {
-		"message": "S"
 	},
 	"calendarNameLabel": {
 		"message": "التقويم"
@@ -5220,12 +5258,6 @@
 	"cardbookToolbarAppMenuButtonTooltip": {
 		"message": "CardBook قائمة"
 	},
-	"cardbookToolbarSearchBoxLabel": {
-		"message": "بحث جهات الإتصال"
-	},
-	"cardbookToolbarSearchBoxTooltip": {
-		"message": "بحث جهات الإتصال"
-	},
 	"cardbookToolbarComplexSearchLabel": {
 		"message": "البحث المحفوظ"
 	},
@@ -5348,9 +5380,6 @@
 	},
 	"PreferMailFormat.label": {
 		"message": "يفضل استقبال الرسائل المنسقة ك‍:"
-	},
-	"PreferMailFormat.accesskey": {
-		"message": "س"
 	},
 	"Unknown.label": {
 		"message": "مجهول"
@@ -5493,9 +5522,6 @@
 	"editEventLabel": {
 		"message": "عدّل الحدث"
 	},
-	"editEventAccesskey": {
-		"message": "E"
-	},
 	"eventsTableTitleLabel": {
 		"message": "العنوان"
 	},
@@ -5534,9 +5560,6 @@
 	},
 	"createEventLabel": {
 		"message": "حدث جديد"
-	},
-	"createEventAccesskey": {
-		"message": "N"
 	},
 	"adrFormulaExplanation": {
 		"message": "من الممكن تخصيص طريقة تنسيق CardBook لعناوينه. تتكون هذه الصيغة من كتل محاطة بعلامة '()'. في هذه الكتل قد يكون هناك العديد من الأجزاء المحددة بعلامة '|'."
@@ -5700,38 +5723,20 @@
 	"createEditionLabel": {
 		"message": "إنشاء"
 	},
-	"createEditionAccesskey": {
-		"message": "T"
-	},
 	"createAndReplaceEditionLabel": {
 		"message": "إنشاء واستبدال"
-	},
-	"createAndReplaceEditionAccesskey": {
-		"message": "R"
 	},
 	"saveEditionLabel": {
 		"message": "حفظ"
 	},
-	"saveEditionAccesskey": {
-		"message": "S"
-	},
 	"validateEditionLabel": {
 		"message": "تحقق"
-	},
-	"validateEditionAccesskey": {
-		"message": "V"
 	},
 	"cancelEditionLabel": {
 		"message": "إلغاء"
 	},
-	"cancelEditionAccesskey": {
-		"message": "C"
-	},
 	"closeEditionLabel": {
 		"message": "إغلاق"
-	},
-	"closeEditionAccesskey": {
-		"message": "C"
 	},
 	"moreEditionLabel": {
 		"message": "اعرض المزيد"
@@ -5827,9 +5832,6 @@
 	"kind.edit.label": {
 		"message": "نوع"
 	},
-	"kind.edit.accesskey": {
-		"message": "K"
-	},
 	"addEmailGroupboxLabel": {
 		"message": "بريد إلكتروني"
 	},
@@ -5922,6 +5924,20 @@
 	},
 	"capitalizationLabel": {
 		"message": "الرسملة"
+	},
+	"searchinAB": {
+		"message": "ابحث عن $P1$",
+        "placeholders": {
+            "P1": {
+                "content": "$1"
+            }
+        }
+	},
+	"searchinAllAB": {
+		"message": "??Search all address books??"
+	},
+	"searchingABPlaceholder": {
+		"message": "??Searching…??"
 	},
 	"region-name-ad": {
 		"message": "أندورا"

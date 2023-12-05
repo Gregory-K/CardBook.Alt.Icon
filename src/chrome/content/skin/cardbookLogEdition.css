@@ -1,5 +1,6 @@
 #logEditionTable {
-	min-width: 900px;
+	max-width: 900px;
+	min-height: 500px;
 }
 
 .selectTree option[data-value='Warning'] {

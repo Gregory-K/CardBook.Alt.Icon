@@ -1,5 +1,4 @@
 {
-	var { MailE10SUtils } = ChromeUtils.import("resource:///modules/MailE10SUtils.jsm");
 	var { cardbookRepository } = ChromeUtils.import("chrome://cardbook/content/cardbookRepository.js");
 
 	// test i18n.updateDocument({ extension: cardbookRepository.extension });

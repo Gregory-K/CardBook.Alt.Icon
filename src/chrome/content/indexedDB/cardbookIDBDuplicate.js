@@ -31,22 +31,24 @@ var cardbookIDBDuplicate = {
             request.onsuccess = async function(e) {
                 cardbookRepository.cardbookDuplicateDatabase.db = e.target.result;
                 if (cardbookIDBDuplicate.doUpgrade) {
-                    let cacheDir = cardbookRepository.getLocalDirectory();
-                    cacheDir.append(cardbookRepository.cardbookDuplicateFile);
-                    let win = Services.wm.getMostRecentWindow("mail:3pane", true);
-                    let content = await win.IOUtils.readUTF8(cacheDir.path);
-                    if (content) {
-                        let re = /[\n\u0085\u2028\u2029]|\r\n?/;
-                        let fileContentArray = content.split(re);
-                        for (let line of fileContentArray) {
-                            let lineArray = line.split("::");
-                            let id1 = lineArray[0];
-                            let id2 = lineArray[1];
-                            if (id1 && id2) {
-                                cardbookIDBDuplicate.addDuplicate(id1, id2);
+                    try {
+                        let cacheDir = cardbookRepository.getLocalDirectory();
+                        cacheDir.append(cardbookRepository.cardbookDuplicateFile);
+                        let win = Services.wm.getMostRecentWindow("mail:3pane", true);
+                        let content = await win.IOUtils.readUTF8(cacheDir.path);
+                        if (content) {
+                            let re = /[\n\u0085\u2028\u2029]|\r\n?/;
+                            let fileContentArray = content.split(re);
+                            for (let line of fileContentArray) {
+                                let lineArray = line.split("::");
+                                let id1 = lineArray[0];
+                                let id2 = lineArray[1];
+                                if (id1 && id2) {
+                                    cardbookIDBDuplicate.addDuplicate(id1, id2);
+                                }
                             }
                         }
-                    }
+                    } catch(e) {}
                     cardbookIDBDuplicate.doUpgrade = false;
                 }
                 resolve();

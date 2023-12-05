@@ -65,9 +65,13 @@ if ("undefined" == typeof(wdw_logEdition)) {
 		},
 
 		cancel: function () {
-            cardbookHTMLRichContext.closeWindow();
+            window.close();
 		}
 	};
 };
+
+window.addEventListener("resize", async function() {
+	await cardbookHTMLRichContext.saveWindowSize();
+});
 
 wdw_logEdition.load();

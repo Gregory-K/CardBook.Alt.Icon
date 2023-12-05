@@ -1,0 +1,20 @@
+.grid-container-1 {
+	display: grid;
+	height: 95vh;
+	grid-template:
+		"header" 30px
+		"body" auto
+		"footer" 30px;
+}
+
+.header-container {
+	grid-area: header;
+}
+
+.body-container {
+	grid-area: body;
+}
+
+.footer-container {
+	grid-area: footer;
+}

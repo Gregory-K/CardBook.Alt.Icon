@@ -14,11 +14,6 @@ if ("undefined" == typeof(wdw_cardEdition)) {
 		});
 	});
 
-	if ("undefined" == typeof(notifyTools)) {
-		var loader = Services.scriptloader;
-		loader.loadSubScript("chrome://cardbook/content/scripts/notifyTools.js", this);
-	}
-
 	var wdw_cardEdition = {
 
 		contactNotLoaded: true,
@@ -837,7 +832,7 @@ if ("undefined" == typeof(wdw_cardEdition)) {
 			if (orgStructure) {
 				let myOrgStructure = cardbookRepository.cardbookUtils.unescapeArray(cardbookRepository.cardbookUtils.escapeString(orgStructure).split(";"));
 				for (let i = 0; i < myOrgStructure.length; i++) {
-					if (wdw_cardEdition.checkEditionFields('org.' + myOrgStructure[i]) || document.getElementById('orgTextBox_' + i).value) {
+					if (wdw_cardEdition.checkEditionFields('org_' + myOrgStructure[i]) || document.getElementById('orgTextBox_' + i).value) {
 						document.getElementById('orgRow_' + i).removeAttribute('hidden');
 					} else {
 						document.getElementById('orgRow_' + i).setAttribute('hidden', 'true');
@@ -1180,6 +1175,7 @@ if ("undefined" == typeof(wdw_cardEdition)) {
 				cardbookElementTools.deleteRows(type + 'Groupbox');
 			}
 			cardbookElementTools.deleteRows('eventGroupbox');
+			cardbookElementTools.deleteRows('tzGroupbox');
 			document.getElementById('genderMenulist').selectedIndex = 0;
 			wdw_cardEdition.loadCategories([]);
 		},
@@ -1590,22 +1586,29 @@ if ("undefined" == typeof(wdw_cardEdition)) {
 			}
 		},
 
-		getCurrentAccountId: function () {
-			if (cardbookRepository.cardbookSearchMode == "SEARCH") {
-				return cardbookRepository.cardbookSearchValue;
-			} else {
-				return cardbookRepository.currentAccountId;
+		getNextAndPreviousCard: function () {
+			let result = {};
+			let previous = 0;
+			let next = 0;
+			for (let index in cardbookRepository.displayedIds) {
+				if (cardbookRepository.displayedIds[index] == window.arguments[0].cardIn.cbid) {
+					previous = parseInt(index)-1;
+					next = parseInt(index)+1;
+					break;
+				}
 			}
-		},
-
-		cancelPreviousNext: function () {
-			document.getElementById('previousEditButton').setAttribute('hidden', 'true');
-			document.getElementById('nextEditButton').setAttribute('hidden', 'true');
+			if (cardbookRepository.displayedIds[previous]) {
+				result.previous = cardbookRepository.cardbookCards[cardbookRepository.displayedIds[previous]];
+			}
+			if (cardbookRepository.displayedIds[next]) {
+				result.next = cardbookRepository.cardbookCards[cardbookRepository.displayedIds[next]];
+			}
+			return result;
 		},
 
 		changePreviousNext: function () {
-			let myCurrentAccountId = wdw_cardEdition.getCurrentAccountId();
-			wdw_cardEdition.cancelPreviousNext();
+			document.getElementById('previousEditButton').setAttribute('hidden', 'true');
+			document.getElementById('nextEditButton').setAttribute('hidden', 'true');
 			switch(window.arguments[0].editionMode) {
 				case "ViewResult":
 				case "ViewResultHideCreate":
@@ -1615,49 +1618,29 @@ if ("undefined" == typeof(wdw_cardEdition)) {
 				case "EditTemplate":
 					return;
 			}
-			if (cardbookRepository.cardbookDisplayCards[myCurrentAccountId]) {
-				for (var i = 0; i < cardbookRepository.cardbookDisplayCards[myCurrentAccountId].cards.length; i++) {
-					let card = cardbookRepository.cardbookDisplayCards[myCurrentAccountId].cards[i];
-					if (card.cbid == window.arguments[0].cardIn.cbid) {
-						if (i == 0 && i != cardbookRepository.cardbookDisplayCards[myCurrentAccountId].cards.length - 1) {
-							document.getElementById('previousEditButton').setAttribute('hidden', 'true');
-							document.getElementById('nextEditButton').removeAttribute('hidden');
-						} else if (i == 0 && i == cardbookRepository.cardbookDisplayCards[myCurrentAccountId].cards.length - 1) {
-							wdw_cardEdition.cancelPreviousNext();
-						} else if (i == cardbookRepository.cardbookDisplayCards[myCurrentAccountId].cards.length - 1) {
-							document.getElementById('previousEditButton').removeAttribute('hidden');
-							document.getElementById('nextEditButton').setAttribute('hidden', 'true');
-						} else {
-							document.getElementById('previousEditButton').removeAttribute('hidden');
-							document.getElementById('nextEditButton').removeAttribute('hidden');
-						}
-						break;
-					};
-				}
-			} else {
-				document.getElementById('previousEditButton').setAttribute('hidden', 'true');
-				document.getElementById('nextEditButton').setAttribute('hidden', 'true');
+			document.getElementById('previousEditButton').setAttribute('hidden', 'true');
+			document.getElementById('nextEditButton').setAttribute('hidden', 'true');
+			let cards = wdw_cardEdition.getNextAndPreviousCard();
+			if (cards.previous) {
+				document.getElementById("previousEditButton").removeAttribute('hidden');
+			}
+			if (cards.next) {
+				document.getElementById("nextEditButton").removeAttribute('hidden');
 			}
 		},
 
 		changeContactFromOrder: async function (aOrder) {
-			let myCurrentAccountId = wdw_cardEdition.getCurrentAccountId();
 			window.arguments[0].cardEditionAction = "SAVE";
-			wdw_cardEdition.saveFinal(false);
+			await wdw_cardEdition.saveFinal(false);
 			window.arguments[0].cardEditionAction = "";
-			if (cardbookRepository.cardbookDisplayCards[myCurrentAccountId]) {
-				for (var i = 0; i < cardbookRepository.cardbookDisplayCards[myCurrentAccountId].cards.length; i++) {
-					let card = cardbookRepository.cardbookDisplayCards[myCurrentAccountId].cards[i];
-					if (card.cbid == window.arguments[0].cardIn.cbid) {
-						if (aOrder == "next") {
-							window.arguments[0].cardIn = cardbookRepository.cardbookDisplayCards[myCurrentAccountId].cards[i+1];
-						} else {
-							window.arguments[0].cardIn = cardbookRepository.cardbookDisplayCards[myCurrentAccountId].cards[i-1];
-						}
-						break;
-					};
-				}
+			let cards = wdw_cardEdition.getNextAndPreviousCard();
+			window.arguments[0].cardIn = new cardbookCardParser();
+			if (aOrder == "next") {
+				await wdw_cardEdition.cloneCard(cards.next, window.arguments[0].cardIn);
+			} else {
+				await wdw_cardEdition.cloneCard(cards.previous, window.arguments[0].cardIn);
 			}
+
 			if (window.arguments[0].cardIn.isAList) {
 				var myType = "List";
 			} else {

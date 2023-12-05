@@ -276,10 +276,10 @@ if ("undefined" == typeof(cardbookActions)) {
 				let myActionCode = cardbookRepository.currentAction[aActionId].actionCode;
 				switch(myActionCode) {
 					case "cardsImportedFromFile":
-						cardbookRepository.cardbookSynchronization.finishImportFromFile(aFinishParams.window, cardbookRepository.currentAction[aActionId].addedCards, aFinishParams.name);
+						cardbookRepository.cardbookSynchronization.finishImportFromFile(aFinishParams.window, cardbookRepository.currentAction[aActionId].addedCards, aFinishParams.name, aFinishParams.dirname);
 						break;
 					case "cardsImportedFromDir":
-						cardbookRepository.cardbookSynchronization.finishImportFromDir(aFinishParams.window, cardbookRepository.currentAction[aActionId].addedCards, aFinishParams.name);
+						cardbookRepository.cardbookSynchronization.finishImportFromDir(aFinishParams.window, cardbookRepository.currentAction[aActionId].addedCards, aFinishParams.name, aFinishParams.dirname);
 						break;
 					case "cardsExportedToDir":
 						cardbookRepository.cardbookSynchronization.finishExportToDir(aFinishParams.window, aFinishParams.length, aFinishParams.name);

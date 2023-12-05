@@ -1,0 +1,32 @@
+:root {
+    --recipient-avatar-color: var(--color-gray-50);
+}
+@media (prefers-color-scheme: dark) {
+    :root {
+        --in-content-button-background: rgba(249, 249, 250, 0.1);
+        --recipient-avatar-color: var(--color-gray-40);
+    }
+}
+
+@media not (prefers-contrast) {
+    @media not (prefers-color-scheme: dark) {
+        :root > * {
+            --in-content-button-background: var(--grey-90-a10);
+        }
+    }
+
+    @media (prefers-color-scheme: dark) {
+        :root > * {
+            --in-content-button-background: rgba(249, 249, 250, 0.1);
+        }
+    }
+}
+
+#defaultCardImage {
+	border-radius: 100%;
+	width: 150px;
+	height: 150px;
+	background-color: var(--in-content-button-background);
+	-moz-context-properties: stroke;
+	stroke: color-mix(in srgb, transparent 50%, var(--recipient-avatar-color));
+}

@@ -2,7 +2,7 @@ var { Services } = ChromeUtils.import("resource://gre/modules/Services.jsm");
 
 var cardBookObserverRepository = {
 	registerAll: function(aObserver) {
-		Services.obs.addObserver(aObserver, "cardbook.openTab", false);
+		Services.obs.addObserver(aObserver, "cardbook.openCBTab", false);
 
 		Services.obs.addObserver(aObserver, "cardbook.addressbookCreated", false);
 		Services.obs.addObserver(aObserver, "cardbook.addressbookDeleted", false);
@@ -67,13 +67,10 @@ var cardBookObserverRepository = {
 		Services.obs.addObserver(aObserver, "cardbook.modifyNode", false);
 
 		Services.obs.addObserver(aObserver, "cardbook.identityChanged", false);
-
-		Services.obs.addObserver(aObserver, "cardbook.mailMode", false);
-		Services.obs.addObserver(aObserver, "cardbook.cardbookMode", false);
 	},
 	
 	unregisterAll: function(aObserver) {
-		Services.obs.removeObserver(aObserver, "cardbook.openTab");
+		Services.obs.removeObserver(aObserver, "cardbook.openCBTab");
 
 		Services.obs.removeObserver(aObserver, "cardbook.addressbookCreated");
 		Services.obs.removeObserver(aObserver, "cardbook.addressbookDeleted");
@@ -137,8 +134,5 @@ var cardBookObserverRepository = {
 		Services.obs.removeObserver(aObserver, "cardbook.modifyNode");
 
 		Services.obs.removeObserver(aObserver, "cardbook.identityChanged");
-
-		Services.obs.removeObserver(aObserver, "cardbook.mailMode");
-		Services.obs.removeObserver(aObserver, "cardbook.cardbookMode");
 	}
 };

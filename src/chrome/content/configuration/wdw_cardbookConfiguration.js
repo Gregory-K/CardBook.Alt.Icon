@@ -1,5 +1,6 @@
-import { cardbookHTMLTools } from "../cardbookHTMLTools.mjs";
 import { cardbookHTMLUtils } from "../cardbookHTMLUtils.mjs";
+import { cardbookHTMLTools } from "../cardbookHTMLTools.mjs";
+import { cardbookHTMLDates } from "../cardbookHTMLDates.mjs";
 import { cardbookHTMLNotification } from "../cardbookHTMLNotification.mjs";
 import { cardbookHTMLRichContext } from "../cardbookHTMLRichContext.mjs";
 import { cardbookNewPreferences } from "../preferences/cardbookNewPreferences.mjs";
@@ -1422,9 +1423,14 @@ var wdw_cardbookConfiguration = {
 	saveType: function (aParams) {
 		let result = [];
 		let found = false;
+		let cores = wdw_cardbookConfiguration.coreTypes[aParams.ABType][aParams.type].map(x => x[0]);
 		for (let value of wdw_cardbookConfiguration.allTypes[aParams.ABType][aParams.type]) {
 			if (aParams.valueType === value[1]) {
-				result.push([aParams.value, aParams.valueType]);
+				if (cores.includes(aParams.valueType)) {
+					result.push([aParams.value, aParams.valueType]);
+				} else {
+					result.push([aParams.value, aParams.value]);
+				}
 				found = true;
 			} else {
 				result.push(value);
@@ -2192,9 +2198,9 @@ var wdw_cardbookConfiguration = {
 		wdw_cardbookConfiguration.sortTable("orgTreeTable");
 		wdw_cardbookConfiguration.preferenceChanged('orgStructure');
 		if (aParams.id == "") {
-			wdw_cardbookConfiguration.preferenceChanged('orgStructure', null, "org." + aParams.value);
+			wdw_cardbookConfiguration.preferenceChanged('orgStructure', null, "org_" + aParams.value);
 		} else {
-			wdw_cardbookConfiguration.preferenceChanged('orgStructure', "org." + oldValue, "org." + aParams.value);
+			wdw_cardbookConfiguration.preferenceChanged('orgStructure', "org_" + oldValue, "org_" + aParams.value);
 		}
 	},
 
@@ -2213,7 +2219,7 @@ var wdw_cardbookConfiguration = {
 			}
 			wdw_cardbookConfiguration.allOrg = JSON.parse(JSON.stringify(result));
 			wdw_cardbookConfiguration.sortTable("orgTreeTable");
-			wdw_cardbookConfiguration.preferenceChanged('orgStructure', "org." + label, null);
+			wdw_cardbookConfiguration.preferenceChanged('orgStructure', "org_" + label, null);
 		}
 	},
 	
@@ -2229,10 +2235,10 @@ var wdw_cardbookConfiguration = {
 		let labelLong = messenger.i18n.getMessage("dateDisplayedFormatLong");
 		let labelShort = messenger.i18n.getMessage("dateDisplayedFormatShort");
 		let date = new Date();
-		let dateString = await messenger.runtime.sendMessage({query: "cardbook.convertDateToDateString", date: date, version: "4.0"});
-		let dateFormattedLong = await messenger.runtime.sendMessage({query: "cardbook.getFormattedDateForDateString", date: dateString, version: "4.0", format: "0"});
+		let dateString = cardbookHTMLDates.convertDateToDateString(date, "4.0");
+		let dateFormattedLong = cardbookHTMLDates.getFormattedDateForDateString(dateString, "4.0", "0");
 		document.getElementById('dateDisplayedFormatLong').textContent = labelLong.replace("%P1%", dateFormattedLong);
-		let dateFormattedShort = await messenger.runtime.sendMessage({query: "cardbook.getFormattedDateForDateString", date: dateString, version: "4.0", format: "1"});
+		let dateFormattedShort = cardbookHTMLDates.getFormattedDateForDateString(dateString, "4.0", "1");
 		document.getElementById('dateDisplayedFormatShort').textContent = labelShort.replace("%P1%", dateFormattedShort);
 		document.getElementById('dateDisplayedFormatMenulist').value = await cardbookHTMLUtils.getPrefValue("dateDisplayedFormat");
 	},
@@ -2242,11 +2248,8 @@ var wdw_cardbookConfiguration = {
 	},
 
 	loadCountries: async function () {
-		let countryList = await messenger.runtime.sendMessage({query: "cardbook.getCountries", useCodeValues: true});
-        cardbookHTMLUtils.sortMultipleArrayByString(countryList,1,1);
-		let countryMenu = document.getElementById('defaultRegionMenulist');
 		let country = await cardbookHTMLUtils.getPrefValue("defaultRegion");
-		await cardbookHTMLTools.loadOptions(countryMenu, countryList, country, true);
+		await cardbookHTMLTools.loadCountries("defaultRegionMenulist", country)
 	},
 
 	validateCountries: async function () {
@@ -2572,14 +2575,14 @@ var wdw_cardbookConfiguration = {
 			case "bool":
 			case "checkbox":
 				await cardbookHTMLUtils.setPrefValue(prefName, aNode.checked);
-				await messenger.runtime.sendMessage({query: "cardbook.notifyObserver", value: "cardbook.pref.preferencesChanged"});
+				await messenger.runtime.sendMessage({query: "cardbook.pref.preferencesChanged"});
 				break;
 			case "string":
 			case "text":
 			case "number":
 			case "radio":
 				await cardbookHTMLUtils.setPrefValue(prefName, aNode.value);
-				await messenger.runtime.sendMessage({query: "cardbook.notifyObserver", value: "cardbook.pref.preferencesChanged"});
+				await messenger.runtime.sendMessage({query: "cardbook.pref.preferencesChanged"});
 				break;
 			default:
 				throw new Error("saveInstantApply : prefType null or unknown : " + prefType);
@@ -2674,7 +2677,7 @@ var wdw_cardbookConfiguration = {
 				await wdw_cardbookConfiguration.validateEventEntryWholeDay();
 				break;
 		}
-		await messenger.runtime.sendMessage({query: "cardbook.notifyObserver", value: "cardbook.pref.preferencesChanged"});
+		await messenger.runtime.sendMessage({query: "cardbook.pref.preferencesChanged"});
 	}
 };
 

@@ -18,6 +18,34 @@
 	"statusProgressInformationTooltip": {
 		"message": "Нажмите здесь для просмотра журналов"
 	},
+	"columnsSortBy": {
+		"message": "Упорядочивать: $P1$",
+        "placeholders": {
+            "P1": {
+                "content": "$1"
+            }
+        }
+	},
+	"columnPickerTitle": {
+		"message": "Выбрать колонки для отображения"
+	},
+	"columnPickerRestoreColumnOrder": {
+		"message": "Восстановить порядок колонок"
+	},
+	"columnPickerApplyCurrentViewTo": {
+		"message": "Применить текущий вид к…"
+	},
+	"columnPickerApplyCurrentViewToConfirmMsg": {
+		"message": "Применить набор колонок текущей папки к $P1$?",
+        "placeholders": {
+            "P1": {
+                "content": "$1"
+            }
+        }
+	},
+	"columnPickerApplyCurrentViewToConfirmTitle": {
+		"message": "Применить изменения?"
+	},
 	"imageSelectionTitle": {
 		"message": "Выбор изображения"
 	},
@@ -645,6 +673,25 @@
 	},
 	"synchroAllFinished": {
 		"message": "Все синхронизации завершены"
+	},
+	"lastSync": {
+		"message": "Последняя синхронизация: $P1$",
+        "placeholders": {
+            "P1": {
+                "content": "$1"
+            }
+        }
+	},
+	"syncFailedNeverSynced": {
+		"message": "Синхронизация не удалась. Последняя синхронизация: пока не было"
+	},
+	"syncFailedLastSync": {
+		"message": "Синхронизация не удалась. Последняя синхронизация: $P1$",
+        "placeholders": {
+            "P1": {
+                "content": "$1"
+            }
+        }
 	},
 	"discoveryRunning": {
 		"message": "$P1$ : Выполняется проверка изменения набора адресных книг",
@@ -3747,12 +3794,6 @@
 	"findEventsFromEmailMessengerAccesskey": {
 		"message": "а"
 	},
-	"mailContext-addToCardBookMenuLabel": {
-		"message": "Создать в CardBook…"
-	},
-	"mailContext-addToCardBookMenuAccesskey": {
-		"message": "Н"
-	},
 	"addAllAttachementsToCardBookMenuLabel": {
 		"message": "Всё в CardBook…"
 	},
@@ -3981,6 +4022,9 @@
 	"readonlyLabel": {
 		"message": "Режим «только чтение»"
 	},
+	"syncingLabel": {
+		"message": "Синхронизация…"
+	},
 	"urnuuidLabel": {
 		"message": "Использовать urn:uuid"
 	},
@@ -4038,14 +4082,8 @@
 	"sendEmailLabel": {
 		"message": "Создать сообщение"
 	},
-	"sendEmailAccesskey": {
-		"message": "О"
-	},
 	"syncLightningMenuItemLabel": {
 		"message": "Синхронизировать с Lightning"
-	},
-	"syncLightningMenuAccesskey": {
-		"message": "С"
 	},
 	"calendarNameLabel": {
 		"message": "Календарь"
@@ -5220,12 +5258,6 @@
 	"cardbookToolbarAppMenuButtonTooltip": {
 		"message": "Меню CardBook"
 	},
-	"cardbookToolbarSearchBoxLabel": {
-		"message": "Поиск контактов"
-	},
-	"cardbookToolbarSearchBoxTooltip": {
-		"message": "Поиск контактов"
-	},
 	"cardbookToolbarComplexSearchLabel": {
 		"message": "Расширеный поиск"
 	},
@@ -5348,9 +5380,6 @@
 	},
 	"PreferMailFormat.label": {
 		"message": "Предпочитает получать почту в формате:"
-	},
-	"PreferMailFormat.accesskey": {
-		"message": "р"
 	},
 	"Unknown.label": {
 		"message": "Неизвестно"
@@ -5493,9 +5522,6 @@
 	"editEventLabel": {
 		"message": "Редактировать событие"
 	},
-	"editEventAccesskey": {
-		"message": "П"
-	},
 	"eventsTableTitleLabel": {
 		"message": "Название"
 	},
@@ -5534,9 +5560,6 @@
 	},
 	"createEventLabel": {
 		"message": "Новое событие"
-	},
-	"createEventAccesskey": {
-		"message": "Н"
 	},
 	"adrFormulaExplanation": {
 		"message": "Для формирования адресов возможно задать правило выполнения операций над полями. Правило состоит из блоков, ограниченных «()». В каждом из блоков может присутствовать множество частей, разделяемых «|»."
@@ -5700,38 +5723,20 @@
 	"createEditionLabel": {
 		"message": "Создать"
 	},
-	"createEditionAccesskey": {
-		"message": "С"
-	},
 	"createAndReplaceEditionLabel": {
 		"message": "Создать и заменить"
-	},
-	"createAndReplaceEditionAccesskey": {
-		"message": "з"
 	},
 	"saveEditionLabel": {
 		"message": "Сохранить"
 	},
-	"saveEditionAccesskey": {
-		"message": "х"
-	},
 	"validateEditionLabel": {
 		"message": "Проверить"
-	},
-	"validateEditionAccesskey": {
-		"message": "в"
 	},
 	"cancelEditionLabel": {
 		"message": "Отменить"
 	},
-	"cancelEditionAccesskey": {
-		"message": "О"
-	},
 	"closeEditionLabel": {
 		"message": "Закрыть"
-	},
-	"closeEditionAccesskey": {
-		"message": "З"
 	},
 	"moreEditionLabel": {
 		"message": "Показать больше"
@@ -5827,9 +5832,6 @@
 	"kind.edit.label": {
 		"message": "Тип"
 	},
-	"kind.edit.accesskey": {
-		"message": "Т"
-	},
 	"addEmailGroupboxLabel": {
 		"message": "Адрес электронной почты"
 	},
@@ -5922,6 +5924,20 @@
 	},
 	"capitalizationLabel": {
 		"message": "Капитализация"
+	},
+	"searchinAB": {
+		"message": "Искать в $P1$",
+        "placeholders": {
+            "P1": {
+                "content": "$1"
+            }
+        }
+	},
+	"searchinAllAB": {
+		"message": "Поиск во всех адресных книгах"
+	},
+	"searchingABPlaceholder": {
+		"message": "Поиск…"
 	},
 	"region-name-ad": {
 		"message": "Андорра"

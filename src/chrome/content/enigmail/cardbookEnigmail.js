@@ -5,6 +5,10 @@ var EnigmailWkdLookup = ChromeUtils.import("chrome://openpgp/content/modules/wkd
 var { EnigmailKeyserverURIs } = ChromeUtils.import("chrome://openpgp/content/modules/keyserverUris.jsm");
 var { EnigmailKeyServer } = ChromeUtils.import( "chrome://openpgp/content/modules/keyserver.jsm");
 var { EnigmailKey } = ChromeUtils.import("chrome://openpgp/content/modules/key.jsm");
+var { EnigmailDialog } = ChromeUtils.import("chrome://openpgp/content/modules/dialog.jsm");
+var { KeyLookupHelper } = ChromeUtils.import("chrome://openpgp/content/modules/keyLookupHelper.jsm");
+
+var l10n = new Localization(["messenger/openpgp/openpgp.ftl"], true);
 
 var cardbookEnigmail = {
 	crc_table: [0x00000000, 0x00864cfb, 0x018ad50d, 0x010c99f6, 0x0393e6e1, 0x0315aa1a, 0x021933ec, 0x029f7f17, 0x07a18139, 0x0727cdc2, 0x062b5434, 0x06ad18cf, 0x043267d8, 0x04b42b23,
@@ -148,7 +152,7 @@ var cardbookEnigmail = {
 		for (let email of listOfEmail) {
 			let result = { value: email.trim().toLowerCase() };
 			if (EnigmailFuncs.stringLooksLikeEmailAddress(result.value)) {
-				if (!EnigmailDialog.promptValue(window, l10n.formatValueSync("openpgp-key-man-discover-prompt"), result)) {
+				if (!Services.prompt.prompt(window,l10n.formatValueSync("enig-prompt"),l10n.formatValueSync("openpgp-key-man-discover-prompt"),result,"",{})) {
 					continue;
 				}
 				if (EnigmailFuncs.stringLooksLikeEmailAddress(result.value)) {
@@ -162,27 +166,25 @@ var cardbookEnigmail = {
 		for (let email of aListOfSelectedEmails) {
 			email = email.trim().toLowerCase();
 			if (EnigmailFuncs.stringLooksLikeEmailAddress(email)) {
-				// can't get only one key
-				// let wkdKeys = await EnigmailWkdLookup.downloadKey(email);
-				// if (wkdKeys && "keyData" in wkdKeys) {
-				// 	let keyList = EnigmailKey.getKeyListFromKeyBlock(wkdKeys.keyData, {}, false, true, false);
-				// 	if (keyList.length > 0) {
-				// 		let asciiValue = cardbookEnigmail.bytesToArmor(wkdKeys.keyData);
-				// 		wdw_cardEdition.addKeyToEdit(asciiValue);
-				// 	}
-				// } else {
-				let defKs = EnigmailKeyserverURIs.getDefaultKeyServer();
-				if (!defKs) {
-					return;
+				let ksArray = EnigmailKeyserverURIs.getKeyServers();
+				if (!ksArray.length) {
+					return false;
 				}
-				let vks = await EnigmailKeyServer.downloadNoImport(email, defKs);
-				if (vks && "keyData" in vks) {
-					let keyList = EnigmailKey.getKeyListFromKeyBlock(vks.keyData, {}, false, true, false);
-					if (keyList.length > 0) {
-						wdw_cardEdition.addKeyToEdit(vks.keyData);
+			
+				for (let ks of ksArray) {
+					let foundKey;
+					if (ks.startsWith("vks://")) {
+						foundKey = await EnigmailKeyServer.downloadNoImport(email, ks);
+					} else if (ks.startsWith("hkp://") || ks.startsWith("hkps://")) {
+						foundKey = await EnigmailKeyServer.searchAndDownloadSingleResultNoImport(email, ks);
+					}
+					if (foundKey && "keyData" in foundKey) {
+						let keyList = await EnigmailKey.getKeyListFromKeyBlock(foundKey.keyData, {}, false, true, false);
+						if (keyList && keyList.length == 1) {
+							wdw_cardEdition.addKeyToEdit(foundKey.keyData);
+						}
 					}
 				}
-    			// }
 			}
 		}
 	},

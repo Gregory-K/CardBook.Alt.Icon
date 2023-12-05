@@ -2044,16 +2044,12 @@ var cardbookSynchronizationOffice365 = {
 							cardbookRepository.cardbookServerSyncParams[aPrefId] = [ connection ];
 							if (cardbookRepository.cardbookServerSyncParams[aPrefId].length && cardbookRepository.cardbookAccessTokenRequest[aPrefId] == 1 && cardbookRepository.cardbookAccessTokenError[aPrefId] != 1) {
 								cardbookRepository.cardbookServerSyncRequest[aPrefId]++;
-								if (type == "GOOGLE3") {
-									cardbookSynchronizationOffice365.getNewAccessTokenForGooglePeople(connection, cardbookSynchronizationOffice365.googleSyncWorkspaceInit);
-								} else {
-									cardbookSynchronizationOffice365.getNewAccessTokenForGooglePeople(connection, cardbookSynchronizationOffice365.googleSyncContactsInit);
-								}
+								// test new token ?
 							} else {
-								cardbookSynchronization.finishSync(aPrefId, aPrefName, type);
 								if (cardbookRepository.cardbookServerSyncAgain[aPrefId] && cardbookSynchronization.getError(aPrefId) == 0) {
 									cardbookRepository.cardbookUtils.formatStringForOutput("synchroForcedToResync", [aPrefName]);
 									cardbookSynchronization.finishMultipleOperations(aPrefId);
+									cardbookSynchronization.finishSync(aPrefId, aPrefName, type);
 									// to avoid other sync during the wait time
 									cardbookRepository.cardbookSyncMode[aPrefId] = 1;
 									if ("undefined" == typeof(setTimeout)) {
@@ -2063,7 +2059,16 @@ var cardbookSynchronizationOffice365 = {
 											cardbookSynchronization.syncAccount(aPrefId, true);
 										}, 10000);               
 								} else {
+									if (cardbookSynchronization.getError(aPrefId) == 0) {
+										let sysdate = cardbookRepository.cardbookDates.getDateUTC();
+										let syncdate = sysdate.year + sysdate.month + sysdate.day + "T" + sysdate.hour + sysdate.min + sysdate.sec + "Z";
+										cardbookRepository.cardbookPreferences.setLastSync(aPrefId, syncdate);
+										cardbookRepository.cardbookPreferences.setSyncFailed(aPrefId, false);
+									} else {
+										cardbookRepository.cardbookPreferences.setSyncFailed(aPrefId, true);
+									}
 									cardbookSynchronization.finishMultipleOperations(aPrefId);
+									cardbookSynchronization.finishSync(aPrefId, aPrefName, type);
 									var total = cardbookSynchronization.getRequest() + cardbookSynchronization.getTotal() + cardbookSynchronization.getResponse() + cardbookSynchronization.getDone();
 									// all sync are finished
 									if (total === 0) {

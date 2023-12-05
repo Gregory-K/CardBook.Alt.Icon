@@ -12,6 +12,7 @@ if ("undefined" == typeof(wdw_cardbookAskUser)) {
         button2: "",
         button3: "",
         button4: "",
+		resultGiven: false,
 
 		load: function () {
             let urlParams = new URLSearchParams(window.location.search);
@@ -57,14 +58,19 @@ if ("undefined" == typeof(wdw_cardbookAskUser)) {
 		},
 
 		fireButton: async function (aEvent) {
+			wdw_cardbookAskUser.resultGiven = true;
 			let myButton = aEvent.target.id.replace("askUser", "").toLowerCase();
 			await messenger.runtime.sendMessage({query: "cardbook.askUser.sendChoice", dirPrefId: wdw_cardbookAskUser.dirPrefId, buttons: wdw_cardbookAskUser.buttons, message: wdw_cardbookAskUser.message,
 													result: wdw_cardbookAskUser[myButton], confirm: document.getElementById('confirmCheckBox').checked});
-			wdw_cardbookAskUser.close();
+			cardbookHTMLRichContext.closeWindow();
 		},
 
-		close: function () {
-            cardbookHTMLRichContext.closeWindow();
+		close: async function () {
+			if (wdw_cardbookAskUser.resultGiven === false) {
+				await messenger.runtime.sendMessage({query: "cardbook.askUser.sendChoice", dirPrefId: wdw_cardbookAskUser.dirPrefId, buttons: wdw_cardbookAskUser.buttons, message: wdw_cardbookAskUser.message,
+																result: "cancel", confirm: false});
+			}
+			cardbookHTMLRichContext.closeWindow();
 		}
 	};
 };
@@ -74,10 +80,22 @@ messenger.runtime.onMessage.addListener( (info) => {
 		case "cardbook.askUser.importConflictChoicePersist":
 			if (info.dirPrefId == wdw_cardbookAskUser.dirPrefId &&
 				info.buttons == wdw_cardbookAskUser.buttons) {
+				wdw_cardbookAskUser.resultGiven = true;
 				wdw_cardbookAskUser.close();
 			}
 			break;
 		}
+});
+
+window.addEventListener("resize", async function() {
+	await cardbookHTMLRichContext.saveWindowSize();
+});
+
+window.addEventListener("beforeunload", async function() {
+	if (wdw_cardbookAskUser.resultGiven === false) {
+		await messenger.runtime.sendMessage({query: "cardbook.askUser.sendChoice", dirPrefId: wdw_cardbookAskUser.dirPrefId, buttons: wdw_cardbookAskUser.buttons, message: wdw_cardbookAskUser.message,
+														result: "cancel", confirm: false});
+	}
 });
 
 await wdw_cardbookAskUser.load();

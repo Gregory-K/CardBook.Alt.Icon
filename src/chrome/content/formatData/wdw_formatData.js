@@ -23,7 +23,6 @@ if ("undefined" == typeof(wdw_formatData)) {
 
 		loadCountries: async function () {
             wdw_formatData.countries = await messenger.runtime.sendMessage({query: "cardbook.getCountries", useCodeValues: true});
-            cardbookHTMLUtils.sortMultipleArrayByString(wdw_formatData.countries,1,1);
 		},
 
 		getNewFormat: function (aId, aValue, aType, aParam) {
@@ -42,7 +41,7 @@ if ("undefined" == typeof(wdw_formatData)) {
 					break;
 				case "email":
 					aValue = aValue.toLowerCase();
-					aValue = aValue.replace("'", "").replace('"', "");
+					aValue = aValue.replace(/'/g, "").replace(/"/g, "");
 					let atPos = aValue.lastIndexOf("@");
 					if (atPos > 0 && atPos + 1 < aValue.length) {
 						return aValue;
@@ -52,7 +51,7 @@ if ("undefined" == typeof(wdw_formatData)) {
         },
 
 		displayCardLineFields: function (aCardLine) {
-            // [index, aCard.cbid, aCard.fn, field source, field modified]
+            // [index, aCard.cbid, aCard.fn, field source, field modified, index adr line]
 			let table = document.getElementById('fieldsTable');
 			let row = cardbookHTMLTools.addHTMLTR(table, `${aCardLine[0]}.row`);
             let fnData = cardbookHTMLTools.addHTMLTD(row, `${aCardLine[0]}.fnData`);
@@ -67,6 +66,10 @@ if ("undefined" == typeof(wdw_formatData)) {
             cardbookHTMLTools.addHTMLLABEL(cbidData, `${aCardLine[0]}.cbid`, aCardLine[1], {class: "hidden"});
             let sourceValueData = cardbookHTMLTools.addHTMLTD(row, `${aCardLine[0]}.sourceValueData`);
             cardbookHTMLTools.addHTMLLABEL(sourceValueData, `${aCardLine[0]}.sourceValue`, aCardLine[3], {class: "hidden"});
+			if (aCardLine[5]) {
+				let indexData = cardbookHTMLTools.addHTMLTD(row, `${aCardLine[0]}.indexData`);
+				cardbookHTMLTools.addHTMLLABEL(indexData, `${aCardLine[0]}.index`, aCardLine[5], {class: "hidden"});
+			}
         },
 
 		displayCardLineTels: function (aCardLine) {
@@ -357,25 +360,25 @@ if ("undefined" == typeof(wdw_formatData)) {
 		},
 		
         showLabels: function () {
-			for (let node of document.getElementById("cardbookFormatButtonsBox").querySelectorAll("button")) {
+			for (let node of document.querySelector(".header-container").querySelectorAll("button")) {
 				node.disabled = false;
 			}
 			let nodes = document.getElementById("fieldsTable").querySelectorAll("tr:not(.hidden)");
 			if (nodes.length == 0) {
-				document.getElementById('noLinesFoundDescVbox').classList.remove("hidden");
+				document.getElementById('noLinesFoundDesc').classList.remove("hidden");
 				document.getElementById('noLinesFoundDesc').textContent = messenger.i18n.getMessage("noDataAvailable");
-				document.getElementById('recordsHbox').classList.add("hidden");
+				document.getElementById('fieldsTable').classList.add("hidden");
 				document.getElementById('numberLinesFoundDesc').classList.add("hidden");
 			} else {
-				document.getElementById('noLinesFoundDescVbox').classList.add("hidden");
+				document.getElementById('noLinesFoundDesc').classList.add("hidden");
 				document.getElementById('numberLinesFoundDesc').textContent = messenger.i18n.getMessage("numberLines", [nodes.length]);
 				document.getElementById('numberLinesFoundDesc').classList.remove("hidden");
 			}
 		},
 
         showProgressBar: function () {
-			document.getElementById('progressBox').classList.remove("hidden");
-			document.getElementById('recordsHbox').classList.add("hidden");
+			document.getElementById('data-progressmeter').classList.remove("hidden");
+			document.getElementById('fieldsTable').classList.add("hidden");
 			document.getElementById('numberLinesFoundDesc').classList.add("hidden");
 		},
 
@@ -385,8 +388,8 @@ if ("undefined" == typeof(wdw_formatData)) {
 		},
 
         endWaitForDisplay: function () {
-			document.getElementById('progressBox').classList.add("hidden");
-			document.getElementById('recordsHbox').classList.remove("hidden");
+			document.getElementById('data-progressmeter').classList.add("hidden");
+			document.getElementById('fieldsTable').classList.remove("hidden");
 			wdw_formatData.showLabels();
 		},
 
@@ -456,12 +459,12 @@ if ("undefined" == typeof(wdw_formatData)) {
 
             await wdw_formatData.loadCountries();
 
-			let nodeSelected = document.getElementById("cardbookFormatButtonsBox").querySelectorAll("button[visuallyselected]");
+			let nodeSelected = document.querySelector(".header-container").querySelectorAll("button[visuallyselected]");
 			wdw_formatData.setData(nodeSelected[0].id);
 		},
 
 		setData: async function (aButtonId) {
-			for (let node of document.getElementById("cardbookFormatButtonsBox").querySelectorAll("button")) {
+			for (let node of document.querySelector(".header-container").querySelectorAll("button")) {
 				if (node.id == aButtonId) {
 					document.getElementById(aButtonId).setAttribute("visuallyselected", "true");
 				} else {
@@ -536,6 +539,11 @@ messenger.runtime.onMessage.addListener( (info) => {
 			}
 			break;
 		}
+});
+
+
+window.addEventListener("resize", async function() {
+	await cardbookHTMLRichContext.saveWindowSize();
 });
 
 wdw_formatData.load();

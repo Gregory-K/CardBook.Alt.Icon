@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <?xml-stylesheet href="chrome://global/skin/global.css" type="text/css"?>
 <?xml-stylesheet href="chrome://cardbook/content/skin/cardbookMain.css" type="text/css"?>
+<?xml-stylesheet href="chrome://cardbook/content/skin/cardbookImage.css" type="text/css"?>
 <?xml-stylesheet href="chrome://cardbook/content/skin/cardbookLittleIcons.css" type="text/css"?>
 <?xml-stylesheet href="chrome://cardbook/content/skin/cardbookEdition.css" type="text/css"?>
 <?xml-stylesheet href="chrome://cardbook/content/skin/cardbookAddressBooks.css" type="text/css"?>
@@ -17,8 +18,6 @@
 <!-- for notificationbox.xml and the datepicker binding -->
 <?xml-stylesheet href="chrome://messenger/content/bindings.css" type="text/css"?>
 <?xml-stylesheet href="chrome://messenger/content/notification.css" type="text/css"?>
-<!-- for the groupbox -->
-<!-- <?xml-stylesheet type="text/css" href="chrome://messenger/skin/messenger.css"?> -->
 <!-- for the textbox -->
 <?xml-stylesheet type="text/css" href="chrome://messenger/skin/input-fields.css"?>
 <!-- for the display -->
@@ -95,7 +94,7 @@
 	<vbox id="rightPaneDownHbox2" flex="1">
 		<vbox>
 			<hbox id="cardbookContactButtonsBox">
-				<button id="generalTab" label="__MSG_generalTabLabel__" class="cardbookContactButtons" oncommand="wdw_cardEdition.showPane('generalTabPanel');"/>
+				<button id="generalTab" label="__MSG_generalTabLabel__" class="cardbookContactButtons" oncommand="wdw_cardEdition.showPane('generalTabPanel');" visuallyselected="true"/>
 				<button id="noteTab" label="__MSG_noteTabLabel__" class="cardbookContactButtons" oncommand="wdw_cardEdition.showPane('noteTabPanel');"/>
 				<button id="listTab" label="__MSG_listsTabLabel__" class="cardbookContactButtons" oncommand="wdw_cardEdition.showPane('listTabPanel');"/>
 				<button id="keyTab" label="__MSG_keyTabLabel__" class="cardbookContactButtons" oncommand="wdw_cardEdition.showPane('keyTabPanel');"/>
@@ -153,10 +152,10 @@
 						</vbox>
 					</hbox>
 				</vbox>
-				<vbox align="center" width="150px">
-					<hbox id="imageBox" align="center" height="150px">
+				<vbox align="center">
+					<hbox id="imageBox" align="center">
 						<html:img id="imageForSizing" hidden="true"/>
-						<image id="defaultCardImage" context="imageCardContextMenu" style="max-height: 150px; max-width: 150px;"
+						<image id="defaultCardImage" context="imageCardContextMenu"
 							ondblclick="wdw_imageEdition.addImageCardFromFile();" 
 							ondrop="wdw_imageEdition.dragImageCard(event);"
 							ondragenter="wdw_imageEdition.checkDragImageCard(event);"
@@ -489,7 +488,7 @@
 										oncommand="wdw_cardEdition.searchAvailableCards(null);"/>
 								</vbox>
 								<hbox flex="1" ondragover="event.preventDefault();" ondrop="wdw_cardEdition.dragCards(event, 'availableCardsTree');">
-									<tree id="availableCardsTree" context="availableCardsTreeContextMenu" class="cardbookTreeClass cardbookAccountTreeClass" flex="1" enableColumnDrag="true"
+									<tree id="availableCardsTree" context="availableCardsTreeContextMenu" flex="1" enableColumnDrag="true"
 										hidecolumnpicker="false" persist="height sortDirection sortResource" sortDirection="ascending" sortResource="availableCardsTreeName"
 										onclick="wdw_cardEdition.sortTrees(event, 'availableCardsTree');">
 										<treecols id="availableCardsTreeCols">
@@ -523,7 +522,7 @@
 						<vbox flex="1">
 							<label class="header">__MSG_addedCardsGroupboxLabel__</label>
 							<hbox flex="1" ondragover="event.preventDefault();" ondrop="wdw_cardEdition.dragCards(event, 'addedCardsTree');">
-								<tree id="addedCardsTree" context="addedCardsTreeContextMenu" class="cardbookTreeClass cardbookAccountTreeClass" flex="1" enableColumnDrag="true"
+								<tree id="addedCardsTree" context="addedCardsTreeContextMenu" flex="1" enableColumnDrag="true"
 									hidecolumnpicker="false" persist="height sortDirection sortResource" sortDirection="ascending" sortResource="addedCardsTreeName"
 									onclick="wdw_cardEdition.sortTrees(event, 'addedCardsTree');">
 									<treecols id="addedCardsTreeCols">
@@ -547,13 +546,13 @@
 			<spacer id="firstTabSpacer" flex="100"/>
 		</vbox>
 
-		<vbox id="noteTabPanel" class="cardbookTab" style="overflow:auto;" flex="1">	
+		<vbox id="noteTabPanel" class="cardbookTab" style="overflow:auto;" flex="1" hidden="true">	
 			<hbox id="noteGroupbox" flex="1">
 				<html:textarea id="noteTextBox"/>
 			</hbox>
 		</vbox>
 
-		<vbox id="listTabPanel" class="cardbookTab" style="overflow:auto;" flex="1">	
+		<vbox id="listTabPanel" class="cardbookTab" style="overflow:auto;" flex="1" hidden="true">	
 			<vbox id="PreferMailFormatReadWriteGroupbox">
 				<label class="header">__MSG_PreferMailFormatGroupbox.label__</label>
 				<hbox align="center" class="indent">
@@ -578,7 +577,7 @@
 			<spacer flex="100"/>
 		</vbox>
 
-		<vbox id="keyTabPanel" class="cardbookTab" style="overflow:auto;" flex="1">	
+		<vbox id="keyTabPanel" class="cardbookTab" style="overflow:auto;" flex="1" hidden="true">	
 			<vbox id="keyReadWriteToolsVbox" align="center" flex="1">
 				<hbox align="center" flex="1">
 					<button id="searchForOnlineKeyEditButton" tooltiptext="__MSG_searchForOnlineKeyEditButton.tooltip__" onclick="wdw_cardEdition.searchForOnlineKeyEdit();"/>
@@ -595,7 +594,7 @@
 			<spacer id="keyTabSpacer" flex="100"/>
 		</vbox>
 
-		<vbox id="helpTabPanel" class="cardbookTab" style="overflow:auto;" flex="1">	
+		<vbox id="helpTabPanel" class="cardbookTab" style="overflow:auto;" flex="1" hidden="true">	
 			<vbox flex="1">
 				<hbox flex="1">
 					<label><html:h2>__MSG_definitionLabel__</html:h2></label>

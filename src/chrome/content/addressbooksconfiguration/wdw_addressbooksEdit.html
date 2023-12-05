@@ -9,248 +9,253 @@
 		<link rel='stylesheet' type='text/css' href="chrome://messenger/skin/shared/themeableDialog.css">
 		<link rel='stylesheet' type='text/css' href="chrome://messenger/skin/messenger.css">
 
+        <link rel='stylesheet' type='text/css' href="../skin/cardbookMain.css">
+        <link rel='stylesheet' type='text/css' href="../skin/cardbookGrid.css">
+        <link rel='stylesheet' type='text/css' href="../skin/cardbookHTML.css">
 		<link rel='stylesheet' type='text/css' href="../skin/cardbookAddressBooksEdit.css">
         <link rel='stylesheet' type='text/css' href="../skin/cardbookAddressBooks.css">
-        <link rel='stylesheet' type='text/css' href="../skin/cardbookMain.css">
-        <link rel='stylesheet' type='text/css' href="../skin/cardbookHTML.css">
 		<title>__MSG_wdw_addressbooksEditTitle__</title>
 	</head>
 
-	<body class="overflow">
-        <div class="vbox">
-            <label>
-                <input type="checkbox" id="AB-enabled-checkbox">
-                __MSG_enableFromAccountsOrCats__
-            </label>
-
-            <div class="vbox tab-container">
-                <div class="vbox">
-                    <div class="hbox" id="cardbookContactButtonsBox">
-                        <button id="generalTab" class="cardbookContactButtons">__MSG_generalTabLabel__</button>
-                        <button id="syncTab" class="cardbookContactButtons">__MSG_syncTabLabel__</button>
-                        <button id="miscTab" class="cardbookContactButtons">__MSG_miscTabLabel__</button>
-                    </div>
-                </div>
-
-                <section id="generalTabPanel" class="vbox">	
+	<body id="wdw_addressbooksEditBody" xmlns="http://www.mozilla.org/keymaster/gatekeeper/there.is.only.xul">
+        <div class="grid-container-1">
+            <div class="hbox header-container vcentered">
+                <label>
+                    <input type="checkbox" id="AB-enabled-checkbox">
+                    __MSG_enableFromAccountsOrCats__
+                </label>
+            </div>
+            <div class="body-container">
+                <div class="vbox tab-container">
                     <div class="vbox">
-                        <div class="hbox">
-                            <label><h2>__MSG_generalTabLabel__<h2></label>
-                        </div>
-                        <div class="vbox">
-                            <table>
-                                <tr>
-                                    <td>
-                                        <label id="name.ABedit.label" disable-with-AB="true">__MSG_name.ABedit.label__</label>
-                                    </td>
-                                    <td>
-                                        <input id="nameTextBox" class="cardbook-large-column" disable-with-AB="true">
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <td>
-                                        <label id="nodesLabel" disable-with-AB="true">__MSG_nodesLabel__</label>
-                                    </td>
-                                    <td>
-                                        <div class="hbox">
-                                            <label disable-with-AB="true">
-                                                <input type="radio" id="localizeTargetIn" value="categories" name="nodeRadiogroup" disable-with-AB="true">
-                                                __MSG_categoriesNodeLabel__
-                                            </label>
-                                            <div class="separator"></div>
-                                            <label disable-with-AB="true">
-                                                <input type="radio" id="localizeTargetOut" value="org" name="nodeRadiogroup" disable-with-AB="true">
-                                                __MSG_orgNodeLabel__
-                                            </label>
-                                        </div>
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <td>
-                                        <label disable-with-AB="true">__MSG_colorLabel__</label>
-                                    </td>
-                                    <td>
-                                        <input id="colorInput" type="color" palettename="standard" disable-with-AB="true"/>
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <td>
-                                        <label id="typeLabel" disable-with-AB="true">__MSG_typeLabel__</label>
-                                    </td>
-                                    <td>
-                                        <label id="typeTextBox" disable-with-AB="true"></label>
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <td>
-                                        <label id="urlLabel" disable-with-AB="true">__MSG_urlLabel__</label>
-                                    </td>
-                                    <td class="cardbook-large-column">
-                                        <label id="urlTextBox" disable-with-AB="true" class="nowrap"></label>
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <td>
-                                        <label id="username.ABedit.label" disable-with-AB="true">__MSG_username.ABedit.label__</label>
-                                    </td>
-                                    <td>
-                                        <label id="usernameTextBox" disable-with-AB="true"></label>
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <td>
-                                        <label disable-with-AB="true">__MSG_vCardVersionLabel__</label>
-                                    </td>
-                                    <td>
-                                        <label id="vCardVersionTextBox" disable-with-AB="true"></label>
-                                    </td>
-                                    <td>
-                                        <button id="convertVCardsLabel" title="__MSG_convertVCardsTooltip__"
-                                            class="hidden" disable-with-AB="true">__MSG_convertVCardsLabel__</button>
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <td>
-                                        <label id="readonlyLabel" disable-with-AB="true">__MSG_readonlyLabel__</label>
-                                    </td>
-                                    <td>
-                                        <input type="checkbox" id="readonlyCheckBox" disable-with-AB="true">
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <td>
-                                        <label disable-capability="true" disable-with-AB="true">__MSG_urnuuidLabel__</label>
-                                    </td>
-                                    <td>
-                                        <input type="checkbox" id="urnuuidCheckBox" disable-capability="true" disable-with-AB="true">
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <td>
-                                        <label disable-capability="true" disable-with-AB="true">__MSG_DBCachedLabel__</label>
-                                    </td>
-                                    <td>
-                                        <input type="checkbox" id="DBCachedCheckBox" disable-capability="true" disable-with-AB="true">
-                                    </td>
-                                </tr>
-                            </table>
+                        <div class="hbox" id="cardbookContactButtonsBox">
+                            <button id="generalTab" class="cardbookContactButtons">__MSG_generalTabLabel__</button>
+                            <button id="syncTab" class="cardbookContactButtons">__MSG_syncTabLabel__</button>
+                            <button id="miscTab" class="cardbookContactButtons">__MSG_miscTabLabel__</button>
                         </div>
                     </div>
-                </section>
-
-                <section id="syncTabPanel" class="vbox">	
-                    <div class="vbox">
-                        <div class="hbox">
-                            <label><h2>__MSG_autoSyncGroupboxLabel__<h2></label>
-                        </div>
-                        <div class="hbox hcentered">
-                            <label disable-with-AB="true">
-                                <input type="checkbox" id="autoSyncCheckBox" disable-with-AB="true">
-                                __MSG_autoSyncLabel__
-                            </label>
-                        </div>
-                        <div class="hbox hcentered indent">
-                            <label id="autoSyncInterval" disable-with-AB="true">
-                                __MSG_autoSyncIntervalLabel__
-                                <input  type="number" id="autoSyncIntervalTextBox" min="0" max="15000" class="size5" disable-with-AB="true">
-                            </label>
-                        </div>
-                    </div>
-                </section>
-
-                <section id="miscTabPanel" class="vbox">	
-                    <div class="vbox">
+    
+                    <section id="generalTabPanel" class="vbox">	
                         <div class="vbox">
                             <div class="hbox">
-                                <label><h2>__MSG_fnFormulaCaption__<h2></label>
+                                <label><h2>__MSG_generalTabLabel__<h2></label>
                             </div>
-                            <label>__MSG_fnFormulaExplanation__</label>
-                            <label class="indent">__MSG_formulaExplanation1__</label>
-                            <label class="indent">__MSG_formulaExplanation2__</label>
-                            <label class="indent">__MSG_formulaExplanation3__</label>
-                            <label class="indent">__MSG_formulaExplanation4__</label>
-                            <label class="indent">__MSG_formulaExplanation5__</label>
-                            <label class="indent">__MSG_formulaExplanation6__</label>
-							<div class="separator"></div>
-							<div class="hbox hcentered" id="fnFormulahBox">
-								<label>__MSG_fnFormulaLabel__</label>
-								<input type="text" id="fnFormulaTextBox" disable-with-AB="true">
-								<button id="resetFnFormulaButton" disable-with-AB="true">__MSG_resetFnFormulaLabel__</button>
-							</div>
-                            <div class="hbox vright">
+                            <div class="vbox">
+                                <table>
+                                    <tr>
+                                        <td>
+                                            <label id="name.ABedit.label" disable-with-AB="true">__MSG_name.ABedit.label__</label>
+                                        </td>
+                                        <td>
+                                            <input id="nameTextBox" class="cardbook-large-column" disable-with-AB="true">
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td>
+                                            <label id="nodesLabel" disable-with-AB="true">__MSG_nodesLabel__</label>
+                                        </td>
+                                        <td>
+                                            <div class="hbox">
+                                                <label disable-with-AB="true">
+                                                    <input type="radio" id="localizeTargetIn" value="categories" name="nodeRadiogroup" disable-with-AB="true">
+                                                    __MSG_categoriesNodeLabel__
+                                                </label>
+                                                <div class="separator"></div>
+                                                <label disable-with-AB="true">
+                                                    <input type="radio" id="localizeTargetOut" value="org" name="nodeRadiogroup" disable-with-AB="true">
+                                                    __MSG_orgNodeLabel__
+                                                </label>
+                                            </div>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td>
+                                            <label disable-with-AB="true">__MSG_colorLabel__</label>
+                                        </td>
+                                        <td>
+                                            <input id="colorInput" type="color" palettename="standard" disable-with-AB="true"/>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td>
+                                            <label id="typeLabel" disable-with-AB="true">__MSG_typeLabel__</label>
+                                        </td>
+                                        <td>
+                                            <label id="typeTextBox" disable-with-AB="true"></label>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td>
+                                            <label id="urlLabel" disable-with-AB="true">__MSG_urlLabel__</label>
+                                        </td>
+                                        <td class="cardbook-large-column">
+                                            <label id="urlTextBox" disable-with-AB="true" class="nowrap"></label>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td>
+                                            <label id="username.ABedit.label" disable-with-AB="true">__MSG_username.ABedit.label__</label>
+                                        </td>
+                                        <td>
+                                            <label id="usernameTextBox" disable-with-AB="true"></label>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td>
+                                            <label disable-with-AB="true">__MSG_vCardVersionLabel__</label>
+                                        </td>
+                                        <td>
+                                            <label id="vCardVersionTextBox" disable-with-AB="true"></label>
+                                        </td>
+                                        <td>
+                                            <button id="convertVCardsLabel" title="__MSG_convertVCardsTooltip__"
+                                                class="hidden" disable-with-AB="true">__MSG_convertVCardsLabel__</button>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td>
+                                            <label id="readonlyLabel" disable-with-AB="true">__MSG_readonlyLabel__</label>
+                                        </td>
+                                        <td>
+                                            <input type="checkbox" id="readonlyCheckBox" disable-with-AB="true">
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td>
+                                            <label disable-capability="true" disable-with-AB="true">__MSG_urnuuidLabel__</label>
+                                        </td>
+                                        <td>
+                                            <input type="checkbox" id="urnuuidCheckBox" disable-capability="true" disable-with-AB="true">
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td>
+                                            <label disable-capability="true" disable-with-AB="true">__MSG_DBCachedLabel__</label>
+                                        </td>
+                                        <td>
+                                            <input type="checkbox" id="DBCachedCheckBox" disable-capability="true" disable-with-AB="true">
+                                        </td>
+                                    </tr>
+                                </table>
+                            </div>
+                        </div>
+                    </section>
+    
+                    <section id="syncTabPanel" class="vbox">	
+                        <div class="vbox">
+                            <div class="hbox" id="lastsync"></div>
+                            <div class="hbox">
+                                <label><h2>__MSG_autoSyncGroupboxLabel__<h2></label>
+                            </div>
+                            <div class="hbox hcentered">
                                 <label disable-with-AB="true">
-                                    __MSG_applyToABButtonLabel__
-                                    <select id="applyToABMenulist" disable-with-AB="true"></select>
+                                    <input type="checkbox" id="autoSyncCheckBox" disable-with-AB="true">
+                                    __MSG_autoSyncLabel__
+                                </label>
+                            </div>
+                            <div class="hbox hcentered indent">
+                                <label id="autoSyncInterval" disable-with-AB="true">
+                                    __MSG_autoSyncIntervalLabel__
+                                    <input  type="number" id="autoSyncIntervalTextBox" min="1" max="15000" class="size5" disable-with-AB="true">
                                 </label>
                             </div>
                         </div>
-                        <div class="separator"></div>
-                        <div class="vbox indent">
-                            <div class="hbox">
-                                <label><h3>__MSG_previewLabel__<h3></label>
-                            </div>
-                            <div class="hbox">
-                                <div class="vbox">
-                                    <table id="formulaSampleTable">
-                                        <tr>
-                                            <td>
-                                                <label id="formulaMemberLabel1"></label>
-                                            </td>
-                                            <td class="cardbook-td-input">
-                                                <input id="formulaSampleTextBox1">
-                                            </td>
-                                        </tr>
-                                        <tr>
-                                            <td>
-                                                <label id="formulaMemberLabel2"></label>
-                                            </td>
-                                            <td class="cardbook-td-input">
-                                                <input id="formulaSampleTextBox2">
-                                            </td>
-                                        </tr>
-                                        <tr>
-                                            <td>
-                                                <label id="formulaMemberLabel3"></label>
-                                            </td>
-                                            <td class="cardbook-td-input">
-                                                <input id="formulaSampleTextBox3">
-                                            </td>
-                                        </tr>
-                                        <tr>
-                                            <td>
-                                                <label id="formulaMemberLabel4"></label>
-                                            </td>
-                                            <td class="cardbook-td-input">
-                                                <input id="formulaSampleTextBox4">
-                                            </td>
-                                        </tr>
-                                        <tr>
-                                            <td>
-                                                <label id="formulaMemberLabel5"></label>
-                                            </td>
-                                            <td class="cardbook-td-input">
-                                                <input id="formulaSampleTextBox5">
-                                            </td>
-                                        </tr>
-                                        <tr>
-                                            <td>
-                                                <label id="formulaMemberLabel6"></label>
-                                            </td>
-                                            <td class="cardbook-td-input">
-                                                <input id="formulaSampleTextBox6">
-                                            </td>
-                                        </tr>
-                                    </table>
+                    </section>
+    
+                    <section id="miscTabPanel" class="vbox">	
+                        <div class="vbox">
+                            <div class="vbox">
+                                <div class="hbox">
+                                    <label><h2>__MSG_fnFormulaCaption__<h2></label>
                                 </div>
-                                <div class="vbox" id="fnPreviewWrapper">
-                                    <textarea id="fnPreviewTextBox"></textarea>
+                                <label>__MSG_fnFormulaExplanation__</label>
+                                <label class="indent">__MSG_formulaExplanation1__</label>
+                                <label class="indent">__MSG_formulaExplanation2__</label>
+                                <label class="indent">__MSG_formulaExplanation3__</label>
+                                <label class="indent">__MSG_formulaExplanation4__</label>
+                                <label class="indent">__MSG_formulaExplanation5__</label>
+                                <label class="indent">__MSG_formulaExplanation6__</label>
+                                <div class="separator"></div>
+                                <div class="hbox hcentered" id="fnFormulahBox">
+                                    <label>__MSG_fnFormulaLabel__</label>
+                                    <input type="text" id="fnFormulaTextBox" disable-with-AB="true">
+                                    <button id="resetFnFormulaButton" disable-with-AB="true">__MSG_resetFnFormulaLabel__</button>
+                                </div>
+                                <div class="hbox vright">
+                                    <label disable-with-AB="true">
+                                        __MSG_applyToABButtonLabel__
+                                        <select id="applyToABMenulist" disable-with-AB="true"></select>
+                                    </label>
+                                </div>
+                            </div>
+                            <div class="separator"></div>
+                            <div class="vbox indent">
+                                <div class="hbox">
+                                    <label><h3>__MSG_previewLabel__<h3></label>
+                                </div>
+                                <div class="hbox">
+                                    <div class="vbox">
+                                        <table id="formulaSampleTable">
+                                            <tr>
+                                                <td>
+                                                    <label id="formulaMemberLabel1"></label>
+                                                </td>
+                                                <td class="cardbook-td-input">
+                                                    <input id="formulaSampleTextBox1">
+                                                </td>
+                                            </tr>
+                                            <tr>
+                                                <td>
+                                                    <label id="formulaMemberLabel2"></label>
+                                                </td>
+                                                <td class="cardbook-td-input">
+                                                    <input id="formulaSampleTextBox2">
+                                                </td>
+                                            </tr>
+                                            <tr>
+                                                <td>
+                                                    <label id="formulaMemberLabel3"></label>
+                                                </td>
+                                                <td class="cardbook-td-input">
+                                                    <input id="formulaSampleTextBox3">
+                                                </td>
+                                            </tr>
+                                            <tr>
+                                                <td>
+                                                    <label id="formulaMemberLabel4"></label>
+                                                </td>
+                                                <td class="cardbook-td-input">
+                                                    <input id="formulaSampleTextBox4">
+                                                </td>
+                                            </tr>
+                                            <tr>
+                                                <td>
+                                                    <label id="formulaMemberLabel5"></label>
+                                                </td>
+                                                <td class="cardbook-td-input">
+                                                    <input id="formulaSampleTextBox5">
+                                                </td>
+                                            </tr>
+                                            <tr>
+                                                <td>
+                                                    <label id="formulaMemberLabel6"></label>
+                                                </td>
+                                                <td class="cardbook-td-input">
+                                                    <input id="formulaSampleTextBox6">
+                                                </td>
+                                            </tr>
+                                        </table>
+                                    </div>
+                                    <div class="vbox" id="fnPreviewWrapper">
+                                        <textarea id="fnPreviewTextBox"></textarea>
+                                    </div>
                                 </div>
                             </div>
                         </div>
-                    </div>
-                </section>
+                    </section>
+                </div>
             </div>
-            <div class="hbox vright">
+            <div class="hbox footer-container vright">
                 <button id="cancelButton">__MSG_cancelEditionLabel__</button>
                 <button id="validateButton">__MSG_validateEditionLabel__</button>
             </div>

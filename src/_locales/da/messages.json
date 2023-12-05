@@ -18,6 +18,34 @@
 	"statusProgressInformationTooltip": {
 		"message": "Klik her for at se logger"
 	},
+	"columnsSortBy": {
+		"message": "Sorter efter: $P1$",
+        "placeholders": {
+            "P1": {
+                "content": "$1"
+            }
+        }
+	},
+	"columnPickerTitle": {
+		"message": "Vælg hvilke kolonner der skal vises"
+	},
+	"columnPickerRestoreColumnOrder": {
+		"message": "Gendan kolonnesortering"
+	},
+	"columnPickerApplyCurrentViewTo": {
+		"message": "Anvend denne visning på…"
+	},
+	"columnPickerApplyCurrentViewToConfirmMsg": {
+		"message": "Anvend denne mappes kolonner i $P1$?",
+        "placeholders": {
+            "P1": {
+                "content": "$1"
+            }
+        }
+	},
+	"columnPickerApplyCurrentViewToConfirmTitle": {
+		"message": "Anvend ændringer?"
+	},
 	"imageSelectionTitle": {
 		"message": "Vælg billeder"
 	},
@@ -645,6 +673,25 @@
 	},
 	"synchroAllFinished": {
 		"message": "Alle synkoniseringer afsluttet"
+	},
+	"lastSync": {
+		"message": "Sidst synkroniseret: $P1$",
+        "placeholders": {
+            "P1": {
+                "content": "$1"
+            }
+        }
+	},
+	"syncFailedNeverSynced": {
+		"message": "Synkronisering mislykkedes. Seneste synkronisering: aldrig"
+	},
+	"syncFailedLastSync": {
+		"message": "Synkronisering mislykkedes. Lykkedes sidst: $P1$",
+        "placeholders": {
+            "P1": {
+                "content": "$1"
+            }
+        }
 	},
 	"discoveryRunning": {
 		"message": "$P1$ : Adressebøger automatisk opdagelse kører",
@@ -2755,7 +2802,7 @@
         }
 	},
 	"eventEntryTitleMessage": {
-		"message": "Mærkedag for %1$S"
+		"message": "Mærkedag for %1$S (%5$S)"
 	},
 	"anniversaryCategory": {
 		"message": "Jubilæum"
@@ -3747,12 +3794,6 @@
 	"findEventsFromEmailMessengerAccesskey": {
 		"message": "e"
 	},
-	"mailContext-addToCardBookMenuLabel": {
-		"message": "Tilføj CardBook-kontakt…"
-	},
-	"mailContext-addToCardBookMenuAccesskey": {
-		"message": "d"
-	},
 	"addAllAttachementsToCardBookMenuLabel": {
 		"message": "Alle til CardBook…"
 	},
@@ -3981,6 +4022,9 @@
 	"readonlyLabel": {
 		"message": "Skrivebeskyttet tilstand"
 	},
+	"syncingLabel": {
+		"message": "Synkroniserer…"
+	},
 	"urnuuidLabel": {
 		"message": "Brug urn:uuid"
 	},
@@ -4038,14 +4082,8 @@
 	"sendEmailLabel": {
 		"message": "Skriv en ny meddelelse"
 	},
-	"sendEmailAccesskey": {
-		"message": "S"
-	},
 	"syncLightningMenuItemLabel": {
 		"message": "Synkroniser med Lightning"
-	},
-	"syncLightningMenuAccesskey": {
-		"message": "y"
 	},
 	"calendarNameLabel": {
 		"message": "Kalender"
@@ -5220,12 +5258,6 @@
 	"cardbookToolbarAppMenuButtonTooltip": {
 		"message": "CardBook-menu"
 	},
-	"cardbookToolbarSearchBoxLabel": {
-		"message": "Søg kontakter"
-	},
-	"cardbookToolbarSearchBoxTooltip": {
-		"message": "Søg kontakter"
-	},
 	"cardbookToolbarComplexSearchLabel": {
 		"message": "Gemt søgning"
 	},
@@ -5348,9 +5380,6 @@
 	},
 	"PreferMailFormat.label": {
 		"message": "Foretrækker at modtage meddelelser formateret som:"
-	},
-	"PreferMailFormat.accesskey": {
-		"message": "r"
 	},
 	"Unknown.label": {
 		"message": "Ukendt"
@@ -5493,9 +5522,6 @@
 	"editEventLabel": {
 		"message": "Rediger begivenhed"
 	},
-	"editEventAccesskey": {
-		"message": "R"
-	},
 	"eventsTableTitleLabel": {
 		"message": "Titel"
 	},
@@ -5534,9 +5560,6 @@
 	},
 	"createEventLabel": {
 		"message": "Ny begivenhed"
-	},
-	"createEventAccesskey": {
-		"message": "N"
 	},
 	"adrFormulaExplanation": {
 		"message": "Det er muligt at indstille den måde CardBook formaterer sine adresser. Denne formel består af blokke omgivet af “()”. I disse blokke kan der være mange dele adskilt af “|”."
@@ -5700,38 +5723,20 @@
 	"createEditionLabel": {
 		"message": "Opret"
 	},
-	"createEditionAccesskey": {
-		"message": "O"
-	},
 	"createAndReplaceEditionLabel": {
 		"message": "Opret og erstat"
-	},
-	"createAndReplaceEditionAccesskey": {
-		"message": "e"
 	},
 	"saveEditionLabel": {
 		"message": "Gem"
 	},
-	"saveEditionAccesskey": {
-		"message": "G"
-	},
 	"validateEditionLabel": {
 		"message": "Valider"
-	},
-	"validateEditionAccesskey": {
-		"message": "V"
 	},
 	"cancelEditionLabel": {
 		"message": "Annuller"
 	},
-	"cancelEditionAccesskey": {
-		"message": "A"
-	},
 	"closeEditionLabel": {
 		"message": "Luk"
-	},
-	"closeEditionAccesskey": {
-		"message": "L"
 	},
 	"moreEditionLabel": {
 		"message": "Vis mere"
@@ -5827,9 +5832,6 @@
 	"kind.edit.label": {
 		"message": "Type"
 	},
-	"kind.edit.accesskey": {
-		"message": "T"
-	},
 	"addEmailGroupboxLabel": {
 		"message": "E-mailadresse"
 	},
@@ -5922,6 +5924,20 @@
 	},
 	"capitalizationLabel": {
 		"message": "Store startbogstaver"
+	},
+	"searchinAB": {
+		"message": "Søg med $P1$",
+        "placeholders": {
+            "P1": {
+                "content": "$1"
+            }
+        }
+	},
+	"searchinAllAB": {
+		"message": "Søg i alle adressebøger"
+	},
+	"searchingABPlaceholder": {
+		"message": "Søger…"
 	},
 	"region-name-ad": {
 		"message": "Andorra"

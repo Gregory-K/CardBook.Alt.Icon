@@ -3,7 +3,6 @@ import { cardbookHTMLRichContext } from "../cardbookHTMLRichContext.mjs";
 import { cardbookHTMLUtils } from "../cardbookHTMLUtils.mjs";
 import { cardbookNewPreferences } from "../preferences/cardbookNewPreferences.mjs";
 
-
 if ("undefined" == typeof(wdw_findDuplicates)) {
 
 	var wdw_findDuplicates = {
@@ -118,6 +117,7 @@ if ("undefined" == typeof(wdw_findDuplicates)) {
 				let listOfSelectedCard = wdw_findDuplicates.gResults[lineId];
 				let ids = listOfSelectedCard.map(card => card.cbid);
 				let mode = listOfSelectedCard.filter(card => card.isAList).length > 0 ? "LIST" : "CONTACT";
+				let mergeId = await messenger.runtime.sendMessage({query: "cardbook.getUUID"});
 				let url = "chrome/content/mergeCards/wdw_mergeCards.html";
 				let params = new URLSearchParams();
 				params.set("hideCreate", false);
@@ -127,11 +127,10 @@ if ("undefined" == typeof(wdw_findDuplicates)) {
 				params.set("duplicateLineId", lineId);
 				params.set("duplicateWinId", wdw_findDuplicates.winId);
 				params.set("duplicateDisplayId", wdw_findDuplicates.displayId);
-				let win = await messenger.runtime.sendMessage({query: "cardbook.openMergeWindow",
+				params.set("mergeId", mergeId);
+				let win = await messenger.runtime.sendMessage({query: "cardbook.openWindow",
 														url: `${url}?${params.toString()}`,
-														type: "popup",
-														ids: ids.join(","),
-														source: "DUPLICATE"});
+														type: "popup"});
 			};
 			aButton.addEventListener("click", fireButton, false);
 		},
@@ -229,14 +228,14 @@ if ("undefined" == typeof(wdw_findDuplicates)) {
 			let nodes = document.getElementById("fieldsTable").querySelectorAll("tr:not(.hidden)");
 			if (nodes.length == 0) {
 				document.getElementById('mergeAllLabel').disabled = true;
-				document.getElementById('noContactsFoundDescVbox').classList.remove("hidden");
+				document.getElementById('noContactsFoundDesc').classList.remove("hidden");
 				document.getElementById('noContactsFoundDesc').textContent = messenger.i18n.getMessage("noContactsDuplicated");
-				document.getElementById('recordsHbox').classList.add("hidden");
+				document.getElementById('fieldsTable').classList.add("hidden");
 				document.getElementById('numberLinesFoundDesc').classList.add("hidden");
 			} else {
 				document.getElementById('mergeAllLabel').disabled = false;
-				document.getElementById('noContactsFoundDescVbox').classList.add("hidden");
-				document.getElementById('recordsHbox').classList.remove("hidden");
+				document.getElementById('noContactsFoundDesc').classList.add("hidden");
+				document.getElementById('fieldsTable').classList.remove("hidden");
 				document.getElementById('numberLinesFoundDesc').textContent = messenger.i18n.getMessage("numberLines", [nodes.length]);
 				document.getElementById('numberLinesFoundDesc').classList.remove("hidden");
 			}
@@ -280,10 +279,10 @@ if ("undefined" == typeof(wdw_findDuplicates)) {
         showProgressBar: function () {
 			document.getElementById('hideOrShowForgottenLabel').disabled = true;
 			document.getElementById('moreOrLessLabel').disabled = true;
-			document.getElementById('progressBox').classList.remove("hidden");
-			document.getElementById('recordsHbox').classList.add("hidden");
+			document.getElementById('data-progressmeter').classList.remove("hidden");
+			document.getElementById('fieldsTable').classList.add("hidden");
 			document.getElementById('numberLinesFoundDesc').classList.add("hidden");
-			document.getElementById('noContactsFoundDescVbox').classList.add("hidden");
+			document.getElementById('noContactsFoundDesc').classList.add("hidden");
 		},
 
         waitForDisplay: function () {
@@ -304,8 +303,8 @@ if ("undefined" == typeof(wdw_findDuplicates)) {
         endWaitForDisplay: function () {
 			document.getElementById('hideOrShowForgottenLabel').disabled = false;
 			document.getElementById('moreOrLessLabel').disabled = false;
-			document.getElementById('progressBox').classList.add("hidden");
-			document.getElementById('recordsHbox').classList.remove("hidden");
+			document.getElementById('data-progressmeter').classList.add("hidden");
+			document.getElementById('fieldsTable').classList.remove("hidden");
 			wdw_findDuplicates.finishAction();
 		},
 
@@ -390,5 +389,9 @@ messenger.runtime.onMessage.addListener( (info) => {
 		}
 	}
 );
+
+window.addEventListener("resize", async function() {
+	await cardbookHTMLRichContext.saveWindowSize();
+});
 
 await wdw_findDuplicates.preload();

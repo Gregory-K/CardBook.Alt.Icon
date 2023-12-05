@@ -36,7 +36,6 @@ if ("undefined" == typeof(ovl_cardbookLayout)) {
 				document.getElementById("cardbookABPaneItem").hidden=false;
 				document.getElementById("cardbookContactPaneItem").hidden=false;
 				document.getElementById("menu_showFolderPane").hidden=true;
-				document.getElementById("menu_showFolderPaneCols").hidden=true;
 				document.getElementById("menu_showMessage").hidden=true;
 				document.getElementById("cardbookABPaneItem").setAttribute('checked', cardbookRepository.cardbookPrefs["viewABPane"]);
 				document.getElementById("cardbookContactPaneItem").setAttribute('checked', cardbookRepository.cardbookPrefs["viewABContact"]);
@@ -44,7 +43,6 @@ if ("undefined" == typeof(ovl_cardbookLayout)) {
 				document.getElementById("cardbookABPaneItem").hidden=true;
 				document.getElementById("cardbookContactPaneItem").hidden=true;
 				document.getElementById("menu_showFolderPane").hidden=false;
-				document.getElementById("menu_showFolderPaneCols").hidden=false;
 				document.getElementById("menu_showMessage").hidden=false;
 			}
 		},
@@ -81,14 +79,18 @@ if ("undefined" == typeof(ovl_cardbookLayout)) {
 
 		orientPanes: async function() {
 			if (document.getElementById("cardsBox") && document.getElementById("resultsSplitter")) {
-				var panesView = cardbookRepository.cardbookPrefs["panesView"];
+				let panesView = cardbookRepository.cardbookPrefs["panesView"];
 				if (panesView == "modern") {
 					document.getElementById("cardsBox").setAttribute("orient", "horizontal");
+					cardbookHTMLCardsTree.setCardsTreeWidth();
+					cardbookHTMLCardsTree.setCardsTreeHeight("null");
 					document.getElementById("resultsSplitter").hidden=false;
 					document.getElementById("resultsSplitter").setAttribute("orient", "horizontal");
 					document.getElementById("resultsSplitter").setAttribute("class", "cardbookVerticalSplitterClass");
 				} else {
 					document.getElementById("cardsBox").setAttribute("orient", "vertical");
+					cardbookHTMLCardsTree.setCardsTreeWidth("null");
+					cardbookHTMLCardsTree.setCardsTreeHeight();
 					document.getElementById("resultsSplitter").hidden=false;
 					document.getElementById("resultsSplitter").setAttribute("orient", "vertical");
 					document.getElementById("resultsSplitter").setAttribute("class", "cardbookHorizontalSplitterClass");

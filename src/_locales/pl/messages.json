@@ -18,6 +18,34 @@
 	"statusProgressInformationTooltip": {
 		"message": "Kliknij tutaj, aby zobaczyć log"
 	},
+	"columnsSortBy": {
+		"message": "Sortuj wg: $P1$",
+        "placeholders": {
+            "P1": {
+                "content": "$1"
+            }
+        }
+	},
+	"columnPickerTitle": {
+		"message": "Zaznacz, które kolumny będą wyświetlane"
+	},
+	"columnPickerRestoreColumnOrder": {
+		"message": "Przywróć porządek kolumn"
+	},
+	"columnPickerApplyCurrentViewTo": {
+		"message": "Zastosuj ustawienia obecnego widoku do…"
+	},
+	"columnPickerApplyCurrentViewToConfirmMsg": {
+		"message": "Czy zastosować ustawienia wyświetlania kolumn obecnego folderu do folderu $P1$?",
+        "placeholders": {
+            "P1": {
+                "content": "$1"
+            }
+        }
+	},
+	"columnPickerApplyCurrentViewToConfirmTitle": {
+		"message": "Zastosować zmiany?"
+	},
 	"imageSelectionTitle": {
 		"message": "Wybierz obraz"
 	},
@@ -645,6 +673,25 @@
 	},
 	"synchroAllFinished": {
 		"message": "Wszystkie synchronizacje zakończone"
+	},
+	"lastSync": {
+		"message": "Ostatnia synchronizacja: $P1$",
+        "placeholders": {
+            "P1": {
+                "content": "$1"
+            }
+        }
+	},
+	"syncFailedNeverSynced": {
+		"message": "Synchronizacja się nie powiodła. Ostatnia: nigdy"
+	},
+	"syncFailedLastSync": {
+		"message": "Synchronizacja się nie powiodła. Ostatnia pomyślna: $P1$",
+        "placeholders": {
+            "P1": {
+                "content": "$1"
+            }
+        }
 	},
 	"discoveryRunning": {
 		"message": "$P1$ : Trwa automatyczne wykrywanie książek adresowych",
@@ -2755,7 +2802,7 @@
         }
 	},
 	"eventEntryTitleMessage": {
-		"message": "Urodziny %1$S"
+		"message": "Urodziny %1$S (%5$S)"
 	},
 	"anniversaryCategory": {
 		"message": "Rocznica"
@@ -3747,12 +3794,6 @@
 	"findEventsFromEmailMessengerAccesskey": {
 		"message": "e"
 	},
-	"mailContext-addToCardBookMenuLabel": {
-		"message": "Dodaj wizytówkę CardBook…"
-	},
-	"mailContext-addToCardBookMenuAccesskey": {
-		"message": "D"
-	},
 	"addAllAttachementsToCardBookMenuLabel": {
 		"message": "Wszystkie do CardBook…"
 	},
@@ -3981,6 +4022,9 @@
 	"readonlyLabel": {
 		"message": "Tryb tylko do odczytu"
 	},
+	"syncingLabel": {
+		"message": "Synchronizowanie…"
+	},
 	"urnuuidLabel": {
 		"message": "Używaj urn:uuid"
 	},
@@ -4038,14 +4082,8 @@
 	"sendEmailLabel": {
 		"message": "Napisz nową wiadomość"
 	},
-	"sendEmailAccesskey": {
-		"message": "W"
-	},
 	"syncLightningMenuItemLabel": {
 		"message": "Synchronizuj z Lightning"
-	},
-	"syncLightningMenuAccesskey": {
-		"message": "S"
 	},
 	"calendarNameLabel": {
 		"message": "Kalendarz"
@@ -5220,12 +5258,6 @@
 	"cardbookToolbarAppMenuButtonTooltip": {
 		"message": "Menu CardBook"
 	},
-	"cardbookToolbarSearchBoxLabel": {
-		"message": "Wyszukaj wizytówki"
-	},
-	"cardbookToolbarSearchBoxTooltip": {
-		"message": "Wyszukaj wizytówki"
-	},
 	"cardbookToolbarComplexSearchLabel": {
 		"message": "Wyszukiwanie zaawansowane"
 	},
@@ -5348,9 +5380,6 @@
 	},
 	"PreferMailFormat.label": {
 		"message": "Preferowany format otrzymywanych wiadomości:"
-	},
-	"PreferMailFormat.accesskey": {
-		"message": "h"
 	},
 	"Unknown.label": {
 		"message": "Nieznany"
@@ -5493,9 +5522,6 @@
 	"editEventLabel": {
 		"message": "Edytuj wydarzenie"
 	},
-	"editEventAccesskey": {
-		"message": "E"
-	},
 	"eventsTableTitleLabel": {
 		"message": "Nazwa"
 	},
@@ -5534,9 +5560,6 @@
 	},
 	"createEventLabel": {
 		"message": "Nowe wydarzenie"
-	},
-	"createEventAccesskey": {
-		"message": "N"
 	},
 	"adrFormulaExplanation": {
 		"message": "Można zmienić sposób w jaki CardBook formatuje adresy. Ta formuła składa się z bloków otoczonych “()”. W tych blokach może znajdować się wiele części oddzielonych “|”."
@@ -5700,38 +5723,20 @@
 	"createEditionLabel": {
 		"message": "Stwórz"
 	},
-	"createEditionAccesskey": {
-		"message": "S"
-	},
 	"createAndReplaceEditionLabel": {
 		"message": "Stwórz i zastąp"
-	},
-	"createAndReplaceEditionAccesskey": {
-		"message": "i"
 	},
 	"saveEditionLabel": {
 		"message": "Zapisz"
 	},
-	"saveEditionAccesskey": {
-		"message": "Z"
-	},
 	"validateEditionLabel": {
 		"message": "Sprawdź"
-	},
-	"validateEditionAccesskey": {
-		"message": "S"
 	},
 	"cancelEditionLabel": {
 		"message": "Anuluj"
 	},
-	"cancelEditionAccesskey": {
-		"message": "A"
-	},
 	"closeEditionLabel": {
 		"message": "Zamknij"
-	},
-	"closeEditionAccesskey": {
-		"message": "k"
 	},
 	"moreEditionLabel": {
 		"message": "Więcej"
@@ -5827,9 +5832,6 @@
 	"kind.edit.label": {
 		"message": "Rodzaj"
 	},
-	"kind.edit.accesskey": {
-		"message": "R"
-	},
 	"addEmailGroupboxLabel": {
 		"message": "Adres e-mail"
 	},
@@ -5922,6 +5924,20 @@
 	},
 	"capitalizationLabel": {
 		"message": "??Capitalization??"
+	},
+	"searchinAB": {
+		"message": "Szukaj w programie $P1$",
+        "placeholders": {
+            "P1": {
+                "content": "$1"
+            }
+        }
+	},
+	"searchinAllAB": {
+		"message": "Szukaj we wszystkich książkach adresowych"
+	},
+	"searchingABPlaceholder": {
+		"message": "Wyszukiwanie…"
 	},
 	"region-name-ad": {
 		"message": "Andora"

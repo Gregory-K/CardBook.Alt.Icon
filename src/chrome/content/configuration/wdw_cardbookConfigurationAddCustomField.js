@@ -22,7 +22,7 @@ function validateCustomValues () {
 	let value = document.getElementById('customFieldCodeTextBox').value;
 	let newValidationList = JSON.parse(JSON.stringify(validationList));
 	function filterOriginal(element) {
-		return (element != value);
+		return (element.toUpperCase() != value.toUpperCase());
 	}
 	newValidationList = newValidationList.filter(filterOriginal);
 	let notificationMessage = document.getElementById("notificationMessage");
@@ -103,7 +103,11 @@ async function onAcceptDialog (aEvent) {
 };
 
 async function onCancelDialog () {
-	cardbookHTMLRichContext.closeWindow();
+	window.close();
 };
+
+window.addEventListener("resize", async function() {
+	await cardbookHTMLRichContext.saveWindowSize();
+});
 
 onLoadDialog();

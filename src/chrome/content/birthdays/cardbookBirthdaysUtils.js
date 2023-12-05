@@ -7,13 +7,14 @@ if ("undefined" == typeof(cardbookBirthdaysUtils)) {
 		lBirthdayList : [],
 		lBirthdayAccountList : {},
 		lCalendarList : [],
-		lBirthdaySyncResult : [],
+		lBirthdaySyncResult : {},
 		
 		isCalendarWritable: function (aCalendar) {
 			return (!aCalendar.getProperty("disabled") && !aCalendar.readOnly);
 		},
 		
 		getCalendars: function () {
+			cardbookBirthdaysUtils.lCalendarList = [];
 			var myCalendar = cardbookRepository.cardbookPrefs["calendarsNameList"];
 			let cals = cal.manager.getCalendars();
 			for (let calendar of cals) {
@@ -30,7 +31,7 @@ if ("undefined" == typeof(cardbookBirthdaysUtils)) {
 			cardbookBirthdaysUtils.getCalendars();
 			
 			if (cardbookBirthdaysUtils.lBirthdayList.length != 0) {
-				cardbookBirthdaysUtils.lBirthdaySyncResult = [];
+				cardbookBirthdaysUtils.lBirthdaySyncResult = {};
 				cardbookBirthdaysUtils.doSyncWithLightning();
 			}
 		},
@@ -47,7 +48,7 @@ if ("undefined" == typeof(cardbookBirthdaysUtils)) {
 
 			// if calendar is not found, then abort
 			if (aCalendar == 0) {
-				cardbookBirthdaysUtils.lBirthdaySyncResult.push([aCalendar.name, 0, cardbookBirthdaysUtils.lBirthdayList.length, 0, aCalendar.id]);
+				cardbookBirthdaysUtils.lBirthdaySyncResult[aCalendar.id] = {name: aCalendar.name, existing: 0, failed: cardbookBirthdaysUtils.lBirthdayList.length, succeeded: 0};
 				errorTitle = cardbookRepository.extension.localeData.localizeMessage("calendarNotFoundTitle");
 				errorMsg = cardbookRepository.extension.localeData.localizeMessage("calendarNotFoundMessage", [aCalendar.name]);
 				Services.prompt.alert(null, errorTitle, errorMsg);
@@ -56,14 +57,14 @@ if ("undefined" == typeof(cardbookBirthdaysUtils)) {
 
 			// check if calendar is writable - if not, abort
 			if (!(cardbookBirthdaysUtils.isCalendarWritable(aCalendar))) {
-				cardbookBirthdaysUtils.lBirthdaySyncResult.push([aCalendar.name, 0, cardbookBirthdaysUtils.lBirthdayList.length, 0, aCalendar.id]);
+				cardbookBirthdaysUtils.lBirthdaySyncResult[aCalendar.id] = {name: aCalendar.name, existing: 0, failed: cardbookBirthdaysUtils.lBirthdayList.length, succeeded: 0};
 				errorTitle = cardbookRepository.extension.localeData.localizeMessage("calendarNotWritableTitle");
 				errorMsg = cardbookRepository.extension.localeData.localizeMessage("calendarNotWritableMessage", [aCalendar.name]);
 				Services.prompt.alert(null, errorTitle, errorMsg);
 				return;
 			}
 
-			cardbookBirthdaysUtils.lBirthdaySyncResult.push([aCalendar.name, 0, 0, 0, aCalendar.id]);
+			cardbookBirthdaysUtils.lBirthdaySyncResult[aCalendar.id] = {name: aCalendar.name, existing: 0, failed: 0, succeeded: 0};
 			cardbookBirthdaysUtils.getCalendarItems(aCalendar);
 		},
 
@@ -138,7 +139,7 @@ if ("undefined" == typeof(cardbookBirthdaysUtils)) {
 					cardbookBirthdaysUtils.addNewCalendarEntry(aCalendar, lBirthdayId, lBirthdayName, lBirthdayAge, lBirthdayDateString, lBirthdayDateNextString, lBirthdayTitle);
 				} else {
 					cardbookRepository.cardbookUtils.formatStringForOutput("syncListExistingEntry", [aCalendar.name, lBirthdayName]);
-					cardbookBirthdaysUtils.lBirthdaySyncResult.push([aCalendar.name, 1, 0, 0, aCalendar.id]);
+					cardbookBirthdaysUtils.lBirthdaySyncResult[aCalendar.id].existing++;
 				}
 			}
 		},
@@ -219,10 +220,10 @@ if ("undefined" == typeof(cardbookBirthdaysUtils)) {
 			let item = await aCalendar.addItem(event);
 			if (item) {
 				cardbookRepository.cardbookUtils.formatStringForOutput("syncListCreatedEntry", [aCalendar.name, this.mBirthdayName]);
-				cardbookBirthdaysUtils.lBirthdaySyncResult.push([aCalendar.name, 0, 0, 1, aCalendar.id]);
+				cardbookBirthdaysUtils.lBirthdaySyncResult[aCalendar.id].succeeded++;
 			} else {
 				cardbookRepository.cardbookUtils.formatStringForOutput("syncListErrorEntry", [aCalendar.name, this.mBirthdayName], "Error");
-				cardbookBirthdaysUtils.lBirthdaySyncResult.push([aCalendar.name, 0, 1, 0, aCalendar.id]);
+				cardbookBirthdaysUtils.lBirthdaySyncResult[aCalendar.id].failed++;
 			}
 		},
 
@@ -260,7 +261,6 @@ if ("undefined" == typeof(cardbookBirthdaysUtils)) {
 			var lnextBirthday;
 			var lAge;
 			var ldaysUntilNextBirthday;
-			var lDateOfBirthOld = aDateOfBirth;
 			var lDateOfBirth = cardbookRepository.cardbookDates.convertDateStringToDateUTC(aDateOfBirth, aDateFormat);
 
 			var leventEntryTitle = cardbookRepository.cardbookPrefs["eventEntryTitle"];
@@ -271,16 +271,15 @@ if ("undefined" == typeof(cardbookBirthdaysUtils)) {
 				if (parseInt(ldaysUntilNextBirthday) <= parseInt(aNumberOfDays)) {
 					if (lDateOfBirth.getUTCFullYear() == cardbookRepository.cardbookDates.defaultYear) {
 						lAge = "?";
-						lDateOfBirthOld = "?";
 						var lBirthdayTitle =  cardbookBirthdaysUtils.getEventName(leventEntryTitle, aDisplayName, "0", "?", aName, aType);
 					} else {
 						lAge = lnextBirthday.getFullYear()-lDateOfBirth.getUTCFullYear();
-						var lEventDate = cardbookRepository.cardbookDates.convertDateStringToDateUTC(lDateOfBirthOld, aDateFormat);
+						var lEventDate = cardbookRepository.cardbookDates.convertDateStringToDateUTC(aDateOfBirth, aDateFormat);
 						var lBirthdayTitle = cardbookBirthdaysUtils.getEventName(leventEntryTitle, aDisplayName, lAge, lEventDate.getUTCFullYear(), aName, aType);
 					}
 	
 					if (ldaysUntilNextBirthday === parseInt(ldaysUntilNextBirthday)) {
-						let dateOfBirthOld = cardbookRepository.cardbookDates.getFormattedDateForDateString(lDateOfBirthOld, aDateFormat, cardbookRepository.cardbookPrefs["dateDisplayedFormat"])
+						let dateOfBirthOld = cardbookRepository.cardbookDates.getFormattedDateForDateString(aDateOfBirth, aDateFormat, cardbookRepository.cardbookPrefs["dateDisplayedFormat"])
 						cardbookBirthdaysUtils.lBirthdayList.push([ldaysUntilNextBirthday, lBirthdayTitle, lAge, dateOfBirthOld, aDateOfBirthFound, aEmail, aDirPrefId, aName]);
 					} else {
 						cardbookBirthdaysUtils.lBirthdayList.push(["0", lBirthdayTitle + " : Error", "0", "0", aDateOfBirthFound, aEmail, aDirPrefId, aName]);
@@ -347,6 +346,7 @@ if ("undefined" == typeof(cardbookBirthdaysUtils)) {
 					}
 				}
 			}
+			return [ cardbookBirthdaysUtils.lBirthdayList, cardbookBirthdaysUtils.lBirthdayAccountList] ;
 		}
 	};
 };

@@ -18,6 +18,34 @@
 	"statusProgressInformationTooltip": {
 		"message": "Натисніть тут, щоб переглянути журнали"
 	},
+	"columnsSortBy": {
+		"message": "Сортувати: $P1$",
+        "placeholders": {
+            "P1": {
+                "content": "$1"
+            }
+        }
+	},
+	"columnPickerTitle": {
+		"message": "Вибрати стовпчики для показу"
+	},
+	"columnPickerRestoreColumnOrder": {
+		"message": "Відновити послідовність стовпчиків"
+	},
+	"columnPickerApplyCurrentViewTo": {
+		"message": "Застосувати поточний вигляд до…"
+	},
+	"columnPickerApplyCurrentViewToConfirmMsg": {
+		"message": "Застосувати стовчики поточної теки до $P1$?",
+        "placeholders": {
+            "P1": {
+                "content": "$1"
+            }
+        }
+	},
+	"columnPickerApplyCurrentViewToConfirmTitle": {
+		"message": "Застосувати зміни?"
+	},
 	"imageSelectionTitle": {
 		"message": "Вибір зображень"
 	},
@@ -645,6 +673,25 @@
 	},
 	"synchroAllFinished": {
 		"message": "Всі синхронізації завершені"
+	},
+	"lastSync": {
+		"message": "Востаннє синхронізовано: $P1$",
+        "placeholders": {
+            "P1": {
+                "content": "$1"
+            }
+        }
+	},
+	"syncFailedNeverSynced": {
+		"message": "Помилка синхронізації. Востаннє синхронізовано: ніколи"
+	},
+	"syncFailedLastSync": {
+		"message": "Помилка синхронізації. Востаннє синхронізовано: $P1$",
+        "placeholders": {
+            "P1": {
+                "content": "$1"
+            }
+        }
 	},
 	"discoveryRunning": {
 		"message": "$P1$ : Автоматичне відкриття адресної книги в процесі роботи",
@@ -2755,7 +2802,7 @@
         }
 	},
 	"eventEntryTitleMessage": {
-		"message": "Річниця %1$S"
+		"message": "Річниця %1$S (%5$S)"
 	},
 	"anniversaryCategory": {
 		"message": "Річниці"
@@ -3747,12 +3794,6 @@
 	"findEventsFromEmailMessengerAccesskey": {
 		"message": "е"
 	},
-	"mailContext-addToCardBookMenuLabel": {
-		"message": "Додати контакт…"
-	},
-	"mailContext-addToCardBookMenuAccesskey": {
-		"message": "Д"
-	},
 	"addAllAttachementsToCardBookMenuLabel": {
 		"message": "До Контакти Усе…"
 	},
@@ -3981,6 +4022,9 @@
 	"readonlyLabel": {
 		"message": "Режим Лише для читання"
 	},
+	"syncingLabel": {
+		"message": "Синхронізація…"
+	},
 	"urnuuidLabel": {
 		"message": "Використовувати урну:uuid"
 	},
@@ -4038,14 +4082,8 @@
 	"sendEmailLabel": {
 		"message": "Написати лист"
 	},
-	"sendEmailAccesskey": {
-		"message": "Н"
-	},
 	"syncLightningMenuItemLabel": {
 		"message": "Синхронізувати з Lightning"
-	},
-	"syncLightningMenuAccesskey": {
-		"message": "С"
 	},
 	"calendarNameLabel": {
 		"message": "Календар"
@@ -5220,12 +5258,6 @@
 	"cardbookToolbarAppMenuButtonTooltip": {
 		"message": "Меню Контакти"
 	},
-	"cardbookToolbarSearchBoxLabel": {
-		"message": "Пошук контактів"
-	},
-	"cardbookToolbarSearchBoxTooltip": {
-		"message": "Пошук контактів"
-	},
 	"cardbookToolbarComplexSearchLabel": {
 		"message": "Віртуальну теку"
 	},
@@ -5348,9 +5380,6 @@
 	},
 	"PreferMailFormat.label": {
 		"message": "Вважає за краще отримувати пошту у форматі:"
-	},
-	"PreferMailFormat.accesskey": {
-		"message": "в"
 	},
 	"Unknown.label": {
 		"message": "Невідомо"
@@ -5493,9 +5522,6 @@
 	"editEventLabel": {
 		"message": "Редагувати подію"
 	},
-	"editEventAccesskey": {
-		"message": "Р"
-	},
 	"eventsTableTitleLabel": {
 		"message": "Назва"
 	},
@@ -5534,9 +5560,6 @@
 	},
 	"createEventLabel": {
 		"message": "Нова подія"
-	},
-	"createEventAccesskey": {
-		"message": "Н"
 	},
 	"adrFormulaExplanation": {
 		"message": "Можна налаштувати спосіб, у який Контакти форматує його адреси. Ця формула складається з блоків, що містяться в «()». ??In these blocks there might be many parts delimited by «|».??"
@@ -5700,38 +5723,20 @@
 	"createEditionLabel": {
 		"message": "Створити"
 	},
-	"createEditionAccesskey": {
-		"message": "С"
-	},
 	"createAndReplaceEditionLabel": {
 		"message": "Створіть і замініть"
-	},
-	"createAndReplaceEditionAccesskey": {
-		"message": "v"
 	},
 	"saveEditionLabel": {
 		"message": "Зберегти"
 	},
-	"saveEditionAccesskey": {
-		"message": "б"
-	},
 	"validateEditionLabel": {
 		"message": "Завірити"
-	},
-	"validateEditionAccesskey": {
-		"message": "а"
 	},
 	"cancelEditionLabel": {
 		"message": "Скасувати"
 	},
-	"cancelEditionAccesskey": {
-		"message": "к"
-	},
 	"closeEditionLabel": {
 		"message": "Закрити"
-	},
-	"closeEditionAccesskey": {
-		"message": "З"
 	},
 	"moreEditionLabel": {
 		"message": "Показати більше"
@@ -5827,9 +5832,6 @@
 	"kind.edit.label": {
 		"message": "Вид"
 	},
-	"kind.edit.accesskey": {
-		"message": "В"
-	},
 	"addEmailGroupboxLabel": {
 		"message": "Адреса електронної пошти"
 	},
@@ -5922,6 +5924,20 @@
 	},
 	"capitalizationLabel": {
 		"message": "??Capitalization??"
+	},
+	"searchinAB": {
+		"message": "Пошук в $P1$",
+        "placeholders": {
+            "P1": {
+                "content": "$1"
+            }
+        }
+	},
+	"searchinAllAB": {
+		"message": "Пошук у всіх адресних книгах"
+	},
+	"searchingABPlaceholder": {
+		"message": "Пошук…"
 	},
 	"region-name-ad": {
 		"message": "Андорра"

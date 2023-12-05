@@ -5,11 +5,11 @@ This is a **fork** of [**CardBook**](https://gitlab.com/CardBook/CardBook), a [T
 **CardBook Alt.Icon** simply provides an **alternative** main **icon** more aligned with Thunderbird's toolbar icon design.
 
 Version:  
-**85.5.1**
+**92.2.1**  
 Icon Variation (sub-release):  
 %sub_release%  
 Compatibility:  
-102.0a1 <= Thunderbird version >= 102.*
+113.0a1 <= Thunderbird version >= 116.*
 
 More on:  
 GitHub (main) - https://github.com/Gregory-K/CardBook.Alt.Icon  

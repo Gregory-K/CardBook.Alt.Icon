@@ -1,0 +1,243 @@
+:root {
+  --foldertree-background: -moz-Dialog;
+  --treeitem-border-radius: 3px;
+  --folder-mode-name-padding: 6px;
+  --folder-tree-header-gap: 9px;
+  --folder-tree-header-padding: 9px;
+  --folder-pane-icon-size: 16px;
+  --folder-pane-icon-new: var(--icon-add);
+  --folder-pane-icon-more: var(--icon-more);
+  --folder-pane-icon-download: var(--icon-cloud-download);
+  --folder-pane-icon-kebab: var(--icon-kebab);
+}
+
+@media not (prefers-contrast) {
+  :root {
+    --foldertree-background: var(--color-gray-05);
+    --folderpane-unread-count-background: var(--color-gray-50);
+    --folderpane-unread-count-text: var(--color-white);
+    --folderpane-total-count-background: var(--color-gray-20);
+    --folderpane-total-count-text: var(--color-gray-90);
+    --folderpane-unread-new-count-background: var(--color-blue-60);
+    --treeitem-background-selected: var(--color-gray-20);
+    --treeitem-background-hover: var(--color-gray-10);
+    --treeitem-text-active: var(--color-white);
+    --treeitem-background-active: var(--color-blue-50);
+    --in-content-item-selected-unfocused: var(--color-gray-20);
+  }
+
+  @media (prefers-color-scheme: dark) {
+    :root {
+      --foldertree-background: var(--color-gray-80);
+      --folderpane-unread-new-count-background: var(--color-blue-50);
+      --folderpane-total-count-background: var(--color-gray-60);
+      --folderpane-total-count-text: var(--color-white);
+      --treeitem-background-selected: var(--color-gray-70);
+      --treeitem-background-hover: var(--color-gray-60);
+      --treeitem-background-active: var(--color-blue-60);
+      --in-content-item-selected-unfocused: rgba(249, 249, 250, 0.05);
+      --in-content-primary-button-background: #45a1ff;
+      --in-content-primary-button-background-hover: #65c1ff;
+      --in-content-primary-button-background-active: #85e1ff;
+      --in-content-focus-outline-color: #45a1ff;
+    }
+  }
+}
+
+@media (prefers-contrast) {
+  :root:not(:-moz-lwtheme) {
+    --folderpane-unread-count-background: var(--selected-item-color);
+    --folderpane-unread-count-text: var(--selected-item-text-color);
+    --folderpane-total-count-background: var(--selected-item-color);
+    --folderpane-total-count-text: var(--selected-item-text-color);
+    --folderpane-unread-new-count-background: ButtonShadow;
+    --treeitem-background-selected: transparent;
+    --treeitem-background-hover: transparent;
+    --treeitem-outline-hover: 2px solid var(--selected-item-color);
+    --treeitem-text-active: var(--selected-item-text-color);
+    --treeitem-background-active: var(--selected-item-color);
+  }
+}
+
+:root[lwt-tree] {
+  --foldertree-background: var(--sidebar-background-color);
+  --treeitem-background-selected: color-mix(in srgb, transparent 70%, var(--sidebar-highlight-background-color));
+  --treeitem-background-hover: color-mix(in srgb, transparent 80%, var(--sidebar-highlight-background-color));
+  --treeitem-text-active: var(--sidebar-highlight-text-color);
+  --treeitem-background-active: var(--sidebar-highlight-background-color);
+}
+
+:root[uidensity="compact"] {
+  --folder-mode-name-padding: 3px;
+  --folder-tree-header-gap: 6px;
+  --folder-tree-header-padding: 4px 6px;
+}
+
+:root[uidensity="touch"] {
+  --folder-mode-name-padding: 9px;
+  --folder-tree-header-gap: 12px;
+  --folder-pane-icon-size: 20px;
+  --folder-pane-icon-new: var(--icon-add-md);
+  --folder-pane-icon-more: var(--icon-more-md);
+  --folder-pane-icon-download: var(--icon-cloud-download-md);
+}
+
+#cardbookAccountsTree,
+#cardbookAccountsTree ul {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+  --depth: 0;
+  --indent: calc(16px * var(--depth));
+}
+
+#cardbookAccountsTree ul {
+  overflow: hidden;
+  height: auto;
+}
+
+#cardbookAccountsTree:focus-visible {
+  outline: none;
+}
+
+.container {
+  display: flex;
+  align-items: center;
+  -moz-context-properties: fill;
+  margin-inline: 6px;
+  border-radius: var(--treeitem-border-radius);
+  fill: currentColor;
+  cursor: default;
+  padding-inline-start: var(--indent);
+}
+
+li.selected > .container {
+  background-color: var(--treeitem-background-selected);
+}
+
+li:not(.selected) > .container:hover {
+  background-color: var(--treeitem-background-hover);
+}
+
+@media (prefers-contrast) {
+  li:not(:focus-visible) > .container:hover {
+    outline: var(--treeitem-outline-hover);
+    outline-offset: -2px;
+  }
+}
+
+#cardbookAccountsTree:focus-within li.selected > .container,
+#cardbookAccountsTree li.drop-target > .container {
+  background-color: var(--treeitem-background-active);
+  color: var(--treeitem-text-active);
+}
+
+#cardbookAccountsTree li .twisty {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: var(--list-item-buttons-size);
+  height: var(--list-item-buttons-size);
+}
+
+#cardbookAccountsTree li:not(.children) .twisty-icon {
+  display: none;
+}
+
+#cardbookAccountsTree li.children.collapsed > .container .twisty-icon {
+  transform: rotate(-90deg);
+}
+
+#cardbookAccountsTree li.children.collapsed:dir(rtl) > .container .twisty-icon {
+  transform: rotate(90deg);
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  #cardbookAccountsTree .twisty-icon {
+    transition: transform var(--transition-duration) var(--transition-timing);
+  }
+}
+
+#cardbookAccountsTree .icon {
+  position: relative;
+  width: 16px;
+  height: 16px;
+  background-repeat: no-repeat;
+  -moz-context-properties: fill, stroke;
+  fill: var(--icon-color);
+  stroke: var(--icon-color);
+}
+
+#cardbookAccountsTree li:is([icontype="localdb"]) > .container > .icon {
+  background-image: url("chrome://cardbook/content/skin/icons/addressbooks/localdb.svg");
+}
+
+#cardbookAccountsTree li:is([icontype="file"]) > .container > .icon {
+  background-image: url("chrome://cardbook/content/skin/icons/addressbooks/file.svg");
+}
+
+#cardbookAccountsTree li:is([icontype="directory"]) > .container > .icon {
+  background-image: url("chrome://cardbook/content/skin/icons/addressbooks/directory.svg");
+}
+
+#cardbookAccountsTree li:is([icontype="remote"]) > .container > .icon {
+  background-image: url("chrome://cardbook/content/skin/icons/addressbooks/remote.svg");
+}
+
+#cardbookAccountsTree li:is([icontype="search"]) > .container > .icon {
+  background-image: url("chrome://cardbook/content/skin/icons/addressbooks/search.svg");
+}
+
+#cardbookAccountsTree li:is([icontype="org"]) > .container > .icon,
+#cardbookAccountsTree li:is([icontype="categories"]) > .container > .icon {
+  width: 16px;
+  height: 16px;
+  background:var(--icon-color);
+  border-radius:50%;
+  -moz-border-radius:50%;
+  line-height:20px;
+  vertical-align:middle;
+}
+
+/*#cardbookAccountsTree li:is([icontype="categories"]).selected > .container > .icon {
+  background-color: var(--treeitem-background-active) !important;
+}*/
+
+#cardbookAccountsTree .statusIcon{
+  position: relative;
+  width: 16px;
+  height: 16px;
+  background-repeat: no-repeat;
+}
+
+#cardbookAccountsTree li:is([statustype="readonly"]) > .container > .statusIcon {
+  background-image: url("chrome://cardbook/content/skin/icons/locked.svg");
+}
+
+#cardbookAccountsTree li:is([statustype="syncing"]) > .container > .statusIcon {
+  background-image: url("chrome://cardbook/content/skin/icons/syncing.svg");
+}
+
+#cardbookAccountsTree li:is([statustype="syncfailed"]) > .container > .statusIcon {
+  background-image: url("chrome://cardbook/content/skin/icons/failed.svg");
+}
+
+.name {
+  flex: 1;
+  margin-inline: 7px;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+  overflow-x: hidden;
+}
+
+#cardbookAccountsTree li[data-server-type] > .container > .name {
+  font-weight: bold;
+}
+
+#cardbookAccountsTree:focus-within li.noselect-folder.selected > .container > .name {
+  opacity: 0.8;
+}
+
+#cardbookAccountsTree:focus-within li.selected.new-messages > .container > .name {
+  color: currentColor;
+}

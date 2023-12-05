@@ -107,7 +107,7 @@ var cardbookInit = {
 		Services.prefs.setBoolPref("svg.context-properties.content.enabled", true);
 	},
 
-	initRepo: function () {
+	initRepo: async function () {
 		if (cardbookRepository.firstLoad) {
 			return;
 		}
@@ -127,8 +127,8 @@ var cardbookInit = {
 		// migration functions (should be removed)
 		cardbookRepository.loadCustoms();
 
-		// for version < 75.0
-		cardbookRepository.updateFieldsNameList();
+		// for version < 91.7
+		await cardbookRepository.updateFieldsNameList();
 
 		// load category colors
 		try {
@@ -148,6 +148,6 @@ async function startup() {
 	await cardbookInit.migratePrefs();
 	await cardbookInit.initPrefs();
 	await cardbookInit.setPrefsInMemory();
-	cardbookInit.initRepo();
+	await cardbookInit.initRepo();
 }
 

@@ -27,7 +27,6 @@ var cardbookTabMonitor = {
 			if (document.getElementById("cardboookModeBroadcasterTab")) {
 				document.getElementById("cardboookModeBroadcasterTab").setAttribute("mode", "mail");
 			}
-			document.getElementById("unreadMessageCount").hidden=false;
 		}
 		// spaces
 		document.getElementById("cardbookButton").classList.remove("current");
@@ -40,14 +39,11 @@ var cardbookTabMonitor = {
 			if (document.getElementById("cardboookModeBroadcasterTab")) {
 				document.getElementById("cardboookModeBroadcasterTab").setAttribute("mode", "cardbook");
 			}
-			document.getElementById("totalMessageCount").setAttribute("tooltiptext", cardbookRepository.extension.localeData.localizeMessage("statusProgressInformationTooltip"));
 			document.getElementById("cardbookTabPanel").removeAttribute("collapsed");
 		} else {
 			if (document.getElementById("cardboookModeBroadcasterTab")) {
 				document.getElementById("cardboookModeBroadcasterTab").setAttribute("mode", "mail");
 			}
-			document.getElementById("totalMessageCount").removeAttribute("tooltiptext");
-			document.getElementById("unreadMessageCount").hidden=false;
 			if (document.getElementById("cardbookTabPanel")) {
 				document.getElementById("cardbookTabPanel").setAttribute("collapsed", "true");
 			}
@@ -115,7 +111,6 @@ var cardbookTabType = {
 					case "cmd_printSetup":
 					case "cmd_print":
 					case "cmd_printpreview":
-					case "cmd_selectAll":
 					case "cmd_copy":
 					case "cmd_cut":
 					case "cmd_paste":
@@ -139,7 +134,6 @@ var cardbookTabType = {
 					case "cmd_printSetup":
 					case "cmd_print":
 					case "cmd_printpreview":
-					case "cmd_selectAll":
 					case "cmd_copy":
 					case "cmd_cut":
 					case "cmd_paste":
@@ -170,9 +164,6 @@ var cardbookTabType = {
 					case "cmd_print":
 					case "cmd_printpreview":
 						wdw_cardbook.printCards();
-						break;
-					case "cmd_selectAll":
-						wdw_cardbook.selectAllKey();
 						break;
 					case "cmd_copy":
 						wdw_cardbook.copyKey();
@@ -209,29 +200,21 @@ var cardbookTabType = {
 };
 	
 var ovl_cardbook = {
-	openLogEdition: async function () {
-		if (cardbookWindowUtils.getBroadcasterOnCardBook()) {
-			let url = "chrome/content/log/wdw_logEdition.html";
-			let params = new URLSearchParams();
-			let win = await notifyTools.notifyBackground({query: "cardbook.openWindow",
-													url: `${url}?${params.toString()}`,
-													type: "popup"});
-		}
-	},
-
 	reloadCardBookQFB: function () {
 		if (cardbookRepository.cardbookPrefs["exclusive"]) {
-			if (document.getElementById('qfb-inaddrbook')) {
-				document.getElementById('qfb-inaddrbook').hidden = true;
+			if (document.getElementById("mail3PaneTabBrowser1").contentDocument.getElementById('qfb-inaddrbook')) {
+				document.getElementById("mail3PaneTabBrowser1").contentDocument.getElementById('qfb-inaddrbook').hidden = true;
 			}
 		} else {
-			if (document.getElementById('qfb-inaddrbook')) {
-				document.getElementById('qfb-inaddrbook').hidden = false;
+			if (document.getElementById("mail3PaneTabBrowser1").contentDocument.getElementById('qfb-inaddrbook')) {
+				document.getElementById("mail3PaneTabBrowser1").contentDocument.getElementById('qfb-inaddrbook').hidden = false;
 			}
 		}
-		if (document.getElementById("quick-filter-bar-cardbook-bar") && !document.getElementById("quick-filter-bar-cardbook-bar").collapsed) {
+		if (document.getElementById("mail3PaneTabBrowser1").contentDocument.getElementById("quickFilterBarCardBookContainer") && 
+			!document.getElementById("mail3PaneTabBrowser1").contentDocument.getElementById("quickFilterBarCardBookContainer").hidden) {
 			try {
-				QuickFilterBarMuxer.updateSearch();
+				let { quickFilterBar } = document.getElementById("mail3PaneTabBrowser1").contentWindow;
+				quickFilterBar.updateSearch();
 			} catch (e) {}
 		}
 	},
@@ -280,39 +263,15 @@ var ovl_cardbook = {
 		}
 
 		ovl_cardbook.overrideToolbarMenu();
-
-		if (document.getElementById("totalMessageCount")) {
-			document.getElementById("totalMessageCount").addEventListener("click", ovl_cardbook.openLogEdition, true);
-		}
 	},
 
 	unload: function() {
-		// quickfilter
-		QuickFilterManager.killFilter("cardbook");
-	
 		// observers
 		cardBookObserver.unregister();
-		myFormatObserver.unregister();
-
-		// functions
-		customElements.get("header-recipient").prototype.addToAddressBook = ovl_cardbookMailContacts.origFunctions.addToAddressBook;
-		customElements.get("header-recipient").prototype._updateAvatar = ovl_cardbookMailContacts.origFunctions._updateAvatar;
-		gMessageHeader.openEmailAddressPopup = ovl_cardbookMailContacts.origFunctions.openEmailAddressPopup;
-		gMessageHeader.showContactEdit = ovl_cardbookMailContacts.origFunctions.showContactEdit;
-		gMessageHeader.editContact = ovl_cardbookMailContacts.origFunctions.editContact;
-		gMessageHeader.addContact = ovl_cardbookMailContacts.origFunctions.addContact;
-		fillMailContextMenu = ovl_cardbookMailContacts.origFunctions.fillMailContextMenu;
-
-		DisplayNameUtils.formatDisplayName = ovl_formatEmailCorrespondents.origFunctions.formatDisplayName;
-		DisplayNameUtils.getCardForEmail = ovl_formatEmailCorrespondents.origFunctions.getCardForEmail;
+		// test myFormatObserver.unregister();
 
 		InitViewLayoutStyleMenu = ovl_cardbookLayout.origFunctions.InitViewLayoutStyleMenu;
 		InitEditMessagesMenu = ovl_cardbookLayout.origFunctions.InitEditMessagesMenu;
-
-		onShowSaveAttachmentMenuMultiple = ovl_attachments.origFunctions.onShowSaveAttachmentMenuMultiple;
-		onShowSaveAttachmentMenuSingle = ovl_attachments.origFunctions.onShowSaveAttachmentMenuSingle;
-		goUpdateAttachmentCommands = ovl_attachments.origFunctions.goUpdateAttachmentCommands;
-		onShowAttachmentItemContextMenu = ovl_attachments.origFunctions.onShowAttachmentItemContextMenu;
 
 		// closing tabs
 		let tabmail = document.getElementById("tabmail");

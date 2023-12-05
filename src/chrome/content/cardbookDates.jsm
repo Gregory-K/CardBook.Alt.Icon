@@ -63,8 +63,8 @@ var cardbookDates = {
 					case 19:
 					case 20:
 					case 24:
-						myFieldValue = cardbookDates.getCorrectDatetime(myFieldValue);
-						return cardbookDates.getFormattedDateTimeForDateTimeString(myFieldValue, cardbookRepository.cardbookPrefs["dateDisplayedFormat"]);
+						let date = cardbookDates.getCorrectDatetime(myFieldValue);
+						return cardbookDates.getFormattedDateTimeForDateTimeString(date, cardbookRepository.cardbookPrefs["dateDisplayedFormat"]);
 						break;
 
 					// dates
@@ -105,22 +105,23 @@ var cardbookDates = {
 		}
 	},
 
-	getFormattedDateTimeForDateTimeString: function (aDateTimeString, aTargetDateFormat) {
+	getFormattedDateTimeForDateTimeString: function (aDate, aTargetDateFormat) {
 		try {
-			var myDate = new Date(Date.parse(aDateTimeString));
-			if (isNaN(myDate)) {
-				return aDateTimeString;
+			if (isNaN(aDate)) {
+				return aDate;
 			} else {
 				if (aTargetDateFormat == "0") {
 					var formatter = new Services.intl.DateTimeFormat(undefined, {dateStyle: "long", timeZone: "UTC"});
-				} else {
+				} else if (aTargetDateFormat == "1") {
 					var formatter = new Services.intl.DateTimeFormat(undefined, {dateStyle: "short", timeZone: "UTC"});
+				} else if (aTargetDateFormat == "2") {
+					var formatter = new Services.intl.DateTimeFormat(undefined, {dateStyle: "full", timeStyle: 'long'});
 				}
-				return formatter.format(myDate);
+				return formatter.format(aDate);
 			}
 		}
 		catch (e) {
-			return aDateTimeString;
+			return aDate;
 		}
 	},
 
@@ -152,36 +153,64 @@ var cardbookDates = {
 	},
 
 	lPad: function (aValue) {
-		aValue = "" + aValue;
-		if (aValue.length == 1) {
-			aValue = "0" + aValue;
-		}
-		return aValue;
+		return ("0" + aValue).slice(-2);
 	},
 
 	getCorrectDatetime: function (aValue) {
+		let date;
 		// 20190208T000004
 		// 20190208T000004Z
 		if (aValue.length == 15 ||aValue.length == 16) {
-			aValue = aValue.slice(0,4) + "-" + aValue.slice(4,6) + "-" + aValue.slice(6,11) + ":" + aValue.slice(11,13) + ":" + aValue.slice(13,15) + "Z";
+			date = new Date(Date.UTC(parseInt(aValue.slice(0,4)), 
+										parseInt(aValue.slice(4,6))-1, 
+										parseInt(aValue.slice(6,8)),
+										parseInt(aValue.slice(9,11)),
+										parseInt(aValue.slice(11,13)),
+										parseInt(aValue.slice(13,15))));
 		// 2019-02-08T000004
 		} else if (aValue.length == 17 && aValue.includes("-")) {
-			aValue = aValue.slice(0,4) + "-" + aValue.slice(5,7) + "-" + aValue.slice(8,13) + ":" + aValue.slice(13,15) + ":" + aValue.slice(15,17) + "Z";
+			date = new Date(Date.UTC(parseInt(aValue.slice(0,4)), 
+										parseInt(aValue.slice(5,7))-1, 
+										parseInt(aValue.slice(8,10)),
+										parseInt(aValue.slice(11,13)),
+										parseInt(aValue.slice(13,15)),
+										parseInt(aValue.slice(15,17))));
 		// 20190208T00:00:04
 		} else if (aValue.length == 17 && aValue.includes(":")) {
-			aValue = aValue.slice(0,4) + "-" + aValue.slice(4,6) + "-" + aValue.slice(6,17) + "Z";
+			date = new Date(Date.UTC(parseInt(aValue.slice(0,4)), 
+										parseInt(aValue.slice(4,6))-1, 
+										parseInt(aValue.slice(6,8)),
+										parseInt(aValue.slice(9,11)),
+										parseInt(aValue.slice(12,14)),
+										parseInt(aValue.slice(15,17))));
 		// 2019-02-08T000004Z
 		} else if (aValue.length == 18 && aValue.includes("-")) {
-			aValue = aValue.slice(0,4) + "-" + aValue.slice(5,7) + "-" + aValue.slice(8,13) + ":" + aValue.slice(13,15) + ":" + aValue.slice(15,17) + "Z";
+			date = new Date(Date.UTC(parseInt(aValue.slice(0,4)), 
+										parseInt(aValue.slice(5,7))-1, 
+										parseInt(aValue.slice(8,10)),
+										parseInt(aValue.slice(11,13)),
+										parseInt(aValue.slice(13,15)),
+										parseInt(aValue.slice(15,17))));
 		// 20190208T00:00:04Z
 		} else if (aValue.length == 18 && aValue.includes(":")) {
-			aValue = aValue.slice(0,4) + "-" + aValue.slice(4,6) + "-" + aValue.slice(6,17) + "Z";
+			date = new Date(Date.UTC(parseInt(aValue.slice(0,4)), 
+										parseInt(aValue.slice(4,6))-1, 
+										parseInt(aValue.slice(6,8)),
+										parseInt(aValue.slice(9,11)),
+										parseInt(aValue.slice(12,14)),
+										parseInt(aValue.slice(15,17))));
 		// 2019-02-08T00:00:04
-		} else if (aValue.length == 19) {
-			aValue = aValue + "Z";
-		}
 		// 2019-02-08T00:00:04Z
-		return aValue;
+		// 2023-08-27T17:25:16.301Z
+		} else if (aValue.length >= 19) {
+			date = new Date(Date.UTC(parseInt(aValue.slice(0,4)), 
+										parseInt(aValue.slice(5,7))-1, 
+										parseInt(aValue.slice(8,10)),
+										parseInt(aValue.slice(11,13)),
+										parseInt(aValue.slice(14,16)),
+										parseInt(aValue.slice(17,19))));
+		}
+		return date;
 	},
 
 	getCorrectPartialDate: function (aValue) {
@@ -218,12 +247,11 @@ var cardbookDates = {
 			// datetimes
 			// the mozilla parser does not parse 20180904T161908Z or 20180904T161908
 			} else if (aDateString.length >= 15 && aDateString.length <= 20) {
-				aDateString = cardbookDates.getCorrectDatetime(aDateString);
-				let myDate = new Date(Date.parse(aDateString));
-				if (isNaN(myDate)) {
+				let date = cardbookDates.getCorrectDatetime(aDateString);
+				if (isNaN(date)) {
 					return "WRONGDATE";
 				} else {
-					return myDate;
+					return date;
 				}
 			// partial dates
 			} else if (aDateString.length >= 3 && aDateString.length <= 6) {
@@ -305,10 +333,8 @@ var cardbookDates = {
 	splitUTCDateIntoComponents: function (aDate) {
 		let lYear = aDate.getUTCFullYear();
 		let lMonth = aDate.getUTCMonth() + 1;
-		lMonth += "";
 		lMonth = cardbookDates.lPad(lMonth);
 		let lDay = aDate.getUTCDate();
-		lDay += "";
 		lDay = cardbookDates.lPad(lDay);
 		return {day: lDay, month: lMonth, year: lYear};
 	},
@@ -321,10 +347,8 @@ var cardbookDates = {
 	splitDateIntoComponents: function (aDate) {
 		let lYear = aDate.getFullYear();
 		let lMonth = aDate.getMonth() + 1;
-		lMonth += "";
 		lMonth = cardbookDates.lPad(lMonth);
 		let lDay = aDate.getDate();
-		lDay += "";
 		lDay = cardbookDates.lPad(lDay);
 		return {day: lDay, month: lMonth, year: lYear};
 	},
@@ -461,5 +485,16 @@ var cardbookDates = {
 		} else {
 			return "YYYYMMDD";
 		}
+	},
+
+	getDateUTC: function () {
+		var sysdate = new Date();
+		var year = sysdate.getUTCFullYear();
+		var month = cardbookDates.lPad(sysdate.getUTCMonth() + 1);
+		var day = cardbookDates.lPad(sysdate.getUTCDate());
+		var hour = cardbookDates.lPad(sysdate.getUTCHours());
+		var min = cardbookDates.lPad(sysdate.getUTCMinutes());
+		var sec = cardbookDates.lPad(sysdate.getUTCSeconds());
+		return {year, month, day, hour, min, sec};
 	}
 };

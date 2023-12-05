@@ -18,6 +18,34 @@
 	"statusProgressInformationTooltip": {
 		"message": "Kayıtları görmek için buraya tıklayın"
 	},
+	"columnsSortBy": {
+		"message": "Sıralama: $P1$",
+        "placeholders": {
+            "P1": {
+                "content": "$1"
+            }
+        }
+	},
+	"columnPickerTitle": {
+		"message": "Gösterilecek sütunları seçin"
+	},
+	"columnPickerRestoreColumnOrder": {
+		"message": "Sütun sırasını sıfırla"
+	},
+	"columnPickerApplyCurrentViewTo": {
+		"message": "Geçerli görünümü uygula…"
+	},
+	"columnPickerApplyCurrentViewToConfirmMsg": {
+		"message": "Geçerli dizinin sütunları $P1$ dizinine uygulansın mı?",
+        "placeholders": {
+            "P1": {
+                "content": "$1"
+            }
+        }
+	},
+	"columnPickerApplyCurrentViewToConfirmTitle": {
+		"message": "Değişiklikler uygulansın mı?"
+	},
 	"imageSelectionTitle": {
 		"message": "Resim seçmek"
 	},
@@ -645,6 +673,25 @@
 	},
 	"synchroAllFinished": {
 		"message": "Tüm senkronizasyonlar bitti"
+	},
+	"lastSync": {
+		"message": "Son eşitleme: $P1$",
+        "placeholders": {
+            "P1": {
+                "content": "$1"
+            }
+        }
+	},
+	"syncFailedNeverSynced": {
+		"message": "Eşitleme başarısız oldu. Son eşitleme: yok"
+	},
+	"syncFailedLastSync": {
+		"message": "Eşitleme başarısız oldu. Son eşitleme: $P1$",
+        "placeholders": {
+            "P1": {
+                "content": "$1"
+            }
+        }
 	},
 	"discoveryRunning": {
 		"message": "$P1$ : Otomatik adres defteri keşfi çalışıyor",
@@ -2755,7 +2802,7 @@
 		}
 	},
 	"eventEntryTitleMessage": {
-		"message": "Şunun yıldönümü %1$S"
+		"message": "Şunun yıldönümü %1$S (%5$S)"
 	},
 	"anniversaryCategory": {
 		"message": "Yıldönümü"
@@ -3370,7 +3417,7 @@
 		"message": "E-posta Hesabı Kısıtlama Tanımlaması"
 	},
 	"wdw_cardbookConfigurationAddEmailsEmailsCollectionTitle": {
-		"message": "E-posta Hesabı E-posta Toplama Tanımlaması"
+		"message": "E-posta Hesabı Giden E-posta Toplama Tanımlaması"
 	},
 	"ignoreCaseIgnoreDiacriticLabel": {
 		"message": "Küçük/büyük harfleri de aksanlıları de görmezden gel"
@@ -3747,12 +3794,6 @@
 	"findEventsFromEmailMessengerAccesskey": {
 		"message": "e"
 	},
-	"mailContext-addToCardBookMenuLabel": {
-		"message": "Cardbook Kişisi Ekle…"
-	},
-	"mailContext-addToCardBookMenuAccesskey": {
-		"message": "d"
-	},
 	"addAllAttachementsToCardBookMenuLabel": {
 		"message": "Hepsini Cardbook'a…"
 	},
@@ -3981,6 +4022,9 @@
 	"readonlyLabel": {
 		"message": "Salt-okunur mod"
 	},
+	"syncingLabel": {
+		"message": "Eşitleniyor…"
+	},
 	"urnuuidLabel": {
 		"message": "urn:uuid kullan"
 	},
@@ -4038,14 +4082,8 @@
 	"sendEmailLabel": {
 		"message": "Yeni Mesaj Oluştur"
 	},
-	"sendEmailAccesskey": {
-		"message": "E"
-	},
 	"syncLightningMenuItemLabel": {
 		"message": "Lightning ile senkronize et"
-	},
-	"syncLightningMenuAccesskey": {
-		"message": "S"
 	},
 	"calendarNameLabel": {
 		"message": "Takvim"
@@ -5220,12 +5258,6 @@
 	"cardbookToolbarAppMenuButtonTooltip": {
 		"message": "CardBook menüsü"
 	},
-	"cardbookToolbarSearchBoxLabel": {
-		"message": "Kişi arama"
-	},
-	"cardbookToolbarSearchBoxTooltip": {
-		"message": "Kişi arama"
-	},
 	"cardbookToolbarComplexSearchLabel": {
 		"message": "Kaydedilmiş Arama"
 	},
@@ -5348,9 +5380,6 @@
 	},
 	"PreferMailFormat.label": {
 		"message": "Tercih ettiği ileti alma biçimi:"
-	},
-	"PreferMailFormat.accesskey": {
-		"message": "b"
 	},
 	"Unknown.label": {
 		"message": "Bilinmiyor"
@@ -5493,9 +5522,6 @@
 	"editEventLabel": {
 		"message": "Etkinliği Düzenle"
 	},
-	"editEventAccesskey": {
-		"message": "E"
-	},
 	"eventsTableTitleLabel": {
 		"message": "Ünvan"
 	},
@@ -5534,9 +5560,6 @@
 	},
 	"createEventLabel": {
 		"message": "Yeni Etkinlik"
-	},
-	"createEventAccesskey": {
-		"message": "N"
 	},
 	"adrFormulaExplanation": {
 		"message": "CardBook'un adreslerini biçimlendirme şeklini özelleştirmek mümkündür. Bu ilinti \"()\" ile kapatılmış bloklardan oluşur. Bu bloklarda “|” ile ayrılmış çok sayıda parça olabilir. "
@@ -5700,38 +5723,20 @@
 	"createEditionLabel": {
 		"message": "Oluştur"
 	},
-	"createEditionAccesskey": {
-		"message": "T"
-	},
 	"createAndReplaceEditionLabel": {
 		"message": "Oluştur ve değiştir"
-	},
-	"createAndReplaceEditionAccesskey": {
-		"message": "R"
 	},
 	"saveEditionLabel": {
 		"message": "Kaydet"
 	},
-	"saveEditionAccesskey": {
-		"message": "S"
-	},
 	"validateEditionLabel": {
 		"message": "Geçerli"
-	},
-	"validateEditionAccesskey": {
-		"message": "V"
 	},
 	"cancelEditionLabel": {
 		"message": "İptal"
 	},
-	"cancelEditionAccesskey": {
-		"message": "C"
-	},
 	"closeEditionLabel": {
 		"message": "Kapat"
-	},
-	"closeEditionAccesskey": {
-		"message": "C"
 	},
 	"moreEditionLabel": {
 		"message": "Daha fazla göster"
@@ -5827,9 +5832,6 @@
 	"kind.edit.label": {
 		"message": "Tür"
 	},
-	"kind.edit.accesskey": {
-		"message": "K"
-	},
 	"addEmailGroupboxLabel": {
 		"message": "E-posta Adresi"
 	},
@@ -5922,6 +5924,20 @@
 	},
 	"capitalizationLabel": {
 		"message": "Büyük/Küçük Harf"
+	},
+	"searchinAB": {
+		"message": "$P1$’ta ara",
+        "placeholders": {
+            "P1": {
+                "content": "$1"
+            }
+        }
+	},
+	"searchinAllAB": {
+		"message": "Tüm adres defterlerinde ara"
+	},
+	"searchingABPlaceholder": {
+		"message": "Aranıyor…"
 	},
 	"region-name-ad": {
 		"message": "Andorra"

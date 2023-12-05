@@ -5,16 +5,16 @@ if ("undefined" == typeof(ovl_cardbookFindEvents)) {
 	var ovl_cardbookFindEvents = {
 
 		findEventsFromEmail: function(emailAddressNode) {
-			let email = ovl_cardbookMailContacts.getEmailFromEmailAddressNode(emailAddressNode);
-			let displayname = ovl_cardbookMailContacts.getEmailFromEmailAddressNode(emailAddressNode);
+			let email = ovl_cardbookAboutMessage.getEmailFromEmailAddressNode(emailAddressNode);
+			let displayname = ovl_cardbookAboutMessage.getEmailFromEmailAddressNode(emailAddressNode);
 			ovl_cardbookFindEvents.findEvents(null, [email], displayname);
 		},
 
 		findAllEventsFromContact: function(emailAddressNode) {
-			let email = ovl_cardbookMailContacts.getEmailFromEmailAddressNode(emailAddressNode);
-			let displayname = ovl_cardbookMailContacts.getEmailFromEmailAddressNode(emailAddressNode);
-			if (ovl_cardbookMailContacts) {
-				var isEmailRegistered = cardbookRepository.isEmailRegistered(email, ovl_cardbookMailContacts.getIdentityKey());
+			let email = ovl_cardbookAboutMessage.getEmailFromEmailAddressNode(emailAddressNode);
+			let displayname = ovl_cardbookAboutMessage.getEmailFromEmailAddressNode(emailAddressNode);
+			if (ovl_cardbookAboutMessage) {
+				var isEmailRegistered = cardbookRepository.isEmailRegistered(email, ovl_cardbookAboutMessage.getIdentityKey());
 			} else {
 				var isEmailRegistered = cardbookRepository.isEmailRegistered(email);
 			}
@@ -27,7 +27,7 @@ if ("undefined" == typeof(ovl_cardbookFindEvents)) {
 			}	
 		},
 
-		findEvents: function (aCard, aListOfSelectedEmails, aDisplayName) {
+		findEvents: async function (aCard, aListOfSelectedEmails, aDisplayName) {
 			var listOfEmail = [];
 			if (aCard) {
 				if (!aCard.isAList) {
@@ -40,8 +40,15 @@ if ("undefined" == typeof(ovl_cardbookFindEvents)) {
 			} else if (aListOfSelectedEmails) {
 				listOfEmail = JSON.parse(JSON.stringify(aListOfSelectedEmails));
 			}
-			var myArgs = {listOfEmail: listOfEmail, displayName: aDisplayName};
-			var myWindow = Services.wm.getMostRecentWindow("mail:3pane").openDialog("chrome://cardbook/content/lightning/wdw_cardbookEventContacts.xhtml", "", cardbookRepository.windowParams, myArgs);
+
+
+			let url = "chrome/content/lightning/wdw_cardbookEventContacts.html";
+			let params = new URLSearchParams();
+			params.set("displayName", aDisplayName);
+			params.set("listOfEmail", listOfEmail.join(","));
+			let win = await notifyTools.notifyBackground({query: "cardbook.openWindow",
+													url: `${url}?${params.toString()}`,
+													type: "popup"});
 		}
 	};
 };

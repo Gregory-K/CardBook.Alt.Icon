@@ -1,5 +1,7 @@
 // Import any needed modules.
 var { Services } = ChromeUtils.import("resource://gre/modules/Services.jsm");
+var { cardbookRepository } = ChromeUtils.import("chrome://cardbook/content/cardbookRepository.js");
+
 Services.scriptloader.loadSubScript("chrome://cardbook/content/cardbookRichContext.js", window, "UTF-8");
 Services.scriptloader.loadSubScript("chrome://cardbook/content/indexedDB/cardbookEncryptor.js", window, "UTF-8");
 Services.scriptloader.loadSubScript("chrome://cardbook/content/indexedDB/cardbookIndexedDB.js", window, "UTF-8");
@@ -20,55 +22,35 @@ Services.scriptloader.loadSubScript("chrome://cardbook/content/cardbookElementTo
 Services.scriptloader.loadSubScript("chrome://cardbook/content/observers/cardBookObserverRepository.js", window, "UTF-8");
 Services.scriptloader.loadSubScript("chrome://cardbook/content/observers/cardBookObserver.js", window, "UTF-8");
 Services.scriptloader.loadSubScript("chrome://cardbook/content/cardbookSynchro.js", window, "UTF-8");
-Services.scriptloader.loadSubScript("chrome://cardbook/content/formatEmailCorrespondents/ovl_formatEmailCorrespondents.js", window, "UTF-8");
 Services.scriptloader.loadSubScript("chrome://cardbook/content/layout/ovl_cardbookLayout.js", window, "UTF-8");
-Services.scriptloader.loadSubScript("chrome://cardbook/content/mailContact/ovl_cardbookMailContacts.js", window, "UTF-8");
 Services.scriptloader.loadSubScript("chrome://cardbook/content/enigmail/cardbookEnigmail.js", window, "UTF-8");
 Services.scriptloader.loadSubScript("chrome://cardbook/content/ovl_cardbook.js", window, "UTF-8");
 Services.scriptloader.loadSubScript("chrome://cardbook/content/wdw_cardbook.js", window, "UTF-8");
 Services.scriptloader.loadSubScript("chrome://cardbook/content/birthdays/cardbookBirthdaysUtils.js", window, "UTF-8");
 Services.scriptloader.loadSubScript("chrome://cardbook/content/birthdays/ovl_birthdays.js", window, "UTF-8");
 Services.scriptloader.loadSubScript("chrome://cardbook/content/cardbookNotifications.js", window, "UTF-8");
-Services.scriptloader.loadSubScript("chrome://cardbook/content/cardbookTreeUtils.js", window, "UTF-8");
 Services.scriptloader.loadSubScript("chrome://cardbook/content/cardbookClipboard.js", window, "UTF-8");
-Services.scriptloader.loadSubScript("chrome://cardbook/content/cardbookTreeCols.js", window, "UTF-8");
 Services.scriptloader.loadSubScript("chrome://cardbook/content/observers/cardBookWindowObserver.js", window, "UTF-8");
-Services.scriptloader.loadSubScript("chrome://cardbook/content/cardbookDirTree.js", window, "UTF-8");
+Services.scriptloader.loadSubScript("chrome://cardbook/content/cardbookHTMLDirTree.js", window, "UTF-8");
+Services.scriptloader.loadSubScript("chrome://cardbook/content/cardbookHTMLCardsTree.js", window, "UTF-8");
 Services.scriptloader.loadSubScript("chrome://cardbook/content/cardEdition/wdw_templateEdition.js", window, "UTF-8");
 Services.scriptloader.loadSubScript("chrome://cardbook/content/cardEdition/wdw_imageEdition.js", window, "UTF-8");
 Services.scriptloader.loadSubScript("chrome://cardbook/content/cardEdition/wdw_cardEdition.js", window, "UTF-8");
+Services.scriptloader.loadSubScript("chrome://cardbook/content/filters/ovl_filters.js", window, "UTF-8");
 Services.scriptloader.loadSubScript("chrome://cardbook/content/mailContact/ovl_cardbookFindEmails.js", window, "UTF-8");
 Services.scriptloader.loadSubScript("chrome://cardbook/content/mailContact/ovl_cardbookFindEvents.js", window, "UTF-8");
-Services.scriptloader.loadSubScript("chrome://cardbook/content/attachments/ovl_attachments.js", window, "UTF-8");
-// for the function onViewToolbarsPopupShowing and CustomizeMailToolbar
-Services.scriptloader.loadSubScript("chrome://messenger/content/mailCore.js", window, "UTF-8");
-// for the textbox
-Services.scriptloader.loadSubScript("chrome://global/content/globalOverlay.js", window, "UTF-8");
-Services.scriptloader.loadSubScript("chrome://global/content/editMenuOverlay.js", window, "UTF-8");
+
 // for the events and tasks
 Services.scriptloader.loadSubScript("chrome://cardbook/content/lightning/cardbookLightning.js", window, "UTF-8");
-
-var { Services } = ChromeUtils.import("resource://gre/modules/Services.jsm");
-
-var { XPCOMUtils } = ChromeUtils.import("resource://gre/modules/XPCOMUtils.jsm");
-var { cardbookRepository } = ChromeUtils.import("chrome://cardbook/content/cardbookRepository.js");
-
-// for the quickfilter bar and the filters
-var { QuickFilterManager } = ChromeUtils.import("resource:///modules/QuickFilterManager.jsm");
-Services.scriptloader.loadSubScript("chrome://cardbook/content/filters/ovl_filters.js", window, "UTF-8");
-// Services.scriptloader.loadSubScript("chrome://messenger/content/quickFilterBar.js", window, "UTF-8");
-XPCOMUtils.defineLazyGlobalGetters(this, ["InspectorUtils"]);
 
 // called on window load or on add-on activation while window is already open
 function onLoad(wasAlreadyOpen) {
 	WL.injectCSS("chrome://cardbook/content/skin/mainToolbarButton.css");
-	WL.injectCSS("chrome://cardbook/content/skin/cardbookQFB.css");
-	WL.injectCSS("chrome://cardbook/content/skin/cardbookQFB1.css");
 	WL.injectCSS("chrome://cardbook/content/skin/cardbookMain.css");
+	WL.injectCSS("chrome://cardbook/content/skin/cardbookImage.css");
 	WL.injectCSS("chrome://cardbook/content/skin/cardbookEmpty.css");
-	WL.injectCSS("chrome://cardbook/content/skin/cardbookCheckboxes.css");
-	WL.injectCSS("chrome://cardbook/content/skin/cardbookTreeChildrens.css");
 	WL.injectCSS("chrome://cardbook/content/skin/cardbookAddressBooks.css");
+	WL.injectCSS("chrome://cardbook/content/skin/cardbookHTMLDirTree.css");
 	// <!-- for the preference star -->
 	WL.injectCSS("chrome://cardbook/content/skin/cardbookPrefStar.css");
 	// <!-- for MailList icon -->
@@ -81,6 +63,8 @@ function onLoad(wasAlreadyOpen) {
 	WL.injectCSS("chrome://cardbook/content/skin/cardbookMenuIcons.css");
 	// <!-- for the search textbox -->
 	WL.injectCSS("chrome://messenger/skin/input-fields.css");
+	WL.injectCSS("chrome://cardbook/content/skin/cardbookHTMLCardsTree.css");
+	WL.injectCSS("chrome://cardbook/content/skin/cardbookHTMLSplitter.css");
 
 	WL.injectElements(`
 	<broadcasterset id="cardbookBroadcasters" appendto="messengerWindow">
@@ -155,94 +139,6 @@ function onLoad(wasAlreadyOpen) {
 		<command id="cardbookTabButtonOpen"
 			oncommand="ovl_cardbook.open();"/>
 	</commandset>
-
-	<menupopup id="emailAddressPopup">
-		<menuseparator id="editCardBookSeparator" insertafter="viewContactItem"/>
-		<menu id="addToCardBookMenu" class="menuitem-iconic" label="__MSG_addToCardBookMenuLabel__" accesskey="__MSG_addToCardBookMenuAccesskey__" insertafter="editCardBookSeparator">
-			<menupopup id="addToCardBookMenuPopup" onpopupshowing="ovl_cardbookMailContacts.addToCardBookMenuSubMenu(this.id, ovl_cardbookMailContacts.addToCardBook)"/>
-		</menu>
-		<menuitem id="editInCardBookMenu" class="menuitem-iconic" label="__MSG_editInCardBookMenuLabel__" accesskey="__MSG_editInCardBookMenuAccesskey__" insertafter="addToCardBookMenu" onclick="ovl_cardbookMailContacts.editOrViewContact(event.currentTarget.parentNode.headerField.cardDetails.card);"/>
-		<menuitem id="deleteInCardBookMenu" class="menuitem-iconic" label="__MSG_deleteInCardBookMenuLabel__" accesskey="__MSG_deleteInCardBookMenuAccesskey__" insertafter="editInCardBookMenu" onclick="ovl_cardbookMailContacts.deleteContact(event.currentTarget.parentNode.headerField.cardDetails.card);"/>
-		<menuseparator id="IMPPCardBookSeparator" insertafter="deleteInCardBookMenu"/>
-		<menu id="IMPPCards" class="menuitem-iconic" label="__MSG_IMPPMenuLabel__" accesskey="__MSG_IMPPMenuAccesskey__" insertafter="IMPPCardBookSeparator">
-			<menupopup id="IMPPCardsMenuPopup"/>
-		</menu>
-		<menuseparator id="findCardBookSeparator1" insertafter="IMPPCards"/>
-		<menuitem id="findEmailsFromEmailMessenger" class="menuitem-iconic" label="__MSG_findEmailsFromEmailMessengerLabel__" accesskey="__MSG_findEmailsFromEmailMessengerAccesskey__"
-			oncommand="ovl_cardbookFindEmails.findEmailsFromEmail(event.currentTarget.parentNode.headerField);" insertafter="findCardBookSeparator1"/>
-		<menuitem id="findAllEmailsFromContactMessenger" class="menuitem-iconic" label="__MSG_findAllEmailsFromContactMessengerLabel__" accesskey="__MSG_findAllEmailsFromContactMessengerAccesskey__"
-			oncommand="ovl_cardbookFindEmails.findAllEmailsFromContact(event.currentTarget.parentNode.headerField);" insertafter="findEmailsFromEmailMessenger"/>
-		<menuitem id="findEventsFromEmailMessenger" class="menuitem-iconic" label="__MSG_findEventsFromEmailMessengerLabel__" accesskey="__MSG_findEventsFromEmailMessengerAccesskey__"
-			oncommand="ovl_cardbookFindEvents.findEventsFromEmail(event.currentTarget.parentNode.headerField);" insertafter="findAllEmailsFromContactMessenger"/>
-		<menuitem id="findAllEventsFromContactMessenger" class="menuitem-iconic" label="__MSG_findAllEventsFromContactMessengerLabel__" accesskey="__MSG_findAllEventsFromContactMessengerAccesskey__"
-			oncommand="ovl_cardbookFindEvents.findAllEventsFromContact(event.currentTarget.parentNode.headerField);" insertafter="findEventsFromEmailMessenger"/>
-		<menuseparator id="findCardBookSeparator2" insertafter="findAllEventsFromContactMessenger"/>
-	</menupopup>
-
-	<menupopup id="mailContext">
-		<menu id="mailContext-addToCardBookMenu" label="__MSG_mailContext-addToCardBookMenuLabel__" accesskey="__MSG_mailContext-addToCardBookMenuAccesskey__" insertafter="mailContext-addemail">
-			<menupopup id="mailContext-addToCardBookMenuPopup" onpopupshowing="ovl_cardbookMailContacts.addToCardBookMenuSubMenu(this.id, ovl_cardbookMailContacts.mailContextAddToCardBook)"/>
-		</menu>
-	</menupopup>
-
-	<hbox id="quick-filter-bar-collapsible-buttons" shouldExist="true">
-		<toolbarbutton id="qfb-cardbook"
-						type="checkbox"
-						class="toolbarbutton-1"
-						orient="horizontal"
-						crop="none"
-						style="min-width:16px;"
-						label="__MSG_cardbookQFBButtonLabel__"
-						tooltiptext="__MSG_cardbookQFBButtonTooltip__"
-						insertafter="qfb-starred"/>
-	</hbox>
-
-	<vbox id="quick-filter-bar" shouldExist="true">
-		<hbox id="quick-filter-bar-expando-cardbook" insertafter="quick-filter-bar-expando">
-			<arrowscrollbox id="quick-filter-bar-cardbook-bar"
-							orient="horizontal"
-							collapsed="true"
-							flex="2"
-							insertafter="quick-filter-bar-tab-bar">
-				<menulist id="qfb-cardbook-boolean-mode"
-							tooltiptext="__MSG_quickFilterBar.booleanMode.tooltip__"
-							persist="value">
-					<menupopup id="qfb-cardbook-boolean-mode-popup">
-						<menuitem id="qfb-cardbook-boolean-mode-or" value="OR"
-									label="__MSG_quickFilterBar.booleanModeAny.label__"
-									tooltiptext="__MSG_quickFilterBar.booleanModeAny.tooltip__"/>
-						<menuitem id="qfb-cardbook-boolean-mode-and" value="AND"
-									label="__MSG_quickFilterBar.booleanModeAll.label__"
-									tooltiptext="__MSG_quickFilterBar.booleanModeAll.tooltip__"/>
-					</menupopup>
-				</menulist>
-			</arrowscrollbox>
-		</hbox>
-	</vbox>
-
-	<menupopup id="attachmentSaveAllMultipleMenu">
-		<menu id="attachments1CardBookImport" label="__MSG_addAllAttachementsToCardBookMenuLabel__" insertafter="button-saveAllAttachments">
-			<menupopup id="attachments1CardBookImportPopup"/>
-		</menu>
-	</menupopup>
-
-	<menupopup id="attachmentSaveAllSingleMenu">
-		<menu id="attachment1CardBookImport" label="__MSG_addAttachementToCardBookMenuLabel__" insertafter="button-saveAttachment">
-			<menupopup id="attachment1CardBookImportPopup"/>
-		</menu>
-	</menupopup>
-
-	<menupopup id="attachmentListContext">
-		<menu id="attachments2CardBookImport" label="__MSG_addAllAttachementsToCardBookMenuLabel__" insertafter="context-saveAllAttachments">
-			<menupopup id="attachments2CardBookImportPopup"/>
-		</menu>
-	</menupopup>
-
-	<menupopup id="attachmentItemContext">
-		<menu id="attachment2CardBookImport" label="__MSG_addAttachementToCardBookMenuLabel__" insertafter="context-saveAttachment">
-			<menupopup id="attachment2CardBookImportPopup"/>
-		</menu>
-	</menupopup>
 
 	<tabpanels id="tabpanelcontainer">
 		<box id="cardbookTabPanel" orient="vertical" flex="1" onkeypress="wdw_cardbook.chooseActionForKey(event);" collapsed="true">
@@ -446,22 +342,13 @@ function onLoad(wasAlreadyOpen) {
 									<menuitem id="cardbookToolsMenuFindSingleDuplicates" label="__MSG_cardbookToolsMenuFindSingleDuplicatesLabel__" oncommand="wdw_cardbook.findDuplicatesFromAccountsOrCats();"/>
 									<menuitem id="cardbookToolsMenuFindDuplicates" label="__MSG_cardbookToolsMenuFindAllDuplicatesLabel__" oncommand="wdw_cardbook.findDuplicates();"/>
 									<menuseparator/>
-									<menuitem id="cardbookToolsMenuLog" label="__MSG_wdw_logEditionTitle__" oncommand="window.ovl_cardbook.openLogEdition();"/>
+									<menuitem id="cardbookToolsMenuLog" label="__MSG_wdw_logEditionTitle__" oncommand="wdw_cardbook.openLogEdition();"/>
 									<menuseparator/>
 									<menuitem id="cardbookToolsMenuOptions" label="__MSG_cardbookToolsMenuPrefsLabel__" oncommand="cardbookWindowUtils.openConfigurationWindow();"/>
 								</menupopup>
 							</menu>
 						</menupopup>
 					</toolbarbutton>
-					<toolbaritem id="cardbookToolbarSearchBox" flex="1"
-						title="__MSG_cardbookToolbarSearchBoxLabel__"
-						tooltiptext="__MSG_cardbookToolbarSearchBoxTooltip__"
-						mode="dialog"
-						class="toolbaritem-noline chromeclass-toolbar-additional">
-						<search-textbox id="cardbookSearchInput"
-							class="searchBox"
-							oncommand="wdw_cardbook.onStartSearch();"/>
-					</toolbaritem>
 					<toolbarbutton id="cardbookToolbarComplexSearch"
 						label="__MSG_cardbookToolbarComplexSearchLabel__"
 						tooltiptext="__MSG_cardbookToolbarComplexSearchTooltip__"
@@ -607,8 +494,10 @@ function onLoad(wasAlreadyOpen) {
 					</menupopup>
 				</menu>
 			</menupopup>
-	
-			<menupopup id="cardsTreeContextMenu" onpopupshowing="return wdw_cardbook.cardsTreeContextShowing(event);">
+
+			<menupopup id="sortTreeContextMenu"/>
+
+			<menupopup id="cardsTreeContextMenu">
 				<menuitem id="addContactFromCards" label="__MSG_cardbookToolbarAddContactButtonLabel__" oncommand="wdw_cardbook.newKey();"/>
 				<menuitem id="addListFromCards" label="__MSG_cardbookToolbarAddListButtonLabel__" oncommand="wdw_cardbook.createList();"/>
 				<menuitem id="editCardFromCards" label="__MSG_cardbookToolbarEditButtonLabel__" oncommand="wdw_cardbook.editCard();"/>
@@ -760,7 +649,7 @@ function onLoad(wasAlreadyOpen) {
 			</template>
 
 			<hbox id="mainHbox" flex="1">
-				<vbox id="leftPaneVbox1" persist="width collapsed">
+				<vbox id="leftPaneVbox1" persist="width collapsed" ondblclick="wdw_cardbook.doubleClickAccountOrCat(event);">
 					<vbox id="cardbookFolderPaneToolbox">
 						<hbox id="cardbookFolderPaneToolbar"
 							class="inline-toolbar toolbar"
@@ -769,7 +658,7 @@ function onLoad(wasAlreadyOpen) {
 							accesskey="__MSG_cardbookABPaneToolbarAccesskey__"
 							context="cardbook-toolbar-context"
 							collapsed="false">
-							<toolbaritem id="accountsOrCatsTreeToolbaritem" align="center"
+							<toolbaritem id="accountsOrCatsTreeToolbaritem" align="center" flex="1"
 								label="__MSG_cardbookToolbarABMenuLabel__"
 								tooltiptext="__MSG_cardbookToolbarABMenuTooltip__">
 								<menulist id="accountsOrCatsTreeMenulist" oncommand="wdw_cardbook.changeAddressbookTreeMenu();" sizetopopup="none" crop="center" flex="1">
@@ -778,403 +667,417 @@ function onLoad(wasAlreadyOpen) {
 							</toolbaritem>
 						</hbox>
 					</vbox>
-					<tree id="accountsOrCatsTree"
-						class="cardbookTreeClass cardbookAccountTreeClass"
-						seltype="single"
-						flex="1" editable="false" context="accountsOrCatsTreeContextMenu" enableColumnDrag="false"
-						hidecolumnpicker="true" onkeyup="wdw_cardbook.selectAccountOrCatInNoSearch();" onclick="wdw_cardbook.selectAccountOrCatInNoSearch();">
-						<treecols id="accountsOrCatsTreecols">
-							<treecol id="accountTypeCheckbox" width="20" hideheader="true" persist="width ordinal hidden"/>
-							<treecol id="accountColor" width="20" hideheader="true" persist="width ordinal hidden" tooltiptext="__MSG_colorAccountsTooltip__"/>
-							<treecol id="accountName" flex="1" persist="width ordinal hidden" primary="true" hideheader="true" crop="center"/>
-							<treecol id="accountId" persist="width ordinal hidden" hidden="true" hideheader="true"/>
-							<treecol id="accountType" persist="width ordinal hidden" hidden="true" hideheader="true"/>
-							<treecol id="accountRoot" persist="width ordinal hidden" hidden="true" hideheader="true"/>
-							<treecol id="accountStatusCheckbox" persist="width ordinal hidden" width="20" hideheader="true" tooltiptext="__MSG_readonlyAccountsTooltip__"/>
-							<treecol id="dummyForScroll" type="checkbox" persist="width ordinal hidden" width="17" hideheader="true"/>
-						</treecols>
-						<treechildren id="accountsOrCatsTreeChildren" flex="1" ondragstart="wdw_cardbook.startDrag(event);" ondrop="wdw_cardbook.dragCards(event);"
-									 ondblclick="wdw_cardbook.doubleClickAccountOrCat(event);"/>
-					</tree>
+					<html:ul id="cardbookAccountsTree" is="cb-tree-listbox" role="tree">
+						<html:li class="unselectable">
+							<html:ul id="cardbookAccountsTreeUL"></html:ul>
+						</html:li>
+					</html:ul>
+					<html:template id="cardbookAccountsTemplate">
+						<html:div class="container">
+							<html:div class="twisty">
+								<html:img class="twisty-icon" src="chrome://global/skin/icons/arrow-down-12.svg" alt=""/>
+							</html:div>
+							<html:div class="icon"></html:div>
+							<html:span class="name" tabindex="-1"></html:span>
+							<html:div class="statusIcon"></html:div>
+						</html:div>
+						<html:ul></html:ul>
+					</html:template>
 				</vbox>
 
 				<splitter id="dirTreeSplitter" collapse="before" persist="state orient" class="cardbookVerticalSplitterClass"/>
 
-				<box id="cardsBox" flex="1">
-					<vbox id="rightPaneUpHbox1" flex="1" persist="width height collapsed" ondragover="wdw_cardbook.canDropOnContactBox(event);" ondrop="wdw_cardbook.dragCards(event);">
-						<vbox id="searchRemoteHbox">
-							<hbox flex="1" class="input-container">
-								<html:input id="searchRemoteTextbox" placeholder="__MSG_searchRemoteLabel__" onchange="wdw_cardbook.searchRemote();"/>
-							</hbox>
-						</vbox>
-						<tree id="cardsTree" class="cardbookTreeClass cardbookCardsTreeClass" context="cardsTreeContextMenu" flex="1" enableColumnDrag="true" 
-							persist="width sortDirection sortResource" hidecolumnpicker="false"
-							onkeyup="wdw_cardbook.selectCard(event);" onclick="wdw_cardbook.sortTrees(event);">
-							<treecols id="cardsTreecols" is="cards-pane-treecols" pickertooltiptext="__MSG_columnChooser2.tooltip__"/>
-						   <treechildren id="cardsTreeChildren" ondragstart="wdw_cardbook.startDrag(event);" ondblclick="wdw_cardbook.doubleClickCardsTree(event);"/>
-						</tree>
-					</vbox>
-
-					<splitter id="resultsSplitter" collapse="after" orient="vertical" persist="state orient" class="cardbookHorizontalSplitterClass"/>
-
-					<hbox id="rightPaneDownHbox2" context="" persist="width height collapsed" class="cardbookBackgroundColorClass">
-						<vbox flex="1">
-							<vbox>
-								<hbox id="cardbookContactButtonsBox">
-									<button id="generalTab" label="__MSG_generalTabLabel__" class="cardbookContactButtons" oncommand="wdw_cardbook.showPane('generalTabPanel');"/>
-									<button id="listTab" label="__MSG_listsTabLabel__" class="cardbookContactButtons" oncommand="wdw_cardbook.showPane('listTabPanel');"/>
-									<button id="technicalTab" label="__MSG_technicalTabLabel__" class="cardbookContactButtons" oncommand="wdw_cardbook.showPane('technicalTabPanel');"/>
-									<button id="vcardTab" label="__MSG_vCardTabLabel__" class="cardbookContactButtons" oncommand="wdw_cardbook.showPane('vcardTabPanel');"/>
-									<button id="keyTab" label="__MSG_keyTabLabel__" class="cardbookContactButtons" oncommand="wdw_cardbook.showPane('keyTabPanel');"/>
-								</hbox>
+				<vbox flex="1">
+					<box id="cardsBox" flex="1">
+						<vbox id="rightPaneUpHbox1">
+							<vbox id="cardbookCardsTreeBox" flex="1" persist="width height collapsed" ondragover="wdw_cardbook.canDropOnContactBox(event);" ondrop="wdw_cardbook.dragCards(event);">
+								<html:div id="searchRemoteHbox">
+									<html:input is="ab-card-search-input" id="cardbookSearchInput"
+										type="search"
+										placeholder=""/>
+									<html:div id="searchAllAB"/>
+								</html:div>
+								<html:tree-view id="cardbookCardsTree">
+									<html:slot name="placeholders">
+										<html:div id="searchingABPlaceholder"
+											hidden="hidden">__MSG_searchingABPlaceholder__</html:div>
+									</html:slot>
+								</html:tree-view>
+								<html:template id="cardbookCardsTreeApplyViewMenu">
+									<menu class="applyToABMenu"
+										label="__MSG_columnPickerApplyCurrentViewTo__"
+										oncommand="cardbookHTMLCardsTree.confirmApplyAB(event);">
+											<menupopup class="applyToABMenupopup"/>
+									</menu>
+								</html:template>
 							</vbox>
-							<vbox id="generalTabPanel" class="cardbookTab" style="overflow:auto;" flex="1">	
-								<hbox>
-									<vbox flex="1">
-										<vbox id="fnGroupbox" flex="1">
-											<label class="header">__MSG_fnLabel__</label>
-											<hbox id="fnRow" flex="1" class="indent">
-												<label id="fnTextBox" data-field-name="fn"/>
+							<html:div id="CBCardsCount">
+								<label id="selectedContacts"/>
+								<label id="totalContacts" tooltiptext="__MSG_statusProgressInformationTooltip__" onclick="wdw_cardbook.openLogEdition();"/>
+							</html:div>
+						</vbox>
+
+						<splitter id="resultsSplitter" collapse="after" orient="vertical" persist="state orient" class="cardbookHorizontalSplitterClass"/>
+
+						<vbox id="rightPaneDownHbox2" persist="width height collapsed" class="cardbookBackgroundColorClass" flex="1">
+							<vbox flex="1">
+								<vbox>
+									<hbox id="cardbookContactButtonsBox">
+										<button id="generalTab" label="__MSG_generalTabLabel__" class="cardbookContactButtons" oncommand="wdw_cardbook.showPane('generalTabPanel');"/>
+										<button id="listTab" label="__MSG_listsTabLabel__" class="cardbookContactButtons" oncommand="wdw_cardbook.showPane('listTabPanel');"/>
+										<button id="technicalTab" label="__MSG_technicalTabLabel__" class="cardbookContactButtons" oncommand="wdw_cardbook.showPane('technicalTabPanel');"/>
+										<button id="vcardTab" label="__MSG_vCardTabLabel__" class="cardbookContactButtons" oncommand="wdw_cardbook.showPane('vcardTabPanel');"/>
+										<button id="keyTab" label="__MSG_keyTabLabel__" class="cardbookContactButtons" oncommand="wdw_cardbook.showPane('keyTabPanel');"/>
+									</hbox>
+								</vbox>
+								<vbox id="generalTabPanel" class="cardbookTab" style="overflow:auto;" flex="1">	
+									<hbox>
+										<vbox flex="1">
+											<vbox id="fnGroupbox" flex="1">
+												<label class="header">__MSG_fnLabel__</label>
+												<hbox id="fnRow" flex="1" class="indent">
+													<label id="fnTextBox" data-field-name="fn"/>
+												</hbox>
+											</vbox>
+											<hbox id="persBox" flex="1">
+												<vbox id="personalGroupbox" flex="1">
+													<label class="header">__MSG_persTitleLabel__</label>
+													<hbox flex="1" class="indent">
+														<html:table id="personalTable">
+															<html:tr id="lastnameRow">
+																<html:td>
+																	<label id="lastnameLabel" value="__MSG_lastnameLabel__" control="lastnameTextBox" class="header"/>
+																</html:td>
+																<html:td>
+																	<label id="lastnameTextBox" data-field-name="lastname"/>
+																</html:td>
+															</html:tr>
+															<html:tr id="firstnameRow">
+																<html:td>
+																	<label id="firstnameLabel" value="__MSG_firstnameLabel__" control="firstnameTextBox" class="header"/>
+																</html:td>
+																<html:td>
+																	<label id="firstnameTextBox" data-field-name="firstname"/>
+																</html:td>
+															</html:tr>
+															<html:tr id="othernameRow">
+																<html:td>
+																	<label id="othernameLabel" value="__MSG_othernameLabel__" control="othernameTextBox" class="header"/>
+																</html:td>
+																<html:td>
+																	<label id="othernameTextBox" data-field-name="othername"/>
+																</html:td>
+															</html:tr>
+															<html:tr id="prefixnameRow">
+																<html:td>
+																	<label id="prefixnameLabel" value="__MSG_prefixnameLabel__" control="prefixnameTextBox" class="header"/>
+																</html:td>
+																<html:td>
+																	<label id="prefixnameTextBox" data-field-name="prefixname"/>
+																</html:td>
+															</html:tr>
+															<html:tr id="suffixnameRow">
+																<html:td>
+																	<label id="suffixnameLabel" value="__MSG_suffixnameLabel__" control="suffixnameTextBox" class="header"/>
+																</html:td>
+																<html:td>
+																	<label id="suffixnameTextBox" data-field-name="suffixname"/>
+																</html:td>
+															</html:tr>
+															<html:tr id="nicknameRow">
+																<html:td>
+																	<label id="nicknameLabel" value="__MSG_nicknameLabel__" control="nicknameTextBox" class="header"/>
+																</html:td>
+																<html:td>
+																	<label id="nicknameTextBox" data-field-name="nickname"/>
+																</html:td>
+															</html:tr>
+															<html:tr id="genderRow">
+																<html:td>
+																	<label id="genderLabel" value="__MSG_genderLabel__" control="genderTextBox" class="header"/>
+																</html:td>
+																<html:td>
+																	<label id="genderTextBox" data-field-name="gender"/>
+																</html:td>
+															</html:tr>
+															<html:tr id="bdayRow">
+																<html:td>
+																	<label id="bdayLabel" value="__MSG_bdayLabel__" control="bdayTextBox" class="header"/>
+																</html:td>
+																<html:td>
+																	<label id="bdayTextBox" data-field-name="bday"/>
+																</html:td>
+															</html:tr>
+															<html:tr id="birthplaceRow">
+																<html:td>
+																	<label id="birthplaceLabel" value="__MSG_birthplaceLabel__" control="birthplaceTextBox" class="header"/>
+																</html:td>
+																<html:td>
+																	<label id="birthplaceTextBox" data-field-name="birthplace"/>
+																</html:td>
+															</html:tr>
+															<html:tr id="deathdateRow">
+																<html:td>
+																	<label id="deathdateLabel" value="__MSG_deathdateLabel__" control="deathdateTextBox" class="header"/>
+																</html:td>
+																<html:td>
+																	<label id="deathdateTextBox" data-field-name="deathdate"/>
+																</html:td>
+															</html:tr>
+															<html:tr id="deathplaceRow">
+																<html:td>
+																	<label id="deathplaceLabel" value="__MSG_deathplaceLabel__" control="deathplaceTextBox" class="header"/>
+																</html:td>
+																<html:td>
+																	<label id="deathplaceTextBox" data-field-name="deathplace"/>
+																</html:td>
+															</html:tr>
+															<html:tr id="anniversaryRow">
+																<html:td>
+																	<label id="anniversaryLabel" value="__MSG_anniversaryLabel__" control="anniversaryTextBox" class="header"/>
+																</html:td>
+																<html:td>
+																	<label id="anniversaryTextBox" data-field-name="anniversary"/>
+																</html:td>
+															</html:tr>
+														</html:table>
+													</hbox>
+												</vbox>
+											</hbox>
+											<hbox id="orgBox" flex="1">
+												<vbox id="orgGroupbox" flex="1">
+													<label class="header">__MSG_orgTitleLabel__</label>
+													<hbox flex="1" class="indent">
+														<html:table id="orgTable"/>
+													</hbox>
+												</vbox>
+											</hbox>
+											<vbox id="categoriesclassicalGroupbox" flex="1">
+												<label class="header">__MSG_categoriesHeader__</label>
+												<hbox id="categoriesclassicalHbox" flex="1" class="indent">
+													<vbox id="categoriesclassicalRow" flex="1"/>
+												</hbox>
+											</vbox>
+											<hbox id="noteclassicalGroupbox" flex="1">
+												<label id="noteclassicalLabel" class="header">__MSG_noteTabLabel__</label>
+												<html:textarea id="noteclassicalTextBox" class="indent"/>
 											</hbox>
 										</vbox>
-										<hbox id="persBox" flex="1">
-											<vbox id="personalGroupbox" flex="1">
-												<label class="header">__MSG_persTitleLabel__</label>
-												<hbox flex="1" class="indent">
-													<html:table id="personalTable">
-														<html:tr id="lastnameRow">
-															<html:td>
-																<label id="lastnameLabel" value="__MSG_lastnameLabel__" control="lastnameTextBox" class="header"/>
-															</html:td>
-															<html:td>
-																<label id="lastnameTextBox" data-field-name="lastname"/>
-															</html:td>
-														</html:tr>
-														<html:tr id="firstnameRow">
-															<html:td>
-																<label id="firstnameLabel" value="__MSG_firstnameLabel__" control="firstnameTextBox" class="header"/>
-															</html:td>
-															<html:td>
-																<label id="firstnameTextBox" data-field-name="firstname"/>
-															</html:td>
-														</html:tr>
-														<html:tr id="othernameRow">
-															<html:td>
-																<label id="othernameLabel" value="__MSG_othernameLabel__" control="othernameTextBox" class="header"/>
-															</html:td>
-															<html:td>
-																<label id="othernameTextBox" data-field-name="othername"/>
-															</html:td>
-														</html:tr>
-														<html:tr id="prefixnameRow">
-															<html:td>
-																<label id="prefixnameLabel" value="__MSG_prefixnameLabel__" control="prefixnameTextBox" class="header"/>
-															</html:td>
-															<html:td>
-																<label id="prefixnameTextBox" data-field-name="prefixname"/>
-															</html:td>
-														</html:tr>
-														<html:tr id="suffixnameRow">
-															<html:td>
-																<label id="suffixnameLabel" value="__MSG_suffixnameLabel__" control="suffixnameTextBox" class="header"/>
-															</html:td>
-															<html:td>
-																<label id="suffixnameTextBox" data-field-name="suffixname"/>
-															</html:td>
-														</html:tr>
-														<html:tr id="nicknameRow">
-															<html:td>
-																<label id="nicknameLabel" value="__MSG_nicknameLabel__" control="nicknameTextBox" class="header"/>
-															</html:td>
-															<html:td>
-																<label id="nicknameTextBox" data-field-name="nickname"/>
-															</html:td>
-														</html:tr>
-														<html:tr id="genderRow">
-															<html:td>
-																<label id="genderLabel" value="__MSG_genderLabel__" control="genderTextBox" class="header"/>
-															</html:td>
-															<html:td>
-																<label id="genderTextBox" data-field-name="gender"/>
-															</html:td>
-														</html:tr>
-														<html:tr id="bdayRow">
-															<html:td>
-																<label id="bdayLabel" value="__MSG_bdayLabel__" control="bdayTextBox" class="header"/>
-															</html:td>
-															<html:td>
-																<label id="bdayTextBox" data-field-name="bday"/>
-															</html:td>
-														</html:tr>
-														<html:tr id="birthplaceRow">
-															<html:td>
-																<label id="birthplaceLabel" value="__MSG_birthplaceLabel__" control="birthplaceTextBox" class="header"/>
-															</html:td>
-															<html:td>
-																<label id="birthplaceTextBox" data-field-name="birthplace"/>
-															</html:td>
-														</html:tr>
-														<html:tr id="deathdateRow">
-															<html:td>
-																<label id="deathdateLabel" value="__MSG_deathdateLabel__" control="deathdateTextBox" class="header"/>
-															</html:td>
-															<html:td>
-																<label id="deathdateTextBox" data-field-name="deathdate"/>
-															</html:td>
-														</html:tr>
-														<html:tr id="deathplaceRow">
-															<html:td>
-																<label id="deathplaceLabel" value="__MSG_deathplaceLabel__" control="deathplaceTextBox" class="header"/>
-															</html:td>
-															<html:td>
-																<label id="deathplaceTextBox" data-field-name="deathplace"/>
-															</html:td>
-														</html:tr>
-														<html:tr id="anniversaryRow">
-															<html:td>
-																<label id="anniversaryLabel" value="__MSG_anniversaryLabel__" control="anniversaryTextBox" class="header"/>
-															</html:td>
-															<html:td>
-																<label id="anniversaryTextBox" data-field-name="anniversary"/>
-															</html:td>
-														</html:tr>
-													</html:table>
-												</hbox>
-											</vbox>
-										</hbox>
-										<hbox id="orgBox" flex="1">
-											<vbox id="orgGroupbox" flex="1">
-												<label class="header">__MSG_orgTitleLabel__</label>
-												<hbox flex="1" class="indent">
-													<html:table id="orgTable"/>
-												</hbox>
-											</vbox>
-										</hbox>
-										<vbox id="categoriesclassicalGroupbox" flex="1">
+										<vbox id="imageBox" align="center">
+											<hbox align="center">
+												<html:img id="imageForSizing" hidden="true"/>
+												<image id="defaultCardImage" context="imageCardContextMenu"/>
+											</hbox>
+										</vbox>
+										<vbox flex="1">
+											<html:table id="classicalRows"/>
+										</vbox>
+									</hbox>
+									<hbox align="center">
+										<vbox id="categoriesmodernGroupbox" flex="1">
 											<label class="header">__MSG_categoriesHeader__</label>
-											<hbox id="categoriesclassicalHbox" flex="1" class="indent">
-												<vbox id="categoriesclassicalRow" flex="1"/>
+											<hbox id="categoriesmodernHbox" flex="1" class="indent">
+												<vbox id="categoriesmodernRow"/>
 											</hbox>
 										</vbox>
-										<hbox id="noteclassicalGroupbox" flex="1">
-											<label id="noteclassicalLabel" class="header">__MSG_noteTabLabel__</label>
-											<html:textarea id="noteclassicalTextBox" class="indent"/>
-										</hbox>
-									</vbox>
-									<vbox id="imageBox" align="center" width="170px">
-										<hbox align="center" height="170px">
-											<html:img id="imageForSizing" hidden="true"/>
-											<image id="defaultCardImage" context="imageCardContextMenu"/>
-										</hbox>
-									</vbox>
-									<vbox flex="1">
-										<html:table id="classicalRows"/>
-									</vbox>
-								</hbox>
-								<hbox align="center">
-									<vbox id="categoriesmodernGroupbox" flex="1">
-										<label class="header">__MSG_categoriesHeader__</label>
-										<hbox id="categoriesmodernHbox" flex="1" class="indent">
-											<vbox id="categoriesmodernRow"/>
-										</hbox>
-									</vbox>
-								</hbox>
-								<hbox>
-									<html:table id="modernRows"/>
-								</hbox>
-								<hbox id="listGroupbox">
-									<vbox id="addedCardsGroupbox" flex="1"/>
-								</hbox>
-								<hbox flex="1">
-									<vbox flex="1">
-										<hbox id="notemodernGroupbox" flex="1">
-											<label id="notemodernLabel" class="header">__MSG_noteTabLabel__</label>
-											<html:textarea id="notemodernTextBox" class="indent"/>
-										</hbox>
-									</vbox>
-								</hbox>
-							</vbox>
-		
-							<vbox id="listTabPanel" class="cardbookTab" style="overflow:auto;" flex="1">
-								<vbox id="PreferMailFormatReadOnlyGroupbox">
-									<label class="header">__MSG_PreferMailFormatGroupbox.label__</label>
-									<hbox align="center" class="indent input-container">
-										<label control="PreferMailFormatTextbox">__MSG_PreferMailFormat.label__</label>
-										<label id="PreferMailFormatTextbox" readonly="true"/>
+									</hbox>
+									<hbox>
+										<html:table id="modernRows"/>
+									</hbox>
+									<hbox id="listGroupbox">
+										<vbox id="addedCardsGroupbox" flex="1"/>
+									</hbox>
+									<hbox flex="1">
+										<vbox flex="1">
+											<hbox id="notemodernGroupbox" flex="1">
+												<label id="notemodernLabel" class="header">__MSG_noteTabLabel__</label>
+												<html:textarea id="notemodernTextBox" class="indent"/>
+											</hbox>
+										</vbox>
 									</hbox>
 								</vbox>
-								<vbox id="emailpropertyGroupbox"/>
-							</vbox>
-		
-							<vbox id="technicalTabPanel" class="cardbookTab" style="overflow:auto;" flex="1">
-								<vbox id="miscGroupbox">
-									<label class="header">__MSG_miscGroupboxLabel__</label>
-									<hbox flex="1" align="center" class="indent">
-										<html:table>
-											<html:tr id="mailerRow">
-												<html:td>
-													<label id="mailerLabel" value="__MSG_mailerLabel__" control="mailerTextBox" class="header"/>
-												</html:td>
-												<html:td>
-													<label id="mailerTextBox"/>
-												</html:td>
-											</html:tr>
-											<html:tr id="sortstringRow">
-												<html:td>
-													<label id="sortstringLabel" value="__MSG_sortstringLabel__" control="sortstringTextBox" class="header"/>
-												</html:td>
-												<html:td>
-													<label id="sortstringTextBox"/>
-												</html:td>
-											</html:tr>
-											<html:tr id="class1Row">
-												<html:td>
-													<label id="class1Label" value="__MSG_class1Label__" control="class1TextBox" class="header"/>
-												</html:td>
-												<html:td>
-													<label id="class1TextBox"/>
-												</html:td>
-											</html:tr>
-											<html:tr id="agentRow">
-												<html:td>
-													<label id="agentLabel" value="__MSG_agentLabel__" control="agentTextBox" class="header"/>
-												</html:td>
-												<html:td>
-													<label id="agentTextBox"/>
-												</html:td>
-											</html:tr>
-											<html:tr id="keyRow">
-												<html:td>
-													<label id="keyLabel" value="__MSG_keyLabel__" control="keyTextBox" class="header"/>
-												</html:td>
-												<html:td>
-													<label id="keyTextBox"/>
-												</html:td>
-											</html:tr>
-											<html:tr id="photoURIRow">
-												<html:td>
-													<label id="photoURILabel" value="__MSG_photoURILabel__" control="photoURITextBox" class="header"/>
-												</html:td>
-												<html:td>
-													<label id="photoExtensionTextBox" hidden="true"/>
-												</html:td>
-												<html:td>
-													<html:textarea id="photoURITextBox"/>
-												</html:td>
-												<html:td>
-													<label id="photoAttachmentIdTextBox" hidden="true"/>
-												</html:td>
-											</html:tr>
-											<html:tr id="logoURIRow">
-												<html:td>
-													<label id="logoURILabel" value="__MSG_logoURILabel__" control="logoURITextBox" class="header"/>
-												</html:td>
-												<html:td>
-													<label id="logoExtensionTextBox" hidden="true"/>
-												</html:td>
-												<html:td>
-													<label id="logoURITextBox"/>
-												</html:td>
-											</html:tr>
-											<html:tr id="soundURIRow">
-												<html:td>
-													<label id="soundURILabel" value="__MSG_soundURILabel__" control="soundURITextBox" class="header"/>
-												</html:td>
-												<html:td>
-													<label id="soundExtensionTextBox" hidden="true"/>
-												</html:td>
-												<html:td>
-													<label id="soundURITextBox"/>
-												</html:td>
-											</html:tr>
-										</html:table>
-									</hbox>
-								</vbox>
-										
-								<vbox id="techGroupbox">
-									<label class="header">__MSG_techGroupboxLabel__</label>
-									<hbox flex="1" align="center" class="indent">
-										<html:table>
-											<html:tr id="dirPrefIdRow">
-												<html:td>
-													<label id="dirPrefIdLabel" value="__MSG_dirPrefIdLabel__" control="dirPrefIdTextBox" class="header"/>
-												</html:td>
-												<html:td>
-													<label id="dirPrefIdTextBox"/>
-												</html:td>
-											</html:tr>
-											<html:tr id="versionRow">
-												<html:td>
-													<label id="versionLabel" value="__MSG_versionLabel__" control="versionTextBox" class="header"/>
-												</html:td>
-												<html:td>
-													<label id="versionTextBox"/>
-												</html:td>
-											</html:tr>
-											<html:tr id="prodidRow">
-												<html:td>
-													<label id="prodidLabel" value="__MSG_prodidLabel__" control="prodidTextBox" class="header"/>
-												</html:td>
-												<html:td>
-													<label id="prodidTextBox"/>
-												</html:td>
-											</html:tr>
-											<html:tr id="uidRow">
-												<html:td>
-													<label id="uidLabel" value="__MSG_uidLabel__" control="uidTextBox" class="header"/>
-												</html:td>
-												<html:td>
-													<label id="uidTextBox"/>
-												</html:td>
-											</html:tr>
-											<html:tr id="cardurlRow">
-												<html:td>
-													<label id="cardurlLabel" value="__MSG_cardurlLabel__" control="cardurlTextBox" class="header"/>
-												</html:td>
-												<html:td>
-													<label id="cardurlTextBox"/>
-												</html:td>
-											</html:tr>
-											<html:tr id="revRow">
-												<html:td>
-													<label id="revLabel" value="__MSG_revLabel__" control="revTextBox" class="header"/>
-												</html:td>
-												<html:td>
-													<label id="revTextBox"/>
-												</html:td>
-											</html:tr>
-											<html:tr id="etagRow">
-												<html:td>
-													<label id="etagLabel" value="__MSG_etagLabel__" control="etagTextBox" class="header"/>
-												</html:td>
-												<html:td>
-													<label id="etagTextBox"/>
-												</html:td>
-											</html:tr>
-										</html:table>
-									</hbox>
-								</vbox>
-										
-								<hbox id="othersGroupbox" flex="1">
-									<vbox id="othersGroupboxWrapper" flex="1">
-										<label class="header">__MSG_othersGroupboxLabel__</label>
-										<html:textarea id="othersTextBox"/>
+			
+								<vbox id="listTabPanel" class="cardbookTab" style="overflow:auto;" flex="1">
+									<vbox id="PreferMailFormatReadOnlyGroupbox">
+										<label class="header">__MSG_PreferMailFormatGroupbox.label__</label>
+										<hbox align="center" class="indent input-container">
+											<label control="PreferMailFormatTextbox">__MSG_PreferMailFormat.label__</label>
+											<label id="PreferMailFormatTextbox" readonly="true"/>
+										</hbox>
 									</vbox>
-								</hbox>
-							</vbox>
-		
-							<vbox id="vcardTabPanel" class="cardbookTab" style="overflow:auto;" flex="1">
-								<hbox id="vcardTabGroupbox" flex="1">
-									<html:textarea id="vcardTextBox"/>
-								</hbox>
-							</vbox>
-		
-							<vbox id="keyTabPanel" class="cardbookTab" style="overflow:auto;" flex="1">
-								<box id="keyReadOnlyGroupbox"/>
+									<vbox id="emailpropertyGroupbox"/>
+								</vbox>
+			
+								<vbox id="technicalTabPanel" class="cardbookTab" style="overflow:auto;" flex="1">
+									<vbox id="miscGroupbox">
+										<label class="header">__MSG_miscGroupboxLabel__</label>
+										<hbox flex="1" align="center" class="indent">
+											<html:table>
+												<html:tr id="mailerRow">
+													<html:td>
+														<label id="mailerLabel" value="__MSG_mailerLabel__" control="mailerTextBox" class="header"/>
+													</html:td>
+													<html:td>
+														<label id="mailerTextBox"/>
+													</html:td>
+												</html:tr>
+												<html:tr id="sortstringRow">
+													<html:td>
+														<label id="sortstringLabel" value="__MSG_sortstringLabel__" control="sortstringTextBox" class="header"/>
+													</html:td>
+													<html:td>
+														<label id="sortstringTextBox"/>
+													</html:td>
+												</html:tr>
+												<html:tr id="class1Row">
+													<html:td>
+														<label id="class1Label" value="__MSG_class1Label__" control="class1TextBox" class="header"/>
+													</html:td>
+													<html:td>
+														<label id="class1TextBox"/>
+													</html:td>
+												</html:tr>
+												<html:tr id="agentRow">
+													<html:td>
+														<label id="agentLabel" value="__MSG_agentLabel__" control="agentTextBox" class="header"/>
+													</html:td>
+													<html:td>
+														<label id="agentTextBox"/>
+													</html:td>
+												</html:tr>
+												<html:tr id="keyRow">
+													<html:td>
+														<label id="keyLabel" value="__MSG_keyLabel__" control="keyTextBox" class="header"/>
+													</html:td>
+													<html:td>
+														<label id="keyTextBox"/>
+													</html:td>
+												</html:tr>
+												<html:tr id="photoURIRow">
+													<html:td>
+														<label id="photoURILabel" value="__MSG_photoURILabel__" control="photoURITextBox" class="header"/>
+													</html:td>
+													<html:td>
+														<label id="photoExtensionTextBox" hidden="true"/>
+													</html:td>
+													<html:td>
+														<html:textarea id="photoURITextBox"/>
+													</html:td>
+													<html:td>
+														<label id="photoAttachmentIdTextBox" hidden="true"/>
+													</html:td>
+												</html:tr>
+												<html:tr id="logoURIRow">
+													<html:td>
+														<label id="logoURILabel" value="__MSG_logoURILabel__" control="logoURITextBox" class="header"/>
+													</html:td>
+													<html:td>
+														<label id="logoExtensionTextBox" hidden="true"/>
+													</html:td>
+													<html:td>
+														<label id="logoURITextBox"/>
+													</html:td>
+												</html:tr>
+												<html:tr id="soundURIRow">
+													<html:td>
+														<label id="soundURILabel" value="__MSG_soundURILabel__" control="soundURITextBox" class="header"/>
+													</html:td>
+													<html:td>
+														<label id="soundExtensionTextBox" hidden="true"/>
+													</html:td>
+													<html:td>
+														<label id="soundURITextBox"/>
+													</html:td>
+												</html:tr>
+											</html:table>
+										</hbox>
+									</vbox>
+											
+									<vbox id="techGroupbox">
+										<label class="header">__MSG_techGroupboxLabel__</label>
+										<hbox flex="1" align="center" class="indent">
+											<html:table>
+												<html:tr id="dirPrefIdRow">
+													<html:td>
+														<label id="dirPrefIdLabel" value="__MSG_dirPrefIdLabel__" control="dirPrefIdTextBox" class="header"/>
+													</html:td>
+													<html:td>
+														<label id="dirPrefIdTextBox"/>
+													</html:td>
+												</html:tr>
+												<html:tr id="versionRow">
+													<html:td>
+														<label id="versionLabel" value="__MSG_versionLabel__" control="versionTextBox" class="header"/>
+													</html:td>
+													<html:td>
+														<label id="versionTextBox"/>
+													</html:td>
+												</html:tr>
+												<html:tr id="prodidRow">
+													<html:td>
+														<label id="prodidLabel" value="__MSG_prodidLabel__" control="prodidTextBox" class="header"/>
+													</html:td>
+													<html:td>
+														<label id="prodidTextBox"/>
+													</html:td>
+												</html:tr>
+												<html:tr id="uidRow">
+													<html:td>
+														<label id="uidLabel" value="__MSG_uidLabel__" control="uidTextBox" class="header"/>
+													</html:td>
+													<html:td>
+														<label id="uidTextBox"/>
+													</html:td>
+												</html:tr>
+												<html:tr id="cardurlRow">
+													<html:td>
+														<label id="cardurlLabel" value="__MSG_cardurlLabel__" control="cardurlTextBox" class="header"/>
+													</html:td>
+													<html:td>
+														<label id="cardurlTextBox"/>
+													</html:td>
+												</html:tr>
+												<html:tr id="revRow">
+													<html:td>
+														<label id="revLabel" value="__MSG_revLabel__" control="revTextBox" class="header"/>
+													</html:td>
+													<html:td>
+														<label id="revTextBox"/>
+													</html:td>
+												</html:tr>
+												<html:tr id="etagRow">
+													<html:td>
+														<label id="etagLabel" value="__MSG_etagLabel__" control="etagTextBox" class="header"/>
+													</html:td>
+													<html:td>
+														<label id="etagTextBox"/>
+													</html:td>
+												</html:tr>
+											</html:table>
+										</hbox>
+									</vbox>
+											
+									<hbox id="othersGroupbox" flex="1">
+										<vbox id="othersGroupboxWrapper" flex="1">
+											<label class="header">__MSG_othersGroupboxLabel__</label>
+											<html:textarea id="othersTextBox"/>
+										</vbox>
+									</hbox>
+								</vbox>
+			
+								<vbox id="vcardTabPanel" class="cardbookTab" style="overflow:auto;" flex="1">
+									<hbox id="vcardTabGroupbox" flex="1">
+										<html:textarea id="vcardTextBox"/>
+									</hbox>
+								</vbox>
+			
+								<vbox id="keyTabPanel" class="cardbookTab" style="overflow:auto;" flex="1">
+									<box id="keyReadOnlyGroupbox"/>
+								</vbox>
 							</vbox>
 						</vbox>
-					</hbox>
-				</box>
+					</box>
+				</vbox>
 			</hbox>
 		</box>
 	</tabpanels>
@@ -1184,328 +1087,6 @@ function onLoad(wasAlreadyOpen) {
 	window.ovl_cardbook.load();
 
 	window.ovl_filters.onLoad();
-
-	var ABFacetingFilter = {
-		name: "cardbook",
-		domId: "qfb-cardbook",
-		
-		/**
-		* @return true if the constaint is only on is in addressbooks/isn't in addressbooks,
-		*     false if there are specific AB constraints in play.
-		*/
-		isSimple(aFilterValue) {
-			// it's the simple case if the value is just a boolean
-			if (typeof aFilterValue != "object") {
-				return true;
-			}
-			// but also if the object contains no non-null values
-			let simpleCase = true;
-			for (let key in aFilterValue.addressbooks) {
-				let value = aFilterValue.addressbooks[key];
-				if (value !== null) {
-					simpleCase = false;
-					break;
-				}
-			}
-			return simpleCase;
-		},
-		
-		/**
-		* Because we support both inclusion and exclusion we can produce up to two
-		*  groups.  One group for inclusion, one group for exclusion.  To get listed
-		*  the message must have any/all of the addressbooks marked for inclusion,
-		*  (depending on mode), but it cannot have any of the addressbooks marked for
-		*  exclusion.
-		*/
-		appendTerms(aTermCreator, aTerms, aFilterValue) {
-			if (aFilterValue == null) {
-				return null;
-			}
-			
-			let term, value;
-			
-			// just the true/false case
-			if (this.isSimple(aFilterValue)) {
-				term = aTermCreator.createTerm();
-				value = term.value;
-				term.attrib = Components.interfaces.nsMsgSearchAttrib.Custom;
-				value.attrib = term.attrib;
-				value.str = "";
-				term.value = value;
-				term.customId = "cardbook#searchCorrespondents";
-				term.booleanAnd = true;
-				term.op = Components.interfaces.nsMsgSearchOp.IsInAB;
-				aTerms.push(term);
-				// we need to perform faceting if the value is literally true.
-				if (aFilterValue === true) {
-					return this;
-				}
-			} else {
-				let firstIncludeClause = true, firstExcludeClause = true;
-				let lastIncludeTerm = null;
-				term = null;
-				let excludeTerms = [];
-				let mode = aFilterValue.mode;
-				for (let key in aFilterValue.addressbooks) {
-					let shouldFilter = aFilterValue.addressbooks[key];
-					if (shouldFilter !== null) {
-						term = aTermCreator.createTerm();
-						value = term.value;
-						term.attrib = Components.interfaces.nsMsgSearchAttrib.Custom;
-						value.attrib = term.attrib;
-						value.str = key;
-						term.value = value;
-						term.customId = "cardbook#searchCorrespondents";
-						if (shouldFilter) {
-							term.op = Components.interfaces.nsMsgSearchOp.IsInAB;
-							// AND for the group. Inside the group we also want AND if the
-							// mode is set to "All of".
-							term.booleanAnd = firstIncludeClause || (mode === "AND");
-							term.beginsGrouping = firstIncludeClause;
-							aTerms.push(term);
-							firstIncludeClause = false;
-							lastIncludeTerm = term;
-						} else {
-							term.op = Components.interfaces.nsMsgSearchOp.IsntInAB;
-							// you need to not include all of the addressbooks marked excluded.
-							term.booleanAnd = true;
-							term.beginsGrouping = firstExcludeClause;
-							excludeTerms.push(term);
-							firstExcludeClause = false;
-						}
-					}
-				}
-				if (lastIncludeTerm) {
-					lastIncludeTerm.endsGrouping = true;
-				}
-				
-				// if we have any exclude terms:
-				// - we might need to add a "is in AB" clause if there were no explicit
-				//   inclusions.
-				// - extend the exclusions list in.
-				if (excludeTerms.length) {
-					// (we need to add is in AB)
-					if (!lastIncludeTerm) {
-						term = aTermCreator.createTerm();
-						value = term.value;
-						term.attrib = Components.interfaces.nsMsgSearchAttrib.Custom;
-						value.attrib = term.attrib;
-						value.str = "";
-						term.value = value;
-						term.customId = "cardbook#searchCorrespondents";
-						term.booleanAnd = true;
-						term.op = Components.interfaces.nsMsgSearchOp.IsInAB;
-						aTerms.push(term);
-					}
-					
-					// (extend in the exclusions)
-					excludeTerms[excludeTerms.length - 1].endsGrouping = true;
-					aTerms.push.apply(aTerms, excludeTerms);
-				}
-			}
-			return null;
-		},
-	
-		onSearchStart(aCurState) {
-			// this becomes aKeywordMap; we want to start with an empty one
-			return {};
-		},
-	
-		onSearchMessage(aKeywordMap, aMsgHdr, aFolder) {
-		},
-	
-		onSearchDone(aCurState, aKeywordMap, aStatus) {
-			// we are an async operation; if the user turned off the AB facet already,
-			//  then leave that state intact...
-			if (aCurState == null) {
-				return [null, false, false];
-			}
-			
-			// only propagate things that are actually addressbooks though!
-			let outKeyMap = {addressbooks: {}};
-			let allAddressBooks = cardbookRepository.cardbookPreferences.getAllPrefIds();
-			for (let i = 0; i < allAddressBooks.length; i++) {
-				let dirPrefId = allAddressBooks[i];
-				if (cardbookRepository.cardbookPreferences.getEnabled(dirPrefId) && (cardbookRepository.cardbookPreferences.getType(dirPrefId) !== "SEARCH")) {
-					if (dirPrefId in aKeywordMap) {
-						outKeyMap.addressbooks[dirPrefId] = aKeywordMap[dirPrefId];
-					}
-				}
-			}
-			return [outKeyMap, true, false];
-		},
-	
-		/**
-		* We need to clone our state if it's an object to avoid bad sharing.
-		*/
-		propagateState(aOld, aSticky) {
-			// stay disabled when disabled, get disabled when not sticky
-			if (aOld == null || !aSticky) {
-				return null;
-			}
-			if (this.isSimple(aOld)) {
-				return !!aOld; // could be an object, need to convert.
-			}
-			// return shallowObjCopy(aOld);
-			return JSON.parse(JSON.stringify(aOld));
-		},
-		
-		/**
-		* Default behaviour but:
-		* - We collapse our expando if we get unchecked.
-		* - We want to initiate a faceting pass if we just got checked.
-		*/
-		onCommand(aState, aNode, aEvent, aDocument) {
-			let checked = aNode.checked ? true : null;
-			if (!checked) {
-				aDocument.getElementById("quick-filter-bar-cardbook-bar").collapsed = true;
-			}
-			
-			// return ourselves if we just got checked to have
-			// onSearchStart/onSearchMessage/onSearchDone get to do their thing.
-			return [checked, true];
-		},
-		
-		domBindExtra(aDocument, aMuxer, aNode) {
-			// AB filtering mode menu (All of/Any of)
-			function commandHandler(aEvent) {
-				let filterValue = aMuxer.getFilterValueForMutation(ABFacetingFilter.name);
-				filterValue.mode = aEvent.target.value;
-				aMuxer.updateSearch();
-			}
-			aDocument.getElementById("qfb-cardbook-boolean-mode").addEventListener("ValueChange", commandHandler);
-		},
-		
-		reflectInDOM(aNode, aFilterValue, aDocument, aMuxer) {
-			aNode.checked = !!aFilterValue;
-			if (aFilterValue != null && typeof aFilterValue == "object") {
-				this._populateABBar(aFilterValue, aDocument, aMuxer);
-			} else {
-				aDocument.getElementById("quick-filter-bar-cardbook-bar").collapsed = true;
-			}
-		},
-		
-		_populateABBar(aState, aDocument, aMuxer) {
-			let ABbar = aDocument.getElementById("quick-filter-bar-cardbook-bar");
-			let keywordMap = aState.addressbooks;
-			
-			// If we have a mode stored use that. If we don't have a mode, then update
-			// our state to agree with what the UI is currently displaying;
-			// this will happen for fresh profiles.
-			let qbm = aDocument.getElementById("qfb-cardbook-boolean-mode");
-			if (aState.mode) {
-				qbm.value = aState.mode;
-			} else {
-				aState.mode = qbm.value;
-			}
-			
-			function commandHandler(aEvent) {
-				let ABKey = aEvent.target.getAttribute("value");
-				let state = aMuxer.getFilterValueForMutation(ABFacetingFilter.name);
-				state.addressbooks[ABKey] = aEvent.target.checked ? true : null;
-				aEvent.target.removeAttribute("inverted");
-				aMuxer.updateSearch();
-			};
-			
-			function rightClickHandler(aEvent) {
-				// Only do something if this is a right-click, otherwise commandHandler
-				//  will pick up on it.
-				if (aEvent.button == 2) {
-					// we need to toggle the checked state ourselves
-					aEvent.target.checked = !aEvent.target.checked;
-					let ABKey = aEvent.target.getAttribute("value");
-					let state = aMuxer.getFilterValueForMutation(ABFacetingFilter.name);
-					state.addressbooks[ABKey] = aEvent.target.checked ? false : null;
-					if (aEvent.target.checked) {
-						aEvent.target.setAttribute("inverted", "true");
-					} else {
-						aEvent.target.removeAttribute("inverted");
-					}
-					aMuxer.updateSearch();
-					aEvent.stopPropagation();
-					aEvent.preventDefault();
-				}
-			};
-			
-			for (let i = ABbar.childNodes.length -1; i >= 0; i--) {
-				let child = ABbar.childNodes[i];
-				if (child.tagName == "menulist") {
-					break;
-				}
-				ABbar.removeChild(child);
-			}
-	
-			let addCount = 0;
-			
-			var myStyleSheet = "chrome://cardbook/content/skin/cardbookQFB.css";
-			var myStyleSheetRuleName = "cardbookQFB";
-			for (let styleSheet of InspectorUtils.getAllStyleSheets(window.document, false)) {
-				for (let rule of styleSheet.cssRules) {
-					// difficult to find as the sheet as no href 
-					if (rule.cssText.includes(myStyleSheetRuleName)) {
-						cardbookRepository.deleteCssAllRules(styleSheet);
-						cardbookRepository.createMarkerRule(styleSheet, myStyleSheetRuleName);
-	
-						var allAddressBooks = [];
-						allAddressBooks = cardbookRepository.cardbookPreferences.getAllPrefIds();
-						for (let i = 0; i < allAddressBooks.length; i++) {
-							let dirPrefId = allAddressBooks[i];
-							if (cardbookRepository.cardbookPreferences.getEnabled(dirPrefId) && (cardbookRepository.cardbookPreferences.getType(dirPrefId) !== "SEARCH")) {
-								let dirPrefName = cardbookRepository.cardbookPreferences.getName(dirPrefId);
-								addCount++;
-								// Keep in mind that the XBL does not get built for dynamically created
-								//  elements such as these until they get displayed, which definitely
-								//  means not before we append it into the tree.
-								let button = aDocument.createXULElement("toolbarbutton");
-		
-								button.setAttribute("id", "qfb-cardbook-" + dirPrefId);
-								button.addEventListener("command", commandHandler);
-								button.addEventListener("click", rightClickHandler);
-								button.setAttribute("type", "checkbox");
-								if (keywordMap[dirPrefId] !== null && keywordMap[dirPrefId] !== undefined) {
-									button.setAttribute("checked", "true");
-									if (!keywordMap[dirPrefId]) {
-										button.setAttribute("inverted", "true");
-									}
-								}
-								button.setAttribute("label", dirPrefName);
-								button.setAttribute("value", dirPrefId);
-		
-								let color = cardbookRepository.cardbookPreferences.getColor(dirPrefId)
-								let ruleString = ".qfb-cardbook-button-color[buttonColor=color_" + dirPrefId + "] {color: " + color + " !important;}";
-								let ruleIndex = styleSheet.insertRule(ruleString, styleSheet.cssRules.length);
-		
-								button.setAttribute("buttonColor", "color_" + dirPrefId);
-								button.setAttribute("class", "qfb-cardbook-button qfb-cardbook-button-color");
-								ABbar.appendChild(button);
-							}
-						}
-						cardbookRepository.reloadCss(myStyleSheet);
-					}
-				}
-			}
-			ABbar.collapsed = !addCount;
-		},
-	};
-	QuickFilterManager.defineFilter(ABFacetingFilter);
-
-	// window.QuickFilterBarMuxer._binUI();
-	let domNode = document.getElementById(ABFacetingFilter.domId);
-	// the loop let binding does not latch, at least in 1.9.2
-	let latchedFilterDef = ABFacetingFilter;
-	let	handler = function(aEvent) {
-			let filterValues = window.QuickFilterBarMuxer.activeFilterer.filterValues;
-			let preValue = latchedFilterDef.name in filterValues ? filterValues[latchedFilterDef.name] : null;
-			let [postValue, update] = latchedFilterDef.onCommand(preValue, domNode, aEvent, document);
-			window.QuickFilterBarMuxer.activeFilterer.setFilterValue(latchedFilterDef.name, postValue, !update);
-			if (update) {
-				window.QuickFilterBarMuxer.deferredUpdateSearch();
-			}
-		};
-	domNode.addEventListener("command", handler);
-	if ("domBindExtra" in ABFacetingFilter) {
-		ABFacetingFilter.domBindExtra(document, this, domNode);
-	}	
 };
 
 function onUnload(wasAlreadyOpen) {

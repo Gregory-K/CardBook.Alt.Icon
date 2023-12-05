@@ -53,11 +53,11 @@ if ("undefined" == typeof(cardbookAutocomplete)) {
 							cardbookRepository.deleteCssAllRules(styleSheet);
 							cardbookRepository.createMarkerRule(styleSheet, myStyleSheetRuleName);
 							for (let account of cardbookRepository.cardbookAccounts) {
-								if (account[1] && account[5] && account[6] != "SEARCH") {
-									var dirPrefId = account[4];
+								if (account[2] && account[3] != "SEARCH") {
+									var dirPrefId = account[1];
 									var myColor = cardbookRepository.cardbookPreferences.getColor(dirPrefId)
 									var oppositeColor = cardbookRepository.getTextColorFromBackgroundColor(myColor);
-									var myStyle = cardbookRepository.getABIconType(account[6]) + "_color_" + dirPrefId + "-abook";
+									var myStyle = cardbookRepository.getABIconType(account[3]) + "_color_" + dirPrefId + "-abook";
 									if (cardbookRepository.cardbookPrefs["useColor"] == "text" && autocompleteWithColor) {
 										cardbookAutocomplete.createCssMsgAccountRules60(styleSheet, myStyle, myColor, OSName, "color");
 										cardbookAutocomplete.createCssMsgAccountRules60(styleSheet, myStyle, oppositeColor, OSName, "background-color");

@@ -1,3 +1,7 @@
+#wdw_addressbooksAddBody {
+	overflow: auto;
+}
+
 #remotePageURITable,
 #remotePageTable {
 	width: 700px;

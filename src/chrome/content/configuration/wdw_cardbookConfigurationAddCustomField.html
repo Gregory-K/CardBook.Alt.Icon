@@ -10,37 +10,40 @@
         <link rel='stylesheet' type='text/css' href="chrome://messenger/skin/accountSetup.css">
 
         <link rel='stylesheet' type='text/css' href="../skin/cardbookHTML.css">
+        <link rel='stylesheet' type='text/css' href="../skin/cardbookGrid.css">
         <link rel='stylesheet' type='text/css' href="../skin/cardbookNotifications.css">
 		<link rel='stylesheet' type='text/css' href="../skin/cardbookConfiguration.css">
 		<title>__MSG_wdw_cardbookConfigurationAddCustomFieldTitle__</title>
 	</head>
 
 	<body xmlns="http://www.mozilla.org/keymaster/gatekeeper/there.is.only.xul">
-		<div class="vbox">
-            <div class="hbox">
-                <table>
-                    <tr>
-                        <td>
-                            <label id="customFieldCodeLabel">__MSG_customFieldCodeLabel__</label>
-                        </td>
-                        <td class="cardbook-td-input">
-                            <input id="customFieldCodeTextBox"/>
-                        </td>
-                    </tr>
-                    <tr>
-                        <td>
-                            <label id="customFieldLabelLabel">__MSG_customFieldLabelLabel__</label>
-                        </td>
-                        <td class="cardbook-td-input">
-                            <input id="customFieldLabelTextBox"/>
-                        </td>
-                    </tr>
-                </table>
+        <div class="grid-container-1">
+            <div class="hbox header-container">
             </div>
-            <div class="vbox hcentered vcentered">
-				<label id="notificationMessage" type="OK" class="notificationMessage"></label>
+            <div class="hbox body-container vcentered">
+                <div class="vbox alignCenter">
+                    <table>
+                        <tr>
+                            <td>
+                                <label id="customFieldCodeLabel">__MSG_customFieldCodeLabel__</label>
+                            </td>
+                            <td class="cardbook-td-input">
+                                <input id="customFieldCodeTextBox"/>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                                <label id="customFieldLabelLabel">__MSG_customFieldLabelLabel__</label>
+                            </td>
+                            <td class="cardbook-td-input">
+                                <input id="customFieldLabelTextBox"/>
+                            </td>
+                        </tr>
+                    </table>
+                    <label id="notificationMessage" type="OK" class="notificationMessage"></label>
+                </div>
             </div>
-            <div class="hbox vright">
+            <div class="hbox footer-container vright">
                 <button id="cancelButton">__MSG_cancelEditionLabel__</button>
                 <button id="validateButton">__MSG_validateEditionLabel__</button>
             </div>

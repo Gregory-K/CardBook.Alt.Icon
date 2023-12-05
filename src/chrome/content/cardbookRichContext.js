@@ -105,7 +105,7 @@ if ("undefined" == typeof(cardbookRichContext)) {
 						wdw_cardbook.copyFieldValue(fieldName, fieldLabel, "", "");
 					} else if (fieldName.startsWith("X-") || fieldName == 'org' || fieldName == 'tz') {
 						wdw_cardbook.copyFieldValue(fieldName, fieldLabel, "", textbox1.value);
-					} else if (fieldName.startsWith("org.")) {
+					} else if (fieldName.startsWith("org_")) {
 						wdw_cardbook.copyFieldValue(fieldName, fieldLabel, "", textbox1.value, textbox1.getAttribute('allValue'));
 					} else {
 						wdw_cardbook.copyFieldValue(fieldName, fieldLabel, "", "");

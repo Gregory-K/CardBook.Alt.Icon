@@ -6,12 +6,13 @@ cardbookRepository.cardbookMailPopDatabase.db.close();
 cardbookRepository.cardbookPrefDispNameDatabase.db.close();
 cardbookRepository.cardbookSearchDatabase.db.close();
 cardbookRepository.cardbookImageDatabase.db.close();
-cardbookRepository.cardbookDuplicateDatabase.db.close();
+if (cardbookRepository.cardbookDuplicateDatabase.db) {
+	cardbookRepository.cardbookDuplicateDatabase.db.close();
+}
 
 let JSMs = [
 	"chrome://cardbook/content/addressbooksconfiguration/wdw_addressbooksAdd.js",
 	"chrome://cardbook/content/addressbooksconfiguration/wdw_addressbooksEdit.js",
-	"chrome://cardbook/content/addressbooksconfiguration/wdw_newToken.js",
 	"chrome://cardbook/content/attachvCard/cardbookAttachvCard.jsm",
 	"chrome://cardbook/content/autocomplete/LDAPAbCardFormatter.jsm",
 	"chrome://cardbook/content/autocomplete/cardbookAutocomplete.js",
@@ -53,11 +54,10 @@ let JSMs = [
 	"chrome://cardbook/content/lists/ovl_list.js",
 	"chrome://cardbook/content/mailContact/ovl_cardbookFindEmails.js",
 	"chrome://cardbook/content/mailContact/ovl_cardbookFindEvents.js",
-	"chrome://cardbook/content/mailContact/ovl_cardbookMailContacts.js",
+	"chrome://cardbook/content/ovl_cardbookAboutMessage.js",
 	"chrome://cardbook/content/mergeCards/wdw_mergeCards.js",
 	"chrome://cardbook/content/migrate/cardbookMigrate.jsm",
 	"chrome://cardbook/content/observers/cardBookComposeMsgObserver.js",
-	"chrome://cardbook/content/observers/cardBookEditionObserver.js",
 	"chrome://cardbook/content/observers/cardBookLightningObserver.js",
 	"chrome://cardbook/content/observers/cardBookObserver.js",
 	"chrome://cardbook/content/observers/cardBookObserverRepository.js",
@@ -73,7 +73,8 @@ let JSMs = [
 	"chrome://cardbook/content/cardbookClipboard.js",
 	"chrome://cardbook/content/cardbookDatePicker.js",
 	"chrome://cardbook/content/cardbookDates.jsm",
-	"chrome://cardbook/content/cardbookDirTree.js",
+	"chrome://cardbook/content/cardbookHTMLCardsTree.js",
+	"chrome://cardbook/content/cardbookHTMLDirTree.js",
 	"chrome://cardbook/content/cardbookDiscovery.jsm",
 	"chrome://cardbook/content/cardbookElementTools.js",
 	"chrome://cardbook/content/cardbookHttpRequest.jsm",
@@ -96,9 +97,6 @@ let JSMs = [
 	"chrome://cardbook/content/cardbookSynchro.js",
 	"chrome://cardbook/content/cardbookSynchronization.jsm",
 	"chrome://cardbook/content/cardbookSynchronizationGoogle2.jsm",
-	"chrome://cardbook/content/cardbookSynchronizationGoogle.jsm",
-	"chrome://cardbook/content/cardbookTreeCols.js",
-	"chrome://cardbook/content/cardbookTreeUtils.js",
 	"chrome://cardbook/content/cardbookTypes.jsm",
 	"chrome://cardbook/content/cardbookUtils.jsm",
 	"chrome://cardbook/content/cardbookWebDAV.js",

@@ -11,18 +11,22 @@ var validationList = [];
 	
 function validate () {
 	let notificationMessage = document.getElementById("notificationMessage");
-	let myValue = document.getElementById('typeTextBox').value;
-	if (!myValue) {
+	let value = document.getElementById('typeTextBox').value;
+	if (!value) {
 		document.getElementById("validateButton").disabled = true;
 		return false;
 	} else {
 		var myValidationList = JSON.parse(JSON.stringify(validationList));
 		function filterOriginal(element) {
-			return (element != myValue);
+			return (element.toUpperCase() != value.toUpperCase());
 		}
 		myValidationList = myValidationList.filter(filterOriginal);
 		if (myValidationList.length != validationList.length) {
-			cardbookHTMLNotification.setNotification(notificationMessage, "warning", "valueAlreadyExists", [myValue]);
+			cardbookHTMLNotification.setNotification(notificationMessage, "warning", "valueAlreadyExists", [value]);
+			document.getElementById("validateButton").disabled = true;
+			return false;
+		} else if (value.includes(":") || value.includes(",") || value.includes(";") || value.includes(".")) {
+			cardbookHTMLNotification.setNotification(notificationMessage, "warning", "customFieldsErrorCHAR", [value]);
 			document.getElementById("validateButton").disabled = true;
 			return false;
 		}
@@ -83,8 +87,11 @@ async function onAcceptDialog () {
 };
 
 async function onCancelDialog () {
-	cardbookHTMLRichContext.closeWindow();
+	window.close();
 };
 
+window.addEventListener("resize", async function() {
+	await cardbookHTMLRichContext.saveWindowSize();
+});
+
 await onLoadDialog();
-// to rich context

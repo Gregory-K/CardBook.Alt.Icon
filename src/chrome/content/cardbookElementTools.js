@@ -26,17 +26,6 @@ if ("undefined" == typeof(cardbookElementTools)) {
 			} catch (e) {}
 		},
 
-		deleteTreecols: function (aTreecol) {
-			try {
-				for (let i = aTreecol.childNodes.length -1; i >= 0; i--) {
-					let child = aTreecol.childNodes[i];
-					if (child.tagName != "treecolpicker") {
-						aTreecol.removeChild(child);
-					}
-				}
-			} catch (e) {}
-		},
-
 		deleteTableRows: function (aTableName, aTableHeaderRowName) {
 			let table = document.getElementById(aTableName);
 			let toDelete = [];
@@ -88,25 +77,14 @@ if ("undefined" == typeof(cardbookElementTools)) {
 		
 		addTreeSplitter: function (aParent, aParameters) {
 			var aSplitter = document.createXULElement('splitter');
-			aParent.appendChild(aSplitter);
 			aSplitter.setAttribute('class', 'tree-splitter');
-
 			for (var prop in aParameters) {
 				aSplitter.setAttribute(prop, aParameters[prop]);
 			}
+			aParent.appendChild(aSplitter);
+			return aSplitter;
 		},
 		
-		addTreecol: function (aParent, aId, aLabel, aParameters) {
-			var aTreecol = document.createXULElement('treecol');
-			aParent.appendChild(aTreecol);
-			aTreecol.setAttribute('id', aId);
-			aTreecol.setAttribute('label', aLabel);
-
-			for (var prop in aParameters) {
-				aTreecol.setAttribute(prop, aParameters[prop]);
-			}
-		},
-
 		addHBox: function (aType, aIndex, aParent, aParameters) {
 			var aHBox = document.createXULElement('hbox');
 			aParent.appendChild(aHBox);
@@ -176,87 +154,6 @@ if ("undefined" == typeof(cardbookElementTools)) {
 		addHTMLIMAGE: function (aParent, aId, aParameters) {
 			let image = cardbookElementTools.addHTMLElement("img", aParent, aId, aParameters);
 			return image;
-		},
-
-		addTreeTable: function (aId, aHeaders, aData, aDataParameters, aRowParameters, aSortFunction, aDataId) {
-			let table = document.getElementById(aId);
-			let sortColumn = table.getAttribute("data-sort-column");
-			let orderColumn = table.getAttribute("data-sort-order");
-
-			let selectedRows = table.querySelectorAll("tr[rowSelected='true']");
-			let selectedValues = [];
-			if (typeof aDataId !== 'undefined') {
-				selectedValues = Array.from(selectedRows, row => row.cells[aDataId].textContent);
-			} else {
-				selectedValues = Array.from(selectedRows, row => Array.from(row.cells, cell => cell.textContent).join());
-			}
-			cardbookElementTools.deleteRows(aId);
-
-			if (aHeaders.length) {
-				let thead = cardbookElementTools.addHTMLTHEAD(table, `${aId}_thead`);
-				let tr = cardbookElementTools.addHTMLTR(thead, `${aId}_thead_tr`);
-				for (let i = 0; i < aHeaders.length; i++) {
-					let th = cardbookElementTools.addHTMLTH(tr, `${aId}_thead_th_${i}`);
-					th.textContent = cardbookRepository.extension.localeData.localizeMessage(`${aHeaders[i]}Label`);
-					th.setAttribute("data-value", aHeaders[i]);
-					try {
-						let tooltip = cardbookRepository.extension.localeData.localizeMessage(`${aHeaders[i]}Tooltip`);
-						th.setAttribute("title", tooltip);
-					} catch (e) {}
-					if (aHeaders[i] == sortColumn) {
-						let sortImg;
-						if (orderColumn == "ascending" ) {
-							sortImg = cardbookElementTools.addHTMLIMAGE(th, `${aId}_thead_th_${i}_image`, { "src": "chrome://cardbook/content/skin/small-icons/arrow-down.svg" } );
-						} else {
-							sortImg = cardbookElementTools.addHTMLIMAGE(th, `${aId}_thead_th_${i}_image`, { "src": "chrome://cardbook/content/skin/small-icons/arrow-up.svg" } );
-						}
-						if (aSortFunction) {
-							sortImg.addEventListener("click", aSortFunction, false);
-						}
-					}
-				}
-				if (aSortFunction) {
-					tr.addEventListener("click", aSortFunction, false);
-				}
-			}
-			if (aData.length) {
-				let tbody = cardbookElementTools.addHTMLTBODY(table, `${aId}_tbody`);
-				for (let i = 0; i < aData.length; i++) {
-					let tr = cardbookElementTools.addHTMLTR(tbody, `${aId}_thead_tr_${i}`, {"tabindex": "0"});
-					let trValue = "";
-					if (typeof aDataId !== 'undefined') {
-						trValue = aData[i][aDataId];
-					} else {
-						trValue = aData[i].join();
-					}
-					for (let j = 0; j < aData[i].length; j++) {
-						let td = cardbookElementTools.addHTMLTD(tr, `${aId}_thead_td_${i}_${j}`);
-						let last = td;
-						if (typeof aData[i][j] === "boolean") {
-							let checkbox = cardbookElementTools.addHTMLElement("input", td, `${aId}_thead_td_${i}_${j}_checkbox`, {"type": "checkbox"})
-							checkbox.checked = aData[i][j];
-							last = checkbox;
-						} else {
-							td.textContent = aData[i][j];
-						}
-						if (aDataParameters && aDataParameters[j] && aDataParameters[j].events) {
-							for (let event of aDataParameters[j].events) {
-								last.addEventListener(event[0], event[1], false);
-							}
-						}
-					}
-					if (selectedValues.includes(trValue)) {
-						tr.setAttribute("rowSelected", "true");
-					}
-					if (aRowParameters && aRowParameters.titles && aRowParameters.titles[i]) {
-						tr.setAttribute("title", aRowParameters.titles[i]);
-					}
-					if (aRowParameters && aRowParameters.values && aRowParameters.values[i]) {
-						tr.setAttribute("data-value", aRowParameters.values[i]);
-					}
-				}
-			}
-			return table;
 		},
 
 		addLabel: function (aOrigBox, aId, aValue, aControl, aParameters) {
@@ -405,18 +302,18 @@ if ("undefined" == typeof(cardbookElementTools)) {
 			}
 			var sortedAddressBooks = [];
 			for (let account of cardbookRepository.cardbookAccounts) {
-				if (account[1] && (aIncludeDisabled || account[5])
-						&& (aIncludeReadOnly || !account[7])
-						&& (aIncludeSearch || (account[6] !== "SEARCH"))) {
-					if (aExclRestrictionList && aExclRestrictionList[account[4]]) {
+				if ((aIncludeDisabled || account[2])
+						&& (aIncludeReadOnly || !account[4])
+						&& (aIncludeSearch || (account[3] !== "SEARCH"))) {
+					if (aExclRestrictionList && aExclRestrictionList[account[1]]) {
 						continue;
 					}
 					if (aInclRestrictionList && aInclRestrictionList.length > 0) {
-						if (aInclRestrictionList[account[4]]) {
-							sortedAddressBooks.push([account[0], account[4], cardbookRepository.getABIconType(account[6])]);
+						if (aInclRestrictionList[account[1]]) {
+							sortedAddressBooks.push([account[0], account[1], cardbookRepository.getABIconType(account[3])]);
 						}
 					} else {
-						sortedAddressBooks.push([account[0], account[4], cardbookRepository.getABIconType(account[6])]);
+						sortedAddressBooks.push([account[0], account[1], cardbookRepository.getABIconType(account[3])]);
 					}
 				}
 			}
@@ -455,8 +352,8 @@ if ("undefined" == typeof(cardbookElementTools)) {
 			cardbookElementTools.deleteRows(aPopup.id);
 			var sortedAddressBooks = [];
 			for (let account of cardbookRepository.cardbookAccounts) {
-				if (account[1] && account[5] && cardbookRepository.cardbookUtils.isMyAccountRemote(account[6])) {
-					sortedAddressBooks.push([account[0], account[4], cardbookRepository.getABIconType(account[6])]);
+				if (account[2] && cardbookRepository.cardbookUtils.isMyAccountRemote(account[3])) {
+					sortedAddressBooks.push([account[0], account[1], cardbookRepository.getABIconType(account[3])]);
 				}
 			}
 			cardbookRepository.cardbookUtils.sortMultipleArrayByString(sortedAddressBooks,0,1);

@@ -81,133 +81,63 @@ if ("undefined" == typeof(cardbookWindowUtils)) {
 		},
 
 		getSelectedCards: function () {
-			var myTree = document.getElementById('cardsTree');
-			var listOfSelectedCard = [];
-			var numRanges = myTree.view.selection.getRangeCount();
-			var start = new Object();
-			var end = new Object();
-			for (var i = 0; i < numRanges; i++) {
-				myTree.view.selection.getRangeAt(i,start,end);
-				for (var j = start.value; j <= end.value; j++){
-					var myId = myTree.view.getCellText(j, myTree.columns.getNamedColumn('cbid'));
-					if (cardbookRepository.cardbookCards[myId]) {
-						listOfSelectedCard.push(cardbookRepository.cardbookCards[myId]);
-					}
-				}
+			let selectedCards = [];
+			for (let index of cardbookHTMLCardsTree.cardsList.selectedIndices) {
+				selectedCards.push(cardbookHTMLCardsTree.cardsList.view._rowMap[index].card);
 			}
-			return listOfSelectedCard;
+			return selectedCards;
 		},
 
 		getSelectedCardsCount: function () {
-			var listOfUid = [];
-			listOfUid = cardbookWindowUtils.getSelectedCards();
-			return listOfUid.length;
-		},
-
-		setSelectedPreviousCard: function (aListOfCard) {
-			if (aListOfCard.length != 1) {
-				return;
-			}
-			let myTree = document.getElementById('cardsTree');
-			let aFirstVisibleRow = myTree.getFirstVisibleRow();
-			let aLastVisibleRow = myTree.getLastVisibleRow()
-			let foundIndex = 0;
-			myTree.view.selection.clearSelection();
-			let treeLength = myTree.view.rowCount;
-			for (let j = 0; j < treeLength; j++) {
-				if (myTree.view.getCellText(j, myTree.columns.getNamedColumn('cbid')) == aListOfCard[0].cbid) {
-					let next = j+1;
-					if (j == treeLength -1) {
-						if (j != 0) {
-							next = j-1;
-						} else {
-							break;
-						}
-					}
-					foundIndex = next;
-					myTree.view.selection.rangedSelect(next,next,true);
-					break;
-				}
-			}
-			if (foundIndex < aFirstVisibleRow || foundIndex > aLastVisibleRow) {
-				myTree.scrollToRow(foundIndex);
-			} else {
-				myTree.scrollToRow(aFirstVisibleRow);
-			}
-		},
-
-		setSelectedCards: function (aListOfCard, aFirstVisibleRow, aLastVisibleRow) {
-			var myList = JSON.parse(JSON.stringify(aListOfCard));
-			if (myList.length == 0) {
-				return;
-			}
-			var foundIndex = 0;
-			var myTree = document.getElementById('cardsTree');
-			myTree.view.selection.clearSelection();
-			// the list of Cards should be ordered
-			var treeLength = myTree.view.rowCount;
-			for (var j = 0; j < treeLength; j++) {
-				if (myList.length == 0) {
-					break;
-				}
-				if (myTree.view.getCellText(j, myTree.columns.getNamedColumn('cbid')) == myList[0].cbid) {
-					myTree.view.selection.rangedSelect(j,j,true);
-					myList.shift();
-					if (foundIndex == 0) {
-						foundIndex = j;
-					}
-				}
-				if (j == treeLength -1) {
-					break;
-				}
-			}
-			if (foundIndex < aFirstVisibleRow || foundIndex > aLastVisibleRow) {
-				myTree.scrollToRow(foundIndex);
-			} else {
-				myTree.scrollToRow(aFirstVisibleRow);
-			}
+			return cardbookHTMLCardsTree.cardsList.selectedIndices.length;
 		},
 
 		getSelectedCardsDirPrefId: function () {
-			var myTree = document.getElementById('cardsTree');
-			var listOfUid = [];
-			var numRanges = myTree.view.selection.getRangeCount();
-			var start = new Object();
-			var end = new Object();
-			for (var i = 0; i < numRanges; i++) {
-				myTree.view.selection.getRangeAt(i,start,end);
-				for (var j = start.value; j <= end.value; j++){
-					listOfUid.push(myTree.view.getCellText(j, myTree.columns.getNamedColumn('dirPrefId')));
-				}
+			let selectedDir = [];
+			for (let index of cardbookHTMLCardsTree.cardsList.selectedIndices) {
+				selectedDir.push(cardbookHTMLCardsTree.cardsList.view._rowMap[index].card.dirPrefId);
 			}
-			return cardbookRepository.arrayUnique(listOfUid);
+			return cardbookRepository.arrayUnique(selectedDir);
 		},
 
 		getSelectedCardsId: function () {
-			var myTree = document.getElementById('cardsTree');
-			var listOfId = [];
-			var numRanges = myTree.view.selection.getRangeCount();
-			var start = new Object();
-			var end = new Object();
-			for (var i = 0; i < numRanges; i++) {
-				myTree.view.selection.getRangeAt(i,start,end);
-				for (var j = start.value; j <= end.value; j++){
-					listOfId.push(myTree.view.getCellText(j, myTree.columns.getNamedColumn('cbid')));
+			let selectedUids = [];
+			for (let index of cardbookHTMLCardsTree.cardsList.selectedIndices) {
+				selectedUids.push(cardbookHTMLCardsTree.cardsList.view._rowMap[index].card.cbid);
+			}
+			return selectedUids;
+		},
+
+		setSelectedPreviousCard: function () {
+			let index = Math.min(...cardbookHTMLCardsTree.cardsList.selectedIndices);
+			index = index == 0  ? 0 : index - 1;
+			cardbookHTMLCardsTree.cardsList.selectedIndices = [ index ];
+		},
+
+		setSelectedCards: function (aListOfCard) {
+			let cards = JSON.parse(JSON.stringify(aListOfCard));
+			let indexFound = [];
+			for (let index in cardbookHTMLCardsTree.cardsList.view._rowMap) {
+				let i = cards.length
+				while (i--) {
+					if (cards[i].cbid == cardbookHTMLCardsTree.cardsList.view._rowMap[index].card.cbid) {
+						indexFound.push(parseInt(index));
+						cards.splice(i, 1);
+						break;
+					}
+				}
+				if (cards.length == 0) {
+					break;
 				}
 			}
-			return listOfId;
+			cardbookHTMLCardsTree.cardsList.selectedIndices = indexFound;
 		},
 
 		getCardsFromAccountsOrCats: function () {
 			try {
-				var listOfSelectedCard = [];
-				var myTree = document.getElementById('accountsOrCatsTree');
-				if (cardbookRepository.cardbookSearchMode === "SEARCH") {
-					var myAccountPrefId = cardbookRepository.cardbookSearchValue;
-				} else {
-					var myAccountPrefId = myTree.view.getCellText(myTree.currentIndex, myTree.columns.getNamedColumn('accountId'));
-				}
-				for (let card of cardbookRepository.cardbookDisplayCards[myAccountPrefId].cards) {
+				let listOfSelectedCard = [];
+				for (let index in cardbookHTMLCardsTree.cardsList.view._rowMap) {
+					let card = cardbookHTMLCardsTree.cardsList.view._rowMap[index].card;
 					listOfSelectedCard.push(card);
 				}
 				return listOfSelectedCard;
@@ -217,58 +147,47 @@ if ("undefined" == typeof(cardbookWindowUtils)) {
 			}
 		},
 
-		getCardsFromCards: function () {
-			try {
-				var listOfSelectedCard = [];
-				var myTree = document.getElementById('cardsTree');
-				var numRanges = myTree.view.selection.getRangeCount();
-				var start = new Object();
-				var end = new Object();
-				for (var i = 0; i < numRanges; i++) {
-					myTree.view.selection.getRangeAt(i,start,end);
-					for (var j = start.value; j <= end.value; j++){
-						listOfSelectedCard.push(cardbookRepository.cardbookCards[myTree.view.getCellText(j, myTree.columns.getNamedColumn('cbid'))]);
-					}
-				}
-				return listOfSelectedCard;
-			}
-			catch (e) {
-				cardbookRepository.cardbookLog.updateStatusProgressInformation("cardbookWindowUtils.getCardsFromCards error : " + e, "Error");
-			}
-		},
-
 		openConfigurationWindow: async function() {
 			try {
 				let url = "chrome/content/configuration/wdw_cardbookConfiguration.html";
-				await notifyTools.notifyBackground({query: "cardbook.openWindow",
-									url: url,
-									type: "popup"});
+				await notifyTools.notifyBackground({query: "cardbook.openTab",
+													url: url,
+													type: "popup"});
 			}
 			catch (e) {
 				cardbookRepository.cardbookLog.updateStatusProgressInformation("cardbookWindowUtils.openConfigurationWindow error : " + e, "Error");
 			}
 		},
 
-		openEditionWindow: function(aCard, aMode) {
+		openEditionWindow: async function(aCard, aMode, aCardContent) {
 			try {
-				let windowsList = Services.wm.getEnumerator("CardBook:contactEditionWindow");
-				let found = false;
-				while (windowsList.hasMoreElements()) {
-					let myWindow = windowsList.getNext();
-					if (myWindow.arguments[0] && myWindow.arguments[0].cardIn && myWindow.arguments[0].cardIn.cbid == aCard.cbid) {
-						myWindow.focus();
-						found = true;
-						break;
-					}
-				}
-				if (!found) {
-					let callback = cardbookWindowUtils.saveEditionWindow;
-					if (aMode == "EditTemplate") {
-						callback = wdw_templateEdition.saveTemplate;
-					}
-					let myArgs = {cardIn: aCard, cardOut: {}, editionMode: aMode, cardEditionAction: "", editionCallback: callback};
-					Services.wm.getMostRecentWindow(null).openDialog("chrome://cardbook/content/cardEdition/wdw_cardEdition.xhtml", "", cardbookRepository.windowParams, myArgs);
-				}
+				let url = "chrome/content/cardEdition/wdw_cardEdition.html";
+				let params = new URLSearchParams();
+				params.set("cbIdIn", aCard.cbid);
+				params.set("editionMode", aMode);
+				params.set("cardContent", aCardContent);
+				let win = await notifyTools.notifyBackground({query: "cardbook.openWindow",
+														url: `${url}?${params.toString()}`,
+														type: "popup"});
+				// let windowsList = Services.wm.getEnumerator("CardBook:contactEditionWindow");
+				// let found = false;
+				// while (windowsList.hasMoreElements()) {
+				// 	let myWindow = windowsList.getNext();
+				// 	if (myWindow.arguments[0] && myWindow.arguments[0].cardIn && myWindow.arguments[0].cardIn.cbid == aCard.cbid) {
+				// 		myWindow.focus();
+				// 		found = true;
+				// 		break;
+				// 	}
+				// }
+				// if (!found) {
+				// 	let callback = cardbookWindowUtils.saveEditionWindow;
+				// 	if (aMode == "EditTemplate") {
+				// 		callback = wdw_templateEdition.saveTemplate;
+				// 	}
+				// 	let myArgs = {cardIn: aCard, cardOut: {}, editionMode: aMode, cardEditionAction: "", editionCallback: callback};
+				// 	Services.wm.getMostRecentWindow(null).openDialog("chrome://cardbook/content/cardEdition/wdw_cardEdition.xhtml", "", cardbookRepository.windowParams, myArgs);
+				// 
+				// }
 			}
 			catch (e) {
 				cardbookRepository.cardbookLog.updateStatusProgressInformation("cardbookWindowUtils.openEditionWindow error : " + e, "Error");
@@ -512,7 +431,7 @@ if ("undefined" == typeof(cardbookWindowUtils)) {
 			myMenulist.setAttribute("label", label);
 		},
 
-		addToCardBookMenuSubMenu: function(aMenuName, aIdentityKey, aCallback) {
+		addToCardBookMenuSubMenu: function(aMenuName, aIdentityKey, aCallback, aProperties) {
 			try {
 				var ABInclRestrictions = {};
 				var ABExclRestrictions = {};
@@ -563,22 +482,18 @@ if ("undefined" == typeof(cardbookWindowUtils)) {
 					myPopup.lastChild.remove();
 				}
 				for (let account of cardbookRepository.cardbookAccounts) {
-					if (account[1] && account[5] && !account[7] && (account[6] != "SEARCH")) {
-						var myDirPrefId = account[4];
+					if (account[2] && !account[4] && (account[3] != "SEARCH")) {
+						var myDirPrefId = account[1];
 						if (cardbookRepository.verifyABRestrictions(myDirPrefId, "allAddressBooks", ABExclRestrictions, ABInclRestrictions)) {
 							var menuItem = document.createXULElement("menuitem");
-							menuItem.setAttribute("id", account[4]);
+							menuItem.setAttribute("id", account[1]);
+							for (let prop in aProperties) {
+								menuItem.setAttribute(prop, aProperties[prop]);
+							}
 							menuItem.addEventListener("command", function(aEvent) {
-									// run from email header nodes or from context menu
-									// first case add an email from email body
-									if (gContextMenu && gContextMenu.linkURL) {
-										// 7 for mailto:
-										aCallback(this.id, gContextMenu.linkURL.substr(7));
-									// second case add an attachment
-									} else if (aEvent.target.parentNode.parentNode.parentNode.attachments) {
-										for (let attachment of aEvent.target.parentNode.parentNode.parentNode.attachments) {
-											aCallback(this.id, attachment.url);
-										}
+									// first case add an attachment
+									if (this.hasAttribute('emailAttachment')) {
+										aCallback(this.id);
 									} else {
 										let headerField = aEvent.currentTarget.parentNode.parentNode.parentNode.headerField;
 										aCallback(this.id, headerField.emailAddress, headerField.displayName);
@@ -1041,7 +956,7 @@ if ("undefined" == typeof(cardbookWindowUtils)) {
 							let labelData = cardbookElementTools.addHTMLTD(currentRow, 'orgTextBox_' + i + '.1');
 							cardbookElementTools.addLabel(labelData, 'orgLabel_' + i, myOrgStructure[i], 'orgTextBox_' + i, {class: 'header'});
 							let textboxData = cardbookElementTools.addHTMLTD(currentRow, 'orgTextBox_' + i + '.2');
-							let myTextbox = cardbookElementTools.addLabel(textboxData, 'orgTextBox_' + i, myValue, null, {"data-field-name": 'org.' + myOrgStructure[i], "data-field-label": myOrgStructure[i], allValue: myOrgValue.join("::")});
+							let myTextbox = cardbookElementTools.addLabel(textboxData, 'orgTextBox_' + i, myValue, null, {"data-field-name": 'org_' + myOrgStructure[i], "data-field-label": myOrgStructure[i], allValue: myOrgValue.join("::")});
 							myTextbox.addEventListener("contextmenu", cardbookRichContext.fireBasicFieldContext, true);
 						}
 					} else {
@@ -1049,9 +964,9 @@ if ("undefined" == typeof(cardbookWindowUtils)) {
 						let labelData = cardbookElementTools.addHTMLTD(currentRow, 'orgTextBox_' + i + '.1');
 						cardbookElementTools.addLabel(labelData, 'orgLabel_' + i, myOrgStructure[i], 'orgTextBox_' + i, {class: 'header'});
 						let textboxData = cardbookElementTools.addHTMLTD(currentRow, 'orgTextBox_' + i + '.2');
-						let myTextBox = cardbookElementTools.addHTMLINPUT(textboxData, 'orgTextBox_' + i, myValue, {"data-field-name": 'org.' + myOrgStructure[i], type: 'autocomplete', autocompletesearch: 'form-history', autocompletesearchparam: 'orgTextBox_' + i, class:'padded'});
+						let myTextBox = cardbookElementTools.addHTMLINPUT(textboxData, 'orgTextBox_' + i, myValue, {"data-field-name": 'org_' + myOrgStructure[i], type: 'autocomplete', autocompletesearch: 'form-history', autocompletesearchparam: 'orgTextBox_' + i, class:'padded'});
 						myTextBox.addEventListener("input", wdw_cardEdition.onInputField, false);
-						cardbookElementTools.addProcessButton(textboxData, 'org.' + myOrgStructure[i] + 'ProcessButton');
+						cardbookElementTools.addProcessButton(textboxData, 'org_' + myOrgStructure[i] + 'ProcessButton');
 					}
 				}
 			} else {
@@ -2658,9 +2573,9 @@ if ("undefined" == typeof(cardbookWindowUtils)) {
 					var myType = "Contact";
 				}
 				if (cardbookRepository.cardbookPreferences.getReadOnly(aCard.dirPrefId)) {
-					cardbookWindowUtils.openEditionWindow(myOutCard, "View" + myType);
+					await cardbookWindowUtils.openEditionWindow(myOutCard, "View" + myType);
 				} else {
-					cardbookWindowUtils.openEditionWindow(myOutCard, "Edit" + myType);
+					await cardbookWindowUtils.openEditionWindow(myOutCard, "Edit" + myType);
 				}
 			}
 		},
